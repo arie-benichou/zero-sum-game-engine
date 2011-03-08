@@ -19,6 +19,7 @@
 
 package core.interfaces;
 
+//TODO !! définir les types de pièces dans le jeu et la texture peut changer au runtime
 import core.types.GamePlayersEnumeration;
 
 /**

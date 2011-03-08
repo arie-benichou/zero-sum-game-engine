@@ -20,35 +20,28 @@ package implementations.connect4;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.GameBoard;
-import core.GameBoardCellFactory;
 import core.GameBoardDimension;
 import core.GameBoardMove;
-import core.GameBoardPositionFactory;
-import core.GamePieceFactory;
-import core.GamePlayer;
-import core.GamePlayerRandomStrategy;
+import core.GameBuilder;
 import core.interfaces.IGameBoard;
 import core.interfaces.IGameBoardCell;
-import core.interfaces.IGameBoardCellFactory;
-import core.interfaces.IGameBoardDimension;
 import core.interfaces.IGameBoardMove;
-import core.interfaces.IGameBoardPositionFactory;
-import core.interfaces.IGamePieceFactory;
 import core.interfaces.IGamePlayer;
-import core.interfaces.IGamePlayerStrategy;
-import core.types.GamePlayerNature;
 import core.types.GamePlayersEnumeration;
 import implementations.tictactoe.Tictactoe;
+import util.StaticContext;
 
 public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
-	public Connect4(IGamePieceFactory pieceFactory, IGameBoard board, List<IGamePlayer> opponents) {
-		super(pieceFactory, board, opponents, 4);
+	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class; // TODO ! à revoir
+	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
+	// ------------------------------------------------------------
+	public Connect4(IGameBoard board, List<IGamePlayer> opponents) {
+		super(board, opponents, 4);
 	}
 	// -----------------------------------------------------------------	
-	public Connect4(IGamePieceFactory pieceFactory, IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
-		super(pieceFactory, board, opponents, numberOfPawnsToConnect);
+	public Connect4(IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
+		super(board, opponents, numberOfPawnsToConnect);
 	}	
 	// -----------------------------------------------------------------
 	@Override
@@ -71,27 +64,10 @@ public class Connect4 extends Tictactoe {
 		}
 		return legalGameTransitions;
 	}
-	// ------------------------------------------------------------	
-	// TODO ! GameBuilder
+	// ------------------------------------------------------------
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
-		// ------------------------------------------------------------
-		GamePieceFactory pieceFactory = new GamePieceFactory(Connect4PieceTypes.class);
-		// ------------------------------------------------------------		
-		IGameBoardDimension gbd = new GameBoardDimension(1, 6, 1, 7);		
-		IGameBoardPositionFactory gbpf = new GameBoardPositionFactory(gbd);		
-		IGameBoardCellFactory gbcf = new GameBoardCellFactory(gbpf);		
-		IGameBoard board = new GameBoard(gbcf);
-		// ------------------------------------------------------------
-		IGamePlayerStrategy player1Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, player1Strategy);
-		IGamePlayerStrategy player2Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, player2Strategy);
-		List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
-		opponents.add(player1);
-		opponents.add(player2);
-		// ------------------------------------------------------------		
-		new Connect4(pieceFactory, board, opponents).start();
-		// ------------------------------------------------------------
+		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------
 }

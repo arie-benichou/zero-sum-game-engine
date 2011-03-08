@@ -23,37 +23,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.Game;
-import core.GameBoard;
-import core.GameBoardCellFactory;
 import core.GameBoardDimension;
 import core.GameBoardMove;
-import core.GameBoardPositionFactory;
+import core.GameBuilder;
 import core.GamePieceFactory;
-import core.GamePlayer;
-import core.GamePlayerRandomStrategy;
 import core.interfaces.IGameBoard;
 import core.interfaces.IGameBoardCell;
-import core.interfaces.IGameBoardCellFactory;
-import core.interfaces.IGameBoardDimension;
 import core.interfaces.IGameBoardMove;
-import core.interfaces.IGameBoardPositionFactory;
-import core.interfaces.IGamePieceFactory;
 import core.interfaces.IGamePlayer;
-import core.interfaces.IGamePlayerStrategy;
 import core.types.GameBoardCardinalPosition;
 import core.types.GameBoardPlane;
-import core.types.GamePlayerNature;
 import core.types.GamePlayersEnumeration;
+import util.StaticContext;
 
 public class Tictactoe extends Game {
 	// ------------------------------------------------------------	
-	private int numberOfPawnsToConnect = 3;
+	private int numberOfPawnsToConnect = 3; // TODO à revoir
+	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
+	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3); 
 	// ------------------------------------------------------------
-	public Tictactoe(IGamePieceFactory pieceFactory, IGameBoard board, List<IGamePlayer> opponents) {
-		super(pieceFactory, board, opponents);
+	public Tictactoe(IGameBoard board, List<IGamePlayer> opponents) {
+		// TODO !! à revoir		
+		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
+		
 	}
-	public Tictactoe(IGamePieceFactory pieceFactory, IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
-		this(pieceFactory, board, opponents);
+	public Tictactoe(IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
+		this(board, opponents);
 		this.numberOfPawnsToConnect = numberOfPawnsToConnect;
 	}	
 	// -----------------------------------------------------------------
@@ -62,7 +57,7 @@ public class Tictactoe extends Game {
 		List<IGameBoardMove> legalGameTransitions = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard())
 			for(IGameBoardCell cell : line)
-				if(cell.isEmpty()) // TODO isPlayable()
+				if(cell.isEmpty()) // TODO ? isPlayable()
 					legalGameTransitions.add(new GameBoardMove(side, cell.getPosition()));
 		return legalGameTransitions;
 	}
@@ -72,12 +67,10 @@ public class Tictactoe extends Game {
 		int n;
 		neighbour = cell.getNeighbour(direction);
 		for (n = 1; n < this.numberOfPawnsToConnect; n++) {
-			if (neighbour.isNull() || neighbour.isEmpty()) {
+			if (neighbour.isNull() || neighbour.isEmpty())
 				break;
-			}
-			if (neighbour.getPiece().getSide() != justPlayedMove.getSide()) {
+			if (neighbour.getPiece().getSide() != justPlayedMove.getSide())
 				break;
-			}
 			neighbour = neighbour.getNeighbour(direction);
 		}
 		return n - 1;
@@ -89,64 +82,37 @@ public class Tictactoe extends Game {
 			connections = 1;
 			connections += this.countConnections(justPlayedMove, plane.getOneWay());
 			connections += this.countConnections(justPlayedMove, plane.getOppositeWay());
-			if (connections >= this.numberOfPawnsToConnect) {
+			if (connections >= this.numberOfPawnsToConnect)
 				return true;
-			}
 		}
 		return false;
 	}	
 	// ------------------------------------------------------------
 	@Override
 	public boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		if (this.isWinningMove(justPlayedMove)) {
+		if (this.isWinningMove(justPlayedMove))
 			return true;
-		}
 		return super.isGameOver(gameState, justPlayedMove);
 	}
 	// -----------------------------------------------------------------	
 	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		
-		if (justPlayedMove.isNull()) {
+		if (justPlayedMove.isNull())
 			// TODO ! à améliorer			
 			return super.applyGameStateTransition(gameState, justPlayedMove);
-		}
-				
 		// TODO ! méthode playMove
 		IGameBoardCell concernedCell = this.getCell(justPlayedMove.getPosition());
 		// TODO façade
 		concernedCell.setPiece(this.piece(justPlayedMove.getSide(), TictactoePieceTypes.PAWN));
-		
 		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove)) {
+		if(this.isGameOver(gameState, justPlayedMove))
 			return null;
-		}
-		
 		// TODO ! à améliorer
 		return super.applyGameStateTransition(gameState, justPlayedMove);
 	}
 	// ------------------------------------------------------------
-	// TODO ! GameBuilder
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
-		// ------------------------------------------------------------
-		GamePieceFactory pieceFactory = new GamePieceFactory(TictactoePieceTypes.class);
-		// ------------------------------------------------------------		
-		IGameBoardDimension gbd = new GameBoardDimension(1, 3, 1, 3);
-		//IGameBoardDimension gbd = new GameBoardDimension(1, 6, 1, 6);		
-		IGameBoardPositionFactory gbpf = new GameBoardPositionFactory(gbd);		
-		IGameBoardCellFactory gbcf = new GameBoardCellFactory(gbpf);		
-		IGameBoard board = new GameBoard(gbcf);
-		// ------------------------------------------------------------
-		IGamePlayerStrategy player1Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, player1Strategy);
-		IGamePlayerStrategy player2Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, player2Strategy);
-		List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
-		opponents.add(player1);
-		opponents.add(player2);
-		// ------------------------------------------------------------		
-		new Tictactoe(pieceFactory, board, opponents).start();
-		//new Tictactoe(pieceFactory, board, opponents,4).start();		
-		// ------------------------------------------------------------
+		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------
 }

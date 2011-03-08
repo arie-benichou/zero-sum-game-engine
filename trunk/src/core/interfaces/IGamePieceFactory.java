@@ -40,6 +40,6 @@ public interface IGamePieceFactory {
 	 */
 	IGamePiece getPiece(GamePlayersEnumeration player, IGamePieceType pieceType);
 	
-	IGamePiece createPiece(IGamePieceType type, GamePlayersEnumeration side);	
+	//IGamePiece createPiece(IGamePieceType type, GamePlayersEnumeration side);	
 
 }
