@@ -22,29 +22,23 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import core.Game;
-import core.GameBoard;
-import core.GameBoardCellFactory;
 import core.GameBoardDimension;
 import core.GameBoardMove;
-import core.GameBoardPositionFactory;
+import core.GameBuilder;
 import core.GamePieceFactory;
-import core.GamePlayer;
-import core.GamePlayerRandomStrategy;
 import core.interfaces.IGameBoard;
 import core.interfaces.IGameBoardCell;
-import core.interfaces.IGameBoardCellFactory;
-import core.interfaces.IGameBoardDimension;
 import core.interfaces.IGameBoardMove;
-import core.interfaces.IGameBoardPositionFactory;
 import core.interfaces.IGamePiece;
-import core.interfaces.IGamePieceFactory;
 import core.interfaces.IGamePlayer;
-import core.interfaces.IGamePlayerStrategy;
 import core.types.GameBoardCardinalPosition;
-import core.types.GamePlayerNature;
 import core.types.GamePlayersEnumeration;
+import util.StaticContext;
 
 public class Reversi extends Game {	
+	// ------------------------------------------------------------
+	public final static Class<ReversiPieceTypes> PIECE_TYPES = ReversiPieceTypes.class;
+	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);
 	// ------------------------------------------------------------	
 	@Override
 	protected void setupInitialGameState() {
@@ -56,8 +50,9 @@ public class Reversi extends Game {
 		this.getCell(5, 5).setPiece(whitePawn);
 	}
 	// ------------------------------------------------------------
-	public Reversi(IGameBoard board, IGameBoardPositionFactory positionFactory, IGamePieceFactory pieceFactory, List<IGamePlayer> opponents) {
-		super(pieceFactory, board, opponents);
+	public Reversi(IGameBoard board, List<IGamePlayer> opponents) {
+		// TODO !! à revoir
+		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 	}
 	// ------------------------------------------------------------
 	@Override
@@ -67,13 +62,11 @@ public class Reversi extends Game {
 	// ------------------------------------------------------------
 	private boolean isNeighbourCellHavingOpponentPiece(IGameBoardCell neighbourCell, GamePlayersEnumeration side) {
 		// Si la cellule n'existe pas ou si la cellule est vide		
-		if (neighbourCell.isNull() || neighbourCell.isEmpty()) {
+		if (neighbourCell.isNull() || neighbourCell.isEmpty())
 			return false;
-		}
 		// Si la cellule contient une pièce du même joueur		
-		if (neighbourCell.getPiece().getSide() == side) {
+		if (neighbourCell.getPiece().getSide() == side)
 			return false;
-		}
 		// La cellule contient une pièce de l'adversaire
 		return true;
 	}
@@ -83,14 +76,12 @@ public class Reversi extends Game {
 		// tant qu'une cellule voisine existe
 		while (!(neighbourCell = neighbourCell.getNeighbour(cellNeighbourEntry.getKey())).isNull()) {	
 			// si la cellule voisine est vide
-			if (neighbourCell.isEmpty()) {
+			if (neighbourCell.isEmpty())
 				return false;
-			}
 			// si la cellule voisine contient une pièce de l'adversaire
-			if (neighbourCell.getPiece().getSide() != cellNeighbourEntry.getValue().getPiece().getSide()) {
+			if (neighbourCell.getPiece().getSide() != cellNeighbourEntry.getValue().getPiece().getSide())
 				// TODO redéfinir les méthodes equals() et hashcode() d'une pièce
 				return true;
-			}
 		}
 		return false;
 	}
@@ -98,37 +89,28 @@ public class Reversi extends Game {
 	// TODO ? rajouter à l'interface
 	public boolean canPlayHere(IGameBoardCell cell, GamePlayersEnumeration side) {
 		// si la cellule n'est pas vide
-		if (!cell.isEmpty()) {
+		if (!cell.isEmpty())
 			return false;
-		}
 		//si la cellule n'est pas vide, les cellules voisines sont inspectées 
-		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet()) {
+		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet())
 			// si une des cellules voisines contient au moins une pièce de l'adversaire
-			if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side)) {
+			if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side))
 				// et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire
-				if (this.hasBoundInThisDirection(cellNeighbourEntry)) {
+				if (this.hasBoundInThisDirection(cellNeighbourEntry))
 					return true;
-				}
-			}
-		}
 		return false;
 	}
 	// ------------------------------------------------------------
 	@Override
 	public final List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
 		List<IGameBoardMove> legalGameTransitions = new ArrayList<IGameBoardMove>();
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for (IGameBoardCell cell : line) {
-				if (this.canPlayHere(cell, side)) {
+		for (IGameBoardCell[] line : this.getBoard())
+			for (IGameBoardCell cell : line)
+				if (this.canPlayHere(cell, side))
 					// TODO utiliser une factory de move avec un cache
 					legalGameTransitions.add(new GameBoardMove(side, cell.getPosition()));
-				}
-			}
-		}
-		
 		// TODO ? cache du nullMove pour chaque side
 		legalGameTransitions.add(new GameBoardMove(side, this.getCell(null).getPosition()));
-		
 		return legalGameTransitions;
 	}
 	// ------------------------------------------------------------
@@ -140,25 +122,21 @@ public class Reversi extends Game {
 		IGameBoardCell neighbourCell;
 		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet()) {
 			//si la cellule voisine ne contient pas une pièce de l'adversaire
-			if(!this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side)) {
+			if(!this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side))
 				continue;
-			}
 			opponentCells.clear();
 			opponentCells.add(cellNeighbourEntry.getValue());
 			neighbourCell = cellNeighbourEntry.getValue().getNeighbour(cellNeighbourEntry.getKey());
 			// tant qu'une cellule voisine existe
 			while (!neighbourCell.isNull()) {
 				// si la cellule voisine est vide
-				if (neighbourCell.isEmpty()) {
+				if (neighbourCell.isEmpty())
 					break;
-				}
 				// si la cellule voisine contient une pièce du joueur
 				if (neighbourCell.getPiece().getSide() == side) {
 					cellsToRevert.addAll(opponentCells);
 					break;
-				} else {
-					opponentCells.add(neighbourCell);
-				}
+				} else opponentCells.add(neighbourCell);
 				neighbourCell = neighbourCell.getNeighbour(cellNeighbourEntry.getKey());
 			}
 		}
@@ -168,47 +146,23 @@ public class Reversi extends Game {
 	// TODO renommer justPlayedMove en legalMoveChoosenByCurrentPlayer
 	@Override
 	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		
-		if (justPlayedMove.isNull()) {
+		if (justPlayedMove.isNull())
 			return super.applyGameStateTransition(gameState, justPlayedMove);
-		}
-				
 		// TODO ! méthode playMove
 		IGamePiece playerPiece = this.piece(justPlayedMove.getSide(), ReversiPieceTypes.PAWN);
 		this.getCell(justPlayedMove.getPosition()).setPiece(playerPiece);
-		for (IGameBoardCell cellToRevert : this.getCellsToRevert(justPlayedMove)) {
+		for (IGameBoardCell cellToRevert : this.getCellsToRevert(justPlayedMove))
 			cellToRevert.setPiece(playerPiece);
-		}
-		
 		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove)) {
+		if(this.isGameOver(gameState, justPlayedMove))
 			return null;
-		}		
-		
 		// TODO ! à améliorer
 		return super.applyGameStateTransition(gameState, justPlayedMove);
 	}
 	// ------------------------------------------------------------
-	// TODO ! GameBuilder
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
-		// ------------------------------------------------------------
-		GamePieceFactory gpf = new GamePieceFactory(ReversiPieceTypes.class);
-		// ------------------------------------------------------------		
-		IGameBoardDimension gbd = new GameBoardDimension(1, 8, 1, 8);
-		IGameBoardPositionFactory gbpf = new GameBoardPositionFactory(gbd);
-		IGameBoardCellFactory gbcf = new GameBoardCellFactory(gbpf);
-		IGameBoard board = new GameBoard(gbcf);
-		// ------------------------------------------------------------
-		IGamePlayerStrategy player1Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, player1Strategy);
-		IGamePlayerStrategy player2Strategy = new GamePlayerRandomStrategy();
-		IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, player2Strategy);
-		List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
-		opponents.add(player1);
-		opponents.add(player2);
-		// ------------------------------------------------------------		
-		new Reversi(board, gbpf, gpf, opponents).start();
-		// ------------------------------------------------------------				
+		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
-	// ------------------------------------------------------------
+	// ------------------------------------------------------------				
 }
