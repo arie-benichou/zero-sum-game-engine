@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
 import java.util.Map;
 
-import main.java.core.interfaces.IGamePiece;
-import main.java.core.interfaces.IGamePieceFactory;
-import main.java.core.interfaces.IGamePieceType;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.interfaces.IGamePiece;
+import main.java.games.core.interfaces.IGamePieceFactory;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 public class GamePieceFactory implements IGamePieceFactory {
 

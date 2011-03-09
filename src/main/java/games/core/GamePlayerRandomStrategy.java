@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
 import java.util.List;
 import java.util.Random;
 
-import main.java.core.interfaces.IGameBoardMove;
-import main.java.core.interfaces.IGamePlayerStrategy;
+import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerRandomStrategy implements IGamePlayerStrategy {
 

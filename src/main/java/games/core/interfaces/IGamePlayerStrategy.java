@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core.interfaces;
+package main.java.games.core.interfaces;
 
 import java.util.List;
 

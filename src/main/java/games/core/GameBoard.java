@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
-import main.java.core.interfaces.IGameBoard;
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGameBoardCellFactory;
-import main.java.core.interfaces.IGameBoardDimension;
-import main.java.core.interfaces.IGameBoardPosition;
-import main.java.core.interfaces.IGamePiece;
+import main.java.games.core.interfaces.IGameBoard;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGameBoardCellFactory;
+import main.java.games.core.interfaces.IGameBoardDimension;
+import main.java.games.core.interfaces.IGameBoardPosition;
+import main.java.games.core.interfaces.IGamePiece;
 
 //TODO ? utiliser BoardCell et Equals
 public class GameBoard implements IGameBoard {

@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
-import main.java.core.interfaces.IGameBoardDimension;
-import main.java.core.interfaces.IGameBoardPosition;
-import main.java.core.interfaces.IGameBoardPositionFactory;
-import main.java.core.types.GameBoardCardinalPosition;
+import main.java.games.core.interfaces.IGameBoardDimension;
+import main.java.games.core.interfaces.IGameBoardPosition;
+import main.java.games.core.interfaces.IGameBoardPositionFactory;
+import main.java.games.core.types.GameBoardCardinalPosition;
 
 public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	// ---------------------------------------------------------------------

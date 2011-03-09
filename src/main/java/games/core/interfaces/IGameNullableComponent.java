@@ -1,4 +1,4 @@
-package main.java.core.interfaces;
+package main.java.games.core.interfaces;
 
 public interface IGameNullableComponent {
 

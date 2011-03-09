@@ -1,18 +1,18 @@
-package main.java.core;
+package main.java.games.core;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.core.interfaces.IGame;
-import main.java.core.interfaces.IGameBoard;
-import main.java.core.interfaces.IGameBoardCellFactory;
-import main.java.core.interfaces.IGameBoardDimension;
-import main.java.core.interfaces.IGameBoardPositionFactory;
-import main.java.core.interfaces.IGamePlayer;
-import main.java.core.types.GamePlayerNature;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.interfaces.IGame;
+import main.java.games.core.interfaces.IGameBoard;
+import main.java.games.core.interfaces.IGameBoardCellFactory;
+import main.java.games.core.interfaces.IGameBoardDimension;
+import main.java.games.core.interfaces.IGameBoardPositionFactory;
+import main.java.games.core.interfaces.IGamePlayer;
+import main.java.games.core.types.GamePlayerNature;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 // TODO définir une interface
 // TODO ? as a Game inner-class

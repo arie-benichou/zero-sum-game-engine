@@ -1,9 +1,9 @@
-package main.java.implementations.checkers;
+package main.java.games.implementations.checkers;
 
-import main.java.core.interfaces.IGamePieceType;
-import main.java.implementations.checkers.pieces.AbstractCheckersPiece;
-import main.java.implementations.checkers.pieces.CheckersPieceKing;
-import main.java.implementations.checkers.pieces.CheckersPieceMan;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.implementations.checkers.pieces.AbstractCheckersPiece;
+import main.java.games.implementations.checkers.pieces.CheckersPieceKing;
+import main.java.games.implementations.checkers.pieces.CheckersPieceMan;
 
 public enum CheckersPieceTypes implements IGamePieceType {
 

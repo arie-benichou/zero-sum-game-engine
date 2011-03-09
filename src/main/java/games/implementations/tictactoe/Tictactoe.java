@@ -17,23 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.implementations.tictactoe;
+package main.java.games.implementations.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.core.AbstractGame;
-import main.java.core.GameBoardDimension;
-import main.java.core.GameBoardMove;
-import main.java.core.GameBuilder;
-import main.java.core.GamePieceFactory;
-import main.java.core.interfaces.IGameBoard;
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGameBoardMove;
-import main.java.core.interfaces.IGamePlayer;
-import main.java.core.types.GameBoardCardinalPosition;
-import main.java.core.types.GameBoardPlane;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.AbstractGame;
+import main.java.games.core.GameBoardDimension;
+import main.java.games.core.GameBoardMove;
+import main.java.games.core.GameBuilder;
+import main.java.games.core.GamePieceFactory;
+import main.java.games.core.interfaces.IGameBoard;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGamePlayer;
+import main.java.games.core.types.GameBoardCardinalPosition;
+import main.java.games.core.types.GameBoardPlane;
+import main.java.games.core.types.GamePlayersEnumeration;
 import main.java.util.StaticContext;
 
 public class Tictactoe extends AbstractGame {

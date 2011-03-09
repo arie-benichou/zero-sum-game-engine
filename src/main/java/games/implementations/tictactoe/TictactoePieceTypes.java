@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.implementations.tictactoe;
+package main.java.games.implementations.tictactoe;
 
-import main.java.core.interfaces.IGamePieceType;
-import main.java.implementations.tictactoe.pieces.AbstractTictactoePiece;
-import main.java.implementations.tictactoe.pieces.TictactoePiecePawn;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.implementations.tictactoe.pieces.AbstractTictactoePiece;
+import main.java.games.implementations.tictactoe.pieces.TictactoePiecePawn;
 
 public enum TictactoePieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------

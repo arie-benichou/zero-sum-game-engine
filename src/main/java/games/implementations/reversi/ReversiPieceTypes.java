@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.implementations.reversi;
+package main.java.games.implementations.reversi;
 
-import main.java.core.interfaces.IGamePieceType;
-import main.java.implementations.reversi.pieces.AbstractReversiPiece;
-import main.java.implementations.reversi.pieces.ReversiPieceNull;
-import main.java.implementations.reversi.pieces.ReversiPiecePawn;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.implementations.reversi.pieces.AbstractReversiPiece;
+import main.java.games.implementations.reversi.pieces.ReversiPieceNull;
+import main.java.games.implementations.reversi.pieces.ReversiPiecePawn;
 
 /*
  * Remarque:

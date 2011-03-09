@@ -1,9 +1,9 @@
-package main.java.implementations.checkers;
+package main.java.games.implementations.checkers;
 
-import main.java.core.GameBoardMove;
-import main.java.core.interfaces.IGameBoardPosition;
-import main.java.core.types.GameBoardCardinalPosition;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.GameBoardMove;
+import main.java.games.core.interfaces.IGameBoardPosition;
+import main.java.games.core.types.GameBoardCardinalPosition;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 // TODO ? implémenter une interface
 public class CheckersMove extends GameBoardMove {

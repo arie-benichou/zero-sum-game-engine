@@ -17,9 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core.interfaces;
+package main.java.games.core.interfaces;
 
-import main.java.core.AbstractGamePiece;
+import main.java.games.core.AbstractGamePiece;
 
 /**
  * This is the interface for a type of piece.

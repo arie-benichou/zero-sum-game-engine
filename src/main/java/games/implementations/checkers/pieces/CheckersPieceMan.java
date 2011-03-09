@@ -1,12 +1,12 @@
-package main.java.implementations.checkers.pieces;
+package main.java.games.implementations.checkers.pieces;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGamePieceType;
-import main.java.core.types.GameBoardCardinalPosition;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.core.types.GameBoardCardinalPosition;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 //TODO refactoring
 //TODO pouvoir additionner les points cardinaux entre eux

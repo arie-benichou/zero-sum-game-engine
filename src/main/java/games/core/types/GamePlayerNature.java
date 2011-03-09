@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core.types;
+package main.java.games.core.types;
 
 /**
  * This is the enumeration of a game player's nature.
