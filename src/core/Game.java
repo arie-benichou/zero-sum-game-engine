@@ -76,28 +76,6 @@ public abstract class Game implements IGame {
 		return this.opponents.get(playerTurn.ordinal());
 	}
 	// ---------------------------------------------------------------------
-	/*
-	private GamePlayersEnumeration currentPlayerOrdinal = GamePlayersEnumeration.FIRST_PLAYER;
-	public GamePlayersEnumeration getCurrentPlayerOrdinal() {
-		return currentPlayerOrdinal;
-	}
-	*/
-	/*
-	public void setCurrentPlayerOrdinal(GamePlayersEnumeration currentPlayerOrdinal) {
-		this.currentPlayerOrdinal = currentPlayerOrdinal;
-	}
-	*/
-	// ---------------------------------------------------------------------
-	/*
-	private IGameBoardMove lastPlayedMove = null;
-	public final IGameBoardMove getLastPlayedMove() {
-		return lastPlayedMove;
-	}
-	protected final void setLastPlayedMove(IGameBoardMove lastPlayedMove) {
-		this.lastPlayedMove = lastPlayedMove;
-	}
-	*/
-	// ---------------------------------------------------------------------
 	protected void setupInitialGameState() {
 	}
 	// ---------------------------------------------------------------------
@@ -120,11 +98,10 @@ public abstract class Game implements IGame {
 	// ---------------------------------------------------------------------
 	@Override
 	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosenByCurrentPlayer) {
-		// TODO !! NullMove
+		// TODO à revoir
 		return this.whoShallPlay(gameState, legalMoveChoosenByCurrentPlayer.getSide());
 	}	
 	// ---------------------------------------------------------------------
-	
 	// TODO utiliser un thread pour le client lourd
 	// TODO pas de boucle pour la version client léger	
 	@Override
@@ -136,11 +113,9 @@ public abstract class Game implements IGame {
 		
 		System.out.println(this.getBoard());
 		
-		
 		IGamePlayerStrategy currentPlayerStrategy;
 		List<IGameBoardMove> legalMovesForCurrentPlayer;
 		IGameBoardMove legalMoveChoosenByCurrentPlayer;
-
 		
 		do {
 			
@@ -158,14 +133,6 @@ public abstract class Game implements IGame {
 		} while (currentPlayerOrdinal != null);
 		
 	}
-	// ---------------------------------------------------------------------
-	/*
-	@Override
-	public void play(IGameBoardMove legalMove) {
-		// TODO ? effectuer des vérifications
-		this.setLastPlayedMove(legalMove);
-	}
-	*/
 	// ---------------------------------------------------------------------
 	@Override
 	public GamePlayersEnumeration whoShallPlay(IGameBoard gameState,
@@ -198,6 +165,22 @@ public abstract class Game implements IGame {
 						GamePlayersEnumeration.SECOND_PLAYER).isEmpty();
 	}
 	// ---------------------------------------------------------------------
+	// façades
+	// ---------------------------------------------------------------------	
+	@Override
+	public IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType) {
+		return this.getPieceFactory().getPiece(player, pieceType);
+	}
+	@Override
+	public IGameBoardCell getCell(IGameBoardPosition position) {
+		return this.getBoard().getCell(position);
+	}
+	// ---------------------------------------------------------------------
+	@Override
+	public IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex) {
+		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
+	}
+	// ---------------------------------------------------------------------
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
@@ -219,20 +202,4 @@ public abstract class Game implements IGame {
 		// TODO Auto-generated method stub
 	}
 	// ---------------------------------------------------------------------
-	// façades
-	// ---------------------------------------------------------------------	
-	@Override
-	public IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType) {
-		return this.getPieceFactory().getPiece(player, pieceType);
-	}
-	@Override
-	public IGameBoardCell getCell(IGameBoardPosition position) {
-		return this.getBoard().getCell(position);
-	}
-	// ---------------------------------------------------------------------
-	@Override
-	public IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex) {
-		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
-	}
-	// ---------------------------------------------------------------------	
 }

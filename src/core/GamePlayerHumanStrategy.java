@@ -36,7 +36,7 @@ public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 			System.out.println("No such move!");
 			return this.chooseMoveAmong(legalMovesForGivenPlayer);
 		}
-		System.out.println("you have choosen : " + legalMovesForGivenPlayer.get(i - 1));
+		System.out.println("You have choosen to play move #" + i + ": " + legalMovesForGivenPlayer.get(i - 1));
 		return legalMovesForGivenPlayer.get(i - 1);
 	}
 }

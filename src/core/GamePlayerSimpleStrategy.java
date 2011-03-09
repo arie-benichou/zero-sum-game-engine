@@ -18,21 +18,15 @@
 package core;
 
 import java.util.List;
-import java.util.Random;
 
 import core.interfaces.IGameBoardMove;
 import core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerSimpleStrategy implements IGamePlayerStrategy {
 
-	Random randomGenerator = new Random();
-
 	@Override
-	public IGameBoardMove chooseMoveAmong(
-			List<IGameBoardMove> legalMovesForGivenPlayer) {
-		// TODO ? Utiliser un NullObject NullLegalMove
-		return legalMovesForGivenPlayer.isEmpty() ? null
-				: legalMovesForGivenPlayer.get(0);
+	public IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer) {
+		return legalMovesForGivenPlayer.get(0);
 	}
 
 }

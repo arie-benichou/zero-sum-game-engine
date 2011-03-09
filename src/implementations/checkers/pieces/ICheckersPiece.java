@@ -7,8 +7,8 @@ import core.types.GameBoardCardinalPosition;
 
 public interface ICheckersPiece {
 
-	public List<GameBoardCardinalPosition> getJumpOptions(IGameBoardCell cell);
+	List<GameBoardCardinalPosition> getJumpOptions(IGameBoardCell cell);
 
-	public List<GameBoardCardinalPosition> getWalkOptions(IGameBoardCell cell);
+	List<GameBoardCardinalPosition> getWalkOptions(IGameBoardCell cell);
 
 }
