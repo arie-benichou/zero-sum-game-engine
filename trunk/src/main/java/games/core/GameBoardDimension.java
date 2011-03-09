@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
-import main.java.core.interfaces.IGameBoardDimension;
+import main.java.games.core.interfaces.IGameBoardDimension;
 
 public class GameBoardDimension implements IGameBoardDimension {
 	// ---------------------------------------------------------------------

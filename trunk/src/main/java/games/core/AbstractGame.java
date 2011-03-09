@@ -17,23 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
 import java.util.List;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import main.java.core.interfaces.IGame;
-import main.java.core.interfaces.IGameBoard;
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGameBoardPosition;
-import main.java.core.interfaces.IGameBoardMove;
-import main.java.core.interfaces.IGamePiece;
-import main.java.core.interfaces.IGamePieceFactory;
-import main.java.core.interfaces.IGamePieceType;
-import main.java.core.interfaces.IGamePlayer;
-import main.java.core.interfaces.IGamePlayerStrategy;
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.interfaces.IGame;
+import main.java.games.core.interfaces.IGameBoard;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGameBoardPosition;
+import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGamePiece;
+import main.java.games.core.interfaces.IGamePieceFactory;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.core.interfaces.IGamePlayer;
+import main.java.games.core.interfaces.IGamePlayerStrategy;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 /**
  * This class provides a skeletal implementation of the Game

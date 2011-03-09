@@ -17,9 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core.interfaces;
+package main.java.games.core.interfaces;
 
-import main.java.core.types.GamePlayersEnumeration;
+import main.java.games.core.types.GamePlayersEnumeration;
 
 /**
  * This is the interface for the game piece factory.

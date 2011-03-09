@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.implementations.connect4;
+package main.java.games.implementations.connect4;
 
-import main.java.core.interfaces.IGamePieceType;
-import main.java.implementations.connect4.pieces.AbstractConnect4Piece;
-import main.java.implementations.connect4.pieces.Connect4PiecePawn;
+import main.java.games.core.interfaces.IGamePieceType;
+import main.java.games.implementations.connect4.pieces.AbstractConnect4Piece;
+import main.java.games.implementations.connect4.pieces.Connect4PiecePawn;
 
 public enum Connect4PieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------

@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.core;
+package main.java.games.core;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGameBoardCellFactory;
-import main.java.core.interfaces.IGameBoardPosition;
-import main.java.core.interfaces.IGameBoardPositionFactory;
-import main.java.core.interfaces.IGamePiece;
-import main.java.core.types.GameBoardCardinalPosition;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGameBoardCellFactory;
+import main.java.games.core.interfaces.IGameBoardPosition;
+import main.java.games.core.interfaces.IGameBoardPositionFactory;
+import main.java.games.core.interfaces.IGamePiece;
+import main.java.games.core.types.GameBoardCardinalPosition;
 
 public class GameBoardCellFactory implements IGameBoardCellFactory {
 	// ---------------------------------------------------------------------

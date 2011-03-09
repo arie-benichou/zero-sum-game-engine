@@ -15,20 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.implementations.connect4;
+package main.java.games.implementations.connect4;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.core.GameBoardDimension;
-import main.java.core.GameBoardMove;
-import main.java.core.GameBuilder;
-import main.java.core.interfaces.IGameBoard;
-import main.java.core.interfaces.IGameBoardCell;
-import main.java.core.interfaces.IGameBoardMove;
-import main.java.core.interfaces.IGamePlayer;
-import main.java.core.types.GamePlayersEnumeration;
-import main.java.implementations.tictactoe.Tictactoe;
+import main.java.games.core.GameBoardDimension;
+import main.java.games.core.GameBoardMove;
+import main.java.games.core.GameBuilder;
+import main.java.games.core.interfaces.IGameBoard;
+import main.java.games.core.interfaces.IGameBoardCell;
+import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGamePlayer;
+import main.java.games.core.types.GamePlayersEnumeration;
+import main.java.games.implementations.tictactoe.Tictactoe;
 import main.java.util.StaticContext;
 
 public class Connect4 extends Tictactoe {
