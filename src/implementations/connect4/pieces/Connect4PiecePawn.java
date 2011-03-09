@@ -20,9 +20,9 @@ package implementations.connect4.pieces;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public class Connect4PiecePawn extends Connect4Piece {
+public class Connect4PiecePawn extends AbstractConnect4Piece {
 	// ------------------------------------------------------------
-	public Connect4PiecePawn(IGamePieceType type, GamePlayersEnumeration side) {
+	public Connect4PiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

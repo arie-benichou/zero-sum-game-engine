@@ -20,7 +20,7 @@ package implementations.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.Game;
+import core.AbstractGame;
 import core.GameBoardDimension;
 import core.GameBuilder;
 import core.GamePieceFactory;
@@ -34,7 +34,7 @@ import core.types.GamePlayersEnumeration;
 import implementations.checkers.pieces.CheckersPiece;
 import util.StaticContext;
 
-public class Checkers extends Game {
+public class Checkers extends AbstractGame {
 	// ------------------------------------------------------------	
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class; // TODO ! à revoir
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8); 

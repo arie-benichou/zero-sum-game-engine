@@ -38,7 +38,7 @@ public enum GameBoardPlane {
 	private GameBoardCardinalPosition oneWay;
 	private GameBoardCardinalPosition oppositeWay;
 
-	private GameBoardPlane(GameBoardCardinalPosition oneWay, GameBoardCardinalPosition oppositeWay) {
+	private GameBoardPlane(final GameBoardCardinalPosition oneWay, final GameBoardCardinalPosition oppositeWay) {
 		this.oneWay = oneWay;
 		this.oppositeWay = oppositeWay;
 	}

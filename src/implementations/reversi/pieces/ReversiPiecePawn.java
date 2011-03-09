@@ -20,9 +20,9 @@ package implementations.reversi.pieces;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public class ReversiPiecePawn extends ReversiPiece {
+public class ReversiPiecePawn extends AbstractReversiPiece {
 	// ------------------------------------------------------------
-	public ReversiPiecePawn(IGamePieceType type, GamePlayersEnumeration side) {
+	public ReversiPiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

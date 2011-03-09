@@ -22,7 +22,7 @@ package implementations.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.Game;
+import core.AbstractGame;
 import core.GameBoardDimension;
 import core.GameBoardMove;
 import core.GameBuilder;
@@ -36,9 +36,9 @@ import core.types.GameBoardPlane;
 import core.types.GamePlayersEnumeration;
 import util.StaticContext;
 
-public class Tictactoe extends Game {
+public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------	
-	private int numberOfPawnsToConnect = 3; // TODO à revoir
+	private int connections = 3; // TODO à revoir
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3); 
 	// ------------------------------------------------------------
@@ -49,28 +49,34 @@ public class Tictactoe extends Game {
 	}
 	public Tictactoe(IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
 		this(board, opponents);
-		this.numberOfPawnsToConnect = numberOfPawnsToConnect;
+		this.connections = numberOfPawnsToConnect;
 	}	
 	// -----------------------------------------------------------------
 	@Override
 	public List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
-		List<IGameBoardMove> legalGameTransitions = new ArrayList<IGameBoardMove>();
-		for (IGameBoardCell[] line : this.getBoard())
-			for(IGameBoardCell cell : line)
-				if(cell.isEmpty()) // TODO ? isPlayable()
-					legalGameTransitions.add(new GameBoardMove(side, cell.getPosition()));
-		return legalGameTransitions;
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for(IGameBoardCell cell : line) {
+				if(cell.isEmpty()) { // TODO ? isPlayable()
+					// TODO méthode de création
+					legalMoves.add(new GameBoardMove(side, cell.getPosition()));
+				}
+			}
+		}
+		return legalMoves;
 	}
 	// ------------------------------------------------------------	
 	protected int countConnections(IGameBoardMove justPlayedMove, GameBoardCardinalPosition direction) {
 		IGameBoardCell neighbour, cell = this.getCell(justPlayedMove.getPosition());
 		int n;
 		neighbour = cell.getNeighbour(direction);
-		for (n = 1; n < this.numberOfPawnsToConnect; n++) {
-			if (neighbour.isNull() || neighbour.isEmpty())
+		for (n = 1; n < this.connections; n++) {
+			if (neighbour.isNull() || neighbour.isEmpty()) {
 				break;
-			if (neighbour.getPiece().getSide() != justPlayedMove.getSide())
+			}
+			if (neighbour.getPiece().getSide() != justPlayedMove.getSide()) {
 				break;
+			}
 			neighbour = neighbour.getNeighbour(direction);
 		}
 		return n - 1;
@@ -82,36 +88,40 @@ public class Tictactoe extends Game {
 			connections = 1;
 			connections += this.countConnections(justPlayedMove, plane.getOneWay());
 			connections += this.countConnections(justPlayedMove, plane.getOppositeWay());
-			if (connections >= this.numberOfPawnsToConnect)
+			if (connections >= this.connections) {
 				return true;
+			}
 		}
 		return false;
 	}	
 	// ------------------------------------------------------------
 	@Override
 	public boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		if (this.isWinningMove(justPlayedMove))
+		if (this.isWinningMove(justPlayedMove)) {
 			return true;
+		}
 		return super.isGameOver(gameState, justPlayedMove);
 	}
 	// -----------------------------------------------------------------	
 	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		if (justPlayedMove.isNull())
+		if (justPlayedMove.isNull()) {
 			// TODO ! à améliorer			
 			return super.applyGameStateTransition(gameState, justPlayedMove);
+		}
 		// TODO ! méthode playMove
 		IGameBoardCell concernedCell = this.getCell(justPlayedMove.getPosition());
 		// TODO façade
 		concernedCell.setPiece(this.piece(justPlayedMove.getSide(), TictactoePieceTypes.PAWN));
 		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove))
+		if(this.isGameOver(gameState, justPlayedMove)) {
 			return null;
+		}
 		// TODO ! à améliorer
 		return super.applyGameStateTransition(gameState, justPlayedMove);
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args){
 		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------

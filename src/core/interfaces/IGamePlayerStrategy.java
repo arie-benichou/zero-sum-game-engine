@@ -34,11 +34,11 @@ public interface IGamePlayerStrategy {
 	 * 
 	 * TODO ajouter le board en paramètre
 	 * 
-	 * @param legalMovesForGivenPlayer the list of legal moves
+	 * @param legalMoves the list of legal moves
 	 * for a given player and a given board.
 	 * 
 	 * @return the move selected by the player strategy
 	 */
-	IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer);
+	IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMoves);
 
 }

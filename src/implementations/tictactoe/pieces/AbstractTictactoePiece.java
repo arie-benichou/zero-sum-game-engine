@@ -15,29 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package implementations.reversi.pieces;
+package implementations.tictactoe.pieces;
 
 import core.GamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
-import implementations.reversi.ReversiPieceTypes;
 
-public abstract class ReversiPiece extends GamePiece {
+public abstract class AbstractTictactoePiece extends GamePiece {
 	// ------------------------------------------------------------
-	public ReversiPiece(IGamePieceType type, GamePlayersEnumeration side) {
+	public AbstractTictactoePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
-
 	// ------------------------------------------------------------
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory
-		// TODO ? utiliser le NullObject PieceNull
-		if (this.getType().equals(ReversiPieceTypes.NULL)) {
-			return " ";
-		}
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x"
-				: "o";
+		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }

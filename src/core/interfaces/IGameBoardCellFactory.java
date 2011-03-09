@@ -19,7 +19,7 @@
 
 package core.interfaces;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This is the interface for the factory of game board cells.
@@ -43,7 +43,7 @@ public interface IGameBoardCellFactory {
 	 * 
 	 * @return all the cells of the game board
 	 */
-	HashMap<IGameBoardPosition, IGameBoardCell> getGameBoardCells();
+	Map<IGameBoardPosition, IGameBoardCell> getGameBoardCells();
 
 	/**
 	 * Returns the factory of positions.

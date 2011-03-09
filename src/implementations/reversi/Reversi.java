@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import core.Game;
+import core.AbstractGame;
 import core.GameBoardDimension;
 import core.GameBoardMove;
 import core.GameBuilder;
@@ -35,7 +35,7 @@ import core.types.GameBoardCardinalPosition;
 import core.types.GamePlayersEnumeration;
 import util.StaticContext;
 
-public class Reversi extends Game {	
+public class Reversi extends AbstractGame {	
 	// ------------------------------------------------------------
 	public final static Class<ReversiPieceTypes> PIECE_TYPES = ReversiPieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);

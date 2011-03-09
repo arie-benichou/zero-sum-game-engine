@@ -18,22 +18,20 @@
 package implementations.connect4;
 
 import core.interfaces.IGamePieceType;
-import implementations.connect4.pieces.Connect4Piece;
+import implementations.connect4.pieces.AbstractConnect4Piece;
 import implementations.connect4.pieces.Connect4PiecePawn;
 
 public enum Connect4PieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------
 	PAWN(Connect4PiecePawn.class);
 	// ------------------------------------------------------------
-	private final Class<? extends Connect4Piece> classObject;
-
+	private final Class<? extends AbstractConnect4Piece> classObject;
 	// ------------------------------------------------------------
-	private Connect4PieceTypes(Class<? extends Connect4Piece> classObject) {
+	private Connect4PieceTypes(final Class<? extends AbstractConnect4Piece> classObject) {
 		this.classObject = classObject;
 	}
-
 	// ------------------------------------------------------------
-	public final Class<? extends Connect4Piece> getClassObject() {
+	public final Class<? extends AbstractConnect4Piece> getClassObject() {
 		return this.classObject;
 	}
 	// ------------------------------------------------------------

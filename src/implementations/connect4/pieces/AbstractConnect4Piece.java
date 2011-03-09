@@ -21,9 +21,9 @@ import core.GamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public abstract class Connect4Piece extends GamePiece {
+public abstract class AbstractConnect4Piece extends GamePiece {
 	// ------------------------------------------------------------
-	public Connect4Piece(IGamePieceType type, GamePlayersEnumeration side) {
+	public AbstractConnect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 
@@ -31,8 +31,7 @@ public abstract class Connect4Piece extends GamePiece {
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x"
-				: "o";
+		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }
