@@ -19,12 +19,12 @@ import core.types.GamePlayersEnumeration;
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
 public class GameBuilder {
 
-	private Class<? extends IGame> gameClass;
+	private final Class<? extends IGame> gameClass;
 	private IGameBoardDimension boardDimension;
 	private IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 	private IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 
-	public GameBuilder(Class<? extends IGame> gameClass) {
+	public GameBuilder(final Class<? extends IGame> gameClass) {
 		this.gameClass = gameClass;
 		try {
 			this.boardDimension((IGameBoardDimension) this.gameClass.getDeclaredField("BOARD_DIMENSION").get(IGameBoardDimension.class));
@@ -43,32 +43,32 @@ public class GameBuilder {
 		}
 	}
 
-	public final GameBuilder boardDimension(IGameBoardDimension boardDimension) {
+	public final GameBuilder boardDimension(final IGameBoardDimension boardDimension) {
 		this.boardDimension = boardDimension;
 		return this;
 	}
 
-	public final GameBuilder player1(IGamePlayer player1) {
+	public final GameBuilder player1(final IGamePlayer player1) {
 		this.player1 = player1;
 		return this;
 	}
 
-	public final GameBuilder player2(IGamePlayer player2) {
+	public final GameBuilder player2(final IGamePlayer player2) {
 		this.player2 = player2;
 		return this;
 	}
 
 	public IGame build() {
-		IGameBoardPositionFactory positionFactory = new GameBoardPositionFactory(this.boardDimension);
-		IGameBoardCellFactory cellFactory = new GameBoardCellFactory(positionFactory);
-		IGameBoard board = new GameBoard(cellFactory);
-		ArrayList<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
+		final IGameBoardPositionFactory positionFactory = new GameBoardPositionFactory(this.boardDimension);
+		final IGameBoardCellFactory cellFactory = new GameBoardCellFactory(positionFactory);
+		final IGameBoard board = new GameBoard(cellFactory);
+		final List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
 		opponents.add(this.player1);
 		opponents.add(this.player2);
 		return newInstance(board, opponents);
 	}
 
-	private IGame newInstance(IGameBoard board, ArrayList<IGamePlayer> opponents) {
+	private IGame newInstance(final IGameBoard board, final List<IGamePlayer> opponents) {
 		Constructor<? extends IGame> constructor = null;
 		IGame instance = null;
 		try {
