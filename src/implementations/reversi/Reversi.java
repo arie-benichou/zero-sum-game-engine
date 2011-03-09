@@ -61,16 +61,8 @@ public class Reversi extends AbstractGame {
 	}
 	// ------------------------------------------------------------
 	private boolean isNeighbourCellHavingOpponentPiece(final IGameBoardCell neighbourCell, final GamePlayersEnumeration side) {
-		// Si la cellule n'existe pas ou si la cellule est vide		
-		if (neighbourCell.isNull() || neighbourCell.isEmpty()) {
-			return false;
-		}
-		// Si la cellule contient une pièce du même joueur		
-		if (neighbourCell.getPiece().getSide() == side) {
-			return false;
-		}
-		// La cellule contient une pièce de l'adversaire
-		return true;
+		// Si !(la cellule n'existe pas ou si la cellule est vide ou si la cellule contient une pièce du même joueur)
+		return !(neighbourCell.isNull() || neighbourCell.isEmpty() || neighbourCell.getPiece().getSide() == side);
 	}
 	// ------------------------------------------------------------
 	private boolean hasBoundInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
