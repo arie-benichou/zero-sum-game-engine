@@ -42,15 +42,15 @@ public class Reversi extends AbstractGame {
 	// ------------------------------------------------------------	
 	@Override
 	protected void setupInitialGameState() {
-		IGamePiece blackPawn = this.piece(GamePlayersEnumeration.FIRST_PLAYER, ReversiPieceTypes.PAWN);
-		IGamePiece whitePawn = this.piece(GamePlayersEnumeration.SECOND_PLAYER, ReversiPieceTypes.PAWN);
+		final IGamePiece blackPawn = this.piece(GamePlayersEnumeration.FIRST_PLAYER, ReversiPieceTypes.PAWN);
+		final IGamePiece whitePawn = this.piece(GamePlayersEnumeration.SECOND_PLAYER, ReversiPieceTypes.PAWN);
 		this.getCell(4, 5).setPiece(blackPawn);
 		this.getCell(5, 4).setPiece(blackPawn);
 		this.getCell(4, 4).setPiece(whitePawn);
 		this.getCell(5, 5).setPiece(whitePawn);
 	}
 	// ------------------------------------------------------------
-	public Reversi(IGameBoard board, List<IGamePlayer> opponents) {
+	public Reversi(final IGameBoard board, final List<IGamePlayer> opponents) {
 		// TODO !! à revoir
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 	}
@@ -60,83 +60,95 @@ public class Reversi extends AbstractGame {
 		return true;
 	}
 	// ------------------------------------------------------------
-	private boolean isNeighbourCellHavingOpponentPiece(IGameBoardCell neighbourCell, GamePlayersEnumeration side) {
+	private boolean isNeighbourCellHavingOpponentPiece(final IGameBoardCell neighbourCell, final GamePlayersEnumeration side) {
 		// Si la cellule n'existe pas ou si la cellule est vide		
-		if (neighbourCell.isNull() || neighbourCell.isEmpty())
+		if (neighbourCell.isNull() || neighbourCell.isEmpty()) {
 			return false;
+		}
 		// Si la cellule contient une pièce du même joueur		
-		if (neighbourCell.getPiece().getSide() == side)
+		if (neighbourCell.getPiece().getSide() == side) {
 			return false;
+		}
 		// La cellule contient une pièce de l'adversaire
 		return true;
 	}
 	// ------------------------------------------------------------
-	private boolean hasBoundInThisDirection(Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry) {
-		IGameBoardCell neighbourCell = cellNeighbourEntry.getValue();
+	private boolean hasBoundInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
+		IGameBoardCell neighbourCell = neighbourEntry.getValue();
 		// tant qu'une cellule voisine existe
-		while (!(neighbourCell = neighbourCell.getNeighbour(cellNeighbourEntry.getKey())).isNull()) {	
+		while (!(neighbourCell = neighbourCell.getNeighbour(neighbourEntry.getKey())).isNull()) {	
 			// si la cellule voisine est vide
-			if (neighbourCell.isEmpty())
+			if (neighbourCell.isEmpty()) {
 				return false;
+			}
 			// si la cellule voisine contient une pièce de l'adversaire
-			if (neighbourCell.getPiece().getSide() != cellNeighbourEntry.getValue().getPiece().getSide())
+			if (neighbourCell.getPiece().getSide() != neighbourEntry.getValue().getPiece().getSide()) {
 				// TODO redéfinir les méthodes equals() et hashcode() d'une pièce
 				return true;
+			}
 		}
 		return false;
 	}
 	// ------------------------------------------------------------
 	// TODO ? rajouter à l'interface
-	public boolean canPlayHere(IGameBoardCell cell, GamePlayersEnumeration side) {
+	public boolean canPlayHere(final IGameBoardCell cell, final GamePlayersEnumeration side) {
 		// si la cellule n'est pas vide
-		if (!cell.isEmpty())
-			return false;
-		//si la cellule n'est pas vide, les cellules voisines sont inspectées 
-		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet())
-			// si une des cellules voisines contient au moins une pièce de l'adversaire
-			if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side))
-				// et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire
-				if (this.hasBoundInThisDirection(cellNeighbourEntry))
+		if (cell.isEmpty()) {
+			//si la cellule n'est pas vide, les cellules voisines sont inspectées 
+			for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet()) {
+				// si une des cellules voisines contient au moins une pièce de l'adversaire
+				// et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire			
+				if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side) && this.hasBoundInThisDirection(cellNeighbourEntry)) {
 					return true;
+				}
+			}
+		}
 		return false;
 	}
 	// ------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
-		List<IGameBoardMove> legalGameTransitions = new ArrayList<IGameBoardMove>();
-		for (IGameBoardCell[] line : this.getBoard())
-			for (IGameBoardCell cell : line)
-				if (this.canPlayHere(cell, side))
-					// TODO utiliser une factory de move avec un cache
-					legalGameTransitions.add(new GameBoardMove(side, cell.getPosition()));
+	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for (IGameBoardCell cell : line) {
+				if (this.canPlayHere(cell, side)) {
+					// TODO utiliser une méthode de création
+					legalMoves.add(new GameBoardMove(side, cell.getPosition()));
+				}
+			}
+		}
 		// TODO ? cache du nullMove pour chaque side
-		legalGameTransitions.add(new GameBoardMove(side, this.getCell(null).getPosition()));
-		return legalGameTransitions;
+		legalMoves.add(new GameBoardMove(side, this.getCell(null).getPosition()));
+		return legalMoves;
 	}
 	// ------------------------------------------------------------
-	private List<IGameBoardCell> getCellsToRevert(IGameBoardMove move) {
-		GamePlayersEnumeration side = move.getSide();
-		IGameBoardCell cell = this.getBoard().getCell(move.getPosition());
-		List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
-		List<IGameBoardCell> opponentCells = new ArrayList<IGameBoardCell>();
+	private List<IGameBoardCell> getCellsToRevert(final IGameBoardMove move) {
+		final GamePlayersEnumeration side = move.getSide();
+		final IGameBoardCell cell = this.getBoard().getCell(move.getPosition());
+		final List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
+		final List<IGameBoardCell> opponentCells = new ArrayList<IGameBoardCell>();
 		IGameBoardCell neighbourCell;
 		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet()) {
 			//si la cellule voisine ne contient pas une pièce de l'adversaire
-			if(!this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side))
+			if(!this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side)) {
 				continue;
+			}
 			opponentCells.clear();
 			opponentCells.add(cellNeighbourEntry.getValue());
 			neighbourCell = cellNeighbourEntry.getValue().getNeighbour(cellNeighbourEntry.getKey());
 			// tant qu'une cellule voisine existe
 			while (!neighbourCell.isNull()) {
 				// si la cellule voisine est vide
-				if (neighbourCell.isEmpty())
+				if (neighbourCell.isEmpty()) {
 					break;
+				}
 				// si la cellule voisine contient une pièce du joueur
 				if (neighbourCell.getPiece().getSide() == side) {
 					cellsToRevert.addAll(opponentCells);
 					break;
-				} else opponentCells.add(neighbourCell);
+				} else {
+					opponentCells.add(neighbourCell);
+				}
 				neighbourCell = neighbourCell.getNeighbour(cellNeighbourEntry.getKey());
 			}
 		}
@@ -145,23 +157,26 @@ public class Reversi extends AbstractGame {
 	// ------------------------------------------------------------
 	// TODO renommer justPlayedMove en legalMoveChoosenByCurrentPlayer
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove justPlayedMove) {
-		if (justPlayedMove.isNull())
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
+		if (justPlayedMove.isNull()) {
 			return super.applyGameStateTransition(gameState, justPlayedMove);
+		}
 		// TODO ! méthode playMove
-		IGamePiece playerPiece = this.piece(justPlayedMove.getSide(), ReversiPieceTypes.PAWN);
+		final IGamePiece playerPiece = this.piece(justPlayedMove.getSide(), ReversiPieceTypes.PAWN);
 		this.getCell(justPlayedMove.getPosition()).setPiece(playerPiece);
-		for (IGameBoardCell cellToRevert : this.getCellsToRevert(justPlayedMove))
+		for (IGameBoardCell cellToRevert : this.getCellsToRevert(justPlayedMove)) {
 			cellToRevert.setPiece(playerPiece);
+		}
 		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove))
+		if(this.isGameOver(gameState, justPlayedMove)) {
 			return null;
+		}
 		// TODO ! à améliorer
 		return super.applyGameStateTransition(gameState, justPlayedMove);
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) {
 		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------				

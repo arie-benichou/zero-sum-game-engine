@@ -9,14 +9,14 @@ import core.types.GamePlayersEnumeration;
 public class CheckersMove extends GameBoardMove {
 	
 	private GameBoardCardinalPosition direction;
-	private final void setDirection(GameBoardCardinalPosition direction) {
+	private final void setDirection(final GameBoardCardinalPosition direction) {
 		this.direction = direction;
 	}
 	public final GameBoardCardinalPosition getDirection() {
 		return direction;
 	}	
 
-	public CheckersMove(GamePlayersEnumeration side, IGameBoardPosition position, GameBoardCardinalPosition direction) {
+	public CheckersMove(final GamePlayersEnumeration side, final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
 		super(side, position);
 		this.setDirection(direction);
 	}

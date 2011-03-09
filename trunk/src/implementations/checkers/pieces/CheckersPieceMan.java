@@ -10,9 +10,9 @@ import core.types.GamePlayersEnumeration;
 
 //TODO refactoring
 //TODO pouvoir additionner les points cardinaux entre eux
-public class CheckersPieceMan extends CheckersPiece {
+public class CheckersPieceMan extends AbstractCheckersPiece {
 	// ------------------------------------------------------------
-	public CheckersPieceMan(IGamePieceType type, GamePlayersEnumeration side) {
+	public CheckersPieceMan(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
@@ -21,39 +21,43 @@ public class CheckersPieceMan extends CheckersPiece {
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<GameBoardCardinalPosition> getWalkOptions(IGameBoardCell cell) {
+	public List<GameBoardCardinalPosition> getWalkOptions(final IGameBoardCell cell) {
 		
 		// TODO ? utiliser un EnumSet
-		List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
 		
-		GameBoardCardinalPosition sideDirection = this.getSideDirection();
+		final GameBoardCardinalPosition sideDirection = this.getSideDirection();
 		
-		GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
-		if(this.canWalkThrough(cell, direction1))
+		final GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
+		if(this.canWalkThrough(cell, direction1)) {
 			options.add(direction1);
+		}
 		
-		GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
-		if(this.canWalkThrough(cell, direction2))
+		final GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
+		if(this.canWalkThrough(cell, direction2)) {
 			options.add(direction2);
+		}
 		
 		return options;
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<GameBoardCardinalPosition> getJumpOptions(IGameBoardCell cell) {
+	public List<GameBoardCardinalPosition> getJumpOptions(final IGameBoardCell cell) {
 		
 		// TODO ? utiliser un EnumSet
-		List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
 		
-		GameBoardCardinalPosition sideDirection = this.getSideDirection();
+		final GameBoardCardinalPosition sideDirection = this.getSideDirection();
 				
-		GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
-		if(this.canJumpOver(cell, direction1))
+		final GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
+		if(this.canJumpOver(cell, direction1)) {
 			options.add(direction1);
+		}
 		
-		GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
-		if(this.canJumpOver(cell, direction2))
+		final GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
+		if(this.canJumpOver(cell, direction2)) {
 			options.add(direction2);
+		}
 		
 		return options;
 	}

@@ -19,7 +19,7 @@
 
 package core.interfaces;
 
-import core.GamePiece;
+import core.AbstractGamePiece;
 
 /**
  * This is the interface for a type of piece.
@@ -34,6 +34,6 @@ public interface IGamePieceType {
 	 * 
 	 * @return the class of the type of piece
 	 */
-	Class<? extends GamePiece> getClassObject();
+	Class<? extends AbstractGamePiece> getClassObject();
 
 }

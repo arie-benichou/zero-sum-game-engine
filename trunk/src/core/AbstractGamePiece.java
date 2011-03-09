@@ -21,21 +21,21 @@ import core.interfaces.IGamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public abstract class GamePiece implements IGamePiece {
+public abstract class AbstractGamePiece implements IGamePiece {
 
-	private GamePlayersEnumeration side;
+	private final transient GamePlayersEnumeration side;
 
 	public GamePlayersEnumeration getSide() {
 		return side;
 	}
 
-	private IGamePieceType type;
+	private final transient IGamePieceType type;
 
 	public IGamePieceType getType() {
 		return type;
 	}
 
-	public GamePiece(IGamePieceType type, GamePlayersEnumeration side) {
+	public AbstractGamePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		this.type = type;
 		this.side = side;
 	}
