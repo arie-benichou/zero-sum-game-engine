@@ -24,7 +24,7 @@ import core.types.GamePlayersEnumeration;
 public class GameBoardMove implements IGameBoardMove {
 		
 	private GamePlayersEnumeration side;
-	private final void setSide(GamePlayersEnumeration side) {
+	private final void setSide(final GamePlayersEnumeration side) {
 		this.side = side;
 	}
 	@Override	
@@ -33,7 +33,7 @@ public class GameBoardMove implements IGameBoardMove {
 	}
 	
 	private IGameBoardPosition position;
-	private final void setNewPosition(IGameBoardPosition newPosition) {
+	private final void setNewPosition(final IGameBoardPosition newPosition) {
 		this.position = newPosition;
 	}
 	@Override
@@ -46,7 +46,7 @@ public class GameBoardMove implements IGameBoardMove {
 		return this.getPosition().isNull();
 	}
 
-	public GameBoardMove(GamePlayersEnumeration side, IGameBoardPosition position) {
+	public GameBoardMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
 		this.setSide(side);
 		this.setNewPosition(position);
 	}

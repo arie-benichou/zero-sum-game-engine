@@ -24,9 +24,9 @@ import core.types.GameBoardCardinalPosition;
 
 public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	// ---------------------------------------------------------------------
-	protected IGameBoardDimension boardDimension;
+	private IGameBoardDimension boardDimension;
 
-	protected final void setBoardDimension(IGameBoardDimension boardDimension) {
+	private final void setBoardDimension(final IGameBoardDimension boardDimension) {
 		this.boardDimension = boardDimension;
 	}
 
@@ -36,22 +36,21 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	}
 
 	// ---------------------------------------------------------------------
-	protected IGameBoardPosition[][] gameBoardPositions;
+	private IGameBoardPosition[][] positions;
 
-	protected final void setBoardPositionsCache(
-			IGameBoardPosition[][] boardPositionsCache) {
-		this.gameBoardPositions = boardPositionsCache;
+	private final void setBoardPositionsCache(IGameBoardPosition[][] boardPositionsCache) {
+		this.positions = boardPositionsCache;
 	}
 
 	@Override
 	public final IGameBoardPosition[][] getBoardPositions() {
-		return gameBoardPositions;
+		return positions;
 	}
 
 	// ---------------------------------------------------------------------
-	protected int numberOfPositions;
+	private int numberOfPositions;
 
-	protected final void incrementNumberOfPositions() {
+	private final void incrementNumberOfPositions() {
 		++this.numberOfPositions;
 	}
 
@@ -66,35 +65,34 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 		return this.nullPosition;
 	}
 	// ---------------------------------------------------------------------
-	protected int computeInternalRowIndex(int clientRowIndex) {
+	private int computeInternalRowIndex(final int clientRowIndex) {
 		return clientRowIndex - this.getBoardDimension().getMinRowIndex();
 	}
-	protected int computeInternalColumnIndex(int clientColumnIndex) {
+	private int computeInternalColumnIndex(final int clientColumnIndex) {
 		return clientColumnIndex - this.getBoardDimension().getMinColumnIndex();
 	}
 	// ---------------------------------------------------------------------	
-	protected final IGameBoardPosition createPosition(int clientRowIndex, int clientColumnIndex) {
+	private final IGameBoardPosition createPosition(final int clientRowIndex, final int clientColumnIndex) {
 		this.incrementNumberOfPositions();
 		return new GameBoardPosition(clientRowIndex, clientColumnIndex, this.computeInternalRowIndex(clientRowIndex), this.computeInternalRowIndex(clientColumnIndex));
 	}
 	
-	protected final IGameBoardPosition createNullPosition(int clientRowIndex, int clientColumnIndex) {
+	private final IGameBoardPosition createNullPosition(final int clientRowIndex, final int clientColumnIndex) {
 		return new GameBoardNullPosition(clientRowIndex, clientColumnIndex, this.computeInternalRowIndex(clientRowIndex), this.computeInternalRowIndex(clientColumnIndex));
 	}
 	// ---------------------------------------------------------------------
-	protected IGameBoardPosition[][] createBoardPositionsCache() {
+	private IGameBoardPosition[][] createBoardPositionsCache() {
 		return new IGameBoardPosition[this.getBoardDimension().getRowIndexRangeSize()][this.getBoardDimension().getColumnIndexRangeSize()];
 	}
 	// ---------------------------------------------------------------------
-	protected IGameBoardPosition[][] initializeBoardPositionsCache(
-			IGameBoardPosition[][] boardPositionsCache) {
+	private IGameBoardPosition[][] initializeBoardPositionsCache(IGameBoardPosition[][] positions) {
 
 		///System.out.println("\nInitialisation des " + this.getBoardDimension().getCapacity() + " positions...");
 
-		int minColumnIndex = this.getBoardDimension().getMinColumnIndex();
-		int maxColumnIndex = this.getBoardDimension().getMaxColumnIndex();
-		int minRowIndex = this.getBoardDimension().getMinRowIndex();
-		int maxRowIndex = this.getBoardDimension().getMaxRowIndex();
+		final int minColumnIndex = this.getBoardDimension().getMinColumnIndex();
+		final int maxColumnIndex = this.getBoardDimension().getMaxColumnIndex();
+		final int minRowIndex = this.getBoardDimension().getMinRowIndex();
+		final int maxRowIndex = this.getBoardDimension().getMaxRowIndex();
 
 		///int numberOfDigitsInNumberOfPositions = this.getBoardDimension().getCapacity() == 0 ? 1 : (int) Math.log10(Math.abs(this.getBoardDimension().getCapacity())) + 1;
 
@@ -105,16 +103,16 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 				///System.out.format("%0" + numberOfDigitsInNumberOfPositions + "d : ", ++n);
 				position = this.createPosition(clientRowIndex, clientColumnIndex);
 				///System.out.print(position);
-				boardPositionsCache[position.getInternalRowIndex()][position.getInternalColumnIndex()] = position;
+				positions[position.getInternalRowIndex()][position.getInternalColumnIndex()] = position;
 				///System.out.print("\n");
 			}
 		}
 
-		return boardPositionsCache;
+		return positions;
 	}
 	// ---------------------------------------------------------------------
 	// TODO créer les éventuelles positions nulles après l'initialisation
-	private IGameBoardPosition[][] fillWithNullPositions(IGameBoardPosition[][] boardPositionsCache) {
+	private IGameBoardPosition[][] fillWithNullPositions(IGameBoardPosition[][] positions) {
 		
 		/*
 		int yMax = this.getBoardDimension().getRowIndexRangeSize();
@@ -125,25 +123,25 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 		return boardPositionsCache;
 		*/
 		
-		int minColumnIndex = this.getBoardDimension().getMinColumnIndex();
-		int maxColumnIndex = this.getBoardDimension().getMaxColumnIndex();
-		int minRowIndex = this.getBoardDimension().getMinRowIndex();
-		int maxRowIndex = this.getBoardDimension().getMaxRowIndex();
+		final int minColumnIndex = this.getBoardDimension().getMinColumnIndex();
+		final int maxColumnIndex = this.getBoardDimension().getMaxColumnIndex();
+		final int minRowIndex = this.getBoardDimension().getMinRowIndex();
+		final int maxRowIndex = this.getBoardDimension().getMaxRowIndex();
 
 		IGameBoardPosition nullPosition;
 		for (int clientRowIndex = minRowIndex; clientRowIndex <= maxRowIndex; ++clientRowIndex) {
 			for (int clientColumnIndex = minColumnIndex; clientColumnIndex <= maxColumnIndex; ++clientColumnIndex) {
 				nullPosition = this.createNullPosition(clientRowIndex, clientColumnIndex);
-				boardPositionsCache[nullPosition.getInternalRowIndex()][nullPosition.getInternalColumnIndex()] = nullPosition;
+				positions[nullPosition.getInternalRowIndex()][nullPosition.getInternalColumnIndex()] = nullPosition;
 				//System.out.print("\n");
 			}
 		}
 
-		return boardPositionsCache;		
+		return positions;		
 		
 	}	
 	// ---------------------------------------------------------------------
-	public GameBoardPositionFactory(IGameBoardDimension boardDimension) {
+	public GameBoardPositionFactory(final IGameBoardDimension boardDimension) {
 		this.setBoardDimension(boardDimension);
 		this.setBoardPositionsCache(
 			this.initializeBoardPositionsCache(
@@ -154,14 +152,14 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 		);
 	}
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition position(int clientRowIndex, int clientColumnIndex) {
+	public IGameBoardPosition position(final int clientRowIndex, final int clientColumnIndex) {
 		
 		// si la position est hors-dimension, nulle position n'est retournée.
 		if (!this.getBoardDimension().contains(clientRowIndex, clientColumnIndex)) {
 			return this.nullPosition;
 		}
 		
-		IGameBoardPosition position = this.getBoardPositions()[this.computeInternalRowIndex(clientRowIndex)][this.computeInternalColumnIndex(clientColumnIndex)];
+		final IGameBoardPosition position = this.getBoardPositions()[this.computeInternalRowIndex(clientRowIndex)][this.computeInternalColumnIndex(clientColumnIndex)];
 		
 		// si la position n'est pas hors-dimension,
 		// mais qu'elle n'a pas été définie, c'est l'exception
@@ -175,44 +173,44 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	}
 	// ---------------------------------------------------------------------
 	// TODO faire le mapping au niveau des cellules
-	private IGameBoardPosition getAdjacentPositionTo(IGameBoardPosition position, GameBoardCardinalPosition direction) {
+	private IGameBoardPosition getAdjacentPositionTo(final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
 		return this.position(position.getClientRowIndex() + direction.getDeltaRowIndex(), position.getClientColumnIndex() + direction.getDeltaColumnIndex());
 	}
 	// ---------------------------------------------------------------------	
 	
-	public IGameBoardPosition leftOf(IGameBoardPosition position) {
+	public IGameBoardPosition leftOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.LEFT);
 	}
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition rightOf(IGameBoardPosition position) {
+	public IGameBoardPosition rightOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.RIGHT);
 	}
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition topOf(IGameBoardPosition position) {
+	public IGameBoardPosition topOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.TOP);
 	}
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition bottomOf(IGameBoardPosition position) {
+	public IGameBoardPosition bottomOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.BOTTOM);		
 	}
 
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition topLeftOf(IGameBoardPosition position) {
+	public IGameBoardPosition topLeftOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.TOP_LEFT);
 	}
 
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition topRightOf(IGameBoardPosition position) {
+	public IGameBoardPosition topRightOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.TOP_RIGHT);
 	}
 
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition bottomLeftOf(IGameBoardPosition position) {
+	public IGameBoardPosition bottomLeftOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.BOTTOM_LEFT);
 	}
 
 	// ---------------------------------------------------------------------
-	public IGameBoardPosition bottomRightOf(IGameBoardPosition position) {
+	public IGameBoardPosition bottomRightOf(final IGameBoardPosition position) {
 		return this.getAdjacentPositionTo(position, GameBoardCardinalPosition.BOTTOM_RIGHT);
 	}
 	// =====================================================================
@@ -220,10 +218,11 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 
 		private static final long serialVersionUID = 1L;
 
-		private int clientRowIndex;
-		private int clientColumnIndex;
+		private final int clientRowIndex;
+		private final int clientColumnIndex;
 		
-		public GameBoardIllegalPositionException(int clientRowIndex, int clientColumnIndex) {
+		public GameBoardIllegalPositionException(final int clientRowIndex, final int clientColumnIndex) {
+			super();
 			this.clientRowIndex = clientRowIndex;
 			this.clientColumnIndex = clientColumnIndex;
 		}		
@@ -239,39 +238,39 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	// =====================================================================
 	private class GameBoardNullPosition implements IGameBoardPosition {
 		// ---------------------------------------------------------------------
-		protected int clientRowIndex;
+		private int clientRowIndex;
 		public final int getClientRowIndex() {
 			return this.clientRowIndex;
 		}
-		private final void setClientRowIndex(int clientRowIndex) {
+		private final void setClientRowIndex(final int clientRowIndex) {
 			this.clientRowIndex = clientRowIndex;
 		}
 		// ---------------------------------------------------------------------
-		protected int clientColumnIndex;
+		private int clientColumnIndex;
 		public final int getClientColumnIndex() {
 			return this.clientColumnIndex;
 		}				
-		private final void setClientColumnIndex(int clientColumnIndex) {
+		private final void setClientColumnIndex(final int clientColumnIndex) {
 			this.clientColumnIndex = clientColumnIndex;
 		}
 		// ---------------------------------------------------------------------
-		protected int internalRowIndex;
+		private int internalRowIndex;
 		public final int getInternalRowIndex() {
 			return this.internalRowIndex;
 		}				
-		private final void setInternalRowIndex(int internalRowIndex) {
+		private final void setInternalRowIndex(final int internalRowIndex) {
 			this.internalRowIndex = internalRowIndex;
 		}
 		// ---------------------------------------------------------------------		
-		protected int internalColumnIndex;
+		private int internalColumnIndex;
 		public final int getInternalColumnIndex() {
 			return this.internalColumnIndex;
 		}				
-		private final void setInternalColumnIndex(int internalColumnIndex) {
+		private final void setInternalColumnIndex(final int internalColumnIndex) {
 			this.internalColumnIndex = internalColumnIndex;
 		}				
 		// ---------------------------------------------------------------------
-		public GameBoardNullPosition(int clientRowIndex, int clientColumnIndex, int internalRowIndex, int internalColumnIndex) {
+		public GameBoardNullPosition(final int clientRowIndex, final int clientColumnIndex, final int internalRowIndex, final int internalColumnIndex) {
 			this.setClientRowIndex(clientRowIndex);
 			this.setClientColumnIndex(clientColumnIndex);
 			this.setInternalRowIndex(internalRowIndex);
@@ -292,7 +291,7 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	// =====================================================================
 	private class GameBoardPosition extends GameBoardNullPosition {
 		// ---------------------------------------------------------------------
-		public GameBoardPosition(int clientRowIndex, int clientColumnIndex, int internalRowIndex, int internalColumnIndex) {
+		public GameBoardPosition(final int clientRowIndex, final int clientColumnIndex, final int internalRowIndex, final int internalColumnIndex) {
 			super(clientRowIndex, clientColumnIndex, internalRowIndex, internalColumnIndex);
 		}
 		// ---------------------------------------------------------------------
