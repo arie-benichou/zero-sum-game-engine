@@ -91,7 +91,7 @@ public abstract class AbstractGame implements IGame {
 	// TODO créer IGameLegalMoveList
 	protected void displayLegalMoveList(final GamePlayersEnumeration currentPlayer, final List<IGameBoardMove> legalMoveList) {
 		int n = 0;		
-		int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
+		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
 		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
 		System.out.println("\nlegal moves :");
 		for (IGameBoardMove legalMove : legalMoveList) {
@@ -138,9 +138,8 @@ public abstract class AbstractGame implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public GamePlayersEnumeration whoShallPlay(IGameBoard gameState,
-			GamePlayersEnumeration currentPlayerOrdinal) {
-		if (currentPlayerOrdinal.equals(GamePlayersEnumeration.FIRST_PLAYER)) {
+	public GamePlayersEnumeration whoShallPlay(final IGameBoard gameState, final GamePlayersEnumeration currentPlayer) {
+		if (currentPlayer.equals(GamePlayersEnumeration.FIRST_PLAYER)) {
 			return GamePlayersEnumeration.SECOND_PLAYER;
 		}
 		return GamePlayersEnumeration.FIRST_PLAYER;
@@ -152,7 +151,7 @@ public abstract class AbstractGame implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove) {
+	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
 		// TODO ! à optimiser
 		// TODO définir une méthode "hasLegalMove"
 		// TODO ?! retourner false pour l'implémentation par défaut
@@ -171,16 +170,16 @@ public abstract class AbstractGame implements IGame {
 	// façades
 	// ---------------------------------------------------------------------	
 	@Override
-	public IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType) {
+	public IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType) {
 		return this.getPieceFactory().getPiece(player, pieceType);
 	}
 	@Override
-	public IGameBoardCell getCell(IGameBoardPosition position) {
+	public IGameBoardCell getCell(final IGameBoardPosition position) {
 		return this.getBoard().getCell(position);
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex) {
+	public IGameBoardCell getCell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
 	}
 	// ---------------------------------------------------------------------
