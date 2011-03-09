@@ -25,11 +25,11 @@ import core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerRandomStrategy implements IGamePlayerStrategy {
 
-	private Random randomGenerator = new Random();
-
+	private final transient Random randomGenerator = new Random();
+	
 	@Override
-	public IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer) {
-		return legalMovesForGivenPlayer.get(randomGenerator.nextInt(legalMovesForGivenPlayer.size()));
+	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+		return legalMoves.get(this.randomGenerator.nextInt(legalMoves.size()));
 	}
 
 }

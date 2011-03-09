@@ -24,14 +24,13 @@ import core.types.GamePlayersEnumeration;
 
 public class GamePlayer implements IGamePlayer {
 
-	private String name;
-	private GamePlayersEnumeration ordinal;
+	private final transient String name;
+	private final transient GamePlayersEnumeration ordinal;
 	// TODO ? supprimmer
-	private GamePlayerNature type;
-	private IGamePlayerStrategy strategy;
+	private final transient GamePlayerNature type;
+	private final transient IGamePlayerStrategy strategy;
 
-	public GamePlayer(String name, GamePlayersEnumeration ordinal,
-			GamePlayerNature type, IGamePlayerStrategy strategy) {
+	public GamePlayer(final String name, final GamePlayersEnumeration ordinal, final GamePlayerNature type, final IGamePlayerStrategy strategy) {
 		this.name = name;
 		this.ordinal = ordinal;
 		this.type = type;

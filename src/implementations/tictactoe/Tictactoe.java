@@ -42,18 +42,18 @@ public class Tictactoe extends AbstractGame {
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3); 
 	// ------------------------------------------------------------
-	public Tictactoe(IGameBoard board, List<IGamePlayer> opponents) {
+	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents) {
 		// TODO !! à revoir		
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 		
 	}
-	public Tictactoe(IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
+	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents, final int connections) {
 		this(board, opponents);
-		this.connections = numberOfPawnsToConnect;
+		this.connections = connections;
 	}	
 	// -----------------------------------------------------------------
 	@Override
-	public List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
+	public List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for(IGameBoardCell cell : line) {
@@ -66,10 +66,10 @@ public class Tictactoe extends AbstractGame {
 		return legalMoves;
 	}
 	// ------------------------------------------------------------	
-	protected int countConnections(IGameBoardMove justPlayedMove, GameBoardCardinalPosition direction) {
-		IGameBoardCell neighbour, cell = this.getCell(justPlayedMove.getPosition());
+	protected int countConnections(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int n;
-		neighbour = cell.getNeighbour(direction);
+		final IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());		
+		IGameBoardCell neighbour = cell.getNeighbour(direction);
 		for (n = 1; n < this.connections; n++) {
 			if (neighbour.isNull() || neighbour.isEmpty()) {
 				break;
@@ -82,7 +82,7 @@ public class Tictactoe extends AbstractGame {
 		return n - 1;
 	}	
 	// ------------------------------------------------------------
-	protected boolean isWinningMove(IGameBoardMove justPlayedMove) {
+	protected boolean isWinningMove(final IGameBoardMove justPlayedMove) {
 		int connections;
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
 			connections = 1;
@@ -96,20 +96,20 @@ public class Tictactoe extends AbstractGame {
 	}	
 	// ------------------------------------------------------------
 	@Override
-	public boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove) {
+	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
 		if (this.isWinningMove(justPlayedMove)) {
 			return true;
 		}
 		return super.isGameOver(gameState, justPlayedMove);
 	}
 	// -----------------------------------------------------------------	
-	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove justPlayedMove) {
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
 		if (justPlayedMove.isNull()) {
 			// TODO ! à améliorer			
 			return super.applyGameStateTransition(gameState, justPlayedMove);
 		}
 		// TODO ! méthode playMove
-		IGameBoardCell concernedCell = this.getCell(justPlayedMove.getPosition());
+		final IGameBoardCell concernedCell = this.getCell(justPlayedMove.getPosition());
 		// TODO façade
 		concernedCell.setPiece(this.piece(justPlayedMove.getSide(), TictactoePieceTypes.PAWN));
 		// TODO ! à améliorer		
@@ -121,7 +121,7 @@ public class Tictactoe extends AbstractGame {
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args){
+	public static void main(final String[] args){
 		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------

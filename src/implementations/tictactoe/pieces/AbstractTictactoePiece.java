@@ -17,11 +17,11 @@
 
 package implementations.tictactoe.pieces;
 
-import core.GamePiece;
+import core.AbstractGamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public abstract class AbstractTictactoePiece extends GamePiece {
+public abstract class AbstractTictactoePiece extends AbstractGamePiece {
 	// ------------------------------------------------------------
 	public AbstractTictactoePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);

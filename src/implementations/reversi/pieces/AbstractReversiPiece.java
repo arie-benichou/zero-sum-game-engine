@@ -17,12 +17,12 @@
 
 package implementations.reversi.pieces;
 
-import core.GamePiece;
+import core.AbstractGamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 import implementations.reversi.ReversiPieceTypes;
 
-public abstract class AbstractReversiPiece extends GamePiece {
+public abstract class AbstractReversiPiece extends AbstractGamePiece {
 	// ------------------------------------------------------------
 	public AbstractReversiPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
@@ -36,7 +36,9 @@ public abstract class AbstractReversiPiece extends GamePiece {
 		if(this.getType().equals(ReversiPieceTypes.NULL)) {
 			symbol = " ";
 		}
-		symbol = this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		else {
+			symbol = this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";	
+		}
 		return symbol;
 	}
 	// ------------------------------------------------------------

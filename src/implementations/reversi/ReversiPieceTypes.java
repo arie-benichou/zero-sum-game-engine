@@ -33,7 +33,7 @@ public enum ReversiPieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------
 	private final Class<? extends AbstractReversiPiece> classObject;
 	// ------------------------------------------------------------
-	private ReversiPieceTypes(Class<? extends AbstractReversiPiece> classObject) {
+	private ReversiPieceTypes(final Class<? extends AbstractReversiPiece> classObject) {
 		this.classObject = classObject;
 	}
 	// ------------------------------------------------------------

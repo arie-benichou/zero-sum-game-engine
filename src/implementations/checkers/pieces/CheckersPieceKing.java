@@ -8,7 +8,7 @@ import core.interfaces.IGamePieceType;
 import core.types.GameBoardCardinalPosition;
 import core.types.GamePlayersEnumeration;
 
-public class CheckersPieceKing extends CheckersPiece {
+public class CheckersPieceKing extends AbstractCheckersPiece {
 	// ------------------------------------------------------------
 	private static final GameBoardCardinalPosition[] POSITIONS =
 	{
@@ -18,14 +18,14 @@ public class CheckersPieceKing extends CheckersPiece {
 		GameBoardCardinalPosition.BOTTOM_LEFT
 	};
 	// ------------------------------------------------------------
-	public CheckersPieceKing(IGamePieceType type, GamePlayersEnumeration side) {
+	public CheckersPieceKing(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<GameBoardCardinalPosition> getWalkOptions(IGameBoardCell cell) {
+	public List<GameBoardCardinalPosition> getWalkOptions(final IGameBoardCell cell) {
 		// TODO ? utiliser un EnumSet
-		List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
 		for (GameBoardCardinalPosition direction : POSITIONS) {
 			if (this.canWalkThrough(cell, direction)) {
 				options.add(direction);
@@ -35,9 +35,9 @@ public class CheckersPieceKing extends CheckersPiece {
 	}
 	// ------------------------------------------------------------	
 	@Override
-	public List<GameBoardCardinalPosition> getJumpOptions(IGameBoardCell cell) {
+	public List<GameBoardCardinalPosition> getJumpOptions(final IGameBoardCell cell) {
 		// TODO ? utiliser un EnumSet
-		List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
 		for (GameBoardCardinalPosition direction : POSITIONS) {
 			if (this.canJumpOver(cell, direction)) {
 				options.add(direction);

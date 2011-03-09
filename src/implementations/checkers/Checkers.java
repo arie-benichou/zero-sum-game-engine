@@ -31,7 +31,7 @@ import core.interfaces.IGamePiece;
 import core.interfaces.IGamePlayer;
 import core.types.GameBoardCardinalPosition;
 import core.types.GamePlayersEnumeration;
-import implementations.checkers.pieces.CheckersPiece;
+import implementations.checkers.pieces.AbstractCheckersPiece;
 import util.StaticContext;
 
 public class Checkers extends AbstractGame {
@@ -39,46 +39,49 @@ public class Checkers extends AbstractGame {
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class; // TODO ! à revoir
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8); 
 	// ------------------------------------------------------------
-	public Checkers(IGameBoard board, List<IGamePlayer> opponents) {
+	public Checkers(final IGameBoard board, final List<IGamePlayer> opponents) {
 		// TODO !! à revoir
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);		
 	}
 	// ------------------------------------------------------------
-	public List<IGameBoardCell> getRelevantCells(GamePlayersEnumeration side) { // TODO passer le board en paramètre
-		List<IGameBoardCell> pieces = new ArrayList<IGameBoardCell>();
+	public List<IGameBoardCell> getRelevantCells(final GamePlayersEnumeration side) { // TODO passer le board en paramètre
+		final List<IGameBoardCell> pieces = new ArrayList<IGameBoardCell>();
 		for (IGameBoardCell[] line : this.getBoard()) { // TODO utiliser le board passé en paramètre
 			for(IGameBoardCell cell : line) {
 				// TODO ? utiliser la pièce nulle
-				if(cell.isEmpty())
+				if(cell.isEmpty()) {
 					continue;
-				if(cell.getPiece().getSide() == side)
+				}
+				if(cell.getPiece().getSide() == side) {
 					pieces.add(cell);
+				}
 			}
 		}
 		return pieces;
 	}
 	// ------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
-		List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
-		List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();
-		CheckersPiece piece;
+	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+		final List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
+		final List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();
+		AbstractCheckersPiece piece;
 		List<GameBoardCardinalPosition> pieceOptions;
 		boolean hasToJump = false;
 		for(IGameBoardCell cell : this.getRelevantCells(side)) { // TODO passer le board en paramètre
-			piece = (CheckersPiece)cell.getPiece();
+			piece = (AbstractCheckersPiece)cell.getPiece();
 			pieceOptions = piece.getJumpOptions(cell);
 			if(!pieceOptions.isEmpty()) {
 				hasToJump = true;
-				for(GameBoardCardinalPosition direction : pieceOptions)
+				for(GameBoardCardinalPosition direction : pieceOptions) {
+					// TODO méthode de création
 					jumpingMoves.add(new CheckersMove(side, cell.getPosition(), direction));
+				}
 			}
 			else if(!hasToJump) {
 				pieceOptions = piece.getWalkOptions(cell);
-				//if(!pieceOptions.isEmpty()) {
-					for(GameBoardCardinalPosition direction : pieceOptions)
-						walkingMoves.add(new CheckersMove(side, cell.getPosition(), direction));
-				//}
+				for(GameBoardCardinalPosition direction : pieceOptions) {
+					walkingMoves.add(new CheckersMove(side, cell.getPosition(), direction));
+				}
 			}
 			
 		}
@@ -109,11 +112,11 @@ public class Checkers extends AbstractGame {
 	}
 	// -----------------------------------------------------------------
 	// TODO ?! ajouter à l'interface
-	private boolean playMove(IGameBoard gameState, CheckersMove move) {
+	private boolean playMove(final IGameBoard gameState, final CheckersMove move) {
 		// récupération de la cellule corespondant à la position
-		IGameBoardCell cell = gameState.getCell(move.getPosition());
+		final IGameBoardCell cell = gameState.getCell(move.getPosition());
 		// récupération de la pièce à déplacer
-		IGamePiece pieceToMove = cell.getPiece();
+		final IGamePiece pieceToMove = cell.getPiece();
 		// suppression de la pièce à sa position actuelle
 		cell.setPiece(null);
 		// récupération de la cellulle correspondant à la direction choisie
@@ -131,43 +134,48 @@ public class Checkers extends AbstractGame {
 		destinationCell.setPiece(pieceToMove);
 		boolean hasBeenCrowned = false;
 		// vérification de l'éventuelle promotion d'un pion
-		if(pieceToMove.getType() == CheckersPieceTypes.MAN) {
-			// si un pion est déplacé à l'extrémité du plateau
-			if(destinationCell.getNeighbour(GameBoardCardinalPosition.TOP).isNull() || destinationCell.getNeighbour(GameBoardCardinalPosition.BOTTOM).isNull()) {
-				hasBeenCrowned = true;
-				// il est promu roi
-				destinationCell.setPiece(this.piece(move.getSide(), CheckersPieceTypes.KING)); // TODO ? façade king
-				//System.out.println("\nLongue vie au roi!");				
-			}
+		if(
+			pieceToMove.getType() == CheckersPieceTypes.MAN && (
+				destinationCell.getNeighbour(GameBoardCardinalPosition.TOP).isNull() ||
+				destinationCell.getNeighbour(GameBoardCardinalPosition.BOTTOM).isNull()
+			)
+		){
+			hasBeenCrowned = true;
+			// il est promu roi
+			destinationCell.setPiece(this.piece(move.getSide(), CheckersPieceTypes.KING)); // TODO ? façade king
+			//System.out.println("\nLongue vie au roi!");				
 		}
 		return hasBeenEating && !hasBeenCrowned; 
 	}
 	// -----------------------------------------------------------------
 	// TODO ?! ajouter à une interface ICheckers, entre autres...
-	private boolean hasToKeepPlaying(IGameBoard gameState, CheckersMove move) {
+	private boolean hasToKeepPlaying(final IGameBoard gameState, final CheckersMove move) {
 		IGameBoardCell actualCell = gameState.getCell(move.getPosition());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		actualCell = actualCell.getNeighbour(move.getDirection());
-		CheckersPiece piece =  (CheckersPiece) actualCell.getPiece();
+		final AbstractCheckersPiece piece =  (AbstractCheckersPiece) actualCell.getPiece();
 		//Et que la pièce peut encore effectuer une capture
 		return !piece.getJumpOptions(actualCell).isEmpty(); // TODO faire façade canJump pour une pièce
 	}
 	// -----------------------------------------------------------------	
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveToPlay) {
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove legalMoveToPlay) {
 		///////////////////////////////////////////////////////////////////
 		// TODO ! faire une fois le test au niveau de la classe abstraite 
-		if (legalMoveToPlay.isNull())
+		if (legalMoveToPlay.isNull()) {
 			return super.applyGameStateTransition(gameState, legalMoveToPlay); // TODO ! à améliorer
+		}
 		///////////////////////////////////////////////////////////////////		
 		// TODO ? generics
-		CheckersMove move = (CheckersMove)legalMoveToPlay;
-		boolean moveMightNotBeCompleted = this.playMove(gameState, move);
-		if(this.isGameOver(gameState, legalMoveToPlay))
+		final CheckersMove move = (CheckersMove)legalMoveToPlay;
+		final boolean moveMightNotBeCompleted = this.playMove(gameState, move);
+		if(this.isGameOver(gameState, legalMoveToPlay)) {
 			return null; // TODO ! à améliorer
-		if(moveMightNotBeCompleted && this.hasToKeepPlaying(gameState, move))
+		}
+		if(moveMightNotBeCompleted && this.hasToKeepPlaying(gameState, move)) {
 			// Alors, c'est toujours au tour du joueur en cours
 			return legalMoveToPlay.getSide();
+		}
 		///////////////////////////////////////////////////////////////////		
 		// TODO ! à améliorer
 		// TODO ? virer de l'interface whoShallPlay
@@ -176,20 +184,22 @@ public class Checkers extends AbstractGame {
 	}
 	// ------------------------------------------------------------
 	@Override
-	public boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove) { // TODO faire optimisation pour les autres jeux utilisant l'implémentation par défaut (la modifier)
+	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) { // TODO faire optimisation pour les autres jeux utilisant l'implémentation par défaut (la modifier)
 		// Suite à ce coup, si l'adversaire... 
-		GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
+		final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
 		// n'a plus aucune pièce
-		if(this.getRelevantCells(oppositeSide).isEmpty()) // TODO passer le board en paramètre
+		if(this.getRelevantCells(oppositeSide).isEmpty()) { // TODO passer le board en paramètre
 			return true;
+		}
 		// a encore des pièces mais qu'il ne peut plus jouer
-		if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty())// TODO ? mettre en cache ou définir une deuxième méthode prenant en paramètre les cellules relevantes
+		if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {// TODO ? mettre en cache ou définir une deuxième méthode prenant en paramètre les cellules relevantes
 			return true;
+		}
 		return false;
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) {
 		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------

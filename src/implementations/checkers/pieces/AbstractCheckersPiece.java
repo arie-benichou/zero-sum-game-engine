@@ -1,40 +1,45 @@
 package implementations.checkers.pieces;
 
-import core.GamePiece;
+import core.AbstractGamePiece;
 import core.interfaces.IGameBoardCell;
 import core.interfaces.IGamePieceType;
 import core.types.GameBoardCardinalPosition;
 import core.types.GamePlayersEnumeration;
 
-public abstract class CheckersPiece extends GamePiece implements ICheckersPiece {
+public abstract class AbstractCheckersPiece extends AbstractGamePiece implements ICheckersPiece {
 	// ------------------------------------------------------------
-	public CheckersPiece(IGamePieceType type, GamePlayersEnumeration side) {
+	public AbstractCheckersPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
-	protected boolean canJumpOver(IGameBoardCell cell, GameBoardCardinalPosition cardinalPosition) {
+	protected boolean canJumpOver(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
 		
 		IGameBoardCell neighbourCell = cell.getNeighbour(cardinalPosition);
 		
-		if(neighbourCell.isNull() || neighbourCell.isEmpty())
+		if(neighbourCell.isNull() || neighbourCell.isEmpty()) {
 			return false;
+		}
 		
-		if(neighbourCell.getPiece().getSide() == this.getSide())
+		if(neighbourCell.getPiece().getSide() == this.getSide()) {
 			return false;
+		}
 		
 		neighbourCell = neighbourCell.getNeighbour(cardinalPosition);
 		
-		if(neighbourCell.isNull() || !neighbourCell.isEmpty())
+		if(neighbourCell.isNull() || !neighbourCell.isEmpty()) {
 			return false;
+		}
 		
 		return true;		
 	}
 	// ------------------------------------------------------------	
-	protected boolean canWalkThrough(IGameBoardCell cell, GameBoardCardinalPosition cardinalPosition) {
-		if(cell.getNeighbour(cardinalPosition).isNull())
+	protected boolean canWalkThrough(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
+		if(cell.getNeighbour(cardinalPosition).isNull()) {
 			return false;
-		if(cell.getNeighbour(cardinalPosition).isEmpty())
+		}
+		if(cell.getNeighbour(cardinalPosition).isEmpty()) {
 			return true;
+		}
 		return false;
 	}
 	// ------------------------------------------------------------

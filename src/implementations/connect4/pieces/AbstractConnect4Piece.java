@@ -17,16 +17,15 @@
 
 package implementations.connect4.pieces;
 
-import core.GamePiece;
+import core.AbstractGamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public abstract class AbstractConnect4Piece extends GamePiece {
+public abstract class AbstractConnect4Piece extends AbstractGamePiece {
 	// ------------------------------------------------------------
 	public AbstractConnect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
-
 	// ------------------------------------------------------------
 	@Override
 	public String toString() {
