@@ -17,13 +17,27 @@
 
 package implementations.reversi.pieces;
 
+import core.GamePiece;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
+import implementations.reversi.ReversiPieceTypes;
 
-public class ReversiPieceNull extends AbstractReversiPiece {
+public abstract class AbstractReversiPiece extends GamePiece {
 	// ------------------------------------------------------------
-	public ReversiPieceNull(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public AbstractReversiPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
+	}
+	// ------------------------------------------------------------
+	@Override
+	public String toString() {
+		// TODO ? utiliser une map dans la factory
+		// TODO ? utiliser le NullObject PieceNull
+		String symbol;
+		if(this.getType().equals(ReversiPieceTypes.NULL)) {
+			symbol = " ";
+		}
+		symbol = this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		return symbol;
 	}
 	// ------------------------------------------------------------
 }

@@ -30,33 +30,26 @@ import core.interfaces.IGamePiece;
 //TODO ? utiliser BoardCell et Equals
 public class GameBoard implements IGameBoard {
 	// ---------------------------------------------------------------------
-	protected IGameBoardCellFactory boardCellFactory;
-
-	protected final IGameBoardCellFactory getBoardCellFactory() {
+	private IGameBoardCellFactory boardCellFactory;
+	private final IGameBoardCellFactory getBoardCellFactory() {
 		return this.boardCellFactory;
 	}
-
-	protected final void setBoardCellFactory(
-			IGameBoardCellFactory boardCellFactory) {
+	private final void setBoardCellFactory(final IGameBoardCellFactory boardCellFactory) {
 		this.boardCellFactory = boardCellFactory;
 	}
-
 	// ---------------------------------------------------------------------
-	protected IGameBoardCell[][] board;
-
-	protected final IGameBoardCell[][] getBoard() {
+	private IGameBoardCell[][] board;
+	private final IGameBoardCell[][] getBoard() {
 		return this.board;
 	}
-
-	protected final void setBoard(IGameBoardCell[][] board) {
+	private final void setBoard(final IGameBoardCell[][] board) {
 		this.board = board;
 	}
-
 	// ---------------------------------------------------------------------
 	// TODO ? utiliser boardDimension
-	protected IGameBoardCell[][] createBoard() {
+	private IGameBoardCell[][] createBoard() {
 		
-		IGameBoardDimension bd = this.getBoardCellFactory().getBoardPositionFactory().getBoardDimension();
+		final IGameBoardDimension dimension = this.getBoardCellFactory().getBoardPositionFactory().getBoardDimension();
 		/*
 		int[] byRow = new int[bd.getRowIndexRangeSize()];
 		
@@ -73,18 +66,18 @@ public class GameBoard implements IGameBoard {
 		*/
 		
 		//TODO à optimiser plus tard
-		return new IGameBoardCell[bd.getRowIndexRangeSize()][bd.getColumnIndexRangeSize()];
+		return new IGameBoardCell[dimension.getRowIndexRangeSize()][dimension.getColumnIndexRangeSize()];
 	}
 
 	// ---------------------------------------------------------------------
-	protected IGameBoardCell[][] initializeBoard(IGameBoardCell[][] board) {
+	private IGameBoardCell[][] initializeBoard(IGameBoardCell[][] board) {
 		for (IGameBoardPosition position : this.getBoardCellFactory().getGameBoardCells().keySet()) {
 			board[position.getInternalRowIndex()][position.getInternalColumnIndex()] = this.getBoardCellFactory().cell(position);
 		}
 		return board;
 	}
 	// ---------------------------------------------------------------------
-	public GameBoard(IGameBoardCellFactory cellFactory) {
+	public GameBoard(final IGameBoardCellFactory cellFactory) {
 		///System.out.println("\nInitialisation du board...");
 		this.setBoardCellFactory(cellFactory);
 		this.setBoard(this.initializeBoard(this.createBoard()));
@@ -92,20 +85,20 @@ public class GameBoard implements IGameBoard {
 
 	// ---------------------------------------------------------------------
 	@Override	
-	public IGameBoardCell getCell(IGameBoardPosition position) {
+	public IGameBoardCell getCell(final IGameBoardPosition position) {
 		
 		if(position == null) {
-			return this.getBoardCellFactory().getNullCell();
+			return this.getBoardCellFactory().getNullCell(); // TODO
 		}
 		
 		// TODO ? faire pareil que si position == null
 		if(position.isNull()) {
-			this.getBoardCellFactory().cell(position);
+			return this.getBoardCellFactory().cell(position); // TODO
 		}
 
-		return this.getBoard()[position.getInternalRowIndex()][position
-				.getInternalColumnIndex()];
+		return this.getBoard()[position.getInternalRowIndex()][position.getInternalColumnIndex()];
 	}
+	// ---------------------------------------------------------------------	
 	@Override
 	public IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex) {
 		return this.getCell(this.getBoardCellFactory().getBoardPositionFactory().position(clientRowIndex, clientColumnIndex));

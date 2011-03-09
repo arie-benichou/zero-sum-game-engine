@@ -42,11 +42,11 @@ public interface IGame {
 	 * Returns the player ordinal.
 	 * 
 	 * @param gameState the game board (TODO revoir la légitimité du paramètre)
-	 * @param currentPlayerOrdinal the player ordinal
+	 * @param currentPlayer the player ordinal
 	 * 
 	 * @return the player ordinal
 	 */
-	GamePlayersEnumeration whoShallPlay(IGameBoard gameState, GamePlayersEnumeration currentPlayerOrdinal);
+	GamePlayersEnumeration whoShallPlay(IGameBoard gameState, GamePlayersEnumeration currentPlayer);
 
 	/**
 	 * Returns the list of legal moves for a player, given a board.
@@ -79,7 +79,7 @@ public interface IGame {
 	 */
 	//void applyGameStateTransition(IGameBoardMove playedMove);
 	
-	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosenByCurrentPlayer);
+	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosen);
 
 	/**
      * Returns <tt>true</tt> if this game is over.

@@ -18,22 +18,20 @@
 package implementations.tictactoe;
 
 import core.interfaces.IGamePieceType;
-import implementations.tictactoe.pieces.TictactoePiece;
+import implementations.tictactoe.pieces.AbstractTictactoePiece;
 import implementations.tictactoe.pieces.TictactoePiecePawn;
 
 public enum TictactoePieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------
 	PAWN(TictactoePiecePawn.class);
 	// ------------------------------------------------------------
-	private final Class<? extends TictactoePiece> classObject;
-
+	private final Class<? extends AbstractTictactoePiece> classObject;
 	// ------------------------------------------------------------
-	private TictactoePieceTypes(Class<? extends TictactoePiece> classObject) {
+	private TictactoePieceTypes(final Class<? extends AbstractTictactoePiece> classObject) {
 		this.classObject = classObject;
 	}
-
 	// ------------------------------------------------------------
-	public final Class<? extends TictactoePiece> getClassObject() {
+	public final Class<? extends AbstractTictactoePiece> getClassObject() {
 		return this.classObject;
 	}
 	// ------------------------------------------------------------

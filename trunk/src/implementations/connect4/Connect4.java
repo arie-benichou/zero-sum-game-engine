@@ -36,25 +36,26 @@ public class Connect4 extends Tictactoe {
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class; // TODO ! à revoir
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
-	public Connect4(IGameBoard board, List<IGamePlayer> opponents) {
+	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents) {
 		super(board, opponents, 4);
 	}
 	// -----------------------------------------------------------------	
-	public Connect4(IGameBoard board, List<IGamePlayer> opponents, int numberOfPawnsToConnect) {
-		super(board, opponents, numberOfPawnsToConnect);
+	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents, final int connections) {
+		super(board, opponents, connections);
 	}	
 	// -----------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(IGameBoard board, GamePlayersEnumeration side) {
+	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
 		IGameBoardCell nextBottomCell;
-		List<IGameBoardMove> legalGameTransitions = new ArrayList<IGameBoardMove>();
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		// TODO a améliorer
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for(IGameBoardCell cell : line) {
 				while(cell.isEmpty()) {
 					nextBottomCell = cell.bottom();
 					if(nextBottomCell.isNull() || !nextBottomCell.isEmpty()) {
-						legalGameTransitions.add(new GameBoardMove(side, cell.getPosition()));
+						// TODO méthode de création
+						legalMoves.add(new GameBoardMove(side, cell.getPosition()));
 						break;
 					}
 					cell = nextBottomCell;
@@ -62,11 +63,11 @@ public class Connect4 extends Tictactoe {
 			}
 			break;			
 		}
-		return legalGameTransitions;
+		return legalMoves;
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) {
 		new GameBuilder(StaticContext.thatClass()).build().start();
 	}
 	// ------------------------------------------------------------

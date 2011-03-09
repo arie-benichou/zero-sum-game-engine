@@ -21,6 +21,8 @@ package core;
 
 import java.util.List;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import core.interfaces.IGame;
 import core.interfaces.IGameBoard;
 import core.interfaces.IGameBoardCell;
@@ -40,13 +42,13 @@ import core.types.GamePlayersEnumeration;
  * @author  Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public abstract class Game implements IGame {
+public abstract class AbstractGame implements IGame {
 	// ---------------------------------------------------------------------
 	private IGamePieceFactory pieceFactory;
 	protected final IGamePieceFactory getPieceFactory() {
 		return this.pieceFactory;
 	}
-	private final void setPieceFactory(IGamePieceFactory gamePieceFactory) {
+	private final void setPieceFactory(final IGamePieceFactory gamePieceFactory) {
 		this.pieceFactory = gamePieceFactory;
 	}
 	// ---------------------------------------------------------------------
@@ -54,39 +56,42 @@ public abstract class Game implements IGame {
 	protected IGameBoard getBoard() {
 		return this.board;
 	}
-	private final void setBoard(IGameBoard board) {
+	private final void setBoard(final IGameBoard board) {
 		this.board = board;
 	}
 	// ---------------------------------------------------------------------
 	private List<IGamePlayer> opponents;
 
-	private final void setOpponents(List<IGamePlayer> opponents) {
+	public List<IGamePlayer> getOpponents() {
+		return opponents;
+	}
+	private final void setOpponents(final List<IGamePlayer> opponents) {
 		this.opponents = opponents;
 	}
 
-	public final IGamePlayer getOpponent(GamePlayersEnumeration playerTurn) {
+	public final IGamePlayer getOpponent(final GamePlayersEnumeration playerTurn) {
 		return this.opponents.get(1 - playerTurn.ordinal());
 	}
 
-	public final IGamePlayer getOpponentToPlayer(IGamePlayer player) {
+	public final IGamePlayer getOpponentToPlayer(final IGamePlayer player) {
 		return this.getOpponent(player.getOrder());
 	}
 
-	public final IGamePlayer getPlayer(GamePlayersEnumeration playerTurn) {
+	public final IGamePlayer getPlayer(final GamePlayersEnumeration playerTurn) {
 		return this.opponents.get(playerTurn.ordinal());
 	}
 	// ---------------------------------------------------------------------
-	protected void setupInitialGameState() {
+	protected void setupInitialGameState() { // TODO à revoir
 	}
 	// ---------------------------------------------------------------------
-	public Game(IGamePieceFactory pieceFactory, IGameBoard board, List<IGamePlayer> opponents) {
+	public AbstractGame(final IGamePieceFactory pieceFactory, final IGameBoard board, final List<IGamePlayer> opponents) {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
 		this.setOpponents(opponents);
 	}
 	// ---------------------------------------------------------------------
 	// TODO créer IGameLegalMoveList
-	protected void displayLegalMoveList(GamePlayersEnumeration currentPlayerOrdinal, List<IGameBoardMove> legalMoveList) {
+	protected void displayLegalMoveList(final GamePlayersEnumeration currentPlayer, final List<IGameBoardMove> legalMoveList) {
 		int n = 0;		
 		int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
 		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
@@ -97,9 +102,9 @@ public abstract class Game implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosenByCurrentPlayer) {
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
 		// TODO à revoir
-		return this.whoShallPlay(gameState, legalMoveChoosenByCurrentPlayer.getSide());
+		return this.whoShallPlay(gameState, moveToPlay.getSide());
 	}	
 	// ---------------------------------------------------------------------
 	// TODO utiliser un thread pour le client lourd
@@ -107,30 +112,30 @@ public abstract class Game implements IGame {
 	@Override
 	public void start() {
 
-		GamePlayersEnumeration currentPlayerOrdinal = GamePlayersEnumeration.FIRST_PLAYER;
+		GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
 		
 		this.setupInitialGameState();
 		
 		System.out.println(this.getBoard());
 		
-		IGamePlayerStrategy currentPlayerStrategy;
-		List<IGameBoardMove> legalMovesForCurrentPlayer;
-		IGameBoardMove legalMoveChoosenByCurrentPlayer;
+		IGamePlayerStrategy playerStrategy;
+		List<IGameBoardMove> legalMoves;
+		IGameBoardMove legalMoveToPlay;
 		
 		do {
 			
-			legalMovesForCurrentPlayer = this.getLegalMoves(this.getBoard(), currentPlayerOrdinal);
-			this.displayLegalMoveList(currentPlayerOrdinal, legalMovesForCurrentPlayer);
+			legalMoves = this.getLegalMoves(this.getBoard(), currentPlayer);
+			this.displayLegalMoveList(currentPlayer, legalMoves);
 			
-			currentPlayerStrategy = this.getPlayer(currentPlayerOrdinal).getStrategy();			
-			legalMoveChoosenByCurrentPlayer = currentPlayerStrategy.chooseMoveAmong(legalMovesForCurrentPlayer);
+			playerStrategy = this.getPlayer(currentPlayer).getStrategy();			
+			legalMoveToPlay = playerStrategy.chooseMoveAmong(legalMoves);
 			
 			//TODO ? utiliser GamePlayersEnumeration.NONE
-			currentPlayerOrdinal = this.applyGameStateTransition(this.getBoard(), legalMoveChoosenByCurrentPlayer);
+			currentPlayer = this.applyGameStateTransition(this.getBoard(), legalMoveToPlay);
 			
 			System.out.println(this.getBoard());
 			
-		} while (currentPlayerOrdinal != null);
+		} while (currentPlayer != null);
 		
 	}
 	// ---------------------------------------------------------------------
@@ -183,23 +188,22 @@ public abstract class Game implements IGame {
 	// ---------------------------------------------------------------------
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		throw new NotImplementedException();
 	}
 	// ---------------------------------------------------------------------	
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		throw new NotImplementedException();
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
+		throw new NotImplementedException();
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
+		throw new NotImplementedException();
 	}
 	// ---------------------------------------------------------------------
 }

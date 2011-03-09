@@ -27,16 +27,16 @@ import core.interfaces.IGamePlayerStrategy;
 public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 
 	@Override
-	public IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer) {
-		Scanner sc = new Scanner(System.in);
+	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+		final Scanner scanner = new Scanner(System.in);
 		System.out.println("\nWhat is your move?");
 		int i = 0;
-		try {i = sc.nextInt();}catch(InputMismatchException e) {}
-		if (i < 1 || i > legalMovesForGivenPlayer.size()) {
+		try {i = scanner.nextInt();}catch(InputMismatchException e) {}
+		if (i < 1 || i > legalMoves.size()) {
 			System.out.println("No such move!");
-			return this.chooseMoveAmong(legalMovesForGivenPlayer);
+			return this.chooseMoveAmong(legalMoves);
 		}
-		System.out.println("You have choosen to play move #" + i + ": " + legalMovesForGivenPlayer.get(i - 1));
-		return legalMovesForGivenPlayer.get(i - 1);
+		System.out.println("You have choosen to play move #" + i + ": " + legalMoves.get(i - 1));
+		return legalMoves.get(i - 1);
 	}
 }

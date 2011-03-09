@@ -18,7 +18,7 @@
 package implementations.reversi;
 
 import core.interfaces.IGamePieceType;
-import implementations.reversi.pieces.ReversiPiece;
+import implementations.reversi.pieces.AbstractReversiPiece;
 import implementations.reversi.pieces.ReversiPieceNull;
 import implementations.reversi.pieces.ReversiPiecePawn;
 
@@ -31,13 +31,13 @@ public enum ReversiPieceTypes implements IGamePieceType {
 	NULL(ReversiPieceNull.class),
 	PAWN(ReversiPiecePawn.class);
 	// ------------------------------------------------------------
-	private final Class<? extends ReversiPiece> classObject;
+	private final Class<? extends AbstractReversiPiece> classObject;
 	// ------------------------------------------------------------
-	private ReversiPieceTypes(Class<? extends ReversiPiece> classObject) {
+	private ReversiPieceTypes(Class<? extends AbstractReversiPiece> classObject) {
 		this.classObject = classObject;
 	}
 	// ------------------------------------------------------------
-	public final Class<? extends ReversiPiece> getClassObject() {
+	public final Class<? extends AbstractReversiPiece> getClassObject() {
 		return this.classObject;
 	}
 	// ------------------------------------------------------------

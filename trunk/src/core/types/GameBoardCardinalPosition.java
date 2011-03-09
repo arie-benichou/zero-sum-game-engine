@@ -42,7 +42,7 @@ public enum GameBoardCardinalPosition {
 	private final int deltaRowIndex;
 	private final int deltaColumnIndex;
 
-	private GameBoardCardinalPosition(int deltaRowIndex, int deltaColumnIndex) {
+	private GameBoardCardinalPosition(final int deltaRowIndex, final int deltaColumnIndex) {
 		this.deltaRowIndex = deltaRowIndex;
 		this.deltaColumnIndex = deltaColumnIndex;
 	}

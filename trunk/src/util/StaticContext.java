@@ -1,11 +1,13 @@
 package util;
 
 public class StaticContext {
+	
+	private StaticContext() {}
 
 	public static class CurrentClassGetter<T> extends SecurityManager {
 		@SuppressWarnings("rawtypes")
 		public Class getClassObject() {
-			Class[] classContext = this.getClassContext();
+			final Class[] classContext = this.getClassContext();
 			return classContext[classContext.length - 1];
 		}
 	}

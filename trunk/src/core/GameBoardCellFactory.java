@@ -29,31 +29,23 @@ import core.types.GameBoardCardinalPosition;
 
 public class GameBoardCellFactory implements IGameBoardCellFactory {
 	// ---------------------------------------------------------------------
-	protected IGameBoardPositionFactory boardPositionFactory;
-
-	protected final void setBoardPositionFactory(
-			IGameBoardPositionFactory boardPositionFactory) {
-		this.boardPositionFactory = boardPositionFactory;
+	private IGameBoardPositionFactory positionFactory;
+	private final void setBoardPositionFactory(final IGameBoardPositionFactory positionFactory) {
+		this.positionFactory = positionFactory;
 	}
-
 	@Override
 	public final IGameBoardPositionFactory getBoardPositionFactory() {
-		return this.boardPositionFactory;
+		return this.positionFactory;
 	}
-
 	// ---------------------------------------------------------------------
-	protected HashMap<IGameBoardPosition, IGameBoardCell> gameBoardCells;
-
-	protected final void setGameBoardCells(
-			HashMap<IGameBoardPosition, IGameBoardCell> gameBoardCells) {
+	private Map<IGameBoardPosition, IGameBoardCell> gameBoardCells;
+	private final void setGameBoardCells(final Map<IGameBoardPosition, IGameBoardCell> gameBoardCells) {
 		this.gameBoardCells = gameBoardCells;
 	}
-
 	@Override
-	public final HashMap<IGameBoardPosition, IGameBoardCell> getGameBoardCells() {
+	public final Map<IGameBoardPosition, IGameBoardCell> getGameBoardCells() {
 		return gameBoardCells;
 	}
-
 	// ---------------------------------------------------------------------
 	private final IGameBoardCell nullCell; 
 	@Override
@@ -61,10 +53,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		return this.nullCell;
 	}	
 	// ---------------------------------------------------------------------
-
-	protected final HashMap<IGameBoardPosition, IGameBoardCell> initializeBoardCells(
-			HashMap<IGameBoardPosition, IGameBoardCell> boardCells) {
-
+	private final Map<IGameBoardPosition, IGameBoardCell> initializeBoardCells(final Map<IGameBoardPosition, IGameBoardCell> boardCells) {
 		///int n = 0;
 		IGameBoardCell cell;
 		
@@ -79,7 +68,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 				
 					///System.out.format("%0" + numberOfDigitsInNumberOfPositions+ "d : ", ++n);
 
-					// TODO ? utiliser une méthode de création
+					// TODO utiliser une méthode de création
 					cell = new GameBoardCell(position);
 
 					///System.out.print(cell + "\n");
@@ -91,29 +80,26 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		
 		return boardCells;
 	}
-
 	// ---------------------------------------------------------------------
-	public GameBoardCellFactory(IGameBoardPositionFactory boardPositionFactory) {
-		this.setBoardPositionFactory(boardPositionFactory);
-		this.setGameBoardCells(this.initializeBoardCells(new HashMap<IGameBoardPosition, IGameBoardCell>(boardPositionFactory.getNumberOfPositions())));
+	public GameBoardCellFactory(final IGameBoardPositionFactory positionFactory) {
+		this.setBoardPositionFactory(positionFactory);
+		this.setGameBoardCells(this.initializeBoardCells(new HashMap<IGameBoardPosition, IGameBoardCell>(positionFactory.getNumberOfPositions())));
 		
 		this.nullCell = new GameBoardCell(this.getBoardPositionFactory().getNullPosition()); 
 	}
-
 	// ---------------------------------------------------------------------
 	@Override
-	public IGameBoardCell cell(IGameBoardPosition position) {
+	public IGameBoardCell cell(final IGameBoardPosition position) {
 		return  position.isNull() ? this.nullCell : this.gameBoardCells.get(position);
 	}
-
 	// =====================================================================
-	protected class GameBoardCell implements IGameBoardCell {
+	private class GameBoardCell implements IGameBoardCell {
 		// ---------------------------------------------------------------------		
 		private IGameBoardPosition position;
 		public final IGameBoardPosition getPosition() {
 			return this.position;
 		}
-		private final void setPosition(IGameBoardPosition position) {
+		private final void setPosition(final IGameBoardPosition position) {
 			this.position = position;
 		}
 		// ---------------------------------------------------------------------
@@ -123,7 +109,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		}
 		// ---------------------------------------------------------------------				
 		private IGamePiece piece = null;
-		public final void setPiece(IGamePiece piece) {
+		public final void setPiece(final IGamePiece piece) {
 			
 			// TODO à améliorer
 			if(this.isNull()) {
@@ -152,7 +138,10 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 			return this.getPiece() == null;
 		}
 		// ---------------------------------------------------------------------
-		private HashMap<GameBoardCardinalPosition, IGameBoardCell> neighbourhood = null;
+		private Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood = null;
+		public void setNeighbourhood(final Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood) {
+			this.neighbourhood = neighbourhood;
+		}
 		@Override
 		public Map<GameBoardCardinalPosition, IGameBoardCell> getNeighbourhood() {
 			if (this.neighbourhood == null) {
@@ -169,7 +158,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 			return this.neighbourhood;
 		}
 		// ---------------------------------------------------------------------
-		public GameBoardCell(IGameBoardPosition position) {
+		public GameBoardCell(final IGameBoardPosition position) {
 			this.setPosition(position);
 		}
 		// ---------------------------------------------------------------------
@@ -179,7 +168,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		}
 		// ---------------------------------------------------------------------
 		@Override
-		public IGameBoardCell getNeighbour(GameBoardCardinalPosition key) {
+		public IGameBoardCell getNeighbour(final GameBoardCardinalPosition key) {
 			return this.getNeighbourhood().get(key);
 		}
 		// ---------------------------------------------------------------------

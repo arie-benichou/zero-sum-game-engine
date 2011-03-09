@@ -23,7 +23,7 @@ public class GameBoardDimension implements IGameBoardDimension {
 	// ---------------------------------------------------------------------
 	private int minRowIndex;
 
-	private final void setMinRowIndex(int minRowIndex) {
+	private final void setMinRowIndex(final int minRowIndex) {
 		this.minRowIndex = minRowIndex;
 	}
 
@@ -34,7 +34,7 @@ public class GameBoardDimension implements IGameBoardDimension {
 	// ---------------------------------------------------------------------
 	private int maxRowIndex;
 
-	private final void setMaxRowIndex(int maxRowIndex) {
+	private final void setMaxRowIndex(final int maxRowIndex) {
 		this.maxRowIndex = maxRowIndex;
 	}
 
@@ -45,7 +45,7 @@ public class GameBoardDimension implements IGameBoardDimension {
 	// ---------------------------------------------------------------------
 	private int minColumnIndex;
 
-	private final void setMinColumnIndex(int minColumnIndex) {
+	private final void setMinColumnIndex(final int minColumnIndex) {
 		this.minColumnIndex = minColumnIndex;
 	}
 
@@ -56,7 +56,7 @@ public class GameBoardDimension implements IGameBoardDimension {
 	// ---------------------------------------------------------------------
 	private int maxColumnIndex;
 
-	private final void setMaxColumnIndex(int maxColumnIndex) {
+	private final void setMaxColumnIndex(final int maxColumnIndex) {
 		this.maxColumnIndex = maxColumnIndex;
 	}
 
@@ -79,8 +79,7 @@ public class GameBoardDimension implements IGameBoardDimension {
 	}
 
 	// ---------------------------------------------------------------------
-	public GameBoardDimension(int minRowIndex, int maxRowIndex,
-			int minColumnIndex, int maxColumnIndex) throws RuntimeException {
+	public GameBoardDimension(final int minRowIndex, final int maxRowIndex, final int minColumnIndex, final int maxColumnIndex) throws RuntimeException {
 		if (maxRowIndex < minRowIndex) {
 			// TODO utiliser une BoardDimension exception
 			throw new RuntimeException("maxRowIndex < minRowIndex");
@@ -93,24 +92,16 @@ public class GameBoardDimension implements IGameBoardDimension {
 		this.setMaxRowIndex(maxRowIndex);
 		this.setMinColumnIndex(minColumnIndex);
 		this.setMaxColumnIndex(maxColumnIndex);
-
-		///System.out.println(this);
-
 	}
-
 	// ---------------------------------------------------------------------
-	public boolean contains(int rowIndex, int columnIndex) {
-		if (rowIndex < this.getMinRowIndex())
-			return false;
-		if (rowIndex > this.getMaxRowIndex())
-			return false;
-		if (columnIndex < this.getMinColumnIndex())
-			return false;
-		if (columnIndex > this.getMaxColumnIndex())
-			return false;
-		return true;
+	public boolean contains(final int rowIndex, final int columnIndex) {
+		return (
+			rowIndex < this.getMinRowIndex() ||
+			rowIndex > this.getMaxRowIndex() ||
+			columnIndex < this.getMinColumnIndex() ||
+			columnIndex > this.getMaxColumnIndex()
+		) ? false : true;
 	}
-
 	// ---------------------------------------------------------------------
 	@Override
 	public String toString() {

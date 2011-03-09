@@ -20,6 +20,7 @@ package core;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
+import java.util.Map;
 
 import core.interfaces.IGamePiece;
 import core.interfaces.IGamePieceFactory;
@@ -28,13 +29,16 @@ import core.types.GamePlayersEnumeration;
 
 public class GamePieceFactory implements IGamePieceFactory {
 
-	private Hashtable<String, IGamePiece> gamePiecesCache;
-	private void setGamePiecesCache(Hashtable<String, IGamePiece> gamePiecesCache) {
+	private Map<String, IGamePiece> gamePiecesCache;
+	private Map<String, IGamePiece> getGamePiecesCache() {
+		return this.gamePiecesCache;
+	}
+	private void setGamePiecesCache(final Map<String, IGamePiece> gamePiecesCache) {
 		this.gamePiecesCache = gamePiecesCache;
 	}
 
-	public IGamePiece createPiece(IGamePieceType type, GamePlayersEnumeration side) {
-		Class<? extends IGamePiece> classObject = type.getClassObject();
+	public IGamePiece createPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+		final Class<? extends IGamePiece> classObject = type.getClassObject();
 		Constructor<? extends IGamePiece> constructor = null;
 		IGamePiece instance = null;
 		try {
@@ -59,26 +63,28 @@ public class GamePieceFactory implements IGamePieceFactory {
 		return instance;
 	}
 
-	private String hash(GamePlayersEnumeration side, IGamePieceType gamePieceType) {
+	private String hash(final GamePlayersEnumeration side, final IGamePieceType gamePieceType) {
 		return side + "/" + gamePieceType;
 	}
 
-	private <T extends Enum<T> & IGamePieceType> void initializeGamePiecesCache(Class<T> gamePieceTypes) {
-		for (IGamePieceType gamePieceType : gamePieceTypes.getEnumConstants())
-			for (GamePlayersEnumeration side : GamePlayersEnumeration.values())
-				this.gamePiecesCache.put(this.hash(side, gamePieceType), this.createPiece(gamePieceType, side));
+	private <T extends Enum<T> & IGamePieceType> void initializeGamePiecesCache(final Class<T> gamePieceTypes) {
+		for (IGamePieceType gamePieceType : gamePieceTypes.getEnumConstants()) {
+			for (GamePlayersEnumeration side : GamePlayersEnumeration.values()) {
+				this.getGamePiecesCache().put(this.hash(side, gamePieceType), this.createPiece(gamePieceType, side));
+			}
+		}
 	}
 
 	@Override
-	public IGamePiece getPiece(GamePlayersEnumeration side, IGamePieceType gamePieceType) {
+	public IGamePiece getPiece(final GamePlayersEnumeration side, final IGamePieceType gamePieceType) {
 		return this.gamePiecesCache.get(this.hash(side, gamePieceType));
 	}
 
-	public <T extends Enum<T> & IGamePieceType> GamePieceFactory(Class<T> gamePiecesSet) {
+	public <T extends Enum<T> & IGamePieceType> GamePieceFactory(final Class<T> gamePiecesSet) {
 		///System.out.println("\nInitialisation des pièces du jeu...");
-		int gamePiecesCacheCapacity = GamePlayersEnumeration.values().length * gamePiecesSet.getEnumConstants().length;
-		this.setGamePiecesCache(new Hashtable<String, IGamePiece>(gamePiecesCacheCapacity));
-		this.initializeGamePiecesCache(gamePiecesSet);
+		final int cacheCapacity = GamePlayersEnumeration.values().length * gamePiecesSet.getEnumConstants().length;
+		this.setGamePiecesCache(new Hashtable<String, IGamePiece>(cacheCapacity));
+		this.initializeGamePiecesCache(gamePiecesSet); // TODO !! à revoir
 	}
 
 }

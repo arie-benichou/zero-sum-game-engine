@@ -25,8 +25,8 @@ import core.interfaces.IGamePlayerStrategy;
 public class GamePlayerSimpleStrategy implements IGamePlayerStrategy {
 
 	@Override
-	public IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer) {
-		return legalMovesForGivenPlayer.get(0);
+	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+		return legalMoves.get(0);
 	}
 
 }

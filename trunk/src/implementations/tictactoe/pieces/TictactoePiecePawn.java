@@ -20,9 +20,9 @@ package implementations.tictactoe.pieces;
 import core.interfaces.IGamePieceType;
 import core.types.GamePlayersEnumeration;
 
-public class TictactoePiecePawn extends TictactoePiece {
+public class TictactoePiecePawn extends AbstractTictactoePiece {
 	// ------------------------------------------------------------
-	public TictactoePiecePawn(IGamePieceType type, GamePlayersEnumeration side) {
+	public TictactoePiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
