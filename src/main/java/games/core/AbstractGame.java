@@ -21,13 +21,11 @@ package main.java.games.core;
 
 import java.util.List;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import main.java.games.core.interfaces.IGame;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
-import main.java.games.core.interfaces.IGameBoardPosition;
 import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGameBoardPosition;
 import main.java.games.core.interfaces.IGamePiece;
 import main.java.games.core.interfaces.IGamePieceFactory;
 import main.java.games.core.interfaces.IGamePieceType;
@@ -188,22 +186,22 @@ public abstract class AbstractGame implements IGame {
 	// ---------------------------------------------------------------------
 	@Override
 	public void pause() {
-		throw new NotImplementedException();
+		// TODO
 	}
 	// ---------------------------------------------------------------------	
 	@Override
 	public void resume() {
-		throw new NotImplementedException();
+		// TODO
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void stop() {
-		throw new NotImplementedException();
+		// TODO
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void reset() {
-		throw new NotImplementedException();
+		// TODO
 	}
 	// ---------------------------------------------------------------------
 }
