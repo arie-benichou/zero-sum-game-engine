@@ -32,7 +32,8 @@ public class GameBoardMove implements IGameBoardMove {
 		return this.side;
 	}
 	
-	private IGameBoardPosition position;
+	private transient IGameBoardPosition position;
+	
 	private final void setNewPosition(final IGameBoardPosition newPosition) {
 		this.position = newPosition;
 	}

@@ -100,7 +100,7 @@ public class GameBoard implements IGameBoard {
 	}
 	// ---------------------------------------------------------------------	
 	@Override
-	public IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex) {
+	public IGameBoardCell getCell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getCell(this.getBoardCellFactory().getBoardPositionFactory().position(clientRowIndex, clientColumnIndex));
 	}	
 	// ---------------------------------------------------------------------

@@ -13,34 +13,19 @@ public abstract class AbstractCheckersPiece extends AbstractGamePiece implements
 	}
 	// ------------------------------------------------------------
 	protected boolean canJumpOver(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
-		
-		IGameBoardCell neighbourCell = cell.getNeighbour(cardinalPosition);
-		
-		if(neighbourCell.isNull() || neighbourCell.isEmpty()) {
-			return false;
-		}
-		
-		if(neighbourCell.getPiece().getSide() == this.getSide()) {
-			return false;
-		}
-		
-		neighbourCell = neighbourCell.getNeighbour(cardinalPosition);
-		
-		if(neighbourCell.isNull() || !neighbourCell.isEmpty()) {
-			return false;
-		}
-		
-		return true;		
+		final IGameBoardCell neighbourCell = cell.getNeighbour(cardinalPosition);
+		return
+			!
+			(
+				neighbourCell.isNull() || neighbourCell.isEmpty() ||
+				(neighbourCell.getPiece().getSide() == this.getSide()) ||
+				neighbourCell.getNeighbour(cardinalPosition).isNull()
+			)
+			&& neighbourCell.getNeighbour(cardinalPosition).isEmpty(); 
 	}
 	// ------------------------------------------------------------	
 	protected boolean canWalkThrough(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
-		if(cell.getNeighbour(cardinalPosition).isNull()) {
-			return false;
-		}
-		if(cell.getNeighbour(cardinalPosition).isEmpty()) {
-			return true;
-		}
-		return false;
+		return !cell.getNeighbour(cardinalPosition).isNull() && cell.getNeighbour(cardinalPosition).isEmpty();
 	}
 	// ------------------------------------------------------------
 	@Override
