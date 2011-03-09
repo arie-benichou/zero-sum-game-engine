@@ -25,7 +25,7 @@ import core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerRandomStrategy implements IGamePlayerStrategy {
 
-	Random randomGenerator = new Random();
+	private Random randomGenerator = new Random();
 
 	@Override
 	public IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMovesForGivenPlayer) {
