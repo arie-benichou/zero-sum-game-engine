@@ -21,7 +21,7 @@ public class GameBuilder {
 
 	private final Class<? extends IGame> gameClass;
 	private IGameBoardDimension boardDimension;
-	private IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerHumanStrategy()); // TODO ? singleton pour une stratégie
+	private IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 	private IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
