@@ -148,18 +148,6 @@ public abstract class AbstractGame implements IGame {
 		return false;
 	}
 	// ---------------------------------------------------------------------
-	@Override
-	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		boolean isGameOver = false;
-		// Suite à ce coup, si l'adversaire... 
-		final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
-		// ne peut plus jouer
-		if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {
-			isGameOver = true;
-		}
-		return isGameOver;
-	}
-	// ------------------------------------------------------------	
 	// façades
 	// ---------------------------------------------------------------------	
 	@Override

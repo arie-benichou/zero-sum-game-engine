@@ -95,7 +95,19 @@ public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------
 	@Override
 	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		return this.isWinningMove(justPlayedMove) ? true : super.isGameOver(gameState, justPlayedMove);
+		boolean isGameOver = false;
+		if(this.isWinningMove(justPlayedMove)) {
+			isGameOver = true;
+		}
+		else {
+			// Suite à ce coup, si l'adversaire...			
+			final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
+			// ne peut plus jouer
+			if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {
+				isGameOver = true;
+			}
+		}
+		return isGameOver;
 	}
 	// -----------------------------------------------------------------	
 	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
