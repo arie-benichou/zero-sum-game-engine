@@ -139,9 +139,6 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		}
 		// ---------------------------------------------------------------------
 		private Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood = null;
-		public void setNeighbourhood(final Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood) {
-			this.neighbourhood = neighbourhood;
-		}
 		@Override
 		public Map<GameBoardCardinalPosition, IGameBoardCell> getNeighbourhood() {
 			if (this.neighbourhood == null) {

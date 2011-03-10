@@ -66,24 +66,28 @@ public class Reversi extends AbstractGame {
 	}
 	// ------------------------------------------------------------
 	private boolean hasBoundInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
-		IGameBoardCell neighbourCell = neighbourEntry.getValue();
+		boolean hasBound = false;
+		IGameBoardCell neighbourCell = neighbourEntry.getValue().getNeighbour(neighbourEntry.getKey());
 		// tant qu'une cellule voisine existe
-		while (!(neighbourCell = neighbourCell.getNeighbour(neighbourEntry.getKey())).isNull()) {	
+		while (!neighbourCell.isNull()) {	
 			// si la cellule voisine est vide
 			if (neighbourCell.isEmpty()) {
-				return false;
+				break;
 			}
 			// si la cellule voisine contient une pièce de l'adversaire
 			if (neighbourCell.getPiece().getSide() != neighbourEntry.getValue().getPiece().getSide()) {
 				// TODO redéfinir les méthodes equals() et hashcode() d'une pièce
-				return true;
+				hasBound = true;
+				break;
 			}
+			neighbourCell = neighbourCell.getNeighbour(neighbourEntry.getKey());
 		}
-		return false;
+		return hasBound;
 	}
 	// ------------------------------------------------------------
 	// TODO ? rajouter à l'interface
 	public boolean canPlayHere(final IGameBoardCell cell, final GamePlayersEnumeration side) {
+		boolean canPlayHere = false;
 		// si la cellule n'est pas vide
 		if (cell.isEmpty()) {
 			//si la cellule n'est pas vide, les cellules voisines sont inspectées 
@@ -91,11 +95,12 @@ public class Reversi extends AbstractGame {
 				// si une des cellules voisines contient au moins une pièce de l'adversaire
 				// et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire			
 				if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side) && this.hasBoundInThisDirection(cellNeighbourEntry)) {
-					return true;
+					canPlayHere = true;
+					break;
 				}
 			}
 		}
-		return false;
+		return canPlayHere;
 	}
 	// ------------------------------------------------------------
 	@Override
@@ -149,22 +154,25 @@ public class Reversi extends AbstractGame {
 	// ------------------------------------------------------------
 	// TODO renommer justPlayedMove en legalMoveChoosenByCurrentPlayer
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		if (justPlayedMove.isNull()) {
-			return super.applyGameStateTransition(gameState, justPlayedMove);
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+		
+		GamePlayersEnumeration nextSideToPlay = null;
+		
+		if (!moveToPlay.isNull()) {
+			// TODO ! méthode playMove
+			final IGamePiece playerPiece = this.piece(moveToPlay.getSide(), ReversiPieceTypes.PAWN); // TODO façade
+			this.getCell(moveToPlay.getPosition()).setPiece(playerPiece);
+			for (IGameBoardCell cellToRevert : this.getCellsToRevert(moveToPlay)) {
+				cellToRevert.setPiece(playerPiece);
+			}
 		}
-		// TODO ! méthode playMove
-		final IGamePiece playerPiece = this.piece(justPlayedMove.getSide(), ReversiPieceTypes.PAWN);
-		this.getCell(justPlayedMove.getPosition()).setPiece(playerPiece);
-		for (IGameBoardCell cellToRevert : this.getCellsToRevert(justPlayedMove)) {
-			cellToRevert.setPiece(playerPiece);
-		}
-		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove)) {
-			return null;
-		}
-		// TODO ! à améliorer
-		return super.applyGameStateTransition(gameState, justPlayedMove);
+		
+		if(!this.isGameOver(gameState, moveToPlay)) {
+			// TODO appeler who shall play
+			nextSideToPlay = super.applyGameStateTransition(gameState, moveToPlay);
+		}			
+		
+		return nextSideToPlay;		
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
