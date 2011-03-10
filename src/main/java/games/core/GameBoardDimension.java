@@ -82,11 +82,13 @@ public class GameBoardDimension implements IGameBoardDimension {
 	public GameBoardDimension(final int minRowIndex, final int maxRowIndex, final int minColumnIndex, final int maxColumnIndex) throws RuntimeException {
 		if (maxRowIndex < minRowIndex) {
 			// TODO utiliser une BoardDimension exception
-			throw new RuntimeException("maxRowIndex < minRowIndex");
+			//throw new RuntimeException("maxRowIndex < minRowIndex");
+			System.exit(0);
 		}
 		if (maxColumnIndex < minColumnIndex) {
 			// TODO utiliser une BoardDimension exception
-			throw new RuntimeException("maxColumnIndex < minColumnIndex");
+			//throw new RuntimeException("maxColumnIndex < minColumnIndex");
+			System.exit(0);
 		}
 		this.setMinRowIndex(minRowIndex);
 		this.setMaxRowIndex(maxRowIndex);

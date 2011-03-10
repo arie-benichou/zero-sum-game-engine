@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import main.java.games.core.AbstractGame;
+import main.java.games.core.Game;
 import main.java.games.core.GameBoardDimension;
 import main.java.games.core.GameBoardMove;
 import main.java.games.core.GameBuilder;
@@ -35,7 +35,7 @@ import main.java.games.core.types.GameBoardCardinalPosition;
 import main.java.games.core.types.GamePlayersEnumeration;
 import main.java.util.StaticContext;
 
-public class Othello extends AbstractGame {	
+public class Othello extends Game {	
 	// ------------------------------------------------------------
 	public final static Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);

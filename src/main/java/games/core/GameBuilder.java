@@ -10,14 +10,14 @@ import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCellFactory;
 import main.java.games.core.interfaces.IGameBoardDimension;
 import main.java.games.core.interfaces.IGameBoardPositionFactory;
+import main.java.games.core.interfaces.IGameBuilder;
 import main.java.games.core.interfaces.IGamePlayer;
 import main.java.games.core.types.GamePlayerNature;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-// TODO définir une interface
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
-public class GameBuilder {
+public class GameBuilder implements IGameBuilder {
 
 	private final Class<? extends IGame> gameClass;
 	private IGameBoardDimension boardDimension;

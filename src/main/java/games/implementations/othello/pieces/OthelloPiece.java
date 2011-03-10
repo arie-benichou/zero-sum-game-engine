@@ -17,12 +17,12 @@
 
 package main.java.games.implementations.othello.pieces;
 
-import main.java.games.core.AbstractGamePiece;
+import main.java.games.core.GamePiece;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GamePlayersEnumeration;
 import main.java.games.implementations.othello.OthelloPieceTypes;
 
-public abstract class OthelloPiece extends AbstractGamePiece {
+public abstract class OthelloPiece extends GamePiece {
 	// ------------------------------------------------------------
 	public OthelloPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);

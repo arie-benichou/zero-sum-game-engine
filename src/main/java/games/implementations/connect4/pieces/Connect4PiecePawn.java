@@ -20,7 +20,7 @@ package main.java.games.implementations.connect4.pieces;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public class Connect4PiecePawn extends AbstractConnect4Piece {
+public class Connect4PiecePawn extends Connect4Piece {
 	// ------------------------------------------------------------
 	public Connect4PiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);

@@ -20,7 +20,7 @@ package main.java.games.implementations.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.core.AbstractGame;
+import main.java.games.core.Game;
 import main.java.games.core.GameBoardDimension;
 import main.java.games.core.GameBuilder;
 import main.java.games.core.GamePieceFactory;
@@ -31,11 +31,11 @@ import main.java.games.core.interfaces.IGamePiece;
 import main.java.games.core.interfaces.IGamePlayer;
 import main.java.games.core.types.GameBoardCardinalPosition;
 import main.java.games.core.types.GamePlayersEnumeration;
-import main.java.games.implementations.checkers.pieces.AbstractCheckersPiece;
+import main.java.games.implementations.checkers.pieces.CheckersPiece;
 import main.java.util.StaticContext;
 
 
-public class Checkers extends AbstractGame {
+public class Checkers extends Game {
 	// ------------------------------------------------------------	
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class; // TODO ! à revoir
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8); 
@@ -65,11 +65,11 @@ public class Checkers extends AbstractGame {
 	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
 		final List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();
-		AbstractCheckersPiece piece;
+		CheckersPiece piece;
 		List<GameBoardCardinalPosition> pieceOptions;
 		boolean hasToJump = false;
 		for(IGameBoardCell cell : this.getRelevantCells(side)) { // TODO passer le board en paramètre
-			piece = (AbstractCheckersPiece)cell.getPiece();
+			piece = (CheckersPiece)cell.getPiece();
 			pieceOptions = piece.getJumpOptions(cell);
 			if(!pieceOptions.isEmpty()) {
 				hasToJump = true;
@@ -153,7 +153,7 @@ public class Checkers extends AbstractGame {
 		IGameBoardCell actualCell = gameState.getCell(move.getPosition());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		actualCell = actualCell.getNeighbour(move.getDirection());
-		final AbstractCheckersPiece piece =  (AbstractCheckersPiece) actualCell.getPiece();
+		final CheckersPiece piece =  (CheckersPiece) actualCell.getPiece();
 		//Et que la pièce peut encore effectuer une capture
 		return !piece.getJumpOptions(actualCell).isEmpty(); // TODO faire façade canJump pour une pièce
 	}

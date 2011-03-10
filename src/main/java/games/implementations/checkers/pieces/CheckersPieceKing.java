@@ -8,7 +8,7 @@ import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GameBoardCardinalPosition;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public class CheckersPieceKing extends AbstractCheckersPiece {
+public class CheckersPieceKing extends CheckersPiece {
 	// ------------------------------------------------------------
 	private static final GameBoardCardinalPosition[] POSITIONS =
 	{

@@ -1,14 +1,14 @@
 package main.java.games.implementations.checkers.pieces;
 
-import main.java.games.core.AbstractGamePiece;
+import main.java.games.core.GamePiece;
 import main.java.games.core.interfaces.IGameBoardCell;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GameBoardCardinalPosition;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public abstract class AbstractCheckersPiece extends AbstractGamePiece implements ICheckersPiece {
+public abstract class CheckersPiece extends GamePiece implements ICheckersPiece {
 	// ------------------------------------------------------------
-	public AbstractCheckersPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public CheckersPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

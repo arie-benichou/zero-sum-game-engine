@@ -22,7 +22,7 @@ package main.java.games.implementations.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.core.AbstractGame;
+import main.java.games.core.Game;
 import main.java.games.core.GameBoardDimension;
 import main.java.games.core.GameBoardMove;
 import main.java.games.core.GameBuilder;
@@ -36,7 +36,7 @@ import main.java.games.core.types.GameBoardPlane;
 import main.java.games.core.types.GamePlayersEnumeration;
 import main.java.util.StaticContext;
 
-public class Tictactoe extends AbstractGame {
+public class Tictactoe extends Game {
 	// ------------------------------------------------------------	
 	private int connections = 3; // TODO à revoir
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;

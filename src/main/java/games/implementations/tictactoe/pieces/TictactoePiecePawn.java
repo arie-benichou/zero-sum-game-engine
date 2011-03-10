@@ -20,7 +20,7 @@ package main.java.games.implementations.tictactoe.pieces;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public class TictactoePiecePawn extends AbstractTictactoePiece {
+public class TictactoePiecePawn extends TictactoePiece {
 	// ------------------------------------------------------------
 	public TictactoePiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
