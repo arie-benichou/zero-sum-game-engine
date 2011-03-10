@@ -139,10 +139,8 @@ public abstract class AbstractGame implements IGame {
 	// ---------------------------------------------------------------------
 	@Override
 	public GamePlayersEnumeration whoShallPlay(final IGameBoard gameState, final GamePlayersEnumeration currentPlayer) {
-		if (currentPlayer.equals(GamePlayersEnumeration.FIRST_PLAYER)) {
-			return GamePlayersEnumeration.SECOND_PLAYER;
-		}
-		return GamePlayersEnumeration.FIRST_PLAYER;
+		return currentPlayer.equals(GamePlayersEnumeration.FIRST_PLAYER) ?
+			GamePlayersEnumeration.SECOND_PLAYER : GamePlayersEnumeration.FIRST_PLAYER;
 	}
 	// ------------------------------------------------------------
 	@Override
@@ -152,21 +150,16 @@ public abstract class AbstractGame implements IGame {
 	// ---------------------------------------------------------------------
 	@Override
 	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		// TODO ! à optimiser
-		// TODO définir une méthode "hasLegalMove"
-		// TODO ?! retourner false pour l'implémentation par défaut
-		if (this.hasNullMove()) {
-			return this.getLegalMoves(this.getBoard(),
-					GamePlayersEnumeration.FIRST_PLAYER).size() == 1
-					&& this.getLegalMoves(this.getBoard(),
-							GamePlayersEnumeration.SECOND_PLAYER).size() == 1;
+		boolean isGameOver = false;
+		// Suite à ce coup, si l'adversaire... 
+		final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
+		// ne peut plus jouer
+		if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {
+			isGameOver = true;
 		}
-		return this.getLegalMoves(this.getBoard(),
-				GamePlayersEnumeration.FIRST_PLAYER).isEmpty()
-				&& this.getLegalMoves(this.getBoard(),
-						GamePlayersEnumeration.SECOND_PLAYER).isEmpty();
+		return isGameOver;
 	}
-	// ---------------------------------------------------------------------
+	// ------------------------------------------------------------	
 	// façades
 	// ---------------------------------------------------------------------	
 	@Override

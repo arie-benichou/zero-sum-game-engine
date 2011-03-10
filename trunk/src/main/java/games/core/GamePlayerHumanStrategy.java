@@ -28,15 +28,25 @@ public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 
 	@Override
 	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+		IGameBoardMove choosenMove = null;
 		final Scanner scanner = new Scanner(System.in);
-		System.out.println("\nWhat is your move?");
+		System.out.println("\nWhat is your move?"); // NOPMD by STAGIAIRE on 10/03/11 15:33
 		int i = 0;
-		try {i = scanner.nextInt();}catch(InputMismatchException e) {}
-		if (i < 1 || i > legalMoves.size()) {
-			System.out.println("No such move!");
-			return this.chooseMoveAmong(legalMoves);
+		try {
+			i = scanner.nextInt();
+			if (i < 1 || i > legalMoves.size()) {
+				System.out.println("No such move!");
+				choosenMove = this.chooseMoveAmong(legalMoves);
+			}
+			else {
+				choosenMove = legalMoves.get(i - 1);
+			}
 		}
-		System.out.println("You have choosen to play move #" + i + ": " + legalMoves.get(i - 1));
-		return legalMoves.get(i - 1);
+		catch(InputMismatchException e) {
+			System.out.println("Integer expected!");
+			choosenMove = this.chooseMoveAmong(legalMoves);
+		}
+		System.out.println("You have choosen to play move #" + i + ": " + choosenMove);
+		return choosenMove;
 	}
 }

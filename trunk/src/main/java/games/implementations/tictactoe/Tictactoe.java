@@ -68,29 +68,29 @@ public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------	
 	protected int countConnections(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
-		IGameBoardCell neighbour = this.getCell(justPlayedMove.getPosition()).getNeighbour(direction);
+		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
-			if (neighbour.isNull() || neighbour.isEmpty() || neighbour.getPiece().getSide() != justPlayedMove.getSide()) {
+			cell = cell.getNeighbour(direction);
+			if (cell.isNull() || cell.isEmpty() || cell.getPiece().getSide() != justPlayedMove.getSide()) {
 				break;
 			}
-			neighbour = neighbour.getNeighbour(direction);
 		}
 		return --connected;
 	}	
 	// ------------------------------------------------------------
 	protected boolean isWinningMove(final IGameBoardMove justPlayedMove) {
-		int connections = 1;
+		boolean isWinningMove = false;
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
-			connections =
+			final int connections =
 				this.countConnections(justPlayedMove, plane.getOneWay())
 				+ 1
 				+ this.countConnections(justPlayedMove, plane.getOppositeWay());
-			
 			if (connections >= this.connections) {
+				isWinningMove = true;
 				break;
 			}
 		}
-		return connections >= this.connections;
+		return isWinningMove;
 	}	
 	// ------------------------------------------------------------
 	@Override
@@ -118,7 +118,15 @@ public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args){
+		
 		new GameBuilder(StaticContext.thatClass()).build().start();
+		
+		/*
+		final GameBuilder gb = new GameBuilder(StaticContext.thatClass());
+		gb.boardDimension(new GameBoardDimension(1, 4, 1, 4));
+		gb.build().start();
+		*/		
+		
 	}
 	// ------------------------------------------------------------
 }

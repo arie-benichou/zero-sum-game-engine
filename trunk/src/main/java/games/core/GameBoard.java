@@ -86,17 +86,18 @@ public class GameBoard implements IGameBoard {
 	// ---------------------------------------------------------------------
 	@Override	
 	public IGameBoardCell getCell(final IGameBoardPosition position) {
-		
+		IGameBoardCell cell;
 		if(position == null) {
-			return this.getBoardCellFactory().getNullCell(); // TODO
+			cell = this.getBoardCellFactory().getNullCell();
 		}
-		
 		// TODO ? faire pareil que si position == null
-		if(position.isNull()) {
-			return this.getBoardCellFactory().cell(position); // TODO
+		else if(position.isNull()) {
+			cell = this.getBoardCellFactory().cell(position);
 		}
-
-		return this.getBoard()[position.getInternalRowIndex()][position.getInternalColumnIndex()];
+		else {
+			cell = this.getBoard()[position.getInternalRowIndex()][position.getInternalColumnIndex()];	
+		}
+		return cell;
 	}
 	// ---------------------------------------------------------------------	
 	@Override
@@ -109,36 +110,32 @@ public class GameBoard implements IGameBoard {
 		return Arrays.asList(this.getBoard()).iterator();
 	}
 	// ---------------------------------------------------------------------
-	// TODO utiliser un StringBuilder
 	@Override
+	@SuppressWarnings("unused")
 	public String toString() {
-		
-		//return Arrays.deepToString(this.getBoard());
-		
+		final StringBuilder sb = new StringBuilder();
 		IGamePiece piece;
-		String badStr = "";
 		for (IGameBoardCell[] line : this.getBoard()) {
-			badStr += "\n";
-			badStr += "-";
+			sb.append("\n");
+			sb.append("-");
 			for (IGameBoardCell cell : line) {
-				badStr += "----";
-				cell.toString(); // pour les warnings :o
+				sb.append("----");
 			}
-			badStr += "\n";
-			badStr += "|";
+			sb.append("\n");
+			sb.append("|");
 			for (IGameBoardCell cell : line) {
 				piece = cell.getPiece();
-				badStr += " " + (piece == null ? " " : piece) + " ";
-				badStr += "|";
+				sb.append(" " + (piece == null ? " " : piece) + " ");
+				sb.append("|");
 			}
 		}
-		badStr += "\n";
-		badStr += "-";
+		sb.append("\n");
+		sb.append("-");
 		for (IGameBoardCell cell : this.getBoard()[0]) {
-			badStr += "----";
-			cell.toString(); // pour les warnings :o
+			sb.append("----");
 		}
-		return badStr + "\n";
+		sb.append("\n");
+		return sb.toString();
 	}
 	// ---------------------------------------------------------------------
 }

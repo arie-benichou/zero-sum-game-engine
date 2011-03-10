@@ -84,7 +84,6 @@ public class Checkers extends AbstractGame {
 					walkingMoves.add(new CheckersMove(side, cell.getPosition(), direction));
 				}
 			}
-			
 		}
 		return jumpingMoves.isEmpty() ? walkingMoves : jumpingMoves; 
 	}
