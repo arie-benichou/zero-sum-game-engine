@@ -37,7 +37,7 @@ public class GamePieceFactory implements IGamePieceFactory {
 		this.gamePiecesCache = gamePiecesCache;
 	}
 
-	public IGamePiece createPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	private IGamePiece createPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		final Class<? extends IGamePiece> classObject = type.getClassObject();
 		Constructor<? extends IGamePiece> constructor = null;
 		IGamePiece instance = null;
