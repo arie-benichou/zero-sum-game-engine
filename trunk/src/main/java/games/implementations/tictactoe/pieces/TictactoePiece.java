@@ -17,13 +17,13 @@
 
 package main.java.games.implementations.tictactoe.pieces;
 
-import main.java.games.core.AbstractGamePiece;
+import main.java.games.core.GamePiece;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public abstract class AbstractTictactoePiece extends AbstractGamePiece {
+public abstract class TictactoePiece extends GamePiece {
 	// ------------------------------------------------------------
-	public AbstractTictactoePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public TictactoePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

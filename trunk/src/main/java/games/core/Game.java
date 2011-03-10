@@ -40,7 +40,7 @@ import main.java.games.core.types.GamePlayersEnumeration;
  * @author  Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public abstract class AbstractGame implements IGame {
+public abstract class Game implements IGame {
 	// ---------------------------------------------------------------------
 	private IGamePieceFactory pieceFactory;
 	protected final IGamePieceFactory getPieceFactory() {
@@ -82,7 +82,7 @@ public abstract class AbstractGame implements IGame {
 	protected void setupInitialGameState() { // TODO à revoir
 	}
 	// ---------------------------------------------------------------------
-	public AbstractGame(final IGamePieceFactory pieceFactory, final IGameBoard board, final List<IGamePlayer> opponents) {
+	public Game(final IGamePieceFactory pieceFactory, final IGameBoard board, final List<IGamePlayer> opponents) {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
 		this.setOpponents(opponents);

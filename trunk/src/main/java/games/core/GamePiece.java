@@ -15,22 +15,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.games.implementations.connect4.pieces;
+package main.java.games.core;
 
-import main.java.games.core.AbstractGamePiece;
+import main.java.games.core.interfaces.IGamePiece;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.types.GamePlayersEnumeration;
 
-public abstract class AbstractConnect4Piece extends AbstractGamePiece {
-	// ------------------------------------------------------------
-	public AbstractConnect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
-		super(type, side);
+public abstract class GamePiece implements IGamePiece {
+
+	private final transient GamePlayersEnumeration side;
+
+	public GamePlayersEnumeration getSide() {
+		return side;
 	}
-	// ------------------------------------------------------------
+
+	private final transient IGamePieceType type;
+
+	public IGamePieceType getType() {
+		return type;
+	}
+
+	public GamePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+		this.type = type;
+		this.side = side;
+	}
+
 	@Override
 	public String toString() {
-		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		return "[type=" + type + ", " + "side=" + side + "]";
 	}
-	// ------------------------------------------------------------
+
 }

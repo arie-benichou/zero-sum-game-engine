@@ -19,7 +19,7 @@
 
 package main.java.games.core.interfaces;
 
-import main.java.games.core.AbstractGamePiece;
+import main.java.games.core.GamePiece;
 
 /**
  * This is the interface for a type of piece.
@@ -34,6 +34,6 @@ public interface IGamePieceType {
 	 * 
 	 * @return the class of the type of piece
 	 */
-	Class<? extends AbstractGamePiece> getClassObject();
+	Class<? extends GamePiece> getClassObject();
 
 }

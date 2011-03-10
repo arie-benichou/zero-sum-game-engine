@@ -10,7 +10,7 @@ import main.java.games.core.types.GamePlayersEnumeration;
 
 //TODO refactoring
 //TODO pouvoir additionner les points cardinaux entre eux
-public class CheckersPieceMan extends AbstractCheckersPiece {
+public class CheckersPieceMan extends CheckersPiece {
 	// ------------------------------------------------------------
 	public CheckersPieceMan(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
