@@ -160,43 +160,34 @@ public class Checkers extends AbstractGame {
 	}
 	// -----------------------------------------------------------------	
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove legalMoveToPlay) {
-		///////////////////////////////////////////////////////////////////
-		// TODO ! faire une fois le test au niveau de la classe abstraite 
-		if (legalMoveToPlay.isNull()) {
-			return super.applyGameStateTransition(gameState, legalMoveToPlay); // TODO ! à améliorer
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+		GamePlayersEnumeration nextSideToPlay = null;
+		final CheckersMove checkersMove = (CheckersMove)moveToPlay;
+		boolean isJumpingMove = false;
+		if (!checkersMove.isNull()) {
+			isJumpingMove = this.playMove(gameState, checkersMove);
 		}
-		///////////////////////////////////////////////////////////////////		
-		// TODO ? generics
-		final CheckersMove move = (CheckersMove)legalMoveToPlay;
-		final boolean moveMightNotBeCompleted = this.playMove(gameState, move);
-		if(this.isGameOver(gameState, legalMoveToPlay)) {
-			return null; // TODO ! à améliorer
-		}
-		if(moveMightNotBeCompleted && this.hasToKeepPlaying(gameState, move)) {
-			// Alors, c'est toujours au tour du joueur en cours
-			return legalMoveToPlay.getSide();
-		}
-		///////////////////////////////////////////////////////////////////		
-		// TODO ! à améliorer
-		// TODO ? virer de l'interface whoShallPlay
-		return super.whoShallPlay(gameState, legalMoveToPlay.getSide());
-		///////////////////////////////////////////////////////////////////		
+		if(!this.isGameOver(gameState, checkersMove)) {
+			// TODO appeler who shall play			
+			nextSideToPlay = (isJumpingMove && this.hasToKeepPlaying(gameState, checkersMove)) ? checkersMove.getSide() : super.applyGameStateTransition(gameState, checkersMove);
+		}			
+		return nextSideToPlay;
 	}
 	// ------------------------------------------------------------
 	@Override
 	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) { // TODO faire optimisation pour les autres jeux utilisant l'implémentation par défaut (la modifier)
+		boolean isGameOver = false;
 		// Suite à ce coup, si l'adversaire... 
 		final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
 		// n'a plus aucune pièce
 		if(this.getRelevantCells(oppositeSide).isEmpty()) { // TODO passer le board en paramètre
-			return true;
+			isGameOver = true;
 		}
 		// a encore des pièces mais qu'il ne peut plus jouer
-		if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {// TODO ? mettre en cache ou définir une deuxième méthode prenant en paramètre les cellules relevantes
-			return true;
+		else if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {// TODO ? mettre en cache ou définir une deuxième méthode prenant en paramètre les cellules relevantes
+			isGameOver = true;
 		}
-		return false;
+		return isGameOver;
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")

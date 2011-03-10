@@ -67,57 +67,53 @@ public class Tictactoe extends AbstractGame {
 	}
 	// ------------------------------------------------------------	
 	protected int countConnections(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
-		int n;
-		final IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());		
-		IGameBoardCell neighbour = cell.getNeighbour(direction);
-		for (n = 1; n < this.connections; n++) {
-			if (neighbour.isNull() || neighbour.isEmpty()) {
-				break;
-			}
-			if (neighbour.getPiece().getSide() != justPlayedMove.getSide()) {
+		int connected;
+		IGameBoardCell neighbour = this.getCell(justPlayedMove.getPosition()).getNeighbour(direction);
+		for (connected = 1; connected < this.connections; ++connected) {
+			if (neighbour.isNull() || neighbour.isEmpty() || neighbour.getPiece().getSide() != justPlayedMove.getSide()) {
 				break;
 			}
 			neighbour = neighbour.getNeighbour(direction);
 		}
-		return n - 1;
+		return --connected;
 	}	
 	// ------------------------------------------------------------
 	protected boolean isWinningMove(final IGameBoardMove justPlayedMove) {
-		int connections;
+		int connections = 1;
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
-			connections = 1;
-			connections += this.countConnections(justPlayedMove, plane.getOneWay());
-			connections += this.countConnections(justPlayedMove, plane.getOppositeWay());
+			connections =
+				this.countConnections(justPlayedMove, plane.getOneWay())
+				+ 1
+				+ this.countConnections(justPlayedMove, plane.getOppositeWay());
+			
 			if (connections >= this.connections) {
-				return true;
+				break;
 			}
 		}
-		return false;
+		return connections >= this.connections;
 	}	
 	// ------------------------------------------------------------
 	@Override
 	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		if (this.isWinningMove(justPlayedMove)) {
-			return true;
-		}
-		return super.isGameOver(gameState, justPlayedMove);
+		return this.isWinningMove(justPlayedMove) ? true : super.isGameOver(gameState, justPlayedMove);
 	}
 	// -----------------------------------------------------------------	
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		if (justPlayedMove.isNull()) {
-			// TODO ! à améliorer			
-			return super.applyGameStateTransition(gameState, justPlayedMove);
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+		
+		GamePlayersEnumeration nextSideToPlay = null;
+		
+		if (!moveToPlay.isNull()) {
+			// TODO ! méthode playMove
+			final IGameBoardCell concernedCell = this.getCell(moveToPlay.getPosition());
+			concernedCell.setPiece(this.piece(moveToPlay.getSide(), TictactoePieceTypes.PAWN)); // TODO façade			
 		}
-		// TODO ! méthode playMove
-		final IGameBoardCell concernedCell = this.getCell(justPlayedMove.getPosition());
-		// TODO façade
-		concernedCell.setPiece(this.piece(justPlayedMove.getSide(), TictactoePieceTypes.PAWN));
-		// TODO ! à améliorer		
-		if(this.isGameOver(gameState, justPlayedMove)) {
-			return null;
-		}
-		// TODO ! à améliorer
-		return super.applyGameStateTransition(gameState, justPlayedMove);
+		
+		if(!this.isGameOver(gameState, moveToPlay)) {
+			// TODO appeler who shall play
+			nextSideToPlay = super.applyGameStateTransition(gameState, moveToPlay);
+		}			
+		
+		return nextSideToPlay;
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
