@@ -36,10 +36,10 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	}
 
 	// ---------------------------------------------------------------------
-	private IGameBoardPosition[][] positions;
+	private transient IGameBoardPosition[][] positions;
 
-	private final void setBoardPositionsCache(IGameBoardPosition[][] boardPositionsCache) {
-		this.positions = boardPositionsCache;
+	private final void setBoardPositionsCache(final IGameBoardPosition[][] positions) {
+		this.positions = positions;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	}
 
 	// ---------------------------------------------------------------------
-	private int numberOfPositions;
+	private transient int numberOfPositions;
 
 	private final void incrementNumberOfPositions() {
 		++this.numberOfPositions;
@@ -59,7 +59,7 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 		return this.numberOfPositions;
 	}
 	// ---------------------------------------------------------------------
-	private final IGameBoardPosition nullPosition = new GameBoardNullPosition(0,0,-1,-1);
+	private final transient IGameBoardPosition nullPosition = new GameBoardNullPosition(0,0,-1,-1);
 	@Override
 	public final IGameBoardPosition getNullPosition() {
 		return this.nullPosition;
@@ -154,13 +154,16 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 	// ---------------------------------------------------------------------
 	public IGameBoardPosition position(final int clientRowIndex, final int clientColumnIndex) {
 		
+		IGameBoardPosition position;
+		
 		// si la position est hors-dimension, nulle position n'est retournée.
-		if (!this.getBoardDimension().contains(clientRowIndex, clientColumnIndex)) {
-			return this.nullPosition;
+		if (this.getBoardDimension().contains(clientRowIndex, clientColumnIndex)) {
+			position = this.getBoardPositions()[this.computeInternalRowIndex(clientRowIndex)][this.computeInternalColumnIndex(clientColumnIndex)];
 		}
-		
-		final IGameBoardPosition position = this.getBoardPositions()[this.computeInternalRowIndex(clientRowIndex)][this.computeInternalColumnIndex(clientColumnIndex)];
-		
+		else {
+			position =  this.nullPosition;
+		}
+
 		// si la position n'est pas hors-dimension,
 		// mais qu'elle n'a pas été définie, c'est l'exception
 		// GameBoardIllegalPositionException qui est levée
@@ -169,7 +172,6 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 		}
 		
 		return position;
-		
 	}
 	// ---------------------------------------------------------------------
 	// TODO faire le mapping au niveau des cellules
@@ -218,8 +220,8 @@ public class GameBoardPositionFactory implements IGameBoardPositionFactory {
 
 		private static final long serialVersionUID = 1L;
 
-		private final int clientRowIndex;
-		private final int clientColumnIndex;
+		private final transient int clientRowIndex;
+		private final transient int clientColumnIndex;
 		
 		public GameBoardIllegalPositionException(final int clientRowIndex, final int clientColumnIndex) {
 			super();
