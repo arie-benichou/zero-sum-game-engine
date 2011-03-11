@@ -40,7 +40,7 @@ import main.java.util.StaticContext;
 
 public class Tictactoe extends Game {
 	// ------------------------------------------------------------	
-	public final static int CONNECTIONS = 3;
+	public final static int CONNECTIONS = 4;
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3); 
 	// ------------------------------------------------------------
@@ -77,7 +77,21 @@ public class Tictactoe extends Game {
 		}
 		return legalMoves;
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
+	protected int countConnections(final IGameBoardMove justPlayedMove) {
+		int connections = 0;
+		for (GameBoardPlane plane : GameBoardPlane.values()) {
+			connections += this.countConnections(justPlayedMove, plane.getOneWay()) + this.countConnections(justPlayedMove, plane.getOppositeWay());
+			/*
+			if (connections >= this.connections) {
+				isWinningMove = true;
+				break;
+			}
+			*/
+		}
+		return connections;
+	}	
+	// ------------------------------------------------------------		
 	protected int countConnections(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
 		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
@@ -106,25 +120,33 @@ public class Tictactoe extends Game {
 	}	
 	// ------------------------------------------------------------
 	@Override
-	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		boolean isGameOver = false;
+	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
+		
+		//boolean isGameOver = false;
+		GamePlayersEnumeration nextPlayer;
+		
+		// TODO ! rajouter à l'interface
 		if(this.isWinningMove(justPlayedMove)) {
-			isGameOver = true;
+			//isGameOver = true;
+			nextPlayer = justPlayedMove.getSide().getOpponent().not();
 		}
 		else {
 			// Suite à ce coup, si l'adversaire ne peut plus jouer
 			if(this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
-				isGameOver = true;
+				nextPlayer = GamePlayersEnumeration.NONE;
+			}
+			else {
+				nextPlayer = justPlayedMove.getSide().getOpponent();
 			}
 		}
-		return isGameOver;
+		return nextPlayer;
 	}
 	// -----------------------------------------------------------------
 	@Override
 	public boolean playMove(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
 		//if (!moveToPlay.isNull()) {
 			final IGameBoardCell concernedCell = this.getCell(moveToPlay.getPosition());
-			concernedCell.setPiece(this.piece(moveToPlay.getSide(), TictactoePieceTypes.PAWN));			
+			concernedCell.setPiece(this.piece(moveToPlay.getSide(), TictactoePieceTypes.PAWN));
 		//}
 		return true;
 	}
@@ -132,6 +154,51 @@ public class Tictactoe extends Game {
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args){
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
+	}
+	// ------------------------------------------------------------
+	// TODO ajouter un attribut capture dans un coup aux dames
+	@Override
+	public boolean undo(final IGameBoardMove move) {
+		//TODO ? utiliser la pièce nulle
+		this.getCell(move.getPosition()).setPiece(null);
+		return true; // is undo move complete ?
+	}
+	// ------------------------------------------------------------
+	// TODO à améliorer
+	/*
+	@Override
+	public double evaluate(IGameBoardMove move) {
+		
+		double evaluation;
+		*/
+		/*
+		if(this.isWinningMove(move)) {
+			evaluation = Double.POSITIVE_INFINITY;	
+		}
+		else {
+		*/
+		/*
+			evaluation = this.countConnections(move);
+		//}
+		
+		return evaluation;
+	}
+	*/
+	// ------------------------------------------------------------
+	@Override
+	// TODO utiliser NOT_FIRST_PLAYER, NOT_SECOND_PLAYER, NONE avec FIRST_PLAYER et SECOND_PLAYER pour optimiser l'IA  
+	public double evaluate(IGameBoardMove justPlayedMove) {
+		/*
+		double evaluation = 0.001;
+		if(this.isWinningMove(justPlayedMove)) {
+			evaluation = Double.POSITIVE_INFINITY;
+		}
+		else if(!this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
+			evaluation = this.countConnections(justPlayedMove);
+		}
+		return evaluation;
+		*/
+		return this.countConnections(justPlayedMove);
 	}
 	// ------------------------------------------------------------
 }

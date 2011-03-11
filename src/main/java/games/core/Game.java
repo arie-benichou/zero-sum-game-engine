@@ -82,18 +82,29 @@ public abstract class Game implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public GamePlayersEnumeration whoShallPlay(final GamePlayersEnumeration side, final boolean isMoveCompleted, final boolean isGameOver) {
-		GamePlayersEnumeration sideToPlay = null;
-		if(!isGameOver) {
-			if(isMoveCompleted) {
-				sideToPlay = side.getOpponent();
-			}
-			else {
-				//System.out.println("Tu dois continuer à jouer...");
-				sideToPlay = side;	
-			}
+	// TODO ! améliorer isMoveCompleted doit venir après is GameOver
+	public GamePlayersEnumeration whoShallPlay(final GamePlayersEnumeration side, final boolean isMoveCompleted, final GamePlayersEnumeration isGameOver) {
+		
+		//GamePlayersEnumeration sideToPlay;
+		
+		// TODO rajouter dans GamePlayersEnumeration
+		if(isGameOver == GamePlayersEnumeration.NONE) {
+			return isGameOver;
 		}
-		return sideToPlay;
+		
+		if(isGameOver == GamePlayersEnumeration.NOT_FIRST_PLAYER) {
+			return isGameOver;
+		}
+		
+		if(isGameOver == GamePlayersEnumeration.NOT_SECOND_PLAYER) {
+			return isGameOver;
+		}				
+		
+		if(!isMoveCompleted) {
+			return side;
+		}
+		
+		return side.getOpponent();
 	}
 	// -----------------------------------------------------------------
 	@Override
@@ -101,6 +112,7 @@ public abstract class Game implements IGame {
 	// -----------------------------------------------------------------	
 	@Override
 	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+		//System.out.println(moveToPlay);
 		return this.whoShallPlay(moveToPlay.getSide(), this.playMove(gameState, moveToPlay), this.isGameOver(gameState, moveToPlay));
 	}
 	// ------------------------------------------------------------		

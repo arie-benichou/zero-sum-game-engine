@@ -9,6 +9,8 @@ public interface IGameBuilder {
 
 	GameBuilder player2(final IGamePlayer player2);
 
+	GameBuilder boardDimension(final IGameBoardDimension dimension);
+	
 	IGame build();
 		
 }

@@ -39,6 +39,9 @@ public interface IGamePlayerStrategy {
 	 * 
 	 * @return the move selected by the player strategy
 	 */
-	IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMoves);
+	
+	//IGameBoardMove chooseMoveAmong(List<IGameBoardMove> legalMoves);
+	
+	IGameBoardMove chooseMoveAmong(IGame game, List<IGameBoardMove> legalMoves);
 
 }

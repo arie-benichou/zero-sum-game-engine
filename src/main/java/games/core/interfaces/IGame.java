@@ -65,7 +65,7 @@ public interface IGame {
 	 * 
 	 * @return <tt>true</tt> if this game is over
 	 */
-	boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);	
+	GamePlayersEnumeration isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);	
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,
@@ -78,7 +78,7 @@ public interface IGame {
 	 * 
 	 * @return FIRST_PLAYER, if it's the first player turn, SECOND_PLAYER, if it's the second player turn, null if the game is over.
 	 */
-	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
+	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
 	
 	/**
 	 * Apply game state transition.
@@ -132,5 +132,11 @@ public interface IGame {
 	GamePlayersEnumeration applyGameStateTransition(IGameBoardMove legalMoveToPlay);
 
 	IGamePlayer getPlayer(GamePlayersEnumeration currentPlayer);
+	
+	boolean undo(IGameBoardMove move);
+	
+	double evaluate(IGameBoardMove move);
+
+	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, GamePlayersEnumeration isGameOver);	
 
 }

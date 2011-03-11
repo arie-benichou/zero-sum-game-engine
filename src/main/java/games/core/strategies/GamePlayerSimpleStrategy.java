@@ -15,17 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.games.core;
+package main.java.games.core.strategies;
 
 import java.util.List;
 
+import main.java.games.core.interfaces.IGame;
 import main.java.games.core.interfaces.IGameBoardMove;
 import main.java.games.core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerSimpleStrategy implements IGamePlayerStrategy {
 
 	@Override
-	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
 		return legalMoves.get(0);
 	}
 

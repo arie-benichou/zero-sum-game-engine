@@ -186,4 +186,14 @@ public class Othello extends Game {
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------				
+	@Override
+	public boolean undo(IGameBoardMove move) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public double evaluate(IGameBoardMove move) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

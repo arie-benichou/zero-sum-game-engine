@@ -12,6 +12,7 @@ import main.java.games.core.interfaces.IGameBoardDimension;
 import main.java.games.core.interfaces.IGameBoardPositionFactory;
 import main.java.games.core.interfaces.IGameBuilder;
 import main.java.games.core.interfaces.IGamePlayer;
+import main.java.games.core.strategies.GamePlayerRandomStrategy;
 import main.java.games.core.types.GamePlayerNature;
 import main.java.games.core.types.GamePlayersEnumeration;
 
@@ -23,7 +24,7 @@ public class GameBuilder implements IGameBuilder {
 	private transient final Class<? extends IGame> builderGameClass;
 	private transient IGameBoardDimension builderBoardDimension;
 	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
-	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
+	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.HUMAN, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
 		this.builderGameClass = gameClass;

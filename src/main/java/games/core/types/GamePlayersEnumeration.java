@@ -32,14 +32,48 @@ public enum GamePlayersEnumeration {
 		public GamePlayersEnumeration getOpponent() {
 			return SECOND_PLAYER;
 		}
+		public GamePlayersEnumeration not() {
+			return NOT_FIRST_PLAYER;
+		}						
 	},
 
 	SECOND_PLAYER() {
 		public GamePlayersEnumeration getOpponent() {
 			return FIRST_PLAYER;
 		}
+		public GamePlayersEnumeration not() {
+			return NOT_SECOND_PLAYER;
+		}						
+	},
+	
+	NOT_FIRST_PLAYER() {
+		public GamePlayersEnumeration getOpponent() {
+			return NOT_SECOND_PLAYER;
+		}
+		public GamePlayersEnumeration not() {
+			return FIRST_PLAYER;
+		}				
+	},
+	
+	NOT_SECOND_PLAYER {
+		public GamePlayersEnumeration getOpponent() {
+			return NOT_FIRST_PLAYER;
+		}
+		public GamePlayersEnumeration not() {
+			return SECOND_PLAYER;
+		}		
+	},
+	
+	NONE {
+		public GamePlayersEnumeration getOpponent() {
+			return NONE;
+		}
+		public GamePlayersEnumeration not() {
+			return NONE;
+		}
 	};
 
 	public abstract GamePlayersEnumeration getOpponent();
+	public abstract GamePlayersEnumeration not();
 
 }
