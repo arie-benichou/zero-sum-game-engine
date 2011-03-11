@@ -15,19 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package main.java.games.core;
+package main.java.games.core.strategies;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import main.java.games.core.interfaces.IGame;
 import main.java.games.core.interfaces.IGameBoardMove;
 import main.java.games.core.interfaces.IGamePlayerStrategy;
 
 public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 
 	@Override
-	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
+	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
 		IGameBoardMove choosenMove = null;
 		final Scanner scanner = new Scanner(System.in);
 		System.out.println("\nWhat is your move?"); 
@@ -36,17 +37,17 @@ public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 			i = scanner.nextInt();
 			if (i < 1 || i > legalMoves.size()) {
 				System.out.println("No such move!");
-				choosenMove = this.chooseMoveAmong(legalMoves);
+				choosenMove = this.chooseMoveAmong(game, legalMoves);
 			}
 			else {
 				choosenMove = legalMoves.get(i - 1);
+				System.out.println("You have choosen to play move #" + i + ": " + choosenMove);
 			}
 		}
 		catch(InputMismatchException e) {
 			System.out.println("Integer expected!");
-			choosenMove = this.chooseMoveAmong(legalMoves);
+			choosenMove = this.chooseMoveAmong(game, legalMoves);
 		}
-		System.out.println("You have choosen to play move #" + i + ": " + choosenMove);
 		return choosenMove;
 	}
 }
