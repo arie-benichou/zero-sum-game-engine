@@ -1,5 +1,5 @@
 /*
- * @(#)IGameLegalMove.java	0.99
+ * @(#)IGameBoardMove.java	0.99
  *
  * Copyright 2011 Arie Benichou
  *
@@ -25,21 +25,11 @@ import main.java.games.core.types.GamePlayersEnumeration;
  * This is the interface for a game move.
  * 
  * TODO ? faire une factory
- * TODO ! implémenter NullMove
  * 
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-// TODO ajouter des façades
-// TODO implémenter le jeu de de la vie
 public interface IGameBoardMove extends IGameNullableComponent {
-
-	/**
-	 * Returns the concerned piece.
-	 * 
-	 * @return the concerned piece
-	 */
-	//IGamePiece getConcernedPiece();
 
 	/**
 	 * Returns the position.
@@ -48,6 +38,11 @@ public interface IGameBoardMove extends IGameNullableComponent {
 	 */
 	IGameBoardPosition getPosition();
 
+	/**
+	 * Returns the side playing this move.
+	 * 
+	 * @return the side playing this move
+	 */
 	GamePlayersEnumeration getSide();
 
 }

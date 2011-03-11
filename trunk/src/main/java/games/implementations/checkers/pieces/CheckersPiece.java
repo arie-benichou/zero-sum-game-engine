@@ -28,6 +28,8 @@ public abstract class CheckersPiece extends GamePiece implements ICheckersPiece 
 		return !cell.getNeighbour(cardinalPosition).isNull() && cell.getNeighbour(cardinalPosition).isEmpty();
 	}
 	// ------------------------------------------------------------
+	//public abstract boolean isPromotable(final IGameBoardCell cell);
+	// ------------------------------------------------------------	
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory

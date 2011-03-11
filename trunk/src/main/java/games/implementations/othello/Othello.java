@@ -29,6 +29,7 @@ import main.java.games.core.GamePieceFactory;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
 import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGameBoardPosition;
 import main.java.games.core.interfaces.IGamePiece;
 import main.java.games.core.interfaces.IGamePlayer;
 import main.java.games.core.types.GameBoardCardinalPosition;
@@ -41,13 +42,14 @@ public class Othello extends Game {
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);
 	// ------------------------------------------------------------	
 	@Override
-	protected void setupInitialGameState() {
+	protected IGameBoard setupBoard(final IGameBoard board) {
 		final IGamePiece blackPawn = this.piece(GamePlayersEnumeration.FIRST_PLAYER, OthelloPieceTypes.PAWN);
 		final IGamePiece whitePawn = this.piece(GamePlayersEnumeration.SECOND_PLAYER, OthelloPieceTypes.PAWN);
-		this.getCell(4, 5).setPiece(blackPawn);
-		this.getCell(5, 4).setPiece(blackPawn);
-		this.getCell(4, 4).setPiece(whitePawn);
-		this.getCell(5, 5).setPiece(whitePawn);
+		board.getCell(4, 5).setPiece(blackPawn);
+		board.getCell(5, 4).setPiece(blackPawn);
+		board.getCell(4, 4).setPiece(whitePawn);
+		board.getCell(5, 5).setPiece(whitePawn);
+		return board;
 	}
 	// ------------------------------------------------------------
 	public Othello(final IGameBoard board, final List<IGamePlayer> opponents) {
@@ -103,19 +105,24 @@ public class Othello extends Game {
 		return canPlayHere;
 	}
 	// ------------------------------------------------------------
+	// TODO ? implémentation par défaut dans la classe abstraite
+	private IGameBoardMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
+		// TODO utiliser un cache
+		return new GameBoardMove(side, position);
+	}
+	// ------------------------------------------------------------		
 	@Override
 	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
 				if (this.canPlayHere(cell, side)) {
-					// TODO utiliser une méthode de création
-					legalMoves.add(new GameBoardMove(side, cell.getPosition()));
+					legalMoves.add(this.makeMove(side, cell.getPosition()));
 				}
 			}
 		}
 		// TODO ? cache du nullMove pour chaque side
-		legalMoves.add(new GameBoardMove(side, this.getCell(null).getPosition()));
+		legalMoves.add(this.makeMove(side, this.getCell(null).getPosition()));
 		return legalMoves;
 	}
 	// ------------------------------------------------------------
@@ -152,29 +159,18 @@ public class Othello extends Game {
 		return cellsToRevert;		
 	}	
 	// ------------------------------------------------------------
-	// TODO renommer justPlayedMove en legalMoveChoosenByCurrentPlayer
 	@Override
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
-		
-		GamePlayersEnumeration nextSideToPlay = null;
-		
+	public boolean playMove(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
 		if (!moveToPlay.isNull()) {
-			// TODO ! méthode playMove
-			final IGamePiece playerPiece = this.piece(moveToPlay.getSide(), OthelloPieceTypes.PAWN); // TODO façade
+			final IGamePiece playerPiece = this.piece(moveToPlay.getSide(), OthelloPieceTypes.PAWN);
 			this.getCell(moveToPlay.getPosition()).setPiece(playerPiece);
 			for (IGameBoardCell cellToRevert : this.getCellsToRevert(moveToPlay)) {
 				cellToRevert.setPiece(playerPiece);
 			}
 		}
-		
-		if(!this.isGameOver(gameState, moveToPlay)) {
-			// TODO appeler who shall play
-			nextSideToPlay = super.applyGameStateTransition(gameState, moveToPlay);
-		}			
-		
-		return nextSideToPlay;		
+		return true;
 	}
-	// ------------------------------------------------------------
+	// -----------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
 		new GameBuilder(StaticContext.thatClass()).build().start();
