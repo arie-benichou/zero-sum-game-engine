@@ -30,7 +30,7 @@ public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
 	public IGameBoardMove chooseMoveAmong(final List<IGameBoardMove> legalMoves) {
 		IGameBoardMove choosenMove = null;
 		final Scanner scanner = new Scanner(System.in);
-		System.out.println("\nWhat is your move?"); // NOPMD by STAGIAIRE on 10/03/11 15:33
+		System.out.println("\nWhat is your move?"); 
 		int i = 0;
 		try {
 			i = scanner.nextInt();

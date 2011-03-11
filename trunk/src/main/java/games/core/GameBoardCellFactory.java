@@ -29,7 +29,7 @@ import main.java.games.core.types.GameBoardCardinalPosition;
 
 public class GameBoardCellFactory implements IGameBoardCellFactory {
 	// ---------------------------------------------------------------------
-	private IGameBoardPositionFactory positionFactory;
+	private transient IGameBoardPositionFactory positionFactory;
 	private final void setBoardPositionFactory(final IGameBoardPositionFactory positionFactory) {
 		this.positionFactory = positionFactory;
 	}
@@ -47,37 +47,31 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		return gameBoardCells;
 	}
 	// ---------------------------------------------------------------------
-	private final IGameBoardCell nullCell; 
+	private final transient IGameBoardCell nullCell; 
 	@Override
 	public IGameBoardCell getNullCell() {
 		return this.nullCell;
 	}	
 	// ---------------------------------------------------------------------
+	private IGameBoardCell createCell(final IGameBoardPosition position) {
+		return new GameBoardCell(position);
+	}
+	// ---------------------------------------------------------------------
 	private final Map<IGameBoardPosition, IGameBoardCell> initializeBoardCells(final Map<IGameBoardPosition, IGameBoardCell> boardCells) {
 		///int n = 0;
 		IGameBoardCell cell;
-		
 		///int numberOfPositions = this.getBoardPositionFactory().getNumberOfPositions();
 		///int numberOfDigitsInNumberOfPositions = numberOfPositions == 0 ? 1: (int) Math.log10(Math.abs(numberOfPositions)) + 1;
 		///System.out.println("\nInitialisation des " + numberOfPositions + " cellules...");
-		
 		for (IGameBoardPosition[] line : this.getBoardPositionFactory().getBoardPositions()) {
 			for (IGameBoardPosition position : line) {
-				
-				
-				
 					///System.out.format("%0" + numberOfDigitsInNumberOfPositions+ "d : ", ++n);
-
 					// TODO utiliser une méthode de création
-					cell = new GameBoardCell(position);
-
+					cell = this.createCell(position);
 					///System.out.print(cell + "\n");
 					boardCells.put(position, cell);
-				
-				
 			}
 		}
-		
 		return boardCells;
 	}
 	// ---------------------------------------------------------------------
@@ -111,7 +105,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		private IGamePiece piece = null;
 		public final void setPiece(final IGamePiece piece) {
 			
-			// TODO à améliorer
+			// TODO ? utiliser la pièce nulle
 			if(this.isNull()) {
 				throw new RuntimeException();
 			}			
@@ -120,7 +114,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		}
 		public final IGamePiece getPiece() {
 			
-			// TODO à améliorer
+			// TODO utiliser la pièce nulle
 			if(this.isNull()) {
 				throw new RuntimeException();
 			}
@@ -130,7 +124,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 		// ---------------------------------------------------------------------
 		public boolean isEmpty() {
 			
-			// TODO à améliorer
+			// TODO ? renvoyer true
 			if(this.isNull()) {
 				throw new RuntimeException();
 			}
@@ -138,7 +132,7 @@ public class GameBoardCellFactory implements IGameBoardCellFactory {
 			return this.getPiece() == null;
 		}
 		// ---------------------------------------------------------------------
-		private Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood = null;
+		private transient Map<GameBoardCardinalPosition, IGameBoardCell> neighbourhood = null;
 		@Override
 		public Map<GameBoardCardinalPosition, IGameBoardCell> getNeighbourhood() {
 			if (this.neighbourhood == null) {
