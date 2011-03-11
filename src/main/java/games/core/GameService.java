@@ -1,6 +1,5 @@
 package main.java.games.core;
 
-import java.io.Console;
 import java.util.List;
 
 import main.java.games.core.interfaces.IGame;
@@ -8,10 +7,6 @@ import main.java.games.core.interfaces.IGameBoardMove;
 import main.java.games.core.interfaces.IGamePlayerStrategy;
 import main.java.games.core.interfaces.IGameService;
 import main.java.games.core.types.GamePlayersEnumeration;
-import main.java.games.implementations.checkers.Checkers;
-import main.java.games.implementations.connect4.Connect4;
-import main.java.games.implementations.othello.Othello;
-import main.java.games.implementations.tictactoe.Tictactoe;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------
