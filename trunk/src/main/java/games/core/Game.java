@@ -30,7 +30,6 @@ import main.java.games.core.interfaces.IGamePiece;
 import main.java.games.core.interfaces.IGamePieceFactory;
 import main.java.games.core.interfaces.IGamePieceType;
 import main.java.games.core.interfaces.IGamePlayer;
-import main.java.games.core.interfaces.IGamePlayerStrategy;
 import main.java.games.core.types.GamePlayersEnumeration;
 
 /**
