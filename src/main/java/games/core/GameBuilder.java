@@ -19,15 +19,15 @@ import main.java.games.core.types.GamePlayersEnumeration;
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
 public class GameBuilder implements IGameBuilder {
 
-	private final Class<? extends IGame> gameClass;
-	private IGameBoardDimension boardDimension;
-	private IGamePlayer player1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
-	private IGamePlayer player2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
+	private transient final Class<? extends IGame> builderGameClass;
+	private transient IGameBoardDimension builderBoardDimension;
+	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
+	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerRandomStrategy()); // TODO ? singleton pour une stratégie
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
-		this.gameClass = gameClass;
+		this.builderGameClass = gameClass;
 		try {
-			this.boardDimension((IGameBoardDimension) this.gameClass.getDeclaredField("BOARD_DIMENSION").get(IGameBoardDimension.class));
+			this.boardDimension((IGameBoardDimension) this.builderGameClass.getDeclaredField("BOARD_DIMENSION").get(IGameBoardDimension.class));
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,27 +44,27 @@ public class GameBuilder implements IGameBuilder {
 	}
 
 	public final GameBuilder boardDimension(final IGameBoardDimension boardDimension) {
-		this.boardDimension = boardDimension;
+		this.builderBoardDimension = boardDimension;
 		return this;
 	}
 
 	public final GameBuilder player1(final IGamePlayer player1) {
-		this.player1 = player1;
+		this.builderPlayer1 = player1;
 		return this;
 	}
 
 	public final GameBuilder player2(final IGamePlayer player2) {
-		this.player2 = player2;
+		this.builderPlayer2 = player2;
 		return this;
 	}
 
 	public IGame build() {
-		final IGameBoardPositionFactory positionFactory = new GameBoardPositionFactory(this.boardDimension);
+		final IGameBoardPositionFactory positionFactory = new GameBoardPositionFactory(this.builderBoardDimension);
 		final IGameBoardCellFactory cellFactory = new GameBoardCellFactory(positionFactory);
 		final IGameBoard board = new GameBoard(cellFactory);
 		final List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
-		opponents.add(this.player1);
-		opponents.add(this.player2);
+		opponents.add(this.builderPlayer1);
+		opponents.add(this.builderPlayer2);
 		return newInstance(board, opponents);
 	}
 
@@ -72,7 +72,7 @@ public class GameBuilder implements IGameBuilder {
 		Constructor<? extends IGame> constructor = null;
 		IGame instance = null;
 		try {
-			constructor = this.gameClass.getDeclaredConstructor(IGameBoard.class, List.class);
+			constructor = this.builderGameClass.getDeclaredConstructor(IGameBoard.class, List.class);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
