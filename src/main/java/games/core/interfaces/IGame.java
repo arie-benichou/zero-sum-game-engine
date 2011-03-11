@@ -44,28 +44,20 @@ public interface IGame {
 	 * @param gameState the game board 
 	 * @param side the side to move
 	 * 
-	 * @return the list of legal moves for a player, given a board.
+	 * @return the list of legal moves for a given a board and a given player, .
 	 */
 	List<IGameBoardMove> getLegalMoves(IGameBoard gameState, GamePlayersEnumeration side);
 
-	
 	/**
-	 * Plays a move.
+	 * Plays a move (or a part of a real move)
 	 * 
-	 * @param legalMove 
+	 * @param gameState the game board
+	 * @param moveToPlay the move to play
+	 * 
+	 * @return if the move is completed
 	 */
-	//void play(IGameBoardMove legalMove);
+	boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);
 	
-	/**
-	 * Apply game state transition.
-	 *  
-	 * @param gameState
-	 * @param legalMoveChoosen the move to play
-	 * 
-	 * @return
-	 */
-	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosen);
-
 	/**
      * Returns <tt>true</tt> if this game is over.
      *  
@@ -73,7 +65,30 @@ public interface IGame {
 	 * 
 	 * @return <tt>true</tt> if this game is over
 	 */
-	boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);
+	boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);	
+	
+	/**
+	 * Returns FIRST_PLAYER, if it's the first player turn,
+	 * SECOND_PLAYER, if it's the second player turn,
+	 * null if the game is over.
+	 *  
+	 * @param side the side to play
+	 * @param isMoveCompleted is the move completed ?
+	 * @param isGameOver is the game over ?
+	 * 
+	 * @return FIRST_PLAYER, if it's the first player turn, SECOND_PLAYER, if it's the second player turn, null if the game is over.
+	 */
+	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
+	
+	/**
+	 * Apply game state transition.
+	 *  
+	 * @param gameState the game board
+	 * @param moveToPlay the move to play
+	 * 
+	 * @return the ordinal corresponding to the next player who has to play
+	 */
+	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove moveToPlay);
 	
 	/**
 	 * Returns a piece of this game for a given player
@@ -89,41 +104,33 @@ public interface IGame {
 	 */
 	IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType);
 	
+
+	/**
+	 * Returns the board cell for a given position.
+	 * 
+	 * @param position the position
+	 * 
+	 * @return the board cell for a given position
+	 */
 	IGameBoardCell getCell(IGameBoardPosition position);
 
+	/**
+	 * Returns the board cell at (row, column)
+	 *  
+	 * @param clientRowIndex the row index
+	 * 
+	 * @param clientColumnIndex the column index
+	 * 
+	 * @return the board cell at (row, column)
+	 */
 	IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex);
 	
-	/**
-	 * Starts a new game play. 
-	 */
-	void start(); // TODO à mettre dans GameService
+	void reset();
 
-	/**
-	 * Pauses this game play. 
-	 */
-	//void pause();
-	 // TODO à mettre dans GameService
-	
-	/**
-	 * Resumes from pause.
-	 */
-	//void resume();	
-	 // TODO à mettre dans GameService
+	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration currentPlayer);
 
-	/**
-	 * Stops this game play.
-	 */
-	//void stop();
-	 // TODO à mettre dans GameService
+	GamePlayersEnumeration applyGameStateTransition(IGameBoardMove legalMoveToPlay);
 
-	/**
-	 * Stops this game play and starts a new one.
-	 */
-	//void reset();
-	 // TODO à mettre dans GameService
-
-	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);
-
-	boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);
+	IGamePlayer getPlayer(GamePlayersEnumeration currentPlayer);
 
 }

@@ -17,6 +17,7 @@ import main.java.games.core.types.GamePlayersEnumeration;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
+// TODO ? un builder abstrait pourrait retourner un builder concret d'un jeu
 public class GameBuilder implements IGameBuilder {
 
 	private transient final Class<? extends IGame> builderGameClass;
