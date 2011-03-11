@@ -26,6 +26,7 @@ import main.java.games.core.Game;
 import main.java.games.core.GameBoardDimension;
 import main.java.games.core.GameBuilder;
 import main.java.games.core.GamePieceFactory;
+import main.java.games.core.GameService;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
 import main.java.games.core.interfaces.IGameBoardMove;
@@ -164,7 +165,7 @@ public class Checkers extends Game {
 	// -----------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
-		new GameBuilder(StaticContext.thatClass()).build().start();
+		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }

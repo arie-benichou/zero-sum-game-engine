@@ -26,6 +26,7 @@ import main.java.games.core.GameBoardDimension;
 import main.java.games.core.GameBoardMove;
 import main.java.games.core.GameBuilder;
 import main.java.games.core.GamePieceFactory;
+import main.java.games.core.GameService;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
 import main.java.games.core.interfaces.IGameBoardMove;
@@ -171,11 +172,6 @@ public class Othello extends Game {
 		return true;
 	}
 	// -----------------------------------------------------------------
-	@SuppressWarnings("unchecked")
-	public static void main(final String[] args) {
-		new GameBuilder(StaticContext.thatClass()).build().start();
-	}
-	// ------------------------------------------------------------				
 	@Override
 	public boolean isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
 		return
@@ -184,5 +180,10 @@ public class Othello extends Game {
 			this.getLegalMoves(gameState, GamePlayersEnumeration.SECOND_PLAYER).size() == 1
 		;
 	}	
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------		
+	@SuppressWarnings("unchecked")
+	public static void main(final String[] args) {
+		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
+	}
+	// ------------------------------------------------------------				
 }

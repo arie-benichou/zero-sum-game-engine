@@ -65,7 +65,8 @@ public abstract class Game implements IGame {
 	private final void setOpponents(final List<IGamePlayer> opponents) {
 		this.opponents = opponents;
 	}
-	// ---------------------------------------------------------------------	
+	// ---------------------------------------------------------------------
+	@Override
 	public final IGamePlayer getPlayer(final GamePlayersEnumeration playerTurn) {
 		return this.opponents.get(playerTurn.ordinal());
 	}
@@ -79,17 +80,6 @@ public abstract class Game implements IGame {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
 		this.setOpponents(opponents);
-	}
-	// ---------------------------------------------------------------------
-	// TODO créer IGameLegalMoveList
-	protected void displayLegalMoveList(final GamePlayersEnumeration currentPlayer, final List<IGameBoardMove> legalMoveList) {
-		int n = 0;		
-		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
-		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
-		System.out.println("\nlegal moves :");
-		for (IGameBoardMove legalMove : legalMoveList) {
-			System.out.format("#%0" + numberOfDigits + "d: %s\n", ++n, legalMove);
-		}
 	}
 	// ---------------------------------------------------------------------
 	@Override
@@ -115,47 +105,26 @@ public abstract class Game implements IGame {
 		return this.whoShallPlay(moveToPlay.getSide(), this.playMove(gameState, moveToPlay), this.isGameOver(gameState, moveToPlay));
 	}
 	// ------------------------------------------------------------		
-	
-	// TODO utiliser un thread pour le client lourd
-	// TODO pas de boucle pour la version client léger	
 	@Override
-	 // TODO à mettre dans GameService
-	public void start() {
-
-		GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
-		
+	public void reset() {
 		this.setupBoard(this.getBoard());
-		
-		System.out.println(this.getBoard());
-		
-		IGamePlayerStrategy playerStrategy;
-		List<IGameBoardMove> legalMoves;
-		IGameBoardMove legalMoveToPlay;
-		
-		do {
-			
-			legalMoves = this.getLegalMoves(this.getBoard(), currentPlayer);
-			this.displayLegalMoveList(currentPlayer, legalMoves);
-			
-			playerStrategy = this.getPlayer(currentPlayer).getStrategy();			
-			legalMoveToPlay = playerStrategy.chooseMoveAmong(legalMoves);
-			
-			//TODO ? utiliser GamePlayersEnumeration.NONE
-			currentPlayer = this.applyGameStateTransition(this.getBoard(), legalMoveToPlay);
-			
-			System.out.println(this.getBoard());
-			
-		} while (currentPlayer != null);
-		
-		System.out.println("Game Over");
-		
 	}
 	// ---------------------------------------------------------------------
-	@Override
+	@Override	
 	public abstract boolean hasNullMove();
-	// ---------------------------------------------------------------------
-	// façades
 	// ---------------------------------------------------------------------	
+	// façades
+	// ---------------------------------------------------------------------
+	@Override
+	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration currentPlayer) {
+		return this.getLegalMoves(this.getBoard(), currentPlayer);
+	}
+	// ---------------------------------------------------------------------
+	@Override	
+	public GamePlayersEnumeration applyGameStateTransition(final IGameBoardMove moveToPlay) {
+		return this.applyGameStateTransition(this.getBoard(), moveToPlay);
+	}
+	// ---------------------------------------------------------------------
 	@Override
 	public IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType) {
 		return this.getPieceFactory().getPiece(player, pieceType);
@@ -168,6 +137,11 @@ public abstract class Game implements IGame {
 	@Override
 	public IGameBoardCell getCell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
+	}
+	// ---------------------------------------------------------------------
+	@Override
+	public String toString() {
+		return this.getBoard().toString();
 	}
 	// ---------------------------------------------------------------------
 	/*
