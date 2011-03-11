@@ -51,4 +51,8 @@ public class CheckersPieceKing extends CheckersPiece {
 		return super.toString().toUpperCase();
 	}
 	// ------------------------------------------------------------	
+	@Override
+	public boolean isPromotable(final IGameBoardCell cell) {
+		return false;
+	}
 }

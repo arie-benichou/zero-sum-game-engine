@@ -11,4 +11,6 @@ public interface ICheckersPiece {
 
 	List<GameBoardCardinalPosition> getWalkOptions(IGameBoardCell cell);
 
+	boolean isPromotable(IGameBoardCell cell);
+
 }

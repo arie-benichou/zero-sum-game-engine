@@ -39,16 +39,6 @@ public interface IGame {
 	boolean hasNullMove();
 
 	/**
-	 * Returns the player ordinal.
-	 * 
-	 * @param gameState the game board (TODO revoir la légitimité du paramètre)
-	 * @param currentPlayer the player ordinal
-	 * 
-	 * @return the player ordinal
-	 */
-	GamePlayersEnumeration whoShallPlay(IGameBoard gameState, GamePlayersEnumeration currentPlayer);
-
-	/**
 	 * Returns the list of legal moves for a player, given a board.
 	 * 
 	 * @param gameState the game board 
@@ -58,6 +48,7 @@ public interface IGame {
 	 */
 	List<IGameBoardMove> getLegalMoves(IGameBoard gameState, GamePlayersEnumeration side);
 
+	
 	/**
 	 * Plays a move.
 	 * 
@@ -66,19 +57,13 @@ public interface IGame {
 	//void play(IGameBoardMove legalMove);
 	
 	/**
-	 * Returns the last played move.
+	 * Apply game state transition.
+	 *  
+	 * @param gameState
+	 * @param legalMoveChoosen the move to play
 	 * 
 	 * @return
 	 */
-	//IGameBoardMove getLastPlayedMove();
-
-	/**
-	 * Apply game state transition.
-	 * 
-	 * @param playedMove the played move
-	 */
-	//void applyGameStateTransition(IGameBoardMove playedMove);
-	
 	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove legalMoveChoosen);
 
 	/**
@@ -88,7 +73,6 @@ public interface IGame {
 	 * 
 	 * @return <tt>true</tt> if this game is over
 	 */
-	//boolean isGameOver(IGameBoard gameState);
 	boolean isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);
 	
 	/**
@@ -104,40 +88,42 @@ public interface IGame {
 	 * @return a piece of this game for a given player and a given type of piece
 	 */
 	IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType);
-
-
 	
 	IGameBoardCell getCell(IGameBoardPosition position);
+
 	IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex);
 	
-	
-
 	/**
 	 * Starts a new game play. 
 	 */
-	void start();
+	void start(); // TODO à mettre dans GameService
 
 	/**
 	 * Pauses this game play. 
 	 */
-	void pause();
+	//void pause();
+	 // TODO à mettre dans GameService
 	
 	/**
 	 * Resumes from pause.
 	 */
-	void resume();	
+	//void resume();	
+	 // TODO à mettre dans GameService
 
 	/**
 	 * Stops this game play.
 	 */
-	void stop();
+	//void stop();
+	 // TODO à mettre dans GameService
 
 	/**
 	 * Stops this game play and starts a new one.
 	 */
-	void reset();
-	
+	//void reset();
+	 // TODO à mettre dans GameService
 
-	//GamePlayersEnumeration getCurrentPlayerOrdinal();
+	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);
+
+	boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);
 
 }

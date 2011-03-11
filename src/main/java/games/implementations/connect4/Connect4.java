@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.games.core.GameBoardDimension;
-import main.java.games.core.GameBoardMove;
 import main.java.games.core.GameBuilder;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
@@ -33,11 +32,12 @@ import main.java.util.StaticContext;
 
 public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
-	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class; // TODO ! à revoir
+	public final static int CONNECTIONS = 4;
+	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
 	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents) {
-		super(board, opponents, 4);
+		super(board, opponents, CONNECTIONS);
 	}
 	// -----------------------------------------------------------------	
 	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents, final int connections) {
@@ -54,8 +54,7 @@ public class Connect4 extends Tictactoe {
 				while(cell.isEmpty()) {
 					nextBottomCell = cell.bottom();
 					if(nextBottomCell.isNull() || !nextBottomCell.isEmpty()) {
-						// TODO méthode de création
-						legalMoves.add(new GameBoardMove(side, cell.getPosition()));
+						legalMoves.add(this.makeMove(side, cell.getPosition()));
 						break;
 					}
 					cell = nextBottomCell;

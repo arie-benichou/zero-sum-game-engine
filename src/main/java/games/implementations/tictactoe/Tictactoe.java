@@ -30,6 +30,7 @@ import main.java.games.core.GamePieceFactory;
 import main.java.games.core.interfaces.IGameBoard;
 import main.java.games.core.interfaces.IGameBoardCell;
 import main.java.games.core.interfaces.IGameBoardMove;
+import main.java.games.core.interfaces.IGameBoardPosition;
 import main.java.games.core.interfaces.IGamePlayer;
 import main.java.games.core.types.GameBoardCardinalPosition;
 import main.java.games.core.types.GameBoardPlane;
@@ -38,28 +39,38 @@ import main.java.util.StaticContext;
 
 public class Tictactoe extends Game {
 	// ------------------------------------------------------------	
-	private int connections = 3; // TODO à revoir
+	public final static int CONNECTIONS = 3;
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3); 
 	// ------------------------------------------------------------
+	private transient int connections;	
+	// ------------------------------------------------------------	
 	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents) {
-		// TODO !! à revoir		
-		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
-		
+		this(board, opponents, Tictactoe.CONNECTIONS);
 	}
 	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents, final int connections) {
-		this(board, opponents);
+		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 		this.connections = connections;
 	}	
 	// -----------------------------------------------------------------
+	@Override
+	public boolean hasNullMove() {
+		return false;
+	}	
+	// -----------------------------------------------------------------
+	// TODO ? implémentation par défaut dans la classe abstraite
+	protected IGameBoardMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
+		// TODO utiliser un cache
+		return new GameBoardMove(side, position);
+	}
+	// ------------------------------------------------------------			
 	@Override
 	public List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for(IGameBoardCell cell : line) {
 				if(cell.isEmpty()) { // TODO ? isPlayable()
-					// TODO méthode de création
-					legalMoves.add(new GameBoardMove(side, cell.getPosition()));
+					legalMoves.add(this.makeMove(side, cell.getPosition()));
 				}
 			}
 		}
@@ -100,45 +111,31 @@ public class Tictactoe extends Game {
 			isGameOver = true;
 		}
 		else {
-			// Suite à ce coup, si l'adversaire...			
-			final GamePlayersEnumeration oppositeSide = this.getOpponent(justPlayedMove.getSide()).getOrder(); // TODO améliorer l'API à ce niveau
-			// ne peut plus jouer
-			if(this.getLegalMoves(this.getBoard(), oppositeSide).isEmpty()) {
+			// Suite à ce coup, si l'adversaire ne peut plus jouer
+			if(this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
 				isGameOver = true;
 			}
 		}
 		return isGameOver;
 	}
-	// -----------------------------------------------------------------	
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
-		
-		GamePlayersEnumeration nextSideToPlay = null;
-		
-		if (!moveToPlay.isNull()) {
-			// TODO ! méthode playMove
+	// -----------------------------------------------------------------
+	@Override
+	public boolean playMove(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+		//if (!moveToPlay.isNull()) {
 			final IGameBoardCell concernedCell = this.getCell(moveToPlay.getPosition());
-			concernedCell.setPiece(this.piece(moveToPlay.getSide(), TictactoePieceTypes.PAWN)); // TODO façade			
-		}
-		
-		if(!this.isGameOver(gameState, moveToPlay)) {
-			// TODO appeler who shall play
-			nextSideToPlay = super.applyGameStateTransition(gameState, moveToPlay);
-		}			
-		
-		return nextSideToPlay;
+			concernedCell.setPiece(this.piece(moveToPlay.getSide(), TictactoePieceTypes.PAWN));			
+		//}
+		return true;
 	}
-	// ------------------------------------------------------------
+	// -----------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args){
-		
 		new GameBuilder(StaticContext.thatClass()).build().start();
-		
 		/*
 		final GameBuilder gb = new GameBuilder(StaticContext.thatClass());
 		gb.boardDimension(new GameBoardDimension(1, 4, 1, 4));
 		gb.build().start();
 		*/		
-		
 	}
 	// ------------------------------------------------------------
 }

@@ -62,4 +62,9 @@ public class CheckersPieceMan extends CheckersPiece {
 		return options;
 	}
 	// ------------------------------------------------------------
+	@Override
+	public boolean isPromotable(final IGameBoardCell cell) {
+		return cell.getNeighbour(this.getSideDirection()).isNull();
+	}
+	// ------------------------------------------------------------	
 }

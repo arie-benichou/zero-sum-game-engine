@@ -1,5 +1,5 @@
 /*
- * @(#)GamePlayersEnumeration.java	0.99
+ * @(#)Game.java	0.99
  * 
  * Copyright 2011 Arie Benichou
  *
@@ -59,27 +59,20 @@ public abstract class Game implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	private List<IGamePlayer> opponents;
-
 	public List<IGamePlayer> getOpponents() {
 		return opponents;
 	}
 	private final void setOpponents(final List<IGamePlayer> opponents) {
 		this.opponents = opponents;
 	}
-
-	public final IGamePlayer getOpponent(final GamePlayersEnumeration playerTurn) {
-		return this.opponents.get(1 - playerTurn.ordinal());
-	}
-
-	public final IGamePlayer getOpponentToPlayer(final IGamePlayer player) {
-		return this.getOpponent(player.getOrder());
-	}
-
+	// ---------------------------------------------------------------------	
 	public final IGamePlayer getPlayer(final GamePlayersEnumeration playerTurn) {
 		return this.opponents.get(playerTurn.ordinal());
 	}
 	// ---------------------------------------------------------------------
-	protected void setupInitialGameState() { // TODO à revoir
+	// TODO à revoir
+	protected IGameBoard setupBoard(final IGameBoard board) {
+		return board;
 	}
 	// ---------------------------------------------------------------------
 	public Game(final IGamePieceFactory pieceFactory, final IGameBoard board, final List<IGamePlayer> opponents) {
@@ -100,19 +93,38 @@ public abstract class Game implements IGame {
 	}
 	// ---------------------------------------------------------------------
 	@Override
+	public GamePlayersEnumeration whoShallPlay(final GamePlayersEnumeration side, final boolean isMoveCompleted, final boolean isGameOver) {
+		GamePlayersEnumeration sideToPlay = null;
+		if(!isGameOver) {
+			if(isMoveCompleted) {
+				sideToPlay = side.getOpponent();
+			}
+			else {
+				//System.out.println("Tu dois continuer à jouer...");
+				sideToPlay = side;	
+			}
+		}
+		return sideToPlay;
+	}
+	// -----------------------------------------------------------------
+	@Override
+	public abstract boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);	
+	// -----------------------------------------------------------------	
+	@Override
 	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
-		// TODO à revoir
-		return this.whoShallPlay(gameState, moveToPlay.getSide());
-	}	
-	// ---------------------------------------------------------------------
+		return this.whoShallPlay(moveToPlay.getSide(), this.playMove(gameState, moveToPlay), this.isGameOver(gameState, moveToPlay));
+	}
+	// ------------------------------------------------------------		
+	
 	// TODO utiliser un thread pour le client lourd
 	// TODO pas de boucle pour la version client léger	
 	@Override
+	 // TODO à mettre dans GameService
 	public void start() {
 
 		GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
 		
-		this.setupInitialGameState();
+		this.setupBoard(this.getBoard());
 		
 		System.out.println(this.getBoard());
 		
@@ -135,18 +147,12 @@ public abstract class Game implements IGame {
 			
 		} while (currentPlayer != null);
 		
+		System.out.println("Game Over");
+		
 	}
 	// ---------------------------------------------------------------------
 	@Override
-	public GamePlayersEnumeration whoShallPlay(final IGameBoard gameState, final GamePlayersEnumeration currentPlayer) {
-		return currentPlayer.equals(GamePlayersEnumeration.FIRST_PLAYER) ?
-			GamePlayersEnumeration.SECOND_PLAYER : GamePlayersEnumeration.FIRST_PLAYER;
-	}
-	// ------------------------------------------------------------
-	@Override
-	public boolean hasNullMove() {
-		return false;
-	}
+	public abstract boolean hasNullMove();
 	// ---------------------------------------------------------------------
 	// façades
 	// ---------------------------------------------------------------------	
@@ -164,24 +170,26 @@ public abstract class Game implements IGame {
 		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
 	}
 	// ---------------------------------------------------------------------
+	/*
 	@Override
 	public void pause() {
-		// TODO
+		System.out.println("Not Implemented");
 	}
 	// ---------------------------------------------------------------------	
 	@Override
 	public void resume() {
-		// TODO
+		System.out.println("Not Implemented");
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void stop() {
-		// TODO
+		System.out.println("Not Implemented");
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public void reset() {
-		// TODO
+		System.out.println("Not Implemented");
 	}
+	*/
 	// ---------------------------------------------------------------------
 }

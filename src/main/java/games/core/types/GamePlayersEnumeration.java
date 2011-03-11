@@ -20,13 +20,26 @@
 package main.java.games.core.types;
 
 /**
- * This is the enumeration of players. 
+ * This is the enumeration of players.
  * 
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
 
-// TODO ne pas utiliser ordinal
 public enum GamePlayersEnumeration {
-	FIRST_PLAYER, SECOND_PLAYER;
+
+	FIRST_PLAYER() {
+		public GamePlayersEnumeration getOpponent() {
+			return SECOND_PLAYER;
+		}
+	},
+
+	SECOND_PLAYER() {
+		public GamePlayersEnumeration getOpponent() {
+			return FIRST_PLAYER;
+		}
+	};
+
+	public abstract GamePlayersEnumeration getOpponent();
+
 }
