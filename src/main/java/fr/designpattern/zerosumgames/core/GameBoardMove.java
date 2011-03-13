@@ -32,12 +32,28 @@ public class GameBoardMove implements IGameBoardMove {
 	}
 	
 	private transient IGameBoardPosition position;
-	
 	private final void setNewPosition(final IGameBoardPosition newPosition) {
 		this.position = newPosition;
 	}
 	public final IGameBoardPosition getPosition() {
 		return this.position;
+	}	
+	
+	private Double evaluation = Double.NaN;
+	public final void setEvaluation(final Double evaluation) {
+		this.evaluation = evaluation;
+	}	
+	public final Double getEvaluation() {
+		return this.evaluation;
+	}
+	
+	private int depth;
+	public final void setDepth(final int depth) {
+		this.depth = depth;
+	}
+	
+	public final int getDepth() {
+		return this.depth;
 	}	
 	
 	public boolean isNull() {
@@ -51,7 +67,24 @@ public class GameBoardMove implements IGameBoardMove {
 	
 	@Override
 	public String toString() {
-		return this.getSide() + " " + this.getPosition();
+		return this.getSide() + " " + this.getPosition() + " " + this.getEvaluation();// + " @depth = " + this.getDepth();
 	}
+	
+	@Override
+	public int hashCode() {
+		return this.getEvaluation().hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO tester la classe
+		IGameBoardMove o = (IGameBoardMove)obj;
+		return this.getEvaluation().equals(o.getEvaluation());
+	}
+	
+	public int compareTo(IGameBoardMove o) {
+		return this.getEvaluation().compareTo(o.getEvaluation());
+	}
+
 
 }

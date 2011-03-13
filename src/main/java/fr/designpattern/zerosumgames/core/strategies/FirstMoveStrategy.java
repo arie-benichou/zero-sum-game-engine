@@ -18,18 +18,15 @@
 package fr.designpattern.zerosumgames.core.strategies;
 
 import java.util.List;
-import java.util.Random;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 
-public class GamePlayerRandomStrategy implements IGamePlayerStrategy {
+public class FirstMoveStrategy implements IGamePlayerStrategy {
 
-	private final transient Random randomGenerator = new Random();
-	
 	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
-		return legalMoves.get(this.randomGenerator.nextInt(legalMoves.size()));
+		return legalMoves.get(0);
 	}
 
 }

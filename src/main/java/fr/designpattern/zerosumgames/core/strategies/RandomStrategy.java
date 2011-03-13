@@ -17,36 +17,19 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 
-public class GamePlayerHumanStrategy implements IGamePlayerStrategy {
+public class RandomStrategy implements IGamePlayerStrategy {
 
+	private final transient Random randomGenerator = new Random();
+	
 	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
-		IGameBoardMove choosenMove = null;
-		final Scanner scanner = new Scanner(System.in);
-		System.out.println("\nWhat is your move?"); 
-		int i = 0;
-		try {
-			i = scanner.nextInt();
-			if (i < 1 || i > legalMoves.size()) {
-				System.out.println("No such move!");
-				choosenMove = this.chooseMoveAmong(game, legalMoves);
-			}
-			else {
-				choosenMove = legalMoves.get(i - 1);
-				System.out.println("You have choosen to play move #" + i + ": " + choosenMove);
-			}
-		}
-		catch(InputMismatchException e) {
-			System.out.println("Integer expected!");
-			choosenMove = this.chooseMoveAmong(game, legalMoves);
-		}
-		return choosenMove;
+		return legalMoves.get(this.randomGenerator.nextInt(legalMoves.size()));
 	}
+
 }

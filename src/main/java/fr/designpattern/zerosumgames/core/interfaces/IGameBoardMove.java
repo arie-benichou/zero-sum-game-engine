@@ -29,7 +29,7 @@ import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface IGameBoardMove extends IGameNullableComponent {
+public interface IGameBoardMove extends IGameNullableComponent, Comparable<IGameBoardMove> {
 
 	/**
 	 * Returns the position.
@@ -44,5 +44,13 @@ public interface IGameBoardMove extends IGameNullableComponent {
 	 * @return the side playing this move
 	 */
 	GamePlayersEnumeration getSide();
+	
+	
+	void setEvaluation(Double evaluation);
+	
+	Double getEvaluation();
+	
+	void setDepth(int depth);
+	int getDepth();
 
 }
