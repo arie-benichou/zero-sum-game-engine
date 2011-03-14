@@ -17,7 +17,6 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -124,20 +123,30 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 			return legalMoves.get(0);
 		}
 		
+		Double alpha;
+		
 		//TODO ? tester si victoire imminente à la (profondeur1)
 		
 		//TODO ? sinon, tester si perte imminente à la (profondeur2)
+		
+		this.alphabetaCutoffs = 0;			
+		alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+		System.out.println("alpha/beta cut-offs : " + this.alphabetaCutoffs);			
+		
+		Collections.sort(legalMoves);
+		Collections.reverse(legalMoves);
 		
 		//TODO ? et enfin, sinon, tester jusqu'à la maxDepth
 		
 		
 		this.alphabetaCutoffs = 0;
-		Double alpha = this.chooseBestMoveAmong(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+		alpha = this.chooseBestMoveAmong(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
 		System.out.println("alpha: " + alpha);
 		System.out.println("alpha/beta cut-offs : " + this.alphabetaCutoffs);
 		
 		// TODO ? mémoriser la profondeur du Game Over et trier par ordre de profondeur
 		if(alpha.equals(Double.NEGATIVE_INFINITY)) {
+			// TODO réutiliser les résultats de la recherche précédente
 			System.out.println("Holy Shit! I'm doomed.");
 			this.alphabetaCutoffs = 0;			
 			alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
