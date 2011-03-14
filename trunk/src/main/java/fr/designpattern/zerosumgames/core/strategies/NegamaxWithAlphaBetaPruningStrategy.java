@@ -20,7 +20,6 @@ package fr.designpattern.zerosumgames.core.strategies;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import fr.designpattern.zerosumgames.core.GameBuilder;
 import fr.designpattern.zerosumgames.core.GamePlayer;
@@ -32,168 +31,138 @@ import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.implementations.connect4.Connect4;
-import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
 
 // TODO ! timer
 public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy {
-	
+	//--------------------------------------------------------------------------------------
 	private int maxDepth;
-	
-	private int evaluatedMoves = 0;
-	
-	private int alphabetaCutoffs = 0;
-	
-	private GamePlayersEnumeration side;
-
+	//--------------------------------------------------------------------------------------
+	private int alphabetaCutoffs;
+	//--------------------------------------------------------------------------------------	
 	public NegamaxWithAlphaBetaPruningStrategy(int maxDepth) {
 		this.maxDepth = maxDepth;
 	}
+	//--------------------------------------------------------------------------------------		
+	private Double chooseBestMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves, int depth, Double alpha, Double beta, int side) {
+		
+		Double bestMoveEvaluation = alpha;
+		
+		////System.out.println("==================================================================");		
+		////System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
+		////System.out.println("==================================================================");
+		
+		GamePlayersEnumeration currentPlayerOrdinal;
+
+		for(IGameBoardMove move : legalMoves) {
+			
+			////System.out.println("------------------------------------------------------------------");
+			
+			currentPlayerOrdinal = game.applyGameStateTransition(move);
+			
+			if( !(currentPlayerOrdinal == GamePlayersEnumeration.FIRST_PLAYER || currentPlayerOrdinal == GamePlayersEnumeration.SECOND_PLAYER)) {
+				move.setEvaluation(currentPlayerOrdinal == GamePlayersEnumeration.NONE ? 0.0: Double.POSITIVE_INFINITY);
+				////System.out.println("\nGame Over détecté");
+				///System.out.println(game);
+				game.undo(move);
+				return move.getEvaluation();
+			}
+			
+			if(depth == 1) {
+				////System.out.println("Profondeur maximale atteinte...");
+				////System.out.println(move);
+				move.setEvaluation(game.evaluate(move));				
+				///System.out.println(game);
+				game.undo(move);
+			}
+			else {
+				move.setEvaluation(-this.chooseBestMoveAmong(game, game.getLegalMoves(move.getSide().getOpponent()), depth - 1, -beta, -alpha, -side));
+				if(move.getEvaluation().isInfinite() || move.getEvaluation().equals(0.0)) {
+					////System.out.println("\nGame Over remonté.");
+					//////System.out.println("Evaluation locale du Game Over : " + move.getEvaluation());
+				}
+				///System.out.println(game);				
+				game.undo(move);
+			}
+			
+			////System.out.println("\névaluation: " + move.getEvaluation() + "\n");
+			
+			if(move.getEvaluation() > bestMoveEvaluation) {
+				////System.out.println("Ce coup apporte une meilleure évaluation !");
+				bestMoveEvaluation = move.getEvaluation();
+				////System.out.println("alpha = " + alpha + " |  beta  = " + beta);
+			}
+			else {
+				////System.out.println("Ce coup n'apporte pas de meilleure évaluation.");
+			}
+			
+			////System.out.println("------------------------------------------------------------------");		
+			////System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
+			////System.out.println("------------------------------------------------------------------");			
+			
+			if(bestMoveEvaluation >= beta) {
+				////System.out.println("------------------------------------------------------------------");				
+				////System.out.println("Il ne faut pas prendre son adversaire pour un bêta...");
+				////System.out.println("------------------------------------------------------------------");
+				++this.alphabetaCutoffs;
+				break;
+			}
+			
+		}
+		return bestMoveEvaluation;
+		//--------------------------------------------------------------------------------------				
+	}
 	
 	// TODO affiner la fonction d'évaluation statique du puissance 4 (cf version php)
-	// TODO hasNoChoice()
-	// TODO isGoingToWin()
-	// TODO isAboutToLose()
-	
 	private boolean hasNoChoice(final List<IGameBoardMove> legalMoves) {
 		return legalMoves.size() == 1;
 	}
 	//--------------------------------------------------------------------------------------
 	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
-
-		this.evaluatedMoves = 0;
 		
 		if(this.hasNoChoice(legalMoves)) {
 			System.out.println("Il n y a qu'un seul coup possible, je n'ai pas le choix...");
 			return legalMoves.get(0);
 		}
 		
-		this.side = legalMoves.get(0).getSide();
-
-		System.out.println("\npreordering legal moves: ");
+		//TODO ? tester si victoire imminente à la (profondeur1)
 		
-		List<IGameBoardMove> orderedLegalMoves = new ArrayList<IGameBoardMove>();
+		//TODO ? sinon, tester si perte imminente à la (profondeur2)
 		
-		this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, this.side);
+		//TODO ? et enfin, sinon, tester jusqu'à la maxDepth
 		
-		Collections.sort(legalMoves);
-		Collections.reverse(legalMoves);
+		
+		this.alphabetaCutoffs = 0;
+		Double alpha = this.chooseBestMoveAmong(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+		System.out.println("alpha: " + alpha);
+		System.out.println("alpha/beta cut-offs : " + this.alphabetaCutoffs);
+		
+		// TODO ? mémoriser la profondeur du Game Over et trier par ordre de profondeur
+		if(alpha.equals(Double.NEGATIVE_INFINITY)) {
+			System.out.println("Holy Shit! I'm doomed.");
+			this.alphabetaCutoffs = 0;			
+			alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+			System.out.println("alpha/beta cut-offs : " + this.alphabetaCutoffs);			
+		}
+		
+		System.out.println("\n");
 		
 		for (IGameBoardMove legalMove: legalMoves) {
 			System.out.println(legalMove);
-			if(!legalMove.getEvaluation().equals(Double.NEGATIVE_INFINITY)) {
-				orderedLegalMoves.add(legalMove);
-			}
 		}
-		
-		System.out.println("\nordered legal moves: ");		
-		for (IGameBoardMove legalMove: orderedLegalMoves) {
-			System.out.println(legalMove);
-		}
-		
-		if(this.hasNoChoice(orderedLegalMoves)) {
-			System.out.println("Il n y a qu'un seul coup valable, je n'ai pas vraiment le choix...");
-			return orderedLegalMoves.get(0);
-		}
-		else if(orderedLegalMoves.size() == 0) {
-			return legalMoves.get(new Random().nextInt(legalMoves.size()));
-		}
-		
-		//this.maxDepth = maxDepth;
-		this.chooseBestMoveAmong(game, orderedLegalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, this.side);
-		
-		System.out.println("\nnumber of evaluated moves: " + this.evaluatedMoves);
-		System.out.println("\nnumber of alpha/beta cut-offs: " + this.alphabetaCutoffs);
-		
-		Collections.sort(orderedLegalMoves);
-		Collections.reverse(orderedLegalMoves);
-		
-		System.out.println("\nevaluation of legal moves: ");
-		
-		for (IGameBoardMove legalMove: orderedLegalMoves) {
-			System.out.println(legalMove);
-		}
-		
-		return orderedLegalMoves.get(0);
-	}
-		
-	
-	// TODO bestMove et worstMove
-	private Double chooseBestMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves, int depth, Double alpha, Double beta, GamePlayersEnumeration side) {
-		//--------------------------------------------------------------------------------------
-		Double bestEvaluation = alpha;
-		//--------------------------------------------------------------------------------------
-		GamePlayersEnumeration currentPlayerOrdinal;
-		//--------------------------------------------------------------------------------------
-		for(IGameBoardMove move : legalMoves) {
-			//--------------------------------------------------------------------------------------
-			currentPlayerOrdinal = game.applyGameStateTransition(move);
-			//--------------------------------------------------------------------------------------			
-			if( !(currentPlayerOrdinal == GamePlayersEnumeration.FIRST_PLAYER || currentPlayerOrdinal == GamePlayersEnumeration.SECOND_PLAYER) ) {
-				move.setDepth(depth);
-				if(currentPlayerOrdinal == GamePlayersEnumeration.NONE) {
-					move.setEvaluation(0.0);
-				}
-				else {
-					if(side == GamePlayersEnumeration.FIRST_PLAYER) {
-						if(currentPlayerOrdinal == GamePlayersEnumeration.NOT_FIRST_PLAYER) {
-							move.setEvaluation(Double.NEGATIVE_INFINITY);	
-						}
-						else {
-							move.setEvaluation(Double.POSITIVE_INFINITY);
-						}
-					}
-					else {
-						if(currentPlayerOrdinal == GamePlayersEnumeration.NOT_SECOND_PLAYER) {
-							move.setEvaluation(Double.NEGATIVE_INFINITY);	
-						}
-						else {
-							move.setEvaluation(Double.POSITIVE_INFINITY);
-						}
-					}
-				}
-				//--------------------------------------------------------------------------------------				
-				game.undo(move);
-				//--------------------------------------------------------------------------------------				
-				return move.getEvaluation();
-			}
-			//--------------------------------------------------------------------------------------
-			if(depth == 0) {
-				game.undo(move);
-				return (double) game.evaluate(move);
-			}
-			//--------------------------------------------------------------------------------------
-			move.setEvaluation(-this.chooseBestMoveAmong(game, game.getLegalMoves(move.getSide().getOpponent()), depth - 1, -beta, -alpha, side.getOpponent()));
-			//--------------------------------------------------------------------------------------
-			game.undo(move);
-			//--------------------------------------------------------------------------------------
-			if(move.getEvaluation() > bestEvaluation) {
-				bestEvaluation = move.getEvaluation();
-			}
-			//--------------------------------------------------------------------------------------
-			if(bestEvaluation >= beta) {
-				++this.alphabetaCutoffs;
-				break;
-			}
-			//--------------------------------------------------------------------------------------
-			++this.evaluatedMoves;
-			//--------------------------------------------------------------------------------------				
-		}
-		//--------------------------------------------------------------------------------------				
-		return bestEvaluation;
-		//--------------------------------------------------------------------------------------				
+		return Collections.max(legalMoves);
 	}	
-	
-	// TODO simplification side + tests
-	// TODO !améliorer l'api des opponents, ce n'est pas au player de connaitre son ordre!	
+	//--------------------------------------------------------------------------------------		
+	// TODO ! améliorer l'api des opponents, ce n'est pas au player de connaitre son ordre.	
 	// TODO revoir la fontion d'évaluation du tictactoe (tests)
-	// TODO adapter Othello
-	// TODO committer
+	// TODO adapter Othello (revertedCells en dans Move)
+	//--------------------------------------------------------------------------------------
 	public static void main(final String[] args) {
 		IGameBuilder gameBuilder = new GameBuilder(Connect4.class);
-		gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new NegamaxWithAlphaBetaPruningStrategy(4)));
-		//gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.HUMAN, new GamePlayerHumanStrategy()));
-		gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.HUMAN, new NegamaxWithAlphaBetaPruningStrategy(6)));
-		//gameBuilder.player2(new GamePlayer("p1", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new GamePlayerMinimaxStrategy(9)));
+		//IGameBuilder gameBuilder = new GameBuilder(Tictactoe.class);
+		gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new NegamaxWithAlphaBetaPruningStrategy(3)));
+		//gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()));
+		gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new NegamaxWithAlphaBetaPruningStrategy(7)));
+		//gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()));
 		new GameService(gameBuilder.build()).start();
 	}
 

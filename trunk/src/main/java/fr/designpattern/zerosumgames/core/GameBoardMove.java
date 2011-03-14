@@ -39,7 +39,7 @@ public class GameBoardMove implements IGameBoardMove {
 		return this.position;
 	}	
 	
-	private Double evaluation = Double.NaN;
+	private Double evaluation = Double.NEGATIVE_INFINITY;
 	public final void setEvaluation(final Double evaluation) {
 		this.evaluation = evaluation;
 	}	

@@ -78,15 +78,9 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	protected int countConnections(final IGameBoardMove justPlayedMove) {
-		int connections = 0;
+		int connections = 1;
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
 			connections += this.countConnections(justPlayedMove, plane.getOneWay()) + this.countConnections(justPlayedMove, plane.getOppositeWay());
-			/*
-			if (connections >= this.connections) {
-				isWinningMove = true;
-				break;
-			}
-			*/
 		}
 		return connections;
 	}	
@@ -161,40 +155,8 @@ public class Tictactoe extends Game {
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
-	// TODO à améliorer
-	/*
-	@Override
-	public double evaluate(IGameBoardMove move) {
-		
-		double evaluation;
-		*/
-		/*
-		if(this.isWinningMove(move)) {
-			evaluation = Double.POSITIVE_INFINITY;	
-		}
-		else {
-		*/
-		/*
-			evaluation = this.countConnections(move);
-		//}
-		
-		return evaluation;
-	}
-	*/
-	// ------------------------------------------------------------
-	// TODO utiliser NOT_FIRST_PLAYER, NOT_SECOND_PLAYER, NONE avec FIRST_PLAYER et SECOND_PLAYER pour optimiser l'IA  
 	public double evaluate(IGameBoardMove justPlayedMove) {
-		/*
-		double evaluation = 0.001;
-		if(this.isWinningMove(justPlayedMove)) {
-			evaluation = Double.POSITIVE_INFINITY;
-		}
-		else if(!this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
-			evaluation = this.countConnections(justPlayedMove);
-		}
-		return evaluation;
-		*/
 		return this.countConnections(justPlayedMove);
 	}
-	// ------------------------------------------------------------
+	// ------------------------------------------------------------	
 }

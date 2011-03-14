@@ -26,6 +26,7 @@ import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
+import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
@@ -37,6 +38,62 @@ public class Connect4 extends Tictactoe {
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
+	@Override
+	protected IGameBoard setupBoard(final IGameBoard board) {
+		
+		final IGamePiece blackPawn = this.piece(GamePlayersEnumeration.FIRST_PLAYER, Connect4PieceTypes.PAWN);
+		final IGamePiece whitePawn = this.piece(GamePlayersEnumeration.SECOND_PLAYER, Connect4PieceTypes.PAWN);
+		
+		//TODO tests unitaires profondeur 1
+			/*
+			board.getCell(6, 3).setPiece(whitePawn);
+			board.getCell(6, 4).setPiece(whitePawn);
+			board.getCell(6, 5).setPiece(whitePawn);
+			*/
+	
+			/*
+			board.getCell(6, 3).setPiece(blackPawn);
+			board.getCell(6, 4).setPiece(blackPawn);
+			board.getCell(6, 5).setPiece(blackPawn);
+			*/
+		
+		
+		//TODO tests unitaires profondeur 2
+			/*
+			board.getCell(6, 3).setPiece(whitePawn);
+			board.getCell(6, 4).setPiece(whitePawn);
+			board.getCell(6, 5).setPiece(whitePawn);
+			board.getCell(6, 6).setPiece(blackPawn);
+			*/
+
+		//TODO tests unitaires profondeur 4
+		
+			//public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 2, 1, 8);
+		
+			/*
+			board.getCell(2, 1).setPiece(blackPawn);
+			board.getCell(2, 4).setPiece(whitePawn);
+			board.getCell(2, 5).setPiece(whitePawn);
+			board.getCell(2, 8).setPiece(blackPawn);
+			*/			
+		
+			/*
+			board.getCell(2, 1).setPiece(blackPawn);
+			board.getCell(2, 4).setPiece(whitePawn);
+			board.getCell(2, 5).setPiece(whitePawn);
+			board.getCell(2, 6).setPiece(whitePawn);
+			board.getCell(2, 8).setPiece(blackPawn);
+			*/
+			
+			/*
+			board.getCell(6, 4).setPiece(whitePawn);
+			board.getCell(6, 5).setPiece(whitePawn);
+			*/
+
+			
+		return board;
+	}
+	// ------------------------------------------------------------	
 	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents) {
 		super(board, opponents, CONNECTIONS);
 	}
