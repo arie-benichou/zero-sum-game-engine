@@ -58,20 +58,11 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 			
 			currentPlayerOrdinal = game.applyGameStateTransition(move);
 			
-			if( !(currentPlayerOrdinal == GamePlayersEnumeration.FIRST_PLAYER || currentPlayerOrdinal == GamePlayersEnumeration.SECOND_PLAYER)) {
-				move.setEvaluation(currentPlayerOrdinal == GamePlayersEnumeration.NONE ? 0.0: Double.POSITIVE_INFINITY);
-				////System.out.println("\nGame Over détecté");
+			if(currentPlayerOrdinal == GamePlayersEnumeration.NONE || depth == 1) {
+				move.setEvaluation(game.evaluate(move));
 				///System.out.println(game);
 				game.undo(move);
 				return move.getEvaluation();
-			}
-			
-			if(depth == 1) {
-				////System.out.println("Profondeur maximale atteinte...");
-				////System.out.println(move);
-				move.setEvaluation(game.evaluate(move));				
-				///System.out.println(game);
-				game.undo(move);
 			}
 			else {
 				move.setEvaluation(-this.chooseBestMoveAmong(game, game.getLegalMoves(move.getSide().getOpponent()), depth - 1, -beta, -alpha, -side));
@@ -125,9 +116,35 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		
 		Double alpha;
 		
-		//TODO ? tester si victoire imminente à la (profondeur1)
+		//test si victoire imminente pour le joueur actuel (profondeur1)
+		alpha = this.chooseBestMoveAmong(game, legalMoves, 1, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+		if(alpha.equals(Double.POSITIVE_INFINITY)) {
+			System.out.println("Victoire imminente!");
+		}
+		else {
+			System.out.println("Pas de victoire imminente...");
+			
+			Collections.sort(legalMoves);
+			
+			for (IGameBoardMove legalMove: legalMoves) {
+				System.out.println(legalMove);
+			}
+			
+			// sinon, test si victoire imminente (défaite dans un futur très proche du joueur actuel) pour l'adversaire (profondeur2)			
+			alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+			
+			for (IGameBoardMove legalMove: legalMoves) {
+				System.out.println(legalMove);
+			}
+
+		}
+
+		System.exit(0);
 		
-		//TODO ? sinon, tester si perte imminente à la (profondeur2)
+		
+		
+		
+		
 		
 		this.alphabetaCutoffs = 0;			
 		alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);

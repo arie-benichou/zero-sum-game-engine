@@ -46,26 +46,18 @@ public interface IGame {
 	 * 
 	 * @return the list of legal moves for a given a board and a given player, .
 	 */
-	List<IGameBoardMove> getLegalMoves(IGameBoard gameState, GamePlayersEnumeration side);
+	//List<IGameBoardMove> getLegalMoves(IGameBoard gameState, GamePlayersEnumeration side);
 
 	/**
 	 * Plays a move (or a part of a real move)
 	 * 
-	 * @param gameState the game board
 	 * @param moveToPlay the move to play
 	 * 
 	 * @return if the move is completed
 	 */
-	boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);
+	boolean playMove(IGameBoardMove moveToPlay);
 	
-	/**
-     * Returns <tt>true</tt> if this game is over.
-     *  
-	 * @param gameState the game board
-	 * 
-	 * @return <tt>true</tt> if this game is over
-	 */
-	GamePlayersEnumeration isGameOver(IGameBoard gameState, IGameBoardMove justPlayedMove);	
+	boolean isGameOver(IGameBoardMove justPlayedMove);
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,
@@ -79,16 +71,9 @@ public interface IGame {
 	 * @return FIRST_PLAYER, if it's the first player turn, SECOND_PLAYER, if it's the second player turn, null if the game is over.
 	 */
 	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
+		
 	
-	/**
-	 * Apply game state transition.
-	 *  
-	 * @param gameState the game board
-	 * @param moveToPlay the move to play
-	 * 
-	 * @return the ordinal corresponding to the next player who has to play
-	 */
-	GamePlayersEnumeration applyGameStateTransition(IGameBoard gameState, IGameBoardMove moveToPlay);
+	//boolean isWinningMove(final IGameBoardMove justPlayedMove);
 	
 	/**
 	 * Returns a piece of this game for a given player
@@ -129,7 +114,7 @@ public interface IGame {
 
 	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration currentPlayer);
 
-	GamePlayersEnumeration applyGameStateTransition(IGameBoardMove legalMoveToPlay);
+	//GamePlayersEnumeration applyGameStateTransition(IGameBoardMove legalMoveToPlay);
 
 	IGamePlayer getPlayer(GamePlayersEnumeration currentPlayer);
 	
@@ -137,6 +122,8 @@ public interface IGame {
 	
 	double evaluate(IGameBoardMove move);
 
-	GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, GamePlayersEnumeration isGameOver);	
+	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
+	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted);
+	GamePlayersEnumeration whoShallPlay(IGameBoardMove playedMove, boolean isMoveDone);
 
 }

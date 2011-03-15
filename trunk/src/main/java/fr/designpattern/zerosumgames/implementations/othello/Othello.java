@@ -41,63 +41,129 @@ public class Othello extends Game {
 	// ------------------------------------------------------------
 	public final static Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);
-	// ------------------------------------------------------------	
-	@Override
-	protected IGameBoard setupBoard(final IGameBoard board) {
-		final IGamePiece blackPawn = this.piece(GamePlayersEnumeration.FIRST_PLAYER, OthelloPieceTypes.PAWN);
-		final IGamePiece whitePawn = this.piece(GamePlayersEnumeration.SECOND_PLAYER, OthelloPieceTypes.PAWN);
-		board.getCell(4, 5).setPiece(blackPawn);
-		board.getCell(5, 4).setPiece(blackPawn);
-		board.getCell(4, 4).setPiece(whitePawn);
-		board.getCell(5, 5).setPiece(whitePawn);
-		return board;
-	}
 	// ------------------------------------------------------------
 	public Othello(final IGameBoard board, final List<IGamePlayer> opponents) {
-		// TODO !! à revoir
-		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
+		super(new GamePieceFactory(PIECE_TYPES), board, opponents);// TODO !! à revoir
 	}
-	// ------------------------------------------------------------
+	// ------------------------------------------------------------	
 	@Override
 	public boolean hasNullMove() {
 		return true;
 	}
 	// ------------------------------------------------------------
-	private boolean isNeighbourCellHavingOpponentPiece(final IGameBoardCell neighbourCell, final GamePlayersEnumeration side) {
-		// Si !(la cellule n'existe pas ou si la cellule est vide ou si la cellule contient une pièce du même joueur)
-		return !(neighbourCell.isNull() || neighbourCell.isEmpty() || neighbourCell.getPiece().getSide() == side);
+	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		for (IGameBoardCell[] line : board) {
+			for (IGameBoardCell cell : line) {
+				if (this.canPlayHere(cell, side)) {
+					legalMoves.add(this.makeMove(side, cell.getPosition()));
+				}
+			}
+		}
+		// TODO ? cache du nullMove pour chaque side
+		legalMoves.add(this.makeMove(side, this.getCell(null).getPosition()));
+		return legalMoves;
 	}
 	// ------------------------------------------------------------
-	private boolean hasBoundInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
-		boolean hasBound = false;
-		IGameBoardCell neighbourCell = neighbourEntry.getValue().getNeighbour(neighbourEntry.getKey());
-		// tant qu'une cellule voisine existe
-		while (!neighbourCell.isNull()) {	
-			// si la cellule voisine est vide
-			if (neighbourCell.isEmpty()) {
-				break;
-			}
-			// si la cellule voisine contient une pièce de l'adversaire
-			if (neighbourCell.getPiece().getSide() != neighbourEntry.getValue().getPiece().getSide()) {
-				// TODO redéfinir les méthodes equals() et hashcode() d'une pièce
-				hasBound = true;
-				break;
-			}
-			neighbourCell = neighbourCell.getNeighbour(neighbourEntry.getKey());
+	@Override
+	// TODO renommer : doMove/undoMove
+	// TODO laisser la méthode abstraite dans la classe Game
+	public boolean playMove(final IGameBoard board, final IGameBoardMove moveToPlay) {
+		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
+		if (!othelloMove.isNull()) {
+			final IGamePiece playerPiece = this.piece(othelloMove.getSide(), OthelloPieceTypes.PAWN);
+			this.getCell(othelloMove.getPosition()).setPiece(playerPiece);
+			othelloMove.setCellsToRevert(this.computeCellsToRevert(board, othelloMove));
+			this.revertCells(othelloMove.getCellsToRevert());
 		}
-		return hasBound;
+		return true;  // is move done ?
+	}
+	// ------------------------------------------------------------
+	// TODO renommer : undoMove/doMove
+	public boolean undo(final IGameBoardMove playedMove) {
+		if(!playedMove.isNull()) {
+			this.getCell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
+			final OthelloMove othelloMove = (OthelloMove)playedMove;
+			this.revertCells(othelloMove.getCellsToRevert());
+		}
+		return true; // is move undone ?
+	}
+	// ------------------------------------------------------------
+	/*
+	public GamePlayersEnumeration isGameOver(final IGameBoard board, final IGameBoardMove justPlayedMove) {
+		return
+			this.getLegalMoves(board, GamePlayersEnumeration.FIRST_PLAYER).size() == 1
+			&&
+			this.getLegalMoves(board, GamePlayersEnumeration.SECOND_PLAYER).size() == 1
+		;
+		return null; // TODO
+	}
+	*/
+	
+	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
+		
+		GamePlayersEnumeration nextPlayer;
+		// Suite à ce coup, si l'adversaire ne peut plus jouer
+		if(this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
+			nextPlayer = GamePlayersEnumeration.NONE;
+		}
+		else {
+			nextPlayer = justPlayedMove.getSide().getOpponent();
+		}
+		return nextPlayer;
+	}
+	// ------------------------------------------------------------		
+	public double evaluate(IGameBoardMove move) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	// ------------------------------------------------------------	
+	@Override
+	protected IGameBoard setupBoard(final IGameBoard board) {
+		board.getCell(4, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
+		board.getCell(5, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
+		board.getCell(4, 4).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
+		board.getCell(5, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
+		return board;
+	}
+	// ------------------------------------------------------------
+	private IGamePiece piece(GamePlayersEnumeration player) {
+		return super.piece(player, OthelloPieceTypes.PAWN);
+	}
+	// ------------------------------------------------------------	
+	private boolean isNeighbourCellHavingOpponentPiece(final IGameBoardCell neighbourCell, final GamePlayersEnumeration side) {
+		// Est-ce que la cellule : (existe, n'est pas vide, contient une pièce de l'adversaire)
+		return !neighbourCell.isNull() && !neighbourCell.isEmpty() && neighbourCell.getPiece().getSide() == side.getOpponent();
+		 // TODO utiliser la pièce nulle et la celulle nulle
+	}
+	// ------------------------------------------------------------
+	private boolean isBoundableInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
+		boolean isBoundable = false;
+		final GameBoardCardinalPosition direction = neighbourEntry.getKey();
+		final GamePlayersEnumeration opponent = neighbourEntry.getValue().getPiece().getSide().getOpponent();
+		IGameBoardCell neighbourCell = neighbourEntry.getValue().getNeighbour(direction);
+		// tant qu'une cellule voisine existe et qu'elle n'est pas vide
+		while (!(neighbourCell.isNull() && neighbourCell.isEmpty())) {	
+			// si la cellule voisine contient une pièce de l'adversaire
+			if (neighbourCell.getPiece().getSide() == opponent) {
+				isBoundable = true;
+				break;
+			}
+			neighbourCell = neighbourCell.getNeighbour(direction);
+		}
+		return isBoundable;
 	}
 	// ------------------------------------------------------------
 	// TODO ? rajouter à l'interface
 	public boolean canPlayHere(final IGameBoardCell cell, final GamePlayersEnumeration side) {
 		boolean canPlayHere = false;
-		// si la cellule n'est pas vide
+		// si la cellule est vide
 		if (cell.isEmpty()) {
-			//si la cellule n'est pas vide, les cellules voisines sont inspectées 
+			//si la cellule est vide, les cellules voisines sont inspectées 
 			for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : cell.getNeighbourhood().entrySet()) {
 				// si une des cellules voisines contient au moins une pièce de l'adversaire
 				// et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire			
-				if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side) && this.hasBoundInThisDirection(cellNeighbourEntry)) {
+				if (this.isNeighbourCellHavingOpponentPiece(cellNeighbourEntry.getValue(), side) && this.isBoundableInThisDirection(cellNeighbourEntry)) {
 					canPlayHere = true;
 					break;
 				}
@@ -112,23 +178,9 @@ public class Othello extends Game {
 		return new GameBoardMove(side, position);
 	}
 	// ------------------------------------------------------------		
-	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
-		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for (IGameBoardCell cell : line) {
-				if (this.canPlayHere(cell, side)) {
-					legalMoves.add(this.makeMove(side, cell.getPosition()));
-				}
-			}
-		}
-		// TODO ? cache du nullMove pour chaque side
-		legalMoves.add(this.makeMove(side, this.getCell(null).getPosition()));
-		return legalMoves;
-	}
-	// ------------------------------------------------------------
-	private List<IGameBoardCell> getCellsToRevert(final IGameBoardMove move) {
+	private List<IGameBoardCell> computeCellsToRevert(final IGameBoard board, final IGameBoardMove move) {
 		final GamePlayersEnumeration side = move.getSide();
-		final IGameBoardCell cell = this.getBoard().getCell(move.getPosition());
+		final IGameBoardCell cell = board.getCell(move.getPosition());
 		final List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
 		final List<IGameBoardCell> opponentCells = new ArrayList<IGameBoardCell>();
 		IGameBoardCell neighbourCell;
@@ -159,40 +211,16 @@ public class Othello extends Game {
 		return cellsToRevert;		
 	}	
 	// ------------------------------------------------------------
-	@Override
-	public boolean playMove(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
-		if (!moveToPlay.isNull()) {
-			final IGamePiece playerPiece = this.piece(moveToPlay.getSide(), OthelloPieceTypes.PAWN);
-			this.getCell(moveToPlay.getPosition()).setPiece(playerPiece);
-			for (IGameBoardCell cellToRevert : this.getCellsToRevert(moveToPlay)) {
-				cellToRevert.setPiece(playerPiece);
-			}
+	private void revertCells(List<IGameBoardCell> cellsToRevert) {
+		final IGamePiece piece = this.piece(cellsToRevert.get(0).getPiece().getSide().getOpponent());
+		for (IGameBoardCell cell : cellsToRevert) {
+			cell.setPiece(piece);
 		}
-		return true;
 	}
-	// -----------------------------------------------------------------
-	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		/*
-		return
-			this.getLegalMoves(gameState, GamePlayersEnumeration.FIRST_PLAYER).size() == 1
-			&&
-			this.getLegalMoves(gameState, GamePlayersEnumeration.SECOND_PLAYER).size() == 1
-		;
-		*/
-		return null; // TODO
-	}	
-	// ------------------------------------------------------------		
+	// ------------------------------------------------------------	
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
-	// ------------------------------------------------------------				
-	public boolean undo(IGameBoardMove move) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public double evaluate(IGameBoardMove move) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	// ------------------------------------------------------------	
 }
