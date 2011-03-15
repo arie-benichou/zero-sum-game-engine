@@ -61,14 +61,15 @@ public class GameService implements IGameService {
 			// ---------------------------------------------------------------------			
 			System.out.println(this.game);
 			// ---------------------------------------------------------------------			
-		} while (this.currentPlayer != GamePlayersEnumeration.NONE);
+		} while (this.currentPlayer == GamePlayersEnumeration.FIRST_PLAYER || this.currentPlayer == GamePlayersEnumeration.SECOND_PLAYER);
 		// ---------------------------------------------------------------------		
 		System.out.println("Game over!");
-		if(this.game.isWinningMove(legalMoveToPlay)) {
-			System.out.println("And the winner is " + legalMoveToPlay.getSide() + ".");	
+		System.out.println(this.currentPlayer);
+		if(this.currentPlayer == GamePlayersEnumeration.NONE) {
+			System.out.println("There is no winner.");
 		}
 		else {
-			System.out.println("There is no winner.");
+			System.out.println("And the winner is " + this.currentPlayer.not().getOpponent() + ".");			
 		}
 		// ---------------------------------------------------------------------		
 	}
