@@ -51,6 +51,9 @@ public interface IGameBoardMove extends IGameNullableComponent, Comparable<IGame
 	Double getEvaluation();
 	
 	void setDepth(int depth);
+	
 	int getDepth();
+	
+	String debug();
 
 }

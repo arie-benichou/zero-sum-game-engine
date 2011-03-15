@@ -57,7 +57,9 @@ public interface IGame {
 	 */
 	boolean playMove(IGameBoardMove moveToPlay);
 	
-	boolean isGameOver(IGameBoardMove justPlayedMove);
+	boolean isGameOverFromVictory(IGameBoardMove justPlayedMove);
+	
+	boolean isGameOverFromDraw(IGameBoardMove justPlayedMove);
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,

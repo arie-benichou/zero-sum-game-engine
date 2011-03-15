@@ -58,18 +58,19 @@ public class GameService implements IGameService {
 			legalMoveToPlay = playerStrategy.chooseMoveAmong(this.game, legalMoves);
 			// ---------------------------------------------------------------------
 			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.playMove(legalMoveToPlay));
-			// ---------------------------------------------------------------------			
+			// ---------------------------------------------------------------------
 			System.out.println(this.game);
+			// ---------------------------------------------------------------------
+			//System.out.println("next player = " + this.currentPlayer);
 			// ---------------------------------------------------------------------			
-		} while (this.currentPlayer == GamePlayersEnumeration.FIRST_PLAYER || this.currentPlayer == GamePlayersEnumeration.SECOND_PLAYER);
+		} while (GamePlayersEnumeration.isAPlayer(this.currentPlayer));
 		// ---------------------------------------------------------------------		
-		System.out.println("Game over!");
-		System.out.println(this.currentPlayer);
-		if(this.currentPlayer == GamePlayersEnumeration.NONE) {
+		System.out.println("Game over...");
+		if(GamePlayersEnumeration.isNoOne(this.currentPlayer)) {
 			System.out.println("There is no winner.");
 		}
 		else {
-			System.out.println("And the winner is " + this.currentPlayer.not().getOpponent() + ".");			
+			System.out.println("And the winner is " + GamePlayersEnumeration.opponent(GamePlayersEnumeration.not(this.currentPlayer)) +  "!");			
 		}
 		// ---------------------------------------------------------------------		
 	}

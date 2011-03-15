@@ -39,7 +39,7 @@ public class GameBoardMove implements IGameBoardMove {
 		return this.position;
 	}	
 	
-	private Double evaluation;
+	private Double evaluation = Double.NEGATIVE_INFINITY;
 	public final void setEvaluation(final Double evaluation) {
 		this.evaluation = evaluation;
 	}	
@@ -67,7 +67,11 @@ public class GameBoardMove implements IGameBoardMove {
 	
 	@Override
 	public String toString() {
-		return this.getSide() + " " + this.getPosition() + " " + (this.getEvaluation() != null ? this.getEvaluation() : "");// + " @depth = " + this.getDepth();
+		return this.getSide() + " " + this.getPosition();
+	}
+	
+	public String debug() {
+		return this.getSide() + " " + this.getPosition() + " " + this.getEvaluation() + " @depth = " + this.getDepth();
 	}
 	
 	@Override
@@ -83,8 +87,8 @@ public class GameBoardMove implements IGameBoardMove {
 	}
 	
 	public int compareTo(IGameBoardMove o) {
-		return o.getEvaluation().compareTo(this.getEvaluation());
-		//return this.getEvaluation().compareTo(o.getEvaluation());
+		//return o.getEvaluation().compareTo(this.getEvaluation());
+		return this.getEvaluation().compareTo(o.getEvaluation());
 	}
 
 

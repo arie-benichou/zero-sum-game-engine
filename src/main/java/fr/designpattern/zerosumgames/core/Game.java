@@ -80,21 +80,20 @@ public abstract class Game implements IGame {
 		this.setOpponents(opponents);
 	}
 	// ---------------------------------------------------------------------
-	public GamePlayersEnumeration whoShallPlay(final IGameBoardMove playedMove, final boolean isMoveDone) {
-		
-		GamePlayersEnumeration nexSideToPlay;
-		
+	public final GamePlayersEnumeration whoShallPlay(final IGameBoardMove playedMove, final boolean isMoveDone) {
+		GamePlayersEnumeration nexSideToPlay = GamePlayersEnumeration.opponent(playedMove.getSide());
 		if(!isMoveDone) {
+			//System.out.println("move is not done");
 			nexSideToPlay = playedMove.getSide();
 		}
-		// TODO ! isGameOverFromVictory et isGameOverFromDraw
-		else if(this.isGameOver(playedMove)) {
-				nexSideToPlay = playedMove.getSide().getOpponent().not(); 
+		else if(this.isGameOverFromVictory(playedMove)){
+			//System.out.println("Game Over from victory");
+			nexSideToPlay = GamePlayersEnumeration.not(GamePlayersEnumeration.opponent(playedMove.getSide()));
 		}
-		else {
-			nexSideToPlay = playedMove.getSide().getOpponent();
+		else if(this.isGameOverFromDraw(playedMove)){
+			//System.out.println("Game Over from draw");
+			nexSideToPlay = GamePlayersEnumeration.NO_ONE;
 		}
-			
 		return nexSideToPlay;
 	}
 	// -----------------------------------------------------------------
