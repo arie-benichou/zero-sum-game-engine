@@ -87,8 +87,9 @@ public abstract class Game implements IGame {
 		if(!isMoveDone) {
 			nexSideToPlay = playedMove.getSide();
 		}
+		// TODO ! isGameOverFromVictory et isGameOverFromDraw
 		else if(this.isGameOver(playedMove)) {
-				nexSideToPlay = GamePlayersEnumeration.NONE; 
+				nexSideToPlay = playedMove.getSide().getOpponent().not(); 
 		}
 		else {
 			nexSideToPlay = playedMove.getSide().getOpponent();
