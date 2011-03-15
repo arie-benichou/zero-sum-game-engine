@@ -80,38 +80,23 @@ public abstract class Game implements IGame {
 		this.setOpponents(opponents);
 	}
 	// ---------------------------------------------------------------------
-	// TODO ! améliorer isMoveCompleted doit venir après is GameOver
-	public GamePlayersEnumeration whoShallPlay(final GamePlayersEnumeration side, final boolean isMoveCompleted, final GamePlayersEnumeration isGameOver) {
+	public GamePlayersEnumeration whoShallPlay(final IGameBoardMove playedMove, final boolean isMoveDone) {
 		
-		//GamePlayersEnumeration sideToPlay;
+		GamePlayersEnumeration nexSideToPlay;
 		
-		// TODO rajouter dans GamePlayersEnumeration
-		if(isGameOver == GamePlayersEnumeration.NONE) {
-			return isGameOver;
+		if(!isMoveDone) {
+			nexSideToPlay = playedMove.getSide();
 		}
-		
-		if(isGameOver == GamePlayersEnumeration.NOT_FIRST_PLAYER) {
-			return isGameOver;
+		else if(this.isGameOver(playedMove)) {
+				nexSideToPlay = GamePlayersEnumeration.NONE; 
 		}
-		
-		if(isGameOver == GamePlayersEnumeration.NOT_SECOND_PLAYER) {
-			return isGameOver;
-		}				
-		
-		if(!isMoveCompleted) {
-			return side;
+		else {
+			nexSideToPlay = playedMove.getSide().getOpponent();
 		}
-		
-		return side.getOpponent();
+			
+		return nexSideToPlay;
 	}
 	// -----------------------------------------------------------------
-	public abstract boolean playMove(IGameBoard gameState, IGameBoardMove moveToPlay);	
-	// -----------------------------------------------------------------	
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
-		//System.out.println(moveToPlay);
-		return this.whoShallPlay(moveToPlay.getSide(), this.playMove(gameState, moveToPlay), this.isGameOver(gameState, moveToPlay));
-	}
-	// ------------------------------------------------------------		
 	public void reset() {
 		this.setupBoard(this.getBoard());
 	}
@@ -119,14 +104,6 @@ public abstract class Game implements IGame {
 	public abstract boolean hasNullMove();
 	// ---------------------------------------------------------------------	
 	// façades
-	// ---------------------------------------------------------------------
-	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration currentPlayer) {
-		return this.getLegalMoves(this.getBoard(), currentPlayer);
-	}
-	// ---------------------------------------------------------------------
-	public GamePlayersEnumeration applyGameStateTransition(final IGameBoardMove moveToPlay) {
-		return this.applyGameStateTransition(this.getBoard(), moveToPlay);
-	}
 	// ---------------------------------------------------------------------
 	public IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType) {
 		return this.getPieceFactory().getPiece(player, pieceType);
@@ -142,27 +119,5 @@ public abstract class Game implements IGame {
 	public String toString() {
 		return this.getBoard().toString();
 	}
-	// ---------------------------------------------------------------------
-	/*
-	@Override
-	public void pause() {
-		System.out.println("Not Implemented");
-	}
-	// ---------------------------------------------------------------------	
-	@Override
-	public void resume() {
-		System.out.println("Not Implemented");
-	}
-	// ---------------------------------------------------------------------
-	@Override
-	public void stop() {
-		System.out.println("Not Implemented");
-	}
-	// ---------------------------------------------------------------------
-	@Override
-	public void reset() {
-		System.out.println("Not Implemented");
-	}
-	*/
 	// ---------------------------------------------------------------------
 }

@@ -55,28 +55,20 @@ public class GameService implements IGameService {
 			this.displayLegalMoveList(this.currentPlayer, legalMoves);
 			// ---------------------------------------------------------------------			
 			playerStrategy = this.game.getPlayer(this.currentPlayer).getStrategy();
-			
-			//System.out.println(playerStrategy);
-			
 			legalMoveToPlay = playerStrategy.chooseMoveAmong(this.game, legalMoves);
-			// ---------------------------------------------------------------------			
-			this.currentPlayer = this.game.applyGameStateTransition(legalMoveToPlay);
+			// ---------------------------------------------------------------------
+			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.playMove(legalMoveToPlay));
 			// ---------------------------------------------------------------------			
 			System.out.println(this.game);
 			// ---------------------------------------------------------------------			
-		} while (this.currentPlayer == GamePlayersEnumeration.FIRST_PLAYER || this.currentPlayer == GamePlayersEnumeration.SECOND_PLAYER);
+		} while (this.currentPlayer != GamePlayersEnumeration.NONE);
 		// ---------------------------------------------------------------------		
-		//System.out.println("Game Over");
-		
-		// TODO NOT_X.opponent() devrait retourner X.opponent()
-		if(this.currentPlayer == GamePlayersEnumeration.NOT_SECOND_PLAYER) {
-			System.out.println(GamePlayersEnumeration.FIRST_PLAYER + " a gagné.");
-		}
-		else if(this.currentPlayer == GamePlayersEnumeration.NOT_FIRST_PLAYER) {
-			System.out.println(GamePlayersEnumeration.SECOND_PLAYER + " a gagné.");
+		System.out.println("Game over!");
+		if(this.game.isWinningMove(legalMoveToPlay)) {
+			System.out.println("And the winner is " + legalMoveToPlay.getSide() + ".");	
 		}
 		else {
-			System.out.println("Match nul");
+			System.out.println("There is no winner.");
 		}
 		// ---------------------------------------------------------------------		
 	}
