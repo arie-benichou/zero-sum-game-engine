@@ -103,7 +103,7 @@ public class Connect4 extends Tictactoe {
 	}	
 	// -----------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
 		IGameBoardCell nextBottomCell;
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		// TODO a améliorer

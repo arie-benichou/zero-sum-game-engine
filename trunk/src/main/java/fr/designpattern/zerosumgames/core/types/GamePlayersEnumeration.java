@@ -32,7 +32,7 @@ public enum GamePlayersEnumeration {
 		public GamePlayersEnumeration getOpponent() {
 			return SECOND_PLAYER;
 		}
-		public GamePlayersEnumeration not() {
+		public GamePlayersEnumeration getNegation() {
 			return NOT_FIRST_PLAYER;
 		}						
 	},
@@ -41,16 +41,25 @@ public enum GamePlayersEnumeration {
 		public GamePlayersEnumeration getOpponent() {
 			return FIRST_PLAYER;
 		}
-		public GamePlayersEnumeration not() {
+		public GamePlayersEnumeration getNegation() {
 			return NOT_SECOND_PLAYER;
 		}						
+	},
+	
+	NO_ONE {
+		public GamePlayersEnumeration getOpponent() {
+			return NO_ONE;
+		}
+		public GamePlayersEnumeration getNegation() {
+			return NO_ONE;
+		}
 	},
 	
 	NOT_FIRST_PLAYER() {
 		public GamePlayersEnumeration getOpponent() {
 			return NOT_SECOND_PLAYER;
 		}
-		public GamePlayersEnumeration not() {
+		public GamePlayersEnumeration getNegation() {
 			return FIRST_PLAYER;
 		}				
 	},
@@ -59,21 +68,35 @@ public enum GamePlayersEnumeration {
 		public GamePlayersEnumeration getOpponent() {
 			return NOT_FIRST_PLAYER;
 		}
-		public GamePlayersEnumeration not() {
+		public GamePlayersEnumeration getNegation() {
 			return SECOND_PLAYER;
 		}		
-	},
-	
-	NONE {
-		public GamePlayersEnumeration getOpponent() {
-			return NONE;
-		}
-		public GamePlayersEnumeration not() {
-			return NONE;
-		}
 	};
 
-	public abstract GamePlayersEnumeration getOpponent();
-	public abstract GamePlayersEnumeration not();
+	protected abstract GamePlayersEnumeration getOpponent();
+	public static GamePlayersEnumeration opponent(final GamePlayersEnumeration side) {
+		return side.getOpponent();
+	}
+	
+	protected abstract GamePlayersEnumeration getNegation();
+	public static GamePlayersEnumeration not(final GamePlayersEnumeration side) {
+		return side.getNegation();
+	}
+	
+	public static boolean isNoOne(final GamePlayersEnumeration side) {
+		return side.equals(NO_ONE) ;
+	}
+	
+	public static boolean isFirstPlayer(final GamePlayersEnumeration side) {
+		return side.equals(FIRST_PLAYER);   
+	}
+	
+	public static boolean isSecondPlayer(final GamePlayersEnumeration side) {
+		return side.equals(SECOND_PLAYER);   
+	}	
+	
+	public static boolean isAPlayer(final GamePlayersEnumeration side) {
+		return side.equals(FIRST_PLAYER) || side.equals(SECOND_PLAYER);   
+	}	
 
 }
