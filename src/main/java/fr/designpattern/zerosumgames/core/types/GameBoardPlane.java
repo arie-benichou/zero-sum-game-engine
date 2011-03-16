@@ -27,13 +27,13 @@ package fr.designpattern.zerosumgames.core.types;
  */
 public enum GameBoardPlane {
 	
-	RIGHT_TO_LEFT(GameBoardCardinalPosition.RIGHT, GameBoardCardinalPosition.LEFT),
+	RIGHT_AND_LEFT(GameBoardCardinalPosition.RIGHT, GameBoardCardinalPosition.LEFT),
 	
-	BOTTOM_TO_TOP(GameBoardCardinalPosition.BOTTOM, GameBoardCardinalPosition.TOP),
+	BOTTOM_AND_TOP(GameBoardCardinalPosition.BOTTOM, GameBoardCardinalPosition.TOP),
 	
-	BOTTOM_LEFT_TO_TOP_RIGHT(GameBoardCardinalPosition.BOTTOM_LEFT, GameBoardCardinalPosition.TOP_RIGHT),
+	BOTTOM_LEFT_AND_TOP_RIGHT(GameBoardCardinalPosition.BOTTOM_LEFT, GameBoardCardinalPosition.TOP_RIGHT),
 	
-	TOP_LEFT_TO_BOTTOM_RIGHT(GameBoardCardinalPosition.TOP_LEFT, GameBoardCardinalPosition.BOTTOM_RIGHT);
+	TOP_LEFT_AND_BOTTOM_RIGHT(GameBoardCardinalPosition.TOP_LEFT, GameBoardCardinalPosition.BOTTOM_RIGHT);
 
 	private GameBoardCardinalPosition oneWay;
 	private GameBoardCardinalPosition oppositeWay;

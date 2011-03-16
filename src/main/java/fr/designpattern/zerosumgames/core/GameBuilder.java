@@ -12,6 +12,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoardDimension;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPositionFactory;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
+import fr.designpattern.zerosumgames.core.strategies.HumanStrategy;
 import fr.designpattern.zerosumgames.core.strategies.RandomStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
@@ -23,8 +24,8 @@ public class GameBuilder implements IGameBuilder {
 
 	private transient final Class<? extends IGame> builderGameClass;
 	private transient IGameBoardDimension builderBoardDimension;
-	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new RandomStrategy()); // TODO ? singleton pour une stratégie
-	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.HUMAN, new RandomStrategy()); // TODO ? singleton pour une stratégie
+	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()); // TODO ? singleton pour une stratégie
+	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.HUMAN, new HumanStrategy()); // TODO ? singleton pour une stratégie
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
 		this.builderGameClass = gameClass;
