@@ -51,9 +51,9 @@ public class Othello extends Game {
 		return true;
 	}
 	// ------------------------------------------------------------
-	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
-		for (IGameBoardCell[] line : board) {
+		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
 				if (this.canPlayHere(cell, side)) {
 					legalMoves.add(this.makeMove(side, cell.getPosition()));
@@ -63,20 +63,6 @@ public class Othello extends Game {
 		// TODO ? cache du nullMove pour chaque side
 		legalMoves.add(this.makeMove(side, this.getCell(null).getPosition()));
 		return legalMoves;
-	}
-	// ------------------------------------------------------------
-	@Override
-	// TODO renommer : doMove/undoMove
-	// TODO laisser la méthode abstraite dans la classe Game
-	public boolean playMove(final IGameBoard board, final IGameBoardMove moveToPlay) {
-		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
-		if (!othelloMove.isNull()) {
-			final IGamePiece playerPiece = this.piece(othelloMove.getSide(), OthelloPieceTypes.PAWN);
-			this.getCell(othelloMove.getPosition()).setPiece(playerPiece);
-			othelloMove.setCellsToRevert(this.computeCellsToRevert(board, othelloMove));
-			this.revertCells(othelloMove.getCellsToRevert());
-		}
-		return true;  // is move done ?
 	}
 	// ------------------------------------------------------------
 	// TODO renommer : undoMove/doMove
@@ -89,35 +75,30 @@ public class Othello extends Game {
 		return true; // is move undone ?
 	}
 	// ------------------------------------------------------------
-	/*
-	public GamePlayersEnumeration isGameOver(final IGameBoard board, final IGameBoardMove justPlayedMove) {
+	private boolean isGameOver() {
+		// Game Over s'il ne reste que le coup nul pour chacun des joueurs
 		return
-			this.getLegalMoves(board, GamePlayersEnumeration.FIRST_PLAYER).size() == 1
+			this.getLegalMoves(GamePlayersEnumeration.FIRST_PLAYER).size() == 1
 			&&
-			this.getLegalMoves(board, GamePlayersEnumeration.SECOND_PLAYER).size() == 1
+			this.getLegalMoves(GamePlayersEnumeration.SECOND_PLAYER).size() == 1
 		;
-		return null; // TODO
 	}
-	*/
-	
+	// ------------------------------------------------------------
+	/*
 	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
 		
 		GamePlayersEnumeration nextPlayer;
 		// Suite à ce coup, si l'adversaire ne peut plus jouer
-		if(this.getLegalMoves(this.getBoard(), justPlayedMove.getSide().getOpponent()).isEmpty()) {
+		if(this.getLegalMoves(this.getBoard(), GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty()) {
 			nextPlayer = GamePlayersEnumeration.NONE;
 		}
 		else {
-			nextPlayer = justPlayedMove.getSide().getOpponent();
+			nextPlayer = GamePlayersEnumeration.opponent(justPlayedMove.getSide());
 		}
 		return nextPlayer;
 	}
+	*/
 	// ------------------------------------------------------------		
-	public double evaluate(IGameBoardMove move) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	// ------------------------------------------------------------	
 	@Override
 	protected IGameBoard setupBoard(final IGameBoard board) {
 		board.getCell(4, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
@@ -127,23 +108,23 @@ public class Othello extends Game {
 		return board;
 	}
 	// ------------------------------------------------------------
-	private IGamePiece piece(GamePlayersEnumeration player) {
+	private IGamePiece piece(final GamePlayersEnumeration player) {
 		return super.piece(player, OthelloPieceTypes.PAWN);
 	}
 	// ------------------------------------------------------------	
 	private boolean isNeighbourCellHavingOpponentPiece(final IGameBoardCell neighbourCell, final GamePlayersEnumeration side) {
 		// Est-ce que la cellule : (existe, n'est pas vide, contient une pièce de l'adversaire)
-		return !neighbourCell.isNull() && !neighbourCell.isEmpty() && neighbourCell.getPiece().getSide() == side.getOpponent();
+		return !neighbourCell.isNull() && !neighbourCell.isEmpty() && neighbourCell.getPiece().getSide() == GamePlayersEnumeration.opponent(side);
 		 // TODO utiliser la pièce nulle et la celulle nulle
 	}
 	// ------------------------------------------------------------
 	private boolean isBoundableInThisDirection(final Entry<GameBoardCardinalPosition, IGameBoardCell> neighbourEntry) {
 		boolean isBoundable = false;
 		final GameBoardCardinalPosition direction = neighbourEntry.getKey();
-		final GamePlayersEnumeration opponent = neighbourEntry.getValue().getPiece().getSide().getOpponent();
+		final GamePlayersEnumeration opponent = GamePlayersEnumeration.opponent(neighbourEntry.getValue().getPiece().getSide());
 		IGameBoardCell neighbourCell = neighbourEntry.getValue().getNeighbour(direction);
 		// tant qu'une cellule voisine existe et qu'elle n'est pas vide
-		while (!(neighbourCell.isNull() && neighbourCell.isEmpty())) {	
+		while (!neighbourCell.isNull() && !neighbourCell.isEmpty()) {	
 			// si la cellule voisine contient une pièce de l'adversaire
 			if (neighbourCell.getPiece().getSide() == opponent) {
 				isBoundable = true;
@@ -175,12 +156,12 @@ public class Othello extends Game {
 	// TODO ? implémentation par défaut dans la classe abstraite
 	private IGameBoardMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
 		// TODO utiliser un cache
-		return new GameBoardMove(side, position);
+		return new OthelloMove(side, position);
 	}
 	// ------------------------------------------------------------		
-	private List<IGameBoardCell> computeCellsToRevert(final IGameBoard board, final IGameBoardMove move) {
+	private List<IGameBoardCell> computeCellsToRevert(final IGameBoardMove move) {
 		final GamePlayersEnumeration side = move.getSide();
-		final IGameBoardCell cell = board.getCell(move.getPosition());
+		final IGameBoardCell cell = this.getCell(move.getPosition());
 		final List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
 		final List<IGameBoardCell> opponentCells = new ArrayList<IGameBoardCell>();
 		IGameBoardCell neighbourCell;
@@ -211,13 +192,58 @@ public class Othello extends Game {
 		return cellsToRevert;		
 	}	
 	// ------------------------------------------------------------
-	private void revertCells(List<IGameBoardCell> cellsToRevert) {
-		final IGamePiece piece = this.piece(cellsToRevert.get(0).getPiece().getSide().getOpponent());
+	private void revertCells(final List<IGameBoardCell> cellsToRevert) {
+		final IGamePiece piece = this.piece(GamePlayersEnumeration.opponent(cellsToRevert.get(0).getPiece().getSide()));
 		for (IGameBoardCell cell : cellsToRevert) {
 			cell.setPiece(piece);
 		}
 	}
 	// ------------------------------------------------------------	
+	// TODO renommer : doMove/undoMove
+	// TODO laisser la méthode abstraite dans la classe Game	
+	public boolean playMove(final IGameBoardMove moveToPlay) {
+		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
+		if (!othelloMove.isNull()) {
+			final IGamePiece playerPiece = this.piece(othelloMove.getSide(), OthelloPieceTypes.PAWN);
+			this.getCell(othelloMove.getPosition()).setPiece(playerPiece);
+			othelloMove.setCellsToRevert(this.computeCellsToRevert(othelloMove));
+			this.revertCells(othelloMove.getCellsToRevert());
+		}
+		////System.out.println("delta pour " + othelloMove.getSide() + this.computeDelta(othelloMove.getSide()) );
+		return true;  // is move done ?
+	}
+	// ------------------------------------------------------------
+	// TODO à optimiser
+	public int computeDelta(final GamePlayersEnumeration side) {
+		int delta = 0;
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for (IGameBoardCell cell : line) {
+				if( cell.isNull() || cell.isEmpty() ){
+					continue;
+				}
+				if(cell.getPiece().getSide().equals(side)) {
+					++delta;
+				}
+				else {
+					--delta;
+				}
+			}
+		}
+		return delta;
+	}
+	// ------------------------------------------------------------	
+	public boolean isGameOverFromVictory(final IGameBoardMove justPlayedMove) {
+		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) > 0;
+	}
+	// ------------------------------------------------------------		
+	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {
+		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) == 0;
+	}
+	// ------------------------------------------------------------		
+	public double evaluate(final IGameBoardMove move) {
+		return this.computeDelta(move.getSide());
+	}
+	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();

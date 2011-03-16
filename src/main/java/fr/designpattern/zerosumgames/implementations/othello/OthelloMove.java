@@ -18,7 +18,7 @@ public class OthelloMove extends GameBoardMove {
 		return this.cellsToRevert;
 	}		
 	// ---------------------------------------------------------------------	
-	public OthelloMove(GamePlayersEnumeration side, IGameBoardPosition position) {
+	public OthelloMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
 		super(side, position);
 	}
 	// ---------------------------------------------------------------------	

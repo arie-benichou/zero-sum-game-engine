@@ -153,8 +153,8 @@ public class Tictactoe extends Game {
 		}
 		
 		
-		double potentialConnections = this.evaluate(justPlayedMove);
-		System.out.println("\n" + potentialConnections + "\n");
+		//double potentialConnections = this.evaluate(justPlayedMove);
+		////System.out.println("\n" + potentialConnections);
 		
 		
 		return isWinningMove;
@@ -184,32 +184,72 @@ public class Tictactoe extends Game {
 
 	// ------------------------------------------------------------
 	public double evaluate(final IGameBoardMove justPlayedMove) {
-		return this.computePotentialConnections(justPlayedMove);
-	}
-
-	// ------------------------------------------------------------
-	protected int computePotentialConnections(final IGameBoardMove justPlayedMove) {
 		
-		int connections0 = 1;
+		double evaluation = 0;
+		
+		int potentialConnections = this.computePotentialConnections(justPlayedMove);
+		///System.out.println("potentialConnections = " + potentialConnections);
+
+		int realConnections = this.computeRealConnections(justPlayedMove);
+		///System.out.println("realConnections = " + realConnections);
+		
+		if(potentialConnections > 0) {
+			int n = (int)Math.log10(potentialConnections) + 1;
+			evaluation = potentialConnections / Math.pow(10, n);
+		}
+		
+		evaluation += realConnections;
+		
+		///System.out.println("evaluation = " + evaluation);
+		
+		return evaluation;
+	}
+	// ------------------------------------------------------------
+	protected int computeRealConnections(final IGameBoardMove justPlayedMove) {
+		int connections = 0;
 		int connections1 = 0;
 		int connections2 = 0;
 		// ------------------------------------------------------------		
-		System.out.println(justPlayedMove);
+		///System.out.println(justPlayedMove);
 		// ------------------------------------------------------------		
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
 			// ------------------------------------------------------------
-			System.out.println("\n" + plane + "\n");
+			///System.out.println("\n" + plane + "\n");
+			
+			connections1 = this.computeRealConnection(justPlayedMove,plane.getOneWay());
+			///System.out.println(connections1);
+			
+			connections2 = this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
+			///System.out.println(connections2);
+			// ------------------------------------------------------------
+			connections += connections1 + connections2;
+			// ------------------------------------------------------------			
+		}
+		return connections;
+	}
+	// ------------------------------------------------------------	
+	protected int computePotentialConnections(final IGameBoardMove justPlayedMove) {
+		int connections = 0;
+		int connections1 = 0;
+		int connections2 = 0;
+		// ------------------------------------------------------------		
+		///System.out.println(justPlayedMove);
+		// ------------------------------------------------------------		
+		for (GameBoardPlane plane : GameBoardPlane.values()) {
+			// ------------------------------------------------------------
+			///System.out.println("\n" + plane + "\n");
 			
 			connections1 = this.computePotentialConnection(justPlayedMove,plane.getOneWay());
-			System.out.println(connections1);
+			///System.out.println(connections1);
 			
 			connections2 = this.computePotentialConnection(justPlayedMove,plane.getOppositeWay());
-			System.out.println(connections2);
+			///System.out.println(connections2);
 			// ------------------------------------------------------------
+			connections += connections1 + connections2;
+			// ------------------------------------------------------------			
 		}
-		return connections1 + connections2 + connections0;
+		return connections;
 	}
-
 	// ------------------------------------------------------------
 	protected int computeRealConnection(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
@@ -227,7 +267,7 @@ public class Tictactoe extends Game {
 	protected int computePotentialConnection(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
 		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
-		System.out.println(direction);
+		///System.out.println(direction);
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull()) {
@@ -237,10 +277,10 @@ public class Tictactoe extends Game {
 				break;
 			}
 			// ------------------------------------------------------------			
-			System.out.println("blanc / pion du joueur");
+			//System.out.println("blanc / pion du joueur");
 			// ------------------------------------------------------------			
 		}
-		return connected;
+		return --connected;
 	}	
 	// ------------------------------------------------------------
 	// TODO faire également une méthode move(IGameBoardMove move) et étendre une
