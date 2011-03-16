@@ -1,0 +1,2165 @@
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+|   | x | o |   |   |   |   |   |
+---------------------------------
+|   |   | o | o | x |   |   | x |
+---------------------------------
+|   |   | o | o | x | o | x |   |
+---------------------------------
+|   |   | o | x | o | x | o | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 1], SECOND_PLAYER [row 1][column 3], SECOND_PLAYER [row 3][column 1], SECOND_PLAYER [row 3][column 4], SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 6], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 8], SECOND_PLAYER [row 8][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#01: SECOND_PLAYER [row 1][column 1]
+#02: SECOND_PLAYER [row 1][column 3]
+#03: SECOND_PLAYER [row 3][column 1]
+#04: SECOND_PLAYER [row 3][column 4]
+#05: SECOND_PLAYER [row 3][column 5]
+#06: SECOND_PLAYER [row 3][column 6]
+#07: SECOND_PLAYER [row 4][column 6]
+#08: SECOND_PLAYER [row 4][column 7]
+#09: SECOND_PLAYER [row 5][column 8]
+#10: SECOND_PLAYER [row 8][column 5]
+#11: SECOND_PLAYER null position
+SECOND_PLAYER [row 4][column 6] 12.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] 8.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 8.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] 6.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 6.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 6.0 @depth = 0
+SECOND_PLAYER [row 3][column 4] 6.0 @depth = 0
+SECOND_PLAYER [row 3][column 1] 6.0 @depth = 0
+SECOND_PLAYER [row 1][column 3] 6.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] 6.0 @depth = 0
+SECOND_PLAYER null position 3.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 4][column 6] 3.0 @depth = 0
+SECOND_PLAYER [row 3][column 4] -1.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] -3.0 @depth = 0
+SECOND_PLAYER [row 1][column 3] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 1] -3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -5.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -5.0 @depth = 0
+SECOND_PLAYER null position -6.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -7.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 4][column 6] 3.0 @depth = 0
+SECOND_PLAYER [row 3][column 4] -1.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] -3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 1] -3.0 @depth = 0
+SECOND_PLAYER [row 1][column 3] -3.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] -3.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -5.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -5.0 @depth = 0
+SECOND_PLAYER null position -6.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -7.0 @depth = 0
+
+Meilleure évaluation          : 3.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+|   |   |   |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+|   | x | o |   |   |   |   |   |
+---------------------------------
+|   |   | o | o | o | o |   | x |
+---------------------------------
+|   |   | o | o | o | o | o |   |
+---------------------------------
+|   |   | o | o | o | x | o | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 4][column 2], FIRST_PLAYER [row 4][column 7], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 4]
+#2: FIRST_PLAYER [row 3][column 5]
+#3: FIRST_PLAYER [row 3][column 6]
+#4: FIRST_PLAYER [row 4][column 2]
+#5: FIRST_PLAYER [row 4][column 7]
+#6: FIRST_PLAYER [row 5][column 8]
+#7: FIRST_PLAYER [row 6][column 2]
+#8: FIRST_PLAYER [row 7][column 2]
+#9: FIRST_PLAYER null position
+FIRST_PLAYER [row 3][column 4] -3.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -5.0 @depth = 0
+FIRST_PLAYER [row 3][column 5] -5.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -7.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -7.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -7.0 @depth = 0
+FIRST_PLAYER [row 4][column 2] -7.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -7.0 @depth = 0
+FIRST_PLAYER null position -12.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 3][column 5] -8.0 @depth = 0
+FIRST_PLAYER [row 3][column 4] -8.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -16.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -16.0 @depth = 0
+FIRST_PLAYER null position -17.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -18.0 @depth = 0
+FIRST_PLAYER [row 4][column 2] -18.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 3][column 4] -6.0 @depth = 0
+FIRST_PLAYER null position -9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -10.0 @depth = 0
+FIRST_PLAYER [row 3][column 5] -10.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -12.0 @depth = 0
+FIRST_PLAYER [row 4][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -14.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -16.0 @depth = 0
+
+Meilleure évaluation          : -6.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+|   |   |   |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+|   | x | x | x |   |   |   |   |
+---------------------------------
+|   |   | o | o | x | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 1], SECOND_PLAYER [row 1][column 3], SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 2][column 5], SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 8][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 1]
+#2: SECOND_PLAYER [row 1][column 3]
+#3: SECOND_PLAYER [row 2][column 4]
+#4: SECOND_PLAYER [row 2][column 5]
+#5: SECOND_PLAYER [row 3][column 5]
+#6: SECOND_PLAYER [row 3][column 6]
+#7: SECOND_PLAYER [row 4][column 7]
+#8: SECOND_PLAYER [row 8][column 5]
+#9: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 3] 8.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] 8.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] 6.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 6.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 6.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 6.0 @depth = 0
+SECOND_PLAYER [row 2][column 5] 6.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 6.0 @depth = 0
+SECOND_PLAYER null position 3.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 1] -1.0 @depth = 0
+SECOND_PLAYER [row 1][column 3] -1.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -3.0 @depth = 0
+SECOND_PLAYER [row 2][column 5] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -5.0 @depth = 0
+SECOND_PLAYER null position -6.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 1][column 3] -1.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] -1.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -3.0 @depth = 0
+SECOND_PLAYER [row 2][column 5] -3.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -3.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -5.0 @depth = 0
+SECOND_PLAYER null position -6.0 @depth = 0
+
+Meilleure évaluation          : -1.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+|   |   | o |   |   |   |   |   |
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+|   | x | o | x |   |   |   |   |
+---------------------------------
+|   |   | o | o | x | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 2][column 4], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 4][column 2], FIRST_PLAYER [row 4][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 2][column 4]
+#04: FIRST_PLAYER [row 3][column 6]
+#05: FIRST_PLAYER [row 4][column 2]
+#06: FIRST_PLAYER [row 4][column 7]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER null position
+FIRST_PLAYER [row 7][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 4][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -1.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -3.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -3.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -5.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -5.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -5.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -5.0 @depth = 0
+FIRST_PLAYER null position -8.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 7][column 2] -4.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -10.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -12.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -12.0 @depth = 0
+FIRST_PLAYER [row 4][column 2] -12.0 @depth = 0
+FIRST_PLAYER null position -13.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -14.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -16.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 4][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -8.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -8.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -8.0 @depth = 0
+FIRST_PLAYER null position -9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -12.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -14.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -14.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -16.0 @depth = 0
+
+Meilleure évaluation          : -8.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+|   |   | o |   |   |   |   |   |
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+|   | x | o | x |   |   |   |   |
+---------------------------------
+|   | x | x | x | x | o |   | x |
+---------------------------------
+|   |   | x | o | o | x | o |   |
+---------------------------------
+|   |   | o | x | o | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 1], SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 3][column 1], SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 1], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 1], SECOND_PLAYER [row 5][column 2], SECOND_PLAYER [row 8][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#01: SECOND_PLAYER [row 1][column 1]
+#02: SECOND_PLAYER [row 2][column 4]
+#03: SECOND_PLAYER [row 3][column 1]
+#04: SECOND_PLAYER [row 3][column 5]
+#05: SECOND_PLAYER [row 3][column 6]
+#06: SECOND_PLAYER [row 4][column 1]
+#07: SECOND_PLAYER [row 4][column 7]
+#08: SECOND_PLAYER [row 5][column 1]
+#09: SECOND_PLAYER [row 5][column 2]
+#10: SECOND_PLAYER [row 8][column 5]
+#11: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 1] 12.0 @depth = 0
+SECOND_PLAYER [row 4][column 1] 10.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 4.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] 2.0 @depth = 0
+SECOND_PLAYER [row 5][column 2] 2.0 @depth = 0
+SECOND_PLAYER [row 5][column 1] 2.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 2.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] 2.0 @depth = 0
+SECOND_PLAYER null position -1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 4][column 1] 1.0 @depth = 0
+SECOND_PLAYER [row 3][column 1] 1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -5.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] -7.0 @depth = 0
+SECOND_PLAYER [row 5][column 1] -7.0 @depth = 0
+SECOND_PLAYER [row 5][column 2] -7.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -7.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -9.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -9.0 @depth = 0
+SECOND_PLAYER null position -10.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 3][column 1] 1.0 @depth = 0
+SECOND_PLAYER [row 4][column 1] 1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -5.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -7.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -7.0 @depth = 0
+SECOND_PLAYER [row 5][column 2] -7.0 @depth = 0
+SECOND_PLAYER [row 5][column 1] -7.0 @depth = 0
+SECOND_PLAYER [row 1][column 1] -7.0 @depth = 0
+SECOND_PLAYER [row 8][column 5] -9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -9.0 @depth = 0
+SECOND_PLAYER null position -10.0 @depth = 0
+
+Meilleure évaluation          : 1.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+|   |   | o |   |   |   |   |   |
+---------------------------------
+| x | o | o |   |   |   |   |   |
+---------------------------------
+| o | o | o | x |   |   |   |   |
+---------------------------------
+|   | o | x | x | x | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | o | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 1], FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 2][column 4], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 4][column 1], FIRST_PLAYER [row 4][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 1]
+#02: FIRST_PLAYER [row 1][column 2]
+#03: FIRST_PLAYER [row 2][column 4]
+#04: FIRST_PLAYER [row 3][column 6]
+#05: FIRST_PLAYER [row 4][column 1]
+#06: FIRST_PLAYER [row 4][column 7]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER [row 8][column 5]
+#12: FIRST_PLAYER null position
+FIRST_PLAYER [row 7][column 2] -1.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -3.0 @depth = 0
+FIRST_PLAYER [row 8][column 5] -5.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -5.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -7.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -7.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -7.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -7.0 @depth = 0
+FIRST_PLAYER [row 1][column 1] -7.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -9.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -9.0 @depth = 0
+FIRST_PLAYER null position -12.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 7][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 8][column 5] -10.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -14.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -16.0 @depth = 0
+FIRST_PLAYER [row 1][column 1] -16.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -16.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -16.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -16.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -18.0 @depth = 0
+FIRST_PLAYER null position -19.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -20.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 1] -8.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -8.0 @depth = 0
+FIRST_PLAYER [row 8][column 5] -8.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -10.0 @depth = 0
+FIRST_PLAYER null position -11.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -12.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -12.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -12.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -18.0 @depth = 0
+
+Meilleure évaluation          : -8.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| o | o | x | x |   |   |   |   |
+---------------------------------
+|   | o | x | x | x | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | o | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 2], SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 2]
+#2: SECOND_PLAYER [row 2][column 4]
+#3: SECOND_PLAYER [row 3][column 5]
+#4: SECOND_PLAYER [row 3][column 6]
+#5: SECOND_PLAYER [row 4][column 7]
+#6: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 5] 16.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 14.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 10.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 10.0 @depth = 0
+SECOND_PLAYER [row 1][column 2] 10.0 @depth = 0
+SECOND_PLAYER null position 7.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 3][column 5] 5.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 3.0 @depth = 0
+SECOND_PLAYER [row 1][column 2] -1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -1.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -1.0 @depth = 0
+SECOND_PLAYER null position -4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 3][column 5] 5.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -1.0 @depth = 0
+SECOND_PLAYER [row 1][column 2] -1.0 @depth = 0
+SECOND_PLAYER null position -4.0 @depth = 0
+
+Meilleure évaluation          : 5.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| o | o | o | o | o |   |   |   |
+---------------------------------
+|   | o | x | o | o | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | o | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 2][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 4][column 1], FIRST_PLAYER [row 4][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 2][column 4]
+#03: FIRST_PLAYER [row 2][column 5]
+#04: FIRST_PLAYER [row 3][column 6]
+#05: FIRST_PLAYER [row 4][column 1]
+#06: FIRST_PLAYER [row 4][column 7]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] -5.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -7.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -9.0 @depth = 0
+FIRST_PLAYER [row 1][column 2] -9.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -11.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -11.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -13.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -13.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -13.0 @depth = 0
+FIRST_PLAYER null position -16.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 2] -12.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -16.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -16.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -18.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -18.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -18.0 @depth = 0
+FIRST_PLAYER null position -19.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -20.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -22.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -24.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -8.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -12.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -14.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -14.0 @depth = 0
+FIRST_PLAYER [row 4][column 7] -14.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -14.0 @depth = 0
+FIRST_PLAYER null position -15.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -18.0 @depth = 0
+
+Meilleure évaluation          : -6.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| o | o | o | x | o |   |   |   |
+---------------------------------
+|   | o | x | o | x | o |   | x |
+---------------------------------
+|   |   | o | o | o | x | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | o | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 4], SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 4]
+#2: SECOND_PLAYER [row 2][column 4]
+#3: SECOND_PLAYER [row 3][column 6]
+#4: SECOND_PLAYER [row 4][column 7]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 4][column 7] 12.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 12.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 12.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] 12.0 @depth = 0
+SECOND_PLAYER null position 9.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 4] 1.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 1.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 1.0 @depth = 0
+SECOND_PLAYER null position -2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 4][column 7] 1.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 1.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 1.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] 1.0 @depth = 0
+SECOND_PLAYER null position -2.0 @depth = 0
+
+Meilleure évaluation          : 1.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| o | o | o | x | o |   |   |   |
+---------------------------------
+|   | o | x | o | x | o | o | x |
+---------------------------------
+|   |   | o | o | o | o | o |   |
+---------------------------------
+|   |   | o | o | o | x | x | o |
+---------------------------------
+|   |   | o | o | o | x | x | x |
+---------------------------------
+|   |   | o | o |   | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 4][column 1], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 4]
+#02: FIRST_PLAYER [row 2][column 5]
+#03: FIRST_PLAYER [row 3][column 6]
+#04: FIRST_PLAYER [row 3][column 7]
+#05: FIRST_PLAYER [row 4][column 1]
+#06: FIRST_PLAYER [row 5][column 2]
+#07: FIRST_PLAYER [row 5][column 8]
+#08: FIRST_PLAYER [row 6][column 2]
+#09: FIRST_PLAYER [row 7][column 2]
+#10: FIRST_PLAYER [row 8][column 5]
+#11: FIRST_PLAYER null position
+FIRST_PLAYER [row 7][column 2] -1.0 @depth = 0
+FIRST_PLAYER [row 8][column 5] -5.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -5.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -5.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -5.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -7.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -7.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -9.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -9.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -9.0 @depth = 0
+FIRST_PLAYER null position -12.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 7][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -8.0 @depth = 0
+FIRST_PLAYER [row 8][column 5] -8.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -12.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -14.0 @depth = 0
+FIRST_PLAYER null position -15.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -18.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -18.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -18.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -18.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 8][column 5] -2.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -2.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -4.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -6.0 @depth = 0
+FIRST_PLAYER [row 3][column 6] -8.0 @depth = 0
+FIRST_PLAYER null position -9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -10.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -12.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -12.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -12.0 @depth = 0
+
+Meilleure évaluation          : -2.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| o | o | o | x | o |   |   |   |
+---------------------------------
+|   | o | x | o | x | o | o | x |
+---------------------------------
+|   |   | o | o | x | o | o |   |
+---------------------------------
+|   |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 4], SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 4]
+#2: SECOND_PLAYER [row 2][column 4]
+#3: SECOND_PLAYER [row 3][column 6]
+#4: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 6] 8.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 8.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] 8.0 @depth = 0
+SECOND_PLAYER null position 5.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 4] -5.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -5.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -5.0 @depth = 0
+SECOND_PLAYER null position -8.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 3][column 6] -5.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -5.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] -5.0 @depth = 0
+SECOND_PLAYER null position -8.0 @depth = 0
+
+Meilleure évaluation          : -5.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| o | o | o | x | o | o |   |   |
+---------------------------------
+|   | o | x | o | o | o | o | x |
+---------------------------------
+|   |   | o | o | x | o | o |   |
+---------------------------------
+|   |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 2][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 4][column 1], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 4]
+#02: FIRST_PLAYER [row 2][column 5]
+#03: FIRST_PLAYER [row 2][column 6]
+#04: FIRST_PLAYER [row 3][column 7]
+#05: FIRST_PLAYER [row 3][column 8]
+#06: FIRST_PLAYER [row 4][column 1]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER [row 8][column 2]
+#12: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] 5.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 3.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -1.0 @depth = 0
+FIRST_PLAYER [row 4][column 1] -1.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -1.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -3.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -3.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] -3.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -3.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -5.0 @depth = 0
+FIRST_PLAYER null position -8.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 4][column 1] -4.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] -6.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -8.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -8.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] -8.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -10.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -10.0 @depth = 0
+FIRST_PLAYER null position -11.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -14.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -16.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 4][column 1] 4.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] 1.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] -0.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -0.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] -0.0 @depth = 0
+FIRST_PLAYER null position -2.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -2.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -4.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -6.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] -6.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -8.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -9.0 @depth = 0
+
+Meilleure évaluation          : 4.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+|   |   | o | o | x | o | o |   |
+---------------------------------
+|   |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 4], SECOND_PLAYER [row 5][column 1], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 4]
+#2: SECOND_PLAYER [row 5][column 1]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 5][column 1] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] 4.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 5][column 1] -7.0 @depth = 0
+SECOND_PLAYER null position -10.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -11.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 5][column 1] -7.0 @depth = 0
+SECOND_PLAYER null position -10.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -11.0 @depth = 0
+
+Meilleure évaluation          : -7.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | o | o | o | o | x |
+---------------------------------
+| o |   | o | o | x | o | o |   |
+---------------------------------
+|   |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 2][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 1], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 4]
+#02: FIRST_PLAYER [row 2][column 5]
+#03: FIRST_PLAYER [row 2][column 6]
+#04: FIRST_PLAYER [row 3][column 7]
+#05: FIRST_PLAYER [row 3][column 8]
+#06: FIRST_PLAYER [row 5][column 2]
+#07: FIRST_PLAYER [row 5][column 8]
+#08: FIRST_PLAYER [row 6][column 1]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER [row 8][column 2]
+#12: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 7.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 5.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 3.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 3.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 1.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 1.0 @depth = 0
+FIRST_PLAYER [row 6][column 1] -1.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -1.0 @depth = 0
+FIRST_PLAYER null position -4.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 2.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] -2.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] -2.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -4.0 @depth = 0
+FIRST_PLAYER [row 6][column 1] -4.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -4.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] -4.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -6.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -6.0 @depth = 0
+FIRST_PLAYER null position -7.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -10.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -12.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 6][column 1] 7.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] 6.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 4.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 4.0 @depth = 0
+FIRST_PLAYER null position 1.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -0.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -0.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] -2.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] -4.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -4.0 @depth = 0
+
+Meilleure évaluation          : 7.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 4], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 4]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 4] 4.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -10.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -11.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -10.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -11.0 @depth = 0
+
+Meilleure évaluation          : -10.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | o |   |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 2][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 2][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 4]
+#02: FIRST_PLAYER [row 2][column 4]
+#03: FIRST_PLAYER [row 2][column 5]
+#04: FIRST_PLAYER [row 2][column 6]
+#05: FIRST_PLAYER [row 3][column 7]
+#06: FIRST_PLAYER [row 3][column 8]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 6][column 2]
+#10: FIRST_PLAYER [row 7][column 2]
+#11: FIRST_PLAYER [row 8][column 2]
+#12: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] 10.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 10.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 8.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 6.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 6.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 4.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 4.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] 4.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] 2.0 @depth = 0
+FIRST_PLAYER null position -1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 5.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 1.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 1][column 4] -1.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] -1.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] -1.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] -1.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -3.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -3.0 @depth = 0
+FIRST_PLAYER null position -4.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -7.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 4] 11.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] 10.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 8.0 @depth = 0
+FIRST_PLAYER null position 7.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 7.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 5.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 3.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 1.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -1.0 @depth = 0
+
+Meilleure évaluation          : 11.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 4], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 4]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 4] 1.0 @depth = 0
+SECOND_PLAYER null position -2.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -13.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -14.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -13.0 @depth = 0
+SECOND_PLAYER [row 2][column 4] -14.0 @depth = 0
+
+Meilleure évaluation          : -13.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x |   |   |   |   |   |
+---------------------------------
+| x | x | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 2][column 4], FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 2][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 2][column 4]
+#02: FIRST_PLAYER [row 2][column 5]
+#03: FIRST_PLAYER [row 2][column 6]
+#04: FIRST_PLAYER [row 3][column 7]
+#05: FIRST_PLAYER [row 3][column 8]
+#06: FIRST_PLAYER [row 5][column 2]
+#07: FIRST_PLAYER [row 5][column 8]
+#08: FIRST_PLAYER [row 6][column 2]
+#09: FIRST_PLAYER [row 7][column 2]
+#10: FIRST_PLAYER [row 8][column 2]
+#11: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 13.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 11.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 9.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 9.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 7.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 7.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] 7.0 @depth = 0
+FIRST_PLAYER null position 2.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 8.0 @depth = 0
+FIRST_PLAYER [row 2][column 4] 7.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 4.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 2.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 2.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] -0.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] -0.0 @depth = 0
+FIRST_PLAYER null position -1.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] -4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 2][column 4] 13.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 12.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 12.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 12.0 @depth = 0
+FIRST_PLAYER null position 11.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 10.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 8.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 8.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 6.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 4.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 2.0 @depth = 0
+
+Meilleure évaluation          : 13.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x | o | o |   |   |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER null position
+
+Il n y a qu'un seul coup possible, je n'ai pas le choix...
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x | o | o |   |   |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 2][column 5], FIRST_PLAYER [row 2][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 2][column 5]
+#02: FIRST_PLAYER [row 2][column 6]
+#03: FIRST_PLAYER [row 3][column 7]
+#04: FIRST_PLAYER [row 3][column 8]
+#05: FIRST_PLAYER [row 5][column 2]
+#06: FIRST_PLAYER [row 5][column 8]
+#07: FIRST_PLAYER [row 6][column 2]
+#08: FIRST_PLAYER [row 7][column 2]
+#09: FIRST_PLAYER [row 8][column 2]
+#10: FIRST_PLAYER null position
+FIRST_PLAYER [row 3][column 7] 18.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 16.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 14.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 14.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 12.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 12.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 12.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 12.0 @depth = 0
+FIRST_PLAYER null position 7.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 11.0 @depth = 0
+FIRST_PLAYER [row 2][column 5] 9.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 9.0 @depth = 0
+FIRST_PLAYER null position 7.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 7.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 5.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 5.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 1.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 2][column 5] 15.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 15.0 @depth = 0
+FIRST_PLAYER null position 13.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 13.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 11.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 9.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 2][column 6] 7.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 7.0 @depth = 0
+
+Meilleure évaluation          : 15.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x | x |   |   |   |
+---------------------------------
+| x | x | x | x | x | o |   |   |
+---------------------------------
+| x | x | x | o | x | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 6]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 6] -9.0 @depth = 0
+SECOND_PLAYER null position -12.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 6] -20.0 @depth = 0
+SECOND_PLAYER null position -23.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 2][column 6] -20.0 @depth = 0
+SECOND_PLAYER null position -23.0 @depth = 0
+
+Meilleure évaluation          : -20.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   |   |   |   |
+---------------------------------
+| x | x | x | x | x | o |   |   |
+---------------------------------
+| x | x | x | x | o | o |   |   |
+---------------------------------
+| x | x | x | o | x | o | o | x |
+---------------------------------
+| x |   | o | o | x | o | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 6]
+#02: FIRST_PLAYER [row 2][column 7]
+#03: FIRST_PLAYER [row 3][column 7]
+#04: FIRST_PLAYER [row 3][column 8]
+#05: FIRST_PLAYER [row 5][column 2]
+#06: FIRST_PLAYER [row 5][column 8]
+#07: FIRST_PLAYER [row 6][column 2]
+#08: FIRST_PLAYER [row 7][column 2]
+#09: FIRST_PLAYER [row 8][column 2]
+#10: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 8] 20.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 20.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 18.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 18.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 18.0 @depth = 0
+FIRST_PLAYER [row 1][column 6] 18.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 14.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 14.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 14.0 @depth = 0
+FIRST_PLAYER null position 9.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 3][column 8] 11.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 11.0 @depth = 0
+FIRST_PLAYER [row 1][column 6] 11.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 11.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 7.0 @depth = 0
+FIRST_PLAYER null position 6.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 5.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 5.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 6] 17.0 @depth = 0
+FIRST_PLAYER null position 15.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 15.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 15.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 3][column 7] 11.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 9.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 9.0 @depth = 0
+
+Meilleure évaluation          : 17.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x |   |   |
+---------------------------------
+| x | x | x | x | o | x |   |   |
+---------------------------------
+| x | x | x | o | x | x | o | x |
+---------------------------------
+| x |   | o | o | x | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 5], SECOND_PLAYER [row 1][column 7], SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 3][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 5]
+#2: SECOND_PLAYER [row 1][column 7]
+#3: SECOND_PLAYER [row 2][column 7]
+#4: SECOND_PLAYER [row 3][column 7]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 7] -11.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -13.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -15.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -15.0 @depth = 0
+SECOND_PLAYER null position -18.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 3][column 7] -22.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -26.0 @depth = 0
+SECOND_PLAYER null position -29.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 3][column 7] -22.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -26.0 @depth = 0
+SECOND_PLAYER null position -29.0 @depth = 0
+
+Meilleure évaluation          : -22.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x |   |   |
+---------------------------------
+| x | x | x | x | o | o | o |   |
+---------------------------------
+| x | x | x | o | x | o | o | x |
+---------------------------------
+| x |   | o | o | o | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 2][column 7]
+#2: FIRST_PLAYER [row 3][column 8]
+#3: FIRST_PLAYER [row 5][column 2]
+#4: FIRST_PLAYER [row 5][column 8]
+#5: FIRST_PLAYER [row 6][column 2]
+#6: FIRST_PLAYER [row 7][column 2]
+#7: FIRST_PLAYER [row 8][column 2]
+#8: FIRST_PLAYER null position
+FIRST_PLAYER [row 6][column 2] 22.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 22.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 20.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 20.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 20.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 20.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 16.0 @depth = 0
+FIRST_PLAYER null position 11.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 3][column 8] 11.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 11.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 7.0 @depth = 0
+FIRST_PLAYER null position 6.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 5.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 5.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 3][column 8] 17.0 @depth = 0
+FIRST_PLAYER [row 5][column 2] 17.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 2][column 7] 13.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 13.0 @depth = 0
+FIRST_PLAYER null position 12.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 11.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 9.0 @depth = 0
+
+Meilleure évaluation          : 17.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x |   |   |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | o | x | o | x | x |
+---------------------------------
+| x |   | o | o | o | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 5], SECOND_PLAYER [row 1][column 7], SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 5]
+#2: SECOND_PLAYER [row 1][column 7]
+#3: SECOND_PLAYER [row 2][column 7]
+#4: SECOND_PLAYER [row 2][column 8]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 7] -11.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -13.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -15.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -17.0 @depth = 0
+SECOND_PLAYER null position -20.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 7] -22.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -26.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -28.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -28.0 @depth = 0
+SECOND_PLAYER null position -33.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 2][column 7] -22.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -28.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -28.0 @depth = 0
+SECOND_PLAYER null position -33.0 @depth = 0
+
+Meilleure évaluation          : -22.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+| x |   | o | o | o | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   |   | o | o | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 8]
+#3: FIRST_PLAYER [row 5][column 2]
+#4: FIRST_PLAYER [row 5][column 8]
+#5: FIRST_PLAYER [row 6][column 2]
+#6: FIRST_PLAYER [row 7][column 2]
+#7: FIRST_PLAYER [row 8][column 2]
+#8: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 2] 22.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 20.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 20.0 @depth = 0
+FIRST_PLAYER [row 1][column 7] 20.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 16.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 16.0 @depth = 0
+FIRST_PLAYER [row 2][column 8] 14.0 @depth = 0
+FIRST_PLAYER null position 11.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 5][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 1][column 7] 13.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 9.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 9.0 @depth = 0
+FIRST_PLAYER [row 2][column 8] 7.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 7.0 @depth = 0
+FIRST_PLAYER null position 4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 5][column 2] 21.0 @depth = 0
+FIRST_PLAYER [row 7][column 2] 19.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 17.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 15.0 @depth = 0
+FIRST_PLAYER [row 1][column 7] 15.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 2][column 8] 13.0 @depth = 0
+FIRST_PLAYER null position 12.0 @depth = 0
+
+Meilleure évaluation          : 21.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x |   | x | o | x | x | x | o |
+---------------------------------
+|   |   | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 5], SECOND_PLAYER [row 1][column 7], SECOND_PLAYER [row 6][column 2], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 5]
+#2: SECOND_PLAYER [row 1][column 7]
+#3: SECOND_PLAYER [row 6][column 2]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 5] -15.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -17.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -17.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -17.0 @depth = 0
+SECOND_PLAYER null position -22.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 7] -26.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -26.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER null position -31.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 2] -26.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 7] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER null position -31.0 @depth = 0
+
+Meilleure évaluation          : -26.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | o | o | o | o | x |
+---------------------------------
+| x | x | x | o | x | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 1], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 8]
+#3: FIRST_PLAYER [row 5][column 8]
+#4: FIRST_PLAYER [row 6][column 2]
+#5: FIRST_PLAYER [row 7][column 1]
+#6: FIRST_PLAYER [row 8][column 2]
+#7: FIRST_PLAYER null position
+FIRST_PLAYER [row 8][column 2] 26.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 26.0 @depth = 0
+FIRST_PLAYER [row 1][column 7] 26.0 @depth = 0
+FIRST_PLAYER [row 2][column 8] 24.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 22.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 22.0 @depth = 0
+FIRST_PLAYER null position 17.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 7] 17.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 17.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 15.0 @depth = 0
+FIRST_PLAYER [row 2][column 8] 15.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 15.0 @depth = 0
+FIRST_PLAYER null position 10.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 2][column 8] 23.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 21.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 21.0 @depth = 0
+FIRST_PLAYER null position 18.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 17.0 @depth = 0
+FIRST_PLAYER [row 1][column 7] 15.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 13.0 @depth = 0
+
+Meilleure évaluation          : 23.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x |   |   |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | x | o | x | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 5], SECOND_PLAYER [row 1][column 7], SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 6][column 2], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 5]
+#2: SECOND_PLAYER [row 1][column 7]
+#3: SECOND_PLAYER [row 1][column 8]
+#4: SECOND_PLAYER [row 6][column 2]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 7] -15.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -19.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -21.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -21.0 @depth = 0
+SECOND_PLAYER null position -24.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -30.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -34.0 @depth = 0
+SECOND_PLAYER null position -35.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 1][column 7] -24.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -30.0 @depth = 0
+SECOND_PLAYER [row 6][column 2] -34.0 @depth = 0
+SECOND_PLAYER null position -35.0 @depth = 0
+
+Meilleure évaluation          : -24.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | x | o | o | o | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | x | o | x | x | o |   |
+---------------------------------
+| x |   | o | o | x | x | x | o |
+---------------------------------
+|   | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 5], FIRST_PLAYER [row 1][column 8], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 6][column 2], FIRST_PLAYER [row 7][column 1], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 5]
+#2: FIRST_PLAYER [row 1][column 8]
+#3: FIRST_PLAYER [row 5][column 8]
+#4: FIRST_PLAYER [row 6][column 2]
+#5: FIRST_PLAYER [row 7][column 1]
+#6: FIRST_PLAYER [row 8][column 2]
+#7: FIRST_PLAYER null position
+FIRST_PLAYER [row 8][column 2] 24.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 24.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 20.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 20.0 @depth = 0
+FIRST_PLAYER [row 1][column 5] 20.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 18.0 @depth = 0
+FIRST_PLAYER null position 15.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 5] 17.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 15.0 @depth = 0
+FIRST_PLAYER [row 6][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 15.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 15.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 11.0 @depth = 0
+FIRST_PLAYER null position 10.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 6][column 2] 31.0 @depth = 0
+FIRST_PLAYER [row 1][column 5] 31.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 30.0 @depth = 0
+FIRST_PLAYER [row 7][column 1] 24.0 @depth = 0
+FIRST_PLAYER null position 23.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 19.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 11.0 @depth = 0
+
+Meilleure évaluation          : 31.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | x | o | o | o | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | x | o | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | x | o |
+---------------------------------
+|   | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 5], SECOND_PLAYER [row 7][column 1], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 5]
+#2: SECOND_PLAYER [row 7][column 1]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 1] -15.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -15.0 @depth = 0
+SECOND_PLAYER null position -20.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 1] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER null position -31.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 1] -26.0 @depth = 0
+SECOND_PLAYER [row 1][column 5] -30.0 @depth = 0
+SECOND_PLAYER null position -31.0 @depth = 0
+
+Meilleure évaluation          : -26.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x |   | x | o |   |
+---------------------------------
+| x | x | x | x | x | o | o | x |
+---------------------------------
+| x | x | x | x | o | o | o | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | o | x | x | x | x | x | o |
+---------------------------------
+| o | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 5], FIRST_PLAYER [row 1][column 8], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 8][column 1], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 5]
+#2: FIRST_PLAYER [row 1][column 8]
+#3: FIRST_PLAYER [row 5][column 8]
+#4: FIRST_PLAYER [row 8][column 1]
+#5: FIRST_PLAYER [row 8][column 2]
+#6: FIRST_PLAYER null position
+FIRST_PLAYER [row 8][column 2] 26.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 26.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 24.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 20.0 @depth = 0
+FIRST_PLAYER [row 1][column 5] 20.0 @depth = 0
+FIRST_PLAYER null position 15.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 8] 23.0 @depth = 0
+FIRST_PLAYER [row 1][column 5] 20.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 15.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 13.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 11.0 @depth = 0
+FIRST_PLAYER null position 10.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 5] 38.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 37.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 33.0 @depth = 0
+FIRST_PLAYER null position 31.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 22.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 8.0 @depth = 0
+
+Meilleure évaluation          : 38.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | o | x | x | x | x | x | o |
+---------------------------------
+| o | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER null position
+
+Il n y a qu'un seul coup possible, je n'ai pas le choix...
+
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | o | x | x | x | x | x | o |
+---------------------------------
+| o | o | o | x | x | x | x | x |
+---------------------------------
+|   |   | o | o | x | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 8], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 8][column 1], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 8]
+#2: FIRST_PLAYER [row 5][column 8]
+#3: FIRST_PLAYER [row 8][column 1]
+#4: FIRST_PLAYER [row 8][column 2]
+#5: FIRST_PLAYER null position
+FIRST_PLAYER [row 8][column 2] 31.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 31.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 29.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 25.0 @depth = 0
+FIRST_PLAYER null position 20.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 8] 31.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 22.0 @depth = 0
+FIRST_PLAYER null position 20.0 @depth = 0
+FIRST_PLAYER [row 8][column 2] 18.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 16.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 8][column 2] 45.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 45.0 @depth = 0
+FIRST_PLAYER [row 8][column 1] 43.0 @depth = 0
+FIRST_PLAYER null position 38.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 36.0 @depth = 0
+
+Meilleure évaluation          : 45.0
+Nombre de coupures alpha/beta : 3
+
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | x | o |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+|   | x | x | x | x | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 8][column 1], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 8][column 1]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 8][column 1] -18.0 @depth = 0
+SECOND_PLAYER null position -31.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 8][column 1] -27.0 @depth = 0
+SECOND_PLAYER null position -42.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 8][column 1] -27.0 @depth = 0
+SECOND_PLAYER null position -42.0 @depth = 0
+
+Meilleure évaluation          : -27.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| x | x | x | x | x | x | o |   |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | x | o | x | x | x | x | o |
+---------------------------------
+| o | o | x | x | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 8], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 8]
+#2: FIRST_PLAYER [row 5][column 8]
+#3: FIRST_PLAYER null position
+FIRST_PLAYER [row 5][column 8] 27.0 @depth = 0
+FIRST_PLAYER [row 1][column 8] 21.0 @depth = 0
+FIRST_PLAYER null position 18.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+FIRST_PLAYER [row 1][column 8] 16.0 @depth = 0
+FIRST_PLAYER [row 5][column 8] 14.0 @depth = 0
+FIRST_PLAYER null position 13.0 @depth = 0
+
+Evaluation finale des coups légaux:
+FIRST_PLAYER [row 1][column 8] Infinity @depth = 0
+FIRST_PLAYER [row 5][column 8] 14.0 @depth = 0
+FIRST_PLAYER null position 13.0 @depth = 0
+
+Meilleure évaluation          : Infinity
+Nombre de coupures alpha/beta : 1
+
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o |   |
+---------------------------------
+| x | x | o | x | x | x | x | o |
+---------------------------------
+| o | o | x | x | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+
+[SECOND_PLAYER [row 5][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 8]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 5][column 8] -16.0 @depth = 0
+SECOND_PLAYER null position -21.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Victoire imminente potentielle pour l'adversaire détectée...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -Infinity @depth = 0
+SECOND_PLAYER [row 5][column 8] -Infinity @depth = 0
+
+ Simplification des coups légaux:
+
+ C'est bientôt la fin
+
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o | o |
+---------------------------------
+| x | x | o | x | x | x | o | o |
+---------------------------------
+| o | o | x | x | x | o | x | x |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+
+[FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER null position
+
+Il n y a qu'un seul coup possible, je n'ai pas le choix...
+
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+| x | x | x | x | o | o | x | x |
+---------------------------------
+| x | x | x | o | o | x | o | x |
+---------------------------------
+| x | x | o | o | x | x | o | o |
+---------------------------------
+| x | x | o | x | x | x | o | o |
+---------------------------------
+| o | o | x | x | x | o | x | x |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+
+Game over...
+And the winner is FIRST_PLAYER!

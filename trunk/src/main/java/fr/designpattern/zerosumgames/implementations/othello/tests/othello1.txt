@@ -1,0 +1,2283 @@
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | x | x | x |   |   |   |
+---------------------------------
+| x | x | x |   |   | x |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 6][column 4], SECOND_PLAYER [row 6][column 5], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 3], SECOND_PLAYER [row 7][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 6][column 4]
+#2: SECOND_PLAYER [row 6][column 5]
+#3: SECOND_PLAYER [row 7][column 2]
+#4: SECOND_PLAYER [row 7][column 3]
+#5: SECOND_PLAYER [row 7][column 7]
+#6: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 3] 16.0 @depth = 0
+SECOND_PLAYER [row 6][column 4] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 14.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 14.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 14.0 @depth = 0
+SECOND_PLAYER null position 9.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 7] 11.0 @depth = 0
+SECOND_PLAYER [row 6][column 4] 11.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 3] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 5.0 @depth = 0
+SECOND_PLAYER null position 4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 3] 9.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 9.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 7.0 @depth = 0
+SECOND_PLAYER [row 6][column 4] 7.0 @depth = 0
+
+Meilleure évaluation          : 9.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x | x |   |   |   |
+---------------------------------
+| x | o | o |   |   | x |   |   |
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 3][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 6][column 4], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 2]
+#2: FIRST_PLAYER [row 3][column 4]
+#3: FIRST_PLAYER [row 3][column 5]
+#4: FIRST_PLAYER [row 3][column 6]
+#5: FIRST_PLAYER [row 3][column 7]
+#6: FIRST_PLAYER [row 5][column 2]
+#7: FIRST_PLAYER [row 6][column 4]
+#8: FIRST_PLAYER [row 7][column 2]
+#9: FIRST_PLAYER null position
+
+What is your move?
+5
+You have choosen to play move #5: FIRST_PLAYER [row 3][column 7]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | x | x |   |   |   |
+---------------------------------
+| x | o | o |   |   | x |   |   |
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 5][column 6], SECOND_PLAYER [row 6][column 4], SECOND_PLAYER [row 6][column 5], SECOND_PLAYER [row 7][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 4][column 7]
+#2: SECOND_PLAYER [row 4][column 8]
+#3: SECOND_PLAYER [row 5][column 6]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 6][column 5]
+#6: SECOND_PLAYER [row 7][column 7]
+#7: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 7] 18.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 18.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 18.0 @depth = 0
+SECOND_PLAYER [row 6][column 4] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 16.0 @depth = 0
+SECOND_PLAYER null position 13.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 5][column 6] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 11.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 6][column 4] 7.0 @depth = 0
+SECOND_PLAYER null position 4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 6][column 4] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 6][column 5] 9.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 7.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 7.0 @depth = 0
+
+Meilleure évaluation          : 9.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | o | o |   | x |   |   |
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 6][column 5], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 5]
+#2: FIRST_PLAYER [row 5][column 2]
+#3: FIRST_PLAYER [row 6][column 5]
+#4: FIRST_PLAYER [row 8][column 2]
+#5: FIRST_PLAYER null position
+
+What is your move?
+3
+You have choosen to play move #3: FIRST_PLAYER [row 6][column 5]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | x | x | x | x | x |   |   |
+---------------------------------
+| x |   | o |   |   |   |   |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 5][column 6], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER [row 7][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#01: SECOND_PLAYER [row 2][column 8]
+#02: SECOND_PLAYER [row 4][column 7]
+#03: SECOND_PLAYER [row 4][column 8]
+#04: SECOND_PLAYER [row 5][column 6]
+#05: SECOND_PLAYER [row 7][column 2]
+#06: SECOND_PLAYER [row 7][column 4]
+#07: SECOND_PLAYER [row 7][column 5]
+#08: SECOND_PLAYER [row 7][column 6]
+#09: SECOND_PLAYER [row 7][column 7]
+#10: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 8] 18.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 14.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 12.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 12.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 12.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 12.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 12.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 12.0 @depth = 0
+SECOND_PLAYER null position 9.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 5.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 7] 5.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 3.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 3.0 @depth = 0
+SECOND_PLAYER null position 2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 9.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 7.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 7.0 @depth = 0
+
+Meilleure évaluation          : 9.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | x | x | x | x | o |   |   |
+---------------------------------
+| x |   | o |   |   |   | o |   |
+---------------------------------
+| x |   |   |   |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 8][column 2], FIRST_PLAYER [row 8][column 3], FIRST_PLAYER [row 8][column 4], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 2]
+#2: FIRST_PLAYER [row 3][column 4]
+#3: FIRST_PLAYER [row 3][column 5]
+#4: FIRST_PLAYER [row 3][column 6]
+#5: FIRST_PLAYER [row 6][column 7]
+#6: FIRST_PLAYER [row 8][column 2]
+#7: FIRST_PLAYER [row 8][column 3]
+#8: FIRST_PLAYER [row 8][column 4]
+#9: FIRST_PLAYER null position
+
+What is your move?
+6
+You have choosen to play move #6: FIRST_PLAYER [row 8][column 2]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | x | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x |   |   |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER [row 8][column 3], SECOND_PLAYER [row 8][column 4], SECOND_PLAYER null position]
+
+legal moves :
+#01: SECOND_PLAYER [row 2][column 8]
+#02: SECOND_PLAYER [row 4][column 7]
+#03: SECOND_PLAYER [row 4][column 8]
+#04: SECOND_PLAYER [row 7][column 2]
+#05: SECOND_PLAYER [row 7][column 4]
+#06: SECOND_PLAYER [row 7][column 5]
+#07: SECOND_PLAYER [row 7][column 6]
+#08: SECOND_PLAYER [row 8][column 3]
+#09: SECOND_PLAYER [row 8][column 4]
+#10: SECOND_PLAYER null position
+SECOND_PLAYER [row 8][column 4] 16.0 @depth = 0
+SECOND_PLAYER [row 8][column 3] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 16.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 14.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 14.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 14.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 14.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 14.0 @depth = 0
+SECOND_PLAYER null position 11.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 6] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 8][column 3] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 5.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER [row 8][column 4] 5.0 @depth = 0
+SECOND_PLAYER null position 2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 8][column 4] 11.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 11.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 8][column 3] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 9.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 7.0 @depth = 0
+
+Meilleure évaluation          : 11.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | o |   |   |   | o |   |
+---------------------------------
+| x | x |   | o |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 8][column 3], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 2]
+#2: FIRST_PLAYER [row 3][column 4]
+#3: FIRST_PLAYER [row 3][column 5]
+#4: FIRST_PLAYER [row 3][column 6]
+#5: FIRST_PLAYER [row 6][column 7]
+#6: FIRST_PLAYER [row 8][column 3]
+#7: FIRST_PLAYER null position
+
+What is your move?
+6
+You have choosen to play move #6: FIRST_PLAYER [row 8][column 3]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | o |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 8]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 4][column 8]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER [row 7][column 6]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 5] 18.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 18.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 16.0 @depth = 0
+SECOND_PLAYER null position 13.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 5.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER null position 2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 3.0 @depth = 0
+
+Meilleure évaluation          : 8.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | o |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 8][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 2]
+#2: FIRST_PLAYER [row 3][column 4]
+#3: FIRST_PLAYER [row 3][column 5]
+#4: FIRST_PLAYER [row 3][column 6]
+#5: FIRST_PLAYER [row 6][column 7]
+#6: FIRST_PLAYER [row 8][column 5]
+#7: FIRST_PLAYER null position
+
+What is your move?
+7
+You have choosen to play move #7: FIRST_PLAYER null position
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | o |   |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 8]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 4][column 8]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER [row 7][column 6]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 5] 18.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 18.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 16.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 16.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 16.0 @depth = 0
+SECOND_PLAYER null position 13.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 5.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER null position 2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position 8.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 8.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 7.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 7.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 5.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 3.0 @depth = 0
+
+Meilleure évaluation          : 8.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | o |   |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 8][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 2]
+#2: FIRST_PLAYER [row 3][column 4]
+#3: FIRST_PLAYER [row 3][column 5]
+#4: FIRST_PLAYER [row 3][column 6]
+#5: FIRST_PLAYER [row 6][column 7]
+#6: FIRST_PLAYER [row 8][column 5]
+#7: FIRST_PLAYER null position
+
+What is your move?
+6
+You have choosen to play move #6: FIRST_PLAYER [row 8][column 5]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | x |   |
+---------------------------------
+| o | o | o | o | o | x |   |   |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | x | x |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 4][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 8]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 4][column 8]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER [row 7][column 6]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 5] 15.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 15.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 13.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 13.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 13.0 @depth = 0
+SECOND_PLAYER null position 10.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 6] 6.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 4.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 4][column 8] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER null position -1.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 4][column 8] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 4.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 2.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 2.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -0.0 @depth = 0
+
+Meilleure évaluation          : 4.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o |   |   |   | o |   |
+---------------------------------
+| o | o | o | o | o | x |   | o |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | x | x |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 4], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 2][column 8]
+#2: FIRST_PLAYER [row 3][column 2]
+#3: FIRST_PLAYER [row 3][column 4]
+#4: FIRST_PLAYER [row 3][column 5]
+#5: FIRST_PLAYER [row 3][column 6]
+#6: FIRST_PLAYER [row 6][column 7]
+#7: FIRST_PLAYER null position
+
+What is your move?
+3
+You have choosen to play move #3: FIRST_PLAYER [row 3][column 4]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | x | o |   |   |   |
+---------------------------------
+| x | o | x | x | x | o |   |   |
+---------------------------------
+| x |   | x |   |   |   | o |   |
+---------------------------------
+| x | x | x | x | x |   |   |   |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 6], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 7][column 2]
+#4: SECOND_PLAYER [row 7][column 4]
+#5: SECOND_PLAYER [row 7][column 5]
+#6: SECOND_PLAYER [row 7][column 6]
+#7: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 4] 17.0 @depth = 0
+SECOND_PLAYER [row 7][column 6] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 13.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 13.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 11.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 6] 6.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 4.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 4.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 4.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 4.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 2.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 6] 2.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -0.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -0.0 @depth = 0
+SECOND_PLAYER null position -1.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -2.0 @depth = 0
+
+Meilleure évaluation          : 2.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | o |   |   |   |
+---------------------------------
+| x | o | x | x | o | o |   |   |
+---------------------------------
+| x |   | x |   |   | o | o |   |
+---------------------------------
+| x | x | x | x | x |   |   |   |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 8][column 8], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 1][column 6]
+#04: FIRST_PLAYER [row 2][column 8]
+#05: FIRST_PLAYER [row 3][column 2]
+#06: FIRST_PLAYER [row 3][column 6]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 6]
+#09: FIRST_PLAYER [row 6][column 7]
+#10: FIRST_PLAYER [row 8][column 8]
+#11: FIRST_PLAYER null position
+
+What is your move?
+10
+You have choosen to play move #10: FIRST_PLAYER [row 8][column 8]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | x | x | o | x |   |   |
+---------------------------------
+| x |   | x |   |   | o | x |   |
+---------------------------------
+| x | x | x | x | x |   |   | x |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 6], SECOND_PLAYER [row 6][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 7][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 5][column 6]
+#4: SECOND_PLAYER [row 6][column 7]
+#5: SECOND_PLAYER [row 7][column 2]
+#6: SECOND_PLAYER [row 7][column 4]
+#7: SECOND_PLAYER [row 7][column 5]
+#8: SECOND_PLAYER [row 7][column 8]
+#9: SECOND_PLAYER null position
+SECOND_PLAYER [row 5][column 6] 11.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 9.0 @depth = 0
+SECOND_PLAYER [row 6][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER null position 6.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 4][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 6][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 8] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] -0.0 @depth = 0
+SECOND_PLAYER null position -1.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 8] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -0.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -2.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] -2.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -2.0 @depth = 0
+SECOND_PLAYER [row 6][column 7] -2.0 @depth = 0
+SECOND_PLAYER null position -3.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -4.0 @depth = 0
+
+Meilleure évaluation          : -0.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | x | x | o | x |   |   |
+---------------------------------
+| x |   | x |   |   | o | o | o |
+---------------------------------
+| x | x | x | x | x |   |   | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 6], FIRST_PLAYER [row 6][column 7], FIRST_PLAYER [row 6][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER [row 8][column 6], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 1][column 6]
+#04: FIRST_PLAYER [row 2][column 8]
+#05: FIRST_PLAYER [row 3][column 2]
+#06: FIRST_PLAYER [row 3][column 5]
+#07: FIRST_PLAYER [row 3][column 6]
+#08: FIRST_PLAYER [row 5][column 2]
+#09: FIRST_PLAYER [row 5][column 6]
+#10: FIRST_PLAYER [row 6][column 7]
+#11: FIRST_PLAYER [row 6][column 8]
+#12: FIRST_PLAYER [row 7][column 5]
+#13: FIRST_PLAYER [row 8][column 6]
+#14: FIRST_PLAYER null position
+
+What is your move?
+11
+You have choosen to play move #11: FIRST_PLAYER [row 6][column 8]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | x | x | o | x |   | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x |   |   | x |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 6], SECOND_PLAYER [row 6][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 5][column 6]
+#4: SECOND_PLAYER [row 6][column 7]
+#5: SECOND_PLAYER [row 7][column 2]
+#6: SECOND_PLAYER [row 7][column 4]
+#7: SECOND_PLAYER [row 7][column 5]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 5][column 6] 11.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 9.0 @depth = 0
+SECOND_PLAYER [row 6][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER null position 6.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 4][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 6][column 7] 2.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -0.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] -0.0 @depth = 0
+SECOND_PLAYER null position -1.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -2.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -2.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 6][column 7] -2.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -2.0 @depth = 0
+SECOND_PLAYER null position -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -4.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -6.0 @depth = 0
+
+Meilleure évaluation          : -2.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x |   |   | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 5], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 6], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER [row 8][column 6], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 1][column 6]
+#04: FIRST_PLAYER [row 2][column 8]
+#05: FIRST_PLAYER [row 3][column 2]
+#06: FIRST_PLAYER [row 3][column 5]
+#07: FIRST_PLAYER [row 3][column 6]
+#08: FIRST_PLAYER [row 5][column 2]
+#09: FIRST_PLAYER [row 5][column 6]
+#10: FIRST_PLAYER [row 5][column 8]
+#11: FIRST_PLAYER [row 7][column 5]
+#12: FIRST_PLAYER [row 8][column 6]
+#13: FIRST_PLAYER null position
+
+What is your move?
+12
+You have choosen to play move #12: FIRST_PLAYER [row 8][column 6]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | x |   |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | x | x |
+---------------------------------
+| x | x | x | x | x | x |   | x |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 6], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 8][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 5][column 6]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER [row 8][column 7]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 8][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 9.0 @depth = 0
+SECOND_PLAYER [row 5][column 6] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER null position 6.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 5][column 6] 4.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 8][column 7] -0.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -2.0 @depth = 0
+SECOND_PLAYER null position -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 5][column 6] -2.0 @depth = 0
+SECOND_PLAYER null position -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -4.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -4.0 @depth = 0
+SECOND_PLAYER [row 8][column 7] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -4.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -4.0 @depth = 0
+
+Meilleure évaluation          : -2.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o |   | o | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | x | x |
+---------------------------------
+| x | x | x | x | x | x |   | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 2], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 1][column 6]
+#04: FIRST_PLAYER [row 2][column 8]
+#05: FIRST_PLAYER [row 3][column 2]
+#06: FIRST_PLAYER [row 3][column 6]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 7]
+#09: FIRST_PLAYER [row 5][column 8]
+#10: FIRST_PLAYER [row 7][column 5]
+#11: FIRST_PLAYER null position
+
+What is your move?
+5
+You have choosen to play move #5: FIRST_PLAYER [row 3][column 2]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o | x | x | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | x | x |
+---------------------------------
+| x | x | x | x | x | x |   | x |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 3][column 6], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER [row 8][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 3][column 6]
+#3: SECOND_PLAYER [row 4][column 7]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER [row 8][column 7]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 5] 15.0 @depth = 0
+SECOND_PLAYER [row 8][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 9.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 9.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 9.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] 9.0 @depth = 0
+SECOND_PLAYER null position 6.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 8][column 7] 4.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] 4.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -0.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -0.0 @depth = 0
+SECOND_PLAYER null position -3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -4.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -6.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 8][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -6.0 @depth = 0
+SECOND_PLAYER [row 3][column 5] -6.0 @depth = 0
+SECOND_PLAYER null position -7.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -8.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -8.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -8.0 @depth = 0
+SECOND_PLAYER [row 3][column 6] -10.0 @depth = 0
+
+Meilleure évaluation          : -3.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o | x | x | x |   |   | o |   |
+---------------------------------
+| o | o | o | x | o | x |   | o |
+---------------------------------
+| o |   | o | o | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 6], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 2]
+#2: FIRST_PLAYER [row 1][column 4]
+#3: FIRST_PLAYER [row 1][column 6]
+#4: FIRST_PLAYER [row 2][column 8]
+#5: FIRST_PLAYER [row 3][column 6]
+#6: FIRST_PLAYER [row 5][column 2]
+#7: FIRST_PLAYER [row 5][column 8]
+#8: FIRST_PLAYER [row 7][column 5]
+#9: FIRST_PLAYER null position
+
+What is your move?
+5
+You have choosen to play move #5: FIRST_PLAYER [row 3][column 6]
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o | x | x | x |   | x | o |   |
+---------------------------------
+| o | o | o | x | x | x |   | o |
+---------------------------------
+| o |   | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 3][column 5], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 5]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 7][column 4]
+#4: SECOND_PLAYER [row 7][column 5]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 3][column 5] 17.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 13.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 7.0 @depth = 0
+SECOND_PLAYER null position 4.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 3][column 5] 6.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -2.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -2.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+SECOND_PLAYER null position -5.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 3][column 5] -4.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -6.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -6.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -8.0 @depth = 0
+SECOND_PLAYER null position -9.0 @depth = 0
+
+Meilleure évaluation          : -4.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o |   | o |   | o |   |   |   |
+---------------------------------
+| o | o | o | o | o | o |   |   |
+---------------------------------
+| o | o | o | o | o | o | o |   |
+---------------------------------
+| o | o | o | o | o | x |   | o |
+---------------------------------
+| o |   | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | o | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 2], FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 2]
+#02: FIRST_PLAYER [row 1][column 4]
+#03: FIRST_PLAYER [row 1][column 6]
+#04: FIRST_PLAYER [row 1][column 7]
+#05: FIRST_PLAYER [row 2][column 7]
+#06: FIRST_PLAYER [row 2][column 8]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 7]
+#09: FIRST_PLAYER [row 5][column 8]
+#10: FIRST_PLAYER [row 7][column 5]
+#11: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER [row 1][column 2]
+
+---------------------------------
+| o | x | o |   | o |   |   |   |
+---------------------------------
+| o | o | x | o | o | o |   |   |
+---------------------------------
+| o | o | o | x | o | o | o |   |
+---------------------------------
+| o | o | o | o | x | x |   | o |
+---------------------------------
+| o |   | o | x | o | x |   |   |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 4], SECOND_PLAYER [row 4][column 7], SECOND_PLAYER [row 5][column 7], SECOND_PLAYER [row 5][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 4]
+#2: SECOND_PLAYER [row 4][column 7]
+#3: SECOND_PLAYER [row 5][column 7]
+#4: SECOND_PLAYER [row 5][column 8]
+#5: SECOND_PLAYER [row 7][column 2]
+#6: SECOND_PLAYER [row 7][column 4]
+#7: SECOND_PLAYER [row 7][column 5]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 2] 13.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] 13.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] 11.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 9.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] 9.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] 9.0 @depth = 0
+SECOND_PLAYER null position 6.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 5][column 8] -2.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -2.0 @depth = 0
+SECOND_PLAYER [row 4][column 7] -2.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -2.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+SECOND_PLAYER null position -5.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -6.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 4][column 7] -8.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -10.0 @depth = 0
+SECOND_PLAYER null position -11.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -11.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -12.0 @depth = 0
+SECOND_PLAYER [row 1][column 4] -12.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -12.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] -12.0 @depth = 0
+
+Meilleure évaluation          : -8.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | o |   | o |   |   |   |
+---------------------------------
+| o | o | x | o | o | o |   |   |
+---------------------------------
+| o | o | o | x | o | o | o |   |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+| o |   | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 4], FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 4]
+#02: FIRST_PLAYER [row 1][column 6]
+#03: FIRST_PLAYER [row 1][column 7]
+#04: FIRST_PLAYER [row 2][column 7]
+#05: FIRST_PLAYER [row 2][column 8]
+#06: FIRST_PLAYER [row 3][column 8]
+#07: FIRST_PLAYER [row 5][column 2]
+#08: FIRST_PLAYER [row 5][column 7]
+#09: FIRST_PLAYER [row 7][column 5]
+#10: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER [row 1][column 4]
+
+---------------------------------
+| o | x | x | x | o |   |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | x | o | o | o |   |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+| o |   | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 5][column 7], SECOND_PLAYER [row 5][column 8], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 7]
+#2: SECOND_PLAYER [row 5][column 8]
+#3: SECOND_PLAYER [row 7][column 2]
+#4: SECOND_PLAYER [row 7][column 4]
+#5: SECOND_PLAYER [row 7][column 5]
+#6: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 4] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 13.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 11.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] 11.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] 11.0 @depth = 0
+SECOND_PLAYER null position 8.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 2] -4.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -4.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -6.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] -6.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -6.0 @depth = 0
+SECOND_PLAYER null position -9.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -13.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -16.0 @depth = 0
+SECOND_PLAYER [row 5][column 8] -17.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -17.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -17.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -18.0 @depth = 0
+
+Meilleure évaluation          : -13.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | x | x | o |   |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | x | o | o | o |   |
+---------------------------------
+| o | o | o | o | o | o | o | o |
+---------------------------------
+| o |   | o | x | o | o |   |   |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 6], FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 5][column 8], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#01: FIRST_PLAYER [row 1][column 6]
+#02: FIRST_PLAYER [row 1][column 7]
+#03: FIRST_PLAYER [row 2][column 7]
+#04: FIRST_PLAYER [row 2][column 8]
+#05: FIRST_PLAYER [row 3][column 8]
+#06: FIRST_PLAYER [row 5][column 2]
+#07: FIRST_PLAYER [row 5][column 7]
+#08: FIRST_PLAYER [row 5][column 8]
+#09: FIRST_PLAYER [row 7][column 5]
+#10: FIRST_PLAYER null position
+
+What is your move?
+8
+You have choosen to play move #8: FIRST_PLAYER [row 5][column 8]
+
+---------------------------------
+| o | x | x | x | o |   |   |   |
+---------------------------------
+| o | o | x | x | x | o |   |   |
+---------------------------------
+| o | o | o | x | o | x | o |   |
+---------------------------------
+| o | o | o | o | o | o | x | o |
+---------------------------------
+| o |   | o | x | o | o |   | x |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 6], SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 3][column 8], SECOND_PLAYER [row 5][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 6]
+#2: SECOND_PLAYER [row 2][column 7]
+#3: SECOND_PLAYER [row 3][column 8]
+#4: SECOND_PLAYER [row 5][column 7]
+#5: SECOND_PLAYER [row 7][column 2]
+#6: SECOND_PLAYER [row 7][column 4]
+#7: SECOND_PLAYER [row 7][column 5]
+#8: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 4] 6.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 6.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] 6.0 @depth = 0
+SECOND_PLAYER [row 1][column 6] 6.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 4.0 @depth = 0
+SECOND_PLAYER [row 3][column 8] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] 4.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 5][column 7] -7.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -7.0 @depth = 0
+SECOND_PLAYER [row 3][column 8] -9.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -9.0 @depth = 0
+SECOND_PLAYER [row 1][column 6] -9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -9.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -11.0 @depth = 0
+SECOND_PLAYER null position -12.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 1][column 6] -11.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -17.0 @depth = 0
+SECOND_PLAYER [row 3][column 8] -17.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -17.0 @depth = 0
+SECOND_PLAYER null position -18.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -19.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -23.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -23.0 @depth = 0
+
+Meilleure évaluation          : -11.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | o | x | o |   |
+---------------------------------
+| o | o | o | o | o | o | x | o |
+---------------------------------
+| o |   | o | x | o | o |   | x |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 2][column 8], FIRST_PLAYER [row 3][column 8], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 7][column 4], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER [row 2][column 8]
+#4: FIRST_PLAYER [row 3][column 8]
+#5: FIRST_PLAYER [row 5][column 2]
+#6: FIRST_PLAYER [row 5][column 7]
+#7: FIRST_PLAYER [row 7][column 4]
+#8: FIRST_PLAYER [row 7][column 5]
+#9: FIRST_PLAYER null position
+
+What is your move?
+4
+You have choosen to play move #4: FIRST_PLAYER [row 3][column 8]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o | o | o | o | o | o | x | x |
+---------------------------------
+| o |   | o | x | o | o |   | x |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER [row 5][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 7]
+#2: SECOND_PLAYER [row 2][column 8]
+#3: SECOND_PLAYER [row 5][column 7]
+#4: SECOND_PLAYER [row 7][column 2]
+#5: SECOND_PLAYER [row 7][column 4]
+#6: SECOND_PLAYER [row 7][column 5]
+#7: SECOND_PLAYER null position
+SECOND_PLAYER [row 7][column 4] 6.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] 6.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] 4.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] 4.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] 4.0 @depth = 0
+SECOND_PLAYER null position 1.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 7][column 2] -9.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -9.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -11.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -11.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -11.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -13.0 @depth = 0
+SECOND_PLAYER null position -14.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -14.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -15.0 @depth = 0
+SECOND_PLAYER [row 5][column 7] -17.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -17.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -18.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -19.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -20.0 @depth = 0
+
+Meilleure évaluation          : -14.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o | o | o | o | o | o | x | x |
+---------------------------------
+| o |   | o | x | o | o |   | x |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 5][column 7], FIRST_PLAYER [row 7][column 4], FIRST_PLAYER [row 7][column 5], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER [row 5][column 2]
+#4: FIRST_PLAYER [row 5][column 7]
+#5: FIRST_PLAYER [row 7][column 4]
+#6: FIRST_PLAYER [row 7][column 5]
+#7: FIRST_PLAYER null position
+
+What is your move?
+4
+You have choosen to play move #4: FIRST_PLAYER [row 5][column 7]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o |   | o | x | x | x | x | x |
+---------------------------------
+| x | o | x | x | o | o | x | x |
+---------------------------------
+| x |   | x |   |   | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER [row 7][column 4], SECOND_PLAYER [row 7][column 5], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 7]
+#2: SECOND_PLAYER [row 7][column 2]
+#3: SECOND_PLAYER [row 7][column 4]
+#4: SECOND_PLAYER [row 7][column 5]
+#5: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 7] 3.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -5.0 @depth = 0
+SECOND_PLAYER null position -8.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 7] -8.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -14.0 @depth = 0
+SECOND_PLAYER [row 7][column 5] -16.0 @depth = 0
+SECOND_PLAYER null position -17.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -18.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER [row 7][column 5] -16.0 @depth = 0
+SECOND_PLAYER null position -17.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -18.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -20.0 @depth = 0
+SECOND_PLAYER [row 7][column 4] -22.0 @depth = 0
+
+Meilleure évaluation          : -16.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o |   | o | x | x | x | x | x |
+---------------------------------
+| x | o | x | o | o | o | x | x |
+---------------------------------
+| x |   | x |   | o | o | o | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER [row 7][column 4], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER [row 5][column 2]
+#4: FIRST_PLAYER [row 7][column 4]
+#5: FIRST_PLAYER null position
+
+What is your move?
+4
+You have choosen to play move #4: FIRST_PLAYER [row 7][column 4]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o |   | o | x | x | x | x | x |
+---------------------------------
+| x | o | x | x | x | o | x | x |
+---------------------------------
+| x |   | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 7]
+#2: SECOND_PLAYER [row 7][column 2]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 7] -3.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -11.0 @depth = 0
+SECOND_PLAYER null position -16.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 7] -12.0 @depth = 0
+SECOND_PLAYER null position -25.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -28.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -23.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -27.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -29.0 @depth = 0
+
+Meilleure évaluation          : -23.0
+Nombre de coupures alpha/beta : 0
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | o | x | x | o | o |   |   |
+---------------------------------
+| o | o | o | o | x | x | x | x |
+---------------------------------
+| o | o | o | o | o | x | x | x |
+---------------------------------
+| o |   | o | x | x | x | x | x |
+---------------------------------
+| x | o | x | x | x | o | x | x |
+---------------------------------
+| x |   | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 5][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER [row 5][column 2]
+#4: FIRST_PLAYER null position
+
+What is your move?
+3
+You have choosen to play move #3: FIRST_PLAYER [row 5][column 2]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | o | x | x | x | o | x | x |
+---------------------------------
+| x |   | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 7], SECOND_PLAYER [row 7][column 2], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 7]
+#2: SECOND_PLAYER [row 7][column 2]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 7] -12.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -20.0 @depth = 0
+SECOND_PLAYER null position -25.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 7] -21.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -27.0 @depth = 0
+SECOND_PLAYER null position -32.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -25.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -29.0 @depth = 0
+SECOND_PLAYER [row 7][column 2] -30.0 @depth = 0
+
+Meilleure évaluation          : -25.0
+Nombre de coupures alpha/beta : 11
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | o | x | x | x | o | x | x |
+---------------------------------
+| x |   | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER [row 7][column 2], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER [row 7][column 2]
+#4: FIRST_PLAYER null position
+
+What is your move?
+3
+You have choosen to play move #3: FIRST_PLAYER [row 7][column 2]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 2][column 7], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 7]
+#2: SECOND_PLAYER null position
+SECOND_PLAYER [row 2][column 7] -15.0 @depth = 0
+SECOND_PLAYER null position -28.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 2][column 7] -24.0 @depth = 0
+SECOND_PLAYER null position -35.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 2][column 7] -Infinity @depth = 0
+
+Meilleure évaluation          : -38.0
+Nombre de coupures alpha/beta : 6
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER [row 2][column 7], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER [row 2][column 7]
+#3: FIRST_PLAYER null position
+
+What is your move?
+2
+You have choosen to play move #2: FIRST_PLAYER [row 2][column 7]
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 7], SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 7]
+#2: SECOND_PLAYER [row 1][column 8]
+#3: SECOND_PLAYER [row 2][column 8]
+#4: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 7] -16.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -20.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -28.0 @depth = 0
+SECOND_PLAYER null position -33.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER [row 1][column 7] -25.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -29.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -35.0 @depth = 0
+SECOND_PLAYER null position -38.0 @depth = 0
+
+Evaluation finale des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 1][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 2][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 1][column 7] -Infinity @depth = 0
+
+Meilleure évaluation          : -38.0
+Nombre de coupures alpha/beta : 6
+
+---------------------------------
+| o | x | x | x | o | o |   |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER [row 1][column 7], FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 7]
+#2: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER [row 1][column 7]
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 8]
+#2: SECOND_PLAYER [row 2][column 8]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 8] -21.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -25.0 @depth = 0
+SECOND_PLAYER null position -38.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Victoire imminente potentielle pour l'adversaire détectée...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 1][column 8] -Infinity @depth = 0
+
+ Simplification des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER null position
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 8]
+#2: SECOND_PLAYER [row 2][column 8]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 8] -21.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -25.0 @depth = 0
+SECOND_PLAYER null position -38.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Victoire imminente potentielle pour l'adversaire détectée...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 1][column 8] -Infinity @depth = 0
+
+ Simplification des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER null position
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 8]
+#2: SECOND_PLAYER [row 2][column 8]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 8] -21.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -25.0 @depth = 0
+SECOND_PLAYER null position -38.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Victoire imminente potentielle pour l'adversaire détectée...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 1][column 8] -Infinity @depth = 0
+
+ Simplification des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER null position
+
+What is your move?
+1
+You have choosen to play move #1: FIRST_PLAYER null position
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[SECOND_PLAYER [row 1][column 8], SECOND_PLAYER [row 2][column 8], SECOND_PLAYER null position]
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 8]
+#2: SECOND_PLAYER [row 2][column 8]
+#3: SECOND_PLAYER null position
+SECOND_PLAYER [row 1][column 8] -21.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -25.0 @depth = 0
+SECOND_PLAYER null position -38.0 @depth = 0
+
+Pas de victoire imminente pour le joueur actuel...
+
+Victoire imminente potentielle pour l'adversaire détectée...
+
+Evaluation intermédiaire des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+SECOND_PLAYER [row 2][column 8] -Infinity @depth = 0
+SECOND_PLAYER [row 1][column 8] -Infinity @depth = 0
+
+ Simplification des coups légaux:
+SECOND_PLAYER null position -38.0 @depth = 0
+
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | x | x | x | x | x |   |
+---------------------------------
+| o | x | o | o | x | x | x | x |
+---------------------------------
+| o | x | o | o | o | x | x | x |
+---------------------------------
+| o | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | o | x | x |
+---------------------------------
+| x | x | x | x | x | x | x | x |
+---------------------------------
+| x | x | x | x | x | x | o | x |
+---------------------------------
+
+[FIRST_PLAYER null position]
+
+legal moves :
+#1: FIRST_PLAYER null position
+
+What is your move?
