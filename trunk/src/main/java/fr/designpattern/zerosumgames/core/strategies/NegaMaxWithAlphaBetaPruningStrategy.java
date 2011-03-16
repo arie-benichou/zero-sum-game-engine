@@ -34,24 +34,37 @@ import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.implementations.connect4.Connect4;
 
 // TODO ! timer
-public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy {
+public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy {
 	//--------------------------------------------------------------------------------------
 	private int maxDepth;
 	//--------------------------------------------------------------------------------------
 	private int alphabetaCutoffs;
 	//--------------------------------------------------------------------------------------	
-	public NegamaxWithAlphaBetaPruningStrategy(int maxDepth) {
+	public NegaMaxWithAlphaBetaPruningStrategy(int maxDepth) {
 		this.maxDepth = maxDepth;
 	}
-	private Double chooseBestMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves, int depth, Double alpha, Double beta, int side) {
+	private double findBestMoveFrom(final IGame game, final List<IGameBoardMove> legalMoves, int depth, Double alpha, Double beta, int side) {
 		
 		Double bestMoveEvaluation = alpha;
+		
+		
+		
+		
+		
+		
+		
 		
 		////System.out.println("==================================================================");		
 		////System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
 		////System.out.println("==================================================================");
 		
 		GamePlayersEnumeration currentPlayerOrdinal;
+		
+		
+		
+		
+		
+		
 
 		for(IGameBoardMove move : legalMoves) {
 			
@@ -74,7 +87,7 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				// TODO ne pas faire de return ici
 			}
 			else {
-				move.setEvaluation(-this.chooseBestMoveAmong(game, game.getLegalMoves(GamePlayersEnumeration.opponent(move.getSide())), depth - 1, -beta, -alpha, -side));
+				move.setEvaluation(-this.findBestMoveFrom(game, game.getLegalMoves(GamePlayersEnumeration.opponent(move.getSide())), depth - 1, -beta, -alpha, -side));
 				if(move.getEvaluation().isInfinite() || move.getEvaluation().equals(0.0)) {
 					////System.out.println("\nGame Over remonté.");
 					//////System.out.println("Evaluation locale du Game Over : " + move.getEvaluation());
@@ -121,13 +134,47 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		Double alpha; // TODO ne garder que bestMove
 		IGameBoardMove bestMove = null;
 		
+		
+		
+		
+		
+		
+		/*
+		
+		if(true) {
+			this.alphabetaCutoffs = 0;
+			alpha = this.findBestMoveFrom(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+			Collections.sort(legalMoves);
+			Collections.reverse(legalMoves);				
+		//////System.out.println("\nEvaluation finale des coups légaux:");				
+			for (IGameBoardMove legalMove: legalMoves) {
+			//////System.out.println(legalMove.debug());
+			}				
+		//////System.out.println("\nMeilleure évaluation          : " + alpha);
+			System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
+			if(alpha.equals(Double.NEGATIVE_INFINITY)) {
+			//////System.out.println("\nC'est foutu:");						
+			}				
+			
+			return Collections.max(legalMoves);			
+			}		
+		
+		*/
+		
+		
+		
+		
+		
+		
+		
+		
 		if(this.hasNoChoice(legalMoves)) {
 		//////System.out.println("\nIl n y a qu'un seul coup possible, je n'ai pas le choix...");
 			bestMove = legalMoves.get(0);
 		}
 		else {
 			//test si victoire imminente pour le joueur actuel (profondeur1)
-			alpha = this.chooseBestMoveAmong(game, legalMoves, 1, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+			alpha = this.findBestMoveFrom(game, legalMoves, 1, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
 			
 		//////System.out.println("\n" + alpha);
 			
@@ -152,7 +199,7 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				
 				
 				// sinon, test si victoire imminente (défaite dans un futur très proche du joueur actuel) pour l'adversaire (profondeur2)			
-				alpha = this.chooseBestMoveAmong(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+				alpha = this.findBestMoveFrom(game, legalMoves, 2, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
 
 				if(Collections.min(legalMoves).getEvaluation().equals(Double.NEGATIVE_INFINITY)) {
 				//////System.out.println("\nVictoire imminente potentielle pour l'adversaire détectée...");
@@ -198,7 +245,7 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				
 				if(bestMove == null) {
 					this.alphabetaCutoffs = 0;
-					alpha = this.chooseBestMoveAmong(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+					alpha = this.findBestMoveFrom(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
 					Collections.sort(legalMoves);
 					Collections.reverse(legalMoves);				
 				//////System.out.println("\nEvaluation finale des coups légaux:");				
@@ -206,7 +253,7 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 					//////System.out.println(legalMove.debug());
 					}				
 				//////System.out.println("\nMeilleure évaluation          : " + alpha);
-				//////System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
+					System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
 					if(alpha.equals(Double.NEGATIVE_INFINITY)) {
 					//////System.out.println("\nC'est foutu:");						
 					}				
@@ -228,10 +275,10 @@ public class NegamaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 	public static void main(final String[] args) {
 		IGameBuilder gameBuilder = new GameBuilder(Connect4.class);
 		//IGameBuilder gameBuilder = new GameBuilder(Tictactoe.class);
-		gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new NegamaxWithAlphaBetaPruningStrategy(6)));
+		gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new NegaMaxWithAlphaBetaPruningStrategy(8)));
 		//gameBuilder.player1(new GamePlayer("p1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()));
-		//gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new NegamaxWithAlphaBetaPruningStrategy(1)));
-		gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()));
+		gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new NegaMaxWithAlphaBetaPruningStrategy(8)));
+		//gameBuilder.player2(new GamePlayer("p2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new HumanStrategy()));
 		new GameService(gameBuilder.build()).start();
 	}
 
