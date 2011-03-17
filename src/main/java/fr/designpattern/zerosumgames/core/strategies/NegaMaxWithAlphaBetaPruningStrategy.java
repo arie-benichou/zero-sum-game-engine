@@ -152,16 +152,16 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				Collections.sort(legalMoves);
 				Collections.reverse(legalMoves);				
 				
-				System.out.println("\nEvaluation finale des coups légaux:");				
+				///System.out.println("\nEvaluation finale des coups légaux:");				
 				for (IGameBoardMove legalMove: legalMoves) {
-					System.out.println(legalMove.debug());
+					///System.out.println(legalMove.debug());
 				}
 				
-				System.out.println("\nMeilleure évaluation          : " + alpha);
-				System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
+				///System.out.println("\nMeilleure évaluation          : " + alpha);
+				///System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
 				
 				if(alpha.equals(Double.NEGATIVE_INFINITY)) {
-				System.out.println("\nC'est foutu:");						
+				///System.out.println("\nC'est foutu:");						
 				}
 								
 				bestMove = Collections.max(legalMoves);
@@ -169,9 +169,9 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				// si plusieurs coups ont la même meilleure évaluation et que le jeu accepte le coup nul,
 				// défavoriser le coup null
 				if(legalMoves.get(0).isNull()) {
-					System.out.println("\nLe meilleur coup est le coup null.");
+					///System.out.println("\nLe meilleur coup est le coup null.");
 					if(legalMoves.size() > 1 && legalMoves.get(0).getEvaluation().equals(legalMoves.get(1).getEvaluation())) {
-						System.out.println("\nMais, un coup non null de même évaluation existe.");
+						///System.out.println("\nMais, un coup non null de même évaluation existe.");
 						bestMove = legalMoves.get(1);
 					}
 				}
@@ -316,7 +316,8 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p2",
 				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new HumanWithComputerHelpStrategy(8)
+				//new HumanWithComputerHelpStrategy(8)
+				new NegaMaxWithAlphaBetaPruningStrategy(8)
 			)
 		);
 		
@@ -332,7 +333,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p1",
 				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new NegaMaxWithAlphaBetaPruningStrategy(4)
+				new NegaMaxWithAlphaBetaPruningStrategy(7)
 			)
 		);
 		
@@ -341,8 +342,9 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p2",
 				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new HumanWithComputerHelpStrategy(6)
+				//new HumanWithComputerHelpStrategy(6)
 				//new NegaMaxWithAlphaBetaPruningStrategy(6)
+				new HumanStrategy()
 			)
 		);
 		
@@ -359,7 +361,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p1",
 				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new NegaMaxWithAlphaBetaPruningStrategy(6)
+				new NegaMaxWithAlphaBetaPruningStrategy(5)
 				//new HumanStrategy()
 				//new FirstMoveStrategy()
 			)
@@ -371,8 +373,8 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
 				//new NegaMaxWithAlphaBetaPruningStrategy(2)
-				new HumanWithComputerHelpStrategy(6)
-				//new NegaMaxWithAlphaBetaPruningStrategy(4)
+				//new HumanWithComputerHelpStrategy(6)
+				new NegaMaxWithAlphaBetaPruningStrategy(7)
 				//new NegaMaxWithAlphaBetaPruningStrategy(6)
 				//new FirstMoveStrategy()				
 			)
