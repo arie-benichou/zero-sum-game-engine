@@ -167,11 +167,11 @@ public class Checkers extends Game {
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
-	public boolean undo(IGameBoardMove move) {
+	public boolean undo(final IGameBoardMove move) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public double evaluate(IGameBoardMove move) {
+	public double evaluate(final IGameBoardMove move) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
