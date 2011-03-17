@@ -36,6 +36,7 @@ import fr.designpattern.zerosumgames.implementations.othello.Othello;
 import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
 
 // TODO ! timer
+// TODO faire une interface IMovesSorter et utiliser la FirstOptionStrategy
 public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy {
 	//--------------------------------------------------------------------------------------
 	private int maxDepth;

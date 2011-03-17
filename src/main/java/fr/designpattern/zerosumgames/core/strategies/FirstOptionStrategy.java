@@ -23,7 +23,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 
-public class FirstMoveStrategy implements IGamePlayerStrategy {
+public class FirstOptionStrategy implements IGamePlayerStrategy {
 
 	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
 		return legalMoves.get(0);
