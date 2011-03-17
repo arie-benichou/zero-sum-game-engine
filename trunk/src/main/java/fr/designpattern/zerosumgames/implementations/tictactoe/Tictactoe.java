@@ -53,10 +53,8 @@ public class Tictactoe extends Game {
 	@Override
 	protected IGameBoard setupBoard(final IGameBoard board) {
 
-		final IGamePiece croix = this
-				.piece(GamePlayersEnumeration.FIRST_PLAYER);
-		final IGamePiece rond = this
-				.piece(GamePlayersEnumeration.SECOND_PLAYER);
+		final IGamePiece croix = this.piece(GamePlayersEnumeration.FIRST_PLAYER);
+		final IGamePiece rond = this .piece(GamePlayersEnumeration.SECOND_PLAYER);
 
 		// TODO tests
 

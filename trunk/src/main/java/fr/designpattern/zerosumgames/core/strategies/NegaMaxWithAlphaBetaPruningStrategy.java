@@ -31,6 +31,8 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.implementations.connect4.Connect4;
+import fr.designpattern.zerosumgames.implementations.othello.Othello;
 import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
 
 // TODO ! timer
@@ -54,9 +56,9 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		
 		
 		
-		System.out.println("==================================================================");		
-		System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
-		System.out.println("==================================================================");
+		///System.out.println("==================================================================");		
+		///System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
+		///System.out.println("==================================================================");
 		
 		GamePlayersEnumeration currentPlayerOrdinal;
 		
@@ -68,21 +70,21 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 
 		for(IGameBoardMove move : legalMoves) {
 			
-			System.out.println("------------------------------------------------------------------");
+			///System.out.println("------------------------------------------------------------------");
 			
 			currentPlayerOrdinal = game.whoShallPlay(move, game.playMove(move));
 			
-			System.out.println(currentPlayerOrdinal);
+			///System.out.println(currentPlayerOrdinal);
 			
 			if(!GamePlayersEnumeration.isAPlayer(currentPlayerOrdinal)) {
-				move.setEvaluation(GamePlayersEnumeration.isNoOne(currentPlayerOrdinal) ? 0.0 : Double.POSITIVE_INFINITY);
-				System.out.println(game);
+				move.setEvaluation(GamePlayersEnumeration.isNoOne(currentPlayerOrdinal) ? -0.111 : Double.POSITIVE_INFINITY);
+				///System.out.println(game);
 				game.undo(move);
 				return move.getEvaluation();
 			}
 			else if(depth == 1) {
 				move.setEvaluation(game.evaluate(move));
-				System.out.println(game);
+				///System.out.println(game);
 				game.undo(move);
 				move.getEvaluation();
 				// ne pas faire de return ici
@@ -90,32 +92,32 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 			else {
 				move.setEvaluation(-this.findBestMoveFrom(game, game.getLegalMoves(GamePlayersEnumeration.opponent(move.getSide())), depth - 1, -beta, -alpha, -side));
 				if(move.getEvaluation().isInfinite() || move.getEvaluation().equals(0.0)) {
-					System.out.println("\nGame Over remonté.");
-					System.out.println("Evaluation locale du Game Over : " + move.getEvaluation());
+					///System.out.println("\nGame Over remonté.");
+					///System.out.println("Evaluation locale du Game Over : " + move.getEvaluation());
 				}
-				System.out.println(game);
+				///System.out.println(game);
 				game.undo(move);
 			}
 			
-			System.out.println("\névaluation: " + move.getEvaluation() + "\n");
+			///System.out.println("\névaluation: " + move.getEvaluation() + "\n");
 			
 			if(move.getEvaluation() > bestMoveEvaluation) {
-				System.out.println("Ce coup apporte une meilleure évaluation !");
+				///System.out.println("Ce coup apporte une meilleure évaluation !");
 				bestMoveEvaluation = move.getEvaluation();
-				System.out.println("alpha = " + alpha + " |  beta  = " + beta);
+				///System.out.println("alpha = " + alpha + " |  beta  = " + beta);
 			}
 			else {
-				System.out.println("Ce coup n'apporte pas de meilleure évaluation.");
+				///System.out.println("Ce coup n'apporte pas de meilleure évaluation.");
 			}
 			
-			System.out.println("------------------------------------------------------------------");		
-			System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
-			System.out.println("------------------------------------------------------------------");			
+			///System.out.println("------------------------------------------------------------------");		
+			///System.out.println(" side  = " + side + "  |  alpha = " + alpha + " |  beta  = " + beta);
+			///System.out.println("------------------------------------------------------------------");			
 			
 			if(bestMoveEvaluation >= beta) {
-				System.out.println("------------------------------------------------------------------");				
-				System.out.println("Il ne faut pas prendre son adversaire pour un bêta...");
-				System.out.println("------------------------------------------------------------------");
+				///System.out.println("------------------------------------------------------------------");				
+				///System.out.println("Il ne faut pas prendre son adversaire pour un bêta...");
+				///System.out.println("------------------------------------------------------------------");
 				++this.alphabetaCutoffs;
 				break;
 			}
@@ -145,18 +147,36 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		if(true) {
 				this.alphabetaCutoffs = 0;
 				alpha = this.findBestMoveFrom(game, legalMoves, this.maxDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+				
 				Collections.sort(legalMoves);
 				Collections.reverse(legalMoves);				
+				
 				System.out.println("\nEvaluation finale des coups légaux:");				
 				for (IGameBoardMove legalMove: legalMoves) {
-				System.out.println(legalMove.debug());
-				}				
+					System.out.println(legalMove.debug());
+				}
+				
 				System.out.println("\nMeilleure évaluation          : " + alpha);
 				System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
+				
 				if(alpha.equals(Double.NEGATIVE_INFINITY)) {
 				System.out.println("\nC'est foutu:");						
-				}				
-				return Collections.max(legalMoves);						
+				}
+								
+				bestMove = Collections.max(legalMoves);
+				
+				// si plusieurs coups ont la même meilleure évaluation et que le jeu accepte le coup nul,
+				// défavoriser le coup null
+				if(legalMoves.get(0).isNull()) {
+					System.out.println("\nLe meilleur coup est le coup null.");
+					if(legalMoves.size() > 1 && legalMoves.get(0).getEvaluation().equals(legalMoves.get(1).getEvaluation())) {
+						System.out.println("\nMais, un coup non null de même évaluation existe.");
+						bestMove = legalMoves.get(1);
+					}
+				}
+				
+				return bestMove;
+				
 		}
 		
 		
@@ -277,7 +297,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 	// TODO ! améliorer l'api des opponents, ce n'est pas au player de connaitre son ordre.	
 	// TODO ! vérifier les coupures alpha/beta avec reversi
 	//--------------------------------------------------------------------------------------
-	public static void main(final String[] args) {
+	static void tictactoe() {
 		
 		IGameBuilder gameBuilder = new GameBuilder(Tictactoe.class);
 		
@@ -286,7 +306,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p1",
 				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new NegaMaxWithAlphaBetaPruningStrategy(2)
+				new NegaMaxWithAlphaBetaPruningStrategy(9)
 			)
 		);
 		
@@ -295,11 +315,75 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				"p2",
 				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new HumanStrategy()
+				new HumanWithComputerHelpStrategy(8)
 			)
 		);
 		
 		new GameService(gameBuilder.build()).start();
 	}
-
+	//--------------------------------------------------------------------------------------
+	static void connect4() {
+		
+		IGameBuilder gameBuilder = new GameBuilder(Connect4.class);
+		
+		gameBuilder.player1(
+			new GamePlayer(
+				"p1",
+				GamePlayersEnumeration.FIRST_PLAYER,
+				GamePlayerNature.COMPUTER,
+				new NegaMaxWithAlphaBetaPruningStrategy(4)
+			)
+		);
+		
+		gameBuilder.player2(
+			new GamePlayer(
+				"p2",
+				GamePlayersEnumeration.SECOND_PLAYER,
+				GamePlayerNature.COMPUTER,
+				new HumanWithComputerHelpStrategy(6)
+				//new NegaMaxWithAlphaBetaPruningStrategy(6)
+			)
+		);
+		
+		new GameService(gameBuilder.build()).start();
+	}
+	//--------------------------------------------------------------------------------------
+	// TODO gérer le game over lorsque 2 coups nuls consécutifs
+	static void othello() {
+		
+		IGameBuilder gameBuilder = new GameBuilder(Othello.class);
+		
+		gameBuilder.player1(
+			new GamePlayer(
+				"p1",
+				GamePlayersEnumeration.FIRST_PLAYER,
+				GamePlayerNature.COMPUTER,
+				new NegaMaxWithAlphaBetaPruningStrategy(6)
+				//new HumanStrategy()
+				//new FirstMoveStrategy()
+			)
+		);
+		
+		gameBuilder.player2(
+			new GamePlayer(
+				"p2",
+				GamePlayersEnumeration.SECOND_PLAYER,
+				GamePlayerNature.COMPUTER,
+				//new NegaMaxWithAlphaBetaPruningStrategy(2)
+				new HumanWithComputerHelpStrategy(6)
+				//new NegaMaxWithAlphaBetaPruningStrategy(4)
+				//new NegaMaxWithAlphaBetaPruningStrategy(6)
+				//new FirstMoveStrategy()				
+			)
+		);
+		
+		new GameService(gameBuilder.build()).start();
+	}
+	//--------------------------------------------------------------------------------------	
+	public static void main(final String[] args) {
+		//tictactoe();
+		//connect4();
+		othello();
+	}
+	//--------------------------------------------------------------------------------------
 }

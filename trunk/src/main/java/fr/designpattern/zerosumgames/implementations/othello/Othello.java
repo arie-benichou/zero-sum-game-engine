@@ -23,7 +23,6 @@ import java.util.Map.Entry;
 
 import fr.designpattern.zerosumgames.core.Game;
 import fr.designpattern.zerosumgames.core.GameBoardDimension;
-import fr.designpattern.zerosumgames.core.GameBoardMove;
 import fr.designpattern.zerosumgames.core.GameBuilder;
 import fr.designpattern.zerosumgames.core.GamePieceFactory;
 import fr.designpattern.zerosumgames.core.GameService;
@@ -41,6 +40,7 @@ public class Othello extends Game {
 	// ------------------------------------------------------------
 	public final static Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);
+	//private transient int nullMoveHasBeenPlayed = 0;
 	// ------------------------------------------------------------
 	public Othello(final IGameBoard board, final List<IGamePlayer> opponents) {
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);// TODO !! à revoir
@@ -72,16 +72,25 @@ public class Othello extends Game {
 			final OthelloMove othelloMove = (OthelloMove)playedMove;
 			this.revertCells(othelloMove.getCellsToRevert());
 		}
+		else {
+			//--this.nullMoveHasBeenPlayed;
+		}
 		return true; // is move undone ?
 	}
 	// ------------------------------------------------------------
 	private boolean isGameOver() {
+		boolean isGameOver = false;
+		// Game Over si deux coups nuls consécutifs
+		//if(this.nullMoveHasBeenPlayed > 1) {
+			//isGameOver = true;
+			//System.out.println("\ndeux coups nuls consécutifs");
+		//}
 		// Game Over s'il ne reste que le coup nul pour chacun des joueurs
-		return
-			this.getLegalMoves(GamePlayersEnumeration.FIRST_PLAYER).size() == 1
-			&&
-			this.getLegalMoves(GamePlayersEnumeration.SECOND_PLAYER).size() == 1
-		;
+		/*else*/ if(this.getLegalMoves(GamePlayersEnumeration.FIRST_PLAYER).size() == 1 && this.getLegalMoves(GamePlayersEnumeration.SECOND_PLAYER).size() == 1) {
+			isGameOver = true;
+			//System.out.println("\nplus de coups légaux");
+		}
+		return isGameOver;
 	}
 	// ------------------------------------------------------------
 	/*
@@ -203,12 +212,21 @@ public class Othello extends Game {
 	// TODO laisser la méthode abstraite dans la classe Game	
 	public boolean playMove(final IGameBoardMove moveToPlay) {
 		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
+		
 		if (!othelloMove.isNull()) {
+			
+			//this.nullMoveHasBeenPlayed = 0;
+			
 			final IGamePiece playerPiece = this.piece(othelloMove.getSide(), OthelloPieceTypes.PAWN);
 			this.getCell(othelloMove.getPosition()).setPiece(playerPiece);
 			othelloMove.setCellsToRevert(this.computeCellsToRevert(othelloMove));
 			this.revertCells(othelloMove.getCellsToRevert());
 		}
+		else {
+			//++this.nullMoveHasBeenPlayed;
+			///System.out.println("coup nul joué : " + this.nullMoveHasBeenPlayed);
+		}
+		
 		////System.out.println("delta pour " + othelloMove.getSide() + this.computeDelta(othelloMove.getSide()) );
 		return true;  // is move done ?
 	}
@@ -233,7 +251,7 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------	
 	public boolean isGameOverFromVictory(final IGameBoardMove justPlayedMove) {
-		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) > 0;
+		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) != 0;
 	}
 	// ------------------------------------------------------------		
 	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {

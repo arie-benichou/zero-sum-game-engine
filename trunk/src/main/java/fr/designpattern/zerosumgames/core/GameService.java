@@ -44,6 +44,8 @@ public class GameService implements IGameService {
 		IGamePlayerStrategy playerStrategy;
 		List<IGameBoardMove> legalMoves;
 		IGameBoardMove legalMoveToPlay;
+		// TODO mieux gérer le coup nul
+		IGameBoardMove lastPlayedMove = new GameBoardMove(GamePlayersEnumeration.NO_ONE, this.getGame().getCell(null).getPosition());
 		// ---------------------------------------------------------------------		
 		this.reset();
 		// ---------------------------------------------------------------------
@@ -59,10 +61,28 @@ public class GameService implements IGameService {
 			// ---------------------------------------------------------------------
 			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.playMove(legalMoveToPlay));
 			// ---------------------------------------------------------------------
+			// TODO à gérer dans le game over d'Othello (et plus généralement dans un jeu acceptant le coup nul)
+			if(legalMoveToPlay.isNull()) {
+				if(lastPlayedMove.isNull()) {
+					double evaluation = this.game.evaluate(legalMoveToPlay);
+					if(evaluation > 0) {
+						this.currentPlayer = GamePlayersEnumeration.not(GamePlayersEnumeration.opponent(legalMoveToPlay.getSide()));
+					}
+					else if(evaluation < 0) {
+						this.currentPlayer = GamePlayersEnumeration.not(legalMoveToPlay.getSide());						
+					}
+					else {
+						this.currentPlayer = GamePlayersEnumeration.NO_ONE;	
+					}
+				}
+			}
+			// ---------------------------------------------------------------------
+			lastPlayedMove = legalMoveToPlay;
+			// ---------------------------------------------------------------------						
 			System.out.println(this.game);
 			// ---------------------------------------------------------------------
 			//System.out.println("next player = " + this.currentPlayer);
-			// ---------------------------------------------------------------------			
+			// ---------------------------------------------------------------------
 		} while (GamePlayersEnumeration.isAPlayer(this.currentPlayer));
 		// ---------------------------------------------------------------------		
 		System.out.println("Game over...");
