@@ -37,76 +37,30 @@ import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GameBoardPlane;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.implementations.connect4.Connect4PieceTypes;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	public final static int CONNECTIONS = 3;
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
-	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(
-			1, 3, 1, 3);
+	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3);
 	// ------------------------------------------------------------
 	protected transient int connections;
-
-	// ------------------------------------------------------------
-	@Override
-	protected IGameBoard setupBoard(final IGameBoard board) {
-
-		final IGamePiece croix = this.piece(GamePlayersEnumeration.FIRST_PLAYER);
-		final IGamePiece rond = this .piece(GamePlayersEnumeration.SECOND_PLAYER);
-
-		// TODO tests
-
-		/*
-		 * ------------- | x | | | ------------- | | x | | ------------- | | | |
-		 * -------------
-		 */// Victoire imminente pour les croix
-		 //board.getCell(2, 1).setPiece(croix);
-		 //board.getCell(2, 2).setPiece(croix);
-
-		/*
-		 * ------------- | o | | | ------------- | | o | | ------------- | | | |
-		 * -------------
-		 */// Défaite imminente pour les croix (victoire imminente pour les
-			// ronds)
-		 //board.getCell(2, 1).setPiece(rond);
-		 //board.getCell(2, 2).setPiece(rond);
-
-		/*
-		 * ------------- | o | x | x | ------------- | x | o | o | -------------
-		 * | o | | | -------------
-		 *///
-		/*
-		 * board.getCell(1, 1).setPiece(rond); board.getCell(1,
-		 * 2).setPiece(croix); board.getCell(1, 3).setPiece(croix);
-		 * 
-		 * board.getCell(2, 1).setPiece(croix); board.getCell(2,
-		 * 2).setPiece(rond); board.getCell(2, 3).setPiece(rond);
-		 * 
-		 * board.getCell(3, 1).setPiece(rond);
-		 */
-
-		return board;
-	}
-
 	// ------------------------------------------------------------
 	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents) {
 		this(board, opponents, Tictactoe.CONNECTIONS);
 	}
-
+	// ------------------------------------------------------------
 	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents,
 			final int connections) {
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 		this.connections = connections;
 	}
-
 	// ------------------------------------------------------------
 	@Override
 	public boolean hasNullMove() {
 		return false;
 	}
-
 	// ------------------------------------------------------------
 	// TODO ? implémentation par défaut dans la classe abstraite
 	protected IGameBoardMove makeMove(final GamePlayersEnumeration side,
@@ -114,7 +68,6 @@ public class Tictactoe extends Game {
 		// TODO utiliser un cache
 		return new GameBoardMove(side, position);
 	}
-
 	// ------------------------------------------------------------
 	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
@@ -127,97 +80,50 @@ public class Tictactoe extends Game {
 		}
 		return legalMoves;
 	}
-
 	// ------------------------------------------------------------
 	public boolean isGameOverFromVictory(final IGameBoardMove justPlayedMove) {
 		boolean isWinningMove = false;
-
-		// System.out.println(this.getCell(justPlayedMove.getPosition()));
-
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
-			int n = this.computeRealConnection(justPlayedMove, plane.getOneWay())
-					+ 1
-					+ this.computeRealConnection(justPlayedMove,
-							plane.getOppositeWay());
-			// System.out.println(plane + ": " + n);
+			final int n = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 			if (n >= this.connections) {
 				isWinningMove = true;
 				break;
 			}
 		}
-		
-		
-		//double potentialConnections = this.evaluate(justPlayedMove);
-		////System.out.println("\n" + potentialConnections);
-		
-		
 		return isWinningMove;
 	}
-
 	// ------------------------------------------------------------
 	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {
-		return this.getLegalMoves(
-				GamePlayersEnumeration.opponent(justPlayedMove.getSide()))
-				.isEmpty();
+		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
 	}
-
 	// ------------------------------------------------------------
 	public boolean playMove(final IGameBoardMove moveToPlay) {
-		final IGameBoardCell concernedCell = this.getCell(moveToPlay
-				.getPosition());
+		final IGameBoardCell concernedCell = this.getCell(moveToPlay.getPosition());
 		concernedCell.setPiece(this.piece(moveToPlay.getSide()));
 		return true;
 	}
-
 	// ------------------------------------------------------------
 	public boolean undo(final IGameBoardMove move) {
-		this.getCell(move.getPosition()).setPiece(null); // TODO ? utiliser la
-															// pièce nulle
+		this.getCell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
 		return true; // is undo move complete ?
 	}
-
 	// ------------------------------------------------------------
 	public double evaluate(final IGameBoardMove justPlayedMove) {
-		
 		double evaluation = 0;
-		
-		int potentialConnections = this.computePotentialConnections(justPlayedMove);
-		///System.out.println("potentialConnections = " + potentialConnections);
-
-		int realConnections = this.computeRealConnections(justPlayedMove);
-		///System.out.println("realConnections = " + realConnections);
-		
+		final int potentialConnections = this.computePotentialConnections(justPlayedMove);
+		final int realConnections = this.computeRealConnections(justPlayedMove);
 		if(potentialConnections > 0) {
-			int n = (int)Math.log10(potentialConnections) + 1;
+			final int n = (int)Math.log10(potentialConnections) + 1;
 			evaluation = potentialConnections / Math.pow(10, n);
 		}
-		
 		evaluation += realConnections;
-		
-		///System.out.println("evaluation = " + evaluation);
-		
 		return evaluation;
 	}
 	// ------------------------------------------------------------
 	protected int computeRealConnections(final IGameBoardMove justPlayedMove) {
 		int connections = 0;
-		int connections1 = 0;
-		int connections2 = 0;
-		// ------------------------------------------------------------		
-		///System.out.println(justPlayedMove);
-		// ------------------------------------------------------------		
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
-			// ------------------------------------------------------------
-			///System.out.println("\n" + plane + "\n");
-			
-			connections1 = this.computeRealConnection(justPlayedMove,plane.getOneWay());
-			///System.out.println(connections1);
-			
-			connections2 = this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
-			///System.out.println(connections2);
-			// ------------------------------------------------------------
-			connections += connections1 + connections2;
-			// ------------------------------------------------------------			
+			connections = this.computeRealConnection(justPlayedMove,plane.getOneWay()) + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 		}
 		return connections;
 	}
@@ -227,17 +133,10 @@ public class Tictactoe extends Game {
 		int connections1 = 0;
 		int connections2 = 0;
 		// ------------------------------------------------------------		
-		///System.out.println(justPlayedMove);
-		// ------------------------------------------------------------		
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
 			// ------------------------------------------------------------
-			///System.out.println("\n" + plane + "\n");
-			
 			connections1 = this.computePotentialConnection(justPlayedMove,plane.getOneWay());
-			///System.out.println(connections1);
-			
 			connections2 = this.computePotentialConnection(justPlayedMove,plane.getOppositeWay());
-			///System.out.println(connections2);
 			// ------------------------------------------------------------
 			connections += connections1 + connections2;
 			// ------------------------------------------------------------			
@@ -261,7 +160,6 @@ public class Tictactoe extends Game {
 	protected int computePotentialConnection(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
 		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
-		///System.out.println(direction);
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull()) {
@@ -270,9 +168,6 @@ public class Tictactoe extends Game {
 			if(!cell.isEmpty() && cell.getPiece().getSide() == GamePlayersEnumeration.opponent(justPlayedMove.getSide())) {
 				break;
 			}
-			// ------------------------------------------------------------			
-			//System.out.println("blanc / pion du joueur");
-			// ------------------------------------------------------------			
 		}
 		return --connected;
 	}	
@@ -282,12 +177,10 @@ public class Tictactoe extends Game {
 	private IGamePiece piece(final GamePlayersEnumeration player) {
 		return super.piece(player, TictactoePieceTypes.PAWN);
 	}
-
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
-		new GameService(new GameBuilder(StaticContext.thatClass()).build())
-				.start();
+		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }
