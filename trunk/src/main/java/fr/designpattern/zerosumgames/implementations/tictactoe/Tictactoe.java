@@ -58,26 +58,22 @@ public class Tictactoe extends Game {
 		final IGamePiece rond = this
 				.piece(GamePlayersEnumeration.SECOND_PLAYER);
 
-		// TODO tests unitaires
+		// TODO tests
 
 		/*
 		 * ------------- | x | | | ------------- | | x | | ------------- | | | |
 		 * -------------
 		 */// Victoire imminente pour les croix
-		/*
-		 * board.getCell(1, 1).setPiece(croix); board.getCell(2,
-		 * 2).setPiece(croix);
-		 */
+		 //board.getCell(2, 1).setPiece(croix);
+		 //board.getCell(2, 2).setPiece(croix);
 
 		/*
 		 * ------------- | o | | | ------------- | | o | | ------------- | | | |
 		 * -------------
 		 */// Défaite imminente pour les croix (victoire imminente pour les
 			// ronds)
-		/*
-		 * board.getCell(1, 1).setPiece(rond); board.getCell(2,
-		 * 2).setPiece(rond);
-		 */
+		 //board.getCell(2, 1).setPiece(rond);
+		 //board.getCell(2, 2).setPiece(rond);
 
 		/*
 		 * ------------- | o | x | x | ------------- | x | o | o | -------------
