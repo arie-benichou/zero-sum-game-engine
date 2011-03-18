@@ -158,7 +158,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				}
 				
 				///System.out.println("\nMeilleure évaluation          : " + alpha);
-				///System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
+				System.out.println("Nombre de coupures alpha/beta : " + this.alphabetaCutoffs);
 				
 				if(alpha.equals(Double.NEGATIVE_INFINITY)) {
 				///System.out.println("\nC'est foutu:");						
@@ -374,7 +374,7 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 				GamePlayerNature.COMPUTER,
 				//new NegaMaxWithAlphaBetaPruningStrategy(2)
 				//new HumanWithComputerHelpStrategy(6)
-				new NegaMaxWithAlphaBetaPruningStrategy(7)
+				new NegaMaxWithAlphaBetaPruningStrategy(5)
 				//new NegaMaxWithAlphaBetaPruningStrategy(6)
 				//new FirstMoveStrategy()				
 			)
@@ -385,8 +385,8 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 	//--------------------------------------------------------------------------------------	
 	public static void main(final String[] args) {
 		//tictactoe();
-		//connect4();
-		othello();
+		connect4();
+		//othello();
 	}
 	//--------------------------------------------------------------------------------------
 }
