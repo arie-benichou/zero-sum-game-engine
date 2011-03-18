@@ -36,6 +36,7 @@ import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
+//TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
 public class Othello extends Game {	
 	// ------------------------------------------------------------
 	public final static Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
