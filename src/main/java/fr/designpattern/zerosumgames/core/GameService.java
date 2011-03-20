@@ -10,7 +10,7 @@ import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------
-	private transient GamePlayersEnumeration currentPlayer;	
+	private transient GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
 	// ------------------------------------------------------------
 	private IGame game;
 	public final IGame getGame() {
@@ -25,7 +25,7 @@ public class GameService implements IGameService {
 	}
 	// ------------------------------------------------------------
 	// TODO créer IGameLegalMoveList
-	protected void displayLegalMoveList(final GamePlayersEnumeration currentPlayer, final List<IGameBoardMove> legalMoveList) {
+	protected void displayLegalMoveList(final List<IGameBoardMove> legalMoveList) {
 		int n = 0;		
 		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
 		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
@@ -41,25 +41,21 @@ public class GameService implements IGameService {
 		// TODO pas de boucle pour la version client léger	
 		// TODO GameWebService		
 		// ---------------------------------------------------------------------
-		IGamePlayerStrategy playerStrategy;
 		List<IGameBoardMove> legalMoves;
 		IGameBoardMove legalMoveToPlay;
 		// TODO mieux gérer le coup nul
-		IGameBoardMove lastPlayedMove = new GameBoardMove(GamePlayersEnumeration.NO_ONE, this.getGame().getCell(null).getPosition());
+		IGameBoardMove lastPlayedMove = new GameBoardMove(GamePlayersEnumeration.NO_ONE, this.getGame().cell(null).getPosition());
 		// ---------------------------------------------------------------------		
-		this.reset();
-		// ---------------------------------------------------------------------
 		System.out.println(this.game);
 		// ---------------------------------------------------------------------
 		do {
-			// ---------------------------------------------------------------------			
-			legalMoves = this.game.getLegalMoves(this.currentPlayer);
-			this.displayLegalMoveList(this.currentPlayer, legalMoves);
-			// ---------------------------------------------------------------------			
-			playerStrategy = this.game.getPlayer(this.currentPlayer).getStrategy();
-			legalMoveToPlay = playerStrategy.chooseMoveAmong(this.game, legalMoves);
 			// ---------------------------------------------------------------------
-			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.playMove(legalMoveToPlay));
+			legalMoves = this.game.getLegalMoves(this.currentPlayer, lastPlayedMove);
+			this.displayLegalMoveList(legalMoves);
+			// ---------------------------------------------------------------------			
+			legalMoveToPlay = this.game.getPlayerStrategy(this.currentPlayer).chooseMoveAmong(this.game, legalMoves);
+			// ---------------------------------------------------------------------
+			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.doMove(legalMoveToPlay));
 			// ---------------------------------------------------------------------
 			// TODO à gérer dans le game over d'Othello (et plus généralement dans un jeu acceptant le coup nul)
 			if(legalMoveToPlay.isNull()) {
@@ -82,6 +78,9 @@ public class GameService implements IGameService {
 			System.out.println(this.game);
 			// ---------------------------------------------------------------------
 			//System.out.println("next player = " + this.currentPlayer);
+			
+			//System.exit(0);
+			
 			// ---------------------------------------------------------------------
 		} while (GamePlayersEnumeration.isAPlayer(this.currentPlayer));
 		// ---------------------------------------------------------------------		
@@ -92,12 +91,12 @@ public class GameService implements IGameService {
 		else {
 			System.out.println("And the winner is " + GamePlayersEnumeration.opponent(GamePlayersEnumeration.not(this.currentPlayer)) +  "!");			
 		}
+		
 		// ---------------------------------------------------------------------		
 	}
 	// ---------------------------------------------------------------------
 	public void reset() {
-		this.currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
-		this.game.reset();
+		// TODO Auto-generated method stub
 	}	
 	// ---------------------------------------------------------------------	
 	public void pause() {

@@ -26,7 +26,7 @@ import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
+import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
 import fr.designpattern.zerosumgames.util.StaticContext;
@@ -37,16 +37,16 @@ public class Connect4 extends Tictactoe {
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
-	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents) {
+	public Connect4(final IGameBoard board, final IGameOpponents opponents) {
 		super(board, opponents, CONNECTIONS);
 	}
 	// -----------------------------------------------------------------	
-	public Connect4(final IGameBoard board, final List<IGamePlayer> opponents, final int connections) {
+	public Connect4(final IGameBoard board, final IGameOpponents opponents, final int connections) {
 		super(board, opponents, connections);
 	}	
 	// -----------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
 		IGameBoardCell nextBottomCell;
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		// TODO a améliorer

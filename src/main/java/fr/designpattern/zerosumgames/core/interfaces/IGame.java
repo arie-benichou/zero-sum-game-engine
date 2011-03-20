@@ -1,5 +1,5 @@
 /*
- * @(#)IGame.java	0.99
+ * @(#)IGame.java	0.999
  *
  * Copyright 2011 Arie Benichou
  *
@@ -27,61 +27,102 @@ import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
  * This is the interface for a board game.
  * 
  * @author  Arie Benichou
- * @version 0.99, 01/03/2011
+ * @version 0.999, 21/03/2011
  */
 public interface IGame {
 
 	/**
-     * Returns <tt>true</tt> if this game allows null move.
+     * Returns true if this game allows null move.
      * 
-	 * @return <tt>true</tt> if this game allows null move
+	 * @return true if this game allows null move
 	 */
 	boolean hasNullMove();
-
+		
 	/**
-	 * Returns the list of legal moves for a player, given a board.
+	 * Returns the list of legal moves.
+	 *  
+	 * @param side the side to play
 	 * 
-	 * @param gameState the game board 
-	 * @param side the side to move
+	 * @param previousMove the previous move
 	 * 
-	 * @return the list of legal moves for a given a board and a given player, .
+	 * @return the list of legal moves
 	 */
-	//List<IGameBoardMove> getLegalMoves(IGameBoard gameState, GamePlayersEnumeration side);
-
+	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side, final IGameBoardMove previousMove);
+	
 	/**
-	 * Plays a move (or a part of a real move)
+	 * Plays a move and returns true if the move is completed, 
+	 * false otherwise.
 	 * 
 	 * @param moveToPlay the move to play
 	 * 
-	 * @return if the move is completed
+	 * @return true if the move is completed, false otherwise
 	 */
-	boolean playMove(IGameBoardMove moveToPlay);
+	boolean doMove(final IGameBoardMove moveToPlay);
 	
-	boolean isGameOverFromVictory(IGameBoardMove justPlayedMove);
+	/**
+	 * Undo the played move and returns true if the move is completely undone, false otherwise.
+	 * 
+	 * @param playedMove the played move
+	 * 
+	 * @return true if the move is completely undone, false otherwise
+	 */	
+	boolean undoMove(final IGameBoardMove playedMove);
 	
-	boolean isGameOverFromDraw(IGameBoardMove justPlayedMove);
+	/**
+	 * Returns true if the game is over from a victory of the current player, false otherwise.
+	 * 
+	 * @param playedMove the played move
+	 * 
+	 * @return true if the game is over from a victory of the current player, false otherwise
+	 */
+	boolean isGameOverFromVictory(final IGameBoardMove playedMove);
+
+	/**
+	 * Returns true if the game is over from a draw, false otherwise.
+	 * 
+	 * @param playedMove the played move
+	 * 
+	 * @return true if the game is over from a victory of the current player, false otherwise
+	 */	
+	boolean isGameOverFromDraw(final IGameBoardMove playedMove);
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,
 	 * SECOND_PLAYER, if it's the second player turn,
-	 * null if the game is over.
+	 * NOT_FIRST_PLAYER if SECOND_PLAYER is winner,
+	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
+	 * NO_ONE, if the game is a draw.
 	 *  
 	 * @param side the side to play
 	 * @param isMoveCompleted is the move completed ?
 	 * @param isGameOver is the game over ?
 	 * 
-	 * @return FIRST_PLAYER, if it's the first player turn, SECOND_PLAYER, if it's the second player turn, null if the game is over.
+	 * @return FIRST_PLAYER, if it's the first player turn,
+	 * SECOND_PLAYER, if it's the second player turn,
+	 * NOT_FIRST_PLAYER if SECOND_PLAYER is winner,
+	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
+	 * NO_ONE, if the game is a draw
 	 */
-	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
-		
+	GamePlayersEnumeration whoShallPlay(final IGameBoardMove playedMove, final boolean isMoveDone);			
 	
-	//boolean isWinningMove(final IGameBoardMove justPlayedMove);
+	/**
+	 * Returns the computation of the move evaluation of the game.
+	 *  
+	 * @param playedMove the played move
+	 * 
+	 * @return the computation of the move evaluation of the game
+	 */
+	double evaluate(final IGameBoardMove playedMove);
+	
+	// ---------------------------------------------------------------------
+	// Façades
+	// ---------------------------------------------------------------------
+	
+	IGamePlayerStrategy getPlayerStrategy(final GamePlayersEnumeration currentPlayer);
 	
 	/**
 	 * Returns a piece of this game for a given player
 	 * and a given type of piece.
-	 * 
-	 * (GamePieceFactory facade)
 	 * 
 	 * @param player the player
 	 * 
@@ -89,8 +130,7 @@ public interface IGame {
 	 * 
 	 * @return a piece of this game for a given player and a given type of piece
 	 */
-	IGamePiece piece(GamePlayersEnumeration player, IGamePieceType pieceType);
-	
+	IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType);
 
 	/**
 	 * Returns the board cell for a given position.
@@ -99,7 +139,7 @@ public interface IGame {
 	 * 
 	 * @return the board cell for a given position
 	 */
-	IGameBoardCell getCell(IGameBoardPosition position);
+	IGameBoardCell cell(final IGameBoardPosition position);
 
 	/**
 	 * Returns the board cell at (row, column)
@@ -110,22 +150,7 @@ public interface IGame {
 	 * 
 	 * @return the board cell at (row, column)
 	 */
-	IGameBoardCell getCell(int clientRowIndex, int clientColumnIndex);
+	IGameBoardCell cell(final int clientRowIndex, final int clientColumnIndex);
+
 	
-	void reset();
-
-	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration currentPlayer);
-
-	//GamePlayersEnumeration applyGameStateTransition(IGameBoardMove legalMoveToPlay);
-
-	IGamePlayer getPlayer(GamePlayersEnumeration currentPlayer);
-	
-	boolean undo(IGameBoardMove move);
-	
-	double evaluate(IGameBoardMove move);
-
-	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted, boolean isGameOver);	
-	//GamePlayersEnumeration whoShallPlay(GamePlayersEnumeration side, boolean isMoveCompleted);
-	GamePlayersEnumeration whoShallPlay(IGameBoardMove playedMove, boolean isMoveDone);
-
 }

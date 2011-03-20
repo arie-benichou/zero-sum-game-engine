@@ -32,8 +32,8 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
+import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GameBoardPlane;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
@@ -47,11 +47,11 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	protected transient int connections;
 	// ------------------------------------------------------------
-	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents) {
+	public Tictactoe(final IGameBoard board, final IGameOpponents opponents) {
 		this(board, opponents, Tictactoe.CONNECTIONS);
 	}
 	// ------------------------------------------------------------
-	public Tictactoe(final IGameBoard board, final List<IGamePlayer> opponents,
+	public Tictactoe(final IGameBoard board, final IGameOpponents opponents,
 			final int connections) {
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 		this.connections = connections;
@@ -69,7 +69,8 @@ public class Tictactoe extends Game {
 		return new GameBoardMove(side, position);
 	}
 	// ------------------------------------------------------------
-	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+	@Override
+	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
@@ -94,17 +95,17 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {
-		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
+		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide()), justPlayedMove).isEmpty();
 	}
 	// ------------------------------------------------------------
-	public boolean playMove(final IGameBoardMove moveToPlay) {
-		final IGameBoardCell concernedCell = this.getCell(moveToPlay.getPosition());
+	public boolean doMove(final IGameBoardMove moveToPlay) {
+		final IGameBoardCell concernedCell = this.cell(moveToPlay.getPosition());
 		concernedCell.setPiece(this.piece(moveToPlay.getSide()));
 		return true;
 	}
 	// ------------------------------------------------------------
-	public boolean undo(final IGameBoardMove move) {
-		this.getCell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
+	public boolean undoMove(final IGameBoardMove move) {
+		this.cell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
@@ -146,7 +147,7 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	protected int computeRealConnection(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
-		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
+		IGameBoardCell cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull() || cell.isEmpty()
@@ -159,7 +160,7 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------	
 	protected int computePotentialConnection(final IGameBoardMove justPlayedMove, final GameBoardCardinalPosition direction) {
 		int connected;
-		IGameBoardCell cell = this.getCell(justPlayedMove.getPosition());
+		IGameBoardCell cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull()) {

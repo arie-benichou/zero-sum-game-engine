@@ -29,7 +29,7 @@ import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface IGameBoardCell extends IGameNullableComponent {
+public interface IGameBoardCell extends IGameNullableComponent, Cloneable {
 	
 	/**
 	 * Returns <tt>true</tt> if this cell is empty.
