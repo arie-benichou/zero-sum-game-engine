@@ -4,7 +4,6 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 import fr.designpattern.zerosumgames.core.interfaces.IGameService;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 

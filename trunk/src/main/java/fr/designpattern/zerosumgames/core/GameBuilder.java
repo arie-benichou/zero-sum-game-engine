@@ -2,8 +2,6 @@ package fr.designpattern.zerosumgames.core;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
@@ -13,7 +11,6 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPositionFactory;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
-import fr.designpattern.zerosumgames.core.strategies.HumanStrategy;
 import fr.designpattern.zerosumgames.core.strategies.RandomStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;

@@ -34,7 +34,6 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.implementations.checkers.CheckersPieceTypes;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 //TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
