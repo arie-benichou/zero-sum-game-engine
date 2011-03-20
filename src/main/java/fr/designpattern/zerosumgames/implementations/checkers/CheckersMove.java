@@ -1,7 +1,6 @@
 package fr.designpattern.zerosumgames.implementations.checkers;
 
 import fr.designpattern.zerosumgames.core.GameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
