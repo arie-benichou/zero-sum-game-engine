@@ -90,6 +90,13 @@ public class GameBoardMove implements IGameBoardMove {
 		//return o.getEvaluation().compareTo(this.getEvaluation());
 		return this.getEvaluation().compareTo(o.getEvaluation());
 	}
-
+	
+	/*
+	@Override @Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	*/
 
 }

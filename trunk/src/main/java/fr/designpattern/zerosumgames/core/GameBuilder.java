@@ -11,6 +11,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCellFactory;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardDimension;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPositionFactory;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
+import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.strategies.HumanStrategy;
 import fr.designpattern.zerosumgames.core.strategies.RandomStrategy;
@@ -25,7 +26,7 @@ public class GameBuilder implements IGameBuilder {
 	private transient final Class<? extends IGame> builderGameClass;
 	private transient IGameBoardDimension builderBoardDimension;
 	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayersEnumeration.FIRST_PLAYER, GamePlayerNature.COMPUTER, new RandomStrategy()); // TODO ? singleton pour une stratégie
-	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.HUMAN, new RandomStrategy()); // TODO ? singleton pour une stratégie
+	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayersEnumeration.SECOND_PLAYER, GamePlayerNature.COMPUTER, new RandomStrategy()); // TODO ? singleton pour une stratégie
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
 		this.builderGameClass = gameClass;
@@ -62,20 +63,22 @@ public class GameBuilder implements IGameBuilder {
 	}
 
 	public IGame build() {
+		
 		final IGameBoardPositionFactory positionFactory = new GameBoardPositionFactory(this.builderBoardDimension);
 		final IGameBoardCellFactory cellFactory = new GameBoardCellFactory(positionFactory);
+		
 		final IGameBoard board = new GameBoard(cellFactory);
-		final List<IGamePlayer> opponents = new ArrayList<IGamePlayer>();
-		opponents.add(this.builderPlayer1);
-		opponents.add(this.builderPlayer2);
+		final IGameOpponents opponents = new GameOpponents(this.builderPlayer1, this.builderPlayer2);
+		
 		return newInstance(board, opponents);
+		
 	}
 
-	private IGame newInstance(final IGameBoard board, final List<IGamePlayer> opponents) {
+	private IGame newInstance(final IGameBoard board, final IGameOpponents opponents) {
 		Constructor<? extends IGame> constructor = null;
 		IGame instance = null;
 		try {
-			constructor = this.builderGameClass.getDeclaredConstructor(IGameBoard.class, List.class);
+			constructor = this.builderGameClass.getDeclaredConstructor(IGameBoard.class, IGameOpponents.class);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {

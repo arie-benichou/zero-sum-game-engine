@@ -31,7 +31,8 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
+import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
+import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.implementations.checkers.pieces.CheckersPiece;
@@ -42,13 +43,103 @@ public class Checkers extends Game {
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8); 
 	// ------------------------------------------------------------
-	public Checkers(final IGameBoard board, final List<IGamePlayer> opponents) {
+	public Checkers(final IGameBoard board, final IGameOpponents opponents) {
 		// TODO !! à revoir
-		super(new GamePieceFactory(PIECE_TYPES), board, opponents);		
+		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
+		this.setupTestBoard(board);
 	}
 	// ------------------------------------------------------------
-	@Override
-	protected IGameBoard setupBoard(final IGameBoard board) {
+	private void setupTestBoard(final IGameBoard board) {
+		this.setupBoard(board);
+		
+		/*
+		board.getCell(8, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+		//board.getCell(7, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(7, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(5, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(5, 7).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(3, 3).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(3, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(1, 1).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		
+		//System.out.println(this);
+		//System.exit(0);
+		*/
+		
+		/*
+		board.getCell(4, 7).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(5, 6).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(7, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));		
+		board.getCell(7, 6).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+		*/
+		
+		/*
+		System.out.println(this);
+		
+		IGameBoardMove moveToPlay = this.makeMove(GamePlayersEnumeration.FIRST_PLAYER , this.cell(6,1).getPosition(), GameBoardCardinalPosition.TOP_RIGHT);
+		
+		this.doMove(moveToPlay);
+		System.out.println(this);
+		
+		this.undoMove(moveToPlay);		
+		System.out.println(this);
+		
+		
+		
+		System.out.println(this);
+		
+		moveToPlay = this.makeMove(GamePlayersEnumeration.FIRST_PLAYER , this.cell(4,7).getPosition(), GameBoardCardinalPosition.BOTTOM_LEFT);
+		
+		this.doMove(moveToPlay);
+		System.out.println(this);
+		
+		this.undoMove(moveToPlay);		
+		System.out.println(this);		
+		
+		
+		System.exit(0);
+		*/
+		
+		
+		
+		
+		
+		/*
+		---------------------------------
+		|   | X |   | X |   | X |   |   |
+		---------------------------------
+		| x |   |   |   |   |   |   |   |
+		---------------------------------
+		|   |   |   |   |   |   |   |   |
+		---------------------------------
+		|   |   |   |   |   |   |   |   |
+		---------------------------------
+		|   | X |   |   |   | o |   |   |
+		---------------------------------
+		|   |   |   |   |   |   |   |   |
+		---------------------------------
+		|   |   |   |   |   |   |   |   |
+		---------------------------------
+		| O |   |   |   |   |   |   |   |
+		---------------------------------
+		*/
+		
+		/*
+		board.getCell(1, 1).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
+		board.getCell(1, 3).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
+		//board.getCell(2, 1).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+		board.getCell(4, 2).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.KING));
+		board.getCell(4, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
+		//board.getCell(8, 1).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.KING));
+		*/
+		
+		//System.out.println(this);
+		
+		//System.exit(0);
+		
+	}
+	// ------------------------------------------------------------	
+	private void setupBoard(final IGameBoard board) {
 		int n, clientColumnIndex;
 		for(int clientRowIndex = 1; clientRowIndex<=3; ++clientRowIndex) {
 			for(n = 1; n<=4; ++n) {
@@ -63,12 +154,11 @@ public class Checkers extends Game {
 				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
 			}
 		}
-		return board;
 	}
 	// -----------------------------------------------------------------	
-	public List<IGameBoardCell> getRelevantCells(final IGameBoard board, final GamePlayersEnumeration side) {
+	private List<IGameBoardCell> getRelevantCells(final GamePlayersEnumeration side) {
 		final List<IGameBoardCell> relevantCells = new ArrayList<IGameBoardCell>();
-		for (IGameBoardCell[] line : board) {
+		for (IGameBoardCell[] line : this.getBoard()) {
 			for(IGameBoardCell cell : line) {
 				// TODO ? utiliser la pièce nulle
 				if(!cell.isEmpty() && cell.getPiece().getSide() == side) {
@@ -89,13 +179,34 @@ public class Checkers extends Game {
 		return new CheckersMove(side, position, direction);
 	}
 	// ------------------------------------------------------------
-	public final List<IGameBoardMove> getLegalMoves(final IGameBoard board, final GamePlayersEnumeration side) {
+	@Override
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
+		
 		final List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
-		final List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();
 		CheckersPiece piece;
 		List<GameBoardCardinalPosition> pieceOptions;
+		
+		// TODO chaque jeu doit définir son nullMove
+		if(!previousMove.isNull()) {
+			final CheckersMove previousCheckersMove = (CheckersMove)previousMove;
+			if(!previousCheckersMove.isDone()) {
+				//System.out.println("Tu n'as pas fini ton coup, celà réduit les coups légaux possibles...");
+				//System.out.println(previousCheckersMove.getPosition());
+				//System.out.println(previousCheckersMove.getDirection());
+				IGameBoardCell cell = this.cell(previousCheckersMove.getPosition()).getNeighbour(previousCheckersMove.getDirection()).getNeighbour(previousCheckersMove.getDirection());
+				piece = (CheckersPiece)cell.getPiece();
+				pieceOptions = piece.getJumpOptions(cell);
+				for(GameBoardCardinalPosition direction : pieceOptions) {
+					jumpingMoves.add(this.makeMove(side, cell.getPosition(), direction));
+				}
+				return jumpingMoves;
+			}
+		}
+		
+		final List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();		
 		boolean hasToJump = false;
-		for(IGameBoardCell cell : this.getRelevantCells(board, side)) {
+		
+		for(IGameBoardCell cell : this.getRelevantCells(side)) {
 			piece = (CheckersPiece)cell.getPiece();
 			pieceOptions = piece.getJumpOptions(cell);
 			if(!pieceOptions.isEmpty()) {
@@ -112,11 +223,12 @@ public class Checkers extends Game {
 				}
 			}
 		}
+		
 		return jumpingMoves.isEmpty() ? walkingMoves : jumpingMoves; 
 	}
 	// ------------------------------------------------------------
-	private boolean hasToKeepPlaying(final IGameBoard gameState, final CheckersMove move) {
-		IGameBoardCell actualCell = gameState.getCell(move.getPosition());
+	private boolean hasToKeepPlaying(final CheckersMove move) {
+		IGameBoardCell actualCell = this.cell(move.getPosition());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		final CheckersPiece piece =  (CheckersPiece) actualCell.getPiece();
@@ -125,54 +237,121 @@ public class Checkers extends Game {
 	}
 	// -----------------------------------------------------------------
 	@Override
-	public boolean playMove(final IGameBoard gameState, final IGameBoardMove moveToPlay) {
+	public boolean doMove(final IGameBoardMove moveToPlay) {
 		final CheckersMove checkersMove = (CheckersMove)moveToPlay;
 		// récupération de la cellule corespondant à la position
-		final IGameBoardCell cell = gameState.getCell(checkersMove.getPosition());
+		final IGameBoardCell cell = this.cell(checkersMove.getPosition());
 		// récupération de la pièce à déplacer
 		final CheckersPiece pieceToMove = (CheckersPiece)cell.getPiece();
 		// suppression de la pièce à sa position actuelle
 		cell.setPiece(null);
-		boolean hasBeenEating = false;
 		// récupération de la cellulle correspondant à la direction choisie
 		IGameBoardCell destinationCell = cell.getNeighbour(checkersMove.getDirection());		
 		// si la cellule n'est pas vide
 		if(!destinationCell.isEmpty()) {
-			hasBeenEating = true;
 			// la pièce de cette cellule est supprimée
+			checkersMove.setCapturedPiece(destinationCell.getPiece());
 			destinationCell.setPiece(null); // TODO ? utiliser la pièce nulle
 			// et la cellule de destination devient la suivante
 			destinationCell = destinationCell.getNeighbour(checkersMove.getDirection());
 		}
 		// la pièce concernée par le coup est "déplacée" à sa cellule de destination
 		destinationCell.setPiece(pieceToMove);
-		boolean hasBeenCrowned = false;
+		checkersMove.hasBeenCrowned(false);
 		// Si la pièce est un pion promotable
 		if(pieceToMove.isPromotable(destinationCell)){
-			hasBeenCrowned = true;
+			checkersMove.hasBeenCrowned(true);
 			// le pion est promu roi
 			destinationCell.setPiece(this.piece(checkersMove.getSide(), CheckersPieceTypes.KING));
 		}
-		return !(hasBeenEating && !hasBeenCrowned && this.hasToKeepPlaying(gameState, checkersMove));
+		
+		checkersMove.isDone(checkersMove.getCapturedPiece() == null || checkersMove.hasBeenCrowned() || !this.hasToKeepPlaying(checkersMove));
+		
+		return checkersMove.isDone();// TODO virer le return boolean de doMove et undoMove
 	}
 	// -----------------------------------------------------------------
-	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		// Est-ce que, suite à ce coup, l'adversaire peut encore jouer ?
-		//return this.getLegalMoves(gameState, justPlayedMove.getSide().getOpponent()).isEmpty();
-		return null; // TODO !
-	}
+	// TODO un move est un composiste de transistions de jeu
+	// Pour Checkers, les transistions possibles sont :
+		//une pièce se déplace d'une case
+		//une pièce capture une autre pièce
+		//une pièce se fait promouvoir en King
+		//game over {victoire, match null}
+	
 	// -----------------------------------------------------------------
+	public boolean undoMove(final IGameBoardMove move) {
+		
+		final CheckersMove checkersMove = (CheckersMove)move;
+		
+		IGameBoardCell cell = this.cell(move.getPosition()).getNeighbour(checkersMove.getDirection());
+		
+		if(checkersMove.getCapturedPiece() != null) {// TODO utiliser la pièce nulle
+			cell.setPiece(checkersMove.getCapturedPiece());
+			cell = cell.getNeighbour(checkersMove.getDirection());
+		}
+		
+		IGamePiece piece = checkersMove.hasBeenCrowned() ? this.piece(move.getSide(), CheckersPieceTypes.MAN) : cell.getPiece();
+		this.cell(move.getPosition()).setPiece(piece);
+		
+		cell.setPiece(null); // TODO utiliser la pièce nulle
+		
+		return true; // TODO à virer
+	}	
+	// -----------------------------------------------------------------
+	// TODO à améliorer
+	private boolean isGameOver(IGameBoardMove previousMove) {
+		if(this.getRelevantCells(GamePlayersEnumeration.opponent(previousMove.getSide())).isEmpty()) {
+			return true;
+		}
+		else if(this.getLegalMoves(GamePlayersEnumeration.opponent(previousMove.getSide()), previousMove).isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	// ------------------------------------------------------------
+	// TODO à optimiser
+	public int computeDelta(final GamePlayersEnumeration side) {
+		int delta = 0;
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for (IGameBoardCell cell : line) {
+				if( cell.isNull() || cell.isEmpty() ){
+					continue;
+				}
+				if(cell.getPiece().getSide().equals(side)) {
+					++delta;
+					//System.out.println(cell.getPiece().getType());
+					if(cell.getPiece().getType() == CheckersPieceTypes.KING) {
+						delta+=2;
+						//System.out.println("King 1 count twice!");
+					}
+				}
+				else {
+					--delta;
+					//System.out.println(cell.getPiece().getType());
+					if(cell.getPiece().getType() == CheckersPieceTypes.KING) {
+						delta-=2;
+						//System.out.println("King 2 count twice!");
+					}					
+				}
+			}
+		}
+		return delta;
+	}
+	// ------------------------------------------------------------	
+	public boolean isGameOverFromVictory(final IGameBoardMove previousMove) {
+		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
+	}
+	// ------------------------------------------------------------		
+	public boolean isGameOverFromDraw(final IGameBoardMove previousMove) {
+		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
+	}
+	// ------------------------------------------------------------			
+	public double evaluate(final IGameBoardMove move) {
+		return this.computeDelta(move.getSide());
+	}	
+	// -----------------------------------------------------------------	
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
 		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
-	public boolean undo(final IGameBoardMove move) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public double evaluate(final IGameBoardMove move) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

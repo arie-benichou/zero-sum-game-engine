@@ -30,10 +30,11 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
+import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.implementations.checkers.CheckersPieceTypes;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 //TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
@@ -43,16 +44,24 @@ public class Othello extends Game {
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8);
 	//private transient int nullMoveHasBeenPlayed = 0;
 	// ------------------------------------------------------------
-	public Othello(final IGameBoard board, final List<IGamePlayer> opponents) {
+	private void setupBoard(final IGameBoard board) {
+		board.getCell(4, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
+		board.getCell(5, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
+		board.getCell(4, 4).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
+		board.getCell(5, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
+	}	
+	// ------------------------------------------------------------
+	public Othello(final IGameBoard board, final IGameOpponents opponents) {
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);// TODO !! à revoir
+		this.setupBoard(board);
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
 	@Override
 	public boolean hasNullMove() {
 		return true;
 	}
 	// ------------------------------------------------------------
-	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
@@ -62,14 +71,14 @@ public class Othello extends Game {
 			}
 		}
 		// TODO ? cache du nullMove pour chaque side
-		legalMoves.add(this.makeMove(side, this.getCell(null).getPosition()));
+		legalMoves.add(this.makeMove(side, this.cell(null).getPosition()));
 		return legalMoves;
 	}
 	// ------------------------------------------------------------
 	// TODO renommer : undoMove/doMove
-	public boolean undo(final IGameBoardMove playedMove) {
+	public boolean undoMove(final IGameBoardMove playedMove) {
 		if(!playedMove.isNull()) {
-			this.getCell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
+			this.cell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
 			final OthelloMove othelloMove = (OthelloMove)playedMove;
 			this.revertCells(othelloMove.getCellsToRevert());
 		}
@@ -79,7 +88,7 @@ public class Othello extends Game {
 		return true; // is move undone ?
 	}
 	// ------------------------------------------------------------
-	private boolean isGameOver() {
+	private boolean isGameOver(IGameBoardMove previousMove) {
 		boolean isGameOver = false;
 		// Game Over si deux coups nuls consécutifs
 		//if(this.nullMoveHasBeenPlayed > 1) {
@@ -87,35 +96,11 @@ public class Othello extends Game {
 			//System.out.println("\ndeux coups nuls consécutifs");
 		//}
 		// Game Over s'il ne reste que le coup nul pour chacun des joueurs
-		/*else*/ if(this.getLegalMoves(GamePlayersEnumeration.FIRST_PLAYER).size() == 1 && this.getLegalMoves(GamePlayersEnumeration.SECOND_PLAYER).size() == 1) {
+		/*else*/ if(this.getLegalMoves(GamePlayersEnumeration.FIRST_PLAYER, previousMove).size() == 1 && this.getLegalMoves(GamePlayersEnumeration.SECOND_PLAYER, previousMove).size() == 1) {
 			isGameOver = true;
 			//System.out.println("\nplus de coups légaux");
 		}
 		return isGameOver;
-	}
-	// ------------------------------------------------------------
-	/*
-	public GamePlayersEnumeration isGameOver(final IGameBoard gameState, final IGameBoardMove justPlayedMove) {
-		
-		GamePlayersEnumeration nextPlayer;
-		// Suite à ce coup, si l'adversaire ne peut plus jouer
-		if(this.getLegalMoves(this.getBoard(), GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty()) {
-			nextPlayer = GamePlayersEnumeration.NONE;
-		}
-		else {
-			nextPlayer = GamePlayersEnumeration.opponent(justPlayedMove.getSide());
-		}
-		return nextPlayer;
-	}
-	*/
-	// ------------------------------------------------------------		
-	@Override
-	protected IGameBoard setupBoard(final IGameBoard board) {
-		board.getCell(4, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
-		board.getCell(5, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER));
-		board.getCell(4, 4).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
-		board.getCell(5, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER));
-		return board;
 	}
 	// ------------------------------------------------------------
 	private IGamePiece piece(final GamePlayersEnumeration player) {
@@ -171,7 +156,7 @@ public class Othello extends Game {
 	// ------------------------------------------------------------		
 	private List<IGameBoardCell> computeCellsToRevert(final IGameBoardMove move) {
 		final GamePlayersEnumeration side = move.getSide();
-		final IGameBoardCell cell = this.getCell(move.getPosition());
+		final IGameBoardCell cell = this.cell(move.getPosition());
 		final List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
 		final List<IGameBoardCell> opponentCells = new ArrayList<IGameBoardCell>();
 		IGameBoardCell neighbourCell;
@@ -211,7 +196,7 @@ public class Othello extends Game {
 	// ------------------------------------------------------------	
 	// TODO renommer : doMove/undoMove
 	// TODO laisser la méthode abstraite dans la classe Game	
-	public boolean playMove(final IGameBoardMove moveToPlay) {
+	public boolean doMove(final IGameBoardMove moveToPlay) {
 		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
 		
 		if (!othelloMove.isNull()) {
@@ -219,7 +204,7 @@ public class Othello extends Game {
 			//this.nullMoveHasBeenPlayed = 0;
 			
 			final IGamePiece playerPiece = this.piece(othelloMove.getSide(), OthelloPieceTypes.PAWN);
-			this.getCell(othelloMove.getPosition()).setPiece(playerPiece);
+			this.cell(othelloMove.getPosition()).setPiece(playerPiece);
 			othelloMove.setCellsToRevert(this.computeCellsToRevert(othelloMove));
 			this.revertCells(othelloMove.getCellsToRevert());
 		}
@@ -251,12 +236,12 @@ public class Othello extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final IGameBoardMove justPlayedMove) {
-		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) != 0;
+	public boolean isGameOverFromVictory(final IGameBoardMove previousMove) {
+		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {
-		return this.isGameOver() && this.computeDelta(justPlayedMove.getSide()) == 0;
+	public boolean isGameOverFromDraw(final IGameBoardMove previousMove) {
+		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------		
 	public double evaluate(final IGameBoardMove move) {
