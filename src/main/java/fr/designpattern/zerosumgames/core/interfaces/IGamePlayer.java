@@ -38,13 +38,6 @@ public interface IGamePlayer {
 	String getName();
 
 	/**
-	 * Returns the player's order.
-	 * 
-	 * @return the player's order
-	 */
-	GamePlayersEnumeration getOrder();
-
-	/**
 	 * Returns the player's nature.
 	 * 
 	 * @return the player's nature

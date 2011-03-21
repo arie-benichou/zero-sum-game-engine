@@ -83,7 +83,12 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 			///System.out.println(currentPlayerOrdinal);
 			
 			if(!GamePlayersEnumeration.isAPlayer(currentPlayerOrdinal)) {
-				move.setEvaluation(GamePlayersEnumeration.isNoOne(currentPlayerOrdinal) ? -0.111 : Double.POSITIVE_INFINITY);
+				if(GamePlayersEnumeration.isNoOne(currentPlayerOrdinal)) {
+					move.setEvaluation(-0.111);	
+				}
+				else {
+					move.setEvaluation(Double.POSITIVE_INFINITY);
+				}
 				///System.out.println(game);
 				game.undoMove(move);
 				return move.getEvaluation();
@@ -307,7 +312,6 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		
 	}	
 	//--------------------------------------------------------------------------------------		
-	// TODO ! améliorer l'api des opponents, ce n'est pas au player de connaitre son ordre.	
 	// TODO ! vérifier les coupures alpha/beta avec reversi
 	//--------------------------------------------------------------------------------------
 	static void tictactoe() {
@@ -317,7 +321,6 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
-				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
 				new NegaMaxWithAlphaBetaPruningStrategy(1)
 			)
@@ -326,7 +329,6 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player2(
 			new GamePlayer(
 				"p2",
-				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
 				//new HumanWithComputerHelpStrategy(8)
 				new NegaMaxWithAlphaBetaPruningStrategy(1)
@@ -343,7 +345,6 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
-				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
 				new NegaMaxWithAlphaBetaPruningStrategy(8)
 			)
@@ -352,7 +353,6 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player2(
 			new GamePlayer(
 				"p2",
-				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
 				//new HumanWithComputerHelpStrategy(6)
 				//new NegaMaxWithAlphaBetaPruningStrategy(6)
@@ -371,24 +371,25 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
-				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new NegaMaxWithAlphaBetaPruningStrategy(2)
+				//new NegaMaxWithAlphaBetaPruningStrategy(2)
+				new NegaMaxWithAlphaBetaPruningStrategy(4)
 				//new HumanStrategy()
-				//new FirstMoveStrategy()
+				//new RandomStrategy()
+				//new FirstOptionStrategy()
 			)
 		);
 		
 		gameBuilder.player2(
 			new GamePlayer(
 				"p2",
-				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
 				//new NegaMaxWithAlphaBetaPruningStrategy(2)
 				//new HumanWithComputerHelpStrategy(6)
-				new NegaMaxWithAlphaBetaPruningStrategy(15)
-				//new NegaMaxWithAlphaBetaPruningStrategy(6)
-				//new FirstMoveStrategy()				
+				//new NegaMaxWithAlphaBetaPruningStrategy(4)
+				//new RandomStrategy()
+				//new NegaMaxWithAlphaBetaPruningStrategy(2)
+				new FirstOptionStrategy()
 			)
 		);
 		
@@ -402,19 +403,18 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
-				GamePlayersEnumeration.FIRST_PLAYER,
 				GamePlayerNature.COMPUTER,
-				new NegaMaxWithAlphaBetaPruningStrategy(6)
+				new NegaMaxWithAlphaBetaPruningStrategy(2)
+				//new NegaMaxWithAlphaBetaPruningStrategy(4)
+				//new RandomStrategy()
 			)
 		);
 		
 		gameBuilder.player2(
 			new GamePlayer(
 				"p2",
-				GamePlayersEnumeration.SECOND_PLAYER,
 				GamePlayerNature.COMPUTER,
-				//new RandomStrategy()
-				new NegaMaxWithAlphaBetaPruningStrategy(1)
+				new NegaMaxWithAlphaBetaPruningStrategy(6)
 				//new HumanStrategy()
 			)
 		);
@@ -425,8 +425,8 @@ public class NegaMaxWithAlphaBetaPruningStrategy implements IGamePlayerStrategy 
 	public static void main(final String[] args) {
 		//tictactoe();
 		//connect4();
-		//othello();
-		checkers();
+		othello();
+		//checkers();
 	}
 	//--------------------------------------------------------------------------------------
 }

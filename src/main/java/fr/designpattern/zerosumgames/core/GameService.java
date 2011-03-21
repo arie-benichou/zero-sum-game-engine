@@ -56,7 +56,7 @@ public class GameService implements IGameService {
 			// ---------------------------------------------------------------------
 			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.doMove(legalMoveToPlay));
 			// ---------------------------------------------------------------------
-			// TODO à gérer dans le game over d'Othello (et plus généralement dans un jeu acceptant le coup nul)
+			// TODO !! à gérer dans le game over d'Othello (et plus généralement dans un jeu acceptant le coup nul)
 			if(legalMoveToPlay.isNull()) {
 				if(lastPlayedMove.isNull()) {
 					double evaluation = this.game.evaluate(legalMoveToPlay);
