@@ -24,33 +24,27 @@ import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 public class GamePlayer implements IGamePlayer {
 
+	// ------------------------------------------------------------	
 	private final transient String name;
-	private final transient GamePlayersEnumeration ordinal;
+	public final String getName() {
+		return this.name;
+	}
+	// ------------------------------------------------------------	
+	private final transient IGamePlayerStrategy strategy;
+	public final IGamePlayerStrategy getStrategy() {
+		return this.strategy;
+	}	
+	// ------------------------------------------------------------		
 	// TODO ? supprimmer
 	private final transient GamePlayerNature type;
-	private final transient IGamePlayerStrategy strategy;
-
-	public GamePlayer(final String name, final GamePlayersEnumeration ordinal, final GamePlayerNature type, final IGamePlayerStrategy strategy) {
+	public final GamePlayerNature getNature() {
+		return this.type;
+	}	
+	// ------------------------------------------------------------	
+	public GamePlayer(final String name, final GamePlayerNature type, final IGamePlayerStrategy strategy) {
 		this.name = name;
-		this.ordinal = ordinal;
 		this.type = type;
 		this.strategy = strategy;
 	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public GamePlayersEnumeration getOrder() {
-		return this.ordinal;
-	}
-
-	public GamePlayerNature getNature() {
-		return this.type;
-	}
-
-	public IGamePlayerStrategy getStrategy() {
-		return this.strategy;
-	}
-
+	// ------------------------------------------------------------	
 }

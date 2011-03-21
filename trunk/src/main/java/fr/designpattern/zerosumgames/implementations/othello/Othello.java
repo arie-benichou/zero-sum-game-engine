@@ -74,7 +74,6 @@ public class Othello extends Game {
 		return legalMoves;
 	}
 	// ------------------------------------------------------------
-	// TODO renommer : undoMove/doMove
 	public boolean undoMove(final IGameBoardMove playedMove) {
 		if(!playedMove.isNull()) {
 			this.cell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
@@ -236,7 +235,7 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------	
 	public boolean isGameOverFromVictory(final IGameBoardMove previousMove) {
-		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
+		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) > 0;
 	}
 	// ------------------------------------------------------------		
 	public boolean isGameOverFromDraw(final IGameBoardMove previousMove) {
@@ -244,7 +243,19 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------		
 	public double evaluate(final IGameBoardMove move) {
-		return this.computeDelta(move.getSide());
+		
+		if(move.isNull()) {
+			return this.computeDelta(move.getSide());
+		}
+		
+		int n = 1;
+		for ( Entry<GameBoardCardinalPosition, IGameBoardCell> cellNeighbourEntry : this.cell(move.getPosition()).getNeighbourhood().entrySet()) {
+			if(cellNeighbourEntry.getValue().isNull()) {
+				n+=1;
+			}
+		}
+		
+		return this.computeDelta(move.getSide()) + n;
 	}
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
