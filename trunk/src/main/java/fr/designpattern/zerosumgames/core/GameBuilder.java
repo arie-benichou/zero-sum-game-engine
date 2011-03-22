@@ -11,7 +11,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPositionFactory;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
-import fr.designpattern.zerosumgames.core.strategies.RandomStrategy;
+import fr.designpattern.zerosumgames.core.strategies.RandomMoveStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
@@ -22,8 +22,8 @@ public class GameBuilder implements IGameBuilder {
 
 	private transient final Class<? extends IGame> builderGameClass;
 	private transient IGameBoardDimension builderBoardDimension;
-	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayerNature.COMPUTER, new RandomStrategy());
-	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayerNature.COMPUTER, new RandomStrategy());
+	private transient IGamePlayer builderPlayer1 = new GamePlayer("Player 1", GamePlayerNature.COMPUTER, new RandomMoveStrategy());
+	private transient IGamePlayer builderPlayer2 = new GamePlayer("Player 2", GamePlayerNature.COMPUTER, new RandomMoveStrategy());
 
 	public GameBuilder(final Class<? extends IGame> gameClass) {
 		this.builderGameClass = gameClass;

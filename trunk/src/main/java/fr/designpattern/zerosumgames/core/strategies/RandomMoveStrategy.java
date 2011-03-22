@@ -19,9 +19,9 @@ package fr.designpattern.zerosumgames.core.strategies;
 
 import fr.designpattern.zerosumgames.core.strategies.selectors.RandomMoveSelector;
 
-public class RandomStrategy extends AbstractStrategy {
+public class RandomMoveStrategy extends AbstractStrategy {
 
-	public RandomStrategy() {
+	public RandomMoveStrategy() {
 		super(new RandomMoveSelector());
 	}
 

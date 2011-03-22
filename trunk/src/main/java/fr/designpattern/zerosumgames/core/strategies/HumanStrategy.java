@@ -17,12 +17,11 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
 import fr.designpattern.zerosumgames.core.strategies.selectors.HumanMoveSelector;
 
 public class HumanStrategy extends AbstractStrategy {
 
-	public HumanStrategy(final IMoveSelector selector) {
+	public HumanStrategy() {
 		super(new HumanMoveSelector());
 	}
 	

@@ -19,12 +19,13 @@ package fr.designpattern.zerosumgames.core.strategies.selectors;
 
 import java.util.List;
 
+import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
 
 public class FirstMoveSelector implements IMoveSelector {
 
-	public IGameBoardMove select(final List<IGameBoardMove> legalMoves) {
+	public IGameBoardMove select(IGame context,  final List<IGameBoardMove> legalMoves) {
 		return legalMoves.get(0);
 	}
 

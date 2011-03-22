@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface IMoveSelector {
 	
-	IGameBoardMove select(List<IGameBoardMove> legalMoves);
+	IGameBoardMove select(IGame context, List<IGameBoardMove> legalMoves);
 }

@@ -35,8 +35,8 @@ public class AbstractStrategy implements IGamePlayerStrategy {
 		this.selector = selector;
 	}
 	
-	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
-		return this.selector.select(legalMoves);
+	public IGameBoardMove chooseMoveAmong(final IGame context, final List<IGameBoardMove> legalMoves) {
+		return this.selector.select(context, legalMoves);
 	}
 
 }
