@@ -1,24 +1,25 @@
-package services;
+package fr.designpattern.zerosumgames.services;
 
 import fr.designpattern.zerosumgames.core.GameBuilder;
 import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
+import fr.designpattern.zerosumgames.core.ai.engines.MiniMaxWithAlphaBetaPruning;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
-import fr.designpattern.zerosumgames.core.strategies.NegaMaxAlphaBetaStrategy;
+import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.othello.Othello;
+import fr.designpattern.zerosumgames.implementations.connect4.Connect4;
 
-public class OthelloService {
-
+public class Connect4Service {
+	
 	public static void main(String[] args) {
-			
-		IGameBuilder gameBuilder = new GameBuilder(Othello.class);
+		
+		IGameBuilder gameBuilder = new GameBuilder(Connect4.class);
 		
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
 				GamePlayerNature.COMPUTER,
-				new NegaMaxAlphaBetaStrategy(5)
+				new BestMoveStrategy(new MiniMaxWithAlphaBetaPruning(8))
 			)
 		);
 		
@@ -26,7 +27,7 @@ public class OthelloService {
 			new GamePlayer(
 				"p2",
 				GamePlayerNature.COMPUTER,
-				new NegaMaxAlphaBetaStrategy(2)
+				new BestMoveStrategy(new MiniMaxWithAlphaBetaPruning(6))
 			)
 		);
 		
