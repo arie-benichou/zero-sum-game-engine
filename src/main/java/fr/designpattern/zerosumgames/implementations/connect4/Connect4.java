@@ -37,15 +37,14 @@ public class Connect4 extends Tictactoe {
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
 	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
-	public Connect4(final IGameBoard board, final IGameOpponents opponents) {
-		super(board, opponents, CONNECTIONS);
-	}
-	// -----------------------------------------------------------------	
 	public Connect4(final IGameBoard board, final IGameOpponents opponents, final int connections) {
 		super(board, opponents, connections);
 	}	
+	// ------------------------------------------------------------
+	public Connect4(final IGameBoard board, final IGameOpponents opponents) {
+		super(board, opponents, CONNECTIONS);
+	}
 	// -----------------------------------------------------------------
-	@Override
 	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
 		IGameBoardCell nextBottomCell;
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
@@ -65,6 +64,26 @@ public class Connect4 extends Tictactoe {
 		}
 		return legalMoves;
 	}
+	// ------------------------------------------------------------	
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+		IGameBoardCell nextBottomCell;
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		// TODO a améliorer
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for(IGameBoardCell cell : line) {
+				while(cell.isEmpty()) {
+					nextBottomCell = cell.bottom();
+					if(nextBottomCell.isNull() || !nextBottomCell.isEmpty()) {
+						legalMoves.add(this.makeMove(side, cell.getPosition()));
+						break;
+					}
+					cell = nextBottomCell;
+				}
+			}
+			break;			
+		}
+		return legalMoves;
+	}	
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {

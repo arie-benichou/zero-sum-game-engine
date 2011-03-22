@@ -51,8 +51,7 @@ public class Tictactoe extends Game {
 		this(board, opponents, Tictactoe.CONNECTIONS);
 	}
 	// ------------------------------------------------------------
-	public Tictactoe(final IGameBoard board, final IGameOpponents opponents,
-			final int connections) {
+	public Tictactoe(final IGameBoard board, final IGameOpponents opponents, final int connections) {
 		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
 		this.connections = connections;
 	}
@@ -81,17 +80,29 @@ public class Tictactoe extends Game {
 		}
 		return legalMoves;
 	}
+	// ------------------------------------------------------------	
+	public List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for (IGameBoardCell cell : line) {
+				if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
+					legalMoves.add(this.makeMove(side, cell.getPosition()));
+				}
+			}
+		}
+		return legalMoves;
+	}	
 	// ------------------------------------------------------------
 	public boolean isGameOverFromVictory(final IGameBoardMove justPlayedMove) {
-		boolean isWinningMove = false;
+		boolean isGameOverFromVictory = false;
 		for (GameBoardPlane plane : GameBoardPlane.values()) {
-			final int n = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
-			if (n >= this.connections) {
-				isWinningMove = true;
+			final int connections = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
+			if (connections >= this.connections) {
+				isGameOverFromVictory = true;
 				break;
 			}
 		}
-		return isWinningMove;
+		return isGameOverFromVictory;
 	}
 	// ------------------------------------------------------------
 	public boolean isGameOverFromDraw(final IGameBoardMove justPlayedMove) {
@@ -110,15 +121,28 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	public double evaluate(final IGameBoardMove justPlayedMove) {
-		double evaluation = 0;
-		final int potentialConnections = this.computePotentialConnections(justPlayedMove);
-		final int realConnections = this.computeRealConnections(justPlayedMove);
-		if(potentialConnections > 0) {
-			final int n = (int)Math.log10(potentialConnections) + 1;
-			evaluation = potentialConnections / Math.pow(10, n);
+		
+		double evaluation;
+		
+		if(this.isGameOverFromVictory(justPlayedMove)) {
+			evaluation = Double.POSITIVE_INFINITY;
 		}
-		evaluation += realConnections;
-		return evaluation;
+		else if(this.isGameOverFromDraw(justPlayedMove)) {
+			evaluation = 0.111;
+		}
+		else {
+			//return this.computeRealConnections(justPlayedMove);
+			evaluation = 0;
+			final int potentialConnections = this.computePotentialConnections(justPlayedMove);
+			final int realConnections = this.computeRealConnections(justPlayedMove);
+			if(potentialConnections > 0) {
+				final int n = (int)Math.log10(potentialConnections) + 1;
+				evaluation = potentialConnections / Math.pow(10, n);
+			}
+			evaluation += realConnections;
+		}
+		
+		return evaluation;		
 	}
 	// ------------------------------------------------------------
 	protected int computeRealConnections(final IGameBoardMove justPlayedMove) {

@@ -30,7 +30,7 @@ public class HumanWithComputerHelpStrategy extends HumanStrategy {
 
 	public HumanWithComputerHelpStrategy(int maxDepth) {
 		this.maxDepth = maxDepth;
-		this.helper = new NegaMaxWithAlphaBetaPruningStrategy(this.maxDepth);
+		this.helper = new NegaMaxAlphaBetaStrategy(this.maxDepth);
 	}
 
 	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
