@@ -1,12 +1,12 @@
 package fr.designpattern.zerosumgames.framework.services;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
-import fr.designpattern.zerosumgames.framework.build.GameBuilder;
-import fr.designpattern.zerosumgames.framework.build.IGameBuilder;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayer;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayerNature;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.builder.Builder;
+import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestMoveStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
 
 // TODO pouvoire construire un tictactoe de dimension differente et avec un nombre de connexions different de 3
 public final class TictactoeService {
@@ -15,7 +15,7 @@ public final class TictactoeService {
 
 	public static void main(final String[] args) {
 			
-		final IGameBuilder gameBuilder = new GameBuilder(Tictactoe.class);
+		final BuilderInterface gameBuilder = new Builder(Tictactoe.class);
 		
 		gameBuilder.player1(
 			new GamePlayer(

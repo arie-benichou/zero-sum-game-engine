@@ -20,7 +20,7 @@ package fr.designpattern.zerosumgames.extensions.othello;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPiece;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPieceNull;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPiecePawn;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
 
 /*
  * Remarque:
