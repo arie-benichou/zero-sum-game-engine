@@ -3,13 +3,13 @@ package fr.designpattern.zerosumgames.framework.services;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------
-	private transient GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
+	private transient OpponentsEnumeration currentPlayer = OpponentsEnumeration.FIRST_PLAYER;
 	// ------------------------------------------------------------
 	private GameInterface game;
 	public final GameInterface getGame() {
@@ -24,12 +24,12 @@ public class GameService implements IGameService {
 	}
 	// ------------------------------------------------------------
 	// TODO créer IGameLegalMoveList
-	protected void displayLegalMoveList(final List<IGameMove> legalMoveList) {
+	protected void displayLegalMoveList(final List<MoveInterface> legalMoveList) {
 		int n = 0;		
 		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
 		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
 		System.out.println("\nlegal moves :");
-		for (IGameMove legalMove : legalMoveList) {
+		for (MoveInterface legalMove : legalMoveList) {
 			System.out.format("#%0" + numberOfDigits + "d: %s\n", ++n, legalMove);
 		}
 	}
@@ -40,10 +40,10 @@ public class GameService implements IGameService {
 		// TODO pas de boucle pour la version client léger	
 		// TODO GameWebService		
 		// ---------------------------------------------------------------------
-		List<IGameMove> legalMoves;
-		IGameMove legalMoveToPlay;
+		List<MoveInterface> legalMoves;
+		MoveInterface legalMoveToPlay;
 		// TODO mieux gérer le coup nul
-		IGameMove lastPlayedMove = new GameBoardMove(GamePlayersEnumeration.NO_ONE, this.getGame().cell(null).getPosition());
+		MoveInterface lastPlayedMove = new Move(OpponentsEnumeration.NO_ONE, this.getGame().cell(null).getPosition());
 		// ---------------------------------------------------------------------		
 		System.out.println(this.game);
 		// ---------------------------------------------------------------------
@@ -61,13 +61,13 @@ public class GameService implements IGameService {
 				if(lastPlayedMove.isNull()) {
 					double evaluation = this.game.evaluate(legalMoveToPlay);
 					if(evaluation > 0) {
-						this.currentPlayer = GamePlayersEnumeration.not(GamePlayersEnumeration.opponent(legalMoveToPlay.getSide()));
+						this.currentPlayer = OpponentsEnumeration.not(OpponentsEnumeration.opponent(legalMoveToPlay.getSide()));
 					}
 					else if(evaluation < 0) {
-						this.currentPlayer = GamePlayersEnumeration.not(legalMoveToPlay.getSide());						
+						this.currentPlayer = OpponentsEnumeration.not(legalMoveToPlay.getSide());						
 					}
 					else {
-						this.currentPlayer = GamePlayersEnumeration.NO_ONE;	
+						this.currentPlayer = OpponentsEnumeration.NO_ONE;	
 					}
 				}
 			}
@@ -81,14 +81,14 @@ public class GameService implements IGameService {
 			//System.exit(0);
 			
 			// ---------------------------------------------------------------------
-		} while (GamePlayersEnumeration.isAPlayer(this.currentPlayer));
+		} while (OpponentsEnumeration.isAPlayer(this.currentPlayer));
 		// ---------------------------------------------------------------------		
 		System.out.println("Game over...");
-		if(GamePlayersEnumeration.isNoOne(this.currentPlayer)) {
+		if(OpponentsEnumeration.isNoOne(this.currentPlayer)) {
 			System.out.println("There is no winner.");
 		}
 		else {
-			System.out.println("And the winner is " + GamePlayersEnumeration.opponent(GamePlayersEnumeration.not(this.currentPlayer)) +  "!");			
+			System.out.println("And the winner is " + OpponentsEnumeration.opponent(OpponentsEnumeration.not(this.currentPlayer)) +  "!");			
 		}
 		
 		// ---------------------------------------------------------------------		

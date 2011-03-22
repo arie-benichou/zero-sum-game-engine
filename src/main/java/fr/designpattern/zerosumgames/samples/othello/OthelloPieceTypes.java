@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.samples.othello;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPiece;
 import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPieceNull;
 import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPiecePawn;
@@ -26,7 +26,7 @@ import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPiecePawn;
  * Remarque:
  * le type de pièce NULL est un artefact correspondant à la non-pièce, il s'agit du NullObject: PieceNull  
  */
-public enum OthelloPieceTypes implements IGamePieceType {
+public enum OthelloPieceTypes implements PieceTypeInterface {
 	// ------------------------------------------------------------
 	NULL(OthelloPieceNull.class),
 	PAWN(OthelloPiecePawn.class);

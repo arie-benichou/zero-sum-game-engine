@@ -17,11 +17,11 @@
 
 package fr.designpattern.zerosumgames.samples.tictactoe;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiece;
 import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiecePawn;
 
-public enum TictactoePieceTypes implements IGamePieceType {
+public enum TictactoePieceTypes implements PieceTypeInterface {
 	// ------------------------------------------------------------
 	PAWN(TictactoePiecePawn.class);
 	// ------------------------------------------------------------

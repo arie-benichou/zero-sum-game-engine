@@ -17,20 +17,20 @@
 
 package fr.designpattern.zerosumgames.samples.connect4.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Piece;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
-public abstract class Connect4Piece extends GamePiece {
+public abstract class Connect4Piece extends Piece {
 	// ------------------------------------------------------------
-	public Connect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public Connect4Piece(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		return this.getSide().equals(OpponentsEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }

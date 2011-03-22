@@ -2,23 +2,23 @@ package fr.designpattern.zerosumgames.samples.othello;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 // TODO ? implémenter une interface
-public class OthelloMove extends GameBoardMove {
+public class OthelloMove extends Move {
 	// ---------------------------------------------------------------------
-	private List<IGameBoardCell> cellsToRevert;
-	public final void setCellsToRevert(final List<IGameBoardCell> revertedCells) {
+	private List<CellInterface> cellsToRevert;
+	public final void setCellsToRevert(final List<CellInterface> revertedCells) {
 		this.cellsToRevert = revertedCells;
 	}
-	public final List<IGameBoardCell> getCellsToRevert() {
+	public final List<CellInterface> getCellsToRevert() {
 		return this.cellsToRevert;
 	}		
 	// ---------------------------------------------------------------------	
-	public OthelloMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
+	public OthelloMove(final OpponentsEnumeration side, final PositionInterface position) {
 		super(side, position);
 	}
 	// ---------------------------------------------------------------------	

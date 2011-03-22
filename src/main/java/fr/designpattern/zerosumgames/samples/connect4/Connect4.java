@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;
 import fr.designpattern.zerosumgames.util.StaticContext;
@@ -35,22 +35,22 @@ public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
 	public final static int CONNECTIONS = 4;
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
-	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 6, 1, 7); 
+	public final static Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
-	public Connect4(final IGameBoard board, final IGameOpponents opponents, final int connections) {
+	public Connect4(final BoardInterface board, final OpponentsInterface opponents, final int connections) {
 		super(board, opponents, connections);
 	}	
 	// ------------------------------------------------------------
-	public Connect4(final IGameBoard board, final IGameOpponents opponents) {
+	public Connect4(final BoardInterface board, final OpponentsInterface opponents) {
 		super(board, opponents, CONNECTIONS);
 	}
 	// -----------------------------------------------------------------
-	public final List<IGameMove> getLegalMoves(final GamePlayersEnumeration side) {
-		IGameBoardCell nextBottomCell;
-		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
+	public final List<MoveInterface> getLegalMoves(final OpponentsEnumeration side) {
+		CellInterface nextBottomCell;
+		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
 		// TODO a améliorer
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for(IGameBoardCell cell : line) {
+		for (CellInterface[] line : this.getBoard()) {
+			for(CellInterface cell : line) {
 				while(cell.isEmpty()) {
 					nextBottomCell = cell.bottom();
 					if(nextBottomCell.isNull() || !nextBottomCell.isEmpty()) {
