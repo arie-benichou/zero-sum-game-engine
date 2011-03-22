@@ -6,5 +6,5 @@ import fr.designpattern.zerosumgames.framework.game.GameInterface;
 
 public interface IGameMoveSelector {
 	
-	IGameMove select(GameInterface context, List<IGameMove> legalMoves);
+	MoveInterface select(GameInterface context, List<MoveInterface> legalMoves);
 }

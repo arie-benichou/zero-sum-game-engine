@@ -1,19 +1,19 @@
 package fr.designpattern.zerosumgames.samples.checkers.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Piece;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
-public abstract class CheckersPiece extends GamePiece implements ICheckersPiece {
+public abstract class CheckersPiece extends Piece implements ICheckersPiece {
 	// ------------------------------------------------------------
-	public CheckersPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public CheckersPiece(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
-	protected boolean canJumpOver(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
-		final IGameBoardCell neighbourCell = cell.getNeighbour(cardinalPosition);
+	protected boolean canJumpOver(final CellInterface cell, final BoardCardinalPosition cardinalPosition) {
+		final CellInterface neighbourCell = cell.getNeighbour(cardinalPosition);
 		return
 			!
 			(
@@ -24,7 +24,7 @@ public abstract class CheckersPiece extends GamePiece implements ICheckersPiece 
 			&& neighbourCell.getNeighbour(cardinalPosition).isEmpty(); 
 	}
 	// ------------------------------------------------------------	
-	protected boolean canWalkThrough(final IGameBoardCell cell, final GameBoardCardinalPosition cardinalPosition) {
+	protected boolean canWalkThrough(final CellInterface cell, final BoardCardinalPosition cardinalPosition) {
 		return !cell.getNeighbour(cardinalPosition).isNull() && cell.getNeighbour(cardinalPosition).isEmpty();
 	}
 	// ------------------------------------------------------------
@@ -33,7 +33,7 @@ public abstract class CheckersPiece extends GamePiece implements ICheckersPiece 
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		return this.getSide().equals(OpponentsEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// -----------------------------------------------------------
 }

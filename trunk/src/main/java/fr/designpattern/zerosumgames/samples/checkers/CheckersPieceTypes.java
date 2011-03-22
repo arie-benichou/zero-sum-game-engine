@@ -1,11 +1,11 @@
 package fr.designpattern.zerosumgames.samples.checkers;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPieceKing;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPieceMan;
 
-public enum CheckersPieceTypes implements IGamePieceType {
+public enum CheckersPieceTypes implements PieceTypeInterface {
 
 	MAN(CheckersPieceMan.class),
 	KING(CheckersPieceKing.class);

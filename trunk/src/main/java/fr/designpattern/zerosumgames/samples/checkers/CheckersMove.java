@@ -1,27 +1,27 @@
 package fr.designpattern.zerosumgames.samples.checkers;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 // TODO ? implémenter une interface
-public class CheckersMove extends GameBoardMove {
+public class CheckersMove extends Move {
 	// ---------------------------------------------------------------------	
-	private GameBoardCardinalPosition direction;
-	private final void setDirection(final GameBoardCardinalPosition direction) {
+	private BoardCardinalPosition direction;
+	private final void setDirection(final BoardCardinalPosition direction) {
 		this.direction = direction;
 	}
-	public final GameBoardCardinalPosition getDirection() {
+	public final BoardCardinalPosition getDirection() {
 		return direction;
 	}	
 	// ---------------------------------------------------------------------	
-	private IGamePiece capturedPiece;
-	public final void setCapturedPiece(IGamePiece capturedPiece) {
+	private PieceInterface capturedPiece;
+	public final void setCapturedPiece(PieceInterface capturedPiece) {
 		this.capturedPiece = capturedPiece;
 	}
-	public final IGamePiece getCapturedPiece() {
+	public final PieceInterface getCapturedPiece() {
 		return capturedPiece;
 	}	
 	// ---------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class CheckersMove extends GameBoardMove {
 		this.hasBeenCrowned = hasBeenCrowned;
 	}	
 	// ---------------------------------------------------------------------	
-	public CheckersMove(final GamePlayersEnumeration side, final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
+	public CheckersMove(final OpponentsEnumeration side, final PositionInterface position, final BoardCardinalPosition direction) {
 		super(side, position);
 		this.setDirection(direction);
 	}

@@ -17,12 +17,12 @@
 
 package fr.designpattern.zerosumgames.samples.othello.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 public class OthelloPieceNull extends OthelloPiece {
 	// ------------------------------------------------------------
-	public OthelloPieceNull(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public OthelloPieceNull(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

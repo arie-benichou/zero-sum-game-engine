@@ -21,13 +21,13 @@ package fr.designpattern.zerosumgames.framework.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
 
 /**
  * This is the interface for a board game.
@@ -51,7 +51,7 @@ public interface GameInterface {
 	 * 
 	 * @return the list of legal moves
 	 */
-	List<IGameMove> getLegalMoves(final GamePlayersEnumeration side);
+	List<MoveInterface> getLegalMoves(final OpponentsEnumeration side);
 	
 	
 	/**
@@ -62,7 +62,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the move is completed, false otherwise
 	 */
-	boolean doMove(final IGameMove moveToPlay);
+	boolean doMove(final MoveInterface moveToPlay);
 	
 	/**
 	 * Undo the played move and returns true if the move is completely undone, false otherwise.
@@ -71,7 +71,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the move is completely undone, false otherwise
 	 */	
-	boolean undoMove(final IGameMove playedMove);
+	boolean undoMove(final MoveInterface playedMove);
 	
 	/**
 	 * Returns true if the game is over from a victory of the current player, false otherwise.
@@ -80,7 +80,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the game is over from a victory of the current player, false otherwise
 	 */
-	boolean isGameOverFromVictory(final IGameMove playedMove);
+	boolean isGameOverFromVictory(final MoveInterface playedMove);
 
 	/**
 	 * Returns true if the game is over from a draw, false otherwise.
@@ -89,7 +89,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the game is over from a victory of the current player, false otherwise
 	 */	
-	boolean isGameOverFromDraw(final IGameMove playedMove);
+	boolean isGameOverFromDraw(final MoveInterface playedMove);
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,
@@ -108,7 +108,7 @@ public interface GameInterface {
 	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
 	 * NO_ONE, if the game is a draw
 	 */
-	GamePlayersEnumeration whoShallPlay(final IGameMove playedMove, final boolean isMoveDone);			
+	OpponentsEnumeration whoShallPlay(final MoveInterface playedMove, final boolean isMoveDone);			
 	
 	/**
 	 * Returns the computation of the move evaluation of the game.
@@ -117,13 +117,13 @@ public interface GameInterface {
 	 * 
 	 * @return the computation of the move evaluation of the game
 	 */
-	double evaluate(final IGameMove playedMove);
+	double evaluate(final MoveInterface playedMove);
 	
 	// ---------------------------------------------------------------------
 	// Façades
 	// ---------------------------------------------------------------------
 	
-	IGameStrategy getPlayerStrategy(final GamePlayersEnumeration currentPlayer);
+	StrategyInterface getPlayerStrategy(final OpponentsEnumeration currentPlayer);
 	
 	/**
 	 * Returns a piece of this game for a given player
@@ -135,7 +135,7 @@ public interface GameInterface {
 	 * 
 	 * @return a piece of this game for a given player and a given type of piece
 	 */
-	IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType);
+	PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType);
 
 	/**
 	 * Returns the board cell for a given position.
@@ -144,7 +144,7 @@ public interface GameInterface {
 	 * 
 	 * @return the board cell for a given position
 	 */
-	IGameBoardCell cell(final IGameBoardPosition position);
+	CellInterface cell(final PositionInterface position);
 
 	/**
 	 * Returns the board cell at (row, column)
@@ -155,7 +155,7 @@ public interface GameInterface {
 	 * 
 	 * @return the board cell at (row, column)
 	 */
-	IGameBoardCell cell(final int clientRowIndex, final int clientColumnIndex);
+	CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
 	
 }

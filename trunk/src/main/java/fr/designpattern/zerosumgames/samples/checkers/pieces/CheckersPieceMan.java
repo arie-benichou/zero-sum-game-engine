@@ -3,36 +3,36 @@ package fr.designpattern.zerosumgames.samples.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 //TODO refactoring
 //TODO pouvoir additionner les points cardinaux entre eux
 public class CheckersPieceMan extends CheckersPiece {
 	// ------------------------------------------------------------
-	public CheckersPieceMan(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public CheckersPieceMan(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
-	private GameBoardCardinalPosition getSideDirection() {
-		return this.getSide() == GamePlayersEnumeration.FIRST_PLAYER ? GameBoardCardinalPosition.TOP : GameBoardCardinalPosition.BOTTOM;
+	private BoardCardinalPosition getSideDirection() {
+		return this.getSide() == OpponentsEnumeration.FIRST_PLAYER ? BoardCardinalPosition.TOP : BoardCardinalPosition.BOTTOM;
 	}
 	// ------------------------------------------------------------
-	public List<GameBoardCardinalPosition> getWalkOptions(final IGameBoardCell cell) {
+	public List<BoardCardinalPosition> getWalkOptions(final CellInterface cell) {
 		
 		// TODO ? utiliser un EnumSet
-		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
 		
-		final GameBoardCardinalPosition sideDirection = this.getSideDirection();
+		final BoardCardinalPosition sideDirection = this.getSideDirection();
 		
-		final GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
+		final BoardCardinalPosition direction1 = BoardCardinalPosition.valueOf(sideDirection + "_" + BoardCardinalPosition.LEFT.toString());
 		if(this.canWalkThrough(cell, direction1)) {
 			options.add(direction1);
 		}
 		
-		final GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
+		final BoardCardinalPosition direction2 = BoardCardinalPosition.valueOf(sideDirection + "_" + BoardCardinalPosition.RIGHT.toString());
 		if(this.canWalkThrough(cell, direction2)) {
 			options.add(direction2);
 		}
@@ -40,19 +40,19 @@ public class CheckersPieceMan extends CheckersPiece {
 		return options;
 	}
 	// ------------------------------------------------------------
-	public List<GameBoardCardinalPosition> getJumpOptions(final IGameBoardCell cell) {
+	public List<BoardCardinalPosition> getJumpOptions(final CellInterface cell) {
 		
 		// TODO ? utiliser un EnumSet
-		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
+		final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
 		
-		final GameBoardCardinalPosition sideDirection = this.getSideDirection();
+		final BoardCardinalPosition sideDirection = this.getSideDirection();
 				
-		final GameBoardCardinalPosition direction1 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.LEFT.toString());
+		final BoardCardinalPosition direction1 = BoardCardinalPosition.valueOf(sideDirection + "_" + BoardCardinalPosition.LEFT.toString());
 		if(this.canJumpOver(cell, direction1)) {
 			options.add(direction1);
 		}
 		
-		final GameBoardCardinalPosition direction2 = GameBoardCardinalPosition.valueOf(sideDirection + "_" + GameBoardCardinalPosition.RIGHT.toString());
+		final BoardCardinalPosition direction2 = BoardCardinalPosition.valueOf(sideDirection + "_" + BoardCardinalPosition.RIGHT.toString());
 		if(this.canJumpOver(cell, direction2)) {
 			options.add(direction2);
 		}
@@ -60,7 +60,7 @@ public class CheckersPieceMan extends CheckersPiece {
 		return options;
 	}
 	// ------------------------------------------------------------
-	public boolean isPromotable(final IGameBoardCell cell) {
+	public boolean isPromotable(final CellInterface cell) {
 		return cell.getNeighbour(this.getSideDirection()).isNull();
 	}
 	// ------------------------------------------------------------	

@@ -17,12 +17,12 @@
 
 package fr.designpattern.zerosumgames.samples.connect4.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 public class Connect4PiecePawn extends Connect4Piece {
 	// ------------------------------------------------------------
-	public Connect4PiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public Connect4PiecePawn(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

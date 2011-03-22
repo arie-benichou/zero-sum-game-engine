@@ -17,12 +17,12 @@
 
 package fr.designpattern.zerosumgames.samples.tictactoe.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 public class TictactoePiecePawn extends TictactoePiece {
 	// ------------------------------------------------------------
-	public TictactoePiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public TictactoePiecePawn(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------

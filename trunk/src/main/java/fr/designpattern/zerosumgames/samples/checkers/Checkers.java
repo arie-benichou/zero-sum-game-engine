@@ -24,16 +24,16 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.Game;
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePieceFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Pieces;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
 import fr.designpattern.zerosumgames.util.StaticContext;
@@ -41,15 +41,15 @@ import fr.designpattern.zerosumgames.util.StaticContext;
 public class Checkers extends Game {
 	// ------------------------------------------------------------	
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
-	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 8, 1, 8); 
+	public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8); 
 	// ------------------------------------------------------------
-	public Checkers(final IGameBoard board, final IGameOpponents opponents) {
+	public Checkers(final BoardInterface board, final OpponentsInterface opponents) {
 		// TODO !! à revoir
-		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
+		super(new Pieces(PIECE_TYPES), board, opponents);
 		this.setupTestBoard(board);
 	}
 	// ------------------------------------------------------------
-	private void setupTestBoard(final IGameBoard board) {
+	private void setupTestBoard(final BoardInterface board) {
 		this.setupBoard(board);
 		
 		/*
@@ -139,27 +139,27 @@ public class Checkers extends Game {
 		
 	}
 	// ------------------------------------------------------------	
-	private void setupBoard(final IGameBoard board) {
+	private void setupBoard(final BoardInterface board) {
 		int n, clientColumnIndex;
 		for(int clientRowIndex = 1; clientRowIndex<=3; ++clientRowIndex) {
 			for(n = 1; n<=4; ++n) {
 				clientColumnIndex = 2*n + clientRowIndex% 2 - 1;
-				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
+				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(OpponentsEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
 			}
 		}
 		// TODO permettre d'autres dimensions		
 		for(int clientRowIndex = 6; clientRowIndex<=8; ++clientRowIndex) {
 			for(n = 1; n<=4; ++n) {
 				clientColumnIndex = 2*n + clientRowIndex% 2 - 1;
-				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
+				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(OpponentsEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
 			}
 		}
 	}
 	// -----------------------------------------------------------------	
-	private List<IGameBoardCell> getRelevantCells(final GamePlayersEnumeration side) {
-		final List<IGameBoardCell> relevantCells = new ArrayList<IGameBoardCell>();
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for(IGameBoardCell cell : line) {
+	private List<CellInterface> getRelevantCells(final OpponentsEnumeration side) {
+		final List<CellInterface> relevantCells = new ArrayList<CellInterface>();
+		for (CellInterface[] line : this.getBoard()) {
+			for(CellInterface cell : line) {
 				// TODO ? utiliser la pièce nulle
 				if(!cell.isEmpty() && cell.getPiece().getSide() == side) {
 					relevantCells.add(cell);
@@ -174,16 +174,16 @@ public class Checkers extends Game {
 		return false;
 	}	
 	// -----------------------------------------------------------------	
-	private IGameMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
+	private MoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position, final BoardCardinalPosition direction) {
 		// TODO utiliser un cache
 		return new CheckersMove(side, position, direction);
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<IGameMove> getLegalMoves(GamePlayersEnumeration side) {
-		final List<IGameMove> jumpingMoves = new ArrayList<IGameMove>();
+	public List<MoveInterface> getLegalMoves(OpponentsEnumeration side) {
+		final List<MoveInterface> jumpingMoves = new ArrayList<MoveInterface>();
 		CheckersPiece piece;
-		List<GameBoardCardinalPosition> pieceOptions;
+		List<BoardCardinalPosition> pieceOptions;
 		
 		// TODO chaque jeu doit définir son nullMove
 		if(!previousMove.isNull()) {
@@ -192,32 +192,32 @@ public class Checkers extends Game {
 				//System.out.println("Tu n'as pas fini ton coup, celà réduit les coups légaux possibles...");
 				//System.out.println(previousCheckersMove.getPosition());
 				//System.out.println(previousCheckersMove.getDirection());
-				IGameBoardCell cell = this.cell(previousCheckersMove.getPosition()).getNeighbour(previousCheckersMove.getDirection()).getNeighbour(previousCheckersMove.getDirection());
+				CellInterface cell = this.cell(previousCheckersMove.getPosition()).getNeighbour(previousCheckersMove.getDirection()).getNeighbour(previousCheckersMove.getDirection());
 				piece = (CheckersPiece)cell.getPiece();
 				pieceOptions = piece.getJumpOptions(cell);
-				for(GameBoardCardinalPosition direction : pieceOptions) {
+				for(BoardCardinalPosition direction : pieceOptions) {
 					jumpingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 				return jumpingMoves;
 			}
 		}
 		
-		final List<IGameMove> walkingMoves = new ArrayList<IGameMove>();		
+		final List<MoveInterface> walkingMoves = new ArrayList<MoveInterface>();		
 		boolean hasToJump = false;
 		
-		for(IGameBoardCell cell : this.getRelevantCells(side)) {
+		for(CellInterface cell : this.getRelevantCells(side)) {
 			piece = (CheckersPiece)cell.getPiece();
 			pieceOptions = piece.getJumpOptions(cell);
 			if(!pieceOptions.isEmpty()) {
 				hasToJump = true;
-				for(GameBoardCardinalPosition direction : pieceOptions) {
+				for(BoardCardinalPosition direction : pieceOptions) {
 					jumpingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 				continue;
 			}
 			if(!hasToJump) {
 				pieceOptions = piece.getWalkOptions(cell);
-				for(GameBoardCardinalPosition direction : pieceOptions) {
+				for(BoardCardinalPosition direction : pieceOptions) {
 					walkingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 			}
@@ -227,7 +227,7 @@ public class Checkers extends Game {
 	}
 	// ------------------------------------------------------------
 	private boolean hasToKeepPlaying(final CheckersMove move) {
-		IGameBoardCell actualCell = this.cell(move.getPosition());
+		CellInterface actualCell = this.cell(move.getPosition());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		actualCell = actualCell.getNeighbour(move.getDirection());
 		final CheckersPiece piece =  (CheckersPiece) actualCell.getPiece();
@@ -236,16 +236,16 @@ public class Checkers extends Game {
 	}
 	// -----------------------------------------------------------------
 	@Override
-	public boolean doMove(final IGameMove moveToPlay) {
+	public boolean doMove(final MoveInterface moveToPlay) {
 		final CheckersMove checkersMove = (CheckersMove)moveToPlay;
 		// récupération de la cellule corespondant à la position
-		final IGameBoardCell cell = this.cell(checkersMove.getPosition());
+		final CellInterface cell = this.cell(checkersMove.getPosition());
 		// récupération de la pièce à déplacer
 		final CheckersPiece pieceToMove = (CheckersPiece)cell.getPiece();
 		// suppression de la pièce à sa position actuelle
 		cell.setPiece(null);
 		// récupération de la cellulle correspondant à la direction choisie
-		IGameBoardCell destinationCell = cell.getNeighbour(checkersMove.getDirection());		
+		CellInterface destinationCell = cell.getNeighbour(checkersMove.getDirection());		
 		// si la cellule n'est pas vide
 		if(!destinationCell.isEmpty()) {
 			// la pièce de cette cellule est supprimée
@@ -277,18 +277,18 @@ public class Checkers extends Game {
 		//game over {victoire, match null}
 	
 	// -----------------------------------------------------------------
-	public boolean undoMove(final IGameMove move) {
+	public boolean undoMove(final MoveInterface move) {
 		
 		final CheckersMove checkersMove = (CheckersMove)move;
 		
-		IGameBoardCell cell = this.cell(move.getPosition()).getNeighbour(checkersMove.getDirection());
+		CellInterface cell = this.cell(move.getPosition()).getNeighbour(checkersMove.getDirection());
 		
 		if(checkersMove.getCapturedPiece() != null) {// TODO utiliser la pièce nulle
 			cell.setPiece(checkersMove.getCapturedPiece());
 			cell = cell.getNeighbour(checkersMove.getDirection());
 		}
 		
-		IGamePiece piece = checkersMove.hasBeenCrowned() ? this.piece(move.getSide(), CheckersPieceTypes.MAN) : cell.getPiece();
+		PieceInterface piece = checkersMove.hasBeenCrowned() ? this.piece(move.getSide(), CheckersPieceTypes.MAN) : cell.getPiece();
 		this.cell(move.getPosition()).setPiece(piece);
 		
 		cell.setPiece(null); // TODO utiliser la pièce nulle
@@ -297,21 +297,21 @@ public class Checkers extends Game {
 	}	
 	// -----------------------------------------------------------------
 	// TODO à améliorer
-	private boolean isGameOver(IGameMove previousMove) {
-		if(this.getRelevantCells(GamePlayersEnumeration.opponent(previousMove.getSide())).isEmpty()) {
+	private boolean isGameOver(MoveInterface previousMove) {
+		if(this.getRelevantCells(OpponentsEnumeration.opponent(previousMove.getSide())).isEmpty()) {
 			return true;
 		}
-		else if(this.getLegalMoves(GamePlayersEnumeration.opponent(previousMove.getSide()), previousMove).isEmpty()) {
+		else if(this.getLegalMoves(OpponentsEnumeration.opponent(previousMove.getSide()), previousMove).isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 	// ------------------------------------------------------------
 	// TODO à optimiser
-	public int computeDelta(final GamePlayersEnumeration side) {
+	public int computeDelta(final OpponentsEnumeration side) {
 		int delta = 0;
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for (IGameBoardCell cell : line) {
+		for (CellInterface[] line : this.getBoard()) {
+			for (CellInterface cell : line) {
 				if( cell.isNull() || cell.isEmpty() ){
 					continue;
 				}
@@ -336,15 +336,15 @@ public class Checkers extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final IGameMove previousMove) {
+	public boolean isGameOverFromVictory(final MoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final IGameMove previousMove) {
+	public boolean isGameOverFromDraw(final MoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------			
-	public double evaluate(final IGameMove move) {
+	public double evaluate(final MoveInterface move) {
 		return this.computeDelta(move.getSide());
 	}	
 	// -----------------------------------------------------------------	

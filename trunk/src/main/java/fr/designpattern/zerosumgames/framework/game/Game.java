@@ -21,16 +21,16 @@ package fr.designpattern.zerosumgames.framework.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PiecesInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
 
 /**
  * This class provides a skeletal implementation of the Game
@@ -45,31 +45,31 @@ public abstract class Game implements GameInterface {
 	// Object Internals
 	// ---------------------------------------------------------------------
 	
-	private IGamePieceFactory pieceFactory;
-	private final void setPieceFactory(final IGamePieceFactory gamePieceFactory) {
+	private PiecesInterface pieceFactory;
+	private final void setPieceFactory(final PiecesInterface gamePieceFactory) {
 		this.pieceFactory = gamePieceFactory;
 	}	
-	protected final IGamePieceFactory getPieceFactory() {
+	protected final PiecesInterface getPieceFactory() {
 		return this.pieceFactory;
 	}
 	// ---------------------------------------------------------------------
-	private IGameBoard board;
-	private final void setBoard(final IGameBoard board) {
+	private BoardInterface board;
+	private final void setBoard(final BoardInterface board) {
 		this.board = board;
 	}	
-	protected final IGameBoard getBoard() {
+	protected final BoardInterface getBoard() {
 		return this.board;
 	}
 	// ---------------------------------------------------------------------
-	private IGameOpponents opponents;
-	private final void setOpponents(final IGameOpponents opponents) {
+	private OpponentsInterface opponents;
+	private final void setOpponents(final OpponentsInterface opponents) {
 		this.opponents = opponents;
 	}	
-	private final IGameOpponents getOpponents() {
+	private final OpponentsInterface getOpponents() {
 		return this.opponents;
 	}	
 	// ---------------------------------------------------------------------
-	public Game(final IGamePieceFactory pieceFactory, final IGameBoard board, final IGameOpponents opponents) {
+	public Game(final PiecesInterface pieceFactory, final BoardInterface board, final OpponentsInterface opponents) {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
 		this.setOpponents(opponents);
@@ -82,16 +82,16 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------
 	// Façades fournies
 	// ---------------------------------------------------------------------
-	public IGameStrategy getPlayerStrategy(final GamePlayersEnumeration playerOrdinal) {
+	public StrategyInterface getPlayerStrategy(final OpponentsEnumeration playerOrdinal) {
 		return this.getOpponents().getPlayerStrategy(playerOrdinal);
 	}
-	public final IGamePiece piece(final GamePlayersEnumeration player, final IGamePieceType pieceType) {
+	public final PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType) {
 		return this.getPieceFactory().getPiece(player, pieceType);
 	}
-	public final IGameBoardCell cell(final IGameBoardPosition position) {
+	public final CellInterface cell(final PositionInterface position) {
 		return this.getBoard().getCell(position);
 	}
-	public final IGameBoardCell cell(final int clientRowIndex, final int clientColumnIndex) {
+	public final CellInterface cell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
 	}
 	
@@ -99,19 +99,19 @@ public abstract class Game implements GameInterface {
 	// Implémentations finales 
 	// ---------------------------------------------------------------------
 	
-	public final GamePlayersEnumeration whoShallPlay(final IGameMove playedMove, final boolean isMoveDone) {
-		final GamePlayersEnumeration nexSideToPlay;
+	public final OpponentsEnumeration whoShallPlay(final MoveInterface playedMove, final boolean isMoveDone) {
+		final OpponentsEnumeration nexSideToPlay;
 		if(!isMoveDone) {
 			nexSideToPlay = playedMove.getSide();
 		}
 		else if(this.isGameOverFromVictory(playedMove)){
-			nexSideToPlay = GamePlayersEnumeration.not(GamePlayersEnumeration.opponent(playedMove.getSide()));
+			nexSideToPlay = OpponentsEnumeration.not(OpponentsEnumeration.opponent(playedMove.getSide()));
 		}
 		else if(this.isGameOverFromDraw(playedMove)){
-			nexSideToPlay = GamePlayersEnumeration.NO_ONE;
+			nexSideToPlay = OpponentsEnumeration.NO_ONE;
 		}
 		else {
-			nexSideToPlay = GamePlayersEnumeration.opponent(playedMove.getSide());
+			nexSideToPlay = OpponentsEnumeration.opponent(playedMove.getSide());
 		}
 		return nexSideToPlay;
 	}
@@ -121,11 +121,11 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------
 	
 	public abstract boolean hasNullMove();	
-	public abstract List<IGameMove> getLegalMoves(GamePlayersEnumeration side);
-	public abstract boolean doMove(IGameMove moveToPlay);
-	public abstract boolean undoMove(IGameMove playedMove);
-	public abstract boolean isGameOverFromVictory(IGameMove playedMove);
-	public abstract boolean isGameOverFromDraw(IGameMove playedMove);
-	public abstract double evaluate(IGameMove playedMove);
+	public abstract List<MoveInterface> getLegalMoves(OpponentsEnumeration side);
+	public abstract boolean doMove(MoveInterface moveToPlay);
+	public abstract boolean undoMove(MoveInterface playedMove);
+	public abstract boolean isGameOverFromVictory(MoveInterface playedMove);
+	public abstract boolean isGameOverFromDraw(MoveInterface playedMove);
+	public abstract double evaluate(MoveInterface playedMove);
 	
 }

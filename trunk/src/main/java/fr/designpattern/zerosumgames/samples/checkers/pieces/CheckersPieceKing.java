@@ -3,29 +3,29 @@ package fr.designpattern.zerosumgames.samples.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 public class CheckersPieceKing extends CheckersPiece {
 	// ------------------------------------------------------------
-	private static final GameBoardCardinalPosition[] POSITIONS =
+	private static final BoardCardinalPosition[] POSITIONS =
 	{
-		GameBoardCardinalPosition.TOP_RIGHT,
-		GameBoardCardinalPosition.BOTTOM_RIGHT,
-		GameBoardCardinalPosition.TOP_LEFT,
-		GameBoardCardinalPosition.BOTTOM_LEFT
+		BoardCardinalPosition.TOP_RIGHT,
+		BoardCardinalPosition.BOTTOM_RIGHT,
+		BoardCardinalPosition.TOP_LEFT,
+		BoardCardinalPosition.BOTTOM_LEFT
 	};
 	// ------------------------------------------------------------
-	public CheckersPieceKing(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public CheckersPieceKing(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
-	public List<GameBoardCardinalPosition> getWalkOptions(final IGameBoardCell cell) {
+	public List<BoardCardinalPosition> getWalkOptions(final CellInterface cell) {
 		// TODO ? utiliser un EnumSet
-		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
-		for (GameBoardCardinalPosition direction : POSITIONS) {
+		final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
+		for (BoardCardinalPosition direction : POSITIONS) {
 			if (this.canWalkThrough(cell, direction)) {
 				options.add(direction);
 			}
@@ -33,10 +33,10 @@ public class CheckersPieceKing extends CheckersPiece {
 		return options;
 	}
 	// ------------------------------------------------------------	
-	public List<GameBoardCardinalPosition> getJumpOptions(final IGameBoardCell cell) {
+	public List<BoardCardinalPosition> getJumpOptions(final CellInterface cell) {
 		// TODO ? utiliser un EnumSet
-		final List<GameBoardCardinalPosition> options = new ArrayList<GameBoardCardinalPosition>();
-		for (GameBoardCardinalPosition direction : POSITIONS) {
+		final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
+		for (BoardCardinalPosition direction : POSITIONS) {
 			if (this.canJumpOver(cell, direction)) {
 				options.add(direction);
 			}
@@ -49,7 +49,7 @@ public class CheckersPieceKing extends CheckersPiece {
 		return super.toString().toUpperCase();
 	}
 	// ------------------------------------------------------------	
-	public boolean isPromotable(final IGameBoardCell cell) {
+	public boolean isPromotable(final CellInterface cell) {
 		return false;
 	}
 }

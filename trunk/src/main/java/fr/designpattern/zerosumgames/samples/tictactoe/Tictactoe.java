@@ -24,18 +24,18 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.Game;
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardPlane;
-import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePieceFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardPlane;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Pieces;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
@@ -43,16 +43,16 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	public final static int CONNECTIONS = 3;
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
-	public final static GameBoardDimension BOARD_DIMENSION = new GameBoardDimension(1, 3, 1, 3);
+	public final static Dimension BOARD_DIMENSION = new Dimension(1, 3, 1, 3);
 	// ------------------------------------------------------------
 	protected transient int connections;
 	// ------------------------------------------------------------
-	public Tictactoe(final IGameBoard board, final IGameOpponents opponents) {
+	public Tictactoe(final BoardInterface board, final OpponentsInterface opponents) {
 		this(board, opponents, Tictactoe.CONNECTIONS);
 	}
 	// ------------------------------------------------------------
-	public Tictactoe(final IGameBoard board, final IGameOpponents opponents, final int connections) {
-		super(new GamePieceFactory(PIECE_TYPES), board, opponents);
+	public Tictactoe(final BoardInterface board, final OpponentsInterface opponents, final int connections) {
+		super(new Pieces(PIECE_TYPES), board, opponents);
 		this.connections = connections;
 	}
 	// ------------------------------------------------------------
@@ -62,16 +62,16 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO ? implémentation par défaut dans la classe abstraite
-	protected IGameMove makeMove(final GamePlayersEnumeration side,
-			final IGameBoardPosition position) {
+	protected MoveInterface makeMove(final OpponentsEnumeration side,
+			final PositionInterface position) {
 		// TODO utiliser un cache
-		return new GameBoardMove(side, position);
+		return new Move(side, position);
 	}
 	// ------------------------------------------------------------
-	public List<IGameMove> getLegalMoves(final GamePlayersEnumeration side) {
-		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for (IGameBoardCell cell : line) {
+	public List<MoveInterface> getLegalMoves(final OpponentsEnumeration side) {
+		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
+		for (CellInterface[] line : this.getBoard()) {
+			for (CellInterface cell : line) {
 				if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
 					legalMoves.add(this.makeMove(side, cell.getPosition()));
 				}
@@ -80,9 +80,9 @@ public class Tictactoe extends Game {
 		return legalMoves;
 	}	
 	// ------------------------------------------------------------
-	public boolean isGameOverFromVictory(final IGameMove justPlayedMove) {
+	public boolean isGameOverFromVictory(final MoveInterface justPlayedMove) {
 		boolean isGameOverFromVictory = false;
-		for (GameBoardPlane plane : GameBoardPlane.values()) {
+		for (BoardPlane plane : BoardPlane.values()) {
 			final int connections = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 			if (connections >= this.connections) {
 				isGameOverFromVictory = true;
@@ -92,22 +92,22 @@ public class Tictactoe extends Game {
 		return isGameOverFromVictory;
 	}
 	// ------------------------------------------------------------
-	public boolean isGameOverFromDraw(final IGameMove justPlayedMove) {
-		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
+	public boolean isGameOverFromDraw(final MoveInterface justPlayedMove) {
+		return this.getLegalMoves(OpponentsEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
 	}
 	// ------------------------------------------------------------
-	public boolean doMove(final IGameMove moveToPlay) {
-		final IGameBoardCell concernedCell = this.cell(moveToPlay.getPosition());
+	public boolean doMove(final MoveInterface moveToPlay) {
+		final CellInterface concernedCell = this.cell(moveToPlay.getPosition());
 		concernedCell.setPiece(this.piece(moveToPlay.getSide()));
 		return true;
 	}
 	// ------------------------------------------------------------
-	public boolean undoMove(final IGameMove move) {
+	public boolean undoMove(final MoveInterface move) {
 		this.cell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
-	public double evaluate(final IGameMove justPlayedMove) {
+	public double evaluate(final MoveInterface justPlayedMove) {
 		
 		double evaluation;
 		
@@ -132,20 +132,20 @@ public class Tictactoe extends Game {
 		return evaluation;		
 	}
 	// ------------------------------------------------------------
-	protected int computeRealConnections(final IGameMove justPlayedMove) {
+	protected int computeRealConnections(final MoveInterface justPlayedMove) {
 		int connections = 0;
-		for (GameBoardPlane plane : GameBoardPlane.values()) {
+		for (BoardPlane plane : BoardPlane.values()) {
 			connections = this.computeRealConnection(justPlayedMove,plane.getOneWay()) + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 		}
 		return connections;
 	}
 	// ------------------------------------------------------------	
-	protected int computePotentialConnections(final IGameMove justPlayedMove) {
+	protected int computePotentialConnections(final MoveInterface justPlayedMove) {
 		int connections = 0;
 		int connections1 = 0;
 		int connections2 = 0;
 		// ------------------------------------------------------------		
-		for (GameBoardPlane plane : GameBoardPlane.values()) {
+		for (BoardPlane plane : BoardPlane.values()) {
 			// ------------------------------------------------------------
 			connections1 = this.computePotentialConnection(justPlayedMove,plane.getOneWay());
 			connections2 = this.computePotentialConnection(justPlayedMove,plane.getOppositeWay());
@@ -156,9 +156,9 @@ public class Tictactoe extends Game {
 		return connections;
 	}
 	// ------------------------------------------------------------
-	protected int computeRealConnection(final IGameMove justPlayedMove, final GameBoardCardinalPosition direction) {
+	protected int computeRealConnection(final MoveInterface justPlayedMove, final BoardCardinalPosition direction) {
 		int connected;
-		IGameBoardCell cell = this.cell(justPlayedMove.getPosition());
+		CellInterface cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull() || cell.isEmpty()
@@ -169,15 +169,15 @@ public class Tictactoe extends Game {
 		return --connected;
 	}
 	// ------------------------------------------------------------	
-	protected int computePotentialConnection(final IGameMove justPlayedMove, final GameBoardCardinalPosition direction) {
+	protected int computePotentialConnection(final MoveInterface justPlayedMove, final BoardCardinalPosition direction) {
 		int connected;
-		IGameBoardCell cell = this.cell(justPlayedMove.getPosition());
+		CellInterface cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
 			cell = cell.getNeighbour(direction);
 			if (cell.isNull()) {
 				break;
 			}
-			if(!cell.isEmpty() && cell.getPiece().getSide() == GamePlayersEnumeration.opponent(justPlayedMove.getSide())) {
+			if(!cell.isEmpty() && cell.getPiece().getSide() == OpponentsEnumeration.opponent(justPlayedMove.getSide())) {
 				break;
 			}
 		}
@@ -186,7 +186,7 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	// TODO faire également une méthode move(IGameBoardMove move) et étendre une
 	// classe GameBoardMove abstraite pour chaque jeux
-	private IGamePiece piece(final GamePlayersEnumeration player) {
+	private PieceInterface piece(final OpponentsEnumeration player) {
 		return super.piece(player, TictactoePieceTypes.PAWN);
 	}
 	// ------------------------------------------------------------

@@ -17,20 +17,20 @@
 
 package fr.designpattern.zerosumgames.samples.tictactoe.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Piece;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
-public abstract class TictactoePiece extends GamePiece {
+public abstract class TictactoePiece extends Piece {
 	// ------------------------------------------------------------
-	public TictactoePiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public TictactoePiece(final PieceTypeInterface type, final OpponentsEnumeration side) {
 		super(type, side);
 	}
 	// ------------------------------------------------------------
 	@Override
 	public String toString() {
 		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
+		return this.getSide().equals(OpponentsEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }
