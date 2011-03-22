@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.game.components.move;
 
-import fr.designpattern.zerosumgames.game.IGameNullableComponent;
+import fr.designpattern.zerosumgames.game.components.IGameNullableComponent;
 import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;
 import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
 

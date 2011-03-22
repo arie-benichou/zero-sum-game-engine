@@ -3,7 +3,6 @@ package fr.designpattern.zerosumgames.services;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.game.IGame;
-import fr.designpattern.zerosumgames.game.IGameService;
 import fr.designpattern.zerosumgames.game.components.move.GameBoardMove;
 import fr.designpattern.zerosumgames.game.components.move.IGameMove;
 import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;

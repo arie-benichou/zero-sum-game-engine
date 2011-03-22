@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.game.components.board.position;
 
-import fr.designpattern.zerosumgames.game.IGameNullableComponent;
+import fr.designpattern.zerosumgames.game.components.IGameNullableComponent;
 
 /**
  * This is the interface for a game board position.
