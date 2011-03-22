@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.move.selectors;
 
 import java.util.InputMismatchException;
 import java.util.List;

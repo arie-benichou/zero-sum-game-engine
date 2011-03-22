@@ -2,7 +2,7 @@ package fr.designpattern.zerosumgames.framework.game.builder;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.IGameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.IGamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.IGamePlayer;
 
 // TODO rajouter final lorsqu'applicable dans les autres interfaces
 public interface BuilderInterface {

@@ -3,7 +3,9 @@ package fr.designpattern.zerosumgames.framework.game.components.opponents;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.IGameStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.IGamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 // TODO ? définir GamePlayersEnumeration à l'intérieur de cette classe
 public class GameOpponents implements IGameOpponents {

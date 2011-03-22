@@ -1,7 +1,7 @@
 /*
- * @(#)IGamePlayer.java	0.99
+ * @(#)GamePlayerNature.java	0.99
  * 
- * Copyright 2011 Arie Benichou 
+ * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,37 +17,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents;
-
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.IGameStrategy;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.player;
 
 /**
- * This is the interface for a game player.
+ * This is the enumeration of a game player's nature.
+ * 
+ * TODO? The NULL player's nature could be used for games
+ * with no opponent or random opponent strategy. 
  * 
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface IGamePlayer {
-
-	/**
-	 * Returns the player's name.
-	 * 
-	 * @return the player's name
-	 */
-	String getName();
-
-	/**
-	 * Returns the player's nature.
-	 * 
-	 * @return the player's nature
-	 */
-	GamePlayerNature getNature();
-
-	/**
-	 * Returns the player strategy.
-	 * 
-	 * @return the player strategy
-	 */
-	IGameStrategy getStrategy();
-
+public enum GamePlayerNature {
+	NULL, HUMAN, COMPUTER;
 }

@@ -1,21 +1,18 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.heuristics;
+package fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelectorPredicate;
 
-public class WinningMoveExists implements IGameMoveSelectorPredicate {
+public class OneSingleMoveExists implements IGameMoveSelectorPredicate {
 	//--------------------------------------------------------------------------------------
 	public boolean checkPredicate(List<IGameMove> legalMoves) {
-		//--------------------------------------------------------------------------------------		
+		//--------------------------------------------------------------------------------------
 		boolean predicate = false;
-		//--------------------------------------------------------------------------------------		
-		for(IGameMove move: legalMoves) {
-			if(move.getEvaluation().equals(Double.POSITIVE_INFINITY)) {
-				predicate = true;
-				break;
-			}
+		//--------------------------------------------------------------------------------------
+		if(legalMoves.size() == 1) {
+			predicate = true;
 		}
 		//--------------------------------------------------------------------------------------		
 		if(predicate) {
@@ -26,15 +23,14 @@ public class WinningMoveExists implements IGameMoveSelectorPredicate {
 		}
 		//--------------------------------------------------------------------------------------		
 		return predicate;
-		//--------------------------------------------------------------------------------------		
 	}
 	//--------------------------------------------------------------------------------------
 	public void onTrue(List<IGameMove> legalMoves) {
-		System.out.println("\nVictoire imminente détectée pour " + legalMoves.get(0).getSide() + "...");
+		System.out.println("\nIl n y a qu'une seule option possible...");
 	}
 	//--------------------------------------------------------------------------------------
 	public void onFalse(List<IGameMove> legalMoves) {
-		System.out.println("\nPas de victoire imminente pour " + legalMoves.get(0).getSide() + "...");
-	}
+		System.out.println("\nIl y a " + legalMoves.size() + " options possibles...");
+	}	
 	//--------------------------------------------------------------------------------------
 }

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.move.selectors;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,9 +24,9 @@ import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelector;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.heuristics.OneSingleMoveExists;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.heuristics.WinningMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics.OneSingleMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics.WinningMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 public class BestMoveSelector implements IGameMoveSelector {
 	//--------------------------------------------------------------------------------------	

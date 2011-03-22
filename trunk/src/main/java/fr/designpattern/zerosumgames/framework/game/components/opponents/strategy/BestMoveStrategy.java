@@ -1,7 +1,5 @@
 /*
- * @(#)GamePlayerNature.java	0.99
- * 
- * Copyright 2011 Arie Benichou
+ * Copyright (C) 2011 Arié Bénichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,17 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-/**
- * This is the enumeration of a game player's nature.
- * 
- * TODO? The NULL player's nature could be used for games
- * with no opponent or random opponent strategy. 
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
- */
-public enum GamePlayerNature {
-	NULL, HUMAN, COMPUTER;
+import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.move.selectors.BestMoveSelector;
+
+public class BestMoveStrategy extends AbstractStrategy {
+
+	public BestMoveStrategy(IGameMoveEvaluator evaluator) {
+		super(new BestMoveSelector(evaluator));
+	}
+
 }

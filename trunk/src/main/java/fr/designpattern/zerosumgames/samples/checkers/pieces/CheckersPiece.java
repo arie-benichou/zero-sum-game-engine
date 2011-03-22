@@ -4,7 +4,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCa
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.GamePiece;
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 public abstract class CheckersPiece extends GamePiece implements ICheckersPiece {
 	// ------------------------------------------------------------

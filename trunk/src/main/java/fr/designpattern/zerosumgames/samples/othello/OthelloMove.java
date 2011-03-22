@@ -5,7 +5,7 @@ import java.util.List;
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
 import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
 import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 // TODO ? implémenter une interface
 public class OthelloMove extends GameBoardMove {

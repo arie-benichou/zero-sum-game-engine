@@ -34,8 +34,8 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.G
 import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
 import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 

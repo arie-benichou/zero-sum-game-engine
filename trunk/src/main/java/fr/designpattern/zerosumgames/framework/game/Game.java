@@ -28,9 +28,9 @@ import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
 import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.IGameStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 /**
  * This class provides a skeletal implementation of the Game
