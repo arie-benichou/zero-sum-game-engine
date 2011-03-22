@@ -5,9 +5,7 @@ import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.core.strategies.RandomMoveStrategy;
 import fr.designpattern.zerosumgames.core.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
-import fr.designpattern.zerosumgames.core.strategies.evaluators.MiniMaxMoveEvaluator;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
 

@@ -180,8 +180,7 @@ public class Checkers extends Game {
 	}
 	// ------------------------------------------------------------
 	@Override
-	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
-		
+	public List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side) {
 		final List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
 		CheckersPiece piece;
 		List<GameBoardCardinalPosition> pieceOptions;

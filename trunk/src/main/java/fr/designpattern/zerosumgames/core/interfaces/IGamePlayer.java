@@ -20,7 +20,6 @@
 package fr.designpattern.zerosumgames.core.interfaces;
 
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 /**
  * This is the interface for a game player.
