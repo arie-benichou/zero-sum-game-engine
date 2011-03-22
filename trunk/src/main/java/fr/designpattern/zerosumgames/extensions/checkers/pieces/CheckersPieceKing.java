@@ -3,10 +3,10 @@ package fr.designpattern.zerosumgames.extensions.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
-import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
 
 public class CheckersPieceKing extends CheckersPiece {
 	// ------------------------------------------------------------

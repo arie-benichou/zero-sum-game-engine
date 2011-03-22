@@ -17,10 +17,10 @@
 
 package fr.designpattern.zerosumgames.extensions.othello;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPiece;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPieceNull;
 import fr.designpattern.zerosumgames.extensions.othello.pieces.OthelloPiecePawn;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePieceType;
 
 /*
  * Remarque:

@@ -22,20 +22,20 @@ package fr.designpattern.zerosumgames.extensions.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.Game;
-import fr.designpattern.zerosumgames.core.GameBoardDimension;
-import fr.designpattern.zerosumgames.core.GameBuilder;
-import fr.designpattern.zerosumgames.core.GamePieceFactory;
-import fr.designpattern.zerosumgames.core.GameService;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
-import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
-import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPiece;
+import fr.designpattern.zerosumgames.game.Game;
+import fr.designpattern.zerosumgames.game.GameBuilder;
+import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
+import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.GamePieceFactory;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePiece;
+import fr.designpattern.zerosumgames.game.components.board.dimension.GameBoardDimension;
+import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Checkers extends Game {
@@ -174,14 +174,14 @@ public class Checkers extends Game {
 		return false;
 	}	
 	// -----------------------------------------------------------------	
-	private IGameBoardMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
+	private IGameMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position, final GameBoardCardinalPosition direction) {
 		// TODO utiliser un cache
 		return new CheckersMove(side, position, direction);
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side) {
-		final List<IGameBoardMove> jumpingMoves = new ArrayList<IGameBoardMove>();
+	public List<IGameMove> getLegalMoves(GamePlayersEnumeration side) {
+		final List<IGameMove> jumpingMoves = new ArrayList<IGameMove>();
 		CheckersPiece piece;
 		List<GameBoardCardinalPosition> pieceOptions;
 		
@@ -202,7 +202,7 @@ public class Checkers extends Game {
 			}
 		}
 		
-		final List<IGameBoardMove> walkingMoves = new ArrayList<IGameBoardMove>();		
+		final List<IGameMove> walkingMoves = new ArrayList<IGameMove>();		
 		boolean hasToJump = false;
 		
 		for(IGameBoardCell cell : this.getRelevantCells(side)) {
@@ -236,7 +236,7 @@ public class Checkers extends Game {
 	}
 	// -----------------------------------------------------------------
 	@Override
-	public boolean doMove(final IGameBoardMove moveToPlay) {
+	public boolean doMove(final IGameMove moveToPlay) {
 		final CheckersMove checkersMove = (CheckersMove)moveToPlay;
 		// récupération de la cellule corespondant à la position
 		final IGameBoardCell cell = this.cell(checkersMove.getPosition());
@@ -277,7 +277,7 @@ public class Checkers extends Game {
 		//game over {victoire, match null}
 	
 	// -----------------------------------------------------------------
-	public boolean undoMove(final IGameBoardMove move) {
+	public boolean undoMove(final IGameMove move) {
 		
 		final CheckersMove checkersMove = (CheckersMove)move;
 		
@@ -297,7 +297,7 @@ public class Checkers extends Game {
 	}	
 	// -----------------------------------------------------------------
 	// TODO à améliorer
-	private boolean isGameOver(IGameBoardMove previousMove) {
+	private boolean isGameOver(IGameMove previousMove) {
 		if(this.getRelevantCells(GamePlayersEnumeration.opponent(previousMove.getSide())).isEmpty()) {
 			return true;
 		}
@@ -336,15 +336,15 @@ public class Checkers extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final IGameBoardMove previousMove) {
+	public boolean isGameOverFromVictory(final IGameMove previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final IGameBoardMove previousMove) {
+	public boolean isGameOverFromDraw(final IGameMove previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------			
-	public double evaluate(final IGameBoardMove move) {
+	public double evaluate(final IGameMove move) {
 		return this.computeDelta(move.getSide());
 	}	
 	// -----------------------------------------------------------------	

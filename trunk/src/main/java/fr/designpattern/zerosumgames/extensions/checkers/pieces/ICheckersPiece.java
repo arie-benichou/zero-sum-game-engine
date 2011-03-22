@@ -2,8 +2,8 @@ package fr.designpattern.zerosumgames.extensions.checkers.pieces;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
-import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
 
 public interface ICheckersPiece {
 
