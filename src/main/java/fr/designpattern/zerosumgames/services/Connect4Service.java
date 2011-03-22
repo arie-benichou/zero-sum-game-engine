@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
 import fr.designpattern.zerosumgames.core.strategies.engines.MiniMaxWithAlphaBetaPruning;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.connect4.Connect4;
+import fr.designpattern.zerosumgames.extensions.connect4.Connect4;
 
 public class Connect4Service {
 	

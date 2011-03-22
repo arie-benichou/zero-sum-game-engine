@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.connect4;
+package fr.designpattern.zerosumgames.extensions.connect4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
+import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Connect4 extends Tictactoe {

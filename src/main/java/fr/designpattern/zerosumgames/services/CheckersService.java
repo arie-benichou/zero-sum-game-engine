@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.strategies.HumanWithComputerHelpStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.checkers.Checkers;
+import fr.designpattern.zerosumgames.extensions.checkers.Checkers;
 
 public class CheckersService {
 

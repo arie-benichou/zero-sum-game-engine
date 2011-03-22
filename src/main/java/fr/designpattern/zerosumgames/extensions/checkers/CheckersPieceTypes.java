@@ -1,9 +1,9 @@
-package fr.designpattern.zerosumgames.implementations.checkers;
+package fr.designpattern.zerosumgames.extensions.checkers;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
-import fr.designpattern.zerosumgames.implementations.checkers.pieces.CheckersPiece;
-import fr.designpattern.zerosumgames.implementations.checkers.pieces.CheckersPieceKing;
-import fr.designpattern.zerosumgames.implementations.checkers.pieces.CheckersPieceMan;
+import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPiece;
+import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPieceKing;
+import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPieceMan;
 
 public enum CheckersPieceTypes implements IGamePieceType {
 

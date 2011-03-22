@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.implementations.checkers;
+package fr.designpattern.zerosumgames.extensions.checkers;
 
 import fr.designpattern.zerosumgames.core.GameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.othello;
+package fr.designpattern.zerosumgames.extensions.othello;
 
 import java.util.ArrayList;
 import java.util.List;

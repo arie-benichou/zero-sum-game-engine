@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.implementations.checkers.pieces;
+package fr.designpattern.zerosumgames.extensions.checkers.pieces;
 
 import java.util.ArrayList;
 import java.util.List;

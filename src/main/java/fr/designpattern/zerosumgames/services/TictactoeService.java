@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
 import fr.designpattern.zerosumgames.core.strategies.engines.MiniMaxWithAlphaBetaPruning;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.tictactoe.Tictactoe;
+import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
 
 // TODO pouvoire construire un tictactoe de dimension differente et avec un nombre de connexions different de 3
 public class TictactoeService {
