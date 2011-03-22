@@ -13,7 +13,6 @@ import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.strategies.RandomMoveStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu

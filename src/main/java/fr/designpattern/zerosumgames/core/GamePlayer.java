@@ -20,7 +20,6 @@ package fr.designpattern.zerosumgames.core;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayer;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 public class GamePlayer implements IGamePlayer {
 

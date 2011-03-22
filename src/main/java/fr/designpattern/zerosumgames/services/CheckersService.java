@@ -1,11 +1,11 @@
 package fr.designpattern.zerosumgames.services;
 
-import trash.NegaMaxAlphaBetaStrategy;
 import fr.designpattern.zerosumgames.core.GameBuilder;
 import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
-import fr.designpattern.zerosumgames.core.strategies.HumanWithComputerHelpStrategy;
+import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
+import fr.designpattern.zerosumgames.core.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.extensions.checkers.Checkers;
 
@@ -19,7 +19,7 @@ public class CheckersService {
 			new GamePlayer(
 				"p1",
 				GamePlayerNature.COMPUTER,
-				new NegaMaxAlphaBetaStrategy(6)
+				new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(4))
 			)
 		);
 		
@@ -27,7 +27,7 @@ public class CheckersService {
 			new GamePlayer(
 				"p2",
 				GamePlayerNature.COMPUTER,
-				new HumanWithComputerHelpStrategy(4)
+				new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(4))
 			)
 		);
 		
