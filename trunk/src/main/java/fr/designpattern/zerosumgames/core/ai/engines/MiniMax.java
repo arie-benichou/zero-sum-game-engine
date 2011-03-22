@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.core.ai.engine.standard.algorithms;
+package fr.designpattern.zerosumgames.core.ai.engines;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;

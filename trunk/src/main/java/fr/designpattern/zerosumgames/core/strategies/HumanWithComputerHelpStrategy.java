@@ -19,6 +19,8 @@ package fr.designpattern.zerosumgames.core.strategies;
 
 import java.util.List;
 
+import trash.NegaMaxAlphaBetaStrategy;
+
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;

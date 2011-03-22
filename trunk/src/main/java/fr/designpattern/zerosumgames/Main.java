@@ -1,9 +1,6 @@
 package fr.designpattern.zerosumgames;
 
-import services.CheckersService;
-import services.Connect4Service;
-import services.OthelloService;
-import services.TictactoeService;
+import fr.designpattern.zerosumgames.services.TictactoeService;
 
 public class Main {
 

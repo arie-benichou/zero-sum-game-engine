@@ -1,25 +1,24 @@
-package services;
+package fr.designpattern.zerosumgames.services;
 
+import trash.NegaMaxAlphaBetaStrategy;
 import fr.designpattern.zerosumgames.core.GameBuilder;
 import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
-import fr.designpattern.zerosumgames.core.strategies.HumanWithComputerHelpStrategy;
-import fr.designpattern.zerosumgames.core.strategies.NegaMaxAlphaBetaStrategy;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.checkers.Checkers;
+import fr.designpattern.zerosumgames.implementations.othello.Othello;
 
-public class CheckersService {
+public class OthelloService {
 
 	public static void main(String[] args) {
 			
-		IGameBuilder gameBuilder = new GameBuilder(Checkers.class);
+		IGameBuilder gameBuilder = new GameBuilder(Othello.class);
 		
 		gameBuilder.player1(
 			new GamePlayer(
 				"p1",
 				GamePlayerNature.COMPUTER,
-				new NegaMaxAlphaBetaStrategy(6)
+				new NegaMaxAlphaBetaStrategy(5)
 			)
 		);
 		
@@ -27,12 +26,11 @@ public class CheckersService {
 			new GamePlayer(
 				"p2",
 				GamePlayerNature.COMPUTER,
-				new HumanWithComputerHelpStrategy(4)
+				new NegaMaxAlphaBetaStrategy(2)
 			)
 		);
 		
 		new GameService(gameBuilder.build()).start();
-		
 	}
 	
 }

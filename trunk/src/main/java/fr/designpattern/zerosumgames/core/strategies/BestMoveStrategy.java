@@ -20,7 +20,7 @@ package fr.designpattern.zerosumgames.core.strategies;
 import java.util.Collections;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.ai.engine.standard.algorithms.IAlgorithm;
+import fr.designpattern.zerosumgames.core.ai.engines.IAlgorithm;
 import fr.designpattern.zerosumgames.core.ai.heuristics.OneSingleMoveExists;
 import fr.designpattern.zerosumgames.core.ai.heuristics.WinningMoveExists;
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
