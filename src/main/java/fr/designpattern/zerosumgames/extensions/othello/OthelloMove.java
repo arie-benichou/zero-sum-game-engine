@@ -2,10 +2,10 @@ package fr.designpattern.zerosumgames.extensions.othello;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.GameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.game.components.move.GameBoardMove;
+import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
 
 // TODO ? implémenter une interface
 public class OthelloMove extends GameBoardMove {

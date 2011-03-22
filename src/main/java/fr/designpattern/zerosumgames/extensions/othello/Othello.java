@@ -21,19 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import fr.designpattern.zerosumgames.core.Game;
-import fr.designpattern.zerosumgames.core.GameBoardDimension;
-import fr.designpattern.zerosumgames.core.GameBuilder;
-import fr.designpattern.zerosumgames.core.GamePieceFactory;
-import fr.designpattern.zerosumgames.core.GameService;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoard;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardPosition;
-import fr.designpattern.zerosumgames.core.interfaces.IGameOpponents;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePiece;
-import fr.designpattern.zerosumgames.core.types.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.game.Game;
+import fr.designpattern.zerosumgames.game.GameBuilder;
+import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
+import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.GamePieceFactory;
+import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePiece;
+import fr.designpattern.zerosumgames.game.components.board.dimension.GameBoardDimension;
+import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 //TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
@@ -61,8 +61,8 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO à virer
-	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
-		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+	public final List<IGameMove> getLegalMoves(final GamePlayersEnumeration side, final IGameMove previousMove) {
+		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
 				if (this.canPlayHere(cell, side)) {
@@ -75,8 +75,8 @@ public class Othello extends Game {
 		return legalMoves;
 	}
 	// ------------------------------------------------------------	
-	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
-		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+	public final List<IGameMove> getLegalMoves(final GamePlayersEnumeration side) {
+		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
 			for (IGameBoardCell cell : line) {
 				if (this.canPlayHere(cell, side)) {
@@ -89,7 +89,7 @@ public class Othello extends Game {
 		return legalMoves;
 	}	
 	// ------------------------------------------------------------
-	public boolean undoMove(final IGameBoardMove playedMove) {
+	public boolean undoMove(final IGameMove playedMove) {
 		if(!playedMove.isNull()) {
 			this.cell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
 			final OthelloMove othelloMove = (OthelloMove)playedMove;
@@ -101,7 +101,7 @@ public class Othello extends Game {
 		return true; // is move undone ?
 	}
 	// ------------------------------------------------------------
-	private boolean isGameOver(IGameBoardMove previousMove) {
+	private boolean isGameOver(IGameMove previousMove) {
 		boolean isGameOver = false;
 		// Game Over si deux coups nuls consécutifs
 		//if(this.nullMoveHasBeenPlayed > 1) {
@@ -162,12 +162,12 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO ? implémentation par défaut dans la classe abstraite
-	private IGameBoardMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
+	private IGameMove makeMove(final GamePlayersEnumeration side, final IGameBoardPosition position) {
 		// TODO utiliser un cache
 		return new OthelloMove(side, position);
 	}
 	// ------------------------------------------------------------		
-	private List<IGameBoardCell> computeCellsToRevert(final IGameBoardMove move) {
+	private List<IGameBoardCell> computeCellsToRevert(final IGameMove move) {
 		final GamePlayersEnumeration side = move.getSide();
 		final IGameBoardCell cell = this.cell(move.getPosition());
 		final List<IGameBoardCell> cellsToRevert = new ArrayList<IGameBoardCell>();
@@ -209,7 +209,7 @@ public class Othello extends Game {
 	// ------------------------------------------------------------	
 	// TODO renommer : doMove/undoMove
 	// TODO laisser la méthode abstraite dans la classe Game	
-	public boolean doMove(final IGameBoardMove moveToPlay) {
+	public boolean doMove(final IGameMove moveToPlay) {
 		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
 		
 		if (!othelloMove.isNull()) {
@@ -249,15 +249,15 @@ public class Othello extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final IGameBoardMove previousMove) {
+	public boolean isGameOverFromVictory(final IGameMove previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) > 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final IGameBoardMove previousMove) {
+	public boolean isGameOverFromDraw(final IGameMove previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------		
-	public double evaluate(final IGameBoardMove move) {
+	public double evaluate(final IGameMove move) {
 		
 		if(move.isNull()) {
 			return this.computeDelta(move.getSide());
