@@ -20,7 +20,7 @@ public class Connect4Service {
 			new GamePlayer(
 				"p1",
 				GamePlayerNature.COMPUTER,
-				new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(8))
+				new HumanStrategy()
 			)
 		);
 		
@@ -28,8 +28,8 @@ public class Connect4Service {
 			new GamePlayer(
 				"p2",
 				GamePlayerNature.COMPUTER,
-				//new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(6))
-				new HumanStrategy()
+				new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(8))
+				//new HumanStrategy()
 			)
 		);
 		
