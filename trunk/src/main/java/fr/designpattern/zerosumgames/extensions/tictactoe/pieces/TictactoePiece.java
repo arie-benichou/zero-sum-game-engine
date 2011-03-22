@@ -17,9 +17,9 @@
 
 package fr.designpattern.zerosumgames.extensions.tictactoe.pieces;
 
-import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.GamePiece;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.GamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
 
 public abstract class TictactoePiece extends GamePiece {
 	// ------------------------------------------------------------

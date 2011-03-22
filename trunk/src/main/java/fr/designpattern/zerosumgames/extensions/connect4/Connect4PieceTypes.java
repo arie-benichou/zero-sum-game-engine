@@ -19,7 +19,7 @@ package fr.designpattern.zerosumgames.extensions.connect4;
 
 import fr.designpattern.zerosumgames.extensions.connect4.pieces.Connect4Piece;
 import fr.designpattern.zerosumgames.extensions.connect4.pieces.Connect4PiecePawn;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
 
 public enum Connect4PieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------

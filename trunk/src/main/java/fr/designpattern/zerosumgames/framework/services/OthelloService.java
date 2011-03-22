@@ -1,18 +1,18 @@
 package fr.designpattern.zerosumgames.framework.services;
 
 import fr.designpattern.zerosumgames.extensions.othello.Othello;
-import fr.designpattern.zerosumgames.framework.build.GameBuilder;
-import fr.designpattern.zerosumgames.framework.build.IGameBuilder;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayer;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayerNature;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.builder.Builder;
+import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestMoveStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
 
 public class OthelloService {
 
 	public static void main(String[] args) {
 			
-		IGameBuilder gameBuilder = new GameBuilder(Othello.class);
+		BuilderInterface gameBuilder = new Builder(Othello.class);
 		
 		gameBuilder.player1(
 			new GamePlayer(

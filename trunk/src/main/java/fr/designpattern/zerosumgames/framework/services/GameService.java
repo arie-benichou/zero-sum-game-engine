@@ -2,24 +2,24 @@ package fr.designpattern.zerosumgames.framework.services;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.build.game.IGame;
-import fr.designpattern.zerosumgames.framework.build.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.build.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
+import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------
 	private transient GamePlayersEnumeration currentPlayer = GamePlayersEnumeration.FIRST_PLAYER;
 	// ------------------------------------------------------------
-	private IGame game;
-	public final IGame getGame() {
+	private GameInterface game;
+	public final GameInterface getGame() {
 		return game;
 	}
-	private final void setGame(final IGame game) {
+	private final void setGame(final GameInterface game) {
 		this.game = game;
 	}
 	// ------------------------------------------------------------
-	public GameService(final IGame game) {
+	public GameService(final GameInterface game) {
 		this.setGame(game);
 	}
 	// ------------------------------------------------------------

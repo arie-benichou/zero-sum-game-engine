@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
-import fr.designpattern.zerosumgames.framework.build.GameBuilder;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.build.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.build.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.framework.game.builder.Builder;
+import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
+import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
+import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
@@ -67,7 +67,7 @@ public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
-		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
+		new GameService(new Builder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }

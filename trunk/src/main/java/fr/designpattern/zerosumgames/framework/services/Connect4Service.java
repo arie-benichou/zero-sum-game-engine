@@ -1,19 +1,19 @@
 package fr.designpattern.zerosumgames.framework.services;
 
 import fr.designpattern.zerosumgames.extensions.connect4.Connect4;
-import fr.designpattern.zerosumgames.framework.build.GameBuilder;
-import fr.designpattern.zerosumgames.framework.build.IGameBuilder;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayer;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayerNature;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.HumanStrategy;
-import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.builder.Builder;
+import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestMoveStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.HumanStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
 
 public class Connect4Service {
 	
 	public static void main(String[] args) {
 		
-		IGameBuilder gameBuilder = new GameBuilder(Connect4.class);
+		BuilderInterface gameBuilder = new Builder(Connect4.class);
 		
 		gameBuilder.player1(
 			new GamePlayer(
