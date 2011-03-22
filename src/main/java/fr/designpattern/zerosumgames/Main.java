@@ -1,6 +1,6 @@
 package fr.designpattern.zerosumgames;
 
-import fr.designpattern.zerosumgames.services.Connect4Service;
+import fr.designpattern.zerosumgames.framework.services.Connect4Service;
 
 public class Main {
 

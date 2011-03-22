@@ -3,10 +3,10 @@ package fr.designpattern.zerosumgames.extensions.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
 
 //TODO refactoring
 //TODO pouvoir additionner les points cardinaux entre eux
