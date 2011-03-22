@@ -15,18 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.move.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.moves.selectors;
 
 import java.util.Collections;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelector;
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics.OneSingleMoveExists;
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics.WinningMoveExists;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics.OneSingleMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics.WinningMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 
 public class BestMoveSelector implements IGameMoveSelector {
 	//--------------------------------------------------------------------------------------	

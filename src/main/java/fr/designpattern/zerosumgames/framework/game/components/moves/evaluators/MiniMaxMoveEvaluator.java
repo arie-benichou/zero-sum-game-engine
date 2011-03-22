@@ -1,9 +1,9 @@
-package fr.designpattern.zerosumgames.framework.game.components.move.evaluators;
+package fr.designpattern.zerosumgames.framework.game.components.moves.evaluators;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 
 
 public class MiniMaxMoveEvaluator implements IGameMoveEvaluator{
@@ -47,13 +47,13 @@ public class MiniMaxMoveEvaluator implements IGameMoveEvaluator{
 			score = side * this.getContext().evaluate(moveToEvaluate); 
 		}
 		else if(side == 1) {
-			for(IGameMove opponentMove : this.getContext().getLegalMoves(nextPlayer, moveToEvaluate)) {
+			for(IGameMove opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 				beta = Math.min(beta, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 			}
 			score = beta;
 		}
 		else {
-			for(IGameMove opponentMove : this.getContext().getLegalMoves(nextPlayer, moveToEvaluate)) {
+			for(IGameMove opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 				alpha = Math.max(alpha, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 			}
 			score = alpha;

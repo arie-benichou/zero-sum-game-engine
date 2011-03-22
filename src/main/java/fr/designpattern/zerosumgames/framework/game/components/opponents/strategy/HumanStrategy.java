@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.HumanMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.HumanMoveSelector;
 
 public class HumanStrategy extends AbstractStrategy {
 

@@ -19,8 +19,8 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.board;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
 
 /**
  * This is the interface for game boards.

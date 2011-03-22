@@ -22,14 +22,14 @@ package fr.designpattern.zerosumgames.framework.game;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 /**

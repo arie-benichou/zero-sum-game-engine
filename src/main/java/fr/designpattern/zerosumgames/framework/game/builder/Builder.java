@@ -6,16 +6,16 @@ import java.lang.reflect.InvocationTargetException;
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoard;
 import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.GameBoardCellFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCellFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.GameBoardCellFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCellFactory;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.IGameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.GameBoardPositionFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPositionFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.GameBoardPositionFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPositionFactory;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.GameOpponents;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayer;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayerNature;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.IGamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.IGamePlayer;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.RandomMoveStrategy;
 
 // TODO ? as a Game inner-class

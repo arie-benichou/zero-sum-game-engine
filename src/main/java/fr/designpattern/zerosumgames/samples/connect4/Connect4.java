@@ -22,11 +22,11 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;
 import fr.designpattern.zerosumgames.util.StaticContext;

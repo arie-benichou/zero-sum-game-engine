@@ -27,15 +27,15 @@ import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardPlane;
 import fr.designpattern.zerosumgames.framework.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.GamePieceFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePieceFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
@@ -68,19 +68,6 @@ public class Tictactoe extends Game {
 		return new GameBoardMove(side, position);
 	}
 	// ------------------------------------------------------------
-	@Override
-	public List<IGameMove> getLegalMoves(final GamePlayersEnumeration side, final IGameMove previousMove) {
-		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
-		for (IGameBoardCell[] line : this.getBoard()) {
-			for (IGameBoardCell cell : line) {
-				if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
-					legalMoves.add(this.makeMove(side, cell.getPosition()));
-				}
-			}
-		}
-		return legalMoves;
-	}
-	// ------------------------------------------------------------	
 	public List<IGameMove> getLegalMoves(final GamePlayersEnumeration side) {
 		final List<IGameMove> legalMoves = new ArrayList<IGameMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
@@ -106,7 +93,7 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	public boolean isGameOverFromDraw(final IGameMove justPlayedMove) {
-		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide()), justPlayedMove).isEmpty();
+		return this.getLegalMoves(GamePlayersEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
 	}
 	// ------------------------------------------------------------
 	public boolean doMove(final IGameMove moveToPlay) {

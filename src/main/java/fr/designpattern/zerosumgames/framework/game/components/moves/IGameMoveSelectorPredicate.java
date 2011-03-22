@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.game.components.move;
+package fr.designpattern.zerosumgames.framework.game.components.moves;
 
 import java.util.List;
 
