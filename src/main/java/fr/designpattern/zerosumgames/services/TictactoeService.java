@@ -1,8 +1,8 @@
 package fr.designpattern.zerosumgames.services;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
-import fr.designpattern.zerosumgames.game.GameBuilder;
-import fr.designpattern.zerosumgames.game.IGameBuilder;
+import fr.designpattern.zerosumgames.framework.build.GameBuilder;
+import fr.designpattern.zerosumgames.framework.build.IGameBuilder;
 import fr.designpattern.zerosumgames.game.components.opponents.GamePlayer;
 import fr.designpattern.zerosumgames.game.components.opponents.GamePlayerNature;
 import fr.designpattern.zerosumgames.game.components.opponents.strategies.BestMoveStrategy;

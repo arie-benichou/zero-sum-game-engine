@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import fr.designpattern.zerosumgames.framework.build.GameBuilder;
 import fr.designpattern.zerosumgames.game.Game;
-import fr.designpattern.zerosumgames.game.GameBuilder;
 import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
 import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;

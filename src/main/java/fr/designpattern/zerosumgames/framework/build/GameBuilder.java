@@ -1,8 +1,9 @@
-package fr.designpattern.zerosumgames.game;
+package fr.designpattern.zerosumgames.framework.build;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import fr.designpattern.zerosumgames.game.IGame;
 import fr.designpattern.zerosumgames.game.components.board.GameBoard;
 import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
 import fr.designpattern.zerosumgames.game.components.board.cell.GameBoardCellFactory;
