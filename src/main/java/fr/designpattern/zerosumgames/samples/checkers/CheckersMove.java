@@ -4,7 +4,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCa
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePiece;
 import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
 import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 // TODO ? implémenter une interface
 public class CheckersMove extends GameBoardMove {

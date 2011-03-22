@@ -1,5 +1,5 @@
 /*
- * @(#)IGamePieceFactory.java	0.99
+ * @(#)IGamePlayer.java	0.99
  * 
  * Copyright 2011 Arie Benichou 
  *
@@ -17,29 +17,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board.cell.piece;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.player;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 /**
- * This is the interface for the game piece factory.
+ * This is the interface for a game player.
  * 
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface IGamePieceFactory {
+public interface IGamePlayer {
 
 	/**
-	 * Returns a piece for a given player and a given type of piece.
+	 * Returns the player's name.
 	 * 
-	 * @param player a given player
-	 * 
-	 * @param pieceType a given type of piece
-	 * 
-	 * @return a piece for a given player and a given type of piece
+	 * @return the player's name
 	 */
-	IGamePiece getPiece(GamePlayersEnumeration player, IGamePieceType pieceType);
-	
-	//IGamePiece createPiece(IGamePieceType type, GamePlayersEnumeration side);	
+	String getName();
+
+	/**
+	 * Returns the player's nature.
+	 * 
+	 * @return the player's nature
+	 */
+	GamePlayerNature getNature();
+
+	/**
+	 * Returns the player strategy.
+	 * 
+	 * @return the player strategy
+	 */
+	IGameStrategy getStrategy();
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
 import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 public class CheckersPieceKing extends CheckersPiece {
 	// ------------------------------------------------------------

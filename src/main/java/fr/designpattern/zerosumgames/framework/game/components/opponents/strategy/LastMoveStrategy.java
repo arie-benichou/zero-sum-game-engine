@@ -15,18 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import java.util.List;
+import fr.designpattern.zerosumgames.framework.game.components.move.selectors.LastMoveSelector;
 
-import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelector;
+public class LastMoveStrategy extends AbstractStrategy {
 
-public class FirstMoveSelector implements IGameMoveSelector {
-
-	public IGameMove select(GameInterface context,  final List<IGameMove> legalMoves) {
-		return legalMoves.get(0);
+	public LastMoveStrategy() {
+		super(new LastMoveSelector());
 	}
 
 }

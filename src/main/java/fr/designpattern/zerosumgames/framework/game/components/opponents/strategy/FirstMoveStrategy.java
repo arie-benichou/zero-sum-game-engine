@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.FirstMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.move.selectors.FirstMoveSelector;
 
 public class FirstMoveStrategy extends AbstractStrategy {
 

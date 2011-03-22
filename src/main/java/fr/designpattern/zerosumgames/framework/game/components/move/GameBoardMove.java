@@ -18,7 +18,7 @@
 package fr.designpattern.zerosumgames.framework.game.components.move;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 public class GameBoardMove implements IGameMove {
 		

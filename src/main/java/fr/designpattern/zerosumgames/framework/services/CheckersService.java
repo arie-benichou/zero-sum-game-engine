@@ -2,10 +2,10 @@ package fr.designpattern.zerosumgames.framework.services;
 
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayer;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayerNature;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.move.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayer;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.BestMoveStrategy;
 import fr.designpattern.zerosumgames.samples.checkers.Checkers;
 
 public class CheckersService {

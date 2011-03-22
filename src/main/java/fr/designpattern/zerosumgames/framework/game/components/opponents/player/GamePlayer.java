@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.player;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.IGameStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 public class GamePlayer implements IGamePlayer {
 

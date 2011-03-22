@@ -1,9 +1,9 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators;
+package fr.designpattern.zerosumgames.framework.game.components.move.evaluators;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
 import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
 
 
 public class MiniMaxMoveEvaluator implements IGameMoveEvaluator{
