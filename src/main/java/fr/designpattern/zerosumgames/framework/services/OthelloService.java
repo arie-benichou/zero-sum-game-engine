@@ -1,12 +1,12 @@
 package fr.designpattern.zerosumgames.framework.services;
 
-import fr.designpattern.zerosumgames.extensions.othello.Othello;
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayer;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.GamePlayerNature;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestMoveStrategy;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
+import fr.designpattern.zerosumgames.samples.othello.Othello;
 
 public class OthelloService {
 
