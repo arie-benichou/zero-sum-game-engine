@@ -20,11 +20,11 @@ package fr.designpattern.zerosumgames.framework.game.components.board;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.IGameBoardCellFactory;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.IGameBoardCellFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.IGameBoardDimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
 
 //TODO ? utiliser BoardCell et Equals
 public class GameBoard implements IGameBoard {

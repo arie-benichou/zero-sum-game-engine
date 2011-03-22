@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.FirstMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.FirstMoveSelector;
 
 public class FirstMoveStrategy extends AbstractStrategy {
 

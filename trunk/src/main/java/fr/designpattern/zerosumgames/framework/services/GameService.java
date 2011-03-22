@@ -3,9 +3,9 @@ package fr.designpattern.zerosumgames.framework.services;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.moves.GameBoardMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------
@@ -49,7 +49,7 @@ public class GameService implements IGameService {
 		// ---------------------------------------------------------------------
 		do {
 			// ---------------------------------------------------------------------
-			legalMoves = this.game.getLegalMoves(this.currentPlayer, lastPlayedMove);
+			legalMoves = this.game.getLegalMoves(this.currentPlayer);
 			this.displayLegalMoveList(legalMoves);
 			// ---------------------------------------------------------------------			
 			legalMoveToPlay = this.game.getPlayerStrategy(this.currentPlayer).chooseMoveAmong(this.game, legalMoves);

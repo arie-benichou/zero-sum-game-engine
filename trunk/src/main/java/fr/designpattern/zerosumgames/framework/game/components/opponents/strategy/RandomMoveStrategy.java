@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.RandomMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.RandomMoveSelector;
 
 public class RandomMoveStrategy extends AbstractStrategy {
 

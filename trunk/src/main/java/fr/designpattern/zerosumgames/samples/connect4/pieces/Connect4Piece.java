@@ -17,9 +17,9 @@
 
 package fr.designpattern.zerosumgames.samples.connect4.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.GamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.GamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 
 public abstract class Connect4Piece extends GamePiece {
 	// ------------------------------------------------------------

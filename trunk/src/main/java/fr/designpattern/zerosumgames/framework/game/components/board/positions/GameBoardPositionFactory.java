@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board.position;
+package fr.designpattern.zerosumgames.framework.game.components.board.positions;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.IGameBoardDimension;

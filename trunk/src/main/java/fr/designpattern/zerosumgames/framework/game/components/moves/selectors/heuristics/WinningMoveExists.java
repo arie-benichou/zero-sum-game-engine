@@ -1,9 +1,9 @@
-package fr.designpattern.zerosumgames.framework.game.components.move.selectors.heuristics;
+package fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelectorPredicate;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelectorPredicate;
 
 public class WinningMoveExists implements IGameMoveSelectorPredicate {
 	//--------------------------------------------------------------------------------------

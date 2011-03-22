@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board.cell;
+package fr.designpattern.zerosumgames.framework.game.components.board.cells;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePiece;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.position.IGameBoardPositionFactory;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePiece;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.game.components.board.positions.IGameBoardPositionFactory;
 
 public class GameBoardCellFactory implements IGameBoardCellFactory {
 	// ---------------------------------------------------------------------

@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.player.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.GamePlayersEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategy.IGameStrategy;
 
 public interface IGameOpponents {

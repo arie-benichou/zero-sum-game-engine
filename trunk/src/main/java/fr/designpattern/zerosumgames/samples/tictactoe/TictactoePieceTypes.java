@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.samples.tictactoe;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.game.components.board.cells.pieces.IGamePieceType;
 import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiece;
 import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiecePawn;
 

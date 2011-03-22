@@ -20,8 +20,8 @@ package fr.designpattern.zerosumgames.framework.game.components.opponents.strate
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMove;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelector;
 
 public class AbstractStrategy implements IGameStrategy {
 

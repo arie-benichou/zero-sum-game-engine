@@ -17,8 +17,8 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.IGameMoveEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.BestMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.BestMoveSelector;
 
 public class BestMoveStrategy extends AbstractStrategy {
 

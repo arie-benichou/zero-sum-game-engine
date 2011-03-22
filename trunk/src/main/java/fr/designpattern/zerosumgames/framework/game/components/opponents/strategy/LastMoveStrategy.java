@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.strategy;
 
-import fr.designpattern.zerosumgames.framework.game.components.move.selectors.LastMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.LastMoveSelector;
 
 public class LastMoveStrategy extends AbstractStrategy {
 
