@@ -5,7 +5,8 @@ import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.strategies.BestMoveStrategy;
-import fr.designpattern.zerosumgames.core.strategies.selectors.MiniMaxAlphaBetaMoveSelector;
+import fr.designpattern.zerosumgames.core.strategies.HumanStrategy;
+import fr.designpattern.zerosumgames.core.strategies.evaluators.MiniMaxAlphaBetaMoveEvaluator;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
 import fr.designpattern.zerosumgames.extensions.connect4.Connect4;
 
@@ -19,7 +20,7 @@ public class Connect4Service {
 			new GamePlayer(
 				"p1",
 				GamePlayerNature.COMPUTER,
-				new BestMoveStrategy(new MiniMaxAlphaBetaMoveSelector(8))
+				new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(8))
 			)
 		);
 		
@@ -27,7 +28,8 @@ public class Connect4Service {
 			new GamePlayer(
 				"p2",
 				GamePlayerNature.COMPUTER,
-				new BestMoveStrategy(new MiniMaxAlphaBetaMoveSelector(6))
+				//new BestMoveStrategy(new MiniMaxAlphaBetaMoveEvaluator(6))
+				new HumanStrategy()
 			)
 		);
 		

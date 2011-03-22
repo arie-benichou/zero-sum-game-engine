@@ -3,6 +3,7 @@ package fr.designpattern.zerosumgames.core.strategies.selectors.heuristics;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
+import fr.designpattern.zerosumgames.core.interfaces.IPredicate;
 
 public class OneSingleMoveExists implements IPredicate {
 	//--------------------------------------------------------------------------------------

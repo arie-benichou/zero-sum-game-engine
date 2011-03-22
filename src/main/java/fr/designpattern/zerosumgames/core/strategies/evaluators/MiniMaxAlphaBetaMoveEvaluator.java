@@ -1,17 +1,17 @@
-package fr.designpattern.zerosumgames.core.strategies.selectors;
+package fr.designpattern.zerosumgames.core.strategies.evaluators;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
-public class MiniMaxAlphaBetaMoveSelector extends MiniMaxMoveSelector {
+public class MiniMaxAlphaBetaMoveEvaluator extends MiniMaxMoveEvaluator {
 
-	public MiniMaxAlphaBetaMoveSelector(int maximaDepth) {
+	public MiniMaxAlphaBetaMoveEvaluator(int maximaDepth) {
 		super(maximaDepth);
 	}
 	
 	//--------------------------------------------------------------------------------------
 	@Override
-	protected double evaluateDeeply(final IGameBoardMove moveToPlay, int profondeur, double alpha, double beta, double side) {
+	protected double evaluate(final IGameBoardMove moveToPlay, int profondeur, double alpha, double beta, double side) {
 
 		double score;
 		GamePlayersEnumeration nextPlayer = this.getContext().whoShallPlay(moveToPlay, this.getContext().doMove(moveToPlay));
@@ -21,7 +21,7 @@ public class MiniMaxAlphaBetaMoveSelector extends MiniMaxMoveSelector {
 		}
 		else if(side == 1) {
 			for(IGameBoardMove opponentMove : this.getContext().getLegalMoves(nextPlayer, moveToPlay)) {
-				beta = Math.min(beta, this.evaluateDeeply(opponentMove, profondeur - 1, alpha, beta, -side));
+				beta = Math.min(beta, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 				//-------------------------------------------------------------------				
 				// elagage alpha/beta : l'adversaire a trouvé un meilleur "pire coup"
 				if(alpha >= beta) {
@@ -33,7 +33,7 @@ public class MiniMaxAlphaBetaMoveSelector extends MiniMaxMoveSelector {
 		}
 		else {
 			for(IGameBoardMove opponentMove : this.getContext().getLegalMoves(nextPlayer, moveToPlay)) {
-				alpha = Math.max(alpha, this.evaluateDeeply(opponentMove, profondeur - 1, alpha, beta, -side));
+				alpha = Math.max(alpha, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 				//-------------------------------------------------------------------				
 				// elagage alpha/beta : le joueur a trouvé un meilleur "meilleur coup"
 				if(alpha >= beta) {

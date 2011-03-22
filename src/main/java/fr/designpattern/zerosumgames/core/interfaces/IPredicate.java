@@ -1,9 +1,8 @@
-package fr.designpattern.zerosumgames.core.strategies.selectors.heuristics;
+package fr.designpattern.zerosumgames.core.interfaces;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-
+// TODO utiliser les prédicats dans guava
 public interface IPredicate {
 
 	boolean checkPredicate(List<IGameBoardMove> legalMoves);

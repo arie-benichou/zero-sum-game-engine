@@ -17,91 +17,13 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import java.util.Collections;
-import java.util.List;
+import fr.designpattern.zerosumgames.core.interfaces.IMoveEvaluator;
+import fr.designpattern.zerosumgames.core.strategies.selectors.BestMoveSelector;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGame;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.strategies.selectors.IAlgorithm;
-import fr.designpattern.zerosumgames.core.strategies.selectors.heuristics.OneSingleMoveExists;
-import fr.designpattern.zerosumgames.core.strategies.selectors.heuristics.WinningMoveExists;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+public class BestMoveStrategy extends AbstractStrategy {
 
-public class BestMoveStrategy implements IArtificialIntelligenceStrategy {
-	
-	private IAlgorithm engine = null;
-	private final void setEngine(IAlgorithm engine) {
-		this.engine = engine;
-	}		
-	public final IAlgorithm getEngine() {
-		return engine;
-	}	
-	
-	public BestMoveStrategy(IAlgorithm engine) {
-		this.setEngine(engine);
-	}
-
-	public IGameBoardMove chooseMoveAmong(final IGame context, final List<IGameBoardMove> legalMoves) {
-		
-		//--------------------------------------------------------------------------------------		
-		if(new OneSingleMoveExists().checkPredicate(legalMoves)) {
-			return legalMoves.get(0);
-		}
-		//--------------------------------------------------------------------------------------
-		
-		// uniquement pour tictactoe et puissance4 : TODO à améliorer
-		for(IGameBoardMove move: legalMoves) {
-			move.setEvaluation(this.getEngine().evaluateDeeply(context, move, 1));
-			move.setDepth(1);
-		}
-		//--------------------------------------------------------------------------------------
-		if(new WinningMoveExists().checkPredicate(legalMoves)) {
-			return Collections.max(legalMoves);
-		}
-		//--------------------------------------------------------------------------------------
-		// uniquement pour tictactoe et puissance4 : TODO à améliorer
-		List<IGameBoardMove> OpponentLegalMovesForSameContext = context.getLegalMoves(GamePlayersEnumeration.opponent(legalMoves.get(0).getSide()));
-		for(IGameBoardMove move: OpponentLegalMovesForSameContext) {
-			move.setEvaluation(this.getEngine().evaluateDeeply(context, move, 1));
-			move.setDepth(1);
-		}
-		//--------------------------------------------------------------------------------------
-		if(new WinningMoveExists().checkPredicate(OpponentLegalMovesForSameContext)) {
-			int index = 0;
-			while(OpponentLegalMovesForSameContext.get(index).getEvaluation() != Double.POSITIVE_INFINITY) ++index; // TODO QuickSearch si la liste est grande
-			return legalMoves.get(index);
-		}
-		//--------------------------------------------------------------------------------------
-
-
-		
-		// tri de la liste en fonction des scores obtenus au niveau 2
-		for(IGameBoardMove move: legalMoves) {
-			move.setEvaluation(this.getEngine().evaluateDeeply(context, move, 2));
-			move.setDepth(2);
-		}
-
-		
-		Collections.sort(legalMoves);
-		Collections.reverse(legalMoves);
-		
-		System.out.println("\nEvaluation en profondeur des coups légaux...\n");
-		
-		for(IGameBoardMove move : legalMoves) {
-			move.setEvaluation(this.getEngine().evaluateDeeply(context, move));
-		}
-
-		
-		Collections.sort(legalMoves);
-		Collections.reverse(legalMoves);
-		for (IGameBoardMove legalMove: legalMoves) {
-			System.out.println(legalMove.debug());
-		}
-		
-		
-		return Collections.max(legalMoves);
-		//--------------------------------------------------------------------------------------
-		
+	public BestMoveStrategy(IMoveEvaluator evaluator) {
+		super(new BestMoveSelector(evaluator));
 	}
 
 }

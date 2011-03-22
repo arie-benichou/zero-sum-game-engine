@@ -21,27 +21,33 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
 
 public class HumanMoveSelector implements IMoveSelector {
 
-	public IGameBoardMove select(final List<IGameBoardMove> legalMoves) {
-		IGameBoardMove move = null;
+	public IGameBoardMove select(IGame context,  final List<IGameBoardMove> legalMoves) {
+		
+		IGameBoardMove move;
+		
+		System.out.println("\nWhat is your move ?");
+		
 		final Scanner scanner = new Scanner(System.in);
+		
 		int i = 0;
 		try {
 			i = scanner.nextInt();
 			if (i < 1 || i > legalMoves.size()) {
 				System.out.println("No such move!");
-				move = this.select(legalMoves);
+				move = this.select(context, legalMoves);
 			} else {
 				move = legalMoves.get(i - 1);
 				System.out.println("You have choosen to play move #" + i + ": " + move);
 			}			
 		} catch (InputMismatchException e) {
 			System.out.println("Integer expected!");
-			move = this.select(legalMoves);
+			move = this.select(context, legalMoves);
 		}
 		return move;
 	}
