@@ -15,41 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
 
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelector;
 
-public class HumanMoveSelector implements IGameMoveSelector {
+public class RandomLegalMoveSelector implements IGameMoveSelector {
 
-	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
-		
-		MoveInterface move;
-		
-		System.out.println("\nWhat is your move ?");
-		
-		final Scanner scanner = new Scanner(System.in);
-		
-		int i = 0;
-		try {
-			i = scanner.nextInt();
-			if (i < 1 || i > legalMoves.size()) {
-				System.out.println("No such move!");
-				move = this.select(context, legalMoves);
-			} else {
-				move = legalMoves.get(i - 1);
-				System.out.println("You have choosen to play move #" + i + ": " + move);
-			}			
-		} catch (InputMismatchException e) {
-			System.out.println("Integer expected!");
-			move = this.select(context, legalMoves);
-		}
-		return move;
+	public MoveInterface select(GameInterface context, final List<MoveInterface> legalMoves) {
+		return legalMoves.get(new Random().nextInt(legalMoves.size()));
 	}
 
 }

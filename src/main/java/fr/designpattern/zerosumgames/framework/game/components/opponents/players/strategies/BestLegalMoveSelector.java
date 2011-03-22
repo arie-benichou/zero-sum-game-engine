@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +28,7 @@ import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.h
 import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics.WinningMoveExists;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
-public class BestMoveSelector implements IGameMoveSelector {
+public class BestLegalMoveSelector implements IGameMoveSelector {
 	//--------------------------------------------------------------------------------------	
 	private transient IGameMoveEvaluator evaluator;
 	private final IGameMoveEvaluator getEvaluator() {
@@ -38,7 +38,7 @@ public class BestMoveSelector implements IGameMoveSelector {
 		this.evaluator = evaluator;
 	}
 	//--------------------------------------------------------------------------------------
-	public BestMoveSelector(IGameMoveEvaluator evaluator) {
+	public BestLegalMoveSelector(IGameMoveEvaluator evaluator) {
 		this.setEvaluator(evaluator);
 	}
 	//--------------------------------------------------------------------------------------

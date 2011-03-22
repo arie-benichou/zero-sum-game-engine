@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.moves;
 
-import fr.designpattern.zerosumgames.framework.game.components.NullableInterface;
+import fr.designpattern.zerosumgames.framework.game.components.NullObjectAvailableInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
@@ -31,7 +31,7 @@ import fr.designpattern.zerosumgames.framework.game.components.opponents.Opponen
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface MoveInterface extends NullableInterface, Comparable<MoveInterface> {
+public interface MoveInterface extends NullObjectAvailableInterface, Comparable<MoveInterface> {
 
 	/**
 	 * Returns the position.

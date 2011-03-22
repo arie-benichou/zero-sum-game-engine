@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors.evaluators;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.evaluators;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
@@ -6,7 +6,7 @@ import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEv
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
 
-public class MiniMaxMoveEvaluator implements IGameMoveEvaluator{
+public class MiniMax implements IGameMoveEvaluator{
 
 	//--------------------------------------------------------------------------------------
 	private transient int maximalDepth;
@@ -25,7 +25,7 @@ public class MiniMaxMoveEvaluator implements IGameMoveEvaluator{
 		this.context = context;
 	}
 	//--------------------------------------------------------------------------------------	
-	public MiniMaxMoveEvaluator(final int maximaDepth) {
+	public MiniMax(final int maximaDepth) {
 		this.setMaximalDepth(maximaDepth);
 	}
 	//--------------------------------------------------------------------------------------

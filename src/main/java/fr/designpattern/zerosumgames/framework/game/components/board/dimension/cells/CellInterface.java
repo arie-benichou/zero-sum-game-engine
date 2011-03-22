@@ -21,7 +21,7 @@ package fr.designpattern.zerosumgames.framework.game.components.board.dimension.
 
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.game.components.NullableInterface;
+import fr.designpattern.zerosumgames.framework.game.components.NullObjectAvailableInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
@@ -32,7 +32,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface CellInterface extends NullableInterface, Cloneable {
+public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	
 	/**
 	 * Returns <tt>true</tt> if this cell is empty.

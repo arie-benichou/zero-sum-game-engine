@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions;
 
-import fr.designpattern.zerosumgames.framework.game.components.NullableInterface;
+import fr.designpattern.zerosumgames.framework.game.components.NullObjectAvailableInterface;
 
 /**
  * This is the interface for a game board position.
@@ -27,7 +27,7 @@ import fr.designpattern.zerosumgames.framework.game.components.NullableInterface
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface PositionInterface extends NullableInterface {
+public interface PositionInterface extends NullObjectAvailableInterface {
 
 	/**
 	 * Returns the client column index.
