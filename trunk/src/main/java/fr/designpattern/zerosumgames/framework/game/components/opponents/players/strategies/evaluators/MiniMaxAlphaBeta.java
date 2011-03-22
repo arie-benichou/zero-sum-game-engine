@@ -1,11 +1,11 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors.evaluators;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.evaluators;
 
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 
-public class MiniMaxAlphaBetaMoveEvaluator extends MiniMaxMoveEvaluator {
+public class MiniMaxAlphaBeta extends MiniMax {
 
-	public MiniMaxAlphaBetaMoveEvaluator(int maximaDepth) {
+	public MiniMaxAlphaBeta(int maximaDepth) {
 		super(maximaDepth);
 	}
 	

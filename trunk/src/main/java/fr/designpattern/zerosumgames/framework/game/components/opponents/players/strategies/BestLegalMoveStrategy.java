@@ -15,15 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.concretes;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.AbstractStrategy;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors.RandomMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
 
-public class RandomMove extends AbstractStrategy {
+public class BestLegalMoveStrategy extends AbstractStrategy {
 
-	public RandomMove() {
-		super(new RandomMoveSelector());
+	public BestLegalMoveStrategy(IGameMoveEvaluator evaluator) {
+		super(new BestLegalMoveSelector(evaluator));
 	}
 
 }

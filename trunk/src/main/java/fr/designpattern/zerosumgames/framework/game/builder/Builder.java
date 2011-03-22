@@ -16,7 +16,7 @@ import fr.designpattern.zerosumgames.framework.game.components.opponents.Opponen
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.Player;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerNature;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.concretes.RandomMove;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.RandomLegalMove;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
@@ -25,8 +25,8 @@ public class Builder implements BuilderInterface {
 
 	private transient final Class<? extends GameInterface> builderGameClass;
 	private transient DimensionInterface builderBoardDimension;
-	private transient PlayerInterface builderPlayer1 = new Player("Player 1", PlayerNature.COMPUTER, new RandomMove());
-	private transient PlayerInterface builderPlayer2 = new Player("Player 2", PlayerNature.COMPUTER, new RandomMove());
+	private transient PlayerInterface builderPlayer1 = new Player("Player 1", PlayerNature.COMPUTER, new RandomLegalMove());
+	private transient PlayerInterface builderPlayer2 = new Player("Player 2", PlayerNature.COMPUTER, new RandomLegalMove());
 
 	public Builder(final Class<? extends GameInterface> gameClass) {
 		this.builderGameClass = gameClass;
