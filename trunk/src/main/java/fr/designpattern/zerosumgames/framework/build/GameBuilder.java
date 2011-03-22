@@ -3,20 +3,20 @@ package fr.designpattern.zerosumgames.framework.build;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import fr.designpattern.zerosumgames.game.IGame;
-import fr.designpattern.zerosumgames.game.components.board.GameBoard;
-import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.game.components.board.cell.GameBoardCellFactory;
-import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCellFactory;
-import fr.designpattern.zerosumgames.game.components.board.dimension.IGameBoardDimension;
-import fr.designpattern.zerosumgames.game.components.board.position.GameBoardPositionFactory;
-import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPositionFactory;
-import fr.designpattern.zerosumgames.game.components.opponents.GameOpponents;
-import fr.designpattern.zerosumgames.game.components.opponents.GamePlayer;
-import fr.designpattern.zerosumgames.game.components.opponents.GamePlayerNature;
-import fr.designpattern.zerosumgames.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.game.components.opponents.IGamePlayer;
-import fr.designpattern.zerosumgames.game.components.opponents.strategies.RandomMoveStrategy;
+import fr.designpattern.zerosumgames.framework.build.game.IGame;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.GameBoard;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.IGameBoard;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.GameBoardCellFactory;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.IGameBoardCellFactory;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.dimension.IGameBoardDimension;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.position.GameBoardPositionFactory;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.position.IGameBoardPositionFactory;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GameOpponents;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayer;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayerNature;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.IGamePlayer;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.strategies.RandomMoveStrategy;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu

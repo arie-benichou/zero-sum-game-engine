@@ -19,7 +19,7 @@ package fr.designpattern.zerosumgames.extensions.tictactoe;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.pieces.TictactoePiece;
 import fr.designpattern.zerosumgames.extensions.tictactoe.pieces.TictactoePiecePawn;
-import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
 
 public enum TictactoePieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------

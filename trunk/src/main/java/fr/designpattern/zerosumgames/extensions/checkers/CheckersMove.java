@@ -1,10 +1,10 @@
 package fr.designpattern.zerosumgames.extensions.checkers;
 
-import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
-import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePiece;
-import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;
-import fr.designpattern.zerosumgames.game.components.move.GameBoardMove;
-import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.GameBoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePiece;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.position.IGameBoardPosition;
+import fr.designpattern.zerosumgames.framework.build.game.components.move.GameBoardMove;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
 
 // TODO ? implémenter une interface
 public class CheckersMove extends GameBoardMove {

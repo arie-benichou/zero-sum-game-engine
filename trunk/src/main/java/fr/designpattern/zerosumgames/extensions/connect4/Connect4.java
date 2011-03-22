@@ -22,13 +22,13 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
 import fr.designpattern.zerosumgames.framework.build.GameBuilder;
-import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
-import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
-import fr.designpattern.zerosumgames.game.components.board.dimension.GameBoardDimension;
-import fr.designpattern.zerosumgames.game.components.move.IGameMove;
-import fr.designpattern.zerosumgames.game.components.opponents.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.game.components.opponents.IGameOpponents;
-import fr.designpattern.zerosumgames.services.GameService;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.IGameBoard;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.IGameBoardCell;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.dimension.GameBoardDimension;
+import fr.designpattern.zerosumgames.framework.build.game.components.move.IGameMove;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.framework.build.game.components.opponents.IGameOpponents;
+import fr.designpattern.zerosumgames.framework.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Connect4 extends Tictactoe {

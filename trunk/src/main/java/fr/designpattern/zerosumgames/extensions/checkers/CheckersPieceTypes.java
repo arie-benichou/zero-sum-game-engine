@@ -3,7 +3,7 @@ package fr.designpattern.zerosumgames.extensions.checkers;
 import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPiece;
 import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPieceKing;
 import fr.designpattern.zerosumgames.extensions.checkers.pieces.CheckersPieceMan;
-import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePieceType;
+import fr.designpattern.zerosumgames.framework.build.game.components.board.cell.piece.IGamePieceType;
 
 public enum CheckersPieceTypes implements IGamePieceType {
 
