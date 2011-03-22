@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.core.ai.engines;
+package fr.designpattern.zerosumgames.core.strategies.engines;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;

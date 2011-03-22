@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.core.ai.heuristics;
+package fr.designpattern.zerosumgames.core.strategies.engines.heuristics;
 
 import java.util.List;
 
