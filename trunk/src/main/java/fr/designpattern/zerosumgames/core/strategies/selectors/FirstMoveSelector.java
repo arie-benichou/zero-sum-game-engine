@@ -1,7 +1,5 @@
 /*
- * @(#)IGamePlayerStrategy.java	0.99
- * 
- * Copyright 2011 Arie Benichou
+ * Copyright (C) 2011 Arié Bénichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,31 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.core.interfaces;
+package fr.designpattern.zerosumgames.core.strategies.selectors;
 
 import java.util.List;
 
-/**
- * This is the interface for a game player strategy.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
- */
+import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
+import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
 
-// TODO avoir des décorateurs de stratégies
-public interface IGamePlayerStrategy {
+public class FirstMoveSelector implements IMoveSelector {
 
-	/**
-	 * Returns the move selected by the player strategy.
-	 * 
-	 * @param legalMoves the list of legal moves
-	 * for a given player and a given board.
-	 * 
-	 * @return the move selected by the player strategy
-	 */
-	
-	
-	IGameBoardMove chooseMoveAmong(IGame game, List<IGameBoardMove> legalMoves);
-	IMoveSelector getSelector();
+	public IGameBoardMove select(final List<IGameBoardMove> legalMoves) {
+		return legalMoves.get(0);
+	}
 
 }

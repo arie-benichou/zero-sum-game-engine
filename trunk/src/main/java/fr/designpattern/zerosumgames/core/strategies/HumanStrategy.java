@@ -17,36 +17,14 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
+import fr.designpattern.zerosumgames.core.strategies.selectors.HumanMoveSelector;
 
-import fr.designpattern.zerosumgames.core.interfaces.IGame;
-import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
+public class HumanStrategy extends AbstractStrategy {
 
-public class HumanStrategy implements IGamePlayerStrategy {
-
-	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
-		IGameBoardMove choosenMove = null;
-		final Scanner scanner = new Scanner(System.in);
-		System.out.println("\nWhat is your move?"); 
-		int i = 0;
-		try {
-			i = scanner.nextInt();
-			if (i < 1 || i > legalMoves.size()) {
-				System.out.println("No such move!");
-				choosenMove = this.chooseMoveAmong(game, legalMoves);
-			}
-			else {
-				choosenMove = legalMoves.get(i - 1);
-				System.out.println("You have choosen to play move #" + i + ": " + choosenMove);
-			}
-		}
-		catch(InputMismatchException e) {
-			System.out.println("Integer expected!");
-			choosenMove = this.chooseMoveAmong(game, legalMoves);
-		}
-		return choosenMove;
+	public HumanStrategy(final IMoveSelector selector) {
+		super(new HumanMoveSelector());
 	}
+	
+
 }

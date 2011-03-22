@@ -17,12 +17,26 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import fr.designpattern.zerosumgames.core.strategies.selectors.RandomMoveSelector;
+import java.util.List;
 
-public class RandomStrategy extends AbstractStrategy {
+import fr.designpattern.zerosumgames.core.interfaces.IGame;
+import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
+import fr.designpattern.zerosumgames.core.interfaces.IGamePlayerStrategy;
+import fr.designpattern.zerosumgames.core.interfaces.IMoveSelector;
 
-	public RandomStrategy() {
-		super(new RandomMoveSelector());
+public class AbstractStrategy implements IGamePlayerStrategy {
+
+	private final transient IMoveSelector selector;
+	public final IMoveSelector getSelector() {
+		return this.selector;
+	}
+
+	public AbstractStrategy(final IMoveSelector selector) {
+		this.selector = selector;
+	}
+	
+	public IGameBoardMove chooseMoveAmong(final IGame game, final List<IGameBoardMove> legalMoves) {
+		return this.selector.select(legalMoves);
 	}
 
 }

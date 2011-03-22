@@ -1,18 +1,18 @@
-package fr.designpattern.zerosumgames.core.strategies.moveSelectors;
+package fr.designpattern.zerosumgames.core.strategies.selectors;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 
-public class MiniMax implements IAlgorithm {
+public class MiniMaxMoveSelector implements IAlgorithm {
 
 	//--------------------------------------------------------------------------------------
 	private transient int maximalDepth;
 	public final int getMaximalDepth() {
 		return maximalDepth;
 	}
-	public final void setMaximalDepth(int maximalDepth) {
+	public final void setMaximalDepth(final int maximalDepth) {
 		this.maximalDepth = maximalDepth;
 	}
 	//--------------------------------------------------------------------------------------	
@@ -20,15 +20,15 @@ public class MiniMax implements IAlgorithm {
 	protected final IGame getContext() {
 		return context;
 	}	
-	private final void setContext(IGame context) {
+	private final void setContext(final IGame context) {
 		this.context = context;
 	}
 	//--------------------------------------------------------------------------------------	
-	public MiniMax(int maximaDepth) {
+	public MiniMaxMoveSelector(final int maximaDepth) {
 		this.setMaximalDepth(maximaDepth);
 	}
 	//--------------------------------------------------------------------------------------
-	public double evaluateDeeply(final IGame context, final IGameBoardMove moveToEvaluate, int maximalDepth) {
+	public double evaluateDeeply(final IGame context, final IGameBoardMove moveToEvaluate, final int maximalDepth) {
 		this.setContext(context);
 		return this.evaluateDeeply(moveToEvaluate, maximalDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
 	}
@@ -37,10 +37,10 @@ public class MiniMax implements IAlgorithm {
 		return this.evaluateDeeply(context, moveToEvaluate, this.maximalDepth);
 	}
 	//--------------------------------------------------------------------------------------	
-	protected double evaluateDeeply(final IGameBoardMove moveToEvaluate, int profondeur, double alpha, double beta, double side) {
+	protected double evaluateDeeply(final IGameBoardMove moveToEvaluate, final int profondeur, double alpha, double beta, final double side) {
 
 		double score;
-		GamePlayersEnumeration nextPlayer = this.getContext().whoShallPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
+		final GamePlayersEnumeration nextPlayer = this.getContext().whoShallPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
 		
 		if(!GamePlayersEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
 			score = side * this.getContext().evaluate(moveToEvaluate); 

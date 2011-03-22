@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.core.strategies.moveSelectors.heuristics;
+package fr.designpattern.zerosumgames.core.strategies.selectors.heuristics;
 
 import java.util.List;
 
