@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.tictactoe.pieces;
+package fr.designpattern.zerosumgames.extensions.tictactoe.pieces;
 
 import fr.designpattern.zerosumgames.core.GamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;

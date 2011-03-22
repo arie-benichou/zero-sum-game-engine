@@ -15,15 +15,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.connect4.pieces;
+package fr.designpattern.zerosumgames.extensions.connect4;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
-import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
+import fr.designpattern.zerosumgames.extensions.connect4.pieces.Connect4Piece;
+import fr.designpattern.zerosumgames.extensions.connect4.pieces.Connect4PiecePawn;
 
-public class Connect4PiecePawn extends Connect4Piece {
+public enum Connect4PieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------
-	public Connect4PiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
-		super(type, side);
+	PAWN(Connect4PiecePawn.class);
+	// ------------------------------------------------------------
+	private final Class<? extends Connect4Piece> classObject;
+	// ------------------------------------------------------------
+	private Connect4PieceTypes(final Class<? extends Connect4Piece> classObject) {
+		this.classObject = classObject;
+	}
+	// ------------------------------------------------------------
+	public final Class<? extends Connect4Piece> getClassObject() {
+		return this.classObject;
 	}
 	// ------------------------------------------------------------
 }

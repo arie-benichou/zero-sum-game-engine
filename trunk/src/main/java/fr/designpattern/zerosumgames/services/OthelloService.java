@@ -6,7 +6,7 @@ import fr.designpattern.zerosumgames.core.GamePlayer;
 import fr.designpattern.zerosumgames.core.GameService;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBuilder;
 import fr.designpattern.zerosumgames.core.types.GamePlayerNature;
-import fr.designpattern.zerosumgames.implementations.othello.Othello;
+import fr.designpattern.zerosumgames.extensions.othello.Othello;
 
 public class OthelloService {
 

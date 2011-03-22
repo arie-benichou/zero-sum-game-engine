@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.implementations.checkers.pieces;
+package fr.designpattern.zerosumgames.extensions.checkers.pieces;
 
 import fr.designpattern.zerosumgames.core.GamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardCell;

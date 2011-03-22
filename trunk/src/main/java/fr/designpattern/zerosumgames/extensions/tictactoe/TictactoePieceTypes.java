@@ -15,29 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.othello;
+package fr.designpattern.zerosumgames.extensions.tictactoe;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
-import fr.designpattern.zerosumgames.implementations.othello.pieces.OthelloPiece;
-import fr.designpattern.zerosumgames.implementations.othello.pieces.OthelloPieceNull;
-import fr.designpattern.zerosumgames.implementations.othello.pieces.OthelloPiecePawn;
+import fr.designpattern.zerosumgames.extensions.tictactoe.pieces.TictactoePiece;
+import fr.designpattern.zerosumgames.extensions.tictactoe.pieces.TictactoePiecePawn;
 
-/*
- * Remarque:
- * le type de pièce NULL est un artefact correspondant à la non-pièce, il s'agit du NullObject: PieceNull  
- */
-public enum OthelloPieceTypes implements IGamePieceType {
+public enum TictactoePieceTypes implements IGamePieceType {
 	// ------------------------------------------------------------
-	NULL(OthelloPieceNull.class),
-	PAWN(OthelloPiecePawn.class);
+	PAWN(TictactoePiecePawn.class);
 	// ------------------------------------------------------------
-	private final Class<? extends OthelloPiece> classObject;
+	private final Class<? extends TictactoePiece> classObject;
 	// ------------------------------------------------------------
-	private OthelloPieceTypes(final Class<? extends OthelloPiece> classObject) {
+	private TictactoePieceTypes(final Class<? extends TictactoePiece> classObject) {
 		this.classObject = classObject;
 	}
 	// ------------------------------------------------------------
-	public final Class<? extends OthelloPiece> getClassObject() {
+	public final Class<? extends TictactoePiece> getClassObject() {
 		return this.classObject;
 	}
 	// ------------------------------------------------------------

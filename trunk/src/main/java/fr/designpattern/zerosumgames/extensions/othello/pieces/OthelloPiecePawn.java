@@ -15,22 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.connect4.pieces;
+package fr.designpattern.zerosumgames.extensions.othello.pieces;
 
-import fr.designpattern.zerosumgames.core.GamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
-public abstract class Connect4Piece extends GamePiece {
+public class OthelloPiecePawn extends OthelloPiece {
 	// ------------------------------------------------------------
-	public Connect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public OthelloPiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
-	}
-	// ------------------------------------------------------------
-	@Override
-	public String toString() {
-		// TODO ? utiliser une map dans la factory
-		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }

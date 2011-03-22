@@ -15,31 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.othello.pieces;
+package fr.designpattern.zerosumgames.extensions.othello.pieces;
 
-import fr.designpattern.zerosumgames.core.GamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
-import fr.designpattern.zerosumgames.implementations.othello.OthelloPieceTypes;
 
-public abstract class OthelloPiece extends GamePiece {
+public class OthelloPieceNull extends OthelloPiece {
 	// ------------------------------------------------------------
-	public OthelloPiece(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public OthelloPieceNull(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
-	}
-	// ------------------------------------------------------------
-	@Override
-	public String toString() {
-		// TODO ? utiliser une map dans la factory
-		// TODO ? utiliser le NullObject PieceNull
-		String symbol;
-		if(this.getType().equals(OthelloPieceTypes.NULL)) {
-			symbol = " ";
-		}
-		else {
-			symbol = this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";	
-		}
-		return symbol;
 	}
 	// ------------------------------------------------------------
 }

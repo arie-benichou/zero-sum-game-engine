@@ -15,15 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.implementations.tictactoe.pieces;
+package fr.designpattern.zerosumgames.extensions.connect4.pieces;
 
+import fr.designpattern.zerosumgames.core.GamePiece;
 import fr.designpattern.zerosumgames.core.interfaces.IGamePieceType;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
-public class TictactoePiecePawn extends TictactoePiece {
+public abstract class Connect4Piece extends GamePiece {
 	// ------------------------------------------------------------
-	public TictactoePiecePawn(final IGamePieceType type, final GamePlayersEnumeration side) {
+	public Connect4Piece(final IGamePieceType type, final GamePlayersEnumeration side) {
 		super(type, side);
+	}
+	// ------------------------------------------------------------
+	@Override
+	public String toString() {
+		// TODO ? utiliser une map dans la factory
+		return this.getSide().equals(GamePlayersEnumeration.FIRST_PLAYER) ? "x" : "o";
 	}
 	// ------------------------------------------------------------
 }

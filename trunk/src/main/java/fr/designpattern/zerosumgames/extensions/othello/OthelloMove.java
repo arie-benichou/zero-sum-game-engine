@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.implementations.othello;
+package fr.designpattern.zerosumgames.extensions.othello;
 
 import java.util.List;
 
