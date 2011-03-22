@@ -23,7 +23,6 @@ public class GameOpponents implements IGameOpponents {
 	}
 
 	public IGamePlayerStrategy getPlayerStrategy(GamePlayersEnumeration playerOrdinal) {
-		System.out.println(playerOrdinal);
 		return this.getPlayer(playerOrdinal).getStrategy();
 	}
 

@@ -60,6 +60,7 @@ public class Othello extends Game {
 		return true;
 	}
 	// ------------------------------------------------------------
+	// TODO à virer
 	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side, final IGameBoardMove previousMove) {
 		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
 		for (IGameBoardCell[] line : this.getBoard()) {
@@ -73,6 +74,20 @@ public class Othello extends Game {
 		legalMoves.add(this.makeMove(side, this.cell(null).getPosition()));
 		return legalMoves;
 	}
+	// ------------------------------------------------------------	
+	public final List<IGameBoardMove> getLegalMoves(final GamePlayersEnumeration side) {
+		final List<IGameBoardMove> legalMoves = new ArrayList<IGameBoardMove>();
+		for (IGameBoardCell[] line : this.getBoard()) {
+			for (IGameBoardCell cell : line) {
+				if (this.canPlayHere(cell, side)) {
+					legalMoves.add(this.makeMove(side, cell.getPosition()));
+				}
+			}
+		}
+		// TODO ? cache du nullMove pour chaque side
+		legalMoves.add(this.makeMove(side, this.cell(null).getPosition()));
+		return legalMoves;
+	}	
 	// ------------------------------------------------------------
 	public boolean undoMove(final IGameBoardMove playedMove) {
 		if(!playedMove.isNull()) {

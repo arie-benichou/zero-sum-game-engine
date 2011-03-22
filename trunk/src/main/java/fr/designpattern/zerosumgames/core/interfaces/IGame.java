@@ -47,7 +47,11 @@ public interface IGame {
 	 * 
 	 * @return the list of legal moves
 	 */
+	// TODO à virer + refactoring
 	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side, final IGameBoardMove previousMove);
+	
+	List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side);
+	
 	
 	/**
 	 * Plays a move and returns true if the move is completed, 

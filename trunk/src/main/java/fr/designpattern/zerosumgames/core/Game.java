@@ -123,6 +123,7 @@ public abstract class Game implements IGame {
 	
 	public abstract boolean hasNullMove();	
 	public abstract List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side, IGameBoardMove previousMove);
+	public abstract List<IGameBoardMove> getLegalMoves(GamePlayersEnumeration side);
 	public abstract boolean doMove(IGameBoardMove moveToPlay);
 	public abstract boolean undoMove(IGameBoardMove playedMove);
 	public abstract boolean isGameOverFromVictory(IGameBoardMove playedMove);
