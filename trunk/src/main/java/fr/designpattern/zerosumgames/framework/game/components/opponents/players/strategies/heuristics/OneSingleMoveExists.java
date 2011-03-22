@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.selectors.heuristics;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.heuristics;
 
 import java.util.List;
 
