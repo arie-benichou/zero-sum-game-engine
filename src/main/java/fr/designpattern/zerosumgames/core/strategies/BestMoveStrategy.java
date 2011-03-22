@@ -22,9 +22,9 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
-import fr.designpattern.zerosumgames.core.strategies.moveSelectors.IAlgorithm;
-import fr.designpattern.zerosumgames.core.strategies.moveSelectors.heuristics.OneSingleMoveExists;
-import fr.designpattern.zerosumgames.core.strategies.moveSelectors.heuristics.WinningMoveExists;
+import fr.designpattern.zerosumgames.core.strategies.selectors.IAlgorithm;
+import fr.designpattern.zerosumgames.core.strategies.selectors.heuristics.OneSingleMoveExists;
+import fr.designpattern.zerosumgames.core.strategies.selectors.heuristics.WinningMoveExists;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
 public class BestMoveStrategy implements IArtificialIntelligenceStrategy {

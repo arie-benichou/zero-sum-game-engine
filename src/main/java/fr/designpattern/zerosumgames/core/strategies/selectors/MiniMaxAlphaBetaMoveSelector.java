@@ -1,11 +1,11 @@
-package fr.designpattern.zerosumgames.core.strategies.moveSelectors;
+package fr.designpattern.zerosumgames.core.strategies.selectors;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
 import fr.designpattern.zerosumgames.core.types.GamePlayersEnumeration;
 
-public class MiniMaxWithAlphaBetaPruning extends MiniMax {
+public class MiniMaxAlphaBetaMoveSelector extends MiniMaxMoveSelector {
 
-	public MiniMaxWithAlphaBetaPruning(int maximaDepth) {
+	public MiniMaxAlphaBetaMoveSelector(int maximaDepth) {
 		super(maximaDepth);
 	}
 	

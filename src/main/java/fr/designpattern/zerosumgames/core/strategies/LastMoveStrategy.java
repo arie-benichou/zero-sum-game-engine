@@ -17,12 +17,12 @@
 
 package fr.designpattern.zerosumgames.core.strategies;
 
-import fr.designpattern.zerosumgames.core.strategies.selectors.RandomMoveSelector;
+import fr.designpattern.zerosumgames.core.strategies.selectors.LastMoveSelector;
 
-public class RandomStrategy extends AbstractStrategy {
+public class LastMoveStrategy extends AbstractStrategy {
 
-	public RandomStrategy() {
-		super(new RandomMoveSelector());
+	public LastMoveStrategy() {
+		super(new LastMoveSelector());
 	}
 
 }

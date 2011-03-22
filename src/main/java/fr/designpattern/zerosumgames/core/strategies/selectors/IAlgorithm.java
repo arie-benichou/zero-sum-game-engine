@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.core.strategies.moveSelectors;
+package fr.designpattern.zerosumgames.core.strategies.selectors;
 
 import fr.designpattern.zerosumgames.core.interfaces.IGame;
 import fr.designpattern.zerosumgames.core.interfaces.IGameBoardMove;
