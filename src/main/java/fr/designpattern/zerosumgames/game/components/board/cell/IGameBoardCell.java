@@ -21,7 +21,7 @@ package fr.designpattern.zerosumgames.game.components.board.cell;
 
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.game.IGameNullableComponent;
+import fr.designpattern.zerosumgames.game.components.IGameNullableComponent;
 import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.game.components.board.cell.piece.IGamePiece;
 import fr.designpattern.zerosumgames.game.components.board.position.IGameBoardPosition;

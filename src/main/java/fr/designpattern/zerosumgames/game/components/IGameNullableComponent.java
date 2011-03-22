@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.game;
+package fr.designpattern.zerosumgames.game.components;
 
 public interface IGameNullableComponent {
 
