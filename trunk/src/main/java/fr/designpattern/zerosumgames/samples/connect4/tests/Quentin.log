@@ -1,0 +1,1014 @@
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 6][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 6][column 5]
+#6: FIRST_PLAYER [row 6][column 6]
+#7: FIRST_PLAYER [row 6][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 6][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 6][column 5]
+#6: SECOND_PLAYER [row 6][column 6]
+#7: SECOND_PLAYER [row 5][column 7]
+
+What is your move?
+1
+You have choosen to play move #1: SECOND_PLAYER [row 6][column 1]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+| o |   |   |   |   |   | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 6][column 5]
+#6: FIRST_PLAYER [row 6][column 6]
+#7: FIRST_PLAYER [row 5][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+| o |   |   |   |   |   | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 6][column 5]
+#6: SECOND_PLAYER [row 6][column 6]
+#7: SECOND_PLAYER [row 4][column 7]
+
+What is your move?
+6
+You have choosen to play move #6: SECOND_PLAYER [row 6][column 6]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+| o |   |   |   |   | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 6][column 5]
+#6: FIRST_PLAYER [row 5][column 6]
+#7: FIRST_PLAYER [row 4][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+| o |   |   |   |   | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 6][column 5]
+#6: SECOND_PLAYER [row 5][column 6]
+#7: SECOND_PLAYER [row 3][column 7]
+
+What is your move?
+7
+You have choosen to play move #7: SECOND_PLAYER [row 3][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+| o |   |   |   |   | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 6][column 5]
+#6: FIRST_PLAYER [row 5][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   |   | x |
+-----------------------------
+|   |   |   |   |   | x | x |
+-----------------------------
+| o |   |   |   |   | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 6][column 5]
+#6: SECOND_PLAYER [row 4][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+6
+You have choosen to play move #6: SECOND_PLAYER [row 4][column 6]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   | o | x |
+-----------------------------
+|   |   |   |   |   | x | x |
+-----------------------------
+| o |   |   |   |   | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 6][column 5]
+#6: FIRST_PLAYER [row 3][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   | o | x |
+-----------------------------
+|   |   |   |   |   | x | x |
+-----------------------------
+| o |   |   |   | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 6][column 4]
+#5: SECOND_PLAYER [row 5][column 5]
+#6: SECOND_PLAYER [row 3][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+5
+You have choosen to play move #5: SECOND_PLAYER [row 5][column 5]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o |   |   |   | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 6][column 4]
+#5: FIRST_PLAYER [row 4][column 5]
+#6: FIRST_PLAYER [row 3][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   |   | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o |   |   | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 6][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 4][column 5]
+#6: SECOND_PLAYER [row 3][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+5
+You have choosen to play move #5: SECOND_PLAYER [row 4][column 5]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o |   |   | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 6][column 2]
+#3: FIRST_PLAYER [row 6][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 3][column 5]
+#6: FIRST_PLAYER [row 3][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o |   | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 6][column 2]
+#3: SECOND_PLAYER [row 5][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 3][column 5]
+#6: SECOND_PLAYER [row 3][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+2
+You have choosen to play move #2: SECOND_PLAYER [row 6][column 2]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 5][column 2]
+#3: FIRST_PLAYER [row 5][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 3][column 5]
+#6: FIRST_PLAYER [row 3][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   | x | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   |   |   |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 5][column 2]
+#3: SECOND_PLAYER [row 5][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 3][column 5]
+#6: SECOND_PLAYER [row 2][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+3
+You have choosen to play move #3: SECOND_PLAYER [row 5][column 3]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   | x | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   |   | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 5][column 2]
+#3: FIRST_PLAYER [row 4][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 3][column 5]
+#6: FIRST_PLAYER [row 2][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   | x | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 4][column 2]
+#3: SECOND_PLAYER [row 4][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 3][column 5]
+#6: SECOND_PLAYER [row 2][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+5
+You have choosen to play move #5: SECOND_PLAYER [row 3][column 5]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 4][column 2]
+#3: FIRST_PLAYER [row 4][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 2][column 5]
+#6: FIRST_PLAYER [row 2][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x |   |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+|   |   |   |   | o | o | x |
+-----------------------------
+|   | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 4][column 2]
+#3: SECOND_PLAYER [row 4][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 2][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+3
+You have choosen to play move #3: SECOND_PLAYER [row 4][column 3]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x |   |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+|   |   | o |   | o | o | x |
+-----------------------------
+|   | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 5][column 1]
+#2: FIRST_PLAYER [row 4][column 2]
+#3: FIRST_PLAYER [row 3][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 2][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+|   |   | o |   | o | o | x |
+-----------------------------
+|   | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 5][column 1]
+#2: SECOND_PLAYER [row 4][column 2]
+#3: SECOND_PLAYER [row 3][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+1
+You have choosen to play move #1: SECOND_PLAYER [row 5][column 1]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+|   |   | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 4][column 1]
+#2: FIRST_PLAYER [row 4][column 2]
+#3: FIRST_PLAYER [row 3][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+| x |   | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 1]
+#2: SECOND_PLAYER [row 4][column 2]
+#3: SECOND_PLAYER [row 3][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+2
+You have choosen to play move #2: SECOND_PLAYER [row 4][column 2]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   |   |   |   | o | x | o |
+-----------------------------
+| x | o | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 1]
+#2: FIRST_PLAYER [row 3][column 2]
+#3: FIRST_PLAYER [row 3][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   | x |   |   | o | x | o |
+-----------------------------
+| x | o | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 1]
+#2: SECOND_PLAYER [row 2][column 2]
+#3: SECOND_PLAYER [row 3][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+3
+You have choosen to play move #3: SECOND_PLAYER [row 3][column 3]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   |   |   | x | x |   |
+-----------------------------
+|   | x | o |   | o | x | o |
+-----------------------------
+| x | o | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 1]
+#2: FIRST_PLAYER [row 2][column 2]
+#3: FIRST_PLAYER [row 2][column 3]
+#4: FIRST_PLAYER [row 5][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   | x |   | x | x |   |
+-----------------------------
+|   | x | o |   | o | x | o |
+-----------------------------
+| x | o | o |   | o | o | x |
+-----------------------------
+| o | x | o |   | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 1]
+#2: SECOND_PLAYER [row 2][column 2]
+#3: SECOND_PLAYER [row 1][column 3]
+#4: SECOND_PLAYER [row 5][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+4
+You have choosen to play move #4: SECOND_PLAYER [row 5][column 4]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   | x |   | x | x |   |
+-----------------------------
+|   | x | o |   | o | x | o |
+-----------------------------
+| x | o | o |   | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 3][column 1]
+#2: FIRST_PLAYER [row 2][column 2]
+#3: FIRST_PLAYER [row 1][column 3]
+#4: FIRST_PLAYER [row 4][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   | x |   | x | x |   |
+-----------------------------
+|   | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 3][column 1]
+#2: SECOND_PLAYER [row 2][column 2]
+#3: SECOND_PLAYER [row 1][column 3]
+#4: SECOND_PLAYER [row 3][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 2][column 7]
+
+What is your move?
+1
+You have choosen to play move #1: SECOND_PLAYER [row 3][column 1]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   | x |   | x | x |   |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 2][column 1]
+#2: FIRST_PLAYER [row 2][column 2]
+#3: FIRST_PLAYER [row 1][column 3]
+#4: FIRST_PLAYER [row 3][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 2][column 7]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   |   | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 1]
+#2: SECOND_PLAYER [row 2][column 2]
+#3: SECOND_PLAYER [row 1][column 3]
+#4: SECOND_PLAYER [row 3][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 6]
+#7: SECOND_PLAYER [row 1][column 7]
+
+What is your move?
+2
+You have choosen to play move #2: SECOND_PLAYER [row 2][column 2]
+
+-----------------------------
+|   |   |   |   |   |   |   |
+-----------------------------
+|   | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 2][column 1]
+#2: FIRST_PLAYER [row 1][column 2]
+#3: FIRST_PLAYER [row 1][column 3]
+#4: FIRST_PLAYER [row 3][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 6]
+#7: FIRST_PLAYER [row 1][column 7]
+
+-----------------------------
+|   |   |   |   |   | x |   |
+-----------------------------
+|   | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 2][column 1]
+#2: SECOND_PLAYER [row 1][column 2]
+#3: SECOND_PLAYER [row 1][column 3]
+#4: SECOND_PLAYER [row 3][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+#6: SECOND_PLAYER [row 1][column 7]
+
+What is your move?
+1
+You have choosen to play move #1: SECOND_PLAYER [row 2][column 1]
+
+-----------------------------
+|   |   |   |   |   | x |   |
+-----------------------------
+| o | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 1]
+#2: FIRST_PLAYER [row 1][column 2]
+#3: FIRST_PLAYER [row 1][column 3]
+#4: FIRST_PLAYER [row 3][column 4]
+#5: FIRST_PLAYER [row 1][column 5]
+#6: FIRST_PLAYER [row 1][column 7]
+
+-----------------------------
+|   |   |   |   |   | x | x |
+-----------------------------
+| o | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 1]
+#2: SECOND_PLAYER [row 1][column 2]
+#3: SECOND_PLAYER [row 1][column 3]
+#4: SECOND_PLAYER [row 3][column 4]
+#5: SECOND_PLAYER [row 1][column 5]
+
+What is your move?
+3
+You have choosen to play move #3: SECOND_PLAYER [row 1][column 3]
+
+-----------------------------
+|   |   | o |   |   | x | x |
+-----------------------------
+| o | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 1]
+#2: FIRST_PLAYER [row 1][column 2]
+#3: FIRST_PLAYER [row 3][column 4]
+#4: FIRST_PLAYER [row 1][column 5]
+
+-----------------------------
+| x |   | o |   |   | x | x |
+-----------------------------
+| o | o | x |   | x | x | x |
+-----------------------------
+| o | x | o |   | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: SECOND_PLAYER [row 1][column 2]
+#2: SECOND_PLAYER [row 3][column 4]
+#3: SECOND_PLAYER [row 1][column 5]
+
+What is your move?
+2
+You have choosen to play move #2: SECOND_PLAYER [row 3][column 4]
+
+-----------------------------
+| x |   | o |   |   | x | x |
+-----------------------------
+| o | o | x |   | x | x | x |
+-----------------------------
+| o | x | o | o | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+
+legal moves :
+#1: FIRST_PLAYER [row 1][column 2]
+#2: FIRST_PLAYER [row 2][column 4]
+#3: FIRST_PLAYER [row 1][column 5]
+
+-----------------------------
+| x |   | o |   |   | x | x |
+-----------------------------
+| o | o | x | x | x | x | x |
+-----------------------------
+| o | x | o | o | o | x | o |
+-----------------------------
+| x | o | o | x | o | o | x |
+-----------------------------
+| o | x | o | o | o | x | x |
+-----------------------------
+| o | o | x | x | x | o | x |
+-----------------------------
+
+Game over...
+And the winner is FIRST_PLAYER!
