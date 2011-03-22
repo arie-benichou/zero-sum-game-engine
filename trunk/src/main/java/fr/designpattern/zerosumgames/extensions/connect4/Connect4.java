@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.extensions.tictactoe.Tictactoe;
-import fr.designpattern.zerosumgames.game.GameBuilder;
+import fr.designpattern.zerosumgames.framework.build.GameBuilder;
 import fr.designpattern.zerosumgames.game.components.board.IGameBoard;
 import fr.designpattern.zerosumgames.game.components.board.cell.IGameBoardCell;
 import fr.designpattern.zerosumgames.game.components.board.dimension.GameBoardDimension;

@@ -22,8 +22,8 @@ package fr.designpattern.zerosumgames.extensions.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.designpattern.zerosumgames.framework.build.GameBuilder;
 import fr.designpattern.zerosumgames.game.Game;
-import fr.designpattern.zerosumgames.game.GameBuilder;
 import fr.designpattern.zerosumgames.game.components.board.GameBoardCardinalPosition;
 import fr.designpattern.zerosumgames.game.components.board.GameBoardPlane;
 import fr.designpattern.zerosumgames.game.components.board.IGameBoard;

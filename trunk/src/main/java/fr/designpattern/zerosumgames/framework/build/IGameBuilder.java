@@ -1,5 +1,6 @@
-package fr.designpattern.zerosumgames.game;
+package fr.designpattern.zerosumgames.framework.build;
 
+import fr.designpattern.zerosumgames.game.IGame;
 import fr.designpattern.zerosumgames.game.components.board.dimension.IGameBoardDimension;
 import fr.designpattern.zerosumgames.game.components.opponents.IGamePlayer;
 
