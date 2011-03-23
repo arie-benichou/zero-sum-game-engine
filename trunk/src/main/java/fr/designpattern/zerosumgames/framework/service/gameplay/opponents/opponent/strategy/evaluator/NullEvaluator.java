@@ -6,7 +6,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterfa
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 
 public class NullEvaluator implements EvaluatorInterface {
-
+	// ------------------------------------------------------------
 	private GameInterface context;
 	public final void setContext(GameInterface context) {
 		this.context = context;
@@ -14,40 +14,14 @@ public class NullEvaluator implements EvaluatorInterface {
 	public final GameInterface getContext() {
 		return this.context;
 	}
-
+	// ------------------------------------------------------------
 	public List<LegalMoveInterface> applyEvaluation(List<LegalMoveInterface> legalMoves) {
 		return legalMoves;
 	}
-
+	// ------------------------------------------------------------
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
-	
-	
-	public static void main(String[] args) {
-
-		/*
-		C'est le opponents qui doivent contenir le game et non l'inverse
-		
-		// TODO créer un objet GamePlay
-		une partie de jeu = gamePlay {
-		
-			player1 = new player(name, strategy);
-			player2 = new player(name, strategy);
-			opponents = new opponents(player1,player2);
-			
-			...
-			game = new Game(...);
-			
-			opponents.playAt(game);
-		
-		}
-		
-		le GameService utilise le GamePlay
-		*/
-		
-	}
-	
+	// ------------------------------------------------------------	
 }
-

@@ -25,6 +25,8 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppon
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
+
+// TODO ? renommer en PlayerDataInterface ou OpponentDataInterface
 public interface PlayerInterface {
 
 	/**

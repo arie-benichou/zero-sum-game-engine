@@ -23,8 +23,8 @@ public class GameBuilder implements GameBuilderInterface {
 
 	private transient final Class<? extends GameInterface> builderGameClass;
 	private transient DimensionInterface builderBoardDimension;
-	private transient PlayerInterface builderPlayer1 = new Player("Player 1", new RandomLegalMoveSelector());
-	private transient PlayerInterface builderPlayer2 = new Player("Player 2", new RandomLegalMoveSelector());
+	//private transient PlayerInterface builderPlayer1 = new Player("Player 1", new RandomLegalMoveSelector());
+	//private transient PlayerInterface builderPlayer2 = new Player("Player 2", new RandomLegalMoveSelector());
 
 	public GameBuilder(final Class<? extends GameInterface> gameClass) {
 		this.builderGameClass = gameClass;
@@ -50,6 +50,7 @@ public class GameBuilder implements GameBuilderInterface {
 		return this;
 	}
 
+	/*
 	public final GameBuilder player1(final PlayerInterface player1) {
 		this.builderPlayer1 = player1;
 		return this;
@@ -59,31 +60,32 @@ public class GameBuilder implements GameBuilderInterface {
 		this.builderPlayer2 = player2;
 		return this;
 	}
-
+	*/
+	
 	public GameInterface build() {
 		
 		final PositionsInterface positionFactory = new Positions(this.builderBoardDimension);
 		final CellsInterface cellFactory = new Cells(positionFactory);
 		
 		final BoardInterface board = new Board(cellFactory);
-		final OpponentsInterface opponents = new Opponents(this.builderPlayer1, this.builderPlayer2);
+		//final OpponentsInterface opponents = new Opponents(this.builderPlayer1, this.builderPlayer2);
 		
-		return newInstance(board, opponents);
+		return newInstance(board);
 		
 	}
 
-	private GameInterface newInstance(final BoardInterface board, final OpponentsInterface opponents) {
+	private GameInterface newInstance(final BoardInterface board) {
 		Constructor<? extends GameInterface> constructor = null;
 		GameInterface instance = null;
 		try {
-			constructor = this.builderGameClass.getDeclaredConstructor(BoardInterface.class, OpponentsInterface.class);
+			constructor = this.builderGameClass.getDeclaredConstructor(BoardInterface.class);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 		try {
-			instance = constructor.newInstance(board, opponents);
+			instance = constructor.newInstance(board);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
