@@ -20,7 +20,7 @@
 package fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces;
 
 //TODO !! définir les types de pièces dans le jeu et la texture peut changer au runtime
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 /**
  * This is the interface for a game piece.

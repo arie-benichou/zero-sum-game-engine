@@ -1,5 +1,5 @@
 /*
- * @(#)IGame.java	0.99
+ * @(#)IGameOpponents.java	0.999
  *
  * Copyright 2011 Arie Benichou
  *
@@ -16,34 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
-package fr.designpattern.zerosumgames.framework.services;
 
-public interface IGameService {
+package fr.designpattern.zerosumgames.framework.opponents;
 
-	/**
-	 * Starts a new game play.
-	 */
-	void start();
-	//void start(IGameBoard board);
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
+
+public interface OpponentsInterface {
 	
-	/**
-	 * Pauses this game play.
-	 */
-	void pause();
-
-	/**
-	 * Resumes from pause.
-	 */
-	void resume();
-
-	/**
-	 * Stops this game play.
-	 */
-	void stop();
-
-	/**
-	 * Stops this game play and starts a new one.
-	 */
-	void reset();
+	//IGamePlayer getPlayer(GamePlayersEnumeration playerOrdinal);
+	MoveSelectorInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal);
 
 }

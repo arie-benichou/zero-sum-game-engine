@@ -25,10 +25,10 @@ import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterf
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.services.GameService;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;
+import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Connect4 extends Tictactoe {

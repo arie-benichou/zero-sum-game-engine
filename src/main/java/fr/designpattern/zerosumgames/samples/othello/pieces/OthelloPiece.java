@@ -19,7 +19,7 @@ package fr.designpattern.zerosumgames.samples.othello.pieces;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Piece;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.samples.othello.OthelloPieceTypes;
 
 public abstract class OthelloPiece extends Piece {

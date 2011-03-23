@@ -1,10 +1,10 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents;
+package fr.designpattern.zerosumgames.framework.opponents;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
+import fr.designpattern.zerosumgames.framework.opponents.players.PlayerInterface;
 
 // TODO ? définir GamePlayersEnumeration à l'intérieur de cette classe
 public class Opponents implements OpponentsInterface {

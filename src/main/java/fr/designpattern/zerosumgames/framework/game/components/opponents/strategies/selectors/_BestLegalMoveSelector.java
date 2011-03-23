@@ -22,10 +22,10 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.EvaluatorInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.heuristics.OneSingleMoveExists;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.heuristics.WinningMoveExists;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class _BestLegalMoveSelector implements MoveSelectorInterface {
 	//--------------------------------------------------------------------------------------	

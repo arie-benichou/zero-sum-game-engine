@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public abstract class Piece implements PieceInterface {
 

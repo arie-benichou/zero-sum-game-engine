@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.services;
+package fr.designpattern.zerosumgames.services;
 
 public class GameServiceWithThread {
 

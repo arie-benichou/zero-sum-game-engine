@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.services;
+package fr.designpattern.zerosumgames.services;
 
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;

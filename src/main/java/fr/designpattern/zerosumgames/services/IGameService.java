@@ -1,7 +1,7 @@
 /*
- * @(#)IGamePlayer.java	0.99
- * 
- * Copyright 2011 Arie Benichou 
+ * @(#)IGame.java	0.99
+ *
+ * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +16,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
+package fr.designpattern.zerosumgames.services;
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players;
-
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
-
-
-
-/**
- * This is the interface for a game player.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
- */
-public interface PlayerInterface {
+public interface IGameService {
 
 	/**
-	 * Returns the player's name.
-	 * 
-	 * @return the player's name
+	 * Starts a new game play.
 	 */
-	String getName();
+	void start();
+	//void start(IGameBoard board);
+	
+	/**
+	 * Pauses this game play.
+	 */
+	void pause();
 
 	/**
-	 * Returns the player strategy.
-	 * 
-	 * @return the player strategy
+	 * Resumes from pause.
 	 */
-	MoveSelectorInterface getStrategy();
+	void resume();
+
+	/**
+	 * Stops this game play.
+	 */
+	void stop();
+
+	/**
+	 * Stops this game play and starts a new one.
+	 */
+	void reset();
 
 }

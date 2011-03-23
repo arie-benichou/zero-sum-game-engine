@@ -22,7 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Hashtable;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class Pieces implements PiecesInterface {
 

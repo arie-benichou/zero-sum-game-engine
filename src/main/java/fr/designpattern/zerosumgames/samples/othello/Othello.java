@@ -31,9 +31,9 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.services.GameService;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;
+import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 //TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
