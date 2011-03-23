@@ -26,9 +26,9 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public class HumanMoveSelector implements MoveSelectorInterface {
 
-	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface select(GameInterface context,  final List<LegalMoveInterface> legalMoves) {
 		
-		MoveInterface move;
+		LegalMoveInterface move;
 		
 		System.out.println("\nWhat is your move ?");
 		

@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors;
 
 import java.util.List;
 import java.util.Random;
@@ -16,7 +16,7 @@ public class NullSelector implements SelectorInterface {
 		return this.context;
 	}
 	
-	public MoveInterface applySelection(List<MoveInterface> legalMoves) {
+	public LegalMoveInterface applySelection(List<LegalMoveInterface> legalMoves) {
 		return legalMoves.get(new Random().nextInt(legalMoves.size()));
 	}
 	

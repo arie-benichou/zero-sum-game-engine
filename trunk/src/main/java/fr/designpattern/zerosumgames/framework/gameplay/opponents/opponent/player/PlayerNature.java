@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.players;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player;
 
 /**
  * This is the enumeration of a game player's nature.

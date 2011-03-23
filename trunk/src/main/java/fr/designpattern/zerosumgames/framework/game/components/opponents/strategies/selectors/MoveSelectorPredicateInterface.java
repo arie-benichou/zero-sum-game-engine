@@ -7,10 +7,10 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 // TODO utiliser les prédicats dans guava
 public interface MoveSelectorPredicateInterface {
 
-	boolean checkPredicate(List<MoveInterface> legalMoves);
+	boolean checkPredicate(List<LegalMoveInterface> legalMoves);
 
-	void onTrue(List<MoveInterface> legalMoves);
+	void onTrue(List<LegalMoveInterface> legalMoves);
 
-	void onFalse(List<MoveInterface> legalMoves);
+	void onFalse(List<LegalMoveInterface> legalMoves);
 
 }

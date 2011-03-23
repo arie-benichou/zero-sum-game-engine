@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.gameplay.moves;
+package fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove;
 
 import fr.designpattern.zerosumgames.framework.NullObjectAvailableInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
@@ -31,7 +31,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnume
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
-public interface MoveInterface extends NullObjectAvailableInterface, Comparable<MoveInterface> {
+public interface LegalMoveInterface extends NullObjectAvailableInterface, Comparable<LegalMoveInterface> {
 
 	/**
 	 * Returns the position.

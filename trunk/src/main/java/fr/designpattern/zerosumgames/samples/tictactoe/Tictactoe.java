@@ -62,14 +62,14 @@ public class Tictactoe extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO ? implémentation par défaut dans la classe abstraite
-	protected MoveInterface makeMove(final OpponentsEnumeration side,
+	protected LegalMoveInterface makeMove(final OpponentsEnumeration side,
 			final PositionInterface position) {
 		// TODO utiliser un cache
-		return new Move(side, position);
+		return new LegalMove(side, position);
 	}
 	// ------------------------------------------------------------
-	public List<MoveInterface> getLegalMoves(final OpponentsEnumeration side) {
-		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
+	public List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
+		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		for (CellInterface[] line : this.getBoard()) {
 			for (CellInterface cell : line) {
 				if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
@@ -80,7 +80,7 @@ public class Tictactoe extends Game {
 		return legalMoves;
 	}	
 	// ------------------------------------------------------------
-	public boolean isGameOverFromVictory(final MoveInterface justPlayedMove) {
+	public boolean isGameOverFromVictory(final LegalMoveInterface justPlayedMove) {
 		boolean isGameOverFromVictory = false;
 		for (BoardPlane plane : BoardPlane.values()) {
 			final int connections = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
@@ -92,22 +92,22 @@ public class Tictactoe extends Game {
 		return isGameOverFromVictory;
 	}
 	// ------------------------------------------------------------
-	public boolean isGameOverFromDraw(final MoveInterface justPlayedMove) {
+	public boolean isGameOverFromDraw(final LegalMoveInterface justPlayedMove) {
 		return this.getLegalMoves(OpponentsEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
 	}
 	// ------------------------------------------------------------
-	public boolean doMove(final MoveInterface moveToPlay) {
+	public boolean doMove(final LegalMoveInterface moveToPlay) {
 		final CellInterface concernedCell = this.cell(moveToPlay.getPosition());
 		concernedCell.setPiece(this.piece(moveToPlay.getSide()));
 		return true;
 	}
 	// ------------------------------------------------------------
-	public boolean undoMove(final MoveInterface move) {
+	public boolean undoMove(final LegalMoveInterface move) {
 		this.cell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
-	public double evaluate(final MoveInterface justPlayedMove) {
+	public double evaluate(final LegalMoveInterface justPlayedMove) {
 		
 		double evaluation;
 		
@@ -132,7 +132,7 @@ public class Tictactoe extends Game {
 		return evaluation;		
 	}
 	// ------------------------------------------------------------
-	protected int computeRealConnections(final MoveInterface justPlayedMove) {
+	protected int computeRealConnections(final LegalMoveInterface justPlayedMove) {
 		int connections = 0;
 		for (BoardPlane plane : BoardPlane.values()) {
 			connections = this.computeRealConnection(justPlayedMove,plane.getOneWay()) + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
@@ -140,7 +140,7 @@ public class Tictactoe extends Game {
 		return connections;
 	}
 	// ------------------------------------------------------------	
-	protected int computePotentialConnections(final MoveInterface justPlayedMove) {
+	protected int computePotentialConnections(final LegalMoveInterface justPlayedMove) {
 		int connections = 0;
 		int connections1 = 0;
 		int connections2 = 0;
@@ -156,7 +156,7 @@ public class Tictactoe extends Game {
 		return connections;
 	}
 	// ------------------------------------------------------------
-	protected int computeRealConnection(final MoveInterface justPlayedMove, final BoardCardinalPosition direction) {
+	protected int computeRealConnection(final LegalMoveInterface justPlayedMove, final BoardCardinalPosition direction) {
 		int connected;
 		CellInterface cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {
@@ -169,7 +169,7 @@ public class Tictactoe extends Game {
 		return --connected;
 	}
 	// ------------------------------------------------------------	
-	protected int computePotentialConnection(final MoveInterface justPlayedMove, final BoardCardinalPosition direction) {
+	protected int computePotentialConnection(final LegalMoveInterface justPlayedMove, final BoardCardinalPosition direction) {
 		int connected;
 		CellInterface cell = this.cell(justPlayedMove.getPosition());
 		for (connected = 1; connected < this.connections; ++connected) {

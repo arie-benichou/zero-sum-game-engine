@@ -8,7 +8,7 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public interface ConditionnalMoveSelectorInterface extends MoveSelectorInterface {
 	
-	boolean isApplicable(final GameInterface context, final List<MoveInterface> legalMoves);
-	MoveInterface simplify(final GameInterface context, final List<MoveInterface> legalMoves);
+	boolean isApplicable(final GameInterface context, final List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface simplify(final GameInterface context, final List<LegalMoveInterface> legalMoves);
 	
 }

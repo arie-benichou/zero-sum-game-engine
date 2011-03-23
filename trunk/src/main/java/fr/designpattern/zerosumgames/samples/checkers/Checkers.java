@@ -174,14 +174,14 @@ public class Checkers extends Game {
 		return false;
 	}	
 	// -----------------------------------------------------------------	
-	private MoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position, final BoardCardinalPosition direction) {
+	private LegalMoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position, final BoardCardinalPosition direction) {
 		// TODO utiliser un cache
 		return new CheckersMove(side, position, direction);
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<MoveInterface> getLegalMoves(OpponentsEnumeration side) {
-		final List<MoveInterface> jumpingMoves = new ArrayList<MoveInterface>();
+	public List<LegalMoveInterface> getLegalMoves(OpponentsEnumeration side) {
+		final List<LegalMoveInterface> jumpingMoves = new ArrayList<LegalMoveInterface>();
 		CheckersPiece piece;
 		List<BoardCardinalPosition> pieceOptions;
 		
@@ -202,7 +202,7 @@ public class Checkers extends Game {
 			}
 		}
 		
-		final List<MoveInterface> walkingMoves = new ArrayList<MoveInterface>();		
+		final List<LegalMoveInterface> walkingMoves = new ArrayList<LegalMoveInterface>();		
 		boolean hasToJump = false;
 		
 		for(CellInterface cell : this.getRelevantCells(side)) {
@@ -236,7 +236,7 @@ public class Checkers extends Game {
 	}
 	// -----------------------------------------------------------------
 	@Override
-	public boolean doMove(final MoveInterface moveToPlay) {
+	public boolean doMove(final LegalMoveInterface moveToPlay) {
 		final CheckersMove checkersMove = (CheckersMove)moveToPlay;
 		// récupération de la cellule corespondant à la position
 		final CellInterface cell = this.cell(checkersMove.getPosition());
@@ -277,7 +277,7 @@ public class Checkers extends Game {
 		//game over {victoire, match null}
 	
 	// -----------------------------------------------------------------
-	public boolean undoMove(final MoveInterface move) {
+	public boolean undoMove(final LegalMoveInterface move) {
 		
 		final CheckersMove checkersMove = (CheckersMove)move;
 		
@@ -297,7 +297,7 @@ public class Checkers extends Game {
 	}	
 	// -----------------------------------------------------------------
 	// TODO à améliorer
-	private boolean isGameOver(MoveInterface previousMove) {
+	private boolean isGameOver(LegalMoveInterface previousMove) {
 		if(this.getRelevantCells(OpponentsEnumeration.opponent(previousMove.getSide())).isEmpty()) {
 			return true;
 		}
@@ -336,15 +336,15 @@ public class Checkers extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final MoveInterface previousMove) {
+	public boolean isGameOverFromVictory(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final MoveInterface previousMove) {
+	public boolean isGameOverFromDraw(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------			
-	public double evaluate(final MoveInterface move) {
+	public double evaluate(final LegalMoveInterface move) {
 		return this.computeDelta(move.getSide());
 	}	
 	// -----------------------------------------------------------------	

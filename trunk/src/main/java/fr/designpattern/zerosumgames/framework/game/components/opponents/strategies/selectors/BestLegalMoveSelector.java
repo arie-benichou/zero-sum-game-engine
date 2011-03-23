@@ -25,11 +25,11 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public class BestLegalMoveSelector implements MoveSelectorInterface {
 	
-	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface select(GameInterface context,  final List<LegalMoveInterface> legalMoves) {
 		return Collections.max(legalMoves);
 	}
 	
-	public MoveInterface select(final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface select(final List<LegalMoveInterface> legalMoves) {
 		return Collections.max(legalMoves);
 	}	
 	

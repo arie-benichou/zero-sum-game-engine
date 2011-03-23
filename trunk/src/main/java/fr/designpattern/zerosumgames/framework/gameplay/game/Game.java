@@ -99,7 +99,7 @@ public abstract class Game implements GameInterface {
 	// Implémentations finales 
 	// ---------------------------------------------------------------------
 	
-	public final OpponentsEnumeration whoShallPlay(final MoveInterface playedMove, final boolean isMoveDone) {
+	public final OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone) {
 		final OpponentsEnumeration nexSideToPlay;
 		if(!isMoveDone) {
 			nexSideToPlay = playedMove.getSide();
@@ -121,11 +121,11 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------
 	
 	public abstract boolean hasNullMove();	
-	public abstract List<MoveInterface> getLegalMoves(OpponentsEnumeration side);
-	public abstract boolean doMove(MoveInterface moveToPlay);
-	public abstract boolean undoMove(MoveInterface playedMove);
-	public abstract boolean isGameOverFromVictory(MoveInterface playedMove);
-	public abstract boolean isGameOverFromDraw(MoveInterface playedMove);
-	public abstract double evaluate(MoveInterface playedMove);
+	public abstract List<LegalMoveInterface> getLegalMoves(OpponentsEnumeration side);
+	public abstract boolean doMove(LegalMoveInterface moveToPlay);
+	public abstract boolean undoMove(LegalMoveInterface playedMove);
+	public abstract boolean isGameOverFromVictory(LegalMoveInterface playedMove);
+	public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
+	public abstract double evaluate(LegalMoveInterface playedMove);
 	
 }

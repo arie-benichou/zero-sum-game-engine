@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.evaluators;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class NullEvaluator implements EvaluatorInterface {
 		return this.context;
 	}
 
-	public List<MoveInterface> applyEvaluation(List<MoveInterface> legalMoves) {
+	public List<LegalMoveInterface> applyEvaluation(List<LegalMoveInterface> legalMoves) {
 		return legalMoves;
 	}
 

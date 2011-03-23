@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,9 +26,9 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 public class HumanMoveSelector extends NullSelector {
 
 	@Override
-	public MoveInterface applySelection(final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves) {
 		
-		MoveInterface move;
+		LegalMoveInterface move;
 		
 		System.out.println("\nWhat is your move ?");
 		

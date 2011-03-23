@@ -24,7 +24,7 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public class LastLegalMoveSelector implements MoveSelectorInterface {
 
-	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface select(GameInterface context,  final List<LegalMoveInterface> legalMoves) {
 		return legalMoves.get(legalMoves.size() - 1);
 	}
 
