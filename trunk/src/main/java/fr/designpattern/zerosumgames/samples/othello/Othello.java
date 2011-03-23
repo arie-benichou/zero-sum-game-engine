@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.Dimension;
@@ -30,9 +30,9 @@ import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cel
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 

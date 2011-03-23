@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 
 public class NullSelector implements SelectorInterface {
 	

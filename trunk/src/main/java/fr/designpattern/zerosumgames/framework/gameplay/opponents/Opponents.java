@@ -3,25 +3,43 @@ package fr.designpattern.zerosumgames.framework.gameplay.opponents;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player.PlayerInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.OpponentInterface;
 
-// TODO ? définir GamePlayersEnumeration à l'intérieur de cette classe
+// TODO ! définir GamePlayersEnumeration à l'intérieur de cette classe
 public class Opponents implements OpponentsInterface {
 	
-	Map<OpponentsEnumeration, PlayerInterface> opponents = new HashMap<OpponentsEnumeration, PlayerInterface>(2);
-	
-	public Opponents(PlayerInterface firstPlayer, PlayerInterface secondPlayer) {
-		this.opponents.put(OpponentsEnumeration.FIRST_PLAYER, firstPlayer);
-		this.opponents.put(OpponentsEnumeration.SECOND_PLAYER, secondPlayer);
+	// ---------------------------------------------------------------------
+	private transient Map<OpponentsEnumeration, OpponentInterface> opponents;
+	private final Map<OpponentsEnumeration, OpponentInterface> getOpponents() {
+		return this.opponents;
 	}
-
-	private PlayerInterface getPlayer(OpponentsEnumeration playerOrdinal) {
-		return this.opponents.get(playerOrdinal);
+	private final void setOpponents(Map<OpponentsEnumeration, OpponentInterface> opponents) {
+		this.opponents = opponents;
 	}
-
-	public MoveSelectorInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal) {
-		return this.getPlayer(playerOrdinal).getStrategy();
+	// ---------------------------------------------------------------------
+	private transient GameInterface context;
+	private final void setContext(GameInterface context) {
+		this.context = context;
 	}
-
+	public final GameInterface getContext() {
+		return this.context;
+	}	
+	// ---------------------------------------------------------------------	
+	public Opponents(final OpponentInterface opponentToSecondPlayer, final OpponentInterface opponentToFirstPlayer) {
+		this.setOpponents(new HashMap<OpponentsEnumeration, OpponentInterface>(2));
+		this.getOpponents().put(OpponentsEnumeration.FIRST_PLAYER, opponentToSecondPlayer);
+		this.getOpponents().put(OpponentsEnumeration.SECOND_PLAYER, opponentToFirstPlayer);
+	}
+	// ---------------------------------------------------------------------
+	public final OpponentInterface getOpponentByOrder(final OpponentsEnumeration playerOrdinal) {
+		return this.getOpponents().get(playerOrdinal);
+	}
+	// ---------------------------------------------------------------------		
+	public void injectContext(final GameInterface context) {
+		this.setContext(context);
+		this.getOpponentByOrder(OpponentsEnumeration.FIRST_PLAYER).setContext(this.getContext());
+		this.getOpponentByOrder(OpponentsEnumeration.SECOND_PLAYER).setContext(this.getContext());
+	}
+	// ---------------------------------------------------------------------
 }

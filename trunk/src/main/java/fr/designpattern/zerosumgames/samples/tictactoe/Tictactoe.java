@@ -22,8 +22,8 @@ package fr.designpattern.zerosumgames.samples.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardPlane;
@@ -32,10 +32,9 @@ import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cel
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMove;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.moves.Move;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
@@ -47,12 +46,12 @@ public class Tictactoe extends Game {
 	// ------------------------------------------------------------
 	protected transient int connections;
 	// ------------------------------------------------------------
-	public Tictactoe(final BoardInterface board, final OpponentsInterface opponents) {
-		this(board, opponents, Tictactoe.CONNECTIONS);
+	public Tictactoe(final BoardInterface board) {
+		this(board, Tictactoe.CONNECTIONS);
 	}
 	// ------------------------------------------------------------
-	public Tictactoe(final BoardInterface board, final OpponentsInterface opponents, final int connections) {
-		super(new Pieces(PIECE_TYPES), board, opponents);
+	public Tictactoe(final BoardInterface board, final int connections) {
+		super(new Pieces(PIECE_TYPES), board);
 		this.connections = connections;
 	}
 	// ------------------------------------------------------------

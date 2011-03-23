@@ -19,10 +19,6 @@
 
 package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
-
-
-
 /**
  * This is the interface for a game player.
  * 
@@ -37,12 +33,5 @@ public interface PlayerInterface {
 	 * @return the player's name
 	 */
 	String getName();
-
-	/**
-	 * Returns the player strategy.
-	 * 
-	 * @return the player strategy
-	 */
-	MoveSelectorInterface getStrategy();
 
 }
