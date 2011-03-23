@@ -17,32 +17,26 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.players;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
-
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 
 public class Player implements PlayerInterface {
-
 	// ------------------------------------------------------------	
 	private final transient String name;
 	public final String getName() {
 		return this.name;
 	}
-	// ------------------------------------------------------------	
-	private final transient StrategyInterface strategy;
-	public final StrategyInterface getStrategy() {
+	// ------------------------------------------------------------
+	// TODO à mettre du côté de opponent
+	private final transient MoveSelectorInterface strategy;
+	public final MoveSelectorInterface getStrategy() {
 		return this.strategy;
 	}	
-	// ------------------------------------------------------------		
-	// TODO ? supprimmer
-	private final transient PlayerNature type;
-	public final PlayerNature getNature() {
-		return this.type;
-	}	
-	// ------------------------------------------------------------	
-	public Player(final String name, final PlayerNature type, final StrategyInterface strategy) {
+	// ------------------------------------------------------------
+	// TODO ? utiliser la stratégie de l'adversaire si elle est automatisée
+	public Player(final String name, final MoveSelectorInterface strategy) {
 		this.name = name;
-		this.type = type;
+		// TODO strategy = (selection, moteur d'evaluation)
 		this.strategy = strategy;
 	}
 	// ------------------------------------------------------------	

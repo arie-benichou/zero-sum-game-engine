@@ -27,7 +27,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 /**
  * This is the interface for a board game.
@@ -123,7 +123,7 @@ public interface GameInterface {
 	// Façades
 	// ---------------------------------------------------------------------
 	
-	StrategyInterface getPlayerStrategy(final OpponentsEnumeration currentPlayer);
+	MoveSelectorInterface getPlayerStrategy(final OpponentsEnumeration currentPlayer);
 	
 	/**
 	 * Returns a piece of this game for a given player

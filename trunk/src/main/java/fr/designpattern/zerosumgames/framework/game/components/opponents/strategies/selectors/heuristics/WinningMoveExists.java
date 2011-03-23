@@ -1,11 +1,11 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.heuristics;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.heuristics;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelectorPredicate;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorPredicateInterface;
 
-public class WinningMoveExists implements IGameMoveSelectorPredicate {
+public class WinningMoveExists implements MoveSelectorPredicateInterface {
 	//--------------------------------------------------------------------------------------
 	public boolean checkPredicate(List<MoveInterface> legalMoves) {
 		//--------------------------------------------------------------------------------------		

@@ -1,12 +1,16 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.evaluators;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators;
+
+import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.BestLegalMoveSelector;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.WorstLegalMoveSelector;
 
 
-public class MiniMax implements IGameMoveEvaluator{
+public class MiniMax implements EvaluatorInterface{
 
 	//--------------------------------------------------------------------------------------
 	private transient int maximalDepth;
@@ -16,6 +20,9 @@ public class MiniMax implements IGameMoveEvaluator{
 	public final void setMaximalDepth(final int maximalDepth) {
 		this.maximalDepth = maximalDepth;
 	}
+	//--------------------------------------------------------------------------------------	
+	protected final static MoveSelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
+	private final static MoveSelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
 	//--------------------------------------------------------------------------------------	
 	private transient GameInterface context;
 	protected final GameInterface getContext() {
@@ -31,33 +38,37 @@ public class MiniMax implements IGameMoveEvaluator{
 	//--------------------------------------------------------------------------------------
 	public double evaluate(final GameInterface context, final MoveInterface moveToEvaluate, final int maximalDepth) {
 		this.setContext(context);
-		return this.evaluate(moveToEvaluate, maximalDepth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 1);
+		return this.evaluate(moveToEvaluate, maximalDepth, 1);
 	}
 	//--------------------------------------------------------------------------------------
 	public double evaluate(final GameInterface context, final MoveInterface moveToEvaluate) {
 		return this.evaluate(context, moveToEvaluate, this.maximalDepth);
 	}
 	//--------------------------------------------------------------------------------------	
-	protected double evaluate(final MoveInterface moveToEvaluate, final int profondeur, double alpha, double beta, final double side) {
+	protected double evaluate(final MoveInterface moveToEvaluate, final int profondeur, final double side) {
 
 		double score;
+		
 		final OpponentsEnumeration nextPlayer = this.getContext().whoShallPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
 		
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
+			
 			score = side * this.getContext().evaluate(moveToEvaluate); 
 		}
-		else if(side == 1) {
-			for(MoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
-				beta = Math.min(beta, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
-			}
-			score = beta;
-		}
+		
 		else {
-			for(MoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
-				alpha = Math.max(alpha, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
+			
+			List<MoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
+			for(MoveInterface opponentMove : opponentMoves) {
+				opponentMove.setEvaluation(this.evaluate(opponentMove, profondeur - 1, -side));
 			}
-			score = alpha;
+			
+			score = (side == 1) ?
+				worstLegalMoveSelector.select(this.getContext(), opponentMoves).getEvaluation()
+				:
+				bestLegalMoveSelector.select(this.getContext(), opponentMoves).getEvaluation();			
 		}
+		
 		this.getContext().undoMove(moveToEvaluate);
 		return score;
 		

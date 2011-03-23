@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents.players;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 
 
@@ -39,17 +39,10 @@ public interface PlayerInterface {
 	String getName();
 
 	/**
-	 * Returns the player's nature.
-	 * 
-	 * @return the player's nature
-	 */
-	PlayerNature getNature();
-
-	/**
 	 * Returns the player strategy.
 	 * 
 	 * @return the player strategy
 	 */
-	StrategyInterface getStrategy();
+	MoveSelectorInterface getStrategy();
 
 }

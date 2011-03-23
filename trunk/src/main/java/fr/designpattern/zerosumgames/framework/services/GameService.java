@@ -52,7 +52,7 @@ public class GameService implements IGameService {
 			legalMoves = this.game.getLegalMoves(this.currentPlayer);
 			this.displayLegalMoveList(legalMoves);
 			// ---------------------------------------------------------------------			
-			legalMoveToPlay = this.game.getPlayerStrategy(this.currentPlayer).chooseMoveAmong(this.game, legalMoves);
+			legalMoveToPlay = this.game.getPlayerStrategy(this.currentPlayer).select(this.game, legalMoves);
 			// ---------------------------------------------------------------------
 			this.currentPlayer = this.game.whoShallPlay(legalMoveToPlay, this.game.doMove(legalMoveToPlay));
 			// ---------------------------------------------------------------------
