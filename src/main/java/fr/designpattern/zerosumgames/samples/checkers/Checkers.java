@@ -22,8 +22,6 @@ package fr.designpattern.zerosumgames.samples.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.service.GamePlayService;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
@@ -33,6 +31,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
@@ -43,9 +42,9 @@ public class Checkers extends AbstractGame {
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
 	public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8); 
 	// ------------------------------------------------------------
-	public Checkers(final BoardInterface board, final OpponentsInterface opponents) {
+	public Checkers(final BoardInterface board) {
 		// TODO !! à revoir
-		super(new Pieces(PIECE_TYPES), board, opponents);
+		super(new Pieces(PIECE_TYPES), board);
 		this.setupTestBoard(board);
 	}
 	// ------------------------------------------------------------
@@ -348,9 +347,4 @@ public class Checkers extends AbstractGame {
 		return this.computeDelta(move.getSide());
 	}	
 	// -----------------------------------------------------------------	
-	@SuppressWarnings("unchecked")
-	public static void main(final String[] args) {
-		new GamePlayService(new GameBuilder(StaticContext.thatClass()).build()).start();
-	}
-	// ------------------------------------------------------------
 }

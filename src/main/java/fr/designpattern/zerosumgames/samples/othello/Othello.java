@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import fr.designpattern.zerosumgames.framework.service.GamePlayService;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
@@ -33,8 +31,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.util.StaticContext;
 
 //TODO améliorer la fonction d'évaluation en prenant en compte le nombre de cellules voisines à celle jouée
 public class Othello extends AbstractGame {	
@@ -50,8 +46,8 @@ public class Othello extends AbstractGame {
 		board.getCell(5, 5).setPiece(this.piece(OpponentsEnumeration.SECOND_PLAYER));
 	}	
 	// ------------------------------------------------------------
-	public Othello(final BoardInterface board, final OpponentsInterface opponents) {
-		super(new Pieces(PIECE_TYPES), board, opponents);// TODO !! à revoir
+	public Othello(final BoardInterface board) {
+		super(new Pieces(PIECE_TYPES), board);// TODO !! à revoir
 		this.setupBoard(board);
 	}
 	// ------------------------------------------------------------
@@ -60,21 +56,6 @@ public class Othello extends AbstractGame {
 		return true;
 	}
 	// ------------------------------------------------------------
-	// TODO à virer
-	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side, final LegalMoveInterface previousMove) {
-		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
-		for (CellInterface[] line : this.getBoard()) {
-			for (CellInterface cell : line) {
-				if (this.canPlayHere(cell, side)) {
-					legalMoves.add(this.makeMove(side, cell.getPosition()));
-				}
-			}
-		}
-		// TODO ? cache du nullMove pour chaque side
-		legalMoves.add(this.makeMove(side, this.cell(null).getPosition()));
-		return legalMoves;
-	}
-	// ------------------------------------------------------------	
 	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		for (CellInterface[] line : this.getBoard()) {
@@ -109,7 +90,7 @@ public class Othello extends AbstractGame {
 			//System.out.println("\ndeux coups nuls consécutifs");
 		//}
 		// Game Over s'il ne reste que le coup nul pour chacun des joueurs
-		/*else*/ if(this.getLegalMoves(OpponentsEnumeration.FIRST_PLAYER, previousMove).size() == 1 && this.getLegalMoves(OpponentsEnumeration.SECOND_PLAYER, previousMove).size() == 1) {
+		/*else*/ if(this.getLegalMoves(OpponentsEnumeration.FIRST_PLAYER).size() == 1 && this.getLegalMoves(OpponentsEnumeration.SECOND_PLAYER).size() == 1) {
 			isGameOver = true;
 			//System.out.println("\nplus de coups légaux");
 		}
@@ -206,9 +187,7 @@ public class Othello extends AbstractGame {
 			cell.setPiece(piece);
 		}
 	}
-	// ------------------------------------------------------------	
-	// TODO renommer : doMove/undoMove
-	// TODO laisser la méthode abstraite dans la classe Game	
+	// ------------------------------------------------------------		
 	public boolean doMove(final LegalMoveInterface moveToPlay) {
 		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
 		
@@ -258,24 +237,16 @@ public class Othello extends AbstractGame {
 	}
 	// ------------------------------------------------------------		
 	public double evaluate(final LegalMoveInterface move) {
-		
 		if(move.isNull()) {
 			return this.computeDelta(move.getSide());
 		}
-		
 		int n = 1;
 		for ( Entry<BoardCardinalPosition, CellInterface> cellNeighbourEntry : this.cell(move.getPosition()).getNeighbourhood().entrySet()) {
 			if(cellNeighbourEntry.getValue().isNull()) {
 				n+=1;
 			}
 		}
-		
 		return this.computeDelta(move.getSide()) + n;
 	}
 	// ------------------------------------------------------------
-	@SuppressWarnings("unchecked")
-	public static void main(final String[] args) {
-		new GamePlayService(new GameBuilder(StaticContext.thatClass()).build()).start();
-	}
-	// ------------------------------------------------------------	
 }
