@@ -1,5 +1,6 @@
 package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors;
-import fr.designpattern.zerosumgames.framework.service.GameService;
+import fr.designpattern.zerosumgames.framework.service.GamePlayConsoleService;
+import fr.designpattern.zerosumgames.framework.service.GamePlayServiceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlay;
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
@@ -53,7 +54,7 @@ public class Tests {
 		
 		GamePlayInterface gamePlay = new GamePlay(game, opponents);
 		
-		GameService service = new GameService(gamePlay);
+		GamePlayServiceInterface service = new GamePlayConsoleService(gamePlay);
 		
 		service.start();
 		

@@ -20,7 +20,7 @@ package fr.designpattern.zerosumgames.framework.service;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterface;
 
-public interface GameServiceInterface {
+public interface GamePlayServiceInterface {
 	
 	GamePlayInterface getGamePlay();
 

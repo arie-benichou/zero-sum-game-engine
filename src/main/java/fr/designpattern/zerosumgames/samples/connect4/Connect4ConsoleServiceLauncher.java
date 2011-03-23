@@ -1,10 +1,9 @@
-package fr.designpattern.zerosumgames.samples.services;
+package fr.designpattern.zerosumgames.samples.connect4;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilderInterface;
-import fr.designpattern.zerosumgames.samples.connect4.Connect4;
 
-public class Connect4Service {
+public class Connect4ConsoleServiceLauncher {
 	
 	public static void main(String[] args) {
 		

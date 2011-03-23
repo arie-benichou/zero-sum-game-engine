@@ -1,12 +1,12 @@
-package fr.designpattern.zerosumgames.samples.services;
+package fr.designpattern.zerosumgames.samples.tictactoe;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.Opponent;
 
 
 // TODO pouvoire construire un tictactoe de dimension differente et avec un nombre de connexions different de 3
-public final class TictactoeService {
+public final class TictactoeConsoleServiceLauncher {
 	
-	private TictactoeService() {}
+	private TictactoeConsoleServiceLauncher() {}
 
 	public static void main(final String[] args) {
 		

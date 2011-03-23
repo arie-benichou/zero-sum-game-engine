@@ -2,14 +2,14 @@ package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.s
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.GameServiceInterface;
+import fr.designpattern.zerosumgames.framework.service.GamePlayServiceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlay;
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMove;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
-public class _GameService implements GameServiceInterface {
+public class _GameService implements GamePlayServiceInterface {
 	// ------------------------------------------------------------
 	private transient OpponentsEnumeration currentPlayer = OpponentsEnumeration.FIRST_PLAYER;
 	// ------------------------------------------------------------

@@ -1,10 +1,9 @@
-package fr.designpattern.zerosumgames.samples.services;
+package fr.designpattern.zerosumgames.samples.othello;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilderInterface;
-import fr.designpattern.zerosumgames.samples.othello.Othello;
 
-public class OthelloService {
+public class OthelloConsoleServiceLauncher {
 
 	public static void main(String[] args) {
 			
