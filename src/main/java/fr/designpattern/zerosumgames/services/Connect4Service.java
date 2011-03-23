@@ -1,12 +1,7 @@
 package fr.designpattern.zerosumgames.services;
 
-import fr.designpattern.zerosumgames.framework.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestLegalMoveStrategy;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.HumanLegalMoveStrategy;
-import fr.designpattern.zerosumgames.framework.opponents.players.Player;
-import fr.designpattern.zerosumgames.framework.opponents.players.PlayerNature;
-import fr.designpattern.zerosumgames.framework.opponents.strategies.evaluators.MiniMaxAlphaBeta;
+import fr.designpattern.zerosumgames.framework.gameplay.game.builder.Builder;
+import fr.designpattern.zerosumgames.framework.gameplay.game.builder.BuilderInterface;
 import fr.designpattern.zerosumgames.samples.connect4.Connect4;
 
 public class Connect4Service {
@@ -14,7 +9,7 @@ public class Connect4Service {
 	public static void main(String[] args) {
 		
 		BuilderInterface gameBuilder = new Builder(Connect4.class);
-		
+		/*
 		gameBuilder.player1(
 			new Player(
 				"p1",
@@ -32,8 +27,8 @@ public class Connect4Service {
 				//new HumanStrategy()
 			)
 		);
-		
 		new GameService(gameBuilder.build()).start();
+		*/
 	}
 	
 }
