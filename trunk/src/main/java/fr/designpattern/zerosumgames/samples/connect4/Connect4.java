@@ -24,7 +24,7 @@ import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;

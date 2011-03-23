@@ -3,7 +3,7 @@ package fr.designpattern.zerosumgames.samples.checkers;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
+import fr.designpattern.zerosumgames.framework.moves.Move;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 // TODO ? implémenter une interface

@@ -1,6 +1,6 @@
 package fr.designpattern.zerosumgames.framework.opponents.strategies.evaluators;
 
-import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class MiniMaxAlphaBeta extends MiniMax {
