@@ -1,10 +1,9 @@
-package fr.designpattern.zerosumgames.samples.services;
+package fr.designpattern.zerosumgames.samples.checkers;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilderInterface;
-import fr.designpattern.zerosumgames.samples.checkers.Checkers;
 
-public class CheckersService {
+public class CheckersConsoleServiceLauncher {
 
 	public static void main(String[] args) {
 			

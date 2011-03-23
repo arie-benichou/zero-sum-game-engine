@@ -22,9 +22,7 @@ package fr.designpattern.zerosumgames.samples.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.GameService;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardPlane;
@@ -36,7 +34,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMove;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------
@@ -183,15 +180,8 @@ public class Tictactoe extends AbstractGame {
 		return --connected;
 	}	
 	// ------------------------------------------------------------
-	// TODO faire également une méthode move(IGameBoardMove move) et étendre une
-	// classe GameBoardMove abstraite pour chaque jeux
 	private PieceInterface piece(final OpponentsEnumeration player) {
 		return super.piece(player, TictactoePieceTypes.PAWN);
-	}
-	// ------------------------------------------------------------
-	@SuppressWarnings("unchecked")
-	public static void main(final String[] args) {
-		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }

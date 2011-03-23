@@ -27,7 +27,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 /**
  * This is the interface for a board game.
@@ -109,8 +108,7 @@ public interface GameInterface {
 	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
 	 * NO_ONE, if the game is a draw
 	 */
-	//OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);
-	OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface moveToPlay);
+	OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);
 	
 	/**
 	 * Returns the computation of the move evaluation of the game.

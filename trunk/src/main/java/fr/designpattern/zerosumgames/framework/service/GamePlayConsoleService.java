@@ -7,47 +7,13 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentInterface;
 
-public class GameService implements GameServiceInterface {
+public class GamePlayConsoleService extends AbstractGamePlayService {
 	// ------------------------------------------------------------
-	private final GamePlayInterface gamePlay;
-	public final GamePlayInterface getGamePlay() {
-		return gamePlay;
-	}
-	// ------------------------------------------------------------
-	public GameService(final GamePlayInterface gamePlay) {
-		this.gamePlay = gamePlay;
-	}
-	// ------------------------------------------------------------
-	private final OpponentsEnumeration getSideToPlay() {
-		return this.getGamePlay().getSideToPlay();
-	}		
-	private final List<LegalMoveInterface>  getLegalMoves(final OpponentsEnumeration sideToPlay) {
-		return this.getGamePlay().getLegalMoves(sideToPlay);
-	}
-	private final OpponentInterface getOpponentByOrder(final OpponentsEnumeration sideToPlay) {
-		return this.getGamePlay().getOpponentByOrder(sideToPlay);
-	}
-	
-	private final void play(LegalMoveInterface legalMove) {
-		this.getGamePlay().play(legalMove);
-	}
-	
-	private final boolean isGamePlayOver() {
-		return this.gamePlay.isGamePlayOver();
-	}
-	
-	// ------------------------------------------------------------
-	@Override
-	public String toString() {
-		return
-			"\n===================================================\n" +
-			this.getGamePlay().toString() +
-			"\n===================================================\n"
-		;
+	public GamePlayConsoleService(GamePlayInterface gamePlay) {
+		super(gamePlay);
 	}
 	// ------------------------------------------------------------	
 	public void start() {
-
 		
 		OpponentsEnumeration sideToPlay;
 		OpponentInterface opponent;
@@ -91,5 +57,15 @@ public class GameService implements GameServiceInterface {
 	public void pause() {}
 	public void resume() {}
 	public void stop() {}
+	// ------------------------------------------------------------
+	@Override
+	public String toString() {
+		return
+			"\n===================================================\n" +
+			this.getGamePlay().toString() +
+			"\n===================================================\n"
+		;
+	}
+	
 	// ---------------------------------------------------------------------
 }

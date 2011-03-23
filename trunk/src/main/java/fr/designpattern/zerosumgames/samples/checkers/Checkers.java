@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.service.GameService;
+import fr.designpattern.zerosumgames.framework.service.GamePlayService;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
@@ -350,7 +350,7 @@ public class Checkers extends AbstractGame {
 	// -----------------------------------------------------------------	
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
-		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
+		new GamePlayService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }

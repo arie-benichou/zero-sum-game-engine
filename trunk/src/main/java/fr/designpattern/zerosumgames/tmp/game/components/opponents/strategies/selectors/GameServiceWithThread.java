@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.samples.services;
+package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors;
 
 public class GameServiceWithThread {
 
