@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions;
+package fr.designpattern.zerosumgames.framework.game.board.dimension.cells.positions;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.DimensionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.DimensionInterface;
 
 public class Positions implements PositionsInterface {
 	// ---------------------------------------------------------------------

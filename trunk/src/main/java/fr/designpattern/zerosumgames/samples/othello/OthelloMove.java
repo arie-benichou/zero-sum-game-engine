@@ -2,8 +2,8 @@ package fr.designpattern.zerosumgames.samples.othello;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.moves.Move;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 

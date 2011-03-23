@@ -3,9 +3,9 @@ package fr.designpattern.zerosumgames.samples.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class CheckersPieceKing extends CheckersPiece {

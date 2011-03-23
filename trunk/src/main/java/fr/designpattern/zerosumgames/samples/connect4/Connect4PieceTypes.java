@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.samples.connect4;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.samples.connect4.pieces.Connect4Piece;
 import fr.designpattern.zerosumgames.samples.connect4.pieces.Connect4PiecePawn;
 
