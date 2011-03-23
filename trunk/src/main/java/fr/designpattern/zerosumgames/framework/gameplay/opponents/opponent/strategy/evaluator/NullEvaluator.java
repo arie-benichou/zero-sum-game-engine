@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluator;
 
 import java.util.List;
 
