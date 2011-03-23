@@ -21,8 +21,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
 
 public class HumanMoveSelector implements MoveSelectorInterface {
 

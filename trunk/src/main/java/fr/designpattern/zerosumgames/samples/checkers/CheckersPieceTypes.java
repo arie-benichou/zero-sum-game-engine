@@ -1,6 +1,6 @@
 package fr.designpattern.zerosumgames.samples.checkers;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPieceKing;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPieceMan;
