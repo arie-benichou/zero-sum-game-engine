@@ -3,7 +3,7 @@ package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.stra
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 
 public interface SelectorInterface {
 	

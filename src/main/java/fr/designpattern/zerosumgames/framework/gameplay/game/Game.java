@@ -21,16 +21,14 @@ package fr.designpattern.zerosumgames.framework.gameplay.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PiecesInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 /**
  * This class provides a skeletal implementation of the Game
@@ -61,18 +59,9 @@ public abstract class Game implements GameInterface {
 		return this.board;
 	}
 	// ---------------------------------------------------------------------
-	private OpponentsInterface opponents;
-	private final void setOpponents(final OpponentsInterface opponents) {
-		this.opponents = opponents;
-	}	
-	private final OpponentsInterface getOpponents() {
-		return this.opponents;
-	}	
-	// ---------------------------------------------------------------------
-	public Game(final PiecesInterface pieceFactory, final BoardInterface board, final OpponentsInterface opponents) {
+	public Game(final PiecesInterface pieceFactory, final BoardInterface board) {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
-		this.setOpponents(opponents);
 	}
 	// ---------------------------------------------------------------------
 	public String toString() {
@@ -82,9 +71,7 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------
 	// Façades fournies
 	// ---------------------------------------------------------------------
-	public MoveSelectorInterface getPlayerStrategy(final OpponentsEnumeration playerOrdinal) {
-		return this.getOpponents().getPlayerStrategy(playerOrdinal);
-	}
+
 	public final PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType) {
 		return this.getPieceFactory().getPiece(player, pieceType);
 	}

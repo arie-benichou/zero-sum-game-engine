@@ -1,6 +1,6 @@
 /*
- * @(#)GamePlayerNature.java	0.99
- * 
+ * @(#)IGame.java	0.99
+ *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,18 +16,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
+package fr.designpattern.zerosumgames.services;
 
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player;
+import fr.designpattern.zerosumgames.framework.gameplay.GamePlayInterface;
 
-/**
- * This is the enumeration of a game player's nature.
- * 
- * TODO? The NULL player's nature could be used for games
- * with no opponent or random opponent strategy. 
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
- */
-public enum PlayerNature {
-	NULL, HUMAN, COMPUTER;
+public interface GameServiceInterface {
+	
+	GamePlayInterface getGamePlay();
+
+	/**
+	 * Starts a new game play.
+	 */
+	void start();
+	
+	/**
+	 * Pauses this game play.
+	 */
+	void pause();
+
+	/**
+	 * Resumes from pause.
+	 */
+	void resume();
+
+	/**
+	 * Stops this game play.
+	 */
+	void stop();
+
+	/**
+	 * Stops this game play and starts a new one.
+	 */
+	void reset();
+
 }

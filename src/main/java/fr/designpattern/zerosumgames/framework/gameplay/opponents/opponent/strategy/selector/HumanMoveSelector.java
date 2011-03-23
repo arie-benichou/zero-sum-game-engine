@@ -21,7 +21,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 
 public class HumanMoveSelector extends NullSelector {
 
@@ -29,7 +29,14 @@ public class HumanMoveSelector extends NullSelector {
 	public LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves) {
 		
 		LegalMoveInterface move;
-		
+
+		int n = 0;
+		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoves.size())) + 1;
+		System.out.println("\nLegal moves :");
+		for (LegalMoveInterface legalMove : legalMoves) {
+			System.out.format("#%0" + numberOfDigits + "d: %s\n", ++n, legalMove);
+		}
+			
 		System.out.println("\nWhat is your move ?");
 		
 		final Scanner scanner = new Scanner(System.in);
