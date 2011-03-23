@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluator;
 
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;

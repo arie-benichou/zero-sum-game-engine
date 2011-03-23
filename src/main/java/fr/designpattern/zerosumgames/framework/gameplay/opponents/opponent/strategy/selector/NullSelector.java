@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selector;
 
 import java.util.List;
 import java.util.Random;

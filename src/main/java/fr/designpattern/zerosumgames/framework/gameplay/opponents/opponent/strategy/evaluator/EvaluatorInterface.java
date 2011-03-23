@@ -1,15 +1,16 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluator;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
-public interface SelectorInterface {
+public interface EvaluatorInterface {
 	
-	LegalMoveInterface applySelection(List<LegalMoveInterface> legalMoves);
-
 	void setContext(GameInterface context);
+	
 	GameInterface getContext();
-
+	
+	List<LegalMoveInterface> applyEvaluation(List<LegalMoveInterface> legalMoves);
+	
 }
