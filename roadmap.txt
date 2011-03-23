@@ -1,0 +1,4 @@
+créer les builders manquants
+revoir la composition du board
+faire gui
+tests unitaires (apprendre groovy + TDD)
