@@ -21,12 +21,12 @@ package fr.designpattern.zerosumgames.framework.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PiecesInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PiecesInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;

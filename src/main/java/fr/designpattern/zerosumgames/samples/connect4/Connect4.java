@@ -20,10 +20,10 @@ package fr.designpattern.zerosumgames.samples.connect4;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.designpattern.zerosumgames.framework.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.Dimension;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.game.components.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.Dimension;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;

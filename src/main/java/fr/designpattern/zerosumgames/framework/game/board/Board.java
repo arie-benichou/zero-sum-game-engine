@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board;
+package fr.designpattern.zerosumgames.framework.game.board;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.DimensionInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellsInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.DimensionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellsInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.positions.PositionInterface;
 
 //TODO ? utiliser BoardCell et Equals
 public class Board implements BoardInterface {

@@ -1,9 +1,9 @@
 package fr.designpattern.zerosumgames.samples.checkers.pieces;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Piece;
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.Piece;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public abstract class CheckersPiece extends Piece implements ICheckersPiece {

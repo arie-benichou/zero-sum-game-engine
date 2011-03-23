@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces;
+package fr.designpattern.zerosumgames.framework.game.board.dimension.cells.pieces;
 
 
 /**

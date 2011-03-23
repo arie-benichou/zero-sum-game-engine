@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.moves;
 
-import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class Move implements MoveInterface {
