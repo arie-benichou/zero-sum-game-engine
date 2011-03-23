@@ -31,7 +31,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.moves;
+package fr.designpattern.zerosumgames.framework.moves;
 
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;

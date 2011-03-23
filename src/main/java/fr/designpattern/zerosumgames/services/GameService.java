@@ -3,8 +3,8 @@ package fr.designpattern.zerosumgames.services;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
-import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.moves.Move;
+import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class GameService implements IGameService {
