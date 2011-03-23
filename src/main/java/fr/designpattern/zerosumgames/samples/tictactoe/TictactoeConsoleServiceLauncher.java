@@ -14,7 +14,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.Player;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.PlayerInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxEvaluator;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.NullEvaluator;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
@@ -38,8 +40,16 @@ public final class TictactoeConsoleServiceLauncher {
 		opponentBuilder.selector(selector1);
 		// ------------------------------------------------------------
 		OpponentInterface opponent1 = opponentBuilder.build();
+		// ------------------------------------------------------------
 		final PlayerInterface player2 = new Player("Anatole");
 		opponentBuilder.player(player2);
+		/*
+		final EvaluatorInterface evaluator2 = new MiniMaxEvaluator(8);
+		opponentBuilder.evaluator(evaluator2);
+		final SelectorInterface selector2 = new BestLegalMoveSelector();
+		opponentBuilder.selector(selector2);
+		*/
+		// ------------------------------------------------------------
 		final OpponentInterface opponent2 = opponentBuilder.build();
 		// ------------------------------------------------------------
 		final OpponentsBuilderInterface opponentsBuilder = new OpponentsBuilder();

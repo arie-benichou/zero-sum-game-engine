@@ -2,17 +2,15 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppon
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.tmp.BestLegalMoveSelector;
-import fr.designpattern.zerosumgames.tmp.MoveSelectorInterface;
-import fr.designpattern.zerosumgames.tmp.WorstLegalMoveSelector;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.WorstLegalMoveSelector;
 
 
-public class MiniMax implements EvaluatorInterface{
-
+public class MiniMaxEvaluator extends NullEvaluator {
 	//--------------------------------------------------------------------------------------
 	private transient int maximalDepth;
 	public final int getMaximalDepth() {
@@ -22,18 +20,10 @@ public class MiniMax implements EvaluatorInterface{
 		this.maximalDepth = maximalDepth;
 	}
 	//--------------------------------------------------------------------------------------	
-	protected final static MoveSelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
-	private final static MoveSelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
+	protected final static SelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
+	private final static SelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
 	//--------------------------------------------------------------------------------------	
-	private transient GameInterface context;
-	protected final GameInterface getContext() {
-		return context;
-	}	
-	private final void setContext(final GameInterface context) {
-		this.context = context;
-	}
-	//--------------------------------------------------------------------------------------	
-	public MiniMax(final int maximaDepth) {
+	public MiniMaxEvaluator(final int maximaDepth) {
 		this.setMaximalDepth(maximaDepth);
 	}
 	//--------------------------------------------------------------------------------------
@@ -47,32 +37,20 @@ public class MiniMax implements EvaluatorInterface{
 	}
 	//--------------------------------------------------------------------------------------	
 	protected double evaluate(final LegalMoveInterface moveToEvaluate, final int profondeur, final double side) {
-
 		double score;
-		
-		final OpponentsEnumeration nextPlayer = this.getContext().whoShallPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
-		
+		final OpponentsEnumeration nextPlayer = this.getContext().computeNextSideToPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-			
 			score = side * this.getContext().evaluate(moveToEvaluate); 
 		}
-		
 		else {
-			
 			List<LegalMoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
 			for(LegalMoveInterface opponentMove : opponentMoves) {
 				opponentMove.setEvaluation(this.evaluate(opponentMove, profondeur - 1, -side));
 			}
-			
-			score = (side == 1) ?
-				worstLegalMoveSelector.select(this.getContext(), opponentMoves).getEvaluation()
-				:
-				bestLegalMoveSelector.select(this.getContext(), opponentMoves).getEvaluation();			
+			score = (side == 1) ? worstLegalMoveSelector.applySelection(opponentMoves).getEvaluation() : bestLegalMoveSelector.applySelection(opponentMoves).getEvaluation();
 		}
-		
 		this.getContext().undoMove(moveToEvaluate);
 		return score;
-		
 	}
 	//--------------------------------------------------------------------------------------
 }
