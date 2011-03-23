@@ -21,7 +21,7 @@ package fr.designpattern.zerosumgames.framework.game.components.moves;
 
 import fr.designpattern.zerosumgames.framework.game.components.NullObjectAvailableInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 /**
  * This is the interface for a game move.

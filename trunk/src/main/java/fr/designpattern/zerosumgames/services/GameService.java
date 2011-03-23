@@ -1,11 +1,11 @@
-package fr.designpattern.zerosumgames.framework.services;
+package fr.designpattern.zerosumgames.services;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.Move;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsEnumeration;
 
 public class GameService implements IGameService {
 	// ------------------------------------------------------------

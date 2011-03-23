@@ -1,12 +1,13 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2;
+package fr.designpattern.zerosumgames.framework.opponents.strategies;
 
 import java.util.List;
 
+import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.evaluators.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.evaluators.NullEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.selectors.NullSelector;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.selectors.SelectorInterface;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.evaluators.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.evaluators.NullEvaluator;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.selectors.NullSelector;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.selectors.SelectorInterface;
 
 public class Strategy implements StrategyInterface {
 	
@@ -34,7 +35,9 @@ public class Strategy implements StrategyInterface {
 		return this.getSelector().applySelection(legalMoves);
 	}
 
-	public MoveInterface getSelectedMoveFrom(List<MoveInterface> legalMoves) {
+	public MoveInterface getSelectedMoveFrom(GameInterface context, List<MoveInterface> legalMoves) {
+		this.selector.setContext(context);
+		this.evaluator.setContext(context);
 		return this.applySelector(this.applyEvaluator(legalMoves));
 	}
 

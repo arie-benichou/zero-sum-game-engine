@@ -11,11 +11,11 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.CellsInterface;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.Positions;
 import fr.designpattern.zerosumgames.framework.game.components.board.dimension.cells.positions.PositionsInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.Opponents;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.Player;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.RandomLegalMoveSelector;
+import fr.designpattern.zerosumgames.framework.opponents.Opponents;
+import fr.designpattern.zerosumgames.framework.opponents.OpponentsInterface;
+import fr.designpattern.zerosumgames.framework.opponents.players.Player;
+import fr.designpattern.zerosumgames.framework.opponents.players.PlayerInterface;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu

@@ -1,10 +1,10 @@
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2;
+package fr.designpattern.zerosumgames.framework.opponents.strategies;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.evaluators.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies2.selectors.SelectorInterface;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.evaluators.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.opponents.strategies.selectors.SelectorInterface;
 
 public interface StrategyInterface {
 	
