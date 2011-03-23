@@ -1,14 +1,14 @@
 package fr.designpattern.zerosumgames.services;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.builder.Builder;
-import fr.designpattern.zerosumgames.framework.gameplay.game.builder.BuilderInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilderInterface;
 import fr.designpattern.zerosumgames.samples.othello.Othello;
 
 public class OthelloService {
 
 	public static void main(String[] args) {
 			
-		BuilderInterface gameBuilder = new Builder(Othello.class);
+		GameBuilderInterface gameBuilder = new GameBuilder(Othello.class);
 		
 		/*
 		gameBuilder.player1(

@@ -22,6 +22,7 @@ package fr.designpattern.zerosumgames.samples.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
@@ -30,7 +31,6 @@ import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cel
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.Pieces;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
@@ -350,7 +350,7 @@ public class Checkers extends Game {
 	// -----------------------------------------------------------------	
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) {
-		new GameService(new Builder(StaticContext.thatClass()).build()).start();
+		new GameService(new GameBuilder(StaticContext.thatClass()).build()).start();
 	}
 	// ------------------------------------------------------------
 }
