@@ -20,8 +20,8 @@ package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.s
 import java.util.List;
 import java.util.Random;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
 
 public class RandomLegalMoveSelector implements MoveSelectorInterface {
 

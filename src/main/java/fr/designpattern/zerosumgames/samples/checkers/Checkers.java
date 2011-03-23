@@ -22,20 +22,20 @@ package fr.designpattern.zerosumgames.samples.checkers;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
-import fr.designpattern.zerosumgames.framework.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.Dimension;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.Pieces;
-import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
+import fr.designpattern.zerosumgames.framework.service.GameService;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.Pieces;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
-import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Checkers extends AbstractGame {
