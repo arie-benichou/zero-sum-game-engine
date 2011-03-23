@@ -18,26 +18,73 @@ public class GameService implements GameServiceInterface {
 		this.gamePlay = gamePlay;
 	}
 	// ------------------------------------------------------------
+	private final OpponentsEnumeration getSideToPlay() {
+		return this.getGamePlay().getSideToPlay();
+	}		
+	private final List<LegalMoveInterface>  getLegalMoves(final OpponentsEnumeration sideToPlay) {
+		return this.getGamePlay().getLegalMoves(sideToPlay);
+	}
+	private final OpponentInterface getOpponentByOrder(final OpponentsEnumeration sideToPlay) {
+		return this.getGamePlay().getOpponentByOrder(sideToPlay);
+	}
+	
+	private final void play(LegalMoveInterface legalMove) {
+		this.getGamePlay().play(legalMove);
+	}
+	
+	private final boolean isGamePlayOver() {
+		return this.gamePlay.isGamePlayOver();
+	}
+	
+	// ------------------------------------------------------------
+	@Override
+	public String toString() {
+		return
+			"\n===================================================\n" +
+			this.getGamePlay().toString() +
+			"\n===================================================\n"
+		;
+	}
+	// ------------------------------------------------------------	
 	public void start() {
+
+		
+		OpponentsEnumeration sideToPlay;
 		OpponentInterface opponent;
 		List<LegalMoveInterface> legalMoves;
-		OpponentsEnumeration sideToPlay;
-		System.out.println(this.getGamePlay());
+		LegalMoveInterface legalMove;
+		String result;
+		
+		System.out.println(this);
+		
 		do {
-			sideToPlay = this.getGamePlay().getSideToPlay();
-			legalMoves = this.getGamePlay().getLegalMoves(sideToPlay);
-			opponent = this.getGamePlay().getOpponentByOrder(sideToPlay);
-			this.getGamePlay().play(opponent.selectMove(legalMoves));
-			System.out.println(this.getGamePlay());
-		} while (OpponentsEnumeration.isAPlayer(this.getGamePlay().getSideToPlay()));
-		sideToPlay = this.getGamePlay().getSideToPlay();
-		System.out.println("Game over...");
-		if(OpponentsEnumeration.isNoOne(sideToPlay)) {
-			System.out.println("There is no winner.");
-		}
-		else {
-			System.out.println("And the winner is " + OpponentsEnumeration.opponent(OpponentsEnumeration.not(sideToPlay)) +  "!");
-		}
+			
+			sideToPlay = this.getSideToPlay();
+			
+			opponent = this.getOpponentByOrder(sideToPlay);
+			
+			System.out.println(opponent + " must play...");
+			
+			legalMoves = this.getLegalMoves(sideToPlay);
+
+			legalMove = opponent.selectMove(legalMoves);
+			
+			this.play(legalMove);
+			
+			System.out.println(this);
+			
+		} while (!this.isGamePlayOver());
+		
+		result =
+			"Gameplay is over." + "\n\n" +
+			(this.getSideToPlay().isNoOne() ?
+				"There is no winner."
+			:
+				"And the winner is : " + this.getOpponentByOrder(this.getSideToPlay().getNegation().getOpponent()))
+		;
+		
+		System.out.println(result);
+		
 	}
 	// ---------------------------------------------------------------------
 	public void reset() {}

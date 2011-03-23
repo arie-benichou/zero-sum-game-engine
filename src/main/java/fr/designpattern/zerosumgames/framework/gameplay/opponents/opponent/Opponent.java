@@ -2,7 +2,6 @@ package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player.PlayerInterface;
@@ -27,16 +26,22 @@ public class Opponent implements OpponentInterface {
 		return this.strategy;
 	}
 
-	public MoveSelectorInterface selectMove(List<LegalMoveInterface> legalMoves) {
-		return null;
+	public LegalMoveInterface selectMove(List<LegalMoveInterface> legalMoves) {
+		return this.strategy.computeStrategicMoveFrom(legalMoves);
 	}
 
 	public void setContext(GameInterface context) {
 		this.context = context;
+		this.strategy.injectContext(context);
 	}
 	
 	public GameInterface getContext() {
 		return this.context;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getPlayer().getName(); 
 	}
 	
 }

@@ -21,10 +21,10 @@ package fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.ce
 
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.framework.NullObjectAvailableInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.NullObjectAvailableInterface;
 
 /**
  * This is the interface for the game board cells.

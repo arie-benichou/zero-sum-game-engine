@@ -3,7 +3,6 @@ package fr.designpattern.zerosumgames.framework.gameplay.game;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.RandomLegalMoveSelector;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.Board;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.DimensionInterface;
@@ -15,6 +14,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.Opponents;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player.Player;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player.PlayerInterface;
+import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.RandomLegalMoveSelector;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu

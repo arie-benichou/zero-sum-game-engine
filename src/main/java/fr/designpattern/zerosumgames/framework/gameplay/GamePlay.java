@@ -20,15 +20,7 @@ public class GamePlay implements GamePlayInterface {
 		return this.game;
 	}	
 	// ---------------------------------------------------------------------
-	private transient boolean isGamePlayOver;
-	public final boolean isGamePlayOver() {
-		return isGamePlayOver;
-	}
-	private final void isGamePlayOver(boolean isGamePlayOver) {
-		this.isGamePlayOver = isGamePlayOver;
-	}	
-	// ---------------------------------------------------------------------	
-	private transient OpponentsEnumeration sideToPlay;
+	private transient OpponentsEnumeration sideToPlay = OpponentsEnumeration.FIRST_PLAYER;
 	private final void setSideToPlay(OpponentsEnumeration sideToPlay) {
 		this.sideToPlay = sideToPlay;
 	}
@@ -36,13 +28,12 @@ public class GamePlay implements GamePlayInterface {
 		return this.sideToPlay;
 	}	
 	// ---------------------------------------------------------------------
-	public GamePlay(GameInterface game, OpponentsInterface players) {
+	public GamePlay(GameInterface game, OpponentsInterface opponents) {
 		this.game = game;
-		players.injectContext(game);
-		this.opponents = players;
+		opponents.injectContext(game);
+		this.opponents = opponents;
 	}
 	// ---------------------------------------------------------------------
-	// façades
 	public List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		return this.getGame().getLegalMoves(side);
 	}
@@ -51,13 +42,16 @@ public class GamePlay implements GamePlayInterface {
 	}
 	// ---------------------------------------------------------------------	
 	public void play(LegalMoveInterface move) {
-		this.getGame().doMove(move);
-		// TODO apply game transitions
+		this.setSideToPlay(this.getGame().play(move));
 	}
 	// ---------------------------------------------------------------------
+	public final boolean isGamePlayOver() {
+		return !this.getSideToPlay().isAPlayer();
+	}
+	// ---------------------------------------------------------------------	
 	@Override
 	public String toString() {
-		return " { " + this.getGame().toString() + ", " + this.getOpponents().toString() + " } "; 
+		return  this.getGame().toString() + "\n" + this.getOpponents().toString(); 
 	}
 	// ---------------------------------------------------------------------	
 }

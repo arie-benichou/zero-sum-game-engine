@@ -2,6 +2,7 @@ package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.stra
 
 import java.util.List;
 
+import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluator.EvaluatorInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
@@ -16,6 +17,8 @@ public interface StrategyInterface {
 	
 	LegalMoveInterface applySelector(List<LegalMoveInterface> legalMoves);
 	
-	LegalMoveInterface getSelectedMoveFrom(List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface computeStrategicMoveFrom(List<LegalMoveInterface> legalMoves);
+
+	void injectContext(GameInterface context);
 
 }

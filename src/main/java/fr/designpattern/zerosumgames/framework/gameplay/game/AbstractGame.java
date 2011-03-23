@@ -37,7 +37,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnume
  * @author  Arie Benichou
  * @version 0.999, 21/03/2011
  */
-public abstract class Game implements GameInterface {
+public abstract class AbstractGame implements GameInterface {
 	
 	// ---------------------------------------------------------------------
 	// Object Internals
@@ -59,13 +59,13 @@ public abstract class Game implements GameInterface {
 		return this.board;
 	}
 	// ---------------------------------------------------------------------
-	public Game(final PiecesInterface pieceFactory, final BoardInterface board) {
+	public AbstractGame(final PiecesInterface pieceFactory, final BoardInterface board) {
 		this.setPieceFactory(pieceFactory);		
 		this.setBoard(board);
 	}
 	// ---------------------------------------------------------------------
 	public String toString() {
-		return this.getBoard().toString();
+		return this.getClass().getSimpleName() + this.getBoard().toString();
 	}
 	
 	// ---------------------------------------------------------------------
@@ -85,9 +85,11 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------	
 	// Implémentations finales 
 	// ---------------------------------------------------------------------
-	
-	public final OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone) {
+		
+	public final OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface playedMove, final boolean isMoveDone) {
+		
 		final OpponentsEnumeration nexSideToPlay;
+		
 		if(!isMoveDone) {
 			nexSideToPlay = playedMove.getSide();
 		}
@@ -100,8 +102,14 @@ public abstract class Game implements GameInterface {
 		else {
 			nexSideToPlay = OpponentsEnumeration.opponent(playedMove.getSide());
 		}
+		
 		return nexSideToPlay;
+		
 	}
+	
+	public final OpponentsEnumeration play(LegalMoveInterface moveToPlay) {
+		return this.computeNextSideToPlay(moveToPlay, this.doMove(moveToPlay));
+	}		
 	
 	// ---------------------------------------------------------------------	
 	// Méthodes à implémenter
