@@ -23,47 +23,33 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 //TODO new OneSingleMoveHeuristic(new BestLegalMoveSelector())
 
 public final class TictactoeConsoleServiceLauncher {
-	
-	private TictactoeConsoleServiceLauncher() {}
+
+	private TictactoeConsoleServiceLauncher() {
+	}
 
 	public static void main(final String[] args) {
-		
-		
+		// ------------------------------------------------------------
 		final OpponentBuilderInterface opponentBuilder = new OpponentBuilder();
-		
-			final PlayerInterface player1 = new Player("Arié");
-			opponentBuilder.player(player1);
-			
-			final EvaluatorInterface evaluator1 = new NullEvaluator();
-			opponentBuilder.evaluator(evaluator1);
-			
-			final SelectorInterface selector1 = new HumanMoveSelector();
-			opponentBuilder.selector(selector1);
-			
+		final PlayerInterface player1 = new Player("Arié");
+		opponentBuilder.player(player1);
+		final EvaluatorInterface evaluator1 = new NullEvaluator();
+		opponentBuilder.evaluator(evaluator1);
+		final SelectorInterface selector1 = new HumanMoveSelector();
+		opponentBuilder.selector(selector1);
+		// ------------------------------------------------------------
 		OpponentInterface opponent1 = opponentBuilder.build();
-			
-			final PlayerInterface player2 = new Player("Anatole");
-			opponentBuilder.player(player2);
-			
+		final PlayerInterface player2 = new Player("Anatole");
+		opponentBuilder.player(player2);
 		final OpponentInterface opponent2 = opponentBuilder.build();
-		
-		
-			
+		// ------------------------------------------------------------
 		final OpponentsBuilderInterface opponentsBuilder = new OpponentsBuilder();
-		
-			final OpponentsInterface opponents = opponentsBuilder.player1(opponent1).player2(opponent2).build();
-		
-			
-			
+		final OpponentsInterface opponents = opponentsBuilder.player1(opponent1).player2(opponent2).build();
+		// ------------------------------------------------------------
 		final GameBuilderInterface gameBuilder = new GameBuilder(Tictactoe.class);
-		
-			final GameInterface game = gameBuilder.build();
-		
-
-			
+		final GameInterface game = gameBuilder.build();
+		// ------------------------------------------------------------
 		new GamePlayConsoleService(new GamePlay(game, opponents)).start();
-		
-		
+		// ------------------------------------------------------------
 	}
-	
+
 }

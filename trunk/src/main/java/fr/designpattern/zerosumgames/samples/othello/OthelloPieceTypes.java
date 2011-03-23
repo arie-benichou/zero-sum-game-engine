@@ -28,7 +28,7 @@ import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPiecePawn;
  */
 public enum OthelloPieceTypes implements PieceTypeInterface {
 	// ------------------------------------------------------------
-	NULL(OthelloPieceNull.class),
+	NULL(OthelloPieceNull.class), // TODO ? définir la pièce nulle pour chaque jeu
 	PAWN(OthelloPiecePawn.class);
 	// ------------------------------------------------------------
 	private final Class<? extends OthelloPiece> classObject;

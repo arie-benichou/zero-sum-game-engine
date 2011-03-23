@@ -20,16 +20,12 @@ package fr.designpattern.zerosumgames.samples.connect4;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.service.GamePlayService;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;
-import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
@@ -37,12 +33,12 @@ public class Connect4 extends Tictactoe {
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
 	public final static Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7); 
 	// ------------------------------------------------------------
-	public Connect4(final BoardInterface board, final OpponentsInterface opponents, final int connections) {
-		super(board, opponents, connections);
+	public Connect4(final BoardInterface board, final int connections) {
+		super(board, connections);
 	}	
 	// ------------------------------------------------------------
-	public Connect4(final BoardInterface board, final OpponentsInterface opponents) {
-		super(board, opponents, CONNECTIONS);
+	public Connect4(final BoardInterface board) {
+		super(board, CONNECTIONS);
 	}
 	// -----------------------------------------------------------------
 	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
@@ -64,10 +60,5 @@ public class Connect4 extends Tictactoe {
 		}
 		return legalMoves;
 	}	
-	// ------------------------------------------------------------
-	@SuppressWarnings("unchecked")
-	public static void main(final String[] args) {
-		new GamePlayService(new GameBuilder(StaticContext.thatClass()).build()).start();
-	}
 	// ------------------------------------------------------------
 }

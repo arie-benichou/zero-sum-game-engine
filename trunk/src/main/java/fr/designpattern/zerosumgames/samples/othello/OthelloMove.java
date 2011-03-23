@@ -2,9 +2,9 @@ package fr.designpattern.zerosumgames.samples.othello;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.moves.Move;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMove;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 // TODO ? implémenter une interface
