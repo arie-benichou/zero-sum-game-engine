@@ -19,7 +19,7 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions;
 
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.NullObjectAvailableInterface;
+import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
 /**
  * This is the interface for a game board position.

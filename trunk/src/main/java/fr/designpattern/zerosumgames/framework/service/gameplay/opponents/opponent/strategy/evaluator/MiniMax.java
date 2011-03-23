@@ -6,9 +6,9 @@ import fr.designpattern.zerosumgames.framework.game.components.opponents.strateg
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.BestLegalMoveSelector;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.MoveSelectorInterface;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.WorstLegalMoveSelector;
+import fr.designpattern.zerosumgames.tmp.BestLegalMoveSelector;
+import fr.designpattern.zerosumgames.tmp.MoveSelectorInterface;
+import fr.designpattern.zerosumgames.tmp.WorstLegalMoveSelector;
 
 
 public class MiniMax implements EvaluatorInterface{

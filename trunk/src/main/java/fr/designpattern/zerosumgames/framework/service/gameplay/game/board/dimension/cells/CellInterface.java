@@ -24,7 +24,7 @@ import java.util.Map;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.NullObjectAvailableInterface;
+import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
 /**
  * This is the interface for the game board cells.
