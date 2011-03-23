@@ -12,11 +12,11 @@ public final class OneSingleMoveHeuristic extends AbstractConditionnalMoveHeuris
 		super(nestedSelector);
 	}
 
-	public final MoveInterface simplify(final GameInterface context, final List<MoveInterface> legalMoves) {
+	public final LegalMoveInterface simplify(final GameInterface context, final List<LegalMoveInterface> legalMoves) {
 		return legalMoves.get(0);
 	}
 	
-	public final boolean isApplicable(final GameInterface context, final List<MoveInterface> legalMoves) {
+	public final boolean isApplicable(final GameInterface context, final List<LegalMoveInterface> legalMoves) {
 		System.out.println("Un seul coup possible, il est joué...");
 		return legalMoves.size() == 1;
 	}

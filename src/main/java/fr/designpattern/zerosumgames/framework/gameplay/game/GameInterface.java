@@ -51,7 +51,7 @@ public interface GameInterface {
 	 * 
 	 * @return the list of legal moves
 	 */
-	List<MoveInterface> getLegalMoves(final OpponentsEnumeration side);
+	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 	
 	
 	/**
@@ -62,7 +62,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the move is completed, false otherwise
 	 */
-	boolean doMove(final MoveInterface moveToPlay);
+	boolean doMove(final LegalMoveInterface moveToPlay);
 	
 	/**
 	 * Undo the played move and returns true if the move is completely undone, false otherwise.
@@ -71,7 +71,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the move is completely undone, false otherwise
 	 */	
-	boolean undoMove(final MoveInterface playedMove);
+	boolean undoMove(final LegalMoveInterface playedMove);
 	
 	/**
 	 * Returns true if the game is over from a victory of the current player, false otherwise.
@@ -80,7 +80,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the game is over from a victory of the current player, false otherwise
 	 */
-	boolean isGameOverFromVictory(final MoveInterface playedMove);
+	boolean isGameOverFromVictory(final LegalMoveInterface playedMove);
 
 	/**
 	 * Returns true if the game is over from a draw, false otherwise.
@@ -89,7 +89,7 @@ public interface GameInterface {
 	 * 
 	 * @return true if the game is over from a victory of the current player, false otherwise
 	 */	
-	boolean isGameOverFromDraw(final MoveInterface playedMove);
+	boolean isGameOverFromDraw(final LegalMoveInterface playedMove);
 	
 	/**
 	 * Returns FIRST_PLAYER, if it's the first player turn,
@@ -108,7 +108,7 @@ public interface GameInterface {
 	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
 	 * NO_ONE, if the game is a draw
 	 */
-	OpponentsEnumeration whoShallPlay(final MoveInterface playedMove, final boolean isMoveDone);			
+	OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);			
 	
 	/**
 	 * Returns the computation of the move evaluation of the game.
@@ -117,7 +117,7 @@ public interface GameInterface {
 	 * 
 	 * @return the computation of the move evaluation of the game
 	 */
-	double evaluate(final MoveInterface playedMove);
+	double evaluate(final LegalMoveInterface playedMove);
 	
 	// ---------------------------------------------------------------------
 	// Façades

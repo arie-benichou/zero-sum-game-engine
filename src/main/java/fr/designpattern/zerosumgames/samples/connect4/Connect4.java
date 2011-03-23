@@ -45,9 +45,9 @@ public class Connect4 extends Tictactoe {
 		super(board, opponents, CONNECTIONS);
 	}
 	// -----------------------------------------------------------------
-	public final List<MoveInterface> getLegalMoves(final OpponentsEnumeration side) {
+	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		CellInterface nextBottomCell;
-		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
+		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		// TODO a améliorer
 		for (CellInterface[] line : this.getBoard()) {
 			for(CellInterface cell : line) {

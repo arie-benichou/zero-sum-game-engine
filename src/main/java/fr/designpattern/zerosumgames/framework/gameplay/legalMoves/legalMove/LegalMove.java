@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.gameplay.moves;
+package fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
 
-public class Move implements MoveInterface {
+public class LegalMove implements LegalMoveInterface {
 		
 	private OpponentsEnumeration side;
 	private final void setSide(final OpponentsEnumeration side) {
@@ -59,7 +59,7 @@ public class Move implements MoveInterface {
 		return this.getPosition().isNull();
 	}
 
-	public Move(final OpponentsEnumeration side, final PositionInterface position) {
+	public LegalMove(final OpponentsEnumeration side, final PositionInterface position) {
 		this.setSide(side);
 		this.setNewPosition(position);
 	}
@@ -81,11 +81,11 @@ public class Move implements MoveInterface {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO tester la classe
-		MoveInterface o = (MoveInterface)obj;
+		LegalMoveInterface o = (LegalMoveInterface)obj;
 		return this.getEvaluation().equals(o.getEvaluation());
 	}
 	
-	public int compareTo(MoveInterface o) {
+	public int compareTo(LegalMoveInterface o) {
 		//return o.getEvaluation().compareTo(this.getEvaluation());
 		return this.getEvaluation().compareTo(o.getEvaluation());
 	}

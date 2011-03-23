@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnume
 import fr.designpattern.zerosumgames.framework.moves.Move;
 
 // TODO ? implémenter une interface
-public class CheckersMove extends Move {
+public class CheckersMove extends LegalMove {
 	// ---------------------------------------------------------------------	
 	private BoardCardinalPosition direction;
 	private final void setDirection(final BoardCardinalPosition direction) {

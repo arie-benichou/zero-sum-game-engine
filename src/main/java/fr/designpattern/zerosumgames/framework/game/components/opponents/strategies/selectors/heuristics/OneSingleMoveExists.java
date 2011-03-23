@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public class OneSingleMoveExists implements MoveSelectorPredicateInterface {
 	//--------------------------------------------------------------------------------------
-	public boolean checkPredicate(List<MoveInterface> legalMoves) {
+	public boolean checkPredicate(List<LegalMoveInterface> legalMoves) {
 		//--------------------------------------------------------------------------------------
 		boolean predicate = false;
 		//--------------------------------------------------------------------------------------
@@ -25,11 +25,11 @@ public class OneSingleMoveExists implements MoveSelectorPredicateInterface {
 		return predicate;
 	}
 	//--------------------------------------------------------------------------------------
-	public void onTrue(List<MoveInterface> legalMoves) {
+	public void onTrue(List<LegalMoveInterface> legalMoves) {
 		System.out.println("\nIl n y a qu'une seule option possible...");
 	}
 	//--------------------------------------------------------------------------------------
-	public void onFalse(List<MoveInterface> legalMoves) {
+	public void onFalse(List<LegalMoveInterface> legalMoves) {
 		System.out.println("\nIl y a " + legalMoves.size() + " options possibles...");
 	}	
 	//--------------------------------------------------------------------------------------

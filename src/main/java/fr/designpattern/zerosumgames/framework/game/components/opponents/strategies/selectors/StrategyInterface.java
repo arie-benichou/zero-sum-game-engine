@@ -44,7 +44,7 @@ public interface StrategyInterface {
 	 */
 	
 	
-	MoveInterface chooseMoveAmong(GameInterface game, List<MoveInterface> legalMoves);
+	LegalMoveInterface chooseMoveAmong(GameInterface game, List<LegalMoveInterface> legalMoves);
 	MoveSelectorInterface getSelector();
 	
 	boolean hasHeuristic();

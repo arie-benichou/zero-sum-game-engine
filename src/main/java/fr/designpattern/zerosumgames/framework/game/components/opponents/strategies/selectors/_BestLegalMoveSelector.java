@@ -41,7 +41,7 @@ public class _BestLegalMoveSelector implements MoveSelectorInterface {
 		this.setEvaluator(evaluator);
 	}
 	//--------------------------------------------------------------------------------------
-	public MoveInterface select(final GameInterface context,  final List<MoveInterface> legalMoves) {
+	public LegalMoveInterface select(final GameInterface context,  final List<LegalMoveInterface> legalMoves) {
 		
 		//--------------------------------------------------------------------------------------		
 		if(new OneSingleMoveExists().checkPredicate(legalMoves)) {
@@ -50,7 +50,7 @@ public class _BestLegalMoveSelector implements MoveSelectorInterface {
 		//--------------------------------------------------------------------------------------
 		
 		// uniquement pour tictactoe et puissance4 : TODO à améliorer
-		for(MoveInterface move: legalMoves) {
+		for(LegalMoveInterface move: legalMoves) {
 			move.setEvaluation(this.getEvaluator().evaluate(context, move, 1));
 			move.setDepth(1);
 		}
@@ -60,8 +60,8 @@ public class _BestLegalMoveSelector implements MoveSelectorInterface {
 		}
 		//--------------------------------------------------------------------------------------
 		// uniquement pour tictactoe et puissance4 : TODO à améliorer
-		List<MoveInterface> OpponentLegalMovesForSameContext = context.getLegalMoves(OpponentsEnumeration.opponent(legalMoves.get(0).getSide()));
-		for(MoveInterface move: OpponentLegalMovesForSameContext) {
+		List<LegalMoveInterface> OpponentLegalMovesForSameContext = context.getLegalMoves(OpponentsEnumeration.opponent(legalMoves.get(0).getSide()));
+		for(LegalMoveInterface move: OpponentLegalMovesForSameContext) {
 			move.setEvaluation(this.getEvaluator().evaluate(context, move, 1));
 			move.setDepth(1);
 		}
@@ -76,7 +76,7 @@ public class _BestLegalMoveSelector implements MoveSelectorInterface {
 
 		
 		// tri de la liste en fonction des scores obtenus au niveau 2
-		for(MoveInterface move: legalMoves) {
+		for(LegalMoveInterface move: legalMoves) {
 			move.setEvaluation(this.getEvaluator().evaluate(context, move, 2));
 			move.setDepth(2);
 		}
@@ -87,14 +87,14 @@ public class _BestLegalMoveSelector implements MoveSelectorInterface {
 		
 		System.out.println("\nEvaluation en profondeur des coups légaux...\n");
 		
-		for(MoveInterface move : legalMoves) {
+		for(LegalMoveInterface move : legalMoves) {
 			move.setEvaluation(this.getEvaluator().evaluate(context, move));
 		}
 
 		
 		Collections.sort(legalMoves);
 		Collections.reverse(legalMoves);
-		for (MoveInterface legalMove: legalMoves) {
+		for (LegalMoveInterface legalMove: legalMoves) {
 			System.out.println(legalMove.debug());
 		}
 		

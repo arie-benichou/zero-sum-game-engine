@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.evaluators;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators;
 
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
@@ -11,7 +11,7 @@ public class MiniMaxAlphaBeta extends MiniMax {
 	
 	//--------------------------------------------------------------------------------------
 	@Override
-	protected double evaluate(final MoveInterface moveToPlay, int profondeur, double alpha, double beta, double side) {
+	protected double evaluate(final LegalMoveInterface moveToPlay, int profondeur, double alpha, double beta, double side) {
 
 		double score;
 		OpponentsEnumeration nextPlayer = this.getContext().whoShallPlay(moveToPlay, this.getContext().doMove(moveToPlay));
@@ -20,7 +20,7 @@ public class MiniMaxAlphaBeta extends MiniMax {
 			score = side * this.getContext().evaluate(moveToPlay); 
 		}
 		else if(side == 1) {
-			for(MoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
+			for(LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 				beta = Math.min(beta, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 				//-------------------------------------------------------------------				
 				// elagage alpha/beta : l'adversaire a trouvé un meilleur "pire coup"
@@ -32,7 +32,7 @@ public class MiniMaxAlphaBeta extends MiniMax {
 			score = beta;
 		}
 		else {
-			for(MoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
+			for(LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 				alpha = Math.max(alpha, this.evaluate(opponentMove, profondeur - 1, alpha, beta, -side));
 				//-------------------------------------------------------------------				
 				// elagage alpha/beta : le joueur a trouvé un meilleur "meilleur coup"

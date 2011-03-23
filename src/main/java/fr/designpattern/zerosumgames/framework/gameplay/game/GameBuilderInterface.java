@@ -1,7 +1,7 @@
 package fr.designpattern.zerosumgames.framework.gameplay.game;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.DimensionInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.players.PlayerInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.player.PlayerInterface;
 
 // TODO rajouter final lorsqu'applicable dans les autres interfaces
 public interface GameBuilderInterface {

@@ -61,8 +61,8 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO à virer
-	public final List<MoveInterface> getLegalMoves(final OpponentsEnumeration side, final MoveInterface previousMove) {
-		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
+	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side, final LegalMoveInterface previousMove) {
+		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		for (CellInterface[] line : this.getBoard()) {
 			for (CellInterface cell : line) {
 				if (this.canPlayHere(cell, side)) {
@@ -75,8 +75,8 @@ public class Othello extends Game {
 		return legalMoves;
 	}
 	// ------------------------------------------------------------	
-	public final List<MoveInterface> getLegalMoves(final OpponentsEnumeration side) {
-		final List<MoveInterface> legalMoves = new ArrayList<MoveInterface>();
+	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
+		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		for (CellInterface[] line : this.getBoard()) {
 			for (CellInterface cell : line) {
 				if (this.canPlayHere(cell, side)) {
@@ -89,7 +89,7 @@ public class Othello extends Game {
 		return legalMoves;
 	}	
 	// ------------------------------------------------------------
-	public boolean undoMove(final MoveInterface playedMove) {
+	public boolean undoMove(final LegalMoveInterface playedMove) {
 		if(!playedMove.isNull()) {
 			this.cell(playedMove.getPosition()).setPiece(null); //TODO ? utiliser la pièce nulle
 			final OthelloMove othelloMove = (OthelloMove)playedMove;
@@ -101,7 +101,7 @@ public class Othello extends Game {
 		return true; // is move undone ?
 	}
 	// ------------------------------------------------------------
-	private boolean isGameOver(MoveInterface previousMove) {
+	private boolean isGameOver(LegalMoveInterface previousMove) {
 		boolean isGameOver = false;
 		// Game Over si deux coups nuls consécutifs
 		//if(this.nullMoveHasBeenPlayed > 1) {
@@ -162,12 +162,12 @@ public class Othello extends Game {
 	}
 	// ------------------------------------------------------------
 	// TODO ? implémentation par défaut dans la classe abstraite
-	private MoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position) {
+	private LegalMoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position) {
 		// TODO utiliser un cache
 		return new OthelloMove(side, position);
 	}
 	// ------------------------------------------------------------		
-	private List<CellInterface> computeCellsToRevert(final MoveInterface move) {
+	private List<CellInterface> computeCellsToRevert(final LegalMoveInterface move) {
 		final OpponentsEnumeration side = move.getSide();
 		final CellInterface cell = this.cell(move.getPosition());
 		final List<CellInterface> cellsToRevert = new ArrayList<CellInterface>();
@@ -209,7 +209,7 @@ public class Othello extends Game {
 	// ------------------------------------------------------------	
 	// TODO renommer : doMove/undoMove
 	// TODO laisser la méthode abstraite dans la classe Game	
-	public boolean doMove(final MoveInterface moveToPlay) {
+	public boolean doMove(final LegalMoveInterface moveToPlay) {
 		final OthelloMove othelloMove = (OthelloMove)moveToPlay;
 		
 		if (!othelloMove.isNull()) {
@@ -249,15 +249,15 @@ public class Othello extends Game {
 		return delta;
 	}
 	// ------------------------------------------------------------	
-	public boolean isGameOverFromVictory(final MoveInterface previousMove) {
+	public boolean isGameOverFromVictory(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) > 0;
 	}
 	// ------------------------------------------------------------		
-	public boolean isGameOverFromDraw(final MoveInterface previousMove) {
+	public boolean isGameOverFromDraw(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------		
-	public double evaluate(final MoveInterface move) {
+	public double evaluate(final LegalMoveInterface move) {
 		
 		if(move.isNull()) {
 			return this.computeDelta(move.getSide());

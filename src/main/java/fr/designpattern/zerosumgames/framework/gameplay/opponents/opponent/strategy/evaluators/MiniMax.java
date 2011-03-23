@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.evaluators;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators;
 
 import java.util.List;
 
@@ -37,16 +37,16 @@ public class MiniMax implements EvaluatorInterface{
 		this.setMaximalDepth(maximaDepth);
 	}
 	//--------------------------------------------------------------------------------------
-	public double evaluate(final GameInterface context, final MoveInterface moveToEvaluate, final int maximalDepth) {
+	public double evaluate(final GameInterface context, final LegalMoveInterface moveToEvaluate, final int maximalDepth) {
 		this.setContext(context);
 		return this.evaluate(moveToEvaluate, maximalDepth, 1);
 	}
 	//--------------------------------------------------------------------------------------
-	public double evaluate(final GameInterface context, final MoveInterface moveToEvaluate) {
+	public double evaluate(final GameInterface context, final LegalMoveInterface moveToEvaluate) {
 		return this.evaluate(context, moveToEvaluate, this.maximalDepth);
 	}
 	//--------------------------------------------------------------------------------------	
-	protected double evaluate(final MoveInterface moveToEvaluate, final int profondeur, final double side) {
+	protected double evaluate(final LegalMoveInterface moveToEvaluate, final int profondeur, final double side) {
 
 		double score;
 		
@@ -59,8 +59,8 @@ public class MiniMax implements EvaluatorInterface{
 		
 		else {
 			
-			List<MoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
-			for(MoveInterface opponentMove : opponentMoves) {
+			List<LegalMoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
+			for(LegalMoveInterface opponentMove : opponentMoves) {
 				opponentMove.setEvaluation(this.evaluate(opponentMove, profondeur - 1, -side));
 			}
 			

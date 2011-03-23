@@ -8,7 +8,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnume
 import fr.designpattern.zerosumgames.framework.moves.Move;
 
 // TODO ? implémenter une interface
-public class OthelloMove extends Move {
+public class OthelloMove extends LegalMove {
 	// ---------------------------------------------------------------------
 	private List<CellInterface> cellsToRevert;
 	public final void setCellsToRevert(final List<CellInterface> revertedCells) {

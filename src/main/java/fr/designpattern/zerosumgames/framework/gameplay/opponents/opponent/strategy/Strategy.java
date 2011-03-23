@@ -1,12 +1,12 @@
-package fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies;
+package fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.evaluators.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.evaluators.NullEvaluator;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.selectors.NullSelector;
-import fr.designpattern.zerosumgames.framework.gameplay.opponents.strategies.selectors.SelectorInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.evaluators.NullEvaluator;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors.NullSelector;
+import fr.designpattern.zerosumgames.framework.gameplay.opponents.opponent.strategy.selectors.SelectorInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
 public class Strategy implements StrategyInterface {
@@ -27,15 +27,15 @@ public class Strategy implements StrategyInterface {
 		return this.selector;
 	}
 
-	public List<MoveInterface> applyEvaluator(List<MoveInterface> legalMoves) {
+	public List<LegalMoveInterface> applyEvaluator(List<LegalMoveInterface> legalMoves) {
 		return this.getEvaluator().applyEvaluation(legalMoves);
 	}
 
-	public MoveInterface applySelector(List<MoveInterface> legalMoves) {
+	public LegalMoveInterface applySelector(List<LegalMoveInterface> legalMoves) {
 		return this.getSelector().applySelection(legalMoves);
 	}
 
-	public MoveInterface getSelectedMoveFrom(GameInterface context, List<MoveInterface> legalMoves) {
+	public LegalMoveInterface getSelectedMoveFrom(GameInterface context, List<LegalMoveInterface> legalMoves) {
 		this.selector.setContext(context);
 		this.evaluator.setContext(context);
 		return this.applySelector(this.applyEvaluator(legalMoves));

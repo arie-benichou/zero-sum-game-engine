@@ -24,12 +24,12 @@ public class GameService implements IGameService {
 	}
 	// ------------------------------------------------------------
 	// TODO créer IGameLegalMoveList
-	protected void displayLegalMoveList(final List<MoveInterface> legalMoveList) {
+	protected void displayLegalMoveList(final List<LegalMoveInterface> legalMoveList) {
 		int n = 0;		
 		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoveList.size())) + 1;
 		//System.out.println("\n" + currentPlayerOrdinal + " legal moves :");
 		System.out.println("\nlegal moves :");
-		for (MoveInterface legalMove : legalMoveList) {
+		for (LegalMoveInterface legalMove : legalMoveList) {
 			System.out.format("#%0" + numberOfDigits + "d: %s\n", ++n, legalMove);
 		}
 	}
@@ -40,10 +40,10 @@ public class GameService implements IGameService {
 		// TODO pas de boucle pour la version client léger	
 		// TODO GameWebService		
 		// ---------------------------------------------------------------------
-		List<MoveInterface> legalMoves;
-		MoveInterface legalMoveToPlay;
+		List<LegalMoveInterface> legalMoves;
+		LegalMoveInterface legalMoveToPlay;
 		// TODO mieux gérer le coup nul
-		MoveInterface lastPlayedMove = new Move(OpponentsEnumeration.NO_ONE, this.getGame().cell(null).getPosition());
+		LegalMoveInterface lastPlayedMove = new LegalMove(OpponentsEnumeration.NO_ONE, this.getGame().cell(null).getPosition());
 		// ---------------------------------------------------------------------		
 		System.out.println(this.game);
 		// ---------------------------------------------------------------------

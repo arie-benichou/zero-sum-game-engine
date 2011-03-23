@@ -15,8 +15,8 @@ public abstract class AbstractConditionnalMoveHeuristic implements ConditionnalM
 		this.nestedSelector = nestedSelector;
 	}
 
-	public final MoveInterface select(final GameInterface context, final List<MoveInterface> legalMoves) {
-		final MoveInterface move;
+	public final LegalMoveInterface select(final GameInterface context, final List<LegalMoveInterface> legalMoves) {
+		final LegalMoveInterface move;
 		if (this.isApplicable(context, legalMoves)) {
 			move = this.simplify(context, legalMoves);
 		}
@@ -26,8 +26,8 @@ public abstract class AbstractConditionnalMoveHeuristic implements ConditionnalM
 		return move;
 	}
 
-	public abstract MoveInterface simplify(final GameInterface context, final List<MoveInterface> legalMoves);
+	public abstract LegalMoveInterface simplify(final GameInterface context, final List<LegalMoveInterface> legalMoves);
 	
-	public abstract boolean isApplicable(final GameInterface context, final List<MoveInterface> legalMoves);
+	public abstract boolean isApplicable(final GameInterface context, final List<LegalMoveInterface> legalMoves);
 
 }
