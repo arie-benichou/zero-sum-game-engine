@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.tmp;
 
 import java.util.List;
 

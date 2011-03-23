@@ -1,9 +1,9 @@
-package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.heuristics;
+package fr.designpattern.zerosumgames.tmp.heuristics;
 
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
-import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.MoveSelectorPredicateInterface;
+import fr.designpattern.zerosumgames.tmp.MoveSelectorPredicateInterface;
 
 public class WinningMoveExists implements MoveSelectorPredicateInterface {
 	//--------------------------------------------------------------------------------------
