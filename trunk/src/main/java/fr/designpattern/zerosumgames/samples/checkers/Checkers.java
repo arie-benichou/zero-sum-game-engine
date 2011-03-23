@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
-import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
+import fr.designpattern.zerosumgames.framework.gameplay.game.AbstractGame;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.Dimension;
@@ -38,7 +38,7 @@ import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
 import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
-public class Checkers extends Game {
+public class Checkers extends AbstractGame {
 	// ------------------------------------------------------------	
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
 	public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8); 

@@ -21,13 +21,13 @@ package fr.designpattern.zerosumgames.framework.gameplay.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.CellInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 /**
  * This is the interface for a board game.
@@ -52,7 +52,8 @@ public interface GameInterface {
 	 * @return the list of legal moves
 	 */
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
-	
+
+	OpponentsEnumeration play(final LegalMoveInterface moveToPlay);
 	
 	/**
 	 * Plays a move and returns true if the move is completed, 
@@ -108,7 +109,8 @@ public interface GameInterface {
 	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
 	 * NO_ONE, if the game is a draw
 	 */
-	OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);			
+	//OpponentsEnumeration whoShallPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);
+	OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface moveToPlay);
 	
 	/**
 	 * Returns the computation of the move evaluation of the game.

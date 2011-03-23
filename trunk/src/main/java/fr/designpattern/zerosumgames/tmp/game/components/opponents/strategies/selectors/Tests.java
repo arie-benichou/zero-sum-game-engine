@@ -1,6 +1,7 @@
+package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors;
 import fr.designpattern.zerosumgames.framework.gameplay.GamePlay;
 import fr.designpattern.zerosumgames.framework.gameplay.GamePlayInterface;
-import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
+import fr.designpattern.zerosumgames.framework.gameplay.game.AbstractGame;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.Board;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.Dimension;
@@ -48,7 +49,7 @@ public class Tests {
 		CellsInterface cellFactory = new Cells(positionFactory);
 		BoardInterface board = new Board(cellFactory);
 		
-		Game game = new Tictactoe(board);
+		AbstractGame game = new Tictactoe(board);
 		
 		GamePlayInterface gamePlay = new GamePlay(game, opponents);
 		

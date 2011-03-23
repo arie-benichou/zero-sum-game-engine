@@ -130,7 +130,7 @@ public class Board implements BoardInterface {
 		for (CellInterface cell : this.getBoard()[0]) {
 			sb.append("----");
 		}
-		sb.append("\n");
+		//sb.append("\n");
 		return sb.toString();
 	}
 	// ---------------------------------------------------------------------

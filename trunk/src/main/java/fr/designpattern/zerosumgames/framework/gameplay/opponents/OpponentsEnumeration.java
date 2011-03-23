@@ -75,12 +75,12 @@ public enum OpponentsEnumeration {
 		}		
 	};
 
-	protected abstract OpponentsEnumeration getOpponent();
+	public abstract OpponentsEnumeration getOpponent();
 	public static OpponentsEnumeration opponent(final OpponentsEnumeration side) {
 		return side.getOpponent();
 	}
 	
-	protected abstract OpponentsEnumeration getNegation();
+	public abstract OpponentsEnumeration getNegation();
 	public static OpponentsEnumeration not(final OpponentsEnumeration side) {
 		return side.getNegation();
 	}
@@ -99,6 +99,15 @@ public enum OpponentsEnumeration {
 	
 	public static boolean isAPlayer(final OpponentsEnumeration side) {
 		return side.equals(FIRST_PLAYER) || side.equals(SECOND_PLAYER);   
+	}
+	
+	public boolean isAPlayer() {
+		return OpponentsEnumeration.isAPlayer(this);   
+	}
+	
+	public boolean isNoOne() {
+		return OpponentsEnumeration.isNoOne(this);
 	}	
+	
 
 }

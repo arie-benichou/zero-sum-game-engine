@@ -1,5 +1,7 @@
 /*
- * Copyright (C) 2011 Arié Bénichou
+ * @(#)IGamePlayerStrategy.java	0.99
+ * 
+ * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,22 +17,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
+package fr.designpattern.zerosumgames.tmp.game.components.opponents.strategies.selectors;
 
-import java.util.Collections;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 
-public class BestLegalMoveSelector implements MoveSelectorInterface {
+/**
+ * This is the interface for a game player strategy.
+ * 
+ * @author Arie Benichou
+ * @version 0.99, 01/03/2011
+ */
+
+// TODO avoir des décorateurs de stratégies
+public interface StrategyInterface {
+
+	/**
+	 * Returns the move selected by the player strategy.
+	 * 
+	 * @param legalMoves the list of legal moves
+	 * for a given player and a given board.
+	 * 
+	 * @return the move selected by the player strategy
+	 */
 	
-	public LegalMoveInterface select(GameInterface context,  final List<LegalMoveInterface> legalMoves) {
-		return Collections.max(legalMoves);
-	}
 	
-	public LegalMoveInterface select(final List<LegalMoveInterface> legalMoves) {
-		return Collections.max(legalMoves);
-	}	
+	LegalMoveInterface chooseMoveAmong(GameInterface game, List<LegalMoveInterface> legalMoves);
+	MoveSelectorInterface getSelector();
 	
+	boolean hasHeuristic();
+	Object getHeuristic();
+
 }

@@ -22,7 +22,7 @@ package fr.designpattern.zerosumgames.samples.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.gameplay.game.Game;
+import fr.designpattern.zerosumgames.framework.gameplay.game.AbstractGame;
 import fr.designpattern.zerosumgames.framework.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.gameplay.game.board.dimension.BoardCardinalPosition;
@@ -38,7 +38,7 @@ import fr.designpattern.zerosumgames.framework.gameplay.opponents.OpponentsEnume
 import fr.designpattern.zerosumgames.services.GameService;
 import fr.designpattern.zerosumgames.util.StaticContext;
 
-public class Tictactoe extends Game {
+public class Tictactoe extends AbstractGame {
 	// ------------------------------------------------------------
 	public final static int CONNECTIONS = 3;
 	public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;

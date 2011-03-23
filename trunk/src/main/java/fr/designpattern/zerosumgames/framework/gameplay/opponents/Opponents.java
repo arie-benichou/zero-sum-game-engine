@@ -42,4 +42,9 @@ public class Opponents implements OpponentsInterface {
 		this.getOpponentByOrder(OpponentsEnumeration.SECOND_PLAYER).setContext(this.getContext());
 	}
 	// ---------------------------------------------------------------------
+	@Override
+	public String toString() {
+		return this.getOpponentByOrder(OpponentsEnumeration.FIRST_PLAYER) + " Vs " + this.getOpponentByOrder(OpponentsEnumeration.SECOND_PLAYER);
+	}
+	// ---------------------------------------------------------------------	
 }

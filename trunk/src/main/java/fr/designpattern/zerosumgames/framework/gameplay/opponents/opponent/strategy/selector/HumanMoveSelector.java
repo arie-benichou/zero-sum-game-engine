@@ -34,10 +34,10 @@ public class HumanMoveSelector extends NullSelector {
 		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoves.size())) + 1;
 		System.out.println("\nLegal moves :");
 		for (LegalMoveInterface legalMove : legalMoves) {
-			System.out.format("#%0" + numberOfDigits + "d: %s\n", ++n, legalMove);
+			System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, legalMove);
 		}
 			
-		System.out.println("\nWhat is your move ?");
+		System.out.println("\nWhat is your move ?\n");
 		
 		final Scanner scanner = new Scanner(System.in);
 		
@@ -45,14 +45,16 @@ public class HumanMoveSelector extends NullSelector {
 		try {
 			i = scanner.nextInt();
 			if (i < 1 || i > legalMoves.size()) {
-				System.out.println("No such move!");
+				System.out.println("\nThere is no such move.");
+				System.out.println("Please try again...");
 				move = this.applySelection(legalMoves);
 			} else {
 				move = legalMoves.get(i - 1);
-				System.out.println("You have choosen to play move #" + i + ": " + move);
+				System.out.println("\nYou have choosen to play: " + move);
 			}			
 		} catch (InputMismatchException e) {
-			System.out.println("Integer expected!");
+			System.out.println("\nPositive natural integer expected.");
+			System.out.println("Please try again...");
 			move = this.applySelection(legalMoves);
 		}
 		return move;

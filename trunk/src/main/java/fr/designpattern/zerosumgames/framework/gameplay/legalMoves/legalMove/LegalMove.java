@@ -66,7 +66,8 @@ public class LegalMove implements LegalMoveInterface {
 	
 	@Override
 	public String toString() {
-		return this.getSide() + " " + this.getPosition();
+		//return this.getSide() + " " + this.getPosition();
+		return this.getPosition().toString();
 	}
 	
 	public String debug() {
