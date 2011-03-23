@@ -25,6 +25,14 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 public class BestLegalMoveSelector extends NullSelector {
 	
 	public LegalMoveInterface applySelection(List<LegalMoveInterface> legalMoves) {
+		
+		Collections.sort(legalMoves);
+		Collections.reverse(legalMoves);
+		
+		for (LegalMoveInterface legalMove: legalMoves) {
+			System.out.println(legalMove.debug());
+		}
+		
 		return Collections.max(legalMoves);
 	}
 

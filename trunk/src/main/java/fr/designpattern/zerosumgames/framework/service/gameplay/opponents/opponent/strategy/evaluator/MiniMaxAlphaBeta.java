@@ -3,7 +3,7 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppon
 import fr.designpattern.zerosumgames.framework.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
-public class MiniMaxAlphaBeta extends MiniMax {
+public class MiniMaxAlphaBeta extends MiniMaxEvaluator {
 
 	public MiniMaxAlphaBeta(int maximaDepth) {
 		super(maximaDepth);
