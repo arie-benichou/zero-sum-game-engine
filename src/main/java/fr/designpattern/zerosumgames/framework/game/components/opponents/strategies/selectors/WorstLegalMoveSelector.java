@@ -15,14 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
 
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
+import java.util.Collections;
+import java.util.List;
 
-public class BestLegalMoveStrategy extends AbstractStrategy {
+import fr.designpattern.zerosumgames.framework.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 
-	public BestLegalMoveStrategy(IGameMoveEvaluator evaluator) {
-		super(new BestLegalMoveSelector(evaluator));
+public class WorstLegalMoveSelector implements MoveSelectorInterface {
+	
+	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
+		return Collections.min(legalMoves);
 	}
-
+	
 }

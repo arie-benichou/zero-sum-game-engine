@@ -4,9 +4,9 @@ import fr.designpattern.zerosumgames.framework.game.builder.Builder;
 import fr.designpattern.zerosumgames.framework.game.builder.BuilderInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.Player;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerNature;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.BestLegalMoveStrategy;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.HumanLegalMoveStrategy;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.evaluators.MiniMaxAlphaBeta;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.BestLegalMoveStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.HumanLegalMoveStrategy;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.MiniMaxAlphaBeta;
 import fr.designpattern.zerosumgames.samples.connect4.Connect4;
 
 public class Connect4Service {

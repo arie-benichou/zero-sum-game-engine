@@ -30,7 +30,7 @@ import fr.designpattern.zerosumgames.framework.game.components.board.dimension.c
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 /**
  * This class provides a skeletal implementation of the Game
@@ -82,7 +82,7 @@ public abstract class Game implements GameInterface {
 	// ---------------------------------------------------------------------
 	// Façades fournies
 	// ---------------------------------------------------------------------
-	public StrategyInterface getPlayerStrategy(final OpponentsEnumeration playerOrdinal) {
+	public MoveSelectorInterface getPlayerStrategy(final OpponentsEnumeration playerOrdinal) {
 		return this.getOpponents().getPlayerStrategy(playerOrdinal);
 	}
 	public final PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType) {

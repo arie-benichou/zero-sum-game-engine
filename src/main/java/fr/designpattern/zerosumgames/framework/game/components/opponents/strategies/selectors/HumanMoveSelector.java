@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -23,9 +23,8 @@ import java.util.Scanner;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelector;
 
-public class HumanMoveSelector implements IGameMoveSelector {
+public class HumanMoveSelector implements MoveSelectorInterface {
 
 	public MoveInterface select(GameInterface context,  final List<MoveInterface> legalMoves) {
 		

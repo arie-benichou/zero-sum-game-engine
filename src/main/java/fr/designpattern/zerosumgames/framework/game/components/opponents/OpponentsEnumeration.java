@@ -26,6 +26,8 @@ package fr.designpattern.zerosumgames.framework.game.components.opponents;
  * @version 0.99, 01/03/2011
  */
 
+
+//TODO à intégrer dans Opponents
 public enum OpponentsEnumeration {
 
 	FIRST_PLAYER() {

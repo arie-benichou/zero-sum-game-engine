@@ -19,11 +19,11 @@
 
 package fr.designpattern.zerosumgames.framework.game.components.opponents;
 
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 public interface OpponentsInterface {
 	
 	//IGamePlayer getPlayer(GamePlayersEnumeration playerOrdinal);
-	StrategyInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal);
+	MoveSelectorInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal);
 
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.designpattern.zerosumgames.framework.game.components.opponents.players.PlayerInterface;
-import fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies.StrategyInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors.MoveSelectorInterface;
 
 // TODO ? définir GamePlayersEnumeration à l'intérieur de cette classe
 public class Opponents implements OpponentsInterface {
@@ -20,7 +20,7 @@ public class Opponents implements OpponentsInterface {
 		return this.opponents.get(playerOrdinal);
 	}
 
-	public StrategyInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal) {
+	public MoveSelectorInterface getPlayerStrategy(OpponentsEnumeration playerOrdinal) {
 		return this.getPlayer(playerOrdinal).getStrategy();
 	}
 

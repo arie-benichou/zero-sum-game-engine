@@ -15,13 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
 
+import java.util.List;
+import java.util.Random;
 
-public class FirstLegalMoveStrategy extends AbstractStrategy {
+import fr.designpattern.zerosumgames.framework.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
 
-	public FirstLegalMoveStrategy() {
-		super(new FirstLegalMoveSelector());
+public class RandomLegalMoveSelector implements MoveSelectorInterface {
+
+	public MoveInterface select(GameInterface context, final List<MoveInterface> legalMoves) {
+		return legalMoves.get(new Random().nextInt(legalMoves.size()));
 	}
 
 }

@@ -15,30 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.framework.game.components.opponents.players.strategies;
+package fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.selectors;
 
 import java.util.Collections;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.game.components.moves.MoveInterface;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveEvaluator;
-import fr.designpattern.zerosumgames.framework.game.components.moves.IGameMoveSelector;
-import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics.OneSingleMoveExists;
-import fr.designpattern.zerosumgames.framework.game.components.moves.selectors.heuristics.WinningMoveExists;
 import fr.designpattern.zerosumgames.framework.game.components.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.evaluators.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.heuristics.OneSingleMoveExists;
+import fr.designpattern.zerosumgames.framework.game.components.opponents.strategies.heuristics.WinningMoveExists;
 
-public class BestLegalMoveSelector implements IGameMoveSelector {
+public class _BestLegalMoveSelector implements MoveSelectorInterface {
 	//--------------------------------------------------------------------------------------	
-	private transient IGameMoveEvaluator evaluator;
-	private final IGameMoveEvaluator getEvaluator() {
+	private transient EvaluatorInterface evaluator;
+	private final EvaluatorInterface getEvaluator() {
 		return evaluator;
 	}
-	private final void setEvaluator(final IGameMoveEvaluator evaluator) {
+	private final void setEvaluator(final EvaluatorInterface evaluator) {
 		this.evaluator = evaluator;
 	}
 	//--------------------------------------------------------------------------------------
-	public BestLegalMoveSelector(IGameMoveEvaluator evaluator) {
+	public BestLegalMoveSelector(EvaluatorInterface evaluator) {
 		this.setEvaluator(evaluator);
 	}
 	//--------------------------------------------------------------------------------------
