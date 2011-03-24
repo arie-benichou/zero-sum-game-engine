@@ -72,16 +72,24 @@ public class GamePlayConsoleService extends AbstractGamePlayService {
 
     // ---------------------------------------------------------------------
     @Override
-    public void reset() {}
+    public void reset() {
+        //TODO utiliser les threads
+    }
 
     @Override
-    public void pause() {}
+    public void pause() {
+        //TODO utiliser les threads
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+        //TODO utiliser les threads
+    }
 
     @Override
-    public void stop() {}
+    public void stop() {
+        //TODO utiliser les threads
+    }
 
     // ------------------------------------------------------------
     @Override

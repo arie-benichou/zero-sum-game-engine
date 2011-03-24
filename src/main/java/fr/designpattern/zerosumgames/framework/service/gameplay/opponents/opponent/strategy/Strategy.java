@@ -10,8 +10,8 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public class Strategy implements StrategyInterface {
 
-    private final EvaluatorInterface evaluator;
-    private final SelectorInterface selector; // TODO Selector peut être un composite
+    private final transient EvaluatorInterface evaluator;
+    private final transient SelectorInterface selector; // TODO Selector peut être un composite
 
     public Strategy(final EvaluatorInterface evaluator,
             final SelectorInterface selector) {

@@ -28,7 +28,7 @@ public abstract class AbstractGamePlayService implements
         GamePlayServiceInterface {
 
     // ------------------------------------------------------------
-    private final GamePlayInterface gamePlay;
+    private final transient GamePlayInterface gamePlay;
 
     public final GamePlayInterface getGamePlay() {
         return this.gamePlay;

@@ -9,7 +9,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 
     //--------------------------------------------------------------------------------------
-    private int alphabetacutoffs;
+    private transient int alphabetacutoffs;
 
     //--------------------------------------------------------------------------------------
     public MiniMaxAlphaBetaEvaluator(final int maximaDepth) {

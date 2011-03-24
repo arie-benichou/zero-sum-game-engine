@@ -12,18 +12,19 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 public class MiniMaxEvaluator extends NullEvaluator {
 
     //--------------------------------------------------------------------------------------
-    private final int maximalDepth;
+    private final transient int maximalDepth;
 
     public final int getMaximalDepth() {
         return this.maximalDepth;
     }
 
     //--------------------------------------------------------------------------------------
-    protected static final SelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
-    protected static final SelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
+    protected static final SelectorInterface BEST_LEGAL_MOVE_SELECTOR = new BestLegalMoveSelector();
+    protected static final SelectorInterface WORST_LEGAL_MOVE_SELECTOR = new WorstLegalMoveSelector();
 
     //--------------------------------------------------------------------------------------
     public MiniMaxEvaluator(final int maximaDepth) {
+        super();
         this.maximalDepth = maximaDepth;
     }
 
@@ -56,9 +57,9 @@ public class MiniMaxEvaluator extends NullEvaluator {
                 opponentMove.setEvaluation(this.applyEvaluation(opponentMove,
                         profondeur - 1, -side));
             }
-            score = (side == 1) ? MiniMaxEvaluator.worstLegalMoveSelector
+            score = (side == 1) ? MiniMaxEvaluator.WORST_LEGAL_MOVE_SELECTOR
                     .applySelection(opponentMoves).getEvaluation()
-                    : MiniMaxEvaluator.bestLegalMoveSelector.applySelection(
+                    : MiniMaxEvaluator.BEST_LEGAL_MOVE_SELECTOR.applySelection(
                             opponentMoves).getEvaluation();
         }
         this.getContext().undoMove(moveToEvaluate);

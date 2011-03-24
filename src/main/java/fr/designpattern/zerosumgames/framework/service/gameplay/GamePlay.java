@@ -28,27 +28,27 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 public final class GamePlay implements GamePlayInterface {
 
     // ---------------------------------------------------------------------
-    private final OpponentsInterface opponents;
+    private final transient OpponentsInterface opponents;
 
-    private final OpponentsInterface getOpponents() {
+    private OpponentsInterface getOpponents() {
         return this.opponents;
     }
 
     // ---------------------------------------------------------------------
-    private final GameInterface game;
+    private final transient GameInterface game;
 
-    private final GameInterface getGame() {
+    private GameInterface getGame() {
         return this.game;
     }
 
     // ---------------------------------------------------------------------
     private transient OpponentsEnumeration sideToPlay = OpponentsEnumeration.FIRST_PLAYER;
 
-    private final void setSideToPlay(final OpponentsEnumeration sideToPlay) {
+    private void setSideToPlay(final OpponentsEnumeration sideToPlay) {
         this.sideToPlay = sideToPlay;
     }
 
-    public final OpponentsEnumeration getSideToPlay() {
+    public OpponentsEnumeration getSideToPlay() {
         return this.sideToPlay;
     }
 
@@ -60,29 +60,29 @@ public final class GamePlay implements GamePlayInterface {
     }
 
     // ---------------------------------------------------------------------
-    public final List<LegalMoveInterface> getLegalMoves(
+    public List<LegalMoveInterface> getLegalMoves(
             final OpponentsEnumeration side) {
         return this.getGame().getLegalMoves(side);
     }
 
-    public final OpponentInterface getOpponentByOrder(
+    public OpponentInterface getOpponentByOrder(
             final OpponentsEnumeration side) {
         return this.getOpponents().getOpponentByOrder(side);
     }
 
     // ---------------------------------------------------------------------
-    public final void play(final LegalMoveInterface move) {
+    public void play(final LegalMoveInterface move) {
         this.setSideToPlay(this.getGame().play(move));
     }
 
     // ---------------------------------------------------------------------
-    public final boolean isGamePlayOver() {
+    public boolean isGamePlayOver() {
         return !this.getSideToPlay().isAPlayer();
     }
 
     // ---------------------------------------------------------------------
     @Override
-    public final String toString() {
+    public String toString() {
         return this.getGame().toString() + "\n"
                 + this.getOpponents().toString();
     }
