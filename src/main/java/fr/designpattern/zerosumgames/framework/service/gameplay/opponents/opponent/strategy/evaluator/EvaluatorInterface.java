@@ -11,6 +11,6 @@ public interface EvaluatorInterface {
 	
 	GameInterface getContext();
 	
-	List<LegalMoveInterface> applyEvaluation(List<LegalMoveInterface> legalMoves);
+	List<LegalMoveInterface> applyEvaluation(final List<LegalMoveInterface> legalMoves);
 	
 }
