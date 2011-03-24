@@ -10,8 +10,8 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public class Opponent implements OpponentInterface {
 
-    private final PlayerInterface player;
-    private final StrategyInterface strategy;
+    private final transient PlayerInterface player;
+    private final transient StrategyInterface strategy;
     private transient GameInterface context;
 
     public Opponent(final PlayerInterface player,

@@ -37,23 +37,14 @@ public abstract class AbstractGame implements GameInterface {
     // ---------------------------------------------------------------------
     // Object Internals
     // ---------------------------------------------------------------------
-
-    private PiecesInterface pieceFactory;
-
-    private final void setPieceFactory(final PiecesInterface gamePieceFactory) {
-        this.pieceFactory = gamePieceFactory;
-    }
+    private final transient PiecesInterface pieceFactory;
 
     protected final PiecesInterface getPieceFactory() {
         return this.pieceFactory;
     }
 
     // ---------------------------------------------------------------------
-    private BoardInterface board;
-
-    private final void setBoard(final BoardInterface board) {
-        this.board = board;
-    }
+    private final transient BoardInterface board;
 
     protected final BoardInterface getBoard() {
         return this.board;
@@ -62,8 +53,8 @@ public abstract class AbstractGame implements GameInterface {
     // ---------------------------------------------------------------------
     public AbstractGame(final PiecesInterface pieceFactory,
             final BoardInterface board) {
-        this.setPieceFactory(pieceFactory);
-        this.setBoard(board);
+        this.pieceFactory = pieceFactory;
+        this.board = board;
     }
 
     // ---------------------------------------------------------------------
@@ -97,7 +88,7 @@ public abstract class AbstractGame implements GameInterface {
     public final OpponentsEnumeration computeNextSideToPlay(
             final LegalMoveInterface playedMove, final boolean isMoveDone) {
 
-        final OpponentsEnumeration nexSideToPlay;
+        OpponentsEnumeration nexSideToPlay;
 
         if (!isMoveDone) {
             nexSideToPlay = playedMove.getSide();
