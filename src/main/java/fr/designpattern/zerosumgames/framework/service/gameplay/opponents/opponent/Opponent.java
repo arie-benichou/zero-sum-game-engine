@@ -1,3 +1,4 @@
+
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent;
 
 import java.util.List;
@@ -9,39 +10,41 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public class Opponent implements OpponentInterface {
 
-	private final PlayerInterface player;
-	private final StrategyInterface strategy;
-	private transient GameInterface context;
+    private final PlayerInterface player;
+    private final StrategyInterface strategy;
+    private transient GameInterface context;
 
-	public Opponent(final PlayerInterface player, final StrategyInterface strategy) {
-		this.player = player;
-		this.strategy = strategy;
-	}
+    public Opponent(final PlayerInterface player,
+            final StrategyInterface strategy) {
+        this.player = player;
+        this.strategy = strategy;
+    }
 
-	public PlayerInterface getPlayer() {
-		return this.player;
-	}
+    public PlayerInterface getPlayer() {
+        return this.player;
+    }
 
-	public StrategyInterface getStrategy() {
-		return this.strategy;
-	}
+    public StrategyInterface getStrategy() {
+        return this.strategy;
+    }
 
-	public LegalMoveInterface selectMove(final List<LegalMoveInterface> legalMoves) {
-		return this.strategy.computeStrategicMoveFrom(legalMoves);
-	}
+    public LegalMoveInterface selectMove(
+            final List<LegalMoveInterface> legalMoves) {
+        return this.strategy.computeStrategicMoveFrom(legalMoves);
+    }
 
-	public void setContext(final GameInterface context) {
-		this.context = context;
-		this.strategy.injectContext(context);
-	}
+    public void setContext(final GameInterface context) {
+        this.context = context;
+        this.strategy.injectContext(context);
+    }
 
-	public GameInterface getContext() {
-		return this.context;
-	}
+    public GameInterface getContext() {
+        return this.context;
+    }
 
-	@Override
-	public String toString() {
-		return this.getPlayer().getName();
-	}
+    @Override
+    public String toString() {
+        return this.getPlayer().getName();
+    }
 
 }

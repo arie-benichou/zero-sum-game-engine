@@ -1,18 +1,18 @@
 /*
  * Copyright (C) 2011 Arié Bénichou
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove;
@@ -22,81 +22,88 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 
 public class LegalMove implements LegalMoveInterface {
 
-	private OpponentsEnumeration side;
-	private final void setSide(final OpponentsEnumeration side) {
-		this.side = side;
-	}
-	public final OpponentsEnumeration getSide() {
-		return this.side;
-	}
+    private OpponentsEnumeration side;
 
-	private transient PositionInterface position;
-	private final void setNewPosition(final PositionInterface newPosition) {
-		this.position = newPosition;
-	}
-	public final PositionInterface getPosition() {
-		return this.position;
-	}
+    private final void setSide(final OpponentsEnumeration side) {
+        this.side = side;
+    }
 
-	private Double evaluation = Double.NEGATIVE_INFINITY;
-	public final void setEvaluation(final Double evaluation) {
-		this.evaluation = evaluation;
-	}
-	public final Double getEvaluation() {
-		return this.evaluation;
-	}
+    public final OpponentsEnumeration getSide() {
+        return this.side;
+    }
 
-	private int depth;
-	public final void setDepth(final int depth) {
-		this.depth = depth;
-	}
+    private transient PositionInterface position;
 
-	public final int getDepth() {
-		return this.depth;
-	}
+    private final void setNewPosition(final PositionInterface newPosition) {
+        this.position = newPosition;
+    }
 
-	public boolean isNull() {
-		return this.getPosition().isNull();
-	}
+    public final PositionInterface getPosition() {
+        return this.position;
+    }
 
-	public LegalMove(final OpponentsEnumeration side, final PositionInterface position) {
-		this.setSide(side);
-		this.setNewPosition(position);
-	}
+    private Double evaluation = Double.NEGATIVE_INFINITY;
 
-	@Override
-	public String toString() {
-		//return this.getSide() + " " + this.getPosition();
-		return this.getPosition().toString();
-	}
+    public final void setEvaluation(final Double evaluation) {
+        this.evaluation = evaluation;
+    }
 
-	public String debug() {
-		return this.getSide() + " " + this.getPosition() + " " + this.getEvaluation() + " @depth = " + this.getDepth();
-	}
+    public final Double getEvaluation() {
+        return this.evaluation;
+    }
 
-	@Override
-	public int hashCode() {
-		return this.getEvaluation().hashCode();
-	}
+    private int depth;
 
-	@Override
-	public boolean equals(final Object obj) {
-		// TODO tester la classe
-		final LegalMoveInterface o = (LegalMoveInterface)obj;
-		return this.getEvaluation().equals(o.getEvaluation());
-	}
+    public final void setDepth(final int depth) {
+        this.depth = depth;
+    }
 
-	public int compareTo(final LegalMoveInterface o) {
-		//return o.getEvaluation().compareTo(this.getEvaluation());
-		return this.getEvaluation().compareTo(o.getEvaluation());
-	}
+    public final int getDepth() {
+        return this.depth;
+    }
 
-	/*
-	@Override @Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
-	}
-	 */
+    public boolean isNull() {
+        return this.getPosition().isNull();
+    }
+
+    public LegalMove(final OpponentsEnumeration side,
+            final PositionInterface position) {
+        this.setSide(side);
+        this.setNewPosition(position);
+    }
+
+    @Override
+    public String toString() {
+        //return this.getSide() + " " + this.getPosition();
+        return this.getPosition().toString();
+    }
+
+    public String debug() {
+        return this.getSide() + " " + this.getPosition() + " "
+                + this.getEvaluation() + " @depth = " + this.getDepth();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getEvaluation().hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        // TODO tester la classe
+        final LegalMoveInterface o = (LegalMoveInterface) obj;
+        return this.getEvaluation().equals(o.getEvaluation());
+    }
+
+    public int compareTo(final LegalMoveInterface o) {
+        //return o.getEvaluation().compareTo(this.getEvaluation());
+        return this.getEvaluation().compareTo(o.getEvaluation());
+    }
+
+    /*
+     * @Override @Override protected Object clone() throws
+     * CloneNotSupportedException { // TODO Auto-generated method stub return
+     * super.clone(); }
+     */
 
 }

@@ -1,3 +1,4 @@
+
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.Opponent;
@@ -10,27 +11,28 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public class OpponentBuilder implements OpponentBuilderInterface {
 
-	private transient PlayerInterface player;
-	private transient SelectorInterface selector;
-	private transient EvaluatorInterface evaluator;
+    private transient PlayerInterface player;
+    private transient SelectorInterface selector;
+    private transient EvaluatorInterface evaluator;
 
-	public OpponentBuilderInterface player(final PlayerInterface player) {
-		this.player = player;
-		return this;
-	}
+    public OpponentBuilderInterface player(final PlayerInterface player) {
+        this.player = player;
+        return this;
+    }
 
-	public OpponentBuilderInterface evaluator(final EvaluatorInterface evaluator) {
-		this.evaluator = evaluator;
-		return this;
-	}
+    public OpponentBuilderInterface evaluator(final EvaluatorInterface evaluator) {
+        this.evaluator = evaluator;
+        return this;
+    }
 
-	public OpponentBuilderInterface selector(final SelectorInterface selector) {
-		this.selector = selector;
-		return this;
-	}
+    public OpponentBuilderInterface selector(final SelectorInterface selector) {
+        this.selector = selector;
+        return this;
+    }
 
-	public OpponentInterface build() {
-		return new Opponent(this.player, new Strategy(this.evaluator, this.selector));
-	}
+    public OpponentInterface build() {
+        return new Opponent(this.player, new Strategy(this.evaluator,
+                this.selector));
+    }
 
 }
