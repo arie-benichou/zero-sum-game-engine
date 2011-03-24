@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
 
-package fr.designpattern.zerosumgames.tmp;
+package fr.designpattern.zerosumgames.trash;
 
 import java.util.Collections;
 import java.util.List;

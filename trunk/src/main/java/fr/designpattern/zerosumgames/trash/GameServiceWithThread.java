@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.tmp;
+package fr.designpattern.zerosumgames.trash;
 
 public class GameServiceWithThread {
 

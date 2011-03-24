@@ -1,4 +1,4 @@
-package fr.designpattern.zerosumgames.tmp;
+package fr.designpattern.zerosumgames.trash;
 
 import java.util.List;
 
