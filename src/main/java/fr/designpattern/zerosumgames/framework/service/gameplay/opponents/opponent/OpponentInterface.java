@@ -34,6 +34,6 @@ public interface OpponentInterface {
 	
 	StrategyInterface getStrategy();
 	
-	LegalMoveInterface selectMove(List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface selectMove(final List<LegalMoveInterface> legalMoves);
 
 }

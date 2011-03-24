@@ -30,12 +30,12 @@ public interface StrategyInterface {
 	
 	SelectorInterface getSelector();
 	
-	List<LegalMoveInterface> applyEvaluator(List<LegalMoveInterface> legalMoves);
+	List<LegalMoveInterface> applyEvaluator(final List<LegalMoveInterface> legalMoves);
 	
-	LegalMoveInterface applySelector(List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface applySelector(final List<LegalMoveInterface> legalMoves);
 	
-	LegalMoveInterface computeStrategicMoveFrom(List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface computeStrategicMoveFrom(final List<LegalMoveInterface> legalMoves);
 
-	void injectContext(GameInterface context);
+	void injectContext(final GameInterface context);
 
 }

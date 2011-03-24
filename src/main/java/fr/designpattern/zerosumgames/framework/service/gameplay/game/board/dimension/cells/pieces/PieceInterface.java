@@ -25,8 +25,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
  * 
  * TODO ? mapping : String getSymbol() / int getInternalValue() 
  * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface PieceInterface {
 

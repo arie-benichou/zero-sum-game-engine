@@ -21,9 +21,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 
 /**
  * This is the interface for the factory of game board positions.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface PositionsInterface {
 
@@ -62,7 +59,7 @@ public interface PositionsInterface {
 	 * @return a position for a given client row index and a given client column
 	 * index, returns null if the position does not exist
 	 */
-	PositionInterface position(int clientRowIndex, int clientColumnIndex);
+	PositionInterface position(final int clientRowIndex, final int clientColumnIndex);
 
 	/**
 	 * Returns the left position of a given position.
@@ -71,7 +68,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the left position of a given position
 	 */
-	PositionInterface leftOf(PositionInterface position);
+	PositionInterface leftOf(final PositionInterface position);
 
 	/**
 	 * Returns the right position of a given position.
@@ -80,7 +77,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the right position of a given position
 	 */	
-	PositionInterface rightOf(PositionInterface position);
+	PositionInterface rightOf(final PositionInterface position);
 	
 	/**
 	 * Returns the top position of a given position.
@@ -89,7 +86,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the top position of a given position
 	 */	
-	PositionInterface topOf(PositionInterface position);
+	PositionInterface topOf(final PositionInterface position);
 
 	/**
 	 * Returns the bottom position of a given position.
@@ -98,7 +95,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the bottom position of a given position
 	 */	
-	PositionInterface bottomOf(PositionInterface position);
+	PositionInterface bottomOf(final PositionInterface position);
 
 	/**
 	 * Returns the top-left position of a given position.
@@ -107,7 +104,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the top-left position of a given position
 	 */
-	PositionInterface topLeftOf(PositionInterface position);
+	PositionInterface topLeftOf(final PositionInterface position);
 
 	/**
 	 * Returns the top-right position of a given position.
@@ -116,7 +113,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the top-right position of a given position
 	 */	
-	PositionInterface topRightOf(PositionInterface position);
+	PositionInterface topRightOf(final PositionInterface position);
 
 	/**
 	 * Returns the bottom-left position of a given position.
@@ -125,7 +122,7 @@ public interface PositionsInterface {
 	 * 
 	 * @return the bottom-left position of a given position
 	 */	
-	PositionInterface bottomLeftOf(PositionInterface position);
+	PositionInterface bottomLeftOf(final PositionInterface position);
 
 	/**
 	 * Returns the bottom-right position of a given position.
@@ -134,6 +131,6 @@ public interface PositionsInterface {
 	 * 
 	 * @return the bottom-right position of a given position
 	 */	
-	PositionInterface bottomRightOf(PositionInterface position);
+	PositionInterface bottomRightOf(final PositionInterface position);
 
 }

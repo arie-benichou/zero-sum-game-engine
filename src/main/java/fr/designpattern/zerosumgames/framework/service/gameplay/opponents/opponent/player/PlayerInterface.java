@@ -19,9 +19,6 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppon
 
 /**
  * This is the interface for a game player.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 
 // TODO ? renommer en PlayerDataInterface ou OpponentDataInterface

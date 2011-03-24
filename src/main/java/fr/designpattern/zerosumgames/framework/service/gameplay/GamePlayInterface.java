@@ -65,5 +65,5 @@ public interface GamePlayInterface {
 	 * 
 	 * @param the move to play
 	 */
-	void play(LegalMoveInterface move);
+	void play(final LegalMoveInterface move);
 }

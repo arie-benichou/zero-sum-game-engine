@@ -1,6 +1,6 @@
 package fr.designpattern.zerosumgames.util;
 
-public class StaticContext {
+public final class StaticContext {
 	
 	private StaticContext() {}
 

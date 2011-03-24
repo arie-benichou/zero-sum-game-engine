@@ -21,9 +21,6 @@ import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
 /**
  * This is the interface for a game board position.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface PositionInterface extends NullObjectAvailableInterface {
 

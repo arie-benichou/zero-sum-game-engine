@@ -21,9 +21,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 
 /**
  * This is the interface for the game piece factory.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface PiecesInterface {
 
@@ -36,8 +33,6 @@ public interface PiecesInterface {
 	 * 
 	 * @return a piece for a given player and a given type of piece
 	 */
-	PieceInterface getPiece(OpponentsEnumeration player, PieceTypeInterface pieceType);
+	PieceInterface getPiece(final OpponentsEnumeration player, final PieceTypeInterface pieceType);
 	
-	//IGamePiece createPiece(IGamePieceType type, GamePlayersEnumeration side);	
-
 }

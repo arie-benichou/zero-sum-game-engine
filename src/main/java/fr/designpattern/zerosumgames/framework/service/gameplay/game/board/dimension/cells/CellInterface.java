@@ -26,9 +26,6 @@ import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
 /**
  * This is the interface for the game board cells.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	
@@ -53,7 +50,7 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @param piece the piece to be contained by this cell
 	 */
-	void setPiece(PieceInterface piece);
+	void setPiece(final PieceInterface piece);
 
 	/**
 	 * Returns the position of this cell.
@@ -76,7 +73,7 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return a neighbour cell of this cell for a given direction
 	 */
-	CellInterface getNeighbour(BoardCardinalPosition direction);
+	CellInterface getNeighbour(final BoardCardinalPosition direction);
 
 	/**
 	 * Returns the top-neighbour cell of this cell.

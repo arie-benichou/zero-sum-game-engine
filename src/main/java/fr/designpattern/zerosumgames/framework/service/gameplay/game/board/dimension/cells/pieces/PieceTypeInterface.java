@@ -20,9 +20,6 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dime
 
 /**
  * This is the interface for a type of piece.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface PieceTypeInterface {
 
