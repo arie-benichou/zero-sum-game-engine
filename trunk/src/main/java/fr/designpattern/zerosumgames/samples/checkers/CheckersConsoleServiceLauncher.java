@@ -37,7 +37,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
-public class CheckersConsoleServiceLauncher {
+public final class CheckersConsoleServiceLauncher {
+
+    private CheckersConsoleServiceLauncher() {}
 
     public static void main(final String[] args) {
         // ------------------------------------------------------------

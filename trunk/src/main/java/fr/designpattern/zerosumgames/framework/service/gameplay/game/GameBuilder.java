@@ -33,7 +33,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 // TODO ? un builder abstrait pourrait retourner un builder concret d'un jeu
 public class GameBuilder implements GameBuilderInterface {
 
-    private transient final Class<? extends GameInterface> builderGameClass;
+    private transient Class<? extends GameInterface> builderGameClass;
     private transient DimensionInterface builderBoardDimension;
 
     public GameBuilder(final Class<? extends GameInterface> gameClass) {

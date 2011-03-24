@@ -55,8 +55,8 @@ public class CheckersMove extends LegalMove {
         return this.isDone;
     }
 
-    public boolean isDone(final boolean isDone) {
-        return this.isDone = isDone;
+    public void isDone(final boolean isDone) {
+        this.isDone = isDone;
     }
 
     // ---------------------------------------------------------------------

@@ -49,6 +49,6 @@ public interface OpponentsInterface {
      * @return the opponent correspondig to the given order
      */
     OpponentInterface getOpponentByOrder(
-            final OpponentsEnumeration playerOrdinal);
+            final OpponentsEnumeration side);
 
 }

@@ -82,12 +82,12 @@ public abstract class AbstractGame implements GameInterface {
     }
 
     public final CellInterface cell(final PositionInterface position) {
-        return this.getBoard().getCell(position);
+        return this.getBoard().cell(position);
     }
 
     public final CellInterface cell(final int clientRowIndex,
             final int clientColumnIndex) {
-        return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
+        return this.getBoard().cell(clientRowIndex, clientColumnIndex);
     }
 
     // ---------------------------------------------------------------------

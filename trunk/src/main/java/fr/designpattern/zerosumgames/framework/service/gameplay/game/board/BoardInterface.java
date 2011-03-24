@@ -33,16 +33,19 @@ public interface BoardInterface extends Iterable<CellInterface[]> {
      * 
      * @return the cell related to a given position
      */
-    CellInterface getCell(final PositionInterface position);
+    CellInterface cell(final PositionInterface position);
 
     /**
-     * Returns the cell related to a given position.
+     * Returns the cell related to a given row and a given column.
      * 
-     * @param position
-     *            a given position
+     * @param clientRowIndex
+     *            a given row
      * 
-     * @return the cell related to a given position
+     * @param clientColumnIndex
+     *            a given column
+     * 
+     * @return the cell related to a given row index and a given column
      */
-    CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
+    CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
 }

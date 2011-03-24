@@ -46,8 +46,8 @@ public class Opponents implements OpponentsInterface {
 
     // ---------------------------------------------------------------------
     public final OpponentInterface getOpponentByOrder(
-            final OpponentsEnumeration playerOrdinal) {
-        return this.getOpponents().get(playerOrdinal);
+            final OpponentsEnumeration side) {
+        return this.getOpponents().get(side);
     }
 
     // ---------------------------------------------------------------------

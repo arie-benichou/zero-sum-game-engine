@@ -94,7 +94,7 @@ public class Board implements BoardInterface {
     }
 
     // ---------------------------------------------------------------------
-    public CellInterface getCell(final PositionInterface position) {
+    public CellInterface cell(final PositionInterface position) {
         CellInterface cell;
         if (position == null) {
             cell = this.getBoardCellFactory().getNullCell();
@@ -112,9 +112,9 @@ public class Board implements BoardInterface {
     }
 
     // ---------------------------------------------------------------------
-    public CellInterface getCell(final int clientRowIndex,
+    public CellInterface cell(final int clientRowIndex,
             final int clientColumnIndex) {
-        return this.getCell(this.getBoardCellFactory()
+        return this.cell(this.getBoardCellFactory()
                 .getBoardPositionFactory()
                 .position(clientRowIndex, clientColumnIndex));
     }

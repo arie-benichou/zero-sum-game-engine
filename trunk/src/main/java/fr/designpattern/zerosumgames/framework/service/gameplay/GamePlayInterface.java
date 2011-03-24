@@ -39,7 +39,7 @@ public interface GamePlayInterface {
     List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 
     /**
-     * Returns the opponent related to a given side
+     * Returns the opponent related to a given side.
      * 
      * @param side
      *            the given side
@@ -65,8 +65,8 @@ public interface GamePlayInterface {
     /**
      * Plays a move.
      * 
-     * @param the
-     *            move to play
+     * @param move
+     *            the move to play
      */
     void play(final LegalMoveInterface move);
 }

@@ -28,7 +28,7 @@ public abstract class AbstractGamePlayService implements
         GamePlayServiceInterface {
 
     // ------------------------------------------------------------
-    protected final GamePlayInterface gamePlay;
+    private final GamePlayInterface gamePlay;
 
     public final GamePlayInterface getGamePlay() {
         return this.gamePlay;
