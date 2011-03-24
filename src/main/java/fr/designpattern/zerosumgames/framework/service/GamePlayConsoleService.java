@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service;
@@ -26,20 +26,21 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public class GamePlayConsoleService extends AbstractGamePlayService {
 	// ------------------------------------------------------------
-	public GamePlayConsoleService(GamePlayInterface gamePlay) {
+	public GamePlayConsoleService(final GamePlayInterface gamePlay) {
 		super(gamePlay);
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
+	@Override
 	public void start() {
-		
+
 		OpponentsEnumeration sideToPlay;
 		OpponentInterface opponent;
 		List<LegalMoveInterface> legalMoves;
 		LegalMoveInterface legalMove;
 		String result;
-		
+
 		System.out.println(this);
-		
+
 		do {
 			sideToPlay = this.getSideToPlay();
 			opponent = this.getOpponentByOrder(sideToPlay);
@@ -49,32 +50,36 @@ public class GamePlayConsoleService extends AbstractGamePlayService {
 			this.play(legalMove);
 			System.out.println(this);
 		} while (!this.isGamePlayOver());
-		
+
 		result =
 			"Gameplay is over." + "\n\n" +
 			(this.getSideToPlay().isNoOne() ?
-				"There is no winner."
-			:
-				"And the winner is : " + this.getOpponentByOrder(this.getSideToPlay().getNegation().getOpponent()))
-		;
-		
+					"There is no winner."
+					:
+						"And the winner is : " + this.getOpponentByOrder(this.getSideToPlay().getNegation().getOpponent()))
+						;
+
 		System.out.println(result);
-		
+
 	}
 	// ---------------------------------------------------------------------
+	@Override
 	public void reset() {}
+	@Override
 	public void pause() {}
+	@Override
 	public void resume() {}
+	@Override
 	public void stop() {}
 	// ------------------------------------------------------------
 	@Override
 	public String toString() {
 		return
-			"\n===================================================\n" +
-			this.getGamePlay().toString() +
-			"\n===================================================\n"
+		"\n===================================================\n" +
+		this.getGamePlay().toString() +
+		"\n===================================================\n"
 		;
 	}
-	
+
 	// ---------------------------------------------------------------------
 }

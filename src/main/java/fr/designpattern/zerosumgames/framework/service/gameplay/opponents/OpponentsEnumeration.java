@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
@@ -31,83 +31,93 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
 public enum OpponentsEnumeration {
 
 	FIRST_PLAYER() {
+		@Override
 		public OpponentsEnumeration getOpponent() {
 			return SECOND_PLAYER;
 		}
+		@Override
 		public OpponentsEnumeration getNegation() {
 			return NOT_FIRST_PLAYER;
-		}						
+		}
 	},
 
 	SECOND_PLAYER() {
+		@Override
 		public OpponentsEnumeration getOpponent() {
 			return FIRST_PLAYER;
 		}
+		@Override
 		public OpponentsEnumeration getNegation() {
 			return NOT_SECOND_PLAYER;
-		}						
+		}
 	},
-	
+
 	NO_ONE {
+		@Override
 		public OpponentsEnumeration getOpponent() {
 			return NO_ONE;
 		}
+		@Override
 		public OpponentsEnumeration getNegation() {
 			return NO_ONE;
 		}
 	},
-	
+
 	NOT_FIRST_PLAYER() {
+		@Override
 		public OpponentsEnumeration getOpponent() {
 			return NOT_SECOND_PLAYER;
 		}
+		@Override
 		public OpponentsEnumeration getNegation() {
 			return FIRST_PLAYER;
-		}				
+		}
 	},
-	
+
 	NOT_SECOND_PLAYER {
+		@Override
 		public OpponentsEnumeration getOpponent() {
 			return NOT_FIRST_PLAYER;
 		}
+		@Override
 		public OpponentsEnumeration getNegation() {
 			return SECOND_PLAYER;
-		}		
+		}
 	};
 
 	public abstract OpponentsEnumeration getOpponent();
 	public static OpponentsEnumeration opponent(final OpponentsEnumeration side) {
 		return side.getOpponent();
 	}
-	
+
 	public abstract OpponentsEnumeration getNegation();
 	public static OpponentsEnumeration not(final OpponentsEnumeration side) {
 		return side.getNegation();
 	}
-	
+
 	public static boolean isNoOne(final OpponentsEnumeration side) {
 		return side.equals(NO_ONE) ;
 	}
-	
+
 	public static boolean isFirstPlayer(final OpponentsEnumeration side) {
-		return side.equals(FIRST_PLAYER);   
+		return side.equals(FIRST_PLAYER);
 	}
-	
+
 	public static boolean isSecondPlayer(final OpponentsEnumeration side) {
-		return side.equals(SECOND_PLAYER);   
-	}	
-	
+		return side.equals(SECOND_PLAYER);
+	}
+
 	public static boolean isAPlayer(final OpponentsEnumeration side) {
-		return side.equals(FIRST_PLAYER) || side.equals(SECOND_PLAYER);   
+		return side.equals(FIRST_PLAYER) || side.equals(SECOND_PLAYER);
 	}
-	
+
 	public boolean isAPlayer() {
-		return OpponentsEnumeration.isAPlayer(this);   
+		return OpponentsEnumeration.isAPlayer(this);
 	}
-	
+
 	public boolean isNoOne() {
 		return OpponentsEnumeration.isNoOne(this);
-	}	
-	
+	}
+
 
 }

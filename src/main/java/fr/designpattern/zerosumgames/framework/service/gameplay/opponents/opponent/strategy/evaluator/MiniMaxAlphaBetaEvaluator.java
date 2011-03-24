@@ -9,31 +9,33 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 	//--------------------------------------------------------------------------------------
 	private int alphabetacutoffs;
 	//--------------------------------------------------------------------------------------
-	public MiniMaxAlphaBetaEvaluator(int maximaDepth) {
+	public MiniMaxAlphaBetaEvaluator(final int maximaDepth) {
 		super(maximaDepth);
 	}
 	//--------------------------------------------------------------------------------------
+	@Override
 	protected double applyEvaluation(final LegalMoveInterface moveToEvaluate, final int maximalDepth) {
 		return this.applyEvaluation(moveToEvaluate, maximalDepth, 1, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 	}
 	//--------------------------------------------------------------------------------------
+	@Override
 	protected double applyEvaluation(final LegalMoveInterface moveToEvaluate) {
 		return this.applyEvaluation(moveToEvaluate, this.maximalDepth);
 	}
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 	protected double applyEvaluation(final LegalMoveInterface moveToEvaluate, final int profondeur, final double side, double alpha, double beta) {
 		double score;
 		final OpponentsEnumeration nextPlayer = this.getContext().computeNextSideToPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
-		
+
 		//System.out.println(this.getContext());
-		
+
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate); 
+			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate);
 		}
 		else {
 			if(side == 1) {
 				// TODO créer le selector BestAlphaBeta
-				for(LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
+				for(final LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 					beta = Math.min(beta, this.applyEvaluation(opponentMove, profondeur - 1, -side, alpha, beta));
 					if(alpha >= beta) { // elagage alpha/beta : l'adversaire a trouvé un meilleur "pire coup"
 						++this.alphabetacutoffs;
@@ -44,7 +46,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 			}
 			else {
 				// TODO créer le selector BestAlphaBeta
-				for(LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
+				for(final LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 					alpha = Math.max(alpha, this.applyEvaluation(opponentMove, profondeur - 1, -side, alpha, beta));
 					if(alpha >= beta) { // elagage alpha/beta : le joueur a trouvé un meilleur "meilleur coup"
 						++this.alphabetacutoffs;
@@ -52,7 +54,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 					}
 				}
 				score = alpha;
-			}			
+			}
 		}
 		this.getContext().undoMove(moveToEvaluate);
 		return score;
@@ -60,15 +62,15 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 	//--------------------------------------------------------------------------------------
 	@Override
 	public List<LegalMoveInterface> applyEvaluation(final List<LegalMoveInterface> legalMoves) {
-		
-		for(LegalMoveInterface move: legalMoves) {
+
+		for(final LegalMoveInterface move: legalMoves) {
 			move.setEvaluation(this.applyEvaluation(move));
 			move.setDepth(this.maximalDepth);
 		}
-		
+
 		System.out.println(this.alphabetacutoffs);
-		
+
 		return legalMoves;
 	}
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 }

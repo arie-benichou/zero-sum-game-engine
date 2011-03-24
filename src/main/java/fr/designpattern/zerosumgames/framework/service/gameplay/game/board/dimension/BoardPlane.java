@@ -14,26 +14,26 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension;
 
 
 /**
- * This is the enumeration of board planes. 
+ * This is the enumeration of board planes.
  * 
  * @author Arie Benichou
  * @version 0.99, 01/03/2011
  */
 public enum BoardPlane {
-	
+
 	RIGHT_AND_LEFT(BoardCardinalPosition.RIGHT, BoardCardinalPosition.LEFT),
-	
+
 	BOTTOM_AND_TOP(BoardCardinalPosition.BOTTOM, BoardCardinalPosition.TOP),
-	
+
 	BOTTOM_LEFT_AND_TOP_RIGHT(BoardCardinalPosition.BOTTOM_LEFT, BoardCardinalPosition.TOP_RIGHT),
-	
+
 	TOP_LEFT_AND_BOTTOM_RIGHT(BoardCardinalPosition.TOP_LEFT, BoardCardinalPosition.BOTTOM_RIGHT);
 
 	private BoardCardinalPosition oneWay;
@@ -43,23 +43,23 @@ public enum BoardPlane {
 		this.oneWay = oneWay;
 		this.oppositeWay = oppositeWay;
 	}
-	
+
 	/**
 	 * Returns one way.
 	 * 
 	 * @return one way
 	 */
 	public final BoardCardinalPosition getOneWay() {
-		return this.oneWay; 
+		return this.oneWay;
 	}
-	
+
 	/**
 	 * Returns the opposite way.
-	 *  
+	 * 
 	 * @return the opposite way
 	 */
 	public final BoardCardinalPosition getOppositeWay() {
-		return this.oppositeWay; 
-	}	
-	
+		return this.oppositeWay;
+	}
+
 }

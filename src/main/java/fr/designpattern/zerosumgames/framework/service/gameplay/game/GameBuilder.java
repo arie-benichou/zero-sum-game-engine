@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
@@ -40,16 +40,16 @@ public class GameBuilder implements GameBuilderInterface {
 		this.builderGameClass = gameClass;
 		try {
 			this.boardDimension((DimensionInterface) this.builderGameClass.getDeclaredField("BOARD_DIMENSION").get(DimensionInterface.class));
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		} catch (final SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
+		} catch (final NoSuchFieldException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -59,12 +59,12 @@ public class GameBuilder implements GameBuilderInterface {
 		this.builderBoardDimension = boardDimension;
 		return this;
 	}
-	
+
 	public GameInterface build() {
 		final PositionsInterface positionFactory = new Positions(this.builderBoardDimension);
 		final CellsInterface cellFactory = new Cells(positionFactory);
 		final BoardInterface board = new Board(cellFactory);
-		return newInstance(board);
+		return this.newInstance(board);
 	}
 
 	private GameInterface newInstance(final BoardInterface board) {
@@ -72,20 +72,20 @@ public class GameBuilder implements GameBuilderInterface {
 		GameInterface instance = null;
 		try {
 			constructor = this.builderGameClass.getDeclaredConstructor(BoardInterface.class);
-		} catch (SecurityException e) {
+		} catch (final SecurityException e) {
 			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 		try {
 			instance = constructor.newInstance(board);
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 			e.printStackTrace();
-		} catch (InstantiationException e) {
+		} catch (final InstantiationException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		return instance;

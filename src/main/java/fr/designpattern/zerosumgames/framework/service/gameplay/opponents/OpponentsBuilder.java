@@ -16,7 +16,7 @@ public class OpponentsBuilder implements OpponentsBuilderInterface {
 		this.player2 = player2;
 		return this;
 	}
-	
+
 	public OpponentsInterface build() {
 		return new Opponents(this.player1, this.player2);
 	}

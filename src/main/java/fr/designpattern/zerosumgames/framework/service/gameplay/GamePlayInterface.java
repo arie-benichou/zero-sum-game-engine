@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay;
@@ -24,7 +24,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentInterface;
 
 /**
- * This is the interface for a gameplay. 
+ * This is the interface for a gameplay.
  */
 public interface GamePlayInterface {
 
@@ -36,7 +36,7 @@ public interface GamePlayInterface {
 	 * @return the legal moves for a given side
 	 */
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
-	
+
 	/**
 	 * Returns the opponent related to a given side
 	 * 
@@ -45,21 +45,21 @@ public interface GamePlayInterface {
 	 * @return the opponent related to a given side
 	 */
 	OpponentInterface getOpponentByOrder(final OpponentsEnumeration side);
-	
+
 	/**
 	 * Returns the side to play.
 	 * 
 	 * @return the side to play
 	 */
 	OpponentsEnumeration getSideToPlay();
-		
+
 	/**
 	 * Returns true if the gameplay is over, false otherwise.
 	 * 
 	 * @return true if the gameplay is over, false otherwise
 	 */
 	boolean isGamePlayOver();
-	
+
 	/**
 	 * Plays a move.
 	 * 

@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces;
@@ -25,17 +25,17 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public interface PieceInterface {
 
 	/**
-	 * Returns the type of this piece.
-	 * 
-	 * @return the type of this piece
-	 */
-	PieceTypeInterface getType();
-
-	/**
 	 * Returns the side related to this piece.
 	 * 
 	 * @return the side related to this piece
 	 */
 	OpponentsEnumeration getSide();
+
+	/**
+	 * Returns the type of this piece.
+	 * 
+	 * @return the type of this piece
+	 */
+	PieceTypeInterface getType();
 
 }

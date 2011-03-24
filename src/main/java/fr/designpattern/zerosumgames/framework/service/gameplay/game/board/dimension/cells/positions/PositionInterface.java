@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions;
@@ -35,21 +35,21 @@ public interface PositionInterface extends NullObjectAvailableInterface {
 	 * Returns the client row index.
 	 * 
 	 * @return the client row index
-	 */	
+	 */
 	int getClientRowIndex();
 
 	/**
 	 * Returns the internal column index.
 	 * 
 	 * @return the internal column index
-	 */	
+	 */
 	int getInternalColumnIndex();
 
 	/**
 	 * Returns the internal row index.
 	 * 
 	 * @return the internal row index
-	 */		
+	 */
 	int getInternalRowIndex();
 
 }

@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension;
@@ -97,18 +97,18 @@ public class Dimension implements DimensionInterface {
 	// ---------------------------------------------------------------------
 	public boolean contains(final int rowIndex, final int columnIndex) {
 		return (
-			rowIndex < this.getMinRowIndex() ||
-			rowIndex > this.getMaxRowIndex() ||
-			columnIndex < this.getMinColumnIndex() ||
-			columnIndex > this.getMaxColumnIndex()
+				rowIndex < this.getMinRowIndex() ||
+				rowIndex > this.getMaxRowIndex() ||
+				columnIndex < this.getMinColumnIndex() ||
+				columnIndex > this.getMaxColumnIndex()
 		) ? false : true;
 	}
 	// ---------------------------------------------------------------------
 	@Override
 	public String toString() {
-		return "BoardDimension [minRowIndex=" + minRowIndex + ", maxRowIndex="
-				+ maxRowIndex + ", minColumnIndex=" + minColumnIndex
-				+ ", maxColumnIndex=" + maxColumnIndex + "]";
+		return "BoardDimension [minRowIndex=" + this.minRowIndex + ", maxRowIndex="
+		+ this.maxRowIndex + ", minColumnIndex=" + this.minColumnIndex
+		+ ", maxColumnIndex=" + this.maxColumnIndex + "]";
 	}
 	// ---------------------------------------------------------------------
 }

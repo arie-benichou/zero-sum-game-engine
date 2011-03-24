@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove;
@@ -21,7 +21,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 public class LegalMove implements LegalMoveInterface {
-		
+
 	private OpponentsEnumeration side;
 	private final void setSide(final OpponentsEnumeration side) {
 		this.side = side;
@@ -29,32 +29,32 @@ public class LegalMove implements LegalMoveInterface {
 	public final OpponentsEnumeration getSide() {
 		return this.side;
 	}
-	
+
 	private transient PositionInterface position;
 	private final void setNewPosition(final PositionInterface newPosition) {
 		this.position = newPosition;
 	}
 	public final PositionInterface getPosition() {
 		return this.position;
-	}	
-	
+	}
+
 	private Double evaluation = Double.NEGATIVE_INFINITY;
 	public final void setEvaluation(final Double evaluation) {
 		this.evaluation = evaluation;
-	}	
+	}
 	public final Double getEvaluation() {
 		return this.evaluation;
 	}
-	
+
 	private int depth;
 	public final void setDepth(final int depth) {
 		this.depth = depth;
 	}
-	
+
 	public final int getDepth() {
 		return this.depth;
-	}	
-	
+	}
+
 	public boolean isNull() {
 		return this.getPosition().isNull();
 	}
@@ -63,40 +63,40 @@ public class LegalMove implements LegalMoveInterface {
 		this.setSide(side);
 		this.setNewPosition(position);
 	}
-	
+
 	@Override
 	public String toString() {
 		//return this.getSide() + " " + this.getPosition();
 		return this.getPosition().toString();
 	}
-	
+
 	public String debug() {
 		return this.getSide() + " " + this.getPosition() + " " + this.getEvaluation() + " @depth = " + this.getDepth();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return this.getEvaluation().hashCode();
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		// TODO tester la classe
-		LegalMoveInterface o = (LegalMoveInterface)obj;
+		final LegalMoveInterface o = (LegalMoveInterface)obj;
 		return this.getEvaluation().equals(o.getEvaluation());
 	}
-	
-	public int compareTo(LegalMoveInterface o) {
+
+	public int compareTo(final LegalMoveInterface o) {
 		//return o.getEvaluation().compareTo(this.getEvaluation());
 		return this.getEvaluation().compareTo(o.getEvaluation());
 	}
-	
+
 	/*
 	@Override @Override
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		return super.clone();
 	}
-	*/
+	 */
 
 }

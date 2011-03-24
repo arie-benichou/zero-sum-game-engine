@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces;
@@ -40,21 +40,21 @@ public class Pieces implements PiecesInterface {
 		PieceInterface instance = null;
 		try {
 			constructor = classObject.getDeclaredConstructor(PieceTypeInterface.class, OpponentsEnumeration.class);
-		} catch (SecurityException e) {
+		} catch (final SecurityException e) {
 			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 		try {
 			instance = constructor.newInstance(type, side);
 			///System.out.println(instance);
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 			e.printStackTrace();
-		} catch (InstantiationException e) {
+		} catch (final InstantiationException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		return instance;
@@ -65,8 +65,8 @@ public class Pieces implements PiecesInterface {
 	}
 
 	private <T extends Enum<T> & PieceTypeInterface> void initializeGamePiecesCache(final Class<T> gamePieceTypes) {
-		for (PieceTypeInterface gamePieceType : gamePieceTypes.getEnumConstants()) {
-			for (OpponentsEnumeration side : OpponentsEnumeration.values()) {
+		for (final PieceTypeInterface gamePieceType : gamePieceTypes.getEnumConstants()) {
+			for (final OpponentsEnumeration side : OpponentsEnumeration.values()) {
 				this.getGamePiecesCache().put(this.hash(side, gamePieceType), this.createPiece(gamePieceType, side));
 			}
 		}

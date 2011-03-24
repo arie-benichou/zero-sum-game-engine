@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2011 Arié Bénichou
- *
+ * Copyright 2011 Arié Bénichou
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.samples.othello;
@@ -24,7 +24,7 @@ import fr.designpattern.zerosumgames.samples.othello.pieces.OthelloPiecePawn;
 
 /*
  * Remarque:
- * le type de pièce NULL est un artefact correspondant à la non-pièce, il s'agit du NullObject: PieceNull  
+ * le type de pièce NULL est un artefact correspondant à la non-pièce, il s'agit du NullObject: PieceNull
  */
 public enum OthelloPieceTypes implements PieceTypeInterface {
 	// ------------------------------------------------------------

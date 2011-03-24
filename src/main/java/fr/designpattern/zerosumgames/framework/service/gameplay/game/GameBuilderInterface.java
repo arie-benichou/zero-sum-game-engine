@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
@@ -25,7 +25,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 public interface GameBuilderInterface {
 
 	/**
-	 * Configure the board dimension for a new instance of game. 
+	 * Configure the board dimension for a new instance of game.
 	 * 
 	 * @param dimension the board dimension
 	 * 
@@ -36,7 +36,7 @@ public interface GameBuilderInterface {
 	/**
 	 * Build a new instance of game.
 	 * 
-	 * @return a new instance of game 
+	 * @return a new instance of game
 	 */
 	GameInterface build();
 

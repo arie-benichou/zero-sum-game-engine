@@ -13,12 +13,12 @@ public class MiniMaxEvaluator extends NullEvaluator {
 	//--------------------------------------------------------------------------------------
 	protected final int maximalDepth;
 	public final int getMaximalDepth() {
-		return maximalDepth;
+		return this.maximalDepth;
 	}
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 	protected final static SelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
 	protected final static SelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 	public MiniMaxEvaluator(final int maximaDepth) {
 		this.maximalDepth = maximaDepth;
 	}
@@ -30,19 +30,19 @@ public class MiniMaxEvaluator extends NullEvaluator {
 	protected double applyEvaluation(final LegalMoveInterface moveToEvaluate) {
 		return this.applyEvaluation(moveToEvaluate, this.maximalDepth);
 	}
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 	protected double applyEvaluation(final LegalMoveInterface moveToEvaluate, final int profondeur, final double side) {
 		double score;
 		final OpponentsEnumeration nextPlayer = this.getContext().computeNextSideToPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate); 
+			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate);
 		}
 		else {
-			List<LegalMoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
-			for(LegalMoveInterface opponentMove : opponentMoves) {
+			final List<LegalMoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);
+			for(final LegalMoveInterface opponentMove : opponentMoves) {
 				opponentMove.setEvaluation(this.applyEvaluation(opponentMove, profondeur - 1, -side));
 			}
-			score = (side == 1) ? worstLegalMoveSelector.applySelection(opponentMoves).getEvaluation() : bestLegalMoveSelector.applySelection(opponentMoves).getEvaluation();
+			score = (side == 1) ? MiniMaxEvaluator.worstLegalMoveSelector.applySelection(opponentMoves).getEvaluation() : MiniMaxEvaluator.bestLegalMoveSelector.applySelection(opponentMoves).getEvaluation();
 		}
 		this.getContext().undoMove(moveToEvaluate);
 		return score;
@@ -50,11 +50,11 @@ public class MiniMaxEvaluator extends NullEvaluator {
 	//--------------------------------------------------------------------------------------
 	@Override
 	public List<LegalMoveInterface> applyEvaluation(final List<LegalMoveInterface> legalMoves) {
-		for(LegalMoveInterface move: legalMoves) {
+		for(final LegalMoveInterface move: legalMoves) {
 			move.setEvaluation(this.applyEvaluation(move));
 			move.setDepth(this.maximalDepth);
 		}
 		return legalMoves;
 	}
-	//--------------------------------------------------------------------------------------	
+	//--------------------------------------------------------------------------------------
 }

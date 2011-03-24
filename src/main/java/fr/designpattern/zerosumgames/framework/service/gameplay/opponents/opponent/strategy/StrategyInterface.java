@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy;
@@ -25,15 +25,15 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
 public interface StrategyInterface {
-	
+
 	EvaluatorInterface getEvaluator();
-	
+
 	SelectorInterface getSelector();
-	
+
 	List<LegalMoveInterface> applyEvaluator(final List<LegalMoveInterface> legalMoves);
-	
+
 	LegalMoveInterface applySelector(final List<LegalMoveInterface> legalMoves);
-	
+
 	LegalMoveInterface computeStrategicMoveFrom(final List<LegalMoveInterface> legalMoves);
 
 	void injectContext(final GameInterface context);

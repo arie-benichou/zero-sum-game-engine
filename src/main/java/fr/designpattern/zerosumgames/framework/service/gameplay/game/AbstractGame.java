@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
@@ -33,15 +33,15 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
  * interface, to minimize the effort required to implement this interface.
  */
 public abstract class AbstractGame implements GameInterface {
-	
+
 	// ---------------------------------------------------------------------
 	// Object Internals
 	// ---------------------------------------------------------------------
-	
+
 	private PiecesInterface pieceFactory;
 	private final void setPieceFactory(final PiecesInterface gamePieceFactory) {
 		this.pieceFactory = gamePieceFactory;
-	}	
+	}
 	protected final PiecesInterface getPieceFactory() {
 		return this.pieceFactory;
 	}
@@ -49,20 +49,21 @@ public abstract class AbstractGame implements GameInterface {
 	private BoardInterface board;
 	private final void setBoard(final BoardInterface board) {
 		this.board = board;
-	}	
+	}
 	protected final BoardInterface getBoard() {
 		return this.board;
 	}
 	// ---------------------------------------------------------------------
 	public AbstractGame(final PiecesInterface pieceFactory, final BoardInterface board) {
-		this.setPieceFactory(pieceFactory);		
+		this.setPieceFactory(pieceFactory);
 		this.setBoard(board);
 	}
 	// ---------------------------------------------------------------------
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + this.getBoard().toString();
 	}
-	
+
 	// ---------------------------------------------------------------------
 	// Façades fournies
 	// ---------------------------------------------------------------------
@@ -76,15 +77,15 @@ public abstract class AbstractGame implements GameInterface {
 	public final CellInterface cell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
 	}
-	
-	// ---------------------------------------------------------------------	
-	// Implémentations finales 
+
 	// ---------------------------------------------------------------------
-		
+	// Implémentations finales
+	// ---------------------------------------------------------------------
+
 	public final OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface playedMove, final boolean isMoveDone) {
-		
+
 		final OpponentsEnumeration nexSideToPlay;
-		
+
 		if(!isMoveDone) {
 			nexSideToPlay = playedMove.getSide();
 		}
@@ -97,25 +98,25 @@ public abstract class AbstractGame implements GameInterface {
 		else {
 			nexSideToPlay = OpponentsEnumeration.opponent(playedMove.getSide());
 		}
-		
+
 		return nexSideToPlay;
-		
+
 	}
-	
-	public final OpponentsEnumeration play(LegalMoveInterface moveToPlay) {
+
+	public final OpponentsEnumeration play(final LegalMoveInterface moveToPlay) {
 		return this.computeNextSideToPlay(moveToPlay, this.doMove(moveToPlay));
-	}		
-	
-	// ---------------------------------------------------------------------	
+	}
+
+	// ---------------------------------------------------------------------
 	// Méthodes à implémenter
 	// ---------------------------------------------------------------------
-	
-	public abstract boolean hasNullMove();	
+
+	public abstract boolean hasNullMove();
 	public abstract List<LegalMoveInterface> getLegalMoves(OpponentsEnumeration side);
 	public abstract boolean doMove(LegalMoveInterface moveToPlay);
 	public abstract boolean undoMove(LegalMoveInterface playedMove);
 	public abstract boolean isGameOverFromVictory(LegalMoveInterface playedMove);
 	public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
 	public abstract double computeStaticEvaluation(LegalMoveInterface playedMove);
-	
+
 }

@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector;
@@ -23,18 +23,19 @@ import java.util.List;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 
 public class BestLegalMoveSelector extends NullSelector {
-	
-	public LegalMoveInterface applySelection(List<LegalMoveInterface> legalMoves) {
-		
+
+	@Override
+	public LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves) {
+
 		/*
 		Collections.sort(legalMoves);
 		Collections.reverse(legalMoves);
-		
+
 		for (LegalMoveInterface legalMove: legalMoves) {
 			System.out.println(legalMove.debug());
 		}
-		*/
-		
+		 */
+
 		return Collections.max(legalMoves);
 	}
 

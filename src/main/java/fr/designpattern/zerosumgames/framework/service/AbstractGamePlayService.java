@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service;
@@ -28,7 +28,7 @@ public abstract class AbstractGamePlayService implements GamePlayServiceInterfac
 	// ------------------------------------------------------------
 	protected final GamePlayInterface gamePlay;
 	public final GamePlayInterface getGamePlay() {
-		return gamePlay;
+		return this.gamePlay;
 	}
 	// ------------------------------------------------------------
 	public AbstractGamePlayService(final GamePlayInterface gamePlay) {
@@ -53,7 +53,7 @@ public abstract class AbstractGamePlayService implements GamePlayServiceInterfac
 		return this.getGamePlay().getOpponentByOrder(sideToPlay);
 	}
 	// ---------------------------------------------------------------------
-	protected final void play(LegalMoveInterface legalMove) {
+	protected final void play(final LegalMoveInterface legalMove) {
 		this.getGamePlay().play(legalMove);
 	}
 	// ---------------------------------------------------------------------

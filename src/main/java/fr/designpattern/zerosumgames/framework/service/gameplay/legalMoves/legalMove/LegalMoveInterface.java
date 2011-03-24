@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove;
@@ -44,16 +44,16 @@ public interface LegalMoveInterface extends NullObjectAvailableInterface, Compar
 	 * @return the side playing this move
 	 */
 	OpponentsEnumeration getSide();
-	
-	
+
+
 	void setEvaluation(final Double evaluation);
-	
+
 	Double getEvaluation();
-	
+
 	void setDepth(final int depth);
-	
+
 	int getDepth();
-	
+
 	String debug();
 
 }

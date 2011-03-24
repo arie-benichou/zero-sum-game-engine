@@ -8,7 +8,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 public class NullEvaluator implements EvaluatorInterface {
 	// ------------------------------------------------------------
 	private GameInterface context;
-	public final void setContext(GameInterface context) {
+	public final void setContext(final GameInterface context) {
 		this.context = context;
 	}
 	public final GameInterface getContext() {
@@ -23,5 +23,5 @@ public class NullEvaluator implements EvaluatorInterface {
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
 }
