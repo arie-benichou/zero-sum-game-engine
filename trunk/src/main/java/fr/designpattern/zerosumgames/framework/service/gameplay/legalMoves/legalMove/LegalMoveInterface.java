@@ -46,11 +46,11 @@ public interface LegalMoveInterface extends NullObjectAvailableInterface, Compar
 	OpponentsEnumeration getSide();
 	
 	
-	void setEvaluation(Double evaluation);
+	void setEvaluation(final Double evaluation);
 	
 	Double getEvaluation();
 	
-	void setDepth(int depth);
+	void setDepth(final int depth);
 	
 	int getDepth();
 	

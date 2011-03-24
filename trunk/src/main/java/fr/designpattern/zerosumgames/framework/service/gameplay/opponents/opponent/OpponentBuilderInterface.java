@@ -23,9 +23,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 
 public interface OpponentBuilderInterface {
 	
-	OpponentBuilderInterface player(PlayerInterface player);
-	OpponentBuilderInterface evaluator(EvaluatorInterface evaluator);
-	OpponentBuilderInterface selector(SelectorInterface selector);
+	OpponentBuilderInterface player(final PlayerInterface player);
+	OpponentBuilderInterface evaluator(final EvaluatorInterface evaluator);
+	OpponentBuilderInterface selector(final SelectorInterface selector);
 	
 	OpponentInterface build();
 		

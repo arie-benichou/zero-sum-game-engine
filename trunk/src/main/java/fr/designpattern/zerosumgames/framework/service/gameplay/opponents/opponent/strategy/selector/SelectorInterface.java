@@ -24,9 +24,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 
 public interface SelectorInterface {
 	
-	LegalMoveInterface applySelection(List<LegalMoveInterface> legalMoves);
+	LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves);
 
-	void setContext(GameInterface context);
+	void setContext(final GameInterface context);
 	GameInterface getContext();
 
 }

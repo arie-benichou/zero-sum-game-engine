@@ -19,9 +19,6 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dime
 
 /**
  * This is the interface for the dimension of the game board.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface DimensionInterface {
 
@@ -75,12 +72,12 @@ public interface DimensionInterface {
 	int getCapacity();
 
 	/**
-	 * Returns <tt>true</tt> if the row index and column index are contained in
+	 * Returns true if the row index and column index are contained in
 	 * this board dimension.
 	 * 
-	 * @return <tt>true</tt> if the row index and column index are contained in
+	 * @return true if the row index and column index are contained in
 	 * this board dimension.
 	 */
-	boolean contains(int clientRowIndex, int clientColumnIndex);
+	boolean contains(final int clientRowIndex, final int clientColumnIndex);
 
 }

@@ -24,9 +24,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 
 /**
  * This is the interface for the factory of game board cells.
- * 
- * @author Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface CellsInterface {
 
@@ -37,7 +34,7 @@ public interface CellsInterface {
 	 * 
 	 * @return the corresponding cell for a given position
 	 */
-	CellInterface cell(PositionInterface position);
+	CellInterface cell(final PositionInterface position);
 
 	/**
 	 * Returns all the cells of the game board.
