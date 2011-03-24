@@ -1,6 +1,4 @@
 /*
- * @(#)IGameBoardCellFactory.java	0.99
- *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
