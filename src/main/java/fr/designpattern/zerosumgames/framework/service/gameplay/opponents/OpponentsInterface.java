@@ -1,6 +1,4 @@
 /*
- * @(#)IGameOpponents.java	0.999
- *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,12 +20,32 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentInterface;
 
+/**
+ * This is the interface for the opponents.
+ */
 public interface OpponentsInterface {
 
+	/**
+	 * Set the game context for the opponents.
+	 * 
+	 * @param context the game context for the opponents
+	 */
 	void injectContext(final GameInterface context);
-
+	
+	/**
+	 * Returns the game context for the opponents.
+	 *  
+	 * @return the game context for the opponents
+	 */
 	GameInterface getContext();
 
+	/**
+	 * Returns the opponent correspondig to the given order.
+	 * 
+	 * @param side the given side
+	 * 
+	 * @return the opponent correspondig to the given order
+	 */
 	OpponentInterface getOpponentByOrder(final OpponentsEnumeration playerOrdinal);
 
 }
