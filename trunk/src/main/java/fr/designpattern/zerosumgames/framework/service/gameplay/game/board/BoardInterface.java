@@ -22,9 +22,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 
 /**
  * This is the interface for game boards.
- * 
- * @author  Arie Benichou
- * @version 0.99, 01/03/2011
  */
 public interface BoardInterface extends Iterable<CellInterface[]> {
 
@@ -35,8 +32,8 @@ public interface BoardInterface extends Iterable<CellInterface[]> {
 	 * 
 	 * @return the corresponding cell for a given position in the game board
 	 */
-	CellInterface getCell(PositionInterface position);
+	CellInterface getCell(final PositionInterface position);
 	
-	CellInterface getCell(int clientRowIndex, int clientColumnIndex);
+	CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
 
 }
