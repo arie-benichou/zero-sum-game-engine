@@ -37,7 +37,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 				// TODO créer le selector BestAlphaBeta
 				for(final LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 					beta = Math.min(beta, this.applyEvaluation(opponentMove, profondeur - 1, -side, alpha, beta));
-					if(alpha >= beta) { // elagage alpha/beta : l'adversaire a trouvé un meilleur "pire coup"
+					if(alpha >= beta) { // élagage alpha/beta : l'adversaire a trouvé un meilleur "pire coup"
 						++this.alphabetacutoffs;
 						break;
 					}
@@ -48,7 +48,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 				// TODO créer le selector BestAlphaBeta
 				for(final LegalMoveInterface opponentMove : this.getContext().getLegalMoves(nextPlayer)) {
 					alpha = Math.max(alpha, this.applyEvaluation(opponentMove, profondeur - 1, -side, alpha, beta));
-					if(alpha >= beta) { // elagage alpha/beta : le joueur a trouvé un meilleur "meilleur coup"
+					if(alpha >= beta) { // élagage alpha/beta : le joueur a trouvé un meilleur "meilleur coup"
 						++this.alphabetacutoffs;
 						break;
 					}
@@ -68,7 +68,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 			move.setDepth(this.maximalDepth);
 		}
 
-		System.out.println(this.alphabetacutoffs);
+		System.out.println("alpha/beta cut-offs: " + this.alphabetacutoffs);
 
 		return legalMoves;
 	}
