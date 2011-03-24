@@ -17,28 +17,24 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces;
 
-//TODO !! définir les types de pièces dans le jeu et la texture peut changer au runtime
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 /**
  * This is the interface for a game piece.
- * 
- * TODO ? mapping : String getSymbol() / int getInternalValue() 
- * 
  */
 public interface PieceInterface {
 
 	/**
 	 * Returns the type of this piece.
-	 *  
+	 * 
 	 * @return the type of this piece
 	 */
 	PieceTypeInterface getType();
 
 	/**
-	 * Returns the player side of this piece.
-	 *  
-	 * @return the player side of this piece
+	 * Returns the side related to this piece.
+	 * 
+	 * @return the side related to this piece
 	 */
 	OpponentsEnumeration getSide();
 

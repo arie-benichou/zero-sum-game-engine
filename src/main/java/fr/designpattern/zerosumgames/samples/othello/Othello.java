@@ -236,7 +236,7 @@ public class Othello extends AbstractGame {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------		
-	public double evaluate(final LegalMoveInterface move) {
+	public double computeStaticEvaluation(final LegalMoveInterface move) {
 		if(move.isNull()) {
 			return this.computeDelta(move.getSide());
 		}

@@ -35,7 +35,7 @@ public class MiniMaxEvaluator extends NullEvaluator {
 		double score;
 		final OpponentsEnumeration nextPlayer = this.getContext().computeNextSideToPlay(moveToEvaluate, this.getContext().doMove(moveToEvaluate));
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-			score = side * this.getContext().evaluate(moveToEvaluate); 
+			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate); 
 		}
 		else {
 			List<LegalMoveInterface> opponentMoves = this.getContext().getLegalMoves(nextPlayer);

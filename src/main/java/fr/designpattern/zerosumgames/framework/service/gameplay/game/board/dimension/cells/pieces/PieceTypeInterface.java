@@ -17,16 +17,15 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces;
 
-
 /**
  * This is the interface for a type of piece.
  */
 public interface PieceTypeInterface {
 
 	/**
-	 * Returns the class of the type of piece.
+	 * Returns the class for this type of piece.
 	 * 
-	 * @return the class of the type of piece
+	 * @return the class for this type of piece
 	 */
 	Class<? extends Piece> getClassObject();
 

@@ -18,7 +18,7 @@
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension;
 
 /**
- * This is the interface for the dimension of the game board.
+ * This is the interface for the dimension of a game board.
  */
 public interface DimensionInterface {
 
@@ -73,10 +73,14 @@ public interface DimensionInterface {
 
 	/**
 	 * Returns true if the row index and column index are contained in
-	 * this board dimension.
+	 * this board dimension, false otherwise.
+	 * 
+	 * @param clientRowIndex a given row index
+	 * 
+	 * @param clientColumnIndex a given column index
 	 * 
 	 * @return true if the row index and column index are contained in
-	 * this board dimension.
+	 * this board dimension, false otherwise
 	 */
 	boolean contains(final int clientRowIndex, final int clientColumnIndex);
 

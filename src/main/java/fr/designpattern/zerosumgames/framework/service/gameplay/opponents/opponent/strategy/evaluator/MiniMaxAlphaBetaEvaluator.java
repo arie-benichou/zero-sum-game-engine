@@ -28,7 +28,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 		//System.out.println(this.getContext());
 		
 		if(!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-			score = side * this.getContext().evaluate(moveToEvaluate); 
+			score = side * this.getContext().computeStaticEvaluation(moveToEvaluate); 
 		}
 		else {
 			if(side == 1) {

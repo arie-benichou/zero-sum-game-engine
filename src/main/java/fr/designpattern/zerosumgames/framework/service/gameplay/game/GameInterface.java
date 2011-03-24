@@ -32,130 +32,129 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public interface GameInterface {
 
 	/**
-     * Returns true if this game allows null move.
+     * Returns true if this game allows null move, false otherwise.
      * 
-	 * @return true if this game allows null move
+	 * @return true if this game allows null move, false otherwise
 	 */
 	boolean hasNullMove();
 		
 	/**
-	 * Returns the list of legal moves for a side.
+	 * Returns the list of legal moves for a given side.
 	 *  
-	 * @param side the side to play
+	 * @param side a given side
 	 * 
-	 * @return the list of legal moves
+	 * @return the list of legal moves for a given side
 	 */
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 
 	/**
-	 * Plays a move.
+	 * Plays a given move and returns the next side to play.
 	 * 
-	 * @param moveToPlay the move to play
+	 * @param move a given move
 	 * 
 	 * @return the next side to play
 	 */
-	OpponentsEnumeration play(final LegalMoveInterface moveToPlay);
+	OpponentsEnumeration play(final LegalMoveInterface move);
 	
 	/**
-	 * Plays a move and returns true if the move is completed, 
-	 * false otherwise.
+	 * Applies a given move and returns true if the move is completed, false otherwise.
 	 * 
-	 * @param moveToPlay the move to play
+	 * @param move a given move
 	 * 
 	 * @return true if the move is completed, false otherwise
 	 */
-	boolean doMove(final LegalMoveInterface moveToPlay);
+	boolean doMove(final LegalMoveInterface move);
 	
 	/**
-	 * Undo the played move and returns true if the move is completely undone, false otherwise.
+	 * Undo a given move and returns true if the move is completely undone, false otherwise.
 	 * 
-	 * @param playedMove the played move
+	 * @param move the played move
 	 * 
 	 * @return true if the move is completely undone, false otherwise
 	 */	
-	boolean undoMove(final LegalMoveInterface playedMove);
+	boolean undoMove(final LegalMoveInterface move);
 	
 	/**
-	 * Returns true if the game is over from a victory of the current player, false otherwise.
+	 * Returns true if the game is over from a victory, false otherwise.
 	 * 
-	 * @param playedMove the played move
+	 * @param move the just played move
 	 * 
-	 * @return true if the game is over from a victory of the current player, false otherwise
+	 * @return true if the game is over from a victory, false otherwise
 	 */
-	boolean isGameOverFromVictory(final LegalMoveInterface playedMove);
+	boolean isGameOverFromVictory(final LegalMoveInterface move);
 
 	/**
 	 * Returns true if the game is over from a draw, false otherwise.
 	 * 
-	 * @param playedMove the played move
+	 * @param move the just played move
 	 * 
 	 * @return true if the game is over from a victory of the current player, false otherwise
 	 */	
-	boolean isGameOverFromDraw(final LegalMoveInterface playedMove);
+	boolean isGameOverFromDraw(final LegalMoveInterface move);
 	
 	/**
-	 * Returns FIRST_PLAYER, if it's the first player turn,
-	 * SECOND_PLAYER, if it's the second player turn,
-	 * NOT_FIRST_PLAYER if SECOND_PLAYER is winner,
-	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
+	 * Returns
+	 * FIRST_PLAYER, if it's first player's turn,
+	 * SECOND_PLAYER, if it's second player's turn,
+	 * NOT_FIRST_PLAYER if the second player is a winner,
+	 * NOT_SECOND_PLAYER, if the first player is a winner,
 	 * NO_ONE, if the game is a draw.
 	 *  
-	 * @param side the side to play
-	 * @param isMoveCompleted is the move completed ?
-	 * @param isGameOver is the game over ?
+	 * @param move the just played move
 	 * 
-	 * @return FIRST_PLAYER, if it's the first player turn,
-	 * SECOND_PLAYER, if it's the second player turn,
-	 * NOT_FIRST_PLAYER if SECOND_PLAYER is winner,
-	 * NOT_SECOND_PLAYER, if FIRST_PLAYER is winner,
+	 * @param isMoveDone the boolean for the move completion
+	 * 
+	 * @return 
+	 * FIRST_PLAYER, if it's first player's turn,
+	 * SECOND_PLAYER, if it's second player's turn,
+	 * NOT_FIRST_PLAYER if the second player is a winner,
+	 * NOT_SECOND_PLAYER, if the first player is a winner,
 	 * NO_ONE, if the game is a draw
 	 */
-	OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface playedMove, final boolean isMoveDone);
+	OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface move, final boolean isMoveDone);
 	
 	/**
-	 * Returns the computation of the move evaluation of the game.
+	 * Returns the computation of the static evaluation for a given move.
 	 *  
-	 * @param playedMove the played move
+	 * @param move a given move
 	 * 
-	 * @return the computation of the move evaluation of the game
+	 * @return the computation of the static evaluation for a given move
 	 */
-	double evaluate(final LegalMoveInterface playedMove);
+	double computeStaticEvaluation(final LegalMoveInterface move);
 	
 	// ---------------------------------------------------------------------
 	// Façades
 	// ---------------------------------------------------------------------
 	
 	/**
-	 * Returns a piece of this game for a given player
-	 * and a given type of piece.
+	 * Returns a piece of this game for a given player and a given type of piece.
 	 * 
-	 * @param player the player
+	 * @param player a given player
 	 * 
-	 * @param pieceType the type of piece.
+	 * @param pieceType a given type of piece.
 	 * 
 	 * @return a piece of this game for a given player and a given type of piece
 	 */
 	PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType);
 
 	/**
-	 * Returns the board cell for a given position.
+	 * Returns the board cell related to a given position.
 	 * 
-	 * @param position the position
+	 * @param position a given position
 	 * 
-	 * @return the board cell for a given position
+	 * @return the board cell related to a given position
 	 */
 	CellInterface cell(final PositionInterface position);
 
 	/**
-	 * Returns the board cell at (row, column)
+	 * Returns the board cell related to a given row and a given column.
 	 *  
-	 * @param clientRowIndex the row index
+	 * @param clientRowIndex a given row
 	 * 
-	 * @param clientColumnIndex the column index
+	 * @param clientColumnIndex a given column
 	 * 
-	 * @return the board cell at (row, column)
+	 * @return the board cell related to a given row and a given column
 	 */
 	CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
-	
 }

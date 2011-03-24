@@ -116,6 +116,6 @@ public abstract class AbstractGame implements GameInterface {
 	public abstract boolean undoMove(LegalMoveInterface playedMove);
 	public abstract boolean isGameOverFromVictory(LegalMoveInterface playedMove);
 	public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
-	public abstract double evaluate(LegalMoveInterface playedMove);
+	public abstract double computeStaticEvaluation(LegalMoveInterface playedMove);
 	
 }

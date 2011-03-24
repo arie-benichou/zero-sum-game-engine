@@ -25,9 +25,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterfac
 public interface GamePlayServiceInterface {
 	
 	/**
-	 * Returns the gameplay.
+	 * Returns the game play.
 	 *  
-	 * @return the gameplay
+	 * @return the game play
 	 */
 	GamePlayInterface getGamePlay();
 
