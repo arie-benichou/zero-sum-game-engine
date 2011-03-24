@@ -96,12 +96,17 @@ public class Dimension implements DimensionInterface {
 	}
 	// ---------------------------------------------------------------------
 	public boolean contains(final int rowIndex, final int columnIndex) {
-		return (
-				rowIndex < this.getMinRowIndex() ||
-				rowIndex > this.getMaxRowIndex() ||
-				columnIndex < this.getMinColumnIndex() ||
+		return
+		!(
+				rowIndex < this.getMinRowIndex()
+				||
+				rowIndex > this.getMaxRowIndex()
+				||
+				columnIndex < this.getMinColumnIndex()
+				||
 				columnIndex > this.getMaxColumnIndex()
-		) ? false : true;
+		)
+		;
 	}
 	// ---------------------------------------------------------------------
 	@Override
