@@ -20,19 +20,19 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dime
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 /**
- * This is the interface for the game piece factory.
+ * This is the interface for the game pieces factory.
  */
 public interface PiecesInterface {
 
 	/**
-	 * Returns a piece for a given player and a given type of piece.
+	 * Returns a piece for a given side and a given type of piece.
 	 * 
-	 * @param player a given player
+	 * @param side the given side
 	 * 
-	 * @param pieceType a given type of piece
+	 * @param type the given type of piece
 	 * 
-	 * @return a piece for a given player and a given type of piece
+	 * @return a piece for a given side and a given type of piece
 	 */
-	PieceInterface getPiece(final OpponentsEnumeration player, final PieceTypeInterface pieceType);
+	PieceInterface getPiece(final OpponentsEnumeration side, final PieceTypeInterface type);
 	
 }

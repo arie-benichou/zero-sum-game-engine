@@ -103,7 +103,7 @@ public class Tictactoe extends AbstractGame {
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
-	public double evaluate(final LegalMoveInterface justPlayedMove) {
+	public double computeStaticEvaluation(final LegalMoveInterface justPlayedMove) {
 		
 		double evaluation;
 		

@@ -38,11 +38,11 @@ public interface GamePlayInterface {
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 	
 	/**
-	 * Returns the opponent correspondig to the given order.
+	 * Returns the opponent related to a given side
 	 * 
 	 * @param side the given side
 	 * 
-	 * @return the opponent correspondig to the given order
+	 * @return the opponent related to a given side
 	 */
 	OpponentInterface getOpponentByOrder(final OpponentsEnumeration side);
 	

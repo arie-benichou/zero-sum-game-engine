@@ -343,7 +343,7 @@ public class Checkers extends AbstractGame {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
 	// ------------------------------------------------------------			
-	public double evaluate(final LegalMoveInterface move) {
+	public double computeStaticEvaluation(final LegalMoveInterface move) {
 		return this.computeDelta(move.getSide());
 	}	
 	// -----------------------------------------------------------------	

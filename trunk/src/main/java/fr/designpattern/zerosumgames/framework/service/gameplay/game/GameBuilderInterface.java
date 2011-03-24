@@ -25,18 +25,18 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 public interface GameBuilderInterface {
 
 	/**
-	 * Configure the board dimension of the game to build. 
+	 * Configure the board dimension for a new instance of game. 
 	 * 
-	 * @param dimension the dimension of the board.
+	 * @param dimension the board dimension
 	 * 
-	 * @return the instance of this builder
+	 * @return this instance of builder
 	 */
 	GameBuilderInterface boardDimension(final DimensionInterface dimension);
 
 	/**
-	 * Build an instance of a game.
+	 * Build a new instance of game.
 	 * 
-	 * @return an instance of a game. 
+	 * @return a new instance of game 
 	 */
 	GameInterface build();
 

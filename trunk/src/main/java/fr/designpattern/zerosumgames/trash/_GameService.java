@@ -57,7 +57,7 @@ public class _GameService implements GamePlayServiceInterface {
 			// TODO !! à gérer dans le game over d'Othello (et plus généralement dans un jeu acceptant le coup nul)
 			if(legalMoveToPlay.isNull()) {
 				if(lastPlayedMove.isNull()) {
-					double evaluation = this.game.evaluate(legalMoveToPlay);
+					double evaluation = this.game.computeStaticEvaluation(legalMoveToPlay);
 					if(evaluation > 0) {
 						this.currentPlayer = OpponentsEnumeration.not(OpponentsEnumeration.opponent(legalMoveToPlay.getSide()));
 					}

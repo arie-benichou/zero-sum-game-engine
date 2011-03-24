@@ -21,19 +21,26 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
 
 /**
- * This is the interface for game boards.
+ * This is the interface for a game board.
  */
 public interface BoardInterface extends Iterable<CellInterface[]> {
 
 	/**
-	 * Returns the corresponding cell for a given position in the game board.
+	 * Returns the cell related to a given position.
 	 * 
-	 * @param position the position in the game board
+	 * @param position a given position
 	 * 
-	 * @return the corresponding cell for a given position in the game board
+	 * @return the cell related to a given position
 	 */
 	CellInterface getCell(final PositionInterface position);
 	
+	/**
+	 * Returns the cell related to a given position.
+	 * 
+	 * @param position a given position
+	 * 
+	 * @return the cell related to a given position
+	 */	
 	CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
 
 }

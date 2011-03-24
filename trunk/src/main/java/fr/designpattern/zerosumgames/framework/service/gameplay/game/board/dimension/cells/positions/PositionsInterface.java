@@ -20,7 +20,7 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dime
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.DimensionInterface;
 
 /**
- * This is the interface for the factory of game board positions.
+ * This is the interface for the positions factory.
  */
 public interface PositionsInterface {
 
@@ -45,19 +45,21 @@ public interface PositionsInterface {
 	 */
 	PositionInterface[][] getBoardPositions();
 	
-	
+	/**
+	 * Returns the null position.
+	 * 
+	 * @return the null position
+	 */
 	PositionInterface getNullPosition();
 
 	/**
-	 * Returns a position for a given client row index and a given client column
-	 * index, returns null if the position does not exist.
+	 * Returns the position related to a given row and a given column.
 	 * 
-	 * @param clientRowIndex the client row index
+	 * @param clientRowIndex a given row
 	 * 
-	 * @param clientColumnIndex the client column index
+	 * @param clientColumnIndex a given column
 	 * 
-	 * @return a position for a given client row index and a given client column
-	 * index, returns null if the position does not exist
+	 * @return the position related to a given row index and a given column
 	 */
 	PositionInterface position(final int clientRowIndex, final int clientColumnIndex);
 

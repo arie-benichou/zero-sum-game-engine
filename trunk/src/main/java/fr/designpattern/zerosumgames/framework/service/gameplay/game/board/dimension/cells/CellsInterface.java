@@ -23,16 +23,16 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionsInterface;
 
 /**
- * This is the interface for the factory of game board cells.
+ * This is the interface for the game board cells factory.
  */
 public interface CellsInterface {
 
 	/**
-	 * Returns the corresponding cell for a given position.
+	 * Returns the cell related to a given position.
 	 * 
-	 * @param position the position
+	 * @param position a given position
 	 * 
-	 * @return the corresponding cell for a given position
+	 * @return the cell related to a given position
 	 */
 	CellInterface cell(final PositionInterface position);
 
@@ -44,14 +44,17 @@ public interface CellsInterface {
 	Map<PositionInterface, CellInterface> getGameBoardCells();
 
 	/**
-	 * Returns the factory of positions.
+	 * Returns the positions factory.
 	 * 
-	 * TODO revoir la necessité de cette méthode.
-	 * 
-	 * @return the factory of positions
+	 * @return the positions factory
 	 */
-	PositionsInterface getBoardPositionFactory();
+	PositionsInterface getBoardPositionFactory(); // TODO revoir la nécessité de cette méthode
 	
-	CellInterface getNullCell();
+	/**
+	 * Returns the null cell.
+	 * 
+	 * @return the null cell
+	 */
+	CellInterface getNullCell(); // TODO revoir la nécessité de cette méthode
 
 }

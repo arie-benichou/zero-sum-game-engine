@@ -25,25 +25,23 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
 /**
- * This is the interface for the game board cells.
+ * This is the interface for a game board cell.
  */
 public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	
 	/**
-	 * Returns <tt>true</tt> if this cell is empty.
+	 * Returns true if this cell is empty.
 	 * 
-	 * @return <tt>true</tt> if this cell is empty
+	 * @return true if this cell is empty
 	 */
 	boolean isEmpty();
 
 	/**
 	 * Returns the piece contained by this cell, null if the cell is empty.
 	 * 
-	 * TODO retourner un null object IGamePiece
-	 * 
 	 * @return the piece contained by this cell, null if the cell is empty
 	 */
-	PieceInterface getPiece();
+	PieceInterface getPiece(); // TODO ! retourner un null object
 
 	/**
 	 * Assigns a piece to this cell.
