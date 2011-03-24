@@ -1,6 +1,4 @@
 /*
- * @(#)Game.java	0.999
- *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,9 +31,6 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 /**
  * This class provides a skeletal implementation of the Game
  * interface, to minimize the effort required to implement this interface.
- * 
- * @author  Arie Benichou
- * @version 0.999, 21/03/2011
  */
 public abstract class AbstractGame implements GameInterface {
 	

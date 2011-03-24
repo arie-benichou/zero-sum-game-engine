@@ -1,4 +1,5 @@
 créer les builders manquants
 revoir la composition du board
+envisager d'avoir une instance de pièce de jeu par celulle
 faire gui
 tests unitaires (apprendre groovy + TDD)

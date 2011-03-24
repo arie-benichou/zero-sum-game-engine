@@ -23,15 +23,47 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentInterface;
 
+/**
+ * This is the interface for a gameplay. 
+ */
 public interface GamePlayInterface {
-	
+
+	/**
+	 * Returns the legal moves for a given side.
+	 * 
+	 * @param side the side to play
+	 * 
+	 * @return the legal moves for a given side
+	 */
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 	
+	/**
+	 * Returns the opponent correspondig to the given order.
+	 * 
+	 * @param side the given side
+	 * 
+	 * @return the opponent correspondig to the given order
+	 */
 	OpponentInterface getOpponentByOrder(final OpponentsEnumeration side);
 	
+	/**
+	 * Returns the side to play.
+	 * 
+	 * @return the side to play
+	 */
 	OpponentsEnumeration getSideToPlay();
 		
+	/**
+	 * Returns true if the gameplay is over, false otherwise.
+	 * 
+	 * @return true if the gameplay is over, false otherwise
+	 */
 	boolean isGamePlayOver();
 	
+	/**
+	 * Plays a move.
+	 * 
+	 * @param the move to play
+	 */
 	void play(LegalMoveInterface move);
 }

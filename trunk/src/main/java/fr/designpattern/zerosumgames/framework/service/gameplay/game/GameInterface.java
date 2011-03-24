@@ -1,6 +1,4 @@
 /*
- * @(#)IGame.java	0.999
- *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,10 +27,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 /**
- * This is the interface for a board game.
- * 
- * @author  Arie Benichou
- * @version 0.999, 21/03/2011
+ * This is the interface for a game.
  */
 public interface GameInterface {
 
@@ -52,6 +47,13 @@ public interface GameInterface {
 	 */
 	List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side);
 
+	/**
+	 * Plays a move.
+	 * 
+	 * @param moveToPlay the move to play
+	 * 
+	 * @return the next side to play
+	 */
 	OpponentsEnumeration play(final LegalMoveInterface moveToPlay);
 	
 	/**
