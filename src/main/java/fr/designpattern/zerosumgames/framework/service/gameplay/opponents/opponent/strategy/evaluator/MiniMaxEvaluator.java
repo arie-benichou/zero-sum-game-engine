@@ -12,15 +12,15 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 public class MiniMaxEvaluator extends NullEvaluator {
 
     //--------------------------------------------------------------------------------------
-    protected final int maximalDepth;
+    private final int maximalDepth;
 
     public final int getMaximalDepth() {
         return this.maximalDepth;
     }
 
     //--------------------------------------------------------------------------------------
-    protected final static SelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
-    protected final static SelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
+    protected static final SelectorInterface bestLegalMoveSelector = new BestLegalMoveSelector();
+    protected static final SelectorInterface worstLegalMoveSelector = new WorstLegalMoveSelector();
 
     //--------------------------------------------------------------------------------------
     public MiniMaxEvaluator(final int maximaDepth) {

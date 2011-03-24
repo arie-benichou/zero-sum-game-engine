@@ -27,7 +27,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
     //--------------------------------------------------------------------------------------
     @Override
     protected double applyEvaluation(final LegalMoveInterface moveToEvaluate) {
-        return this.applyEvaluation(moveToEvaluate, this.maximalDepth);
+        return this.applyEvaluation(moveToEvaluate, this.getMaximalDepth());
     }
 
     //--------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ public class MiniMaxAlphaBetaEvaluator extends MiniMaxEvaluator {
 
         for (final LegalMoveInterface move : legalMoves) {
             move.setEvaluation(this.applyEvaluation(move));
-            move.setDepth(this.maximalDepth);
+            move.setDepth(this.getMaximalDepth());
         }
 
         System.out.println("alpha/beta cut-offs: " + this.alphabetacutoffs);

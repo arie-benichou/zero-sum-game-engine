@@ -37,19 +37,19 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public class Othello extends AbstractGame {
 
     // ------------------------------------------------------------
-    public final static Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
-    public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
+    public static final Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
+    public static final Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
 
     //private transient int nullMoveHasBeenPlayed = 0;
     // ------------------------------------------------------------
     private void setupBoard(final BoardInterface board) {
-        board.getCell(4, 5).setPiece(
+        board.cell(4, 5).setPiece(
                 this.piece(OpponentsEnumeration.FIRST_PLAYER));
-        board.getCell(5, 4).setPiece(
+        board.cell(5, 4).setPiece(
                 this.piece(OpponentsEnumeration.FIRST_PLAYER));
-        board.getCell(4, 4).setPiece(
+        board.cell(4, 4).setPiece(
                 this.piece(OpponentsEnumeration.SECOND_PLAYER));
-        board.getCell(5, 5).setPiece(
+        board.cell(5, 5).setPiece(
                 this.piece(OpponentsEnumeration.SECOND_PLAYER));
     }
 

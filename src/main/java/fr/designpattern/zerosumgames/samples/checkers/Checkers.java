@@ -35,8 +35,8 @@ import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
 public class Checkers extends AbstractGame {
 
     // ------------------------------------------------------------
-    public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
-    public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
+    public static final Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
+    public static final Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
 
     // ------------------------------------------------------------
     public Checkers(final BoardInterface board) {
@@ -51,7 +51,7 @@ public class Checkers extends AbstractGame {
         for (int clientRowIndex = 1; clientRowIndex <= 3; ++clientRowIndex) {
             for (n = 1; n <= 4; ++n) {
                 clientColumnIndex = 2 * n + clientRowIndex % 2 - 1;
-                board.getCell(clientRowIndex, clientColumnIndex).setPiece(
+                board.cell(clientRowIndex, clientColumnIndex).setPiece(
                         this.piece(OpponentsEnumeration.SECOND_PLAYER,
                                 CheckersPieceTypes.MAN));
             }
@@ -60,7 +60,7 @@ public class Checkers extends AbstractGame {
         for (int clientRowIndex = 6; clientRowIndex <= 8; ++clientRowIndex) {
             for (n = 1; n <= 4; ++n) {
                 clientColumnIndex = 2 * n + clientRowIndex % 2 - 1;
-                board.getCell(clientRowIndex, clientColumnIndex).setPiece(
+                board.cell(clientRowIndex, clientColumnIndex).setPiece(
                         this.piece(OpponentsEnumeration.FIRST_PLAYER,
                                 CheckersPieceTypes.MAN));
             }

@@ -37,7 +37,9 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
-public class Connect4ConsoleServiceLauncher {
+public final class Connect4ConsoleServiceLauncher {
+
+    private Connect4ConsoleServiceLauncher() {}
 
     public static void main(final String[] args) {
         // ------------------------------------------------------------

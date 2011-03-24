@@ -36,11 +36,11 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public class Tictactoe extends AbstractGame {
 
     // ------------------------------------------------------------
-    public final static int CONNECTIONS = 3;
-    public final static Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
-    public final static Dimension BOARD_DIMENSION = new Dimension(1, 3, 1, 3);
+    public static final int CONNECTIONS = 3;
+    public static final Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
+    public static final Dimension BOARD_DIMENSION = new Dimension(1, 3, 1, 3);
     // ------------------------------------------------------------
-    protected transient int connections;
+    private transient int connections;
 
     // ------------------------------------------------------------
     public Tictactoe(final BoardInterface board) {

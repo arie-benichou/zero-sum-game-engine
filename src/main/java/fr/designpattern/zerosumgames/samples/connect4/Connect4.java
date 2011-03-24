@@ -30,9 +30,9 @@ import fr.designpattern.zerosumgames.samples.tictactoe.Tictactoe;
 public class Connect4 extends Tictactoe {
 
     // ------------------------------------------------------------
-    public final static int CONNECTIONS = 4;
-    public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
-    public final static Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7);
+    public static final int CONNECTIONS = 4;
+    public static final Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
+    public static final Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7);
 
     // ------------------------------------------------------------
     public Connect4(final BoardInterface board, final int connections) {
