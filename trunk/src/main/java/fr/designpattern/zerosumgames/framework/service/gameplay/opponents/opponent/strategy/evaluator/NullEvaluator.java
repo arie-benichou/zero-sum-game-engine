@@ -15,7 +15,7 @@ public class NullEvaluator implements EvaluatorInterface {
 		return this.context;
 	}
 	// ------------------------------------------------------------
-	public List<LegalMoveInterface> applyEvaluation(List<LegalMoveInterface> legalMoves) {
+	public List<LegalMoveInterface> applyEvaluation(final List<LegalMoveInterface> legalMoves) {
 		return legalMoves;
 	}
 	// ------------------------------------------------------------
