@@ -1,18 +1,18 @@
 /*
  * Copyright 2011 Arie Benichou
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
@@ -29,94 +29,118 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 /**
- * This class provides a skeletal implementation of the Game
- * interface, to minimize the effort required to implement this interface.
+ * This class provides a skeletal implementation of the Game interface, to
+ * minimize the effort required to implement this interface.
  */
 public abstract class AbstractGame implements GameInterface {
 
-	// ---------------------------------------------------------------------
-	// Object Internals
-	// ---------------------------------------------------------------------
+    // ---------------------------------------------------------------------
+    // Object Internals
+    // ---------------------------------------------------------------------
 
-	private PiecesInterface pieceFactory;
-	private final void setPieceFactory(final PiecesInterface gamePieceFactory) {
-		this.pieceFactory = gamePieceFactory;
-	}
-	protected final PiecesInterface getPieceFactory() {
-		return this.pieceFactory;
-	}
-	// ---------------------------------------------------------------------
-	private BoardInterface board;
-	private final void setBoard(final BoardInterface board) {
-		this.board = board;
-	}
-	protected final BoardInterface getBoard() {
-		return this.board;
-	}
-	// ---------------------------------------------------------------------
-	public AbstractGame(final PiecesInterface pieceFactory, final BoardInterface board) {
-		this.setPieceFactory(pieceFactory);
-		this.setBoard(board);
-	}
-	// ---------------------------------------------------------------------
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() + this.getBoard().toString();
-	}
+    private PiecesInterface pieceFactory;
 
-	// ---------------------------------------------------------------------
-	// Façades fournies
-	// ---------------------------------------------------------------------
+    private final void setPieceFactory(final PiecesInterface gamePieceFactory) {
+        this.pieceFactory = gamePieceFactory;
+    }
 
-	public final PieceInterface piece(final OpponentsEnumeration player, final PieceTypeInterface pieceType) {
-		return this.getPieceFactory().getPiece(player, pieceType);
-	}
-	public final CellInterface cell(final PositionInterface position) {
-		return this.getBoard().getCell(position);
-	}
-	public final CellInterface cell(final int clientRowIndex, final int clientColumnIndex) {
-		return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
-	}
+    protected final PiecesInterface getPieceFactory() {
+        return this.pieceFactory;
+    }
 
-	// ---------------------------------------------------------------------
-	// Implémentations finales
-	// ---------------------------------------------------------------------
+    // ---------------------------------------------------------------------
+    private BoardInterface board;
 
-	public final OpponentsEnumeration computeNextSideToPlay(final LegalMoveInterface playedMove, final boolean isMoveDone) {
+    private final void setBoard(final BoardInterface board) {
+        this.board = board;
+    }
 
-		final OpponentsEnumeration nexSideToPlay;
+    protected final BoardInterface getBoard() {
+        return this.board;
+    }
 
-		if(!isMoveDone) {
-			nexSideToPlay = playedMove.getSide();
-		}
-		else if(this.isGameOverFromVictory(playedMove)){
-			nexSideToPlay = OpponentsEnumeration.not(OpponentsEnumeration.opponent(playedMove.getSide()));
-		}
-		else if(this.isGameOverFromDraw(playedMove)){
-			nexSideToPlay = OpponentsEnumeration.NO_ONE;
-		}
-		else {
-			nexSideToPlay = OpponentsEnumeration.opponent(playedMove.getSide());
-		}
+    // ---------------------------------------------------------------------
+    public AbstractGame(final PiecesInterface pieceFactory,
+            final BoardInterface board) {
+        this.setPieceFactory(pieceFactory);
+        this.setBoard(board);
+    }
 
-		return nexSideToPlay;
+    // ---------------------------------------------------------------------
+    @Override
+    public final String toString() {
+        return this.getClass().getSimpleName() + this.getBoard().toString();
+    }
 
-	}
+    // ---------------------------------------------------------------------
+    // Façades fournies
+    // ---------------------------------------------------------------------
 
-	public final OpponentsEnumeration play(final LegalMoveInterface moveToPlay) {
-		return this.computeNextSideToPlay(moveToPlay, this.doMove(moveToPlay));
-	}
+    public final PieceInterface piece(final OpponentsEnumeration player,
+            final PieceTypeInterface pieceType) {
+        return this.getPieceFactory().getPiece(player, pieceType);
+    }
 
-	// ---------------------------------------------------------------------
-	// Méthodes à implémenter
-	// ---------------------------------------------------------------------
+    public final CellInterface cell(final PositionInterface position) {
+        return this.getBoard().getCell(position);
+    }
 
-	public abstract boolean hasNullMove();
-	public abstract List<LegalMoveInterface> getLegalMoves(OpponentsEnumeration side);
-	public abstract boolean doMove(LegalMoveInterface moveToPlay);
-	public abstract boolean undoMove(LegalMoveInterface playedMove);
-	public abstract boolean isGameOverFromVictory(LegalMoveInterface playedMove);
-	public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
-	public abstract double computeStaticEvaluation(LegalMoveInterface playedMove);
+    public final CellInterface cell(final int clientRowIndex,
+            final int clientColumnIndex) {
+        return this.getBoard().getCell(clientRowIndex, clientColumnIndex);
+    }
+
+    // ---------------------------------------------------------------------
+    // Implémentations finales
+    // ---------------------------------------------------------------------
+
+    public final OpponentsEnumeration computeNextSideToPlay(
+            final LegalMoveInterface playedMove, final boolean isMoveDone) {
+
+        final OpponentsEnumeration nexSideToPlay;
+
+        if (!isMoveDone) {
+            nexSideToPlay = playedMove.getSide();
+        }
+        else
+            if (this.isGameOverFromVictory(playedMove)) {
+                nexSideToPlay = playedMove.getSide().getOpponent()
+                        .getNegation();
+            }
+            else
+                if (this.isGameOverFromDraw(playedMove)) {
+                    nexSideToPlay = OpponentsEnumeration.NO_ONE;
+                }
+                else {
+                    nexSideToPlay = OpponentsEnumeration.opponent(playedMove
+                            .getSide());
+                }
+
+        return nexSideToPlay;
+
+    }
+
+    public final OpponentsEnumeration play(final LegalMoveInterface moveToPlay) {
+        return this.computeNextSideToPlay(moveToPlay, this.doMove(moveToPlay));
+    }
+
+    // ---------------------------------------------------------------------
+    // Méthodes à implémenter
+    // ---------------------------------------------------------------------
+
+    public abstract boolean hasNullMove();
+
+    public abstract List<LegalMoveInterface> getLegalMoves(
+            OpponentsEnumeration side);
+
+    public abstract boolean doMove(LegalMoveInterface moveToPlay);
+
+    public abstract boolean undoMove(LegalMoveInterface playedMove);
+
+    public abstract boolean isGameOverFromVictory(LegalMoveInterface playedMove);
+
+    public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
+
+    public abstract double computeStaticEvaluation(LegalMoveInterface playedMove);
 
 }

@@ -1,3 +1,4 @@
+
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector;
 
 import java.util.List;
@@ -8,21 +9,24 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legal
 
 public class NullSelector implements SelectorInterface {
 
-	private GameInterface context;
-	public final void setContext(final GameInterface context) {
-		this.context = context;
-	}
-	public final GameInterface getContext() {
-		return this.context;
-	}
+    private GameInterface context;
 
-	public LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves) {
-		return legalMoves.get(new Random().nextInt(legalMoves.size()));
-	}
+    public final void setContext(final GameInterface context) {
+        this.context = context;
+    }
 
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName();
-	}
+    public final GameInterface getContext() {
+        return this.context;
+    }
+
+    public LegalMoveInterface applySelection(
+            final List<LegalMoveInterface> legalMoves) {
+        return legalMoves.get(new Random().nextInt(legalMoves.size()));
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 
 }
