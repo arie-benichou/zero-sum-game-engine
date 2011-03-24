@@ -1,6 +1,4 @@
 /*
- * @(#)IGame.java	0.99
- *
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,12 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
  */
+
 package fr.designpattern.zerosumgames.framework.service;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterface;
 
+/**
+ * This is the interface for a game play service.
+ */
 public interface GamePlayServiceInterface {
 	
+	/**
+	 * Returns the gameplay.
+	 *  
+	 * @return the gameplay
+	 */
 	GamePlayInterface getGamePlay();
 
 	/**
