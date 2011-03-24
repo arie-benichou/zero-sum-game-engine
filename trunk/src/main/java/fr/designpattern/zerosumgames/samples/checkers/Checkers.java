@@ -1,6 +1,4 @@
 /*
- * @(#)Checkers.java	0.99
- * 
  * Copyright 2011 Arie Benichou
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.samples.checkers;
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
@@ -33,111 +30,19 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
 import fr.designpattern.zerosumgames.samples.checkers.pieces.CheckersPiece;
-import fr.designpattern.zerosumgames.util.StaticContext;
 
 public class Checkers extends AbstractGame {
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
 	public final static Class<CheckersPieceTypes> PIECE_TYPES = CheckersPieceTypes.class;
-	public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8); 
+	public final static Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
 	// ------------------------------------------------------------
 	public Checkers(final BoardInterface board) {
 		// TODO !! à revoir
-		super(new Pieces(PIECE_TYPES), board);
-		this.setupTestBoard(board);
+		super(new Pieces(Checkers.PIECE_TYPES), board);
+		this.setupBoard(board);
 	}
 	// ------------------------------------------------------------
-	private void setupTestBoard(final BoardInterface board) {
-		this.setupBoard(board);
-		
-		/*
-		board.getCell(8, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
-		//board.getCell(7, 5).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(7, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(5, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(5, 7).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(3, 3).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(3, 5).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(1, 1).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		
-		//System.out.println(this);
-		//System.exit(0);
-		*/
-		
-		/*
-		board.getCell(4, 7).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(5, 6).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(7, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));		
-		board.getCell(7, 6).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
-		*/
-		
-		/*
-		System.out.println(this);
-		
-		IGameBoardMove moveToPlay = this.makeMove(GamePlayersEnumeration.FIRST_PLAYER , this.cell(6,1).getPosition(), GameBoardCardinalPosition.TOP_RIGHT);
-		
-		this.doMove(moveToPlay);
-		System.out.println(this);
-		
-		this.undoMove(moveToPlay);		
-		System.out.println(this);
-		
-		
-		
-		System.out.println(this);
-		
-		moveToPlay = this.makeMove(GamePlayersEnumeration.FIRST_PLAYER , this.cell(4,7).getPosition(), GameBoardCardinalPosition.BOTTOM_LEFT);
-		
-		this.doMove(moveToPlay);
-		System.out.println(this);
-		
-		this.undoMove(moveToPlay);		
-		System.out.println(this);		
-		
-		
-		System.exit(0);
-		*/
-		
-		
-		
-		
-		
-		/*
-		---------------------------------
-		|   | X |   | X |   | X |   |   |
-		---------------------------------
-		| x |   |   |   |   |   |   |   |
-		---------------------------------
-		|   |   |   |   |   |   |   |   |
-		---------------------------------
-		|   |   |   |   |   |   |   |   |
-		---------------------------------
-		|   | X |   |   |   | o |   |   |
-		---------------------------------
-		|   |   |   |   |   |   |   |   |
-		---------------------------------
-		|   |   |   |   |   |   |   |   |
-		---------------------------------
-		| O |   |   |   |   |   |   |   |
-		---------------------------------
-		*/
-		
-		/*
-		board.getCell(1, 1).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
-		board.getCell(1, 3).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
-		//board.getCell(2, 1).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.MAN));
-		board.getCell(4, 2).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.KING));
-		board.getCell(4, 4).setPiece(this.piece(GamePlayersEnumeration.FIRST_PLAYER, CheckersPieceTypes.KING));
-		//board.getCell(8, 1).setPiece(this.piece(GamePlayersEnumeration.SECOND_PLAYER, CheckersPieceTypes.KING));
-		*/
-		
-		//System.out.println(this);
-		
-		//System.exit(0);
-		
-	}
-	// ------------------------------------------------------------	
 	private void setupBoard(final BoardInterface board) {
 		int n, clientColumnIndex;
 		for(int clientRowIndex = 1; clientRowIndex<=3; ++clientRowIndex) {
@@ -146,7 +51,7 @@ public class Checkers extends AbstractGame {
 				board.getCell(clientRowIndex, clientColumnIndex).setPiece(this.piece(OpponentsEnumeration.SECOND_PLAYER, CheckersPieceTypes.MAN));
 			}
 		}
-		// TODO permettre d'autres dimensions		
+		// TODO permettre d'autres dimensions
 		for(int clientRowIndex = 6; clientRowIndex<=8; ++clientRowIndex) {
 			for(n = 1; n<=4; ++n) {
 				clientColumnIndex = 2*n + clientRowIndex% 2 - 1;
@@ -154,11 +59,11 @@ public class Checkers extends AbstractGame {
 			}
 		}
 	}
-	// -----------------------------------------------------------------	
+	// -----------------------------------------------------------------
 	private List<CellInterface> getRelevantCells(final OpponentsEnumeration side) {
 		final List<CellInterface> relevantCells = new ArrayList<CellInterface>();
-		for (CellInterface[] line : this.getBoard()) {
-			for(CellInterface cell : line) {
+		for (final CellInterface[] line : this.getBoard()) {
+			for(final CellInterface cell : line) {
 				// TODO ? utiliser la pièce nulle
 				if(!cell.isEmpty() && cell.getPiece().getSide() == side) {
 					relevantCells.add(cell);
@@ -171,19 +76,19 @@ public class Checkers extends AbstractGame {
 	@Override
 	public boolean hasNullMove() {
 		return false;
-	}	
-	// -----------------------------------------------------------------	
+	}
+	// -----------------------------------------------------------------
 	private LegalMoveInterface makeMove(final OpponentsEnumeration side, final PositionInterface position, final BoardCardinalPosition direction) {
 		// TODO utiliser un cache
 		return new CheckersMove(side, position, direction);
 	}
 	// ------------------------------------------------------------
 	@Override
-	public List<LegalMoveInterface> getLegalMoves(OpponentsEnumeration side) {
+	public List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		final List<LegalMoveInterface> jumpingMoves = new ArrayList<LegalMoveInterface>();
 		CheckersPiece piece;
 		List<BoardCardinalPosition> pieceOptions;
-		
+
 		// TODO chaque jeu doit définir son nullMove
 		if(!previousMove.isNull()) {
 			final CheckersMove previousCheckersMove = (CheckersMove)previousMove;
@@ -191,38 +96,38 @@ public class Checkers extends AbstractGame {
 				//System.out.println("Tu n'as pas fini ton coup, celà réduit les coups légaux possibles...");
 				//System.out.println(previousCheckersMove.getPosition());
 				//System.out.println(previousCheckersMove.getDirection());
-				CellInterface cell = this.cell(previousCheckersMove.getPosition()).getNeighbour(previousCheckersMove.getDirection()).getNeighbour(previousCheckersMove.getDirection());
+				final CellInterface cell = this.cell(previousCheckersMove.getPosition()).getNeighbour(previousCheckersMove.getDirection()).getNeighbour(previousCheckersMove.getDirection());
 				piece = (CheckersPiece)cell.getPiece();
 				pieceOptions = piece.getJumpOptions(cell);
-				for(BoardCardinalPosition direction : pieceOptions) {
+				for(final BoardCardinalPosition direction : pieceOptions) {
 					jumpingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 				return jumpingMoves;
 			}
 		}
-		
-		final List<LegalMoveInterface> walkingMoves = new ArrayList<LegalMoveInterface>();		
+
+		final List<LegalMoveInterface> walkingMoves = new ArrayList<LegalMoveInterface>();
 		boolean hasToJump = false;
-		
-		for(CellInterface cell : this.getRelevantCells(side)) {
+
+		for(final CellInterface cell : this.getRelevantCells(side)) {
 			piece = (CheckersPiece)cell.getPiece();
 			pieceOptions = piece.getJumpOptions(cell);
 			if(!pieceOptions.isEmpty()) {
 				hasToJump = true;
-				for(BoardCardinalPosition direction : pieceOptions) {
+				for(final BoardCardinalPosition direction : pieceOptions) {
 					jumpingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 				continue;
 			}
 			if(!hasToJump) {
 				pieceOptions = piece.getWalkOptions(cell);
-				for(BoardCardinalPosition direction : pieceOptions) {
+				for(final BoardCardinalPosition direction : pieceOptions) {
 					walkingMoves.add(this.makeMove(side, cell.getPosition(), direction));
 				}
 			}
 		}
-		
-		return jumpingMoves.isEmpty() ? walkingMoves : jumpingMoves; 
+
+		return jumpingMoves.isEmpty() ? walkingMoves : jumpingMoves;
 	}
 	// ------------------------------------------------------------
 	private boolean hasToKeepPlaying(final CheckersMove move) {
@@ -244,7 +149,7 @@ public class Checkers extends AbstractGame {
 		// suppression de la pièce à sa position actuelle
 		cell.setPiece(null);
 		// récupération de la cellulle correspondant à la direction choisie
-		CellInterface destinationCell = cell.getNeighbour(checkersMove.getDirection());		
+		CellInterface destinationCell = cell.getNeighbour(checkersMove.getDirection());
 		// si la cellule n'est pas vide
 		if(!destinationCell.isEmpty()) {
 			// la pièce de cette cellule est supprimée
@@ -262,41 +167,42 @@ public class Checkers extends AbstractGame {
 			// le pion est promu roi
 			destinationCell.setPiece(this.piece(checkersMove.getSide(), CheckersPieceTypes.KING));
 		}
-		
+
 		checkersMove.isDone(checkersMove.getCapturedPiece() == null || checkersMove.hasBeenCrowned() || !this.hasToKeepPlaying(checkersMove));
-		
+
 		return checkersMove.isDone();// TODO virer le return boolean de doMove et undoMove
 	}
 	// -----------------------------------------------------------------
 	// TODO un move est un composiste de transistions de jeu
 	// Pour Checkers, les transistions possibles sont :
-		//une pièce se déplace d'une case
-		//une pièce capture une autre pièce
-		//une pièce se fait promouvoir en King
-		//game over {victoire, match null}
-	
+	//une pièce se déplace d'une case
+	//une pièce capture une autre pièce
+	//une pièce se fait promouvoir en King
+	//game over {victoire, match null}
+
 	// -----------------------------------------------------------------
+	@Override
 	public boolean undoMove(final LegalMoveInterface move) {
-		
+
 		final CheckersMove checkersMove = (CheckersMove)move;
-		
+
 		CellInterface cell = this.cell(move.getPosition()).getNeighbour(checkersMove.getDirection());
-		
+
 		if(checkersMove.getCapturedPiece() != null) {// TODO utiliser la pièce nulle
 			cell.setPiece(checkersMove.getCapturedPiece());
 			cell = cell.getNeighbour(checkersMove.getDirection());
 		}
-		
-		PieceInterface piece = checkersMove.hasBeenCrowned() ? this.piece(move.getSide(), CheckersPieceTypes.MAN) : cell.getPiece();
+
+		final PieceInterface piece = checkersMove.hasBeenCrowned() ? this.piece(move.getSide(), CheckersPieceTypes.MAN) : cell.getPiece();
 		this.cell(move.getPosition()).setPiece(piece);
-		
+
 		cell.setPiece(null); // TODO utiliser la pièce nulle
-		
+
 		return true; // TODO à virer
-	}	
+	}
 	// -----------------------------------------------------------------
 	// TODO à améliorer
-	private boolean isGameOver(LegalMoveInterface previousMove) {
+	private boolean isGameOver(final LegalMoveInterface previousMove) {
 		if(this.getRelevantCells(OpponentsEnumeration.opponent(previousMove.getSide())).isEmpty()) {
 			return true;
 		}
@@ -309,8 +215,8 @@ public class Checkers extends AbstractGame {
 	// TODO à optimiser
 	public int computeDelta(final OpponentsEnumeration side) {
 		int delta = 0;
-		for (CellInterface[] line : this.getBoard()) {
-			for (CellInterface cell : line) {
+		for (final CellInterface[] line : this.getBoard()) {
+			for (final CellInterface cell : line) {
 				if( cell.isNull() || cell.isEmpty() ){
 					continue;
 				}
@@ -328,23 +234,26 @@ public class Checkers extends AbstractGame {
 					if(cell.getPiece().getType() == CheckersPieceTypes.KING) {
 						delta-=2;
 						//System.out.println("King 2 count twice!");
-					}					
+					}
 				}
 			}
 		}
 		return delta;
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
+	@Override
 	public boolean isGameOverFromVictory(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) != 0;
 	}
-	// ------------------------------------------------------------		
+	// ------------------------------------------------------------
+	@Override
 	public boolean isGameOverFromDraw(final LegalMoveInterface previousMove) {
 		return this.isGameOver(previousMove) && this.computeDelta(previousMove.getSide()) == 0;
 	}
-	// ------------------------------------------------------------			
+	// ------------------------------------------------------------
+	@Override
 	public double computeStaticEvaluation(final LegalMoveInterface move) {
 		return this.computeDelta(move.getSide());
-	}	
-	// -----------------------------------------------------------------	
+	}
+	// -----------------------------------------------------------------
 }

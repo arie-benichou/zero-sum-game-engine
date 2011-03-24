@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service;
@@ -23,10 +23,10 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlayInterfac
  * This is the interface for a game play service.
  */
 public interface GamePlayServiceInterface {
-	
+
 	/**
 	 * Returns the game play.
-	 *  
+	 * 
 	 * @return the game play
 	 */
 	GamePlayInterface getGamePlay();
@@ -35,7 +35,7 @@ public interface GamePlayServiceInterface {
 	 * Starts a new game play.
 	 */
 	void start();
-	
+
 	/**
 	 * Pauses this game play.
 	 */

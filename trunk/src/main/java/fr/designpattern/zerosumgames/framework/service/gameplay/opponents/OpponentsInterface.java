@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
@@ -31,10 +31,10 @@ public interface OpponentsInterface {
 	 * @param context the game context for the opponents
 	 */
 	void injectContext(final GameInterface context);
-	
+
 	/**
 	 * Returns the game context for the opponents.
-	 *  
+	 * 
 	 * @return the game context for the opponents
 	 */
 	GameInterface getContext();

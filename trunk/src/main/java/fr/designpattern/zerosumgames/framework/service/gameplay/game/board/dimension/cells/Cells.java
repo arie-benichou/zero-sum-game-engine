@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells;
@@ -40,13 +40,13 @@ public class Cells implements CellsInterface {
 		this.gameBoardCells = gameBoardCells;
 	}
 	public final Map<PositionInterface, CellInterface> getGameBoardCells() {
-		return gameBoardCells;
+		return this.gameBoardCells;
 	}
 	// ---------------------------------------------------------------------
-	private final transient CellInterface nullCell; 
+	private final transient CellInterface nullCell;
 	public CellInterface getNullCell() {
 		return this.nullCell;
-	}	
+	}
 	// ---------------------------------------------------------------------
 	private CellInterface createCell(final PositionInterface position) {
 		return new GameBoardCell(position);
@@ -58,13 +58,13 @@ public class Cells implements CellsInterface {
 		///int numberOfPositions = this.getBoardPositionFactory().getNumberOfPositions();
 		///int numberOfDigitsInNumberOfPositions = numberOfPositions == 0 ? 1: (int) Math.log10(Math.abs(numberOfPositions)) + 1;
 		///System.out.println("\nInitialisation des " + numberOfPositions + " cellules...");
-		for (PositionInterface[] line : this.getBoardPositionFactory().getBoardPositions()) {
-			for (PositionInterface position : line) {
-					///System.out.format("%0" + numberOfDigitsInNumberOfPositions+ "d : ", ++n);
-					// TODO utiliser une méthode de création
-					cell = this.createCell(position);
-					///System.out.print(cell + "\n");
-					boardCells.put(position, cell);
+		for (final PositionInterface[] line : this.getBoardPositionFactory().getBoardPositions()) {
+			for (final PositionInterface position : line) {
+				///System.out.format("%0" + numberOfDigitsInNumberOfPositions+ "d : ", ++n);
+				// TODO utiliser une méthode de création
+				cell = this.createCell(position);
+				///System.out.print(cell + "\n");
+				boardCells.put(position, cell);
 			}
 		}
 		return boardCells;
@@ -73,8 +73,8 @@ public class Cells implements CellsInterface {
 	public Cells(final PositionsInterface positionFactory) {
 		this.setBoardPositionFactory(positionFactory);
 		this.setGameBoardCells(this.initializeBoardCells(new HashMap<PositionInterface, CellInterface>(positionFactory.getNumberOfPositions())));
-		
-		this.nullCell = new GameBoardCell(this.getBoardPositionFactory().getNullPosition()); 
+
+		this.nullCell = new GameBoardCell(this.getBoardPositionFactory().getNullPosition());
 	}
 	// ---------------------------------------------------------------------
 	public CellInterface cell(final PositionInterface position) {
@@ -82,7 +82,7 @@ public class Cells implements CellsInterface {
 	}
 	// =====================================================================
 	private class GameBoardCell implements CellInterface {
-		// ---------------------------------------------------------------------		
+		// ---------------------------------------------------------------------
 		private PositionInterface position;
 		public final PositionInterface getPosition() {
 			return this.position;
@@ -94,34 +94,34 @@ public class Cells implements CellsInterface {
 		public boolean isNull() {
 			return this.getPosition().isNull();
 		}
-		// ---------------------------------------------------------------------				
+		// ---------------------------------------------------------------------
 		private PieceInterface piece = null;
 		public final void setPiece(final PieceInterface piece) {
-			
+
 			// TODO ? utiliser la pièce nulle
 			if(this.isNull()) {
 				throw new RuntimeException();
-			}			
-			
+			}
+
 			this.piece = piece;
 		}
 		public final PieceInterface getPiece() {
-			
+
 			// TODO utiliser la pièce nulle
 			if(this.isNull()) {
 				throw new RuntimeException();
 			}
-			
+
 			return this.piece;
 		}
 		// ---------------------------------------------------------------------
 		public boolean isEmpty() {
-			
+
 			// TODO ? renvoyer true
 			if(this.isNull()) {
 				throw new RuntimeException();
 			}
-			
+
 			return this.getPiece() == null;
 		}
 		// ---------------------------------------------------------------------
@@ -129,14 +129,14 @@ public class Cells implements CellsInterface {
 		public Map<BoardCardinalPosition, CellInterface> getNeighbourhood() {
 			if (this.neighbourhood == null) {
 				this.neighbourhood = new HashMap<BoardCardinalPosition, CellInterface>(8);
-				this.neighbourhood.put(BoardCardinalPosition.TOP, cell(getBoardPositionFactory().topOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.RIGHT, cell(getBoardPositionFactory().rightOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.BOTTOM, cell(getBoardPositionFactory().bottomOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.LEFT, cell(getBoardPositionFactory().leftOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.TOP_RIGHT, cell(getBoardPositionFactory().topRightOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.TOP_LEFT, cell(getBoardPositionFactory().topLeftOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.BOTTOM_RIGHT, cell(getBoardPositionFactory().bottomRightOf(this.getPosition())));
-				this.neighbourhood.put(BoardCardinalPosition.BOTTOM_LEFT, cell(getBoardPositionFactory().bottomLeftOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.TOP, Cells.this.cell(Cells.this.getBoardPositionFactory().topOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.RIGHT, Cells.this.cell(Cells.this.getBoardPositionFactory().rightOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.BOTTOM, Cells.this.cell(Cells.this.getBoardPositionFactory().bottomOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.LEFT, Cells.this.cell(Cells.this.getBoardPositionFactory().leftOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.TOP_RIGHT, Cells.this.cell(Cells.this.getBoardPositionFactory().topRightOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.TOP_LEFT, Cells.this.cell(Cells.this.getBoardPositionFactory().topLeftOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.BOTTOM_RIGHT, Cells.this.cell(Cells.this.getBoardPositionFactory().bottomRightOf(this.getPosition())));
+				this.neighbourhood.put(BoardCardinalPosition.BOTTOM_LEFT, Cells.this.cell(Cells.this.getBoardPositionFactory().bottomLeftOf(this.getPosition())));
 			}
 			return this.neighbourhood;
 		}
@@ -147,7 +147,7 @@ public class Cells implements CellsInterface {
 		// ---------------------------------------------------------------------
 		@Override
 		public String toString() {
-			return "[position=" + position + ", piece=" + piece + "]";
+			return "[position=" + this.position + ", piece=" + this.piece + "]";
 		}
 		// ---------------------------------------------------------------------
 		public CellInterface getNeighbour(final BoardCardinalPosition key) {
@@ -178,7 +178,7 @@ public class Cells implements CellsInterface {
 		public CellInterface bottomLeft() {
 			return this.getNeighbour(BoardCardinalPosition.BOTTOM_LEFT);
 		}
-		// ---------------------------------------------------------------------		
+		// ---------------------------------------------------------------------
 	}
 	// =====================================================================
 

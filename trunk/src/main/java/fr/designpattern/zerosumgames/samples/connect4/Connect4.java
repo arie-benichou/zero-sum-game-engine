@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 Arié Bénichou
+ * Copyright 2011 Arié Bénichou
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.samples.connect4;
@@ -31,21 +31,22 @@ public class Connect4 extends Tictactoe {
 	// ------------------------------------------------------------
 	public final static int CONNECTIONS = 4;
 	public final static Class<Connect4PieceTypes> PIECE_TYPES = Connect4PieceTypes.class;
-	public final static Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7); 
+	public final static Dimension BOARD_DIMENSION = new Dimension(1, 6, 1, 7);
 	// ------------------------------------------------------------
 	public Connect4(final BoardInterface board, final int connections) {
 		super(board, connections);
-	}	
+	}
 	// ------------------------------------------------------------
 	public Connect4(final BoardInterface board) {
-		super(board, CONNECTIONS);
+		super(board, Connect4.CONNECTIONS);
 	}
 	// -----------------------------------------------------------------
+	@Override
 	public final List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		CellInterface nextBottomCell;
 		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
 		// TODO a améliorer
-		for (CellInterface[] line : this.getBoard()) {
+		for (final CellInterface[] line : this.getBoard()) {
 			for(CellInterface cell : line) {
 				while(cell.isEmpty()) {
 					nextBottomCell = cell.bottom();
@@ -56,9 +57,9 @@ public class Connect4 extends Tictactoe {
 					cell = nextBottomCell;
 				}
 			}
-			break;			
+			break;
 		}
 		return legalMoves;
-	}	
+	}
 	// ------------------------------------------------------------
 }

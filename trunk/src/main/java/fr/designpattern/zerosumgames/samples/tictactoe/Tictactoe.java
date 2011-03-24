@@ -1,8 +1,6 @@
 /*
- * @(#)Tictactoe.java	0.99
+ * Copyright 2011 Arié Bénichou
  * 
- * Copyright 2011 Arie Benichou
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.samples.tictactoe;
@@ -48,7 +46,7 @@ public class Tictactoe extends AbstractGame {
 	}
 	// ------------------------------------------------------------
 	public Tictactoe(final BoardInterface board, final int connections) {
-		super(new Pieces(PIECE_TYPES), board);
+		super(new Pieces(Tictactoe.PIECE_TYPES), board);
 		this.connections = connections;
 	}
 	// ------------------------------------------------------------
@@ -64,21 +62,23 @@ public class Tictactoe extends AbstractGame {
 		return new LegalMove(side, position);
 	}
 	// ------------------------------------------------------------
+	@Override
 	public List<LegalMoveInterface> getLegalMoves(final OpponentsEnumeration side) {
 		final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
-		for (CellInterface[] line : this.getBoard()) {
-			for (CellInterface cell : line) {
+		for (final CellInterface[] line : this.getBoard()) {
+			for (final CellInterface cell : line) {
 				if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
 					legalMoves.add(this.makeMove(side, cell.getPosition()));
 				}
 			}
 		}
 		return legalMoves;
-	}	
+	}
 	// ------------------------------------------------------------
+	@Override
 	public boolean isGameOverFromVictory(final LegalMoveInterface justPlayedMove) {
 		boolean isGameOverFromVictory = false;
-		for (BoardPlane plane : BoardPlane.values()) {
+		for (final BoardPlane plane : BoardPlane.values()) {
 			final int connections = this.computeRealConnection(justPlayedMove, plane.getOneWay())+ 1 + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 			if (connections >= this.connections) {
 				isGameOverFromVictory = true;
@@ -88,25 +88,29 @@ public class Tictactoe extends AbstractGame {
 		return isGameOverFromVictory;
 	}
 	// ------------------------------------------------------------
+	@Override
 	public boolean isGameOverFromDraw(final LegalMoveInterface justPlayedMove) {
 		return this.getLegalMoves(OpponentsEnumeration.opponent(justPlayedMove.getSide())).isEmpty();
 	}
 	// ------------------------------------------------------------
+	@Override
 	public boolean doMove(final LegalMoveInterface moveToPlay) {
 		final CellInterface concernedCell = this.cell(moveToPlay.getPosition());
 		concernedCell.setPiece(this.piece(moveToPlay.getSide()));
 		return true;
 	}
 	// ------------------------------------------------------------
+	@Override
 	public boolean undoMove(final LegalMoveInterface move) {
 		this.cell(move.getPosition()).setPiece(null); // TODO ? utiliser la pièce nulle
 		return true; // is undo move complete ?
 	}
 	// ------------------------------------------------------------
+	@Override
 	public double computeStaticEvaluation(final LegalMoveInterface justPlayedMove) {
-		
+
 		double evaluation;
-		
+
 		if(this.isGameOverFromVictory(justPlayedMove)) {
 			evaluation = Double.POSITIVE_INFINITY;
 		}
@@ -124,30 +128,30 @@ public class Tictactoe extends AbstractGame {
 			}
 			evaluation += realConnections;
 		}
-		
-		return evaluation;		
+
+		return evaluation;
 	}
 	// ------------------------------------------------------------
 	protected int computeRealConnections(final LegalMoveInterface justPlayedMove) {
 		int connections = 0;
-		for (BoardPlane plane : BoardPlane.values()) {
+		for (final BoardPlane plane : BoardPlane.values()) {
 			connections = this.computeRealConnection(justPlayedMove,plane.getOneWay()) + this.computeRealConnection(justPlayedMove,plane.getOppositeWay());
 		}
 		return connections;
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
 	protected int computePotentialConnections(final LegalMoveInterface justPlayedMove) {
 		int connections = 0;
 		int connections1 = 0;
 		int connections2 = 0;
-		// ------------------------------------------------------------		
-		for (BoardPlane plane : BoardPlane.values()) {
+		// ------------------------------------------------------------
+		for (final BoardPlane plane : BoardPlane.values()) {
 			// ------------------------------------------------------------
 			connections1 = this.computePotentialConnection(justPlayedMove,plane.getOneWay());
 			connections2 = this.computePotentialConnection(justPlayedMove,plane.getOppositeWay());
 			// ------------------------------------------------------------
 			connections += connections1 + connections2;
-			// ------------------------------------------------------------			
+			// ------------------------------------------------------------
 		}
 		return connections;
 	}
@@ -164,7 +168,7 @@ public class Tictactoe extends AbstractGame {
 		}
 		return --connected;
 	}
-	// ------------------------------------------------------------	
+	// ------------------------------------------------------------
 	protected int computePotentialConnection(final LegalMoveInterface justPlayedMove, final BoardCardinalPosition direction) {
 		int connected;
 		CellInterface cell = this.cell(justPlayedMove.getPosition());
@@ -178,7 +182,7 @@ public class Tictactoe extends AbstractGame {
 			}
 		}
 		return --connected;
-	}	
+	}
 	// ------------------------------------------------------------
 	private PieceInterface piece(final OpponentsEnumeration player) {
 		return super.piece(player, TictactoePieceTypes.PAWN);

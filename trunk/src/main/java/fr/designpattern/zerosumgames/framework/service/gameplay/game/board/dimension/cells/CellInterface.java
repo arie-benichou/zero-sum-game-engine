@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells;
@@ -28,7 +28,7 @@ import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
  * This is the interface for a game board cell.
  */
 public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
-	
+
 	/**
 	 * Returns true if this cell is empty.
 	 * 
@@ -78,13 +78,13 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return the top-neighbour cell of this cell
 	 */
-	 // -------------
-	 // |   | x |   |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // |   |   |   |
-	 // -------------
+	// -------------
+	// |   | x |   |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// |   |   |   |
+	// -------------
 	CellInterface top();
 
 	/**
@@ -92,13 +92,13 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return the right-neighbour cell of this cell
 	 */
-	 // -------------
-	 // |   |   |   |
-	 // -------------
-	 // |   | . | x |
-	 // -------------
-	 // |   |   |   |
-	 // -------------	
+	// -------------
+	// |   |   |   |
+	// -------------
+	// |   | . | x |
+	// -------------
+	// |   |   |   |
+	// -------------
 	CellInterface right();
 
 	/**
@@ -106,27 +106,27 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return the bottom-neighbour cell of this cell
 	 */
-	 // -------------
-	 // |   |   |   |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // |   | x |   |
-	 // -------------
+	// -------------
+	// |   |   |   |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// |   | x |   |
+	// -------------
 	CellInterface bottom();
 
 	/**
 	 * Returns the left-neighbour cell of this cell.
 	 * 
 	 * @return the left-neighbour cell of this cell
-	 */	
-	 // -------------
-	 // |   |   |   |
-	 // -------------
-	 // | x | . |   |
-	 // -------------
-	 // |   |   |   |
-	 // -------------
+	 */
+	// -------------
+	// |   |   |   |
+	// -------------
+	// | x | . |   |
+	// -------------
+	// |   |   |   |
+	// -------------
 	CellInterface left();
 
 	/**
@@ -134,41 +134,41 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return the top-right-neighbour cell of this cell
 	 */
-	 // -------------
-	 // |   |   | x |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // |   |   |   |
-	 // -------------
+	// -------------
+	// |   |   | x |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// |   |   |   |
+	// -------------
 	CellInterface topRight();
 
 	/**
 	 * Returns the top-left-neighbour cell of this cell.
 	 * 
 	 * @return the top-left-neighbour cell of this cell
-	 */	
-	 // -------------
-	 // | x |   |   |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // |   |   |   |
-	 // -------------
+	 */
+	// -------------
+	// | x |   |   |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// |   |   |   |
+	// -------------
 	CellInterface topLeft();
-	
+
 	/**
 	 * Returns the bottom-right-neighbour cell of this cell.
 	 * 
 	 * @return the bottom-right-neighbour cell of this cell
-	 */	
-	 // -------------
-	 // |   |   |   |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // |   |   | x |
-	 // -------------
+	 */
+	// -------------
+	// |   |   |   |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// |   |   | x |
+	// -------------
 	CellInterface bottomRight();
 
 	/**
@@ -176,13 +176,13 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
 	 * 
 	 * @return the bottom-left-neighbour cell of this cell
 	 */
-	 // -------------
-	 // |   |   |   |
-	 // -------------
-	 // |   | . |   |
-	 // -------------
-	 // | x |   |   |
-	 // -------------
+	// -------------
+	// |   |   |   |
+	// -------------
+	// |   | . |   |
+	// -------------
+	// | x |   |   |
+	// -------------
 	CellInterface bottomLeft();
 
 }

@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector;
@@ -27,20 +27,20 @@ public class HumanMoveSelector extends NullSelector {
 
 	@Override
 	public LegalMoveInterface applySelection(final List<LegalMoveInterface> legalMoves) {
-		
+
 		LegalMoveInterface move;
 
 		int n = 0;
 		final int numberOfDigits = (int) Math.log10(Math.abs(legalMoves.size())) + 1;
 		System.out.println("\nLegal moves :");
-		for (LegalMoveInterface legalMove : legalMoves) {
+		for (final LegalMoveInterface legalMove : legalMoves) {
 			System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, legalMove);
 		}
-			
+
 		System.out.println("\nWhat is your move ?\n");
-		
+
 		final Scanner scanner = new Scanner(System.in);
-		
+
 		int i = 0;
 		try {
 			i = scanner.nextInt();
@@ -51,8 +51,8 @@ public class HumanMoveSelector extends NullSelector {
 			} else {
 				move = legalMoves.get(i - 1);
 				System.out.println("\nYou have choosen to play: " + move);
-			}			
-		} catch (InputMismatchException e) {
+			}
+		} catch (final InputMismatchException e) {
 			System.out.println("\nPositive natural integer expected.");
 			System.out.println("Please try again...");
 			move = this.applySelection(legalMoves);

@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces;
@@ -24,13 +24,13 @@ public abstract class Piece implements PieceInterface {
 	private final transient OpponentsEnumeration side;
 
 	public OpponentsEnumeration getSide() {
-		return side;
+		return this.side;
 	}
 
 	private final transient PieceTypeInterface type;
 
 	public PieceTypeInterface getType() {
-		return type;
+		return this.type;
 	}
 
 	public Piece(final PieceTypeInterface type, final OpponentsEnumeration side) {
@@ -40,7 +40,7 @@ public abstract class Piece implements PieceInterface {
 
 	@Override
 	public String toString() {
-		return "[type=" + type + ", " + "side=" + side + "]";
+		return "[type=" + this.type + ", " + "side=" + this.side + "]";
 	}
 
 }

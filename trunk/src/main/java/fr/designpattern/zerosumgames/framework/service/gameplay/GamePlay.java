@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay;
@@ -30,22 +30,22 @@ public class GamePlay implements GamePlayInterface {
 	private final OpponentsInterface opponents;
 	private final OpponentsInterface getOpponents() {
 		return this.opponents;
-	}	
+	}
 	// ---------------------------------------------------------------------
 	private final GameInterface game;
 	private final GameInterface getGame() {
 		return this.game;
-	}	
+	}
 	// ---------------------------------------------------------------------
 	private transient OpponentsEnumeration sideToPlay = OpponentsEnumeration.FIRST_PLAYER;
-	private final void setSideToPlay(OpponentsEnumeration sideToPlay) {
+	private final void setSideToPlay(final OpponentsEnumeration sideToPlay) {
 		this.sideToPlay = sideToPlay;
 	}
 	public final OpponentsEnumeration getSideToPlay() {
 		return this.sideToPlay;
-	}	
+	}
 	// ---------------------------------------------------------------------
-	public GamePlay(GameInterface game, OpponentsInterface opponents) {
+	public GamePlay(final GameInterface game, final OpponentsInterface opponents) {
 		this.game = game;
 		opponents.injectContext(game);
 		this.opponents = opponents;
@@ -57,18 +57,18 @@ public class GamePlay implements GamePlayInterface {
 	public OpponentInterface getOpponentByOrder(final OpponentsEnumeration side) {
 		return this.getOpponents().getOpponentByOrder(side);
 	}
-	// ---------------------------------------------------------------------	
-	public void play(LegalMoveInterface move) {
+	// ---------------------------------------------------------------------
+	public void play(final LegalMoveInterface move) {
 		this.setSideToPlay(this.getGame().play(move));
 	}
 	// ---------------------------------------------------------------------
 	public final boolean isGamePlayOver() {
 		return !this.getSideToPlay().isAPlayer();
 	}
-	// ---------------------------------------------------------------------	
+	// ---------------------------------------------------------------------
 	@Override
 	public String toString() {
-		return  this.getGame().toString() + "\n" + this.getOpponents().toString(); 
+		return  this.getGame().toString() + "\n" + this.getOpponents().toString();
 	}
-	// ---------------------------------------------------------------------	
+	// ---------------------------------------------------------------------
 }

@@ -8,16 +8,16 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
 public class Strategy implements StrategyInterface {
-	
-	private EvaluatorInterface evaluator;
-	private SelectorInterface selector; // TODO Selector peut être un composite
 
-	public Strategy(EvaluatorInterface evaluator, SelectorInterface selector) {
+	private final EvaluatorInterface evaluator;
+	private final SelectorInterface selector; // TODO Selector peut être un composite
+
+	public Strategy(final EvaluatorInterface evaluator, final SelectorInterface selector) {
 		this.evaluator = evaluator;
 		this.selector = selector;
 	}
-	
-	public void injectContext(GameInterface context) {
+
+	public void injectContext(final GameInterface context) {
 		this.getEvaluator().setContext(context);
 	}
 
@@ -29,21 +29,21 @@ public class Strategy implements StrategyInterface {
 		return this.selector;
 	}
 
-	public List<LegalMoveInterface> applyEvaluator(List<LegalMoveInterface> legalMoves) {
+	public List<LegalMoveInterface> applyEvaluator(final List<LegalMoveInterface> legalMoves) {
 		return this.getEvaluator().applyEvaluation(legalMoves);
 	}
 
-	public LegalMoveInterface applySelector(List<LegalMoveInterface> legalMoves) {
+	public LegalMoveInterface applySelector(final List<LegalMoveInterface> legalMoves) {
 		return this.getSelector().applySelection(legalMoves);
 	}
 
-	public LegalMoveInterface computeStrategicMoveFrom(List<LegalMoveInterface> legalMoves) {
+	public LegalMoveInterface computeStrategicMoveFrom(final List<LegalMoveInterface> legalMoves) {
 		return this.applySelector(this.applyEvaluator(legalMoves));
 	}
 
 	@Override
 	public String toString() {
-		return this.getEvaluator().toString() + " | " + getSelector().toString();
+		return this.getEvaluator().toString() + " | " + this.getSelector().toString();
 	}
 
 }

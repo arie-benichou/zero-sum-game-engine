@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents;
@@ -24,7 +24,7 @@ public interface OpponentsBuilderInterface {
 	OpponentsBuilderInterface player1(final OpponentInterface player1);
 
 	OpponentsBuilderInterface player2(final OpponentInterface player2);
-	
+
 	OpponentsInterface build();
-		
+
 }

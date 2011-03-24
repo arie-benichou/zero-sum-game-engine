@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board;
@@ -33,14 +33,14 @@ public interface BoardInterface extends Iterable<CellInterface[]> {
 	 * @return the cell related to a given position
 	 */
 	CellInterface getCell(final PositionInterface position);
-	
+
 	/**
 	 * Returns the cell related to a given position.
 	 * 
 	 * @param position a given position
 	 * 
 	 * @return the cell related to a given position
-	 */	
+	 */
 	CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
 
 }

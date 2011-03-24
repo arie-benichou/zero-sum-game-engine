@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board;
@@ -47,30 +47,30 @@ public class Board implements BoardInterface {
 	// ---------------------------------------------------------------------
 	// TODO ? utiliser boardDimension
 	private CellInterface[][] createBoard() {
-		
+
 		final DimensionInterface dimension = this.getBoardCellFactory().getBoardPositionFactory().getBoardDimension();
 		/*
 		int[] byRow = new int[bd.getRowIndexRangeSize()];
-		
+
 		for (IGameBoardPosition[] line : this.getBoardCellFactory().getBoardPositionFactory().getBoardPositions())
 			for (IGameBoardPosition position : line)
-				if (!position.isNull()) 
+				if (!position.isNull())
 					++byRow[position.getInternalRowIndex()];
-		
+
 		int xMax = 0;
 		for(int x : byRow)
 			if(x > xMax) xMax = x;
 
 		return new IGameBoardCell[byRow.length][xMax];
-		*/
-		
+		 */
+
 		//TODO à optimiser plus tard
 		return new CellInterface[dimension.getRowIndexRangeSize()][dimension.getColumnIndexRangeSize()];
 	}
 
 	// ---------------------------------------------------------------------
-	private CellInterface[][] initializeBoard(CellInterface[][] board) {
-		for (PositionInterface position : this.getBoardCellFactory().getGameBoardCells().keySet()) {
+	private CellInterface[][] initializeBoard(final CellInterface[][] board) {
+		for (final PositionInterface position : this.getBoardCellFactory().getGameBoardCells().keySet()) {
 			board[position.getInternalRowIndex()][position.getInternalColumnIndex()] = this.getBoardCellFactory().cell(position);
 		}
 		return board;
@@ -93,14 +93,14 @@ public class Board implements BoardInterface {
 			cell = this.getBoardCellFactory().cell(position);
 		}
 		else {
-			cell = this.getBoard()[position.getInternalRowIndex()][position.getInternalColumnIndex()];	
+			cell = this.getBoard()[position.getInternalRowIndex()][position.getInternalColumnIndex()];
 		}
 		return cell;
 	}
-	// ---------------------------------------------------------------------	
+	// ---------------------------------------------------------------------
 	public CellInterface getCell(final int clientRowIndex, final int clientColumnIndex) {
 		return this.getCell(this.getBoardCellFactory().getBoardPositionFactory().position(clientRowIndex, clientColumnIndex));
-	}	
+	}
 	// ---------------------------------------------------------------------
 	public Iterator<CellInterface[]> iterator() {
 		return Arrays.asList(this.getBoard()).iterator();
@@ -111,15 +111,15 @@ public class Board implements BoardInterface {
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		PieceInterface piece;
-		for (CellInterface[] line : this.getBoard()) {
+		for (final CellInterface[] line : this.getBoard()) {
 			sb.append("\n");
 			sb.append("-");
-			for (CellInterface cell : line) {
+			for (final CellInterface cell : line) {
 				sb.append("----");
 			}
 			sb.append("\n");
 			sb.append("|");
-			for (CellInterface cell : line) {
+			for (final CellInterface cell : line) {
 				piece = cell.getPiece();
 				sb.append(" " + (piece == null ? " " : piece) + " ");
 				sb.append("|");
@@ -127,7 +127,7 @@ public class Board implements BoardInterface {
 		}
 		sb.append("\n");
 		sb.append("-");
-		for (CellInterface cell : this.getBoard()[0]) {
+		for (final CellInterface cell : this.getBoard()[0]) {
 			sb.append("----");
 		}
 		//sb.append("\n");

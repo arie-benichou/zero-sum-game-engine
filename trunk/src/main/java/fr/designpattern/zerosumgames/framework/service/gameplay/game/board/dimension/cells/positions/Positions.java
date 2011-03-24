@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions;
@@ -40,7 +40,7 @@ public class Positions implements PositionsInterface {
 	}
 
 	public final PositionInterface[][] getBoardPositions() {
-		return positions;
+		return this.positions;
 	}
 
 	// ---------------------------------------------------------------------
@@ -65,12 +65,12 @@ public class Positions implements PositionsInterface {
 	private int computeInternalColumnIndex(final int clientColumnIndex) {
 		return clientColumnIndex - this.getBoardDimension().getMinColumnIndex();
 	}
-	// ---------------------------------------------------------------------	
+	// ---------------------------------------------------------------------
 	private final PositionInterface createPosition(final int clientRowIndex, final int clientColumnIndex) {
 		this.incrementNumberOfPositions();
 		return new GameBoardPosition(clientRowIndex, clientColumnIndex, this.computeInternalRowIndex(clientRowIndex), this.computeInternalRowIndex(clientColumnIndex));
 	}
-	
+
 	private final PositionInterface createNullPosition(final int clientRowIndex, final int clientColumnIndex) {
 		return new GameBoardNullPosition(clientRowIndex, clientColumnIndex, this.computeInternalRowIndex(clientRowIndex), this.computeInternalRowIndex(clientColumnIndex));
 	}
@@ -79,7 +79,7 @@ public class Positions implements PositionsInterface {
 		return new PositionInterface[this.getBoardDimension().getRowIndexRangeSize()][this.getBoardDimension().getColumnIndexRangeSize()];
 	}
 	// ---------------------------------------------------------------------
-	private PositionInterface[][] initializeBoardPositionsCache(PositionInterface[][] positions) {
+	private PositionInterface[][] initializeBoardPositionsCache(final PositionInterface[][] positions) {
 
 		///System.out.println("\nInitialisation des " + this.getBoardDimension().getCapacity() + " positions...");
 
@@ -106,8 +106,8 @@ public class Positions implements PositionsInterface {
 	}
 	// ---------------------------------------------------------------------
 	// TODO créer les éventuelles positions nulles après l'initialisation
-	private PositionInterface[][] fillWithNullPositions(PositionInterface[][] positions) {
-		
+	private PositionInterface[][] fillWithNullPositions(final PositionInterface[][] positions) {
+
 		/*
 		int yMax = this.getBoardDimension().getRowIndexRangeSize();
 		int xMax = this.getBoardDimension().getColumnIndexRangeSize();
@@ -115,8 +115,8 @@ public class Positions implements PositionsInterface {
 			for (int x = 0; x < xMax; ++x)
 				boardPositionsCache[y][x] = this.getNullPosition();
 		return boardPositionsCache;
-		*/
-		
+		 */
+
 		final int minColumnIndex = this.getBoardDimension().getMinColumnIndex();
 		final int maxColumnIndex = this.getBoardDimension().getMaxColumnIndex();
 		final int minRowIndex = this.getBoardDimension().getMinRowIndex();
@@ -131,25 +131,25 @@ public class Positions implements PositionsInterface {
 			}
 		}
 
-		return positions;		
-		
-	}	
+		return positions;
+
+	}
 	// ---------------------------------------------------------------------
 	public Positions(final DimensionInterface boardDimension) {
 		this.setBoardDimension(boardDimension);
 		this.setBoardPositionsCache(
-			this.initializeBoardPositionsCache(
-				this.fillWithNullPositions(
-					this.createBoardPositionsCache()
+				this.initializeBoardPositionsCache(
+						this.fillWithNullPositions(
+								this.createBoardPositionsCache()
+						)
 				)
-			)
 		);
 	}
 	// ---------------------------------------------------------------------
 	public PositionInterface position(final int clientRowIndex, final int clientColumnIndex) {
-		
+
 		PositionInterface position;
-		
+
 		// si la position est hors-dimension, nulle position n'est retournée.
 		if (this.getBoardDimension().contains(clientRowIndex, clientColumnIndex)) {
 			position = this.getBoardPositions()[this.computeInternalRowIndex(clientRowIndex)][this.computeInternalColumnIndex(clientColumnIndex)];
@@ -164,7 +164,7 @@ public class Positions implements PositionsInterface {
 		if(position == null) {
 			throw new GameBoardIllegalPositionException(clientRowIndex, clientColumnIndex);
 		}
-		
+
 		return position;
 	}
 	// ---------------------------------------------------------------------
@@ -172,8 +172,8 @@ public class Positions implements PositionsInterface {
 	private PositionInterface getAdjacentPositionTo(final PositionInterface position, final BoardCardinalPosition direction) {
 		return this.position(position.getClientRowIndex() + direction.getDeltaRowIndex(), position.getClientColumnIndex() + direction.getDeltaColumnIndex());
 	}
-	// ---------------------------------------------------------------------	
-	
+	// ---------------------------------------------------------------------
+
 	public PositionInterface leftOf(final PositionInterface position) {
 		return this.getAdjacentPositionTo(position, BoardCardinalPosition.LEFT);
 	}
@@ -187,7 +187,7 @@ public class Positions implements PositionsInterface {
 	}
 	// ---------------------------------------------------------------------
 	public PositionInterface bottomOf(final PositionInterface position) {
-		return this.getAdjacentPositionTo(position, BoardCardinalPosition.BOTTOM);		
+		return this.getAdjacentPositionTo(position, BoardCardinalPosition.BOTTOM);
 	}
 
 	// ---------------------------------------------------------------------
@@ -216,18 +216,18 @@ public class Positions implements PositionsInterface {
 
 		private final transient int clientRowIndex;
 		private final transient int clientColumnIndex;
-		
+
 		public GameBoardIllegalPositionException(final int clientRowIndex, final int clientColumnIndex) {
 			super();
 			this.clientRowIndex = clientRowIndex;
 			this.clientColumnIndex = clientColumnIndex;
-		}		
+		}
 
 		@Override
 		public String getMessage() {
 			return "La position (clientRowIndex=" + this.clientRowIndex
-					+ ", clientColumnIndex=" + this.clientColumnIndex
-					+ ") est illégale.";
+			+ ", clientColumnIndex=" + this.clientColumnIndex
+			+ ") est illégale.";
 		}
 
 	}
@@ -245,7 +245,7 @@ public class Positions implements PositionsInterface {
 		private int clientColumnIndex;
 		public final int getClientColumnIndex() {
 			return this.clientColumnIndex;
-		}				
+		}
 		private final void setClientColumnIndex(final int clientColumnIndex) {
 			this.clientColumnIndex = clientColumnIndex;
 		}
@@ -253,18 +253,18 @@ public class Positions implements PositionsInterface {
 		private int internalRowIndex;
 		public final int getInternalRowIndex() {
 			return this.internalRowIndex;
-		}				
+		}
 		private final void setInternalRowIndex(final int internalRowIndex) {
 			this.internalRowIndex = internalRowIndex;
 		}
-		// ---------------------------------------------------------------------		
+		// ---------------------------------------------------------------------
 		private int internalColumnIndex;
 		public final int getInternalColumnIndex() {
 			return this.internalColumnIndex;
-		}				
+		}
 		private final void setInternalColumnIndex(final int internalColumnIndex) {
 			this.internalColumnIndex = internalColumnIndex;
-		}				
+		}
 		// ---------------------------------------------------------------------
 		public GameBoardNullPosition(final int clientRowIndex, final int clientColumnIndex, final int internalRowIndex, final int internalColumnIndex) {
 			this.setClientRowIndex(clientRowIndex);
@@ -272,14 +272,14 @@ public class Positions implements PositionsInterface {
 			this.setInternalRowIndex(internalRowIndex);
 			this.setInternalColumnIndex(internalColumnIndex);
 		}
-		// ---------------------------------------------------------------------		
+		// ---------------------------------------------------------------------
 		public boolean isNull() {
 			return true;
 		}
 		// ---------------------------------------------------------------------
 		@Override
 		public String toString() {
-			return  "null position";			
+			return  "null position";
 		}
 		// ---------------------------------------------------------------------
 	}
@@ -297,9 +297,9 @@ public class Positions implements PositionsInterface {
 		// ---------------------------------------------------------------------
 		@Override
 		public String toString() {
-			return "[row " + this.getClientRowIndex() + "][column " + this.getClientColumnIndex() + "]";			
+			return "[row " + this.getClientRowIndex() + "][column " + this.getClientColumnIndex() + "]";
 		}
-		// ---------------------------------------------------------------------		
+		// ---------------------------------------------------------------------
 	}
 	// =====================================================================
 }

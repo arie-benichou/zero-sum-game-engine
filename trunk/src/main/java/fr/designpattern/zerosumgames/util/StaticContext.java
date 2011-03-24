@@ -1,7 +1,7 @@
 package fr.designpattern.zerosumgames.util;
 
 public final class StaticContext {
-	
+
 	private StaticContext() {}
 
 	public static class CurrentClassGetter<T> extends SecurityManager {

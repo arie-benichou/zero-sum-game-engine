@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.    
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions;
@@ -44,7 +44,7 @@ public interface PositionsInterface {
 	 * @return all the positions
 	 */
 	PositionInterface[][] getBoardPositions();
-	
+
 	/**
 	 * Returns the null position.
 	 * 
@@ -78,16 +78,16 @@ public interface PositionsInterface {
 	 * @param position a given position
 	 * 
 	 * @return the right position of a given position
-	 */	
+	 */
 	PositionInterface rightOf(final PositionInterface position);
-	
+
 	/**
 	 * Returns the top position of a given position.
 	 * 
 	 * @param position a given position
 	 * 
 	 * @return the top position of a given position
-	 */	
+	 */
 	PositionInterface topOf(final PositionInterface position);
 
 	/**
@@ -96,7 +96,7 @@ public interface PositionsInterface {
 	 * @param position a given position
 	 * 
 	 * @return the bottom position of a given position
-	 */	
+	 */
 	PositionInterface bottomOf(final PositionInterface position);
 
 	/**
@@ -114,7 +114,7 @@ public interface PositionsInterface {
 	 * @param position a given position
 	 * 
 	 * @return the top-right position of a given position
-	 */	
+	 */
 	PositionInterface topRightOf(final PositionInterface position);
 
 	/**
@@ -123,7 +123,7 @@ public interface PositionsInterface {
 	 * @param position a given position
 	 * 
 	 * @return the bottom-left position of a given position
-	 */	
+	 */
 	PositionInterface bottomLeftOf(final PositionInterface position);
 
 	/**
@@ -132,7 +132,7 @@ public interface PositionsInterface {
 	 * @param position a given position
 	 * 
 	 * @return the bottom-right position of a given position
-	 */	
+	 */
 	PositionInterface bottomRightOf(final PositionInterface position);
 
 }

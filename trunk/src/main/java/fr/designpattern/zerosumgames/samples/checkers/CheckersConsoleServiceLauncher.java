@@ -1,32 +1,74 @@
+/*
+ * Copyright 2011 Arie Benichou
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package fr.designpattern.zerosumgames.samples.checkers;
 
+import fr.designpattern.zerosumgames.framework.service.GamePlayConsoleService;
+import fr.designpattern.zerosumgames.framework.service.gameplay.GamePlay;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilder;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameBuilderInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.GameInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentBuilder;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsBuilder;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsBuilderInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentBuilderInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.OpponentInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.Player;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.PlayerInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.EvaluatorInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxAlphaBetaEvaluator;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.NullEvaluator;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
 
 public class CheckersConsoleServiceLauncher {
 
-	public static void main(String[] args) {
-			
-		GameBuilderInterface gameBuilder = new GameBuilder(Checkers.class);
-		/*
-		gameBuilder.player1(
-			new Player(
-				"p1",
-				PlayerNature.COMPUTER,
-				new BestLegalMoveStrategy(new MiniMaxAlphaBeta(4))
-			)
-		);
-		
-		gameBuilder.player2(
-			new Player(
-				"p2",
-				PlayerNature.COMPUTER,
-				new BestLegalMoveStrategy(new MiniMaxAlphaBeta(4))
-			)
-		);
-		
-		new GameService(gameBuilder.build()).start();
-		*/
+	public static void main(final String[] args) {
+		// ------------------------------------------------------------
+		final OpponentBuilderInterface opponentBuilder = new OpponentBuilder();
+		final PlayerInterface player1 = new Player("Arié");
+		opponentBuilder.player(player1);
+		final EvaluatorInterface evaluator1 = new MiniMaxAlphaBetaEvaluator(9);
+		opponentBuilder.evaluator(evaluator1);
+		final SelectorInterface selector1 = new BestLegalMoveSelector();
+		opponentBuilder.selector(selector1);
+		// ------------------------------------------------------------
+		final OpponentInterface opponent1 = opponentBuilder.build();
+		// ------------------------------------------------------------
+		final PlayerInterface player2 = new Player("Anatole");
+		opponentBuilder.player(player2);
+		final EvaluatorInterface evaluator2 = new NullEvaluator();
+		opponentBuilder.evaluator(evaluator2);
+		final SelectorInterface selector2 = new HumanMoveSelector();
+		opponentBuilder.selector(selector2);
+		// ------------------------------------------------------------
+		final OpponentInterface opponent2 = opponentBuilder.build();
+		// ------------------------------------------------------------
+		final OpponentsBuilderInterface opponentsBuilder = new OpponentsBuilder();
+		final OpponentsInterface opponents = opponentsBuilder
+		.player1(opponent1).player2(opponent2).build();
+		// ------------------------------------------------------------
+		final GameBuilderInterface gameBuilder = new GameBuilder(Checkers.class);
+		final GameInterface game = gameBuilder.build();
+		// ------------------------------------------------------------
+		new GamePlayConsoleService(new GamePlay(game, opponents)).start();
+		// ------------------------------------------------------------
 	}
-	
+
 }

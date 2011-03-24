@@ -12,7 +12,7 @@ public class Opponent implements OpponentInterface {
 	private final PlayerInterface player;
 	private final StrategyInterface strategy;
 	private transient GameInterface context;
-	
+
 	public Opponent(final PlayerInterface player, final StrategyInterface strategy) {
 		this.player = player;
 		this.strategy = strategy;
@@ -26,22 +26,22 @@ public class Opponent implements OpponentInterface {
 		return this.strategy;
 	}
 
-	public LegalMoveInterface selectMove(List<LegalMoveInterface> legalMoves) {
+	public LegalMoveInterface selectMove(final List<LegalMoveInterface> legalMoves) {
 		return this.strategy.computeStrategicMoveFrom(legalMoves);
 	}
 
-	public void setContext(GameInterface context) {
+	public void setContext(final GameInterface context) {
 		this.context = context;
 		this.strategy.injectContext(context);
 	}
-	
+
 	public GameInterface getContext() {
 		return this.context;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.getPlayer().getName(); 
+		return this.getPlayer().getName();
 	}
-	
+
 }
