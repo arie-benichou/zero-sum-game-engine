@@ -1,5 +1,9 @@
+fixer othello
+fixer checkers
+implémenter LegalMovesHistory
+implémenter les heuristiques
 créer les builders manquants
 revoir la composition du board
 envisager d'avoir une instance de pièce de jeu par celulle
 faire gui
-tests unitaires (apprendre groovy + TDD)
+tests unitaires (regarder groovy)
