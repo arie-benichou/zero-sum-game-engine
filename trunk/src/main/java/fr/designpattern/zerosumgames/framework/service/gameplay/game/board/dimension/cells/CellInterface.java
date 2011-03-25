@@ -58,6 +58,8 @@ public interface CellInterface extends NullObjectAvailableInterface, Cloneable {
      */
     PositionInterface getPosition();
 
+    CellInterface clone();
+
     /**
      * Returns the neighbours cells of this cell.
      * 
