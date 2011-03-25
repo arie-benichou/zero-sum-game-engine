@@ -2,8 +2,10 @@ fixer othello
 fixer checkers
 implémenter LegalMovesHistory
 implémenter les heuristiques
+utiliser un thread pour chaque coup légal de premier niveau à évaluer
+ecrire le serveur de jeux et un client (toujours en mode console)
 créer les builders manquants
 revoir la composition du board
 envisager d'avoir une instance de pièce de jeu par celulle
-faire gui
 tests unitaires (regarder groovy)
+faire gui
