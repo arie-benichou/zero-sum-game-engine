@@ -20,11 +20,18 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.DimensionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.Cells;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellsInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.Positions;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.samples.tictactoe.TictactoePieceTypes;
+import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiecePawn;
 
 // TODO ? utiliser BoardCell et Equals
 public class Board implements BoardInterface {
@@ -41,14 +48,10 @@ public class Board implements BoardInterface {
     }
 
     // ---------------------------------------------------------------------
-    private CellInterface[][] board;
+    private final CellInterface[][] board;
 
     private final CellInterface[][] getBoard() {
         return this.board;
-    }
-
-    private final void setBoard(final CellInterface[][] board) {
-        this.board = board;
     }
 
     // ---------------------------------------------------------------------
@@ -78,7 +81,7 @@ public class Board implements BoardInterface {
     // ---------------------------------------------------------------------
     private CellInterface[][] initializeBoard(final CellInterface[][] board) {
         for (final PositionInterface position : this.getBoardCellFactory()
-                .getGameBoardCells().keySet()) {
+                .getAllCells().keySet()) {
             board[position.getInternalRowIndex()][position
                     .getInternalColumnIndex()] = this.getBoardCellFactory()
                     .cell(position);
@@ -87,10 +90,40 @@ public class Board implements BoardInterface {
     }
 
     // ---------------------------------------------------------------------
+    @Override
+    public BoardInterface clone() {
+
+        final CellInterface[][] clonedBoard = this.createBoard();
+
+        PositionInterface position;
+
+        for (final CellInterface[] line : this) {
+            for (final CellInterface cellToClone : line) {
+                position = cellToClone.getPosition();
+                clonedBoard[position.getInternalRowIndex()][position
+                        .getInternalColumnIndex()] = cellToClone.clone();
+            }
+        }
+
+        //TODO revoir la nécessité d'injecter la cellFactory au board;        
+        return new Board(clonedBoard, this.getBoardCellFactory());
+
+    }
+
+    // ---------------------------------------------------------------------
+    //TODO revoir la nécessité d'injecter la cellFactory au board;    
     public Board(final CellsInterface cellFactory) {
         ///System.out.println("\nInitialisation du board...");
         this.setBoardCellFactory(cellFactory);
-        this.setBoard(this.initializeBoard(this.createBoard()));
+        this.board = this.initializeBoard(this.createBoard());
+    }
+
+    // ---------------------------------------------------------------------    
+    private Board(final CellInterface[][] board,
+            final CellsInterface cellFactory) {
+        //TODO revoir la nécessité d'injecter la cellFactory au board;
+        this.setBoardCellFactory(cellFactory);
+        this.board = board;
     }
 
     // ---------------------------------------------------------------------
@@ -152,5 +185,43 @@ public class Board implements BoardInterface {
         //sb.append("\n");
         return sb.toString();
     }
+
     // ---------------------------------------------------------------------
+
+    public static void main(final String[] args) {
+
+        // TODO créér BoardTest.java
+
+        final Dimension dimension = new Dimension(1, 2, 1, 2);
+        final PositionsInterface positionFactory = new Positions(dimension);
+        final CellsInterface cellFactory = new Cells(positionFactory);
+        final BoardInterface board = new Board(cellFactory);
+
+        //TODO créer la NullPiece au sein du framework
+        final PieceInterface piece1 = new TictactoePiecePawn(
+                TictactoePieceTypes.PAWN,
+                OpponentsEnumeration.FIRST_PLAYER);
+
+        final PieceInterface piece2 = new TictactoePiecePawn(
+                TictactoePieceTypes.PAWN,
+                OpponentsEnumeration.SECOND_PLAYER);
+
+        System.out.println(piece1);
+        System.out.println(piece2);
+
+        System.out.println(board);
+
+        final BoardInterface clonedBoard = board.clone();
+
+        clonedBoard.cell(1, 1).setPiece(piece1);
+
+        //System.out.println(clonedBoard.cell(1, 1));
+
+        System.out.println(clonedBoard);
+
+        System.out.println(board);
+
+    }
+    // ---------------------------------------------------------------------   
+
 }

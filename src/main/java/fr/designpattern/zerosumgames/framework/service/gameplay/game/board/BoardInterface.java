@@ -48,4 +48,6 @@ public interface BoardInterface extends Iterable<CellInterface[]> {
      */
     CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
+    BoardInterface clone();
+
 }

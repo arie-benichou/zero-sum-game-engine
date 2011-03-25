@@ -42,7 +42,7 @@ public interface CellsInterface {
      * 
      * @return all the cells of the game board
      */
-    Map<PositionInterface, CellInterface> getGameBoardCells();
+    Map<PositionInterface, CellInterface> getAllCells();
 
     /**
      * Returns the positions factory.

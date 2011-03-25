@@ -20,10 +20,17 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dime
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.Board;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.Positions;
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
+import fr.designpattern.zerosumgames.samples.tictactoe.TictactoePieceTypes;
+import fr.designpattern.zerosumgames.samples.tictactoe.pieces.TictactoePiecePawn;
 
 public class Cells implements CellsInterface {
 
@@ -47,7 +54,7 @@ public class Cells implements CellsInterface {
         this.gameBoardCells = gameBoardCells;
     }
 
-    public final Map<PositionInterface, CellInterface> getGameBoardCells() {
+    public final Map<PositionInterface, CellInterface> getAllCells() {
         return this.gameBoardCells;
     }
 
@@ -60,7 +67,7 @@ public class Cells implements CellsInterface {
 
     // ---------------------------------------------------------------------
     private CellInterface createCell(final PositionInterface position) {
-        return new GameBoardCell(position);
+        return new Cell(position);
     }
 
     // ---------------------------------------------------------------------
@@ -91,7 +98,7 @@ public class Cells implements CellsInterface {
                 .initializeBoardCells(new HashMap<PositionInterface, CellInterface>(
                         positionFactory.getNumberOfPositions())));
 
-        this.nullCell = new GameBoardCell(this.getBoardPositionFactory()
+        this.nullCell = new Cell(this.getBoardPositionFactory()
                 .getNullPosition());
     }
 
@@ -102,17 +109,35 @@ public class Cells implements CellsInterface {
     }
 
     // =====================================================================
-    private class GameBoardCell implements CellInterface {
+    private class Cell implements CellInterface {
 
         // ---------------------------------------------------------------------
-        private PositionInterface position;
+        private final PositionInterface position;
 
         public final PositionInterface getPosition() {
             return this.position;
         }
 
-        private final void setPosition(final PositionInterface position) {
+        // ---------------------------------------------------------------------
+        public Cell(final PositionInterface position) {
             this.position = position;
+        }
+
+        // ---------------------------------------------------------------------
+        public Cell(final PositionInterface position, final PieceInterface piece) {
+            this(position);
+            this.setPiece(piece);
+        }
+
+        // ---------------------------------------------------------------------        
+        private Cell(final CellInterface cellToClone) {
+            this(cellToClone.getPosition(), cellToClone.getPiece());
+        }
+
+        // ---------------------------------------------------------------------
+        @Override
+        public CellInterface clone() {
+            return new Cell(this);
         }
 
         // ---------------------------------------------------------------------
@@ -159,6 +184,9 @@ public class Cells implements CellsInterface {
 
         public Map<BoardCardinalPosition, CellInterface> getNeighbourhood() {
             if (this.neighbourhood == null) {
+
+                System.out.println("this.neighbourhood == null");
+
                 this.neighbourhood = new HashMap<BoardCardinalPosition, CellInterface>(
                         8);
                 this.neighbourhood.put(BoardCardinalPosition.TOP, Cells.this
@@ -187,11 +215,6 @@ public class Cells implements CellsInterface {
                                 .bottomLeftOf(this.getPosition())));
             }
             return this.neighbourhood;
-        }
-
-        // ---------------------------------------------------------------------
-        public GameBoardCell(final PositionInterface position) {
-            this.setPosition(position);
         }
 
         // ---------------------------------------------------------------------
@@ -239,6 +262,63 @@ public class Cells implements CellsInterface {
         }
         // ---------------------------------------------------------------------
     }
+
     // =====================================================================
+
+    public static void main(final String[] args) {
+
+        // TODO créér CellsTest.java
+
+        final Dimension dimension = new Dimension(1, 2, 1, 2);
+        final PositionsInterface positionFactory = new Positions(dimension);
+        final CellsInterface cellFactory = new Cells(positionFactory);
+        final BoardInterface board = new Board(cellFactory);
+
+        final CellInterface cell1 = board.cell(1, 1);
+        final CellInterface cell2 = board.cell(1, 2);
+        final CellInterface cell3 = board.cell(2, 1);
+        final CellInterface cell4 = board.cell(2, 2);
+
+        //TODO créer la NullPiece au sein du framework
+        final PieceInterface piece1 = new TictactoePiecePawn(
+                TictactoePieceTypes.PAWN,
+                OpponentsEnumeration.FIRST_PLAYER);
+
+        final PieceInterface piece2 = new TictactoePiecePawn(
+                TictactoePieceTypes.PAWN,
+                OpponentsEnumeration.SECOND_PLAYER);
+
+        cell1.setPiece(piece1);
+        cell3.setPiece(piece2);
+
+        System.out.println(cell1);
+        System.out.println(cell2);
+        System.out.println(cell3);
+        System.out.println(cell4);
+
+        System.out.println("");
+
+        final CellInterface cell1Clone = cell1.clone();
+        final CellInterface cell2Clone = cell2.clone();
+        final CellInterface cell3Clone = cell3.clone();
+        final CellInterface cell4Clone = cell4.clone();
+
+        cell1Clone.setPiece(piece2);
+        cell3Clone.setPiece(piece1);
+
+        System.out.println(cell1Clone);
+        System.out.println(cell2Clone);
+        System.out.println(cell3Clone);
+        System.out.println(cell4Clone);
+
+        System.out.println("");
+
+        System.out.println(cell1.getNeighbourhood());
+
+        System.out.println("");
+
+        System.out.println(cell1Clone.getNeighbourhood());
+
+    }
 
 }
