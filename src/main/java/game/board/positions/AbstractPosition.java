@@ -24,11 +24,6 @@ abstract class AbstractPosition implements Positions.Interface {
     public abstract boolean isNull();
 
     @Override
-    public String toString() {
-        return "[row = " + this.getRow() + "][column = " + this.getColumn() + "]";
-    }
-
-    @Override
     public int hashCode() {
         int result = this.hashCode;
         if (result == 0) {
@@ -86,6 +81,11 @@ abstract class AbstractPosition implements Positions.Interface {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "[row = " + this.getRow() + "][column = " + this.getColumn() + "]";
     }
 
 }
