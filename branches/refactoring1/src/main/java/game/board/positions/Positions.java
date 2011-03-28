@@ -1,7 +1,7 @@
 
 package game.board.positions;
 
-import game.board.dimensions.DimensionsInterface;
+import game.board.dimensions.Dimensions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +39,7 @@ public class Positions {
      */
     public static interface FactoryInterface {
 
-        List<Positions.Interface> positions(final DimensionsInterface dimensions);
+        List<Positions.Interface> positions(final Dimensions.Interface dimension);
 
         Positions.Interface position(final int rowIndex, final int columnIndex);
 
@@ -67,10 +67,10 @@ public class Positions {
             return position;
         }
 
-        public static List<Positions.Interface> Positions(final DimensionsInterface dimensions) {
-            final ArrayList<Positions.Interface> positions = new ArrayList<Positions.Interface>(dimensions.boardCapacity() /*+ 1*/);
-            for (int rowIndex = dimensions.lowerBoundForRows(), maxRowIndex = dimensions.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
-                for (int columnIndex = dimensions.lowerBoundForColumns(), maxColumnIndex = dimensions.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
+        public static List<Positions.Interface> Positions(final Dimensions.Interface dimension) {
+            final ArrayList<Positions.Interface> positions = new ArrayList<Positions.Interface>(dimension.boardCapacity() /*+ 1*/);
+            for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
+                for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
                     positions.add(Factory.Position(rowIndex, columnIndex));
                 }
             }
@@ -89,8 +89,8 @@ public class Positions {
             return Factory.INSTANCE;
         }
 
-        public List<Positions.Interface> positions(final DimensionsInterface dimensions) {
-            return Factory.Positions(dimensions);
+        public List<Positions.Interface> positions(final Dimensions.Interface dimension) {
+            return Factory.Positions(dimension);
         }
 
         public Positions.Interface position(final int rowIndex, final int columnIndex) {
