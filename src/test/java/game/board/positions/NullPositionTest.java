@@ -1,12 +1,12 @@
 
 package game.board.positions;
 
+import static junit.framework.Assert.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,47 +18,51 @@ public class NullPositionTest {
 
     @Before
     public void setUp() {
+        
         this.position = new NullPosition();
+        
     }
 
     @Test
     public void testNew() {
 
-        Assert.assertEquals(0, this.position.getRow());
-        Assert.assertEquals(0, this.position.getColumn());
-        Assert.assertTrue(this.position.isNull());
+        assertEquals(0, this.position.getRow());
+        assertEquals(0, this.position.getColumn());
+        assertTrue(this.position.isNull());
 
     }
 
     @Test
     public void testHashCode() {
-        Assert.assertEquals(this.position.hashCode(), this.position.hashCode());
-        Assert.assertNotSame(this.position.hashCode(), new Position(1, 1).hashCode());
-        Assert.assertEquals(this.position.hashCode(), new NullPosition().hashCode());
+        
+        assertEquals(this.position.hashCode(), this.position.hashCode());
+        assertNotSame(this.position.hashCode(), new Position(1, 1).hashCode());
+        assertEquals(this.position.hashCode(), new NullPosition().hashCode());
+        
     }
 
     @Test
     public void testEquals() {
 
-        Assert.assertEquals(this.position, this.position);
-        Assert.assertSame(this.position, this.position);
+        assertEquals(this.position, this.position);
+        assertSame(this.position, this.position);
 
-        Assert.assertFalse(this.position.equals(null));
-        Assert.assertFalse(this.position.equals(new Random()));
+        assertFalse(this.position.equals(null));
+        assertFalse(this.position.equals(new Random()));
 
-        Assert.assertEquals(this.position, new NullPosition());
-        Assert.assertNotSame(this.position, new NullPosition());
+        assertEquals(this.position, new NullPosition());
+        assertNotSame(this.position, new NullPosition());
 
     }
 
     @Test
     public void testCompareTo() {
 
-        Assert.assertEquals(0, this.position.compareTo(this.position));
-        Assert.assertEquals(-1, this.position.compareTo(new Position(1, 1)));
-        Assert.assertEquals(-1, this.position.compareTo(new Position(1, 3)));
-        Assert.assertEquals(-1, this.position.compareTo(new Position(2, 2)));
-        Assert.assertEquals(-1, this.position.compareTo(new Position(2, 3)));
+        assertEquals(0, this.position.compareTo(this.position));
+        assertEquals(-1, this.position.compareTo(new Position(1, 1)));
+        assertEquals(-1, this.position.compareTo(new Position(1, 3)));
+        assertEquals(-1, this.position.compareTo(new Position(2, 2)));
+        assertEquals(-1, this.position.compareTo(new Position(2, 3)));
 
     }
 
@@ -77,14 +81,16 @@ public class NullPositionTest {
         positions.add(new Position(1, 2));
         positions.add(new NullPosition());
 
-        Assert.assertEquals(new NullPosition(), Collections.min(positions));
-        Assert.assertEquals(new Position(2, 4), Collections.max(positions));
+        assertEquals(new NullPosition(), Collections.min(positions));
+        assertEquals(new Position(2, 4), Collections.max(positions));
 
     }
 
     @After
     public void tearDown() {
+        
         this.position = null;
+        
     }
 
 }
