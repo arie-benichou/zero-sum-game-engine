@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import opponents.Side;
 
+import com.google.common.collect.Lists;
+
 public class BoardBuilder {
 
     private transient int numberOfRows = 3;
@@ -38,7 +40,7 @@ public class BoardBuilder {
     }
 
     public BoardInterface clone(final BoardInterface board) {
-        final ArrayList<Cells.Interface> cells = new ArrayList<Cells.Interface>();
+        final ArrayList<Cells.Interface> cells = Lists.newArrayList();
         for (final Cells.Interface cell : board) {
             cells.add(Cells.Factory.Clone(cell));
         }

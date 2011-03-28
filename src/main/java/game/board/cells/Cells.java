@@ -4,9 +4,10 @@ package game.board.cells;
 import game.board.pieces.PieceInterface;
 import game.board.positions.Positions;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.common.collect.Lists;
 
 public final class Cells {
 
@@ -86,7 +87,7 @@ public final class Cells {
         }
 
         public static final List<Cells.Interface> Cells(final List<Positions.Interface> positions) {
-            final List<Cells.Interface> cells = new ArrayList<Cells.Interface>(positions.size());
+            final List<Cells.Interface> cells = Lists.newArrayListWithExpectedSize(positions.size());
             for (final Positions.Interface position : positions) {
                 cells.add(Cells.Factory.Cell(position));
             }

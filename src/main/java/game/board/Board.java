@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 // TODO ? getByColumn et getByRow
 final class Board implements BoardInterface {
@@ -25,8 +27,8 @@ final class Board implements BoardInterface {
         return this.computeHash(cell.getRow(), cell.getColumn());
     }
 
-    private Map<String, Cells.Interface> mapCells(final List<Cells.Interface> cells) {// TODO se contenter d'une collection au lieu d'une liste
-        final HashMap<String, Cells.Interface> mappedCells = new HashMap<String, Cells.Interface>(cells.size());
+    private Map<String, Cells.Interface> mapCells(final List<Cells.Interface> cells) {
+        final HashMap<String, Cells.Interface> mappedCells = Maps.newHashMapWithExpectedSize(cells.size());
         for (final Cells.Interface cell : cells) {
             mappedCells.put(this.computeHash(cell), cell);
         }
@@ -45,8 +47,9 @@ final class Board implements BoardInterface {
         return cell;
     }
 
+    // TODO ? mettre en cache, l'iterator (à tester)
     public Iterator<Cells.Interface> iterator() {
-        final ArrayList<Cells.Interface> cells = new ArrayList<Cells.Interface>(this.boardCells.values());
+        final ArrayList<Cells.Interface> cells = Lists.newArrayList(this.boardCells.values());
         Collections.sort(cells); // TODO tester sans
         return cells.iterator();
     }
