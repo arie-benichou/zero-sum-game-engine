@@ -49,6 +49,8 @@ public class BoardBuilder {
 
     public static void main(final String[] args) {
 
+        // TODO écrire tests unitaires
+
         final BoardBuilder builder = new BoardBuilder();
 
         final BoardInterface board1 = builder.rows(2).columns(2).build();
