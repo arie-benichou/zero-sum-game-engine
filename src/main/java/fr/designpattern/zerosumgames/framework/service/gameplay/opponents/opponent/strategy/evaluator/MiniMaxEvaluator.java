@@ -1,13 +1,15 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.SelectorInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.WorstLegalMoveSelector;
 
 public class MiniMaxEvaluator extends NullEvaluator {
 
@@ -18,63 +20,54 @@ public class MiniMaxEvaluator extends NullEvaluator {
         return this.maximalDepth;
     }
 
-    //--------------------------------------------------------------------------------------
-    protected static final SelectorInterface BEST_LEGAL_MOVE_SELECTOR = new BestLegalMoveSelector();
-    protected static final SelectorInterface WORST_LEGAL_MOVE_SELECTOR = new WorstLegalMoveSelector();
-
-    //--------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------    
     public MiniMaxEvaluator(final int maximaDepth) {
         super();
         this.maximalDepth = maximaDepth;
     }
 
     //--------------------------------------------------------------------------------------
-    protected double applyEvaluation(final LegalMoveInterface moveToEvaluate,
-            final int maximalDepth) {
-        return this.applyEvaluation(moveToEvaluate, maximalDepth, 1);
-    }
-
-    //--------------------------------------------------------------------------------------
-    protected double applyEvaluation(final LegalMoveInterface moveToEvaluate) {
-        return this.applyEvaluation(moveToEvaluate, this.maximalDepth);
-    }
-
-    //--------------------------------------------------------------------------------------
-    protected double applyEvaluation(final LegalMoveInterface moveToEvaluate,
-            final int profondeur, final double side) {
-        double score;
-        final OpponentsEnumeration nextPlayer = this.getContext()
-                .computeNextSideToPlay(moveToEvaluate,
-                        this.getContext().doMove(moveToEvaluate));
-        if (!OpponentsEnumeration.isAPlayer(nextPlayer) || profondeur == 1) {
-            score = side
-                    * this.getContext().computeStaticEvaluation(moveToEvaluate);
-        }
-        else {
-            final List<LegalMoveInterface> opponentMoves = this.getContext()
-                    .getLegalMoves(nextPlayer);
-            for (final LegalMoveInterface opponentMove : opponentMoves) {
-                opponentMove.setEvaluation(this.applyEvaluation(opponentMove,
-                        profondeur - 1, -side));
-            }
-            score = (side == 1) ? MiniMaxEvaluator.WORST_LEGAL_MOVE_SELECTOR
-                    .applySelection(opponentMoves).getEvaluation()
-                    : MiniMaxEvaluator.BEST_LEGAL_MOVE_SELECTOR.applySelection(
-                            opponentMoves).getEvaluation();
-        }
-        this.getContext().undoMove(moveToEvaluate);
-        return score;
-    }
-
-    //--------------------------------------------------------------------------------------
     @Override
-    public List<LegalMoveInterface> applyEvaluation(
-            final List<LegalMoveInterface> legalMoves) {
+    public List<LegalMoveInterface> applyEvaluation(final List<LegalMoveInterface> legalMoves) {
+
+        final ExecutorService pool = Executors.newFixedThreadPool(legalMoves.size());
+        final List<Future<Double>> list = new ArrayList<Future<Double>>(legalMoves.size());
+
         for (final LegalMoveInterface move : legalMoves) {
-            move.setEvaluation(this.applyEvaluation(move));
-            move.setDepth(this.maximalDepth);
+
+            //final Callable<Double> callable = new MiniMaxEvaluatorThread(this.getContext().clone(), move, this.getMaximalDepth());
+            final Callable<Double> callable = new MiniMaxAlphaBetaEvaluatorThread(this.getContext().clone(), move, this.getMaximalDepth());
+            final Future<Double> future = pool.submit(callable);
+
+            list.add(future);
+
+            //break;
+
         }
+
+        //System.out.println("\n");
+
+        int index = 0;
+        for (final Future<Double> future : list) {
+            try {
+                legalMoves.get(index).setEvaluation((double) future.get());
+                //System.out.println(legalMoves.get(index).debug());
+                ++index;
+            }
+            catch (final InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (final ExecutionException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        //System.out.println("\n");
+
         return legalMoves;
+
     }
+
     //--------------------------------------------------------------------------------------
 }

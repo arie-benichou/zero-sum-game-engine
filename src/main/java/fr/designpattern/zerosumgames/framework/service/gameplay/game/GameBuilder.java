@@ -21,12 +21,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.Board;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.DimensionInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.Cells;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellsInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.Positions;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.GameBoardInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardDimensionsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.Cells;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellsInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.Positions;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionsInterface;
 
 // TODO ? as a Game inner-class
 // TODO ! gérer l'injection de préférences spécifiques à un jeu
@@ -34,14 +34,14 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimen
 public class GameBuilder implements GameBuilderInterface {
 
     private final transient Class<? extends GameInterface> builderGameClass;
-    private transient DimensionInterface builderBoardDimension;
+    private transient BoardDimensionsInterface builderBoardDimension;
 
     public GameBuilder(final Class<? extends GameInterface> gameClass) {
         this.builderGameClass = gameClass;
         try {
-            this.boardDimension((DimensionInterface) this.builderGameClass
+            this.boardDimension((BoardDimensionsInterface) this.builderGameClass
                     .getDeclaredField("BOARD_DIMENSION").get(
-                            DimensionInterface.class));
+                            BoardDimensionsInterface.class));
         }
         catch (final IllegalArgumentException e) {
             // TODO Auto-generated catch block
@@ -62,7 +62,7 @@ public class GameBuilder implements GameBuilderInterface {
     }
 
     public final GameBuilder boardDimension(
-            final DimensionInterface boardDimension) {
+            final BoardDimensionsInterface boardDimension) {
         this.builderBoardDimension = boardDimension;
         return this;
     }
@@ -71,16 +71,16 @@ public class GameBuilder implements GameBuilderInterface {
         final PositionsInterface positionFactory = new Positions(
                 this.builderBoardDimension);
         final CellsInterface cellFactory = new Cells(positionFactory);
-        final BoardInterface board = new Board(cellFactory);
+        final GameBoardInterface board = new Board(cellFactory);
         return this.newInstance(board);
     }
 
-    private GameInterface newInstance(final BoardInterface board) {
+    private GameInterface newInstance(final GameBoardInterface board) {
         Constructor<? extends GameInterface> constructor = null;
         GameInterface instance = null;
         try {
             constructor = this.builderGameClass
-                    .getDeclaredConstructor(BoardInterface.class);
+                    .getDeclaredConstructor(GameBoardInterface.class);
         }
         catch (final SecurityException e) {
             e.printStackTrace();

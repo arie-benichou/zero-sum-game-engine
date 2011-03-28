@@ -31,7 +31,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.Player;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.PlayerInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxAlphaBetaEvaluator;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxEvaluator;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.NullEvaluator;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
@@ -48,11 +48,11 @@ public final class TictactoeConsoleServiceLauncher {
     public static void main(final String[] args) {
         // ------------------------------------------------------------
         final OpponentBuilderInterface opponentBuilder = new OpponentBuilder();
-        final PlayerInterface player1 = new Player("Arié");
+        final PlayerInterface player1 = new Player("Computer");
         opponentBuilder.player(player1);
         // final EvaluatorInterface evaluator1 = new NullEvaluator();
-        // final EvaluatorInterface evaluator1 = new MiniMaxEvaluator(9);
-        final EvaluatorInterface evaluator1 = new MiniMaxAlphaBetaEvaluator(9);
+        final EvaluatorInterface evaluator1 = new MiniMaxEvaluator(6);
+        //final EvaluatorInterface evaluator1 = new MiniMaxAlphaBetaEvaluator(6);
         opponentBuilder.evaluator(evaluator1);
         // final SelectorInterface selector1 = new HumanMoveSelector();
         final SelectorInterface selector1 = new BestLegalMoveSelector();
@@ -60,7 +60,7 @@ public final class TictactoeConsoleServiceLauncher {
         // ------------------------------------------------------------
         final OpponentInterface opponent1 = opponentBuilder.build();
         // ------------------------------------------------------------
-        final PlayerInterface player2 = new Player("Anatole");
+        final PlayerInterface player2 = new Player("Human");
         opponentBuilder.player(player2);
         final EvaluatorInterface evaluator2 = new NullEvaluator();
         opponentBuilder.evaluator(evaluator2);
@@ -78,9 +78,26 @@ public final class TictactoeConsoleServiceLauncher {
         final GameBuilderInterface gameBuilder = new GameBuilder(
                                                                  Tictactoe.class);
         final GameInterface game = gameBuilder.build();
+
+        //TODO créer GameTest
+        /*
+         * System.out.println("original:\n" + game);
+         * 
+         * final GameInterface clonedGame = game.clone();
+         * System.out.println("clone:\n" + clonedGame);
+         * 
+         * game.cell(1, 1).setPiece( new
+         * TictactoePiecePawn(TictactoePieceTypes.PAWN,
+         * OpponentsEnumeration.FIRST_PLAYER));
+         * 
+         * System.out.println("original:\n" + game);
+         * 
+         * System.out.println("clone:\n" + clonedGame);
+         * 
+         * System.exit(0);
+         */
         // ------------------------------------------------------------
         new GamePlayConsoleService(new GamePlay(game, opponents)).start();
         // ------------------------------------------------------------
     }
-
 }

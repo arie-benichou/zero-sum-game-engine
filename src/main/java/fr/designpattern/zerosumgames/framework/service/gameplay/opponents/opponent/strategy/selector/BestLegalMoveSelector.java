@@ -28,14 +28,14 @@ public class BestLegalMoveSelector extends NullSelector {
     public LegalMoveInterface applySelection(
             final List<LegalMoveInterface> legalMoves) {
 
-        /*
-         * Collections.sort(legalMoves); Collections.reverse(legalMoves);
-         * 
-         * for (LegalMoveInterface legalMove: legalMoves) {
-         * System.out.println(legalMove.debug()); }
-         */
+        Collections.sort(legalMoves);
+        //Collections.reverse(legalMoves);
+        for (final LegalMoveInterface legalMove : legalMoves) {
+            //System.out.println(legalMove.debug());
+        }
+
+        System.out.println("max: " + Collections.max(legalMoves));
 
         return Collections.max(legalMoves);
     }
-
 }

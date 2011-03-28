@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 public class LegalMove implements LegalMoveInterface {
@@ -32,13 +32,13 @@ public class LegalMove implements LegalMoveInterface {
         return this.side;
     }
 
-    private transient PositionInterface position;
+    private transient BoardPositionInterface position;
 
-    private final void setNewPosition(final PositionInterface newPosition) {
+    private final void setNewPosition(final BoardPositionInterface newPosition) {
         this.position = newPosition;
     }
 
-    public final PositionInterface getPosition() {
+    public final BoardPositionInterface getPosition() {
         return this.position;
     }
 
@@ -67,7 +67,7 @@ public class LegalMove implements LegalMoveInterface {
     }
 
     public LegalMove(final OpponentsEnumeration side,
-            final PositionInterface position) {
+            final BoardPositionInterface position) {
         this.setSide(side);
         this.setNewPosition(position);
     }

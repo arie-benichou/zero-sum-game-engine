@@ -17,14 +17,13 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PiecesInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.GameBoardInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
@@ -37,24 +36,68 @@ public abstract class AbstractGame implements GameInterface {
     // ---------------------------------------------------------------------
     // Object Internals
     // ---------------------------------------------------------------------
-    private final transient PiecesInterface pieceFactory;
-
-    protected final PiecesInterface getPieceFactory() {
-        return this.pieceFactory;
-    }
-
+    /*
+     * private final transient PiecesInterface pieceFactory;
+     * 
+     * protected final PiecesInterface getPieceFactory() { return
+     * this.pieceFactory; }
+     */
     // ---------------------------------------------------------------------
-    private final transient BoardInterface board;
+    private final transient GameBoardInterface board;
 
-    protected final BoardInterface getBoard() {
+    protected final GameBoardInterface getBoard() {
         return this.board;
     }
 
     // ---------------------------------------------------------------------
-    public AbstractGame(final PiecesInterface pieceFactory,
-            final BoardInterface board) {
-        this.pieceFactory = pieceFactory;
+    public AbstractGame(/* final PiecesInterface pieceFactory, */
+    final GameBoardInterface board) {
+        //this.pieceFactory = pieceFactory;
+        //this.board = board.clone();
         this.board = board;
+    }
+
+    // ---------------------------------------------------------------------
+    /*
+     * public AbstractGame(final GameInterface gameToClone) {
+     * this(gameToClone.getBoard()); }
+     */
+    // ---------------------------------------------------------------------
+    @Override
+    public final GameInterface clone() {
+
+        Constructor<? extends AbstractGame> constructor = null;
+
+        GameInterface instance = null;
+
+        try {
+            constructor = this.getClass().getDeclaredConstructor(
+                    GameBoardInterface.class);
+        }
+        catch (final SecurityException e) {
+            e.printStackTrace();
+        }
+        catch (final NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        try {
+            instance = constructor.newInstance(this.getBoard().clone());
+        }
+        catch (final IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        catch (final InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (final IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        catch (final InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return instance;
+
     }
 
     // ---------------------------------------------------------------------
@@ -67,16 +110,17 @@ public abstract class AbstractGame implements GameInterface {
     // Façades fournies
     // ---------------------------------------------------------------------
 
-    public final PieceInterface piece(final OpponentsEnumeration player,
-            final PieceTypeInterface pieceType) {
-        return this.getPieceFactory().getPiece(player, pieceType);
-    }
+    /*
+     * public final PieceInterface piece(final OpponentsEnumeration player,
+     * final PieceTypeInterface pieceType) { return
+     * this.getPieceFactory().getPiece(player, pieceType); }
+     */
 
-    public final CellInterface cell(final PositionInterface position) {
+    public final BoardCellInterface cell(final BoardPositionInterface position) {
         return this.getBoard().cell(position);
     }
 
-    public final CellInterface cell(final int clientRowIndex,
+    public final BoardCellInterface cell(final int clientRowIndex,
             final int clientColumnIndex) {
         return this.getBoard().cell(clientRowIndex, clientColumnIndex);
     }
@@ -133,5 +177,8 @@ public abstract class AbstractGame implements GameInterface {
     public abstract boolean isGameOverFromDraw(LegalMoveInterface playedMove);
 
     public abstract double computeStaticEvaluation(LegalMoveInterface playedMove);
+
+    //public abstract PieceInterface piece(final OpponentsEnumeration player,
+    //        final PieceTypeInterface pieceType);
 
 }

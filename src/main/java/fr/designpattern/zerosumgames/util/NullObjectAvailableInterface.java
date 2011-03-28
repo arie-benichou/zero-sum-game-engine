@@ -17,6 +17,7 @@
 
 package fr.designpattern.zerosumgames.util;
 
+// TODO ? renommer en Nullable
 public interface NullObjectAvailableInterface {
 
     boolean isNull();

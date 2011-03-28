@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardPlane;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.Pieces;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.GameBoardInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardPlane;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardDimensions;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.Pieces;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMove;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
@@ -36,21 +36,23 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.Oppone
 public class Tictactoe extends AbstractGame {
 
     // ------------------------------------------------------------
-    public static final int CONNECTIONS = 3;
+    public static final int CONNECTIONS = 4;
     public static final Class<TictactoePieceTypes> PIECE_TYPES = TictactoePieceTypes.class;
-    public static final Dimension BOARD_DIMENSION = new Dimension(1, 3, 1, 3);
+    public static final BoardDimensions BOARD_DIMENSION = new BoardDimensions(1, 6, 1, 6);
     // ------------------------------------------------------------
     private transient int connections;
+    protected final Pieces pieceFactory;
 
     // ------------------------------------------------------------
-    public Tictactoe(final BoardInterface board) {
+    public Tictactoe(final GameBoardInterface board) {
         this(board, Tictactoe.CONNECTIONS);
     }
 
     // ------------------------------------------------------------
-    public Tictactoe(final BoardInterface board, final int connections) {
-        super(new Pieces(Tictactoe.PIECE_TYPES), board);
+    public Tictactoe(final GameBoardInterface board, final int connections) {
+        super(board);
         this.connections = connections;
+        this.pieceFactory = new Pieces(Tictactoe.PIECE_TYPES);
     }
 
     // ------------------------------------------------------------
@@ -62,7 +64,7 @@ public class Tictactoe extends AbstractGame {
     // ------------------------------------------------------------
     // TODO ? implémentation par défaut dans la classe abstraite
     protected LegalMoveInterface makeMove(final OpponentsEnumeration side,
-            final PositionInterface position) {
+            final BoardPositionInterface position) {
         // TODO utiliser un cache
         return new LegalMove(side, position);
     }
@@ -71,9 +73,12 @@ public class Tictactoe extends AbstractGame {
     @Override
     public List<LegalMoveInterface> getLegalMoves(
             final OpponentsEnumeration side) {
+
+        //System.out.println("from getLegalMoves : " + this);
+
         final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
-        for (final CellInterface[] line : this.getBoard()) {
-            for (final CellInterface cell : line) {
+        for (final BoardCellInterface[] line : this.getBoard()) {
+            for (final BoardCellInterface cell : line) {
                 if (cell.isEmpty()) { // TODO ? isPlayable() ou canPlayHere()
                     legalMoves.add(this.makeMove(side, cell.getPosition()));
                 }
@@ -111,7 +116,7 @@ public class Tictactoe extends AbstractGame {
     // ------------------------------------------------------------
     @Override
     public boolean doMove(final LegalMoveInterface moveToPlay) {
-        final CellInterface concernedCell = this.cell(moveToPlay.getPosition());
+        final BoardCellInterface concernedCell = this.cell(moveToPlay.getPosition());
         concernedCell.setPiece(this.piece(moveToPlay.getSide()));
         return true;
     }
@@ -138,6 +143,7 @@ public class Tictactoe extends AbstractGame {
                 evaluation = 0.111;
             }
             else {
+                //return this.computePotentialConnections(justPlayedMove);
                 //return this.computeRealConnections(justPlayedMove);
                 evaluation = 0;
                 final int potentialConnections = this
@@ -191,7 +197,7 @@ public class Tictactoe extends AbstractGame {
             final LegalMoveInterface justPlayedMove,
             final BoardCardinalPosition direction) {
         int connected;
-        CellInterface cell = this.cell(justPlayedMove.getPosition());
+        BoardCellInterface cell = this.cell(justPlayedMove.getPosition());
         for (connected = 1; connected < this.connections; ++connected) {
             cell = cell.getNeighbour(direction);
             if (cell.isNull() || cell.isEmpty()
@@ -207,7 +213,7 @@ public class Tictactoe extends AbstractGame {
             final LegalMoveInterface justPlayedMove,
             final BoardCardinalPosition direction) {
         int connected;
-        CellInterface cell = this.cell(justPlayedMove.getPosition());
+        BoardCellInterface cell = this.cell(justPlayedMove.getPosition());
         for (connected = 1; connected < this.connections; ++connected) {
             cell = cell.getNeighbour(direction);
             if (cell.isNull()) {
@@ -223,8 +229,8 @@ public class Tictactoe extends AbstractGame {
     }
 
     // ------------------------------------------------------------
-    private PieceInterface piece(final OpponentsEnumeration player) {
-        return super.piece(player, TictactoePieceTypes.PAWN);
+    protected PieceInterface piece(final OpponentsEnumeration side) {
+        return this.pieceFactory.getPiece(side, TictactoePieceTypes.PAWN);
     }
     // ------------------------------------------------------------
 }

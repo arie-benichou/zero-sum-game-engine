@@ -17,10 +17,10 @@
 
 package fr.designpattern.zerosumgames.samples.checkers.pieces;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.Piece;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.Piece;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 public abstract class CheckersPiece extends Piece implements ICheckersPiece {
@@ -33,9 +33,9 @@ public abstract class CheckersPiece extends Piece implements ICheckersPiece {
 
     // ------------------------------------------------------------
     // TODO keept it abstract and implements it in children classes
-    protected boolean canJumpOver(final CellInterface cell,
+    protected boolean canJumpOver(final BoardCellInterface cell,
             final BoardCardinalPosition cardinalPosition) {
-        final CellInterface neighbourCell = cell.getNeighbour(cardinalPosition);
+        final BoardCellInterface neighbourCell = cell.getNeighbour(cardinalPosition);
         return !(neighbourCell.isNull() || neighbourCell.isEmpty()
                 || (neighbourCell.getPiece().getSide() == this.getSide()) || neighbourCell
                 .getNeighbour(cardinalPosition).isNull())
@@ -43,7 +43,7 @@ public abstract class CheckersPiece extends Piece implements ICheckersPiece {
     }
 
     // ------------------------------------------------------------
-    protected boolean canWalkThrough(final CellInterface cell,
+    protected boolean canWalkThrough(final BoardCellInterface cell,
             final BoardCardinalPosition cardinalPosition) {
         return !cell.getNeighbour(cardinalPosition).isNull()
                 && cell.getNeighbour(cardinalPosition).isEmpty();

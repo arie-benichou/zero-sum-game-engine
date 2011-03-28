@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.game;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.DimensionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardDimensionsInterface;
 
 /**
  * This is the interface for a game builder.
@@ -32,7 +32,7 @@ public interface GameBuilderInterface {
      * 
      * @return this instance of builder
      */
-    GameBuilderInterface boardDimension(final DimensionInterface dimension);
+    GameBuilderInterface boardDimension(final BoardDimensionsInterface dimension);
 
     /**
      * Build a new instance of game.
