@@ -12,6 +12,30 @@ import com.google.common.collect.Lists;
 public class Positions {
 
     public final static Positions.Interface NULL_POSITION = new NullPosition();
+    
+    
+    public static final class IllegalPositionException extends RuntimeException {
+        
+        private static final String MESSAGE = "Position(row=%d, column=%d) is not a legal position.";
+
+        private static final long serialVersionUID = 1L;
+        
+        private int rowIndex;
+        private int columnIndex;
+
+        public IllegalPositionException(final int rowIndex, final int columnIndex) {
+            super();
+            this.rowIndex = rowIndex;
+            this.columnIndex = columnIndex;
+        }
+        
+        @Override
+        public String getMessage() {
+            return String.format(IllegalPositionException.MESSAGE, this.rowIndex, this.columnIndex);
+        }
+        
+    }
+    
 
     /**
      * This is the interface for a game board position.
@@ -65,15 +89,19 @@ public class Positions {
         }
 
         public static Positions.Interface Position(final int rowIndex, final int columnIndex) {
-            final Positions.Interface position = new Position(rowIndex, columnIndex);
-            return position;
+            try {            
+                return new Position(rowIndex, columnIndex);
+            }
+            catch (IllegalArgumentException e) {
+                throw new IllegalPositionException(rowIndex, columnIndex);
+            }
         }
 
         public static List<Positions.Interface> Positions(final Dimensions.Interface dimension) {
             final ArrayList<Positions.Interface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
             for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
                 for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
-                    positions.add(Factory.Position(rowIndex, columnIndex));
+                    positions.add(Position(rowIndex, columnIndex));
                 }
             }
             return Collections.unmodifiableList(positions);
@@ -88,25 +116,21 @@ public class Positions {
         private Factory() {}
 
         public static FactoryInterface getInstance() {
-            return Factory.INSTANCE;
+            return INSTANCE;
         }
 
         public List<Positions.Interface> positions(final Dimensions.Interface dimension) {
-            return Factory.Positions(dimension);
+            return Positions(dimension);
         }
 
         public Positions.Interface position(final int rowIndex, final int columnIndex) {
-            return Factory.Position(rowIndex, columnIndex);
+            return Position(rowIndex, columnIndex);
         }
 
         public Positions.Interface nullPosition() {
-            return Factory.NullPosition();
+            return NullPosition();
         }
 
     }
 
-    public static void main(final String[] args) {
-        Positions.Factory.Position(1, 1);
-        Positions.Factory.getInstance().position(1, 1);
-    }
 }
