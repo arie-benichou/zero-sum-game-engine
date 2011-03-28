@@ -17,7 +17,9 @@ public class PositionTest {
 
     @Before
     public void setUp() {
+        
         this.position = new Position(1, 2);
+        
     }
 
     @Test
@@ -31,17 +33,23 @@ public class PositionTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew1() {
+        
         new Position(0, 0);
+        
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew2() {
+        
         new Position(-1, 0);
+        
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew3() {
+        
         new Position(0, -1);
+        
     }
 
     @Test
@@ -102,7 +110,9 @@ public class PositionTest {
 
     @After
     public void tearDown() {
+        
         this.position = null;
+        
     }
 
 }
