@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 public class Positions {
 
     public final static Positions.Interface NULL_POSITION = new NullPosition();
@@ -68,7 +70,7 @@ public class Positions {
         }
 
         public static List<Positions.Interface> Positions(final Dimensions.Interface dimension) {
-            final ArrayList<Positions.Interface> positions = new ArrayList<Positions.Interface>(dimension.boardCapacity() /*+ 1*/);
+            final ArrayList<Positions.Interface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
             for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
                 for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
                     positions.add(Factory.Position(rowIndex, columnIndex));
