@@ -31,7 +31,7 @@ import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.oppone
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.Player;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.player.PlayerInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.EvaluatorInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxAlphaBetaEvaluator;
+import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.MiniMaxEvaluator;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.evaluator.NullEvaluator;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.BestLegalMoveSelector;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.opponent.strategy.selector.HumanMoveSelector;
@@ -46,11 +46,8 @@ public final class Connect4ConsoleServiceLauncher {
         final OpponentBuilderInterface opponentBuilder = new OpponentBuilder();
         final PlayerInterface player1 = new Player("Arié");
         opponentBuilder.player(player1);
-        //final EvaluatorInterface evaluator1 = new NullEvaluator();
-        //final EvaluatorInterface evaluator1 = new MiniMaxEvaluator(6);
-        final EvaluatorInterface evaluator1 = new MiniMaxAlphaBetaEvaluator(8);
+        final EvaluatorInterface evaluator1 = new MiniMaxEvaluator(2);
         opponentBuilder.evaluator(evaluator1);
-        //final SelectorInterface selector1 = new HumanMoveSelector();
         final SelectorInterface selector1 = new BestLegalMoveSelector();
         opponentBuilder.selector(selector1);
         // ------------------------------------------------------------

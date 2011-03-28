@@ -19,10 +19,8 @@ package fr.designpattern.zerosumgames.framework.service.gameplay.game;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
@@ -147,8 +145,8 @@ public interface GameInterface {
      * 
      * @return a piece of this game for a given player and a given type of piece
      */
-    PieceInterface piece(final OpponentsEnumeration player,
-            final PieceTypeInterface pieceType);
+    //PieceInterface piece(final OpponentsEnumeration player,
+    //        final PieceTypeInterface pieceType);
 
     /**
      * Returns the board cell related to a given position.
@@ -158,7 +156,7 @@ public interface GameInterface {
      * 
      * @return the board cell related to a given position
      */
-    CellInterface cell(final PositionInterface position);
+    BoardCellInterface cell(final BoardPositionInterface position);
 
     /**
      * Returns the board cell related to a given row and a given column.
@@ -171,6 +169,11 @@ public interface GameInterface {
      * 
      * @return the board cell related to a given row and a given column
      */
-    CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
+    BoardCellInterface cell(final int clientRowIndex, final int clientColumnIndex);
+
+    // TODO ? créer l'interface Replicable
+    GameInterface clone();
+
+    //BoardInterface getBoard();
 
 }

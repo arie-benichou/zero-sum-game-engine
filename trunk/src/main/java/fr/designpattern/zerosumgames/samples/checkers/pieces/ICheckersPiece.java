@@ -19,15 +19,15 @@ package fr.designpattern.zerosumgames.samples.checkers.pieces;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
 
 public interface ICheckersPiece {
 
-    List<BoardCardinalPosition> getJumpOptions(final CellInterface cell);
+    List<BoardCardinalPosition> getJumpOptions(final BoardCellInterface cell);
 
-    List<BoardCardinalPosition> getWalkOptions(final CellInterface cell);
+    List<BoardCardinalPosition> getWalkOptions(final BoardCellInterface cell);
 
-    boolean isPromotable(final CellInterface cell);
+    boolean isPromotable(final BoardCellInterface cell);
 
 }

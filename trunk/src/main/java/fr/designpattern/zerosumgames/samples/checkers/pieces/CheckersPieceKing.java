@@ -20,9 +20,9 @@ package fr.designpattern.zerosumgames.samples.checkers.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceTypeInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.PieceTypeInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
 public class CheckersPieceKing extends CheckersPiece {
@@ -43,7 +43,7 @@ public class CheckersPieceKing extends CheckersPiece {
     }
 
     // ------------------------------------------------------------
-    public List<BoardCardinalPosition> getWalkOptions(final CellInterface cell) {
+    public List<BoardCardinalPosition> getWalkOptions(final BoardCellInterface cell) {
         // TODO ? utiliser un EnumSet
         final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
         for (final BoardCardinalPosition direction : CheckersPieceKing.POSITIONS) {
@@ -55,7 +55,7 @@ public class CheckersPieceKing extends CheckersPiece {
     }
 
     // ------------------------------------------------------------
-    public List<BoardCardinalPosition> getJumpOptions(final CellInterface cell) {
+    public List<BoardCardinalPosition> getJumpOptions(final BoardCellInterface cell) {
         // TODO ? utiliser un EnumSet
         final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
         for (final BoardCardinalPosition direction : CheckersPieceKing.POSITIONS) {
@@ -73,7 +73,7 @@ public class CheckersPieceKing extends CheckersPiece {
     }
 
     // ------------------------------------------------------------
-    public boolean isPromotable(final CellInterface cell) {
+    public boolean isPromotable(final BoardCellInterface cell) {
         return false;
     }
 }

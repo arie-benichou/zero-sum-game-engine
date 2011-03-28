@@ -17,7 +17,7 @@
 
 package fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove;
 
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
 
@@ -37,7 +37,7 @@ public interface LegalMoveInterface extends NullObjectAvailableInterface,
      * 
      * @return the position
      */
-    PositionInterface getPosition();
+    BoardPositionInterface getPosition();
 
     /**
      * Returns the side playing this move.

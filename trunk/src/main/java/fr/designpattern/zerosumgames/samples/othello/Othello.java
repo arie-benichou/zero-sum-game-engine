@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import fr.designpattern.zerosumgames.framework.service.gameplay.game.AbstractGame;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.BoardCardinalPosition;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.Dimension;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.CellInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.PieceInterface;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.pieces.Pieces;
-import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimension.cells.positions.PositionInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.GameBoardInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardDimensions;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.CellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.Pieces;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.positions.PositionInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.legalMoves.legalMove.LegalMoveInterface;
 import fr.designpattern.zerosumgames.framework.service.gameplay.opponents.OpponentsEnumeration;
 
@@ -38,11 +38,11 @@ public class Othello extends AbstractGame {
 
     // ------------------------------------------------------------
     public static final Class<OthelloPieceTypes> PIECE_TYPES = OthelloPieceTypes.class;
-    public static final Dimension BOARD_DIMENSION = new Dimension(1, 8, 1, 8);
+    public static final BoardDimensions BOARD_DIMENSION = new BoardDimensions(1, 8, 1, 8);
 
     //private transient int nullMoveHasBeenPlayed = 0;
     // ------------------------------------------------------------
-    private void setupBoard(final BoardInterface board) {
+    private void setupBoard(final GameBoardInterface board) {
         board.cell(4, 5).setPiece(
                 this.piece(OpponentsEnumeration.FIRST_PLAYER));
         board.cell(5, 4).setPiece(
@@ -54,7 +54,7 @@ public class Othello extends AbstractGame {
     }
 
     // ------------------------------------------------------------
-    public Othello(final BoardInterface board) {
+    public Othello(final GameBoardInterface board) {
         super(new Pieces(Othello.PIECE_TYPES), board);// TODO !! à revoir
         this.setupBoard(board);
     }
@@ -70,8 +70,8 @@ public class Othello extends AbstractGame {
     public final List<LegalMoveInterface> getLegalMoves(
             final OpponentsEnumeration side) {
         final List<LegalMoveInterface> legalMoves = new ArrayList<LegalMoveInterface>();
-        for (final CellInterface[] line : this.getBoard()) {
-            for (final CellInterface cell : line) {
+        for (final BoardCellInterface[] line : this.getBoard()) {
+            for (final BoardCellInterface cell : line) {
                 if (this.canPlayHere(cell, side)) {
                     legalMoves.add(this.makeMove(side, cell.getPosition()));
                 }
@@ -122,7 +122,7 @@ public class Othello extends AbstractGame {
 
     // ------------------------------------------------------------
     private boolean isNeighbourCellHavingOpponentPiece(
-            final CellInterface neighbourCell, final OpponentsEnumeration side) {
+            final BoardCellInterface neighbourCell, final OpponentsEnumeration side) {
         // Est-ce que la cellule : (existe, n'est pas vide, contient une pièce de l'adversaire)
         return !neighbourCell.isNull()
                 && !neighbourCell.isEmpty()
@@ -133,12 +133,12 @@ public class Othello extends AbstractGame {
 
     // ------------------------------------------------------------
     private boolean isBoundableInThisDirection(
-            final Entry<BoardCardinalPosition, CellInterface> neighbourEntry) {
+            final Entry<BoardCardinalPosition, BoardCellInterface> neighbourEntry) {
         boolean isBoundable = false;
         final BoardCardinalPosition direction = neighbourEntry.getKey();
         final OpponentsEnumeration opponent = OpponentsEnumeration
                 .opponent(neighbourEntry.getValue().getPiece().getSide());
-        CellInterface neighbourCell = neighbourEntry.getValue().getNeighbour(
+        BoardCellInterface neighbourCell = neighbourEntry.getValue().getNeighbour(
                 direction);
         // tant qu'une cellule voisine existe et qu'elle n'est pas vide
         while (!neighbourCell.isNull() && !neighbourCell.isEmpty()) {
@@ -154,13 +154,13 @@ public class Othello extends AbstractGame {
 
     // ------------------------------------------------------------
     // TODO ? rajouter à l'interface
-    public boolean canPlayHere(final CellInterface cell,
+    public boolean canPlayHere(final BoardCellInterface cell,
             final OpponentsEnumeration side) {
         boolean canPlayHere = false;
         // si la cellule est vide
         if (cell.isEmpty()) {
             //si la cellule est vide, les cellules voisines sont inspectées
-            for (final Entry<BoardCardinalPosition, CellInterface> cellNeighbourEntry : cell
+            for (final Entry<BoardCardinalPosition, BoardCellInterface> cellNeighbourEntry : cell
                     .getNeighbourhood().entrySet()) {
                 // si une des cellules voisines contient au moins une pièce de l'adversaire
                 // et qu'une pièce du joueur se trouve à l'extrémité d'une série continue de pièces de l'adversaire
@@ -178,20 +178,20 @@ public class Othello extends AbstractGame {
     // ------------------------------------------------------------
     // TODO ? implémentation par défaut dans la classe abstraite
     private LegalMoveInterface makeMove(final OpponentsEnumeration side,
-            final PositionInterface position) {
+            final BoardPositionInterface position) {
         // TODO utiliser un cache
         return new OthelloMove(side, position);
     }
 
     // ------------------------------------------------------------
-    private List<CellInterface> computeCellsToRevert(
+    private List<BoardCellInterface> computeCellsToRevert(
             final LegalMoveInterface move) {
         final OpponentsEnumeration side = move.getSide();
-        final CellInterface cell = this.cell(move.getPosition());
-        final List<CellInterface> cellsToRevert = new ArrayList<CellInterface>();
-        final List<CellInterface> opponentCells = new ArrayList<CellInterface>();
-        CellInterface neighbourCell;
-        for (final Entry<BoardCardinalPosition, CellInterface> cellNeighbourEntry : cell
+        final BoardCellInterface cell = this.cell(move.getPosition());
+        final List<BoardCellInterface> cellsToRevert = new ArrayList<BoardCellInterface>();
+        final List<BoardCellInterface> opponentCells = new ArrayList<BoardCellInterface>();
+        BoardCellInterface neighbourCell;
+        for (final Entry<BoardCardinalPosition, BoardCellInterface> cellNeighbourEntry : cell
                 .getNeighbourhood().entrySet()) {
             //si la cellule voisine ne contient pas une pièce de l'adversaire
             if (!this.isNeighbourCellHavingOpponentPiece(
@@ -224,10 +224,10 @@ public class Othello extends AbstractGame {
     }
 
     // ------------------------------------------------------------
-    private void revertCells(final List<CellInterface> cellsToRevert) {
+    private void revertCells(final List<BoardCellInterface> cellsToRevert) {
         final PieceInterface piece = this.piece(OpponentsEnumeration
                 .opponent(cellsToRevert.get(0).getPiece().getSide()));
-        for (final CellInterface cell : cellsToRevert) {
+        for (final BoardCellInterface cell : cellsToRevert) {
             cell.setPiece(piece);
         }
     }
@@ -261,8 +261,8 @@ public class Othello extends AbstractGame {
     // TODO à optimiser
     public int computeDelta(final OpponentsEnumeration side) {
         int delta = 0;
-        for (final CellInterface[] line : this.getBoard()) {
-            for (final CellInterface cell : line) {
+        for (final BoardCellInterface[] line : this.getBoard()) {
+            for (final BoardCellInterface cell : line) {
                 if (cell.isNull() || cell.isEmpty()) {
                     continue;
                 }
@@ -298,7 +298,7 @@ public class Othello extends AbstractGame {
             return this.computeDelta(move.getSide());
         }
         int n = 1;
-        for (final Entry<BoardCardinalPosition, CellInterface> cellNeighbourEntry : this
+        for (final Entry<BoardCardinalPosition, BoardCellInterface> cellNeighbourEntry : this
                 .cell(move.getPosition()).getNeighbourhood().entrySet()) {
             if (cellNeighbourEntry.getValue().isNull()) {
                 n += 1;
