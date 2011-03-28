@@ -3,7 +3,6 @@ package game.board;
 
 import game.board.cells.Cells;
 import game.board.dimensions.Dimensions;
-import game.board.dimensions.DimensionsInterface;
 import game.board.pieces.Piece;
 import game.board.positions.Positions;
 
@@ -13,20 +12,29 @@ import opponents.Side;
 
 public class BoardBuilder {
 
-    private transient DimensionsInterface dimensions;
+    private transient int numberOfRows = 3;
+    private transient int numberOfColumns = 3;
 
     public BoardBuilder() {}
 
-    public final BoardBuilder dimensions(final DimensionsInterface dimensions) {
-        this.dimensions = dimensions;
+    public final BoardBuilder rows(final int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+        return this;
+    }
+
+    public final BoardBuilder columns(final int numberOfColumns) {
+        this.numberOfColumns = numberOfColumns;
+        return this;
+    }
+
+    public final BoardBuilder dimension(final int numberOfRows, final int numberOfColumns) {
+        this.rows(numberOfRows);
+        this.columns(numberOfColumns);
         return this;
     }
 
     public BoardInterface build() {
-        if (this.dimensions == null) {
-            this.dimensions = new Dimensions(3, 3);
-        }
-        return new Board(Cells.Factory.Cells(Positions.Factory.Positions(this.dimensions)));
+        return new Board(Cells.Factory.Cells(Positions.Factory.Positions(Dimensions.Factory.Dimension(this.numberOfRows, this.numberOfColumns))));
     }
 
     public BoardInterface clone(final BoardInterface board) {
@@ -41,7 +49,7 @@ public class BoardBuilder {
 
         final BoardBuilder builder = new BoardBuilder();
 
-        final BoardInterface board1 = builder.dimensions(new Dimensions(2, 2)).build();
+        final BoardInterface board1 = builder.rows(2).columns(2).build();
         board1.cell(1, 1).setPiece(new Piece(Side.SECOND_PLAYER));
         board1.cell(2, 2).setPiece(new Piece(Side.SECOND_PLAYER));
 

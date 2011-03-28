@@ -1,50 +1,85 @@
 
 package game.board.dimensions;
 
-public final class Dimensions implements DimensionsInterface {
+public final class Dimensions {
 
-    private final RowsRange rowRange;
-    private final ColumnsRange columRange;
+    /**
+     * This is the interface for the dimension of a board.
+     */
+    public static interface Interface {
 
-    public Dimensions(final int numberOfRows, final int numberOfColumns) {
-        this(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
+        /**
+         * Returns the first row index.
+         * 
+         * @return the first row index
+         */
+        int lowerBoundForRows();
+
+        /**
+         * Returns the last row index.
+         * 
+         * @return the last row index
+         */
+        int upperBoundForRows();
+
+        /**
+         * Returns the first column index.
+         * 
+         * @return the first column index
+         */
+        int lowerBoundForColumns();
+
+        /**
+         * Returns the last column index.
+         * 
+         * @return the last column index
+         */
+        int upperBoundForColumns();
+
+        /**
+         * Returns the number of rows.
+         * 
+         * @return the number of rows
+         */
+        int numberOfRows();
+
+        /**
+         * Returns the number of columns.
+         * 
+         * @return the number of columns
+         */
+        int numberOfColumns();
+
+        /**
+         * Returns the capacity of a board with these dimension.
+         * 
+         * @return the capacity of a board with these dimension
+         */
+        int boardCapacity();
+
+        /**
+         * Returns true if the row index and column index are contained in these
+         * board dimension, false otherwise.
+         * 
+         * @param rowIndex
+         *            a given row index
+         * 
+         * @param columnIndex
+         *            a given column index
+         * 
+         * @return true if the row index and column index are contained in these
+         *         board dimension, false otherwise
+         */
+
+        boolean contains(final int rowIndex, final int columnIndex);
+
     }
 
-    private Dimensions(final RowsRange rowsRange, final ColumnsRange columnsRange) {
-        this.rowRange = rowsRange;
-        this.columRange = columnsRange;
-    }
+    public final static class Factory {
 
-    public final int lowerBoundForRows() {
-        return this.rowRange.getLowerBound();
-    }
-
-    public final int upperBoundForRows() {
-        return this.rowRange.getUpperBound();
-    }
-
-    public final int lowerBoundForColumns() {
-        return this.columRange.getLowerBound();
-    }
-
-    public final int upperBoundForColumns() {
-        return this.columRange.getUpperBound();
-    }
-
-    public final int numberOfRows() {
-        return this.rowRange.getCapacity();
-    }
-
-    public final int numberOfColumns() {
-        return this.columRange.getCapacity();
-    }
-
-    public final int boardCapacity() {
-        return this.numberOfRows() * this.numberOfColumns();
-    }
-
-    public final boolean contains(final int rowIndex, final int columnIndex) {
-        return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
+        public static Dimensions.Interface Dimension(final int numberOfRows, final int numberOfColumns) {
+            return new Dimension(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
+        }
     }
 
 }

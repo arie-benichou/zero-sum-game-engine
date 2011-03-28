@@ -13,16 +13,16 @@ import org.junit.Test;
  * @author artefact
  * 
  */
-public class DimensionsTest {
+public class DimensionTest {
 
-    private Dimensions dimensions;
+    private Dimensions.Interface dimension;
 
     /**
      * @throws java.lang.Exception
      */
     @Before
     public void setUp() throws Exception {
-        this.dimensions = new Dimensions(3, 3);
+        this.dimension = Dimensions.Factory.Dimension(3, 3);
     }
 
     /**
@@ -30,7 +30,7 @@ public class DimensionsTest {
      */
     @After
     public void tearDown() throws Exception {
-        this.dimensions = null;
+        this.dimension = null;
     }
 
     /**
@@ -40,7 +40,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testDimensions() {
-        Assert.assertTrue(this.dimensions instanceof Dimensions);
+        Assert.assertTrue(this.dimension instanceof Dimensions.Interface);
     }
 
     /**
@@ -49,7 +49,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetRowsLowerBound() {
-        Assert.assertTrue(this.dimensions.lowerBoundForRows() == 1);
+        Assert.assertTrue(this.dimension.lowerBoundForRows() == 1);
     }
 
     /**
@@ -58,7 +58,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetRowsUpperBound() {
-        Assert.assertTrue(this.dimensions.upperBoundForRows() == 3);
+        Assert.assertTrue(this.dimension.upperBoundForRows() == 3);
     }
 
     /**
@@ -67,7 +67,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetMinColumnIndex() {
-        Assert.assertTrue(this.dimensions.lowerBoundForColumns() == 1);
+        Assert.assertTrue(this.dimension.lowerBoundForColumns() == 1);
     }
 
     /**
@@ -76,7 +76,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetMaxColumnIndex() {
-        Assert.assertTrue(this.dimensions.upperBoundForColumns() == 3);
+        Assert.assertTrue(this.dimension.upperBoundForColumns() == 3);
     }
 
     /**
@@ -85,7 +85,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetRowIndexRangeSize() {
-        Assert.assertTrue(this.dimensions.numberOfRows() == 3);
+        Assert.assertTrue(this.dimension.numberOfRows() == 3);
     }
 
     /**
@@ -94,7 +94,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetColumnIndexRangeSize() {
-        Assert.assertTrue(this.dimensions.numberOfColumns() == 3);
+        Assert.assertTrue(this.dimension.numberOfColumns() == 3);
     }
 
     /**
@@ -102,7 +102,7 @@ public class DimensionsTest {
      */
     @Test
     public final void testGetCapacity() {
-        Assert.assertTrue(this.dimensions.boardCapacity() == 3 * 3);
+        Assert.assertTrue(this.dimension.boardCapacity() == 3 * 3);
     }
 
     /**
@@ -112,23 +112,23 @@ public class DimensionsTest {
     @Test
     public final void testContains() {
 
-        Assert.assertFalse(this.dimensions.contains(0, 1));
-        Assert.assertFalse(this.dimensions.contains(1, 0));
+        Assert.assertFalse(this.dimension.contains(0, 1));
+        Assert.assertFalse(this.dimension.contains(1, 0));
 
-        Assert.assertTrue(this.dimensions.contains(1, 1));
-        Assert.assertTrue(this.dimensions.contains(1, 2));
-        Assert.assertTrue(this.dimensions.contains(1, 3));
+        Assert.assertTrue(this.dimension.contains(1, 1));
+        Assert.assertTrue(this.dimension.contains(1, 2));
+        Assert.assertTrue(this.dimension.contains(1, 3));
 
-        Assert.assertTrue(this.dimensions.contains(2, 1));
-        Assert.assertTrue(this.dimensions.contains(2, 2));
-        Assert.assertTrue(this.dimensions.contains(2, 3));
+        Assert.assertTrue(this.dimension.contains(2, 1));
+        Assert.assertTrue(this.dimension.contains(2, 2));
+        Assert.assertTrue(this.dimension.contains(2, 3));
 
-        Assert.assertTrue(this.dimensions.contains(3, 1));
-        Assert.assertTrue(this.dimensions.contains(3, 2));
-        Assert.assertTrue(this.dimensions.contains(3, 3));
+        Assert.assertTrue(this.dimension.contains(3, 1));
+        Assert.assertTrue(this.dimension.contains(3, 2));
+        Assert.assertTrue(this.dimension.contains(3, 3));
 
-        Assert.assertFalse(this.dimensions.contains(3, 4));
-        Assert.assertFalse(this.dimensions.contains(4, 1));
+        Assert.assertFalse(this.dimension.contains(3, 4));
+        Assert.assertFalse(this.dimension.contains(4, 1));
 
     }
 
