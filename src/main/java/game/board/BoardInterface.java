@@ -25,16 +25,6 @@ import game.board.cells.Cells;
 public interface BoardInterface extends Iterable<Cells.Interface> {
 
     /**
-     * Returns the cell related to a given position.
-     * 
-     * @param position
-     *            a given position
-     * 
-     * @return the cell related to a given position
-     */
-    //BoardCells.Interface cell(final BoardPositionInterface position);
-
-    /**
      * Returns the cell related to a given row and a given column.
      * 
      * @param clientRowIndex
@@ -46,7 +36,5 @@ public interface BoardInterface extends Iterable<Cells.Interface> {
      * @return the cell related to a given row index and a given column
      */
     Cells.Interface cell(final int clientRowIndex, final int clientColumnIndex);
-
-    //GameBoardInterface clone();
 
 }
