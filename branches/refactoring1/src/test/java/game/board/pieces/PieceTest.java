@@ -2,7 +2,7 @@
 package game.board.pieces;
 
 import game.board.pieces.Piece;
-import game.board.pieces.PieceInterface;
+import game.board.pieces.Pieces.Interface;
 
 import java.util.Random;
 
@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class PieceTest {
 
-    private PieceInterface piece;
+    private Pieces.Interface piece;
 
     @Before
     public void setUp() {

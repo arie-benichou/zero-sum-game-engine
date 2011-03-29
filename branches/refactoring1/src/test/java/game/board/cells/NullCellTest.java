@@ -2,6 +2,8 @@
 package game.board.cells;
 
 import static game.board.positions.Positions.Factory.*;
+import static game.board.pieces.Pieces.*;
+
 import static junit.framework.Assert.*;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Random;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class NullCellTest {
 
@@ -30,12 +33,7 @@ public class NullCellTest {
         assertTrue(this.cell.isNull());
         assertEquals(0, this.cell.getRow());
         assertEquals(0, this.cell.getColumn());
-        
-        /*
-        assertEquals(NULL_PIECE, this.cell.getPiece()); //TODO ! Factory
-        */
-        
-        fail("TODO Abstract Factory for Piece");
+        assertEquals(NULL_PIECE, this.cell.getPiece());
         
     }
 

@@ -1,21 +1,21 @@
 
 package game.board.cells;
 
-import game.board.pieces.PieceFactoryInterface;
-import game.board.pieces.PieceInterface;
+import static game.board.pieces.Pieces.*;
+import static game.board.pieces.Pieces.Factory.*;
+
+import game.board.pieces.Pieces;
 import game.board.positions.Positions;
 
 abstract class AbstractCell implements Cells.Interface {
 
     private final Positions.Interface position;
-    private transient PieceInterface piece = PieceFactoryInterface.NULL_PIECE;
+    private transient Pieces.Interface piece = NULL_PIECE;
 
     private volatile int hashCode;
 
     public AbstractCell(final Positions.Interface position) {
         this.position = position;
-        //        this.setPiece(new Piece(OpponentsEnumeration.FIRST_PLAYER));
-        //        this.setPiece(new Piece(OpponentsEnumeration.SECOND_PLAYER));
     }
 
     public final Positions.Interface getPosition() {
@@ -30,11 +30,11 @@ abstract class AbstractCell implements Cells.Interface {
         return this.position.getColumn();
     }
 
-    public final void setPiece(final PieceInterface piece) {
+    public final void setPiece(final Pieces.Interface piece) {
         this.piece = piece;
     }
 
-    public final PieceInterface getPiece() {
+    public final Pieces.Interface getPiece() {
         return this.piece;
     }
 

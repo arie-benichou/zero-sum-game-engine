@@ -19,7 +19,7 @@ package game.board.pieces;
 
 import opponents.Side;
 
-abstract class AbstractPiece implements PieceInterface {
+abstract class AbstractPiece implements Pieces.Interface {
 
     private final Side side;
 
@@ -59,11 +59,11 @@ abstract class AbstractPiece implements PieceInterface {
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof PieceInterface)) {
+        else if (!(object instanceof Pieces.Interface)) {
             isEqual = false;
         }
         else {
-            final PieceInterface piece = (PieceInterface) object;
+            final Pieces.Interface piece = (Pieces.Interface) object;
             if (piece.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
