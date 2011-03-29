@@ -14,7 +14,7 @@ import game.side.Side;
 
 import org.junit.Test;
 
-public class PiecesTest {
+public class APITest {
 
     @Test
     public void testNullPiece() {

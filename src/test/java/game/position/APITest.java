@@ -16,7 +16,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class PositionsTest {
+public class APITest {
 
     @Test
     public void testNullPosition() {

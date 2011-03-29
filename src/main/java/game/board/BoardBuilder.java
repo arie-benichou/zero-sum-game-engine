@@ -45,7 +45,7 @@ class BoardBuilder {
     }
 
     public BoardInterface clone(final BoardInterface board) {
-        final ArrayList<CellInterface> cells = Lists.newArrayList();
+        final List<CellInterface> cells = Lists.newArrayList();
         for (final  CellInterface cell : board) {
             cells.add(CellFactory.Clone(cell));
         }

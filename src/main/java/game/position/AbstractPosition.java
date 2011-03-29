@@ -58,7 +58,7 @@ abstract class AbstractPosition implements  PositionInterface {
             isEqual = false;
         }
         else {
-            final  PositionInterface position = (API.PositionInterface) object;
+            final  PositionInterface position = (PositionInterface) object;
             if (position.hashCode() != this.hashCode()) {
                 isEqual = false;
             }

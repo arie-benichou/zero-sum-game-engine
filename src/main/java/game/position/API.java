@@ -97,7 +97,7 @@ public class API {
         }
 
         public static List<PositionInterface> Positions(final DimensionInterface dimension) {
-            final ArrayList<PositionInterface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
+            final List<PositionInterface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
             for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
                 for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
                     positions.add(Position(rowIndex, columnIndex));
