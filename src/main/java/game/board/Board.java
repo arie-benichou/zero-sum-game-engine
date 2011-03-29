@@ -6,7 +6,6 @@ import static game.board.API.*;
 
 import game.cell.API.CellInterface;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ final class Board implements BoardInterface {
     }
 
     private Map<String,  CellInterface> mapCells(final List<CellInterface> cells) {
-        final HashMap<String,  CellInterface> mappedCells = Maps.newHashMapWithExpectedSize(cells.size());
+        final Map<String,  CellInterface> mappedCells = Maps.newHashMapWithExpectedSize(cells.size());
         for (final  CellInterface cell : cells) {
             mappedCells.put(this.computeHash(cell), cell);
         }
