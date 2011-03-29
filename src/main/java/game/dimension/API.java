@@ -3,15 +3,15 @@ package game.dimension;
 
 public final class API {
 	
-	public static class IllegalDimensionException extends RuntimeException {
-		
+    public static class IllegalDimensionException extends RuntimeException {
+    		
         private static final String MESSAGE = "Dimension(numberOfRows=%d, numberOfColumns=%d) is not a legal dimension.";
-
+        
         private static final long serialVersionUID = 1L;
         
         private int numberOfRows;
         private int numberOfColumns;
-
+        
         public IllegalDimensionException(final int numberOfRows, final int numberOfColumns) {
             super();
             this.numberOfRows = numberOfRows;
@@ -22,8 +22,8 @@ public final class API {
         public String getMessage() {
             return String.format(IllegalDimensionException.MESSAGE, this.numberOfRows, this.numberOfColumns);
         }		
-		
-	}
+    		
+    }
 
     /**
      * This is the interface for the dimension of a board.
