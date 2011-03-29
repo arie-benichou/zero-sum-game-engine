@@ -5,9 +5,8 @@ import static org.junit.Assert.*;
 
 import static game.board.positions.Positions.*;
 import static game.board.positions.Positions.Factory.*;
-import static junit.framework.Assert.fail;
-
-import game.board.pieces.Piece;
+import static game.board.pieces.Pieces.*;
+import static game.board.pieces.Pieces.Factory.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,12 +36,7 @@ public class CellTest {
         assertFalse(this.cell.isNull());
         assertEquals(1, this.cell.getRow());
         assertEquals(2, this.cell.getColumn());
-        
-        /*
-        assertEquals(NULL_PIECE, this.cell.getPiece()); //TODO ! Factory
-        */
-        
-        fail("TODO Abstract Factory for Piece");
+        assertEquals(NULL_PIECE, this.cell.getPiece());
         
     }
 
@@ -62,10 +56,10 @@ public class CellTest {
 
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
 
-        this.cell.setPiece(new Piece(Side.FIRST_PLAYER));
+        this.cell.setPiece(Piece(Side.FIRST_PLAYER));
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
 
-        this.cell.setPiece(new Piece(Side.SECOND_PLAYER));
+        this.cell.setPiece(Piece(Side.SECOND_PLAYER));
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
         
     }
@@ -84,24 +78,24 @@ public class CellTest {
         assertTrue(this.cell.equals(new Cell(Position(1, 2))));
         assertNotSame(this.cell, new Cell(Position(1, 2)));
 
-        this.cell.setPiece(new Piece(Side.FIRST_PLAYER));
+        this.cell.setPiece(Piece(Side.FIRST_PLAYER));
         assertTrue(this.cell.equals(this.cell));
         assertFalse(this.cell.equals(new Cell(Position(1, 2))));
 
-        this.cell.setPiece(new Piece(Side.SECOND_PLAYER));
+        this.cell.setPiece(Piece(Side.SECOND_PLAYER));
         assertTrue(this.cell.equals(this.cell));
         assertFalse(this.cell.equals(new Cell(Position(1, 2))));
 
         final Cells.Interface anotherCell = new Cell(Position(1, 2));
-        anotherCell.setPiece(new Piece(Side.FIRST_PLAYER));
+        anotherCell.setPiece(Piece(Side.FIRST_PLAYER));
         assertFalse(this.cell.equals(anotherCell));
 
-        anotherCell.setPiece(new Piece(Side.SECOND_PLAYER));
+        anotherCell.setPiece(Piece(Side.SECOND_PLAYER));
         assertTrue(this.cell.equals(anotherCell));
         assertNotSame(this.cell, anotherCell);
 
         final Cells.Interface yetAnotherCell = new Cell(Position(3, 3));
-        yetAnotherCell.setPiece(new Piece(Side.SECOND_PLAYER));
+        yetAnotherCell.setPiece(Piece(Side.SECOND_PLAYER));
         assertFalse(this.cell.equals(yetAnotherCell));
         
     }

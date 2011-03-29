@@ -1,7 +1,7 @@
 
 package game.board.cells;
 
-import game.board.pieces.PieceInterface;
+import game.board.pieces.Pieces;
 import game.board.positions.Positions;
 
 import java.util.Collections;
@@ -41,7 +41,7 @@ public final class Cells {
          * 
          * @return the piece contained by this cell
          */
-        PieceInterface getPiece();
+        Pieces.Interface getPiece();
 
         /**
          * Assigns a piece to this cell.
@@ -49,7 +49,7 @@ public final class Cells {
          * @param piece
          *            the piece to be contained by this cell
          */
-        void setPiece(final PieceInterface piece);
+        void setPiece(final Pieces.Interface piece);
 
         boolean isNull();
 
