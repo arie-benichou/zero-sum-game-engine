@@ -2,7 +2,6 @@
 package game.board.cells;
 
 import static game.board.pieces.Pieces.*;
-import static game.board.pieces.Pieces.Factory.*;
 
 import game.board.pieces.Pieces;
 import game.board.positions.Positions;

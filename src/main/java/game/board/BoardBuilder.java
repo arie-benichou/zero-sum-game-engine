@@ -12,7 +12,7 @@ import opponents.Side;
 
 import com.google.common.collect.Lists;
 
-public class BoardBuilder {
+class BoardBuilder {
 
     private transient int numberOfRows = 3;
     private transient int numberOfColumns = 3;
