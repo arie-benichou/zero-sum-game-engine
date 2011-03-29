@@ -64,7 +64,7 @@ abstract class AbstractPiece implements PieceInterface {
             isEqual = false;
         }
         else {
-            final  PieceInterface piece = (API.PieceInterface) object;
+            final  PieceInterface piece = (PieceInterface) object;
             if (piece.hashCode() != this.hashCode()) {
                 isEqual = false;
             }

@@ -10,6 +10,7 @@ import static game.position.API.PositionFactory.*;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.common.collect.Lists;
 
@@ -76,7 +77,7 @@ public class API {
         }
         
         public static BoardInterface Clone(final BoardInterface board) {
-            final ArrayList<CellInterface> cells = Lists.newArrayList();
+            final List<CellInterface> cells = Lists.newArrayList();
             for (final  CellInterface cell : board) {
                 cells.add(CellFactory.Clone(cell));
             }
