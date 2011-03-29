@@ -1,7 +1,7 @@
 
 package game.piece;
 
-import game.opponents.Side;
+import game.side.Side;
 
 final class NullPiece extends AbstractPiece {
 

@@ -6,10 +6,10 @@ import static game.piece.API.PieceFactory.*;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import game.opponents.Side;
 import game.piece.NullPiece;
 import game.piece.Piece;
 import game.piece.API.IllegalPieceException;
+import game.side.Side;
 
 
 import org.junit.Test;
