@@ -17,12 +17,12 @@
 
 package game.board;
 
-import game.board.cells.Cells;
+import static game.board.cell.API.*;
 
 /**
  * This is the interface for a game board.
  */
-public interface BoardInterface extends Iterable<Cells.Interface> {
+public interface BoardInterface extends Iterable<CellInterface> {
 
     /**
      * Returns the cell related to a given row and a given column.
@@ -35,6 +35,6 @@ public interface BoardInterface extends Iterable<Cells.Interface> {
      * 
      * @return the cell related to a given row index and a given column
      */
-    Cells.Interface cell(final int clientRowIndex, final int clientColumnIndex);
+     CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
 }

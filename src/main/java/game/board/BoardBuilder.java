@@ -1,16 +1,23 @@
 
 package game.board;
 
-import game.board.cells.Cells;
-import game.board.dimensions.Dimensions;
-import game.board.pieces.Piece;
-import game.board.positions.Positions;
+import static game.board.dimension.API.DimensionFactory.*;
+import static game.board.position.API.PositionFactory.*;
+import static game.board.piece.API.PieceFactory.*;
+import static game.board.cell.API.CellFactory.*;
+import static game.board.cell.API.*;
 
 import java.util.ArrayList;
 
 import opponents.Side;
 
 import com.google.common.collect.Lists;
+
+
+//TODO plus de boardbuilder mais board (factory, interface, et constante...)
+//TODO mettre au singulier chaque composant
+//TODO renommer la classe pluriel en API
+
 
 class BoardBuilder {
 
@@ -36,13 +43,13 @@ class BoardBuilder {
     }
 
     public BoardInterface build() {
-        return new Board(Cells.Factory.Cells(Positions.Factory.Positions(Dimensions.Factory.Dimension(this.numberOfRows, this.numberOfColumns))));
+        return new Board(Cells(Positions(Dimension(this.numberOfRows, this.numberOfColumns))));
     }
 
     public BoardInterface clone(final BoardInterface board) {
-        final ArrayList<Cells.Interface> cells = Lists.newArrayList();
-        for (final Cells.Interface cell : board) {
-            cells.add(Cells.Factory.Clone(cell));
+        final ArrayList<CellInterface> cells = Lists.newArrayList();
+        for (final  CellInterface cell : board) {
+            cells.add(CellFactory.Clone(cell));
         }
         return new Board(cells);
     }
@@ -54,16 +61,16 @@ class BoardBuilder {
         final BoardBuilder builder = new BoardBuilder();
 
         final BoardInterface board1 = builder.rows(2).columns(2).build();
-        board1.cell(1, 1).setPiece(new Piece(Side.SECOND_PLAYER));
-        board1.cell(2, 2).setPiece(new Piece(Side.SECOND_PLAYER));
+        board1.cell(1, 1).setPiece(Piece(Side.SECOND_PLAYER));
+        board1.cell(2, 2).setPiece(Piece(Side.SECOND_PLAYER));
 
         System.out.println(board1);
 
         final BoardInterface board2 = builder.clone(board1);
         System.out.println(board2);
 
-        board2.cell(1, 1).setPiece(new Piece(Side.FIRST_PLAYER));
-        board2.cell(2, 2).setPiece(new Piece(Side.FIRST_PLAYER));
+        board2.cell(1, 1).setPiece(Piece(Side.FIRST_PLAYER));
+        board2.cell(2, 2).setPiece(Piece(Side.FIRST_PLAYER));
         System.out.println(board2);
 
         System.out.println(board1);
