@@ -3,7 +3,6 @@ package game.position;
 
 import static game.dimension.API.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

@@ -8,8 +8,6 @@ import static game.dimension.API.DimensionFactory.*;
 import static game.cell.API.CellFactory.*;
 import static game.position.API.PositionFactory.*;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -56,8 +54,10 @@ public class API {
          */
         CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
         
+        //TODO javadoc
         CellInterface getLowerBound();
         
+        //TODO javadoc        
         CellInterface getUpperBound();
         
      // TODO ? getCellsByColumn()
