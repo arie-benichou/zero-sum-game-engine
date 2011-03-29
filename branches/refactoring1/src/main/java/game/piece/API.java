@@ -1,6 +1,6 @@
 package game.piece;
 
-import game.opponents.Side;
+import game.side.Side;
 
 public class API {
 	

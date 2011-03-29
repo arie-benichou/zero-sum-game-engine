@@ -17,7 +17,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package game.opponents;
+package game.side;
 
 /**
  * This is the enumeration of players.

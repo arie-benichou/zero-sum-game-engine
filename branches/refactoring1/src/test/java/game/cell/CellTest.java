@@ -14,7 +14,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import game.cell.Cell;
-import game.opponents.Side;
+import game.side.Side;
 
 import java.util.ArrayList;
 import java.util.Collections;

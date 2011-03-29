@@ -3,9 +3,9 @@ package game.piece;
 
 import static game.piece.API.*;
 
-import game.opponents.Side;
 import game.piece.NullPiece;
 import game.piece.Piece;
+import game.side.Side;
 
 import java.util.Random;
 

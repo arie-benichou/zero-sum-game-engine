@@ -18,7 +18,7 @@
 package game.piece;
 
 import static game.piece.API.*;
-import game.opponents.Side;
+import game.side.Side;
 
 abstract class AbstractPiece implements PieceInterface {
 
