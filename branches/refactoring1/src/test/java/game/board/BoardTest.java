@@ -1,9 +1,14 @@
 package game.board;
 
+
+import static game.board.dimension.API.DimensionFactory.*;
+import static game.board.position.API.*;
+import static game.board.position.API.PositionFactory.*;
+import static game.board.cell.API.*;
+import static game.board.cell.API.CellFactory.*;
+
+
 import static org.junit.Assert.fail;
-import game.board.cells.Cells;
-import game.board.dimensions.Dimensions;
-import game.board.positions.Positions;
 
 import java.util.List;
 
@@ -17,8 +22,8 @@ public class BoardTest {
 
 	@Before
 	public void setUp() {
-		List<Positions.Interface> positions = Positions.Factory.Positions(Dimensions.Factory.Dimension(3, 3));
-		List<Cells.Interface> cells = Cells.Factory.Cells(positions);
+		List<PositionInterface> positions = Positions(Dimension(3, 3));
+		List<CellInterface> cells =  Cells(positions);
 		this.board = new Board(cells);
 	}
 

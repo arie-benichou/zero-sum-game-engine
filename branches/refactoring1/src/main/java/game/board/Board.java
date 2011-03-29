@@ -1,7 +1,7 @@
 
 package game.board;
 
-import game.board.cells.Cells;
+import static game.board.cell.API.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,39 +17,39 @@ import com.google.common.collect.Maps;
 // TODO ? getByColumn et getByRow
 final class Board implements BoardInterface {
 
-    private final Map<String, Cells.Interface> boardCells;
+    private final Map<String,  CellInterface> boardCells;
 
     private final String computeHash(final int row, final int column) {
         return "r" + row + "c" + column;
     }
 
-    private final String computeHash(final Cells.Interface cell) {
+    private final String computeHash(final  CellInterface cell) {
         return this.computeHash(cell.getRow(), cell.getColumn());
     }
 
-    private Map<String, Cells.Interface> mapCells(final List<Cells.Interface> cells) {
-        final HashMap<String, Cells.Interface> mappedCells = Maps.newHashMapWithExpectedSize(cells.size());
-        for (final Cells.Interface cell : cells) {
+    private Map<String,  CellInterface> mapCells(final List<CellInterface> cells) {
+        final HashMap<String,  CellInterface> mappedCells = Maps.newHashMapWithExpectedSize(cells.size());
+        for (final  CellInterface cell : cells) {
             mappedCells.put(this.computeHash(cell), cell);
         }
         return mappedCells;
     }
 
-    public Board(final List<Cells.Interface> cells) {
+    public Board(final List<CellInterface> cells) {
         this.boardCells = this.mapCells(cells);
     }
 
-    public final Cells.Interface cell(final int row, final int column) {
-        Cells.Interface cell = this.boardCells.get(this.computeHash(row, column));
+    public final  CellInterface cell(final int row, final int column) {
+         CellInterface cell = this.boardCells.get(this.computeHash(row, column));
         if (cell == null) {
-            cell = Cells.NULL_CELL;
+            cell =  NULL_CELL;
         }
         return cell;
     }
 
     // TODO ? mettre en cache, l'iterator (à tester)
-    public Iterator<Cells.Interface> iterator() {
-        final ArrayList<Cells.Interface> cells = Lists.newArrayList(this.boardCells.values());
+    public Iterator<CellInterface> iterator() {
+        final ArrayList<CellInterface> cells = Lists.newArrayList(this.boardCells.values());
         Collections.sort(cells); // TODO tester sans
         return cells.iterator();
     }
@@ -58,12 +58,12 @@ final class Board implements BoardInterface {
     public String toString() {
         final int maximalNumberOfCellsByRow = Collections.max(this.boardCells.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
-        final Iterator<Cells.Interface> it = this.iterator();
+        final Iterator<CellInterface> it = this.iterator();
 
-        Cells.Interface previousCell = Cells.NULL_CELL;
+         CellInterface previousCell =  NULL_CELL;
 
         while (it.hasNext()) {
-            final Cells.Interface cell = it.next();
+            final  CellInterface cell = it.next();
             if (previousCell.getRow() != cell.getRow()) {
                 consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
                 consoleBoardView.append("|");
