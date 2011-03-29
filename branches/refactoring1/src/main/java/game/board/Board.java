@@ -4,7 +4,7 @@ package game.board;
 import static game.cell.API.*;
 import static game.board.API.*;
 
-import java.util.ArrayList;
+import game.cell.API.CellInterface;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,7 +49,7 @@ final class Board implements BoardInterface {
 
     // TODO ? à mettre en cache
     public Iterator<CellInterface> iterator() {
-        final ArrayList<CellInterface> cells = Lists.newArrayList(this.boardCells.values());
+        final List<CellInterface> cells = Lists.newArrayList(this.boardCells.values());
         Collections.sort(cells); // TODO tester sans
         return cells.iterator();
     }
@@ -62,6 +62,39 @@ final class Board implements BoardInterface {
     // TODO ? à mettre en cache    
     public CellInterface getUpperBound() {
         return Collections.max(this.boardCells.values());
+    }
+    
+    
+    @Override
+    public int hashCode() {// TODO ! à tester
+        int hashCode = 17;
+        hashCode *= 31;
+        hashCode += this.boardCells.hashCode();
+        return hashCode;
+    }
+
+    @Override
+    public final boolean equals(final Object object) {
+        final boolean isEqual;
+        if (object == this) {
+            isEqual = true;
+        }
+        else if (object == null) {
+            isEqual = false;
+        }
+        else if (!(object instanceof  BoardInterface)) {
+            isEqual = false;
+        }
+        else {
+            final  BoardInterface board = (BoardInterface) object;
+            if (board.hashCode() != this.hashCode()) {
+                isEqual = false;
+            }
+            else {
+                isEqual = Lists.newArrayList(this).equals(Lists.newArrayList(board));
+            }
+        }
+        return isEqual;
     }    
 
     @Override
@@ -69,9 +102,7 @@ final class Board implements BoardInterface {
         final int maximalNumberOfCellsByRow = Collections.max(this.boardCells.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
         final Iterator<CellInterface> it = this.iterator();
-
-         CellInterface previousCell =  NULL_CELL;
-
+        CellInterface previousCell =  NULL_CELL;
         while (it.hasNext()) {
             final  CellInterface cell = it.next();
             if (previousCell.getRow() != cell.getRow()) {
