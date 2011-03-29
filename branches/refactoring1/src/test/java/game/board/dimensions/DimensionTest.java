@@ -2,6 +2,7 @@
 package game.board.dimensions;
 
 import static game.board.dimensions.Dimensions.Factory.*;
+import game.board.dimensions.Dimensions.IllegalDimensionException;
 
 import static org.junit.Assert.*;
 
@@ -16,9 +17,7 @@ public class DimensionTest {
     @Before
     public void setUp() throws Exception {
         
-        this.dimension = Dimension(3, 3); //TODO IllegalDimensionException
-        
-        fail("TODO IllegalDimensionException");
+        this.dimension = Dimension(3, 3);
         
     }
 
@@ -29,21 +28,21 @@ public class DimensionTest {
         
     }
     
-    @Test
+    @Test(expected=IllegalDimensionException.class)
     public final void testIllegalDimensions1() {
         
         Dimension(0, 0);
         
     }
     
-    @Test
+    @Test(expected=IllegalDimensionException.class)
     public final void testIllegalDimensions2() {
         
         Dimension(0, 1);
         
     }
     
-    @Test
+    @Test(expected=IllegalDimensionException.class)
     public final void testIllegalDimensions3() {
         
         Dimension(1, 0);
@@ -51,14 +50,14 @@ public class DimensionTest {
     }
     
     
-    @Test
+    @Test(expected=IllegalDimensionException.class)
     public final void testIllegalDimensions4() {
         
         Dimension(-1, 1);
         
     }
     
-    @Test
+    @Test(expected=IllegalDimensionException.class)
     public final void testIllegalDimensions5() {
         
         Dimension(1, -1);
