@@ -1,7 +1,7 @@
 
 package game.board;
 
-import static game.board.cell.API.*;
+import static game.cell.API.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

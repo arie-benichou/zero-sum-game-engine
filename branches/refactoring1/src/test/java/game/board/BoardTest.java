@@ -1,11 +1,11 @@
 package game.board;
 
 
-import static game.board.dimension.API.DimensionFactory.*;
-import static game.board.position.API.*;
-import static game.board.position.API.PositionFactory.*;
-import static game.board.cell.API.*;
-import static game.board.cell.API.CellFactory.*;
+import static game.cell.API.*;
+import static game.cell.API.CellFactory.*;
+import static game.dimension.API.DimensionFactory.*;
+import static game.position.API.*;
+import static game.position.API.PositionFactory.*;
 
 
 import static org.junit.Assert.fail;
@@ -32,6 +32,7 @@ public class BoardTest {
 		this.board = null;
 	}
 
+	/*
 	@Test
 	public final void testBoard() {
 		fail("Not yet implemented"); // TODO
@@ -51,5 +52,6 @@ public class BoardTest {
 	public final void testToString() {
 		fail("Not yet implemented"); // TODO
 	}
+	*/
 
 }
