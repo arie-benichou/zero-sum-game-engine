@@ -1,15 +1,16 @@
 
 package game.board;
 
-import static game.board.dimension.API.DimensionFactory.*;
-import static game.board.position.API.PositionFactory.*;
-import static game.board.piece.API.PieceFactory.*;
-import static game.board.cell.API.CellFactory.*;
-import static game.board.cell.API.*;
+import static game.cell.API.*;
+import static game.cell.API.CellFactory.*;
+import static game.dimension.API.DimensionFactory.*;
+import static game.piece.API.PieceFactory.*;
+import static game.position.API.PositionFactory.*;
+
+import game.opponents.Side;
 
 import java.util.ArrayList;
 
-import opponents.Side;
 
 import com.google.common.collect.Lists;
 

@@ -17,7 +17,7 @@
 
 package game.board;
 
-import static game.board.cell.API.*;
+import static game.cell.API.*;
 
 /**
  * This is the interface for a game board.
