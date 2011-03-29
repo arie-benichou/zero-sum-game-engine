@@ -2,6 +2,28 @@
 package game.board.dimensions;
 
 public final class Dimensions {
+	
+	public static class IllegalDimensionException extends RuntimeException {
+		
+        private static final String MESSAGE = "Dimension(numberOfRows=%d, numberOfColumns=%d) is not a legal dimension.";
+
+        private static final long serialVersionUID = 1L;
+        
+        private int numberOfRows;
+        private int numberOfColumns;
+
+        public IllegalDimensionException(final int numberOfRows, final int numberOfColumns) {
+            super();
+            this.numberOfRows = numberOfRows;
+            this.numberOfColumns = numberOfColumns;
+        }
+        
+        @Override
+        public String getMessage() {
+            return String.format(IllegalDimensionException.MESSAGE, this.numberOfRows, this.numberOfColumns);
+        }		
+		
+	}
 
     /**
      * This is the interface for the dimension of a board.
@@ -78,7 +100,13 @@ public final class Dimensions {
     public final static class Factory {
 
         public static Dimensions.Interface Dimension(final int numberOfRows, final int numberOfColumns) {
-            return new Dimension(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
+        	
+            try {
+				return new Dimension(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
+			} catch (IllegalArgumentException e) {
+				throw new IllegalDimensionException(numberOfRows, numberOfColumns);
+			}
+            
         }
     }
 
