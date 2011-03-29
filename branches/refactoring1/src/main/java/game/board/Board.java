@@ -2,6 +2,7 @@
 package game.board;
 
 import static game.cell.API.*;
+import static game.board.API.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +15,6 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-// TODO ? getByColumn et getByRow
 final class Board implements BoardInterface {
 
     private final Map<String,  CellInterface> boardCells;
@@ -39,7 +39,7 @@ final class Board implements BoardInterface {
         this.boardCells = this.mapCells(cells);
     }
 
-    public final  CellInterface cell(final int row, final int column) {
+    public final  CellInterface getCell(final int row, final int column) {
          CellInterface cell = this.boardCells.get(this.computeHash(row, column));
         if (cell == null) {
             cell =  NULL_CELL;
@@ -47,12 +47,22 @@ final class Board implements BoardInterface {
         return cell;
     }
 
-    // TODO ? mettre en cache, l'iterator (à tester)
+    // TODO ? à mettre en cache
     public Iterator<CellInterface> iterator() {
         final ArrayList<CellInterface> cells = Lists.newArrayList(this.boardCells.values());
         Collections.sort(cells); // TODO tester sans
         return cells.iterator();
     }
+    
+    // TODO ? à mettre en cache    
+    public CellInterface getLowerBound() {
+        return Collections.min(this.boardCells.values());
+    }
+
+    // TODO ? à mettre en cache    
+    public CellInterface getUpperBound() {
+        return Collections.max(this.boardCells.values());
+    }    
 
     @Override
     public String toString() {
@@ -74,4 +84,5 @@ final class Board implements BoardInterface {
         consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
         return consoleBoardView.toString();
     }
+
 }
