@@ -73,12 +73,27 @@ public class API {
 
 	}
 	    
+	/**
+	 * The piece factory.
+	 */
     public static final class PieceFactory {
     	    	
+    	/**
+		 * Returns the null piece.
+		 *  
+    	 * @return the null piece
+    	 */
         public static  PieceInterface NullPiece() {
             return  NULL_PIECE;
         }
-
+        
+        /**
+		 * Returns a new instance of a piece for a given side.
+		 *  
+         * @param side a given side
+         * 
+         * @return a new instance of a piece for a given side
+         */
         public static  PieceInterface Piece(Side side) {
             try {            
                 return new Piece(side);
