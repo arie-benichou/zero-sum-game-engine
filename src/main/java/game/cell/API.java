@@ -35,8 +35,6 @@ public final class API {
 	 */
 	public final static CellInterface NULL_CELL = new NullCell();
 	
-	// TODO IllegalCellException
-
 	/**
 	 * This is the interface for a cell.
 	 */
