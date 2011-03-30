@@ -23,14 +23,11 @@ public class APITest {
         
         assertTrue(new NullPosition().equals(NULL_POSITION));
         assertTrue(new NullPosition().equals(NullPosition()));
-        assertTrue(new NullPosition().equals(getInstance().nullPosition()));
         
         assertFalse(new NullPosition() == NULL_POSITION);
         assertFalse(new NullPosition() == NullPosition());
-        assertFalse(new NullPosition() == getInstance().nullPosition());
         
         assertTrue(NULL_POSITION == NullPosition());
-        assertTrue(NULL_POSITION == getInstance().nullPosition());
         
     }
 

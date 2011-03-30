@@ -1,3 +1,19 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package game.cell;
 
@@ -9,125 +25,131 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * API related to cells.
+ */
 public final class API {
 
-    public final static CellInterface NULL_CELL = new NullCell();
+	/**
+	 * The null object for a cell.
+	 */
+	public final static CellInterface NULL_CELL = new NullCell();
+	
+	// TODO IllegalCellException
 
-    /**
-     * This is the interface for a game board cell.
-     */
-    public static interface CellInterface extends Comparable<CellInterface> {
+	/**
+	 * This is the interface for a cell.
+	 */
+	public static interface CellInterface extends Comparable<CellInterface> {
 
-        /**
-         * Returns the position of this cell.
-         * 
-         * @return the position of this cell
-         */
-        PositionInterface getPosition();
+		/**
+		 * Returns the position of this cell.
+		 * 
+		 * @return the position of this cell
+		 */
+		PositionInterface getPosition();
 
-        int getRow();
+		/**
+		 * Returns the row for this cell.
+		 * 
+		 * @return the row for this cell
+		 */
+		int getRow();
 
-        int getColumn();
+		/**
+		 * Returns the column for this cell.
+		 * 
+		 * @return the column for this cell
+		 */
+		int getColumn();
 
-        /**
-         * Returns true if this cell is empty.
-         * 
-         * @return true if this cell is empty
-         */
-        boolean isEmpty();
+		/**
+		 * Returns true if this cell is empty.
+		 * 
+		 * @return true if this cell is empty
+		 */
+		boolean isEmpty();
 
-        /**
-         * Returns the piece contained by this cell.
-         * 
-         * @return the piece contained by this cell
-         */
-        PieceInterface getPiece();
+		/**
+		 * Returns the piece contained by this cell.
+		 * 
+		 * @return the piece contained by this cell
+		 */
+		PieceInterface getPiece();
 
-        /**
-         * Assigns a piece to this cell.
-         * 
-         * @param piece
-         *            the piece to be contained by this cell
-         */
-        void setPiece(final PieceInterface piece);
+		/**
+		 * Assigns a piece to this cell.
+		 * 
+		 * @param piece
+		 *            the piece to be contained by this cell
+		 */
+		void setPiece(final PieceInterface piece);
 
-        boolean isNull();
+		/**
+		 * Returns true if this cell is the null object, false otherwise.
+		 * 
+		 * @return true if this cell is the null object, false otherwise
+		 */
+		boolean isNull();
 
-    }
+	}
 
-    public static interface CellFactoryInterface {
+	/**
+	 * The cell factory.
+	 */
+	public static final class CellFactory {
 
-        CellInterface cell(final PositionInterface position);
+		/**
+		 * Returns the null cell.
+		 * 
+		 * @return the null cell
+		 */
+		public static CellInterface NullCell() {
+			return NULL_CELL;
+		}
 
-        List<CellInterface> cells(final List<PositionInterface> positions);
+		/**
+		 * Returns a new instance of a cell related to a given position.
+		 * 
+		 * @param position
+		 *            a legal position
+		 * 
+		 * @return a new instance of a cell related to a given position
+		 */
+		public static final CellInterface Cell(final PositionInterface position) {
+			return new Cell(position);
+		}
 
-        CellInterface clone(final CellInterface cellToClone);
+		/**
+		 * Returns a clone of a cell.
+		 * 
+		 * @param cellToClone
+		 *            the cell to clone.
+		 * 
+		 * @return a clone of a cell
+		 */
+		public static final CellInterface Clone(final CellInterface cellToClone) {
+			final CellInterface clone = CellFactory.Cell(cellToClone.getPosition());
+			clone.setPiece(cellToClone.getPiece());
+			return clone;
+		}
 
-        CellInterface nullCell();
+		/**
+		 * Returns a list of new cells relateds to a given list of positions.
+		 * 
+		 * @param positions
+		 *            the legal positions
+		 * 
+		 * @return a list of new cells relateds to a given list of positions
+		 */
+		public static final List<CellInterface> Cells(final List<PositionInterface> positions) {
+			final List<CellInterface> cells = Lists.newArrayListWithExpectedSize(positions.size());
+			for (final PositionInterface position : positions) {
+				cells.add(CellFactory.Cell(position));
+			}
+			return Collections.unmodifiableList(cells);
+		}
 
-    }
-
-    public static final class CellFactory implements CellFactoryInterface {
-
-        /**
-         * Ma convention pour implémenter une interface "statique" en attendant
-         * que ce soit un jour possible... me semble être un meilleur compromis
-         * que l'abjecte ( et anti object :) convention du singleton et de sa
-         * méthode getInstance(). Java devrait permettre la déclaration de
-         * méthode statique dans une interface afin de ne pas avoir à créer un
-         * singleton pour pouvoir implémenter une interface.
-         */
-
-        public static CellInterface NullCell() {
-            return NULL_CELL;
-        }
-
-        public static final CellInterface Cell(final PositionInterface position) {
-            return new Cell(position);
-        }
-
-        public static final List<CellInterface> Cells(final List<PositionInterface> positions) {
-            final List<CellInterface> cells = Lists.newArrayListWithExpectedSize(positions.size());
-            for (final PositionInterface position : positions) {
-                cells.add(CellFactory.Cell(position));
-            }
-            return Collections.unmodifiableList(cells);
-        }
-
-        public static final CellInterface Clone(final CellInterface cellToClone) {
-            final CellInterface clone = CellFactory.Cell(cellToClone.getPosition());
-            clone.setPiece(cellToClone.getPiece());
-            return clone;
-        }
-
-        /**
-         * L'abjecte convention en question :p
-         */
-
-        private static final CellFactoryInterface INSTANCE = new CellFactory();
-
-        private CellFactory() {}
-
-        public static CellFactoryInterface getInstance() {
-            return CellFactory.INSTANCE;
-        }
-
-        public CellInterface nullCell() {
-            return CellFactory.NullCell();
-        }
-
-        public final List<CellInterface> cells(final List<PositionInterface> positions) {
-            return CellFactory.Cells(positions);
-        }
-
-        public final CellInterface cell(final PositionInterface position) {
-            return CellFactory.Cell(position);
-        }
-
-        public final CellInterface clone(final CellInterface cellToClone) {
-            return CellFactory.Clone(cellToClone);
-        }
-
-    }
+	}
 
 }
