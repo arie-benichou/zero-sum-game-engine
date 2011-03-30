@@ -67,12 +67,12 @@ abstract class AbstractCell implements CellInterface {
             isEqual = false;
         }
         else {
-            final CellInterface cell = (CellInterface) object;
-            if (cell.hashCode() != this.hashCode()) {
+            final CellInterface that = (CellInterface) object;
+            if (that.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
             else {
-                isEqual = cell.getPiece().equals(this.getPiece());
+                isEqual = that.getPiece().equals(this.getPiece());
             }
         }
         return isEqual;

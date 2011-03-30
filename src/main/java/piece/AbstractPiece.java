@@ -64,15 +64,15 @@ abstract class AbstractPiece implements PieceInterface {
             isEqual = false;
         }
         else {
-            final  PieceInterface piece = (PieceInterface) object;
-            if (piece.hashCode() != this.hashCode()) {
+            final  PieceInterface that = (PieceInterface) object;
+            if (that.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
-            else if (!piece.getClass().equals(this.getClass())) {
+            else if (!that.getClass().equals(this.getClass())) {
                 isEqual = false;
             }
             else {
-                isEqual = piece.getSide().equals(this.getSide());
+                isEqual = that.getSide().equals(this.getSide());
             }
         }
         return isEqual;
