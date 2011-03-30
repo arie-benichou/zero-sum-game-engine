@@ -1,13 +1,13 @@
 
 package piece;
 
-import side.Side;
+import static side.API.*;
 
 public class Piece extends AbstractPiece {
 
-    public Piece(final Side side) {
+    public Piece(final SideInterface side) {
         super(side);
-        if (!side.isAPlayer()) {
+        if (!side.isOneSide()) {
             throw new IllegalArgumentException("Argument 'side' must be a player.");
         }
     }
@@ -19,7 +19,14 @@ public class Piece extends AbstractPiece {
 
     @Override
     public String toString() {
-        return this.getSide() == Side.FIRST_PLAYER ? "x" : "o";
+        String consoleView;
+        if(this.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else {
+            consoleView = "o";
+        }
+        return consoleView;
     }
 
 }

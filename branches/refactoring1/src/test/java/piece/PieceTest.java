@@ -1,19 +1,15 @@
 
 package piece;
 
+import static side.API.*;
 import static piece.API.*;
 
-
 import java.util.Random;
-
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import piece.Piece;
-import side.Side;
 
 public class PieceTest {
 
@@ -21,34 +17,24 @@ public class PieceTest {
 
     @Before
     public void setUp() {
-        this.piece = new Piece(Side.FIRST_PLAYER);
+        this.piece = new Piece(FIRST_SIDE);
     }
 
     @Test
     public void testNew() {
-        Assert.assertEquals(Side.FIRST_PLAYER, this.piece.getSide());
+        Assert.assertEquals(FIRST_SIDE, this.piece.getSide());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIllegalNew1() {
-        new Piece(Side.NO_ONE);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIllegalNew2() {
-        new Piece(Side.NOT_FIRST_PLAYER);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIllegalNew3() {
-        new Piece(Side.NOT_SECOND_PLAYER);
+    public void testIllegalNew() {
+        new Piece(NULL_SIDE);
     }
 
     @Test
     public void testHashCode() {
         Assert.assertEquals(this.piece.hashCode(), this.piece.hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(Side.SECOND_PLAYER).hashCode());
-        Assert.assertEquals(this.piece.hashCode(), new Piece(Side.FIRST_PLAYER).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new Piece(SECOND_SIDE).hashCode());
+        Assert.assertEquals(this.piece.hashCode(), new Piece(FIRST_SIDE).hashCode());
     }
 
     @Test
@@ -57,9 +43,9 @@ public class PieceTest {
         Assert.assertSame(this.piece, this.piece);
         Assert.assertFalse(this.piece.equals(null));
         Assert.assertFalse(this.piece.equals(new Random()));
-        Assert.assertFalse(this.piece.equals(new Piece(Side.SECOND_PLAYER)));
-        Assert.assertTrue(this.piece.equals(new Piece(Side.FIRST_PLAYER)));
-        Assert.assertNotSame(this.piece, new Piece(Side.FIRST_PLAYER));
+        Assert.assertFalse(this.piece.equals(new Piece(SECOND_SIDE)));
+        Assert.assertTrue(this.piece.equals(new Piece(FIRST_SIDE)));
+        Assert.assertNotSame(this.piece, new Piece(FIRST_SIDE));
     }
 
     @After

@@ -2,7 +2,7 @@
 package piece;
 
 import static piece.API.*;
-
+import static side.API.*;
 
 import java.util.Random;
 
@@ -11,10 +11,6 @@ import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import piece.NullPiece;
-import piece.Piece;
-import side.Side;
 
 public class NullPieceTest {
 
@@ -27,15 +23,15 @@ public class NullPieceTest {
 
     @Test
     public void testNew() {
-        Assert.assertEquals(Side.NO_ONE, this.piece.getSide());
+        Assert.assertEquals(NULL_SIDE, this.piece.getSide());
         Assert.assertTrue(this.piece.isNull());
     }
 
     @Test
     public void testHashCode() {
         Assert.assertEquals(this.piece.hashCode(), this.piece.hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(Side.FIRST_PLAYER).hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(Side.SECOND_PLAYER).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new Piece(FIRST_SIDE).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new Piece(SECOND_SIDE).hashCode());
         Assert.assertEquals(this.piece.hashCode(), new NullPiece().hashCode());
     }
 
@@ -45,8 +41,8 @@ public class NullPieceTest {
         Assert.assertSame(this.piece, this.piece);
         Assert.assertFalse(this.piece.equals(null));
         Assert.assertFalse(this.piece.equals(new Random()));
-        Assert.assertFalse(this.piece.equals(new Piece(Side.FIRST_PLAYER)));
-        Assert.assertFalse(this.piece.equals(new Piece(Side.SECOND_PLAYER)));
+        Assert.assertFalse(this.piece.equals(new Piece(FIRST_SIDE)));
+        Assert.assertFalse(this.piece.equals(new Piece(SECOND_SIDE)));
         Assert.assertEquals(this.piece, new NullPiece());
         Assert.assertNotSame(this.piece, new NullPiece());
     }
