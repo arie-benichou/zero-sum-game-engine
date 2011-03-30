@@ -58,12 +58,12 @@ abstract class AbstractPosition implements  PositionInterface {
             isEqual = false;
         }
         else {
-            final  PositionInterface position = (PositionInterface) object;
-            if (position.hashCode() != this.hashCode()) {
+            final  PositionInterface that = (PositionInterface) object;
+            if (that.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
             else {
-                isEqual = position.isNull() == this.isNull() && position.getRow() == this.getRow() && position.getColumn() == this.getColumn();
+                isEqual = that.isNull() == this.isNull() && that.getRow() == this.getRow() && that.getColumn() == this.getColumn();
             }
         }
         return isEqual;

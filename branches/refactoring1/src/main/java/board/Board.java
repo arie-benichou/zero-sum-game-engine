@@ -84,12 +84,12 @@ final class Board implements BoardInterface {
 			isEqual = false;
 		}
 		else {
-			final BoardInterface board = (BoardInterface) object;
-			if (board.hashCode() != this.hashCode()) {
+			final BoardInterface that = (BoardInterface) object;
+			if (that.hashCode() != this.hashCode()) {
 				isEqual = false;
 			}
 			else {
-				isEqual = Lists.newArrayList(this).equals(Lists.newArrayList(board));
+				isEqual = Lists.newArrayList(this).equals(Lists.newArrayList(that));
 			}
 		}
 		return isEqual;
