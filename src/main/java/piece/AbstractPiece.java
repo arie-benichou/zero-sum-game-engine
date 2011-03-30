@@ -18,19 +18,19 @@
 package piece;
 
 import static piece.API.*;
-import side.Side;
+import static side.API.*;
 
 abstract class AbstractPiece implements PieceInterface {
 
-    private final Side side;
-
     private volatile int hashCode;
+    
+    private final SideInterface side;
 
-    public AbstractPiece(final Side side) {
+    public AbstractPiece(final SideInterface side) {
         this.side = side;
     }
 
-    public final Side getSide() {
+    public final SideInterface getSide() {
         return this.side;
     }
 

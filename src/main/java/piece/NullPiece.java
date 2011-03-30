@@ -1,12 +1,12 @@
 
 package piece;
 
-import side.Side;
+import static side.API.*;
 
 final class NullPiece extends AbstractPiece {
 
     public NullPiece() {
-        super(Side.NO_ONE);
+        super(NULL_SIDE);
     }
 
     @Override

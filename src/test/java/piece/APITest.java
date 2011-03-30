@@ -1,19 +1,14 @@
 
 package piece;
 
-
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+
+import static side.API.*;
 import static piece.API.*;
 import static piece.API.PieceFactory.*;
 
-
 import org.junit.Test;
-
-import piece.NullPiece;
-import piece.Piece;
-import piece.API.IllegalPieceException;
-import side.Side;
 
 public class APITest {
 
@@ -33,29 +28,15 @@ public class APITest {
     @Test(expected = IllegalPieceException.class)
     public void testIllegalPiece1() {
         
-        Piece(Side.NO_ONE);
+        Piece(NULL_SIDE);
         
     }
     
-    @Test(expected = IllegalPieceException.class)
-    public void testIllegalPiece2() {
-        
-        Piece(Side.NOT_FIRST_PLAYER);
-        
-    }
-    
-    @Test(expected = IllegalPieceException.class)
-    public void testIllegalPiece3() {
-        
-    	Piece(Side.NOT_SECOND_PLAYER);
-        
-    }        
-
     @Test
     public void testLegalPiece() {
         
-        assertTrue(Piece(Side.FIRST_PLAYER).equals(new Piece(Side.FIRST_PLAYER)));
-        assertFalse(Piece(Side.FIRST_PLAYER) == new Piece(Side.FIRST_PLAYER));
+        assertTrue(Piece(FIRST_SIDE).equals(new Piece(FIRST_SIDE)));
+        assertFalse(Piece(FIRST_SIDE) == new Piece(FIRST_SIDE));
         
     }
 
