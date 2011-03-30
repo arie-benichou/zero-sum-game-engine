@@ -65,7 +65,7 @@ final class Board implements BoardInterface {
     
     
     @Override
-    public int hashCode() {// TODO ! à tester
+    public int hashCode() {
         int hashCode = 17;
         hashCode *= 31;
         hashCode += this.boardCells.hashCode();

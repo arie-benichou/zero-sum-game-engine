@@ -1,11 +1,37 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package game.piece;
 
 import game.side.Side;
 
+/**
+ * API related to pieces.
+ */
 public class API {
 	
+	/**
+	 * The null object for a piece.
+	 */	
 	public final static NullPiece NULL_PIECE = new NullPiece();
 	
+	/**
+	 * Class for illegal piece exceptions.
+	 */	
     public static final class IllegalPieceException extends RuntimeException {
         
         private static final String MESSAGE = "Piece(side=%d) is not a legal piece.";
@@ -27,7 +53,7 @@ public class API {
     }	
 	
 	/**
-	 * This is the interface for a game piece.
+	 * This is the interface for a piece.
 	 */
 	public interface PieceInterface {
 
@@ -38,32 +64,17 @@ public class API {
 	     */
 	    Side getSide();
 
+		/**
+		 * Returns true if this piece is the null object, false otherwise.
+		 * 
+		 * @return true if this piece is the null object, false otherwise
+		 */
 	    boolean isNull();
 
 	}
-	
-    /**
-     * This is the interface for the pieces factory.
-     */
-    public static interface PieceFactoryInterface {
-
-         PieceInterface piece(final Side side);
-
-         PieceInterface nullPiece();
-
-    }
-    
-    public static final class PieceFactory implements  PieceFactoryInterface {
-    	
-        /**
-         * Ma convention pour implémenter une interface "statique" en attendant
-         * que ce soit un jour possible... me semble être un meilleur compromis
-         * que l'abjecte ( et anti object :) convention du singleton et de sa
-         * méthode getInstance(). Java devrait permettre la déclaration de
-         * méthode statique dans une interface afin de ne pas avoir à créer un
-         * singleton pour pouvoir implémenter une interface.
-         */    	
-    	
+	    
+    public static final class PieceFactory {
+    	    	
         public static  PieceInterface NullPiece() {
             return  NULL_PIECE;
         }
@@ -75,26 +86,6 @@ public class API {
             catch (IllegalArgumentException e) {
                 throw new IllegalPieceException(side);
             }
-        }
-        
-        /**
-         * L'abjecte convention en question :p
-         */
-
-        private static final PieceFactoryInterface INSTANCE = new PieceFactory();
-
-        private PieceFactory() {}
-
-        public static PieceFactoryInterface getInstance() {
-            return INSTANCE;
-        }
-
-        public  PieceInterface piece(final Side side) {
-            return Piece(side);
-        }
-
-        public  PieceInterface nullPiece() {
-            return NullPiece();
         }
         
     }    

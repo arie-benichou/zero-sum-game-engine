@@ -1,3 +1,19 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package game.position;
 
@@ -8,127 +24,120 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+/**
+ * API related to positions.
+ */
 public class API {
 
-    public final static PositionInterface NULL_POSITION = new NullPosition();
-    
-    public static final class IllegalPositionException extends RuntimeException {
-        
-        private static final String MESSAGE = "Position(row=%d, column=%d) is not a legal position.";
+	/**
+	 * The null object for a position.
+	 */
+	public final static PositionInterface NULL_POSITION = new NullPosition();
 
-        private static final long serialVersionUID = 1L;
-        
-        private int rowIndex;
-        private int columnIndex;
+	/**
+	 * Class for illegal positions.
+	 */
+	public static final class IllegalPositionException extends RuntimeException {
 
-        public IllegalPositionException(final int rowIndex, final int columnIndex) {
-            super();
-            this.rowIndex = rowIndex;
-            this.columnIndex = columnIndex;
-        }
-        
-        @Override
-        public String getMessage() {
-            return String.format(IllegalPositionException.MESSAGE, this.rowIndex, this.columnIndex);
-        }
-        
-    }
-    
+		private static final String MESSAGE = "Position(row=%d, column=%d) is not a legal position.";
 
-    /**
-     * This is the interface for a game board position.
-     */
-    public static interface PositionInterface extends Comparable<PositionInterface> {
+		private static final long serialVersionUID = 1L;
 
-        /**
-         * Returns the column index of this position.
-         * 
-         * @return the column index of this position
-         */
-        int getColumn();
+		private int rowIndex;
+		private int columnIndex;
 
-        /**
-         * Returns the row index of this position.
-         * 
-         * @return the row index of this position
-         */
-        int getRow();
+		public IllegalPositionException(final int rowIndex, final int columnIndex) {
+			super();
+			this.rowIndex = rowIndex;
+			this.columnIndex = columnIndex;
+		}
 
-        boolean isNull();
+		@Override
+		public String getMessage() {
+			return String.format(IllegalPositionException.MESSAGE, this.rowIndex, this.columnIndex);
+		}
 
-    }
+	}
 
-    /**
-     * This is the interface for the positions factory.
-     */
-    public static interface PositionFactoryInterface {
+	/**
+	 * This is the interface for a position.
+	 */
+	public static interface PositionInterface extends Comparable<PositionInterface> {
 
-        List<PositionInterface> positions(final DimensionInterface dimension);
+		/**
+		 * Returns the column index of this position.
+		 * 
+		 * @return the column index of this position
+		 */
+		int getColumn();
 
-        PositionInterface position(final int rowIndex, final int columnIndex);
+		/**
+		 * Returns the row index of this position.
+		 * 
+		 * @return the row index of this position
+		 */
+		int getRow();
 
-        PositionInterface nullPosition();
+		/**
+		 * Returns true if this position is the null object, false otherwise.
+		 * 
+		 * @return true if this position is the null object, false otherwise
+		 */
+		boolean isNull();
 
-    }
+	}
 
-    public static final class PositionFactory implements PositionFactoryInterface {
+	/**
+	 * The position factory.
+	 */
+	public static final class PositionFactory {
 
-        /**
-         * Ma convention pour implémenter une interface "statique" en attendant
-         * que ce soit un jour possible... me semble être un meilleur compromis
-         * que l'abjecte ( et anti object :) convention du singleton et de sa
-         * méthode getInstance(). Java devrait permettre la déclaration de
-         * méthode statique dans une interface afin de ne pas avoir à créer un
-         * singleton pour pouvoir implémenter une interface.
-         */
+		/**
+		 * Returns the null position.
+		 * 
+		 * @return the null position
+		 */
+		public static PositionInterface NullPosition() {
+			return NULL_POSITION;
+		}
 
-        public static PositionInterface NullPosition() {
-            return NULL_POSITION;
-        }
+		/**
+		 * Returns a new instance of a position.
+		 * 
+		 * @param rowIndex
+		 *            the row index related to this position
+		 * 
+		 * @param columnIndex
+		 *            the column index related to this position
+		 * 
+		 * @return a new instance of a position
+		 */
+		public static PositionInterface Position(final int rowIndex, final int columnIndex) {
+			try {
+				return new Position(rowIndex, columnIndex);
+			} catch (IllegalArgumentException e) {
+				throw new IllegalPositionException(rowIndex, columnIndex);
+			}
+		}
 
-        public static PositionInterface Position(final int rowIndex, final int columnIndex) {
-            try {            
-                return new Position(rowIndex, columnIndex);
-            }
-            catch (IllegalArgumentException e) {
-                throw new IllegalPositionException(rowIndex, columnIndex);
-            }
-        }
+		/**
+		 * Returns a list of new positions relateds to a given dimension.
+		 * 
+		 * @param dimension
+		 *            a given dimension
+		 * 
+		 * @return a list of new positions relateds to a given dimension.
+		 */
+		public static List<PositionInterface> Positions(final DimensionInterface dimension) {
+			final List<PositionInterface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
+			for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
+				for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
+					positions.add(Position(rowIndex, columnIndex));
+				}
+			}
+			return Collections.unmodifiableList(positions);
+		}
 
-        public static List<PositionInterface> Positions(final DimensionInterface dimension) {
-            final List<PositionInterface> positions = Lists.newArrayListWithExpectedSize(dimension.boardCapacity());
-            for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
-                for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
-                    positions.add(Position(rowIndex, columnIndex));
-                }
-            }
-            return Collections.unmodifiableList(positions);
-        }
-
-        /**
-         * L'abjecte convention en question :p
-         */
-
-        private static final PositionFactoryInterface INSTANCE = new PositionFactory();
-
-        private PositionFactory() {}
-
-        public static PositionFactoryInterface getInstance() {
-            return INSTANCE;
-        }
-
-        public List<PositionInterface> positions(final DimensionInterface dimension) {
-            return Positions(dimension);
-        }
-
-        public PositionInterface position(final int rowIndex, final int columnIndex) {
-            return Position(rowIndex, columnIndex);
-        }
-
-        public PositionInterface nullPosition() {
-            return NullPosition();
-        }
-
-    }
+	}
 
 }
