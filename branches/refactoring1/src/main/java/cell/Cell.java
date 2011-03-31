@@ -19,7 +19,6 @@ final class Cell extends AbstractCell {
 
     @Override
     public String toString() {
-        //return "[row: " + this.getRow() + "][column: " + this.getColumn() + "]";
         return " " + this.getPiece() + " |";
 
     }
