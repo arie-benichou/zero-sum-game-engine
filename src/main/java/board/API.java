@@ -53,7 +53,7 @@ public class API {
 
 		@Override
 		public String getMessage() {
-			return String.format(IllegalBoardException.MESSAGE, this.numberOfRows, this.numberOfColumns);
+			return String.format(MESSAGE, this.numberOfRows, this.numberOfColumns);
 		}
 
 	}

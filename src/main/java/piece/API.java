@@ -47,7 +47,7 @@ public class API {
 
         @Override
         public String getMessage() {
-            return String.format(IllegalPieceException.MESSAGE, this.side);
+            return String.format(MESSAGE, this.side);
         }
 
     }
