@@ -1,13 +1,8 @@
 package move;
 
+import static move.API.*;
 import static position.API.*;
 import static piece.API.*;
-import static side.API.*;
-
-import static position.API.PositionFactory.*;
-import static piece.API.PieceFactory.*;
-
-import move.API.MoveInterface;
 
 import static org.junit.Assert.*;
 

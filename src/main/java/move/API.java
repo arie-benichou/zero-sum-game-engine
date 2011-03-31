@@ -10,7 +10,7 @@ public class API {
 	
 	public final static MoveInterface NULL_MOVE = new NullMove();
 	
-	public static class IllegalMoveException extends Exception {
+	public final static class IllegalMoveException extends Exception {
 		
 		private static final String MESSAGE = "Move(position=%s, piece=%s) is not a legal move.";
 
@@ -35,7 +35,7 @@ public class API {
 	/**
 	 * This is the interface for a move.
 	 */
-	public interface MoveInterface {
+	public static interface MoveInterface {
 
 		/**
 		 * Returns the position related to this move.
