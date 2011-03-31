@@ -3,14 +3,20 @@ package move;
 import piece.API.PieceInterface;
 import position.API.PositionInterface;
 
-public class Move extends AbstractMove {
+class Move extends AbstractMove {
 
-	public Move(PositionInterface position, PieceInterface piece) {
+	public Move(final PositionInterface position, final PieceInterface piece) {
 		super(position, piece);
+		if(this.getPosition().isNull()) {
+			throw new IllegalArgumentException("Argument 'position' must be a legal position.");
+		}
+		if(this.getPiece().isNull()) {
+			throw new IllegalArgumentException("Argument 'piece' must be a legal piece.");
+		}		
 	}
 
 	@Override
-	public boolean isNull() {
+	final public boolean isNull() {
 		return false;
 	}
 
