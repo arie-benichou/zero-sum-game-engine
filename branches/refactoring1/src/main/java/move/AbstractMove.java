@@ -14,11 +14,11 @@ abstract class AbstractMove implements MoveInterface {
 		this.piece = piece;
 	}
 
-	public PositionInterface getPosition() {
+	final public PositionInterface getPosition() {
 		return this.position;
 	}
 
-	public PieceInterface getPiece() {
+	final public PieceInterface getPiece() {
 		return this.piece;
 	}
 
