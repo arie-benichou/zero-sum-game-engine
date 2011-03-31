@@ -19,6 +19,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cell.API.CellInterface;
+
 import board.Board;
 
 public class BoardTest {
@@ -49,6 +51,99 @@ public class BoardTest {
         
     }
     
+    @Test
+    public final void testTopOf() {
+    	
+    	CellInterface cell11 = this.board.getCell(1, 1);
+        assertTrue(this.board.topOf(cell11).equals(NULL_CELL));
+        
+    	CellInterface cell21 = this.board.getCell(2, 1);
+        assertTrue(this.board.topOf(cell21).equals(cell11));
+    	
+    }
+    
+    
+    @Test
+    public final void testRightOf() {
+    	
+    	CellInterface cell13 = this.board.getCell(1, 3);
+        assertTrue(this.board.rightOf(cell13).equals(NULL_CELL));
+        
+    	CellInterface cell12 = this.board.getCell(1, 2);
+        assertTrue(this.board.rightOf(cell12).equals(cell13));
+    	
+    }
+    
+    
+    @Test
+    public final void testBottomOf() {
+    	
+    	CellInterface cell21 = this.board.getCell(2, 1);
+        assertTrue(this.board.bottomOf(cell21).equals(NULL_CELL));
+        
+    	CellInterface cell11 = this.board.getCell(1, 1);
+        assertTrue(this.board.bottomOf(cell11).equals(cell21));
+    	
+    }
+    
+    
+    @Test
+    public final void testLeftOf() {
+    	
+    	CellInterface cell11 = this.board.getCell(1, 1);
+        assertTrue(this.board.leftOf(cell11).equals(NULL_CELL));
+        
+    	CellInterface cell12 = this.board.getCell(1, 2);
+        assertTrue(this.board.leftOf(cell12).equals(cell11));
+    	
+    }
+    
+    
+    @Test
+    public final void testTopRightOf() {
+    	
+    	CellInterface cell13 = this.board.getCell(1, 3);
+        assertTrue(this.board.topRightOf(cell13).equals(NULL_CELL));
+        
+    	CellInterface cell22 = this.board.getCell(2, 2);
+        assertTrue(this.board.topRightOf(cell22).equals(cell13));    	
+    }
+    
+    @Test
+    public final void testTopLeftOf() {
+    	
+    	CellInterface cell11 = this.board.getCell(1, 1);
+        assertTrue(this.board.topLeftOf(cell11).equals(NULL_CELL));
+        
+    	CellInterface cell22 = this.board.getCell(2, 2);
+        assertTrue(this.board.topLeftOf(cell22).equals(cell11));
+    	
+    }
+    
+    
+    @Test
+    public final void testBottomRightOf() {
+    	
+    	CellInterface cell23 = this.board.getCell(2, 3);
+        assertTrue(this.board.bottomRightOf(cell23).equals(NULL_CELL));
+        
+    	CellInterface cell12 = this.board.getCell(1, 2);
+        assertTrue(this.board.bottomRightOf(cell12).equals(cell23));
+    	
+    }
+    
+    
+    @Test
+    public final void testBottomLeftOf() {
+    	
+    	CellInterface cell21 = this.board.getCell(2, 1);
+        assertTrue(this.board.bottomLeftOf(cell21).equals(NULL_CELL));
+        
+    	CellInterface cell12 = this.board.getCell(1, 2);
+        assertTrue(this.board.bottomLeftOf(cell12).equals(cell21));
+    	
+    }
+    
     
     @Test
     public void testHashCode() {
@@ -62,6 +157,7 @@ public class BoardTest {
     @Test
     public void testEquals() {
 
+    	
         assertTrue(this.board.equals(this.board));
         assertSame(this.board, this.board);
 
@@ -91,7 +187,6 @@ public class BoardTest {
         }
 
     }    
-    
 
     @Test
     public final void testIterator() {
