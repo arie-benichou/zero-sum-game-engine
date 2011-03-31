@@ -75,38 +75,38 @@ public class API {
          * 
          * @return the side after this one
          */
-        abstract Side getNextSide();
+        abstract SideInterface getNextSide();
 
         /**
          * Returns the negation of this side.
          * 
          * @return the negation of this side
          */
-        abstract Side getNegation();
+        abstract SideInterface getNegation();
 
     }
 
-    public static boolean isNull(final Side side) {
+    public static boolean isNull(final SideInterface side) {
         return side.isNull();
     }
 
-    public static boolean isFirstSide(final Side side) {
+    public static boolean isFirstSide(final SideInterface side) {
         return side.isFirstSide();
     }
 
-    public static boolean isSecondSide(final Side side) {
+    public static boolean isSecondSide(final SideInterface side) {
         return side.isSecondSide();
     }
 
-    public static boolean isOneSide(final Side side) {
+    public static boolean isOneSide(final SideInterface side) {
         return side.isOneSide();
     }
 
-    public static Side next(final Side side) {
+    public static SideInterface next(final SideInterface side) {
         return side.getNextSide();
     }
 
-    public static Side not(final Side side) {
+    public static SideInterface not(final SideInterface side) {
         return side.getNegation();
     }
 

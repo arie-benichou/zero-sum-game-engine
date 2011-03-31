@@ -35,12 +35,12 @@ enum Side implements SideInterface {
 
         @Override
         public final Side getNextSide() {
-            return NULL_SIDE;
+            return this;
         }
 
         @Override
         public final Side getNegation() {
-            return NULL_SIDE;
+            return this;
         }
     },
 
@@ -48,7 +48,7 @@ enum Side implements SideInterface {
 
         @Override
         public final Side getNextSide() {
-            return NOT_SECOND_SIDE;
+            return this;
         }
 
         @Override
@@ -61,7 +61,7 @@ enum Side implements SideInterface {
 
         @Override
         public final Side getNextSide() {
-            return NOT_FIRST_SIDE;
+            return this;
         }
 
         @Override
