@@ -54,7 +54,7 @@ public class API {
 
 		@Override
 		public String getMessage() {
-			return String.format(IllegalPositionException.MESSAGE, this.rowIndex, this.columnIndex);
+			return String.format(MESSAGE, this.rowIndex, this.columnIndex);
 		}
 
 	}

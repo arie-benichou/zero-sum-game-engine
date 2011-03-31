@@ -42,7 +42,7 @@ public final class API {
         
         @Override
         public String getMessage() {
-            return String.format(IllegalDimensionException.MESSAGE, this.numberOfRows, this.numberOfColumns);
+            return String.format(MESSAGE, this.numberOfRows, this.numberOfColumns);
         }		
     		
     }
