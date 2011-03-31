@@ -63,6 +63,40 @@ final class Board implements BoardInterface {
 		return Collections.max(this.boardCells.values());
 	}
 
+	// TODO ré-introduire l'objet CardinalPosition
+	
+	public CellInterface topOf(CellInterface cell) {
+		return this.getCell(cell.getRow() - 1, cell.getColumn());
+	}
+
+	public CellInterface rightOf(CellInterface cell) {
+		return this.getCell(cell.getRow(), cell.getColumn() + 1);
+	}
+
+	public CellInterface bottomOf(CellInterface cell) {
+		return this.getCell(cell.getRow() + 1, cell.getColumn());
+	}
+
+	public CellInterface leftOf(CellInterface cell) {
+		return this.getCell(cell.getRow(), cell.getColumn() - 1);
+	}
+
+	public CellInterface topRightOf(CellInterface cell) {
+		return this.getCell(cell.getRow() - 1, cell.getColumn() + 1);
+	}
+
+	public CellInterface topLeftOf(CellInterface cell) {
+		return this.getCell(cell.getRow() - 1, cell.getColumn() - 1);
+	}
+
+	public CellInterface bottomRightOf(CellInterface cell) {
+		return this.getCell(cell.getRow() + 1, cell.getColumn() + 1);
+	}
+
+	public CellInterface bottomLeftOf(CellInterface cell) {
+		return this.getCell(cell.getRow() + 1, cell.getColumn() - 1);
+	}
+	
 	@Override
 	public int hashCode() {
 		int hashCode = 17;
@@ -112,6 +146,6 @@ final class Board implements BoardInterface {
 		}
 		consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
 		return consoleBoardView.toString();
-	}
+	}	
 
 }

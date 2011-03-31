@@ -89,6 +89,119 @@ public class API {
 		 * @return the upper bound of this board
 		 */
 		CellInterface getUpperBound();
+		
+	    /**
+	     * Returns the top-neighbour cell of this cell.
+	     * 
+	     * @return the top-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   | x |   |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    CellInterface topOf(CellInterface cell);
+
+	    /**
+	     * Returns the right-neighbour cell of this cell.
+	     * 
+	     * @return the right-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    // |   | . | x |
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    CellInterface rightOf(CellInterface cell);
+
+	    /**
+	     * Returns the bottom-neighbour cell of this cell.
+	     * 
+	     * @return the bottom-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // |   | x |   |
+	    // -------------
+	    CellInterface bottomOf(CellInterface cell);
+
+	    /**
+	     * Returns the left-neighbour cell of this cell.
+	     * 
+	     * @return the left-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    // | x | . |   |
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    CellInterface leftOf(CellInterface cell);
+
+	    /**
+	     * Returns the top-right-neighbour cell of this cell.
+	     * 
+	     * @return the top-right-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   | x |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    CellInterface topRightOf(CellInterface cell);
+
+	    /**
+	     * Returns the top-left-neighbour cell of this cell.
+	     * 
+	     * @return the top-left-neighbour cell of this cell
+	     */
+	    // -------------
+	    // | x |   |   |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    CellInterface topLeftOf(CellInterface cell);
+
+	    /**
+	     * Returns the bottom-right-neighbour cell of this cell.
+	     * 
+	     * @return the bottom-right-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // |   |   | x |
+	    // -------------
+	    CellInterface bottomRightOf(CellInterface cell);
+
+	    /**
+	     * Returns the bottom-left-neighbour cell of this cell.
+	     * 
+	     * @return the bottom-left-neighbour cell of this cell
+	     */
+	    // -------------
+	    // |   |   |   |
+	    // -------------
+	    // |   | . |   |
+	    // -------------
+	    // | x |   |   |
+	    // -------------
+	    CellInterface bottomLeftOf(CellInterface cell);
+		
 
 		// TODO ? getCellsByColumn()
 		// TODO ? getCellsByRow()
