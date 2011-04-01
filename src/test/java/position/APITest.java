@@ -25,12 +25,7 @@ public class APITest {
     public void testNullPosition() {
         
         assertTrue(new NullPosition().equals(NULL_POSITION));
-        assertTrue(new NullPosition().equals(NullPosition()));
-        
         assertFalse(new NullPosition() == NULL_POSITION);
-        assertFalse(new NullPosition() == NullPosition());
-        
-        assertTrue(NULL_POSITION == NullPosition());
         
     }
 
