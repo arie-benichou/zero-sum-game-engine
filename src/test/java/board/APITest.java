@@ -10,7 +10,9 @@ import static position.API.PositionFactory.*;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -32,7 +34,7 @@ public class APITest {
     @Test
     public void testLegalBoard() {
         
-        List<CellInterface> cells = new ArrayList<CellInterface>(1);
+        Set<CellInterface> cells = new HashSet<CellInterface>(1);
         
         cells.add(Cell(Position(1,1)));
         

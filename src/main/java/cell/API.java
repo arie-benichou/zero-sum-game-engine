@@ -22,132 +22,141 @@ import static position.API.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 /**
  * API related to cells.
  */
 public final class API {
 
-	/**
-	 * The null object for a cell.
-	 */
-	public final static CellInterface NULL_CELL = new NullCell();
-	
-	/**
-	 * This is the interface for a cell.
-	 */
-	public static interface CellInterface extends Comparable<CellInterface> {
+    /**
+     * The null object for a cell.
+     */
+    public final static CellInterface NULL_CELL = new NullCell();
 
-		/**
-		 * Returns the position of this cell.
-		 * 
-		 * @return the position of this cell
-		 */
-		PositionInterface getPosition();
+    /**
+     * This is the interface for a cell.
+     */
+    public static interface CellInterface extends Comparable<CellInterface> {
 
-		/**
-		 * Returns the row for this cell.
-		 * 
-		 * @return the row for this cell
-		 */
-		int getRow();
+        /**
+         * Returns the position of this cell.
+         * 
+         * @return the position of this cell
+         */
+        PositionInterface getPosition();
 
-		/**
-		 * Returns the column for this cell.
-		 * 
-		 * @return the column for this cell
-		 */
-		int getColumn();
+        /**
+         * Returns the row for this cell.
+         * 
+         * @return the row for this cell
+         */
+        int getRow();
 
-		/**
-		 * Returns true if this cell is empty.
-		 * 
-		 * @return true if this cell is empty
-		 */
-		boolean isEmpty();
+        /**
+         * Returns the column for this cell.
+         * 
+         * @return the column for this cell
+         */
+        int getColumn();
 
-		/**
-		 * Returns the piece contained by this cell.
-		 * 
-		 * @return the piece contained by this cell
-		 */
-		PieceInterface getPiece();
+        /**
+         * Returns true if this cell is empty.
+         * 
+         * @return true if this cell is empty
+         */
+        boolean isEmpty();
 
-		/**
-		 * Assigns a piece to this cell.
-		 * 
-		 * @param piece
-		 *            the piece to be contained by this cell
-		 */
-		void setPiece(final PieceInterface piece);
+        /**
+         * Returns the piece contained by this cell.
+         * 
+         * @return the piece contained by this cell
+         */
+        PieceInterface getPiece();
 
-		/**
-		 * Returns true if this cell is the null object, false otherwise.
-		 * 
-		 * @return true if this cell is the null object, false otherwise
-		 */
-		boolean isNull();
+        /**
+         * Assigns a piece to this cell.
+         * 
+         * @param piece
+         *            the piece to be contained by this cell
+         */
+        void setPiece(final PieceInterface piece);
 
-	}
+        /**
+         * Returns true if this cell is the null object, false otherwise.
+         * 
+         * @return true if this cell is the null object, false otherwise
+         */
+        boolean isNull();
 
-	/**
-	 * The cell factory.
-	 */
-	public static final class CellFactory {
+    }
 
-		/**
-		 * Returns the null cell.
-		 * 
-		 * @return the null cell
-		 */
-		public static CellInterface NullCell() {
-			return NULL_CELL;
-		}
+    /**
+     * The cell factory.
+     */
+    public static final class CellFactory {
 
-		/**
-		 * Returns a new instance of a cell related to a given position.
-		 * 
-		 * @param position
-		 *            a legal position
-		 * 
-		 * @return a new instance of a cell related to a given position
-		 */
-		public static final CellInterface Cell(final PositionInterface position) {
-			return new Cell(position);
-		}
+        /**
+         * Returns the null cell.
+         * 
+         * @return the null cell
+         */
+        public static CellInterface NullCell() {
+            return NULL_CELL;
+        }
 
-		/**
-		 * Returns a clone of a cell.
-		 * 
-		 * @param cellToClone
-		 *            the cell to clone.
-		 * 
-		 * @return a clone of a cell
-		 */
-		public static final CellInterface Clone(final CellInterface cellToClone) {
-			final CellInterface clone = CellFactory.Cell(cellToClone.getPosition());
-			clone.setPiece(cellToClone.getPiece());
-			return clone;
-		}
+        /**
+         * Returns a new instance of a cell related to a given position.
+         * 
+         * @param position
+         *            a legal position
+         * 
+         * @return a new instance of a cell related to a given position
+         */
+        public static final CellInterface Cell(final PositionInterface position) {
+            return new Cell(position);
+        }
 
-		/**
-		 * Returns a list of new cells relateds to a given list of positions.
-		 * 
-		 * @param positions
-		 *            the legal positions
-		 * 
-		 * @return a list of new cells relateds to a given list of positions
-		 */
-		public static final List<CellInterface> Cells(final List<PositionInterface> positions) {
-			final List<CellInterface> cells = Lists.newArrayListWithExpectedSize(positions.size());
-			for (final PositionInterface position : positions) {
-				cells.add(CellFactory.Cell(position));
-			}
-			return Collections.unmodifiableList(cells);
-		}
+        /**
+         * Returns a clone of a cell.
+         * 
+         * @param cellToClone
+         *            the cell to clone.
+         * 
+         * @return a clone of a cell
+         */
+        public static final CellInterface Clone(final CellInterface cellToClone) {
+            final CellInterface clone = CellFactory.Cell(cellToClone.getPosition());
+            PieceInterface piece = cellToClone.getPiece();
+            if(!piece.isNull()) {
+                clone.setPiece(piece);    
+            }
+            return clone;
+        }
 
-	}
+        /**
+         * Returns a list of new cells relateds to a given list of positions.
+         * 
+         * @param positions
+         *            the legal positions
+         * 
+         * @return a list of new cells relateds to a given list of positions
+         */
+        public static final Set<CellInterface> Cells(final Set<PositionInterface> positions) {
+            
+            // TODO utiliser un SET
+            final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size()); //.newArrayListWithExpectedSize(positions.size());
+            //final List<CellInterface> cells = new Cells(positions.size());
+            for (final PositionInterface position : positions) {
+                cells.add(CellFactory.Cell(position));
+            }
+            //return Collections.unmodifiableList(cells);
+            return Collections.unmodifiableSet(cells);
+        }
+
+    }
 
 }

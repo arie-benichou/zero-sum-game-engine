@@ -1,3 +1,4 @@
+
 package move;
 
 import piece.API.PieceInterface;
@@ -7,71 +8,73 @@ import position.API.PositionInterface;
  * API related to moves.
  */
 public class API {
-	
-	public final static MoveInterface NULL_MOVE = new NullMove();
-	
-	public final static class IllegalMoveException extends Exception {
-		
-		private static final String MESSAGE = "Move(position=%s, piece=%s) is not a legal move.";
 
-		private static final long serialVersionUID = 1L;
+    public final static MoveInterface NULL_MOVE = new NullMove();
 
-		private final PositionInterface position;
-		private final PieceInterface piece;
+    public final static class IllegalMoveException extends RuntimeException {
 
-		public IllegalMoveException(final PositionInterface position, final PieceInterface piece) {
-			super();
-			this.position = position;
-			this.piece = piece;
-		}
+        private static final String MESSAGE = "Move(position=%s, piece=%s) is not a legal move.";
 
-		@Override
-		public String getMessage() {
-			return String.format(MESSAGE, this.position, this.piece.getSide());
-		}		
+        private static final long serialVersionUID = 1L;
 
-	}
-	
-	/**
-	 * This is the interface for a move.
-	 */
-	public static interface MoveInterface {
+        private final PositionInterface position;
+        private final PieceInterface piece;
 
-		/**
-		 * Returns the position related to this move.
-		 * 
-		 * @return the position related to this move
-		 */
-		PositionInterface getPosition();
+        public IllegalMoveException(final PositionInterface position, final PieceInterface piece) {
+            super();
+            this.position = position;
+            this.piece = piece;
+        }
 
-		/**
-		 * Returns the piece related to this move.
-		 * 
-		 * @return the piece related to this move
-		 */
-		PieceInterface getPiece();
-		
-		/**
-		 * Returns true if this move is the null object, false otherwise.
-		 * 
-		 * @return true if this move is the null object, false otherwise
-		 */
-		boolean isNull();
+        @Override
+        public String getMessage() {
+            return String.format(MESSAGE, this.position, this.piece.getSide());
+        }
 
-	}	
-	
-	public final static class MoveFactory {
+    }
 
-		public final static MoveInterface Move(PositionInterface position, PieceInterface piece) throws IllegalMoveException {
-			try {
-				return new Move(position, piece);
-			} catch (IllegalArgumentException e) {
-				throw new IllegalMoveException(position, piece);
-			}
-		}
+    /**
+     * This is the interface for a move.
+     */
+    public static interface MoveInterface {
 
-	}
+        /**
+         * Returns the position related to this move.
+         * 
+         * @return the position related to this move
+         */
+        PositionInterface getPosition();
 
+        /**
+         * Returns the piece related to this move.
+         * 
+         * @return the piece related to this move
+         */
+        PieceInterface getPiece();
 
+        /**
+         * Returns true if this move is the null object, false otherwise.
+         * 
+         * @return true if this move is the null object, false otherwise
+         */
+        boolean isNull();
+
+    }
+
+    public final static class MoveFactory {
+
+        public final static MoveInterface Move(PositionInterface position, PieceInterface piece) {
+            try {
+                return new Move(position, piece);
+            }
+            catch (IllegalArgumentException e) {
+                throw new IllegalMoveException(position, piece);
+            }
+            catch (NullPointerException e) {
+                throw new IllegalMoveException(position, piece);
+            }
+        }
+
+    }
 
 }

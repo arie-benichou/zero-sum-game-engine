@@ -1,14 +1,16 @@
 
 package cell;
 
-
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
+
 import static piece.API.*;
+import static piece.API.PieceFactory.*;
 import static position.API.PositionFactory.*;
+import static side.API.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,57 +25,81 @@ import cell.Cell;
 import cell.NullCell;
 import cell.API.*;
 
-
 public class NullCellTest {
 
-    private  CellInterface cell;
+    private CellInterface nullCell;
 
     @Before
     public void setUp() {
-        
-        this.cell = new NullCell();
-        
+
+        this.nullCell = new NullCell();
+
     }
 
     @Test
-    public void testNew() {
+    public void testNullCell() {
+
+        assertTrue(this.nullCell.isNull());
+        assertEquals(0, this.nullCell.getRow());
+        assertEquals(0, this.nullCell.getColumn());
+        assertEquals(NULL_PIECE, this.nullCell.getPiece());
+
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testSetPieceWithNullPointer() {
         
-        assertTrue(this.cell.isNull());
-        assertEquals(0, this.cell.getRow());
-        assertEquals(0, this.cell.getColumn());
-        assertEquals(NULL_PIECE, this.cell.getPiece());
+        this.nullCell.setPiece(null);
         
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testForbiddenSetPiece1() {
+        
+        this.nullCell.setPiece(Piece(FIRST_SIDE));
+        
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testForbiddenSetPiece2() {
+        
+        this.nullCell.setPiece(Piece(SECOND_SIDE));
+        
+    }
+    @Test
+    public void testAllowedSetPiece() {
+        this.nullCell.setPiece(NULL_PIECE);
+    }        
 
     @Test
     public void testHashCode() {
-        
-        assertEquals(this.cell.hashCode(), this.cell.hashCode());
-        assertEquals(this.cell.hashCode(), new NullCell().hashCode());
-        assertNotSame(this.cell.hashCode(), new NullCell().hashCode());
-        
+
+        assertEquals(this.nullCell.hashCode(), this.nullCell.hashCode());
+        assertEquals(this.nullCell.hashCode(), new NullCell().hashCode());
+        assertNotSame(this.nullCell.hashCode(), new NullCell().hashCode());
+
     }
 
     @Test
     public void testEquals() {
-        
-        assertEquals(this.cell, this.cell);
-        assertSame(this.cell, this.cell);
 
-        assertFalse(this.cell.equals(null));
-        assertFalse(this.cell.equals(new Random()));
+        assertEquals(this.nullCell, this.nullCell);
+        assertSame(this.nullCell, this.nullCell);
 
-        assertEquals(this.cell, new NullCell());
-        assertNotSame(this.cell, new NullCell());
-        
+        assertFalse(this.nullCell.equals(null));
+        assertFalse(this.nullCell.equals(new Random()));
+
+        assertEquals(this.nullCell, new NullCell());
+        assertNotSame(this.nullCell, new NullCell());
+
     }
 
     @Test
     public void testCompareTo() {
-        
-        assertEquals(0, this.cell.compareTo(this.cell));
-        assertEquals(-1, this.cell.compareTo(new Cell(Position(1, 1))));
-        
+
+        assertEquals(0, this.nullCell.compareTo(this.nullCell));
+        assertEquals(-1, this.nullCell.compareTo(new Cell(Position(1, 1))));
+
     }
 
     @Test
@@ -106,9 +132,9 @@ public class NullCellTest {
 
     @After
     public void tearDown() {
-        
-        this.cell = null;
-        
+
+        this.nullCell = null;
+
     }
 
 }
