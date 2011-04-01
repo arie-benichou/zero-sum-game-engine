@@ -130,6 +130,7 @@ public class API {
          * @return a list of new positions relateds to a given dimension.
          */
         public static Set<PositionInterface> Positions(final DimensionInterface dimension) {
+            //TODO check not null
             final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity());
             for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
                 for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {

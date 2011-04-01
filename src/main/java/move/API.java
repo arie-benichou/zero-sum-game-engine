@@ -64,6 +64,7 @@ public class API {
     public final static class MoveFactory {
 
         public final static MoveInterface Move(PositionInterface position, PieceInterface piece) {
+            //TODO ? faire tout les check not null dans la factory
             try {
                 return new Move(position, piece);
             }
