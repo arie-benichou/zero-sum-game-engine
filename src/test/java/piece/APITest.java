@@ -32,6 +32,13 @@ public class APITest {
         
     }
     
+    @Test(expected = IllegalPieceException.class)
+    public void testIllegalPiece2() {
+    	
+        Piece(null);
+        
+    }    
+    
     @Test
     public void testLegalPiece() {
         

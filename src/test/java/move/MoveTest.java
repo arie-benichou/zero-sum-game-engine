@@ -26,27 +26,51 @@ public class MoveTest {
 
     @Test(expected = IllegalArgumentException.class)
     public final void testIllegalMove1() {
-        new Move(NULL_POSITION, NULL_PIECE);
+    	
+        new Move(NULL_POSITION, Piece(FIRST_SIDE));
+        
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public final void testIllegalMove2() {
+    	
+        new Move(Position(1, 1), NULL_PIECE);
+        
     }
 
     @Test(expected = NullPointerException.class)
-    public void testIllegalMove2() {
-        new Move(null, null);
+    public void testIllegalMove3() {
+    	
+        new Move(null, Piece(FIRST_SIDE));
+        
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void testIllegalMove4() {
+    	
+        new Move(Position(1, 1), null);
+        
+    }    
 
     @Test
     public final void testGetPosition() {
+    	
         assertTrue(this.move.getPosition().equals(Position(1, 1)));
+        
     }
 
     @Test
     public final void testGetPiece() {
+    	
         assertTrue(this.move.getPiece().equals(Piece(FIRST_SIDE)));
+        
     }
 
     @Test
     public final void testIsNull() {
+    	
         assertFalse(this.move.isNull());
+        
     }
 
     @After
