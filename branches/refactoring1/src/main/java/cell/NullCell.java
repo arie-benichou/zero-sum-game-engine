@@ -12,8 +12,8 @@ final class NullCell extends AbstractCell {
     }
     
     public final void setPiece(final PieceInterface piece) {
-        checkNotNull(piece, "Argument 'piece' must not be null.");
-        checkArgument(piece.isNull(), "Argument 'piece' must be a null object.");
+        checkNotNull(piece, "Argument 'piece' is not intended to be null.");
+        checkArgument(piece.isNull(), "Argument 'piece' must be the null piece object.");
         //Anyway, your piece goes into the vacuum...
     }
 

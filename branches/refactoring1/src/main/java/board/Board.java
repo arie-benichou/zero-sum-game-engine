@@ -2,10 +2,7 @@
 package board;
 
 import static cell.API.NULL_CELL;
-import static cell.API.CellFactory.Cell;
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static position.API.PositionFactory.Position;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,7 +25,7 @@ final class Board implements BoardInterface {
     private static final Constraint<CellInterface> CONSTRAINT = new Constraint<CellInterface>() {
         public CellInterface checkElement(CellInterface cell) {
             if (cell == null) {
-                throw new NullPointerException("A cell of a board must not be null.");    
+                throw new NullPointerException("A cell of a board is not intended to be null.");    
             }
             else if(cell.isNull()) {
                 throw new IllegalArgumentException("A cell of a board must not be the null cell object.");
@@ -47,13 +44,13 @@ final class Board implements BoardInterface {
         return this.computeHash(cell.getRow(), cell.getColumn());
     }
     
-    public Board(final Set<CellInterface> injectedCells) {
-        checkArgument(injectedCells != null, "Argument 'injectedCells' must not be null.");
-        final Set<CellInterface> checkedCells = Constraints.constrainedSet(new HashSet<CellInterface>(injectedCells.size()), CONSTRAINT);
-        checkedCells.addAll(injectedCells);
+    public Board(final Set<CellInterface> cells) {
+    	checkNotNull(cells, "Argument 'cells' is not intended to be null.");
+        final Set<CellInterface> checkedCells = Constraints.constrainedSet(new HashSet<CellInterface>(cells.size()), CONSTRAINT);
+        checkedCells.addAll(cells);
         this.boardCells = Maps.newHashMapWithExpectedSize(checkedCells.size());
         // TODO regarder l'API du MapMaker
-        for (final CellInterface cell : injectedCells) {
+        for (final CellInterface cell : cells) {
             this.boardCells.put(this.computeHash(cell), cell);
         }
     }
@@ -83,42 +80,42 @@ final class Board implements BoardInterface {
     // TODO ré-introduire l'objet CardinalPosition et utiliser une méthode privée prenant en paramètre la cellule et la position cardinale
 
     public CellInterface topOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() - 1, cell.getColumn());
     }
 
     public CellInterface rightOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow(), cell.getColumn() + 1);
     }
 
     public CellInterface bottomOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() + 1, cell.getColumn());
     }
 
     public CellInterface leftOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow(), cell.getColumn() - 1);
     }
 
     public CellInterface topRightOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() - 1, cell.getColumn() + 1);
     }
 
     public CellInterface topLeftOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() - 1, cell.getColumn() - 1);
     }
 
     public CellInterface bottomRightOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() + 1, cell.getColumn() + 1);
     }
 
     public CellInterface bottomLeftOf(CellInterface cell) {
-        checkNotNull(cell, "Argument 'cell' must not be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() + 1, cell.getColumn() - 1);
     }
 
@@ -171,17 +168,6 @@ final class Board implements BoardInterface {
         }
         consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
         return consoleBoardView.toString();
-    }
-    
-    
-    public static void main(String[] args) {
-        Set<CellInterface> cells = new HashSet<CellInterface>(2 * 3);
-        cells.add(Cell(Position(1, 1)));
-        //cells.add(NULL_CELL);
-        //new Board(cells);
-        //cells.add(null);
-        new Board(cells);        
-        new Board(null);
     }
 
 }

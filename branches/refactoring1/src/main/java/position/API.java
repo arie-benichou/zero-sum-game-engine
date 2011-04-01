@@ -17,6 +17,7 @@
 
 package position;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static dimension.API.*;
 
 import java.util.Collections;
@@ -93,15 +94,6 @@ public class API {
     public static final class PositionFactory {
 
         /**
-         * Returns the null position.
-         * 
-         * @return the null position
-         */
-        public static PositionInterface NullPosition() { // TODO à virer
-            return NULL_POSITION;
-        }
-
-        /**
          * Returns a new instance of a position.
          * 
          * @param rowIndex
@@ -122,15 +114,15 @@ public class API {
         }
 
         /**
-         * Returns a list of new positions relateds to a given dimension.
+         * Returns an unmodifiable set of new positions for a given dimension.
          * 
          * @param dimension
          *            a given dimension
          * 
-         * @return a list of new positions relateds to a given dimension.
+         * @return an unmodifiable set of new positions for a given dimension.
          */
         public static Set<PositionInterface> Positions(final DimensionInterface dimension) {
-            //TODO check not null
+        	checkNotNull(dimension, "Argument 'dimension' is not intended to be null.");
             final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity());
             for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
                 for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {

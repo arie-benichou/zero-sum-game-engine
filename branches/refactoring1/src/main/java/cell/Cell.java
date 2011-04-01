@@ -9,16 +9,13 @@ import piece.API.PieceInterface;
 final class Cell extends AbstractCell {
 
     public Cell(final PositionInterface position) {
-        checkNotNull(position, "Argument 'position' must not be null.");
         super(position);
-        if (position.isNull()) {
-            throw new IllegalArgumentException("Argument 'position' must be a legal position");
-        }
+        checkArgument(!position.isNull(), "Argument 'position' is not intended to be the null position object");
     }
     
     public final void setPiece(final PieceInterface piece) {
-        checkNotNull(piece, "Argument 'piece' must not be null.");
-        checkArgument(!piece.isNull(), "Argument 'piece' must not be a null object.");
+        checkNotNull(piece, "Argument 'piece' is not intended to be null.");
+        checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
         this.piece = piece;
     }
     

@@ -1,16 +1,14 @@
 
 package position;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 final class Position extends AbstractPosition {
 
     public Position(final int row, final int column) {
         super(row, column);
-        if (row < 1) {
-            throw new IllegalArgumentException("Argument 'row' must be greater than 0.");
-        }
-        if (column < 1) {
-            throw new IllegalArgumentException("Argument 'column' must be greater than 0.");
-        }
+        checkArgument(row > 0, "Argument 'row' must be greater than 0.");
+        checkArgument(column > 0, "Argument 'column' must be greater than 0.");
     }
 
     @Override

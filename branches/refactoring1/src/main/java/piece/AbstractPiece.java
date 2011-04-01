@@ -28,7 +28,7 @@ abstract class AbstractPiece implements PieceInterface {
     private final SideInterface side;
 
     public AbstractPiece(final SideInterface side) {
-        checkNotNull(side, "Argument 'side' must not be null.");
+        checkNotNull(side, "Argument 'side' is not intended to be null.");
         this.side = side;
     }
 

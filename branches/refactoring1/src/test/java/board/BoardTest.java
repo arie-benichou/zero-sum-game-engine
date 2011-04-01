@@ -43,7 +43,7 @@ public class BoardTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public final void testNewBoardWithNullPointer() {
 
         new Board(null);

@@ -4,7 +4,7 @@ package utils.math;
 
 public class IntegersRange extends Range<Integer> implements IntegersRangeInterface {
 
-    public IntegersRange(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
+    public IntegersRange(final int lowerBound, final int upperBound) {
         super(lowerBound, upperBound);
     }
 

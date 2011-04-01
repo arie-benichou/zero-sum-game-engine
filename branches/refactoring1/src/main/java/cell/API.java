@@ -17,14 +17,13 @@
 
 package cell;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static piece.API.*;
 import static position.API.*;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
@@ -117,20 +116,22 @@ public final class API {
          * @return a new instance of a cell related to a given position
          */
         public static final CellInterface Cell(final PositionInterface position) {
+            checkNotNull(position, "Argument 'postion' is not intended to be null.");
             return new Cell(position);
         }
 
         /**
          * Returns a clone of a cell.
          * 
-         * @param cellToClone
+         * @param cell
          *            the cell to clone.
          * 
          * @return a clone of a cell
          */
-        public static final CellInterface Clone(final CellInterface cellToClone) {
-            final CellInterface clone = CellFactory.Cell(cellToClone.getPosition());
-            PieceInterface piece = cellToClone.getPiece();
+        public static final CellInterface Clone(final CellInterface cell) {
+        	checkNotNull(cell, "Argument 'cell' is not intended to be null.");
+            final CellInterface clone = CellFactory.Cell(cell.getPosition());
+            PieceInterface piece = cell.getPiece();
             if(!piece.isNull()) {
                 clone.setPiece(piece);    
             }
@@ -138,22 +139,19 @@ public final class API {
         }
 
         /**
-         * Returns a list of new cells relateds to a given list of positions.
+         * Returns a set of new cells for a given set of positions.
          * 
          * @param positions
          *            the legal positions
          * 
-         * @return a list of new cells relateds to a given list of positions
+         * @return a set of new cells for a given set of positions
          */
         public static final Set<CellInterface> Cells(final Set<PositionInterface> positions) {
-            
-            // TODO utiliser un SET
-            final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size()); //.newArrayListWithExpectedSize(positions.size());
-            //final List<CellInterface> cells = new Cells(positions.size());
+        	checkNotNull(positions, "Argument 'positions' is not intended to be null.");
+            final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
             for (final PositionInterface position : positions) {
                 cells.add(CellFactory.Cell(position));
             }
-            //return Collections.unmodifiableList(cells);
             return Collections.unmodifiableSet(cells);
         }
 
