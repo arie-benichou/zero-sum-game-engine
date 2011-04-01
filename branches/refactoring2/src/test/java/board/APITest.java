@@ -1,12 +1,12 @@
 
 package board;
 
-import static board.API.*;
-import static board.API.BoardFactory.*;
-import static cell.API.CellFactory.*;
+import static abstractions.board.API.*;
+import static abstractions.board.API.BoardFactory.*;
+import static abstractions.cell.API.CellFactory.*;
+import static abstractions.position.API.PositionFactory.*;
 
 import static org.junit.Assert.*;
-import static position.API.PositionFactory.*;
 
 
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import cell.API.CellInterface;
 
-import board.Board;
-import board.API.BoardInterface;
+import abstractions.board.Board;
+import abstractions.board.API.BoardInterface;
+import abstractions.cell.API.CellInterface;
 
 public class APITest {
 

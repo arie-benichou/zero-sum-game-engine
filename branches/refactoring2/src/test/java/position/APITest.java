@@ -1,12 +1,12 @@
 
 package position;
 
-import static dimension.API.DimensionFactory.*;
+import static abstractions.dimension.API.DimensionFactory.*;
+import static abstractions.position.API.*;
+import static abstractions.position.API.PositionFactory.*;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static position.API.*;
-import static position.API.PositionFactory.*;
 
 
 import java.util.ArrayList;
@@ -16,8 +16,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import position.NullPosition;
-import position.Position;
+import abstractions.position.NullPosition;
+import abstractions.position.Position;
+
 
 public class APITest {
 

@@ -17,9 +17,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import position.NullPosition;
-import position.Position;
-import position.API.*;
+import abstractions.position.NullPosition;
+import abstractions.position.Position;
+import abstractions.position.API.*;
+
 
 public class NullPositionTest {
 

@@ -7,12 +7,14 @@ import static junit.framework.Assert.*;
 
 import org.junit.Test;
 
-import cell.API.CellInterface;
+import abstractions.cell.Cell;
+import abstractions.cell.API.CellInterface;
 
-import static cell.API.*;
-import static position.API.*;
-import static position.API.PositionFactory.*;
-import static cell.API.CellFactory.*;
+
+import static abstractions.cell.API.*;
+import static abstractions.cell.API.CellFactory.*;
+import static abstractions.position.API.*;
+import static abstractions.position.API.PositionFactory.*;
 
 public class APITest {
 	

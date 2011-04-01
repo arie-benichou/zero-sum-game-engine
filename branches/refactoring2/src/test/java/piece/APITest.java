@@ -1,14 +1,17 @@
 
 package piece;
 
+import static abstractions.piece.API.*;
+import static abstractions.piece.API.PieceFactory.*;
+import static abstractions.side.API.*;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
-import static side.API.*;
-import static piece.API.*;
-import static piece.API.PieceFactory.*;
 
 import org.junit.Test;
+
+import abstractions.piece.NullPiece;
+import abstractions.piece.Piece;
 
 public class APITest {
 

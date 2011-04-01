@@ -16,8 +16,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import position.Position;
-import position.API.*;
+import abstractions.position.Position;
+import abstractions.position.API.*;
+
 
 public class PositionTest {
 

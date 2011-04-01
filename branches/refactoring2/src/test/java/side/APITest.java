@@ -1,6 +1,6 @@
 package side;
 
-import static side.API.*;
+import static abstractions.side.API.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

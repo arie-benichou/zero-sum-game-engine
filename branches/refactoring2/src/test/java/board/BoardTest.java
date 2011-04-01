@@ -1,10 +1,11 @@
 
 package board;
 
-import static board.API.*;
-import static board.API.BoardFactory.*;
-import static cell.API.*;
-import static cell.API.CellFactory.*;
+import static abstractions.board.API.*;
+import static abstractions.board.API.BoardFactory.*;
+import static abstractions.cell.API.*;
+import static abstractions.cell.API.CellFactory.*;
+import static abstractions.position.API.PositionFactory.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,15 +14,14 @@ import java.util.Random;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static position.API.PositionFactory.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cell.API.CellInterface;
 
-import board.Board;
+import abstractions.board.Board;
+import abstractions.cell.API.CellInterface;
 
 public class BoardTest {
 

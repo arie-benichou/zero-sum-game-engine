@@ -1,16 +1,16 @@
 
 package cell;
 
+import static abstractions.piece.API.*;
+import static abstractions.piece.API.PieceFactory.*;
+import static abstractions.position.API.PositionFactory.*;
+import static abstractions.side.API.*;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 
-import static piece.API.*;
-import static piece.API.PieceFactory.*;
-import static position.API.PositionFactory.*;
-import static side.API.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,9 +21,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cell.Cell;
-import cell.NullCell;
-import cell.API.*;
+import abstractions.cell.Cell;
+import abstractions.cell.NullCell;
+import abstractions.cell.API.*;
+
 
 public class NullCellTest {
 

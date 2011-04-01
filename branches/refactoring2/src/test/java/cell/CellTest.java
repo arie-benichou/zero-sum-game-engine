@@ -1,13 +1,13 @@
 
 package cell;
 
-import static side.API.*;
-import static cell.API.*;
-import static piece.API.*;
-import static position.API.*;
+import static abstractions.cell.API.*;
+import static abstractions.piece.API.*;
+import static abstractions.piece.API.PieceFactory.*;
+import static abstractions.position.API.*;
+import static abstractions.position.API.PositionFactory.*;
+import static abstractions.side.API.*;
 
-import static piece.API.PieceFactory.*;
-import static position.API.PositionFactory.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,6 +23,8 @@ import java.util.Random;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import abstractions.cell.Cell;
 
 public class CellTest {
 

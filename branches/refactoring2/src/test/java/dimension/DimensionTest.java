@@ -1,8 +1,8 @@
 
 package dimension;
 
-import static dimension.API.*;
-import static dimension.API.DimensionFactory.*;
+import static abstractions.dimension.API.*;
+import static abstractions.dimension.API.DimensionFactory.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

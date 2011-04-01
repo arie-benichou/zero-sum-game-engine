@@ -1,11 +1,13 @@
 package side;
 
-import static side.API.*;
+import static abstractions.side.API.*;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import abstractions.side.Side;
 
 public class SideTest {
 
