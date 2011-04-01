@@ -1,8 +1,8 @@
 
 package piece;
 
-import static side.API.*;
-import static piece.API.*;
+import static abstractions.piece.API.*;
+import static abstractions.side.API.*;
 
 import java.util.Random;
 
@@ -10,6 +10,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import abstractions.piece.Piece;
 
 public class PieceTest {
 

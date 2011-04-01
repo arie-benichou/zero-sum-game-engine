@@ -1,14 +1,16 @@
 package move;
 
-import static move.API.*;
-import static position.API.*;
-import static piece.API.*;
+import static abstractions.move.API.*;
+import static abstractions.piece.API.*;
+import static abstractions.position.API.*;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import abstractions.move.NullMove;
 
 public class NullMoveTest {
 

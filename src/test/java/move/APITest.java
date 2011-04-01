@@ -1,19 +1,22 @@
 package move;
 
-import static move.API.*;
-import static move.API.MoveFactory.*;
 
-import static position.API.*;
-import static position.API.PositionFactory.*;
 
-import static piece.API.*;
-import static piece.API.PieceFactory.*;
 
-import static side.API.*;
 
+import static abstractions.move.API.*;
+import static abstractions.move.API.MoveFactory.*;
+import static abstractions.piece.API.*;
+import static abstractions.piece.API.PieceFactory.*;
+import static abstractions.position.API.*;
+import static abstractions.position.API.PositionFactory.*;
+import static abstractions.side.API.*;
 import static junit.framework.Assert.*;
 
 import org.junit.Test;
+
+import abstractions.move.Move;
+import abstractions.move.NullMove;
 
 
 public class APITest {
