@@ -16,21 +16,13 @@ import static cell.API.CellFactory.*;
 
 public class APITest {
 	
-	
     @Test(expected=NullPointerException.class)
     public void testCellWithNull() {
         
         CellFactory.Cell(null);
         
     }
-    
-    @Test(expected=NullPointerException.class)
-    public void testCellsWithNull() {
         
-        CellFactory.Cells(null);
-        
-    }
-    
     @Test(expected=NullPointerException.class)
     public void testCloneWithNull() {
         

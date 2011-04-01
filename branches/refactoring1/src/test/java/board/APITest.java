@@ -30,7 +30,7 @@ public class APITest {
         Board(0, 0);
         
     }
-
+    
     @Test
     public void testLegalBoard() {
         
