@@ -86,6 +86,7 @@ public class API {
 
     }
 
+    /*
     // TODO ? à virer
     public static boolean isNull(final SideInterface side) {
         return side.isNull();
@@ -115,5 +116,6 @@ public class API {
     public static SideInterface not(final SideInterface side) {
         return side.getNegation();
     }
+    */
 
 }

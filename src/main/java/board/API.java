@@ -19,18 +19,16 @@ package board;
 
 import static cell.API.*;
 import static cell.API.CellFactory.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static dimension.API.*;
 import static dimension.API.DimensionFactory.*;
 
 import static position.API.PositionFactory.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import cell.API.CellInterface;
-
-import com.google.common.collect.Lists;
 
 /**
  * API related to boards.
@@ -245,6 +243,7 @@ public class API {
          * @return a clone of an existing instance of a board
          */
         public static BoardInterface Clone(final BoardInterface board) {
+        	checkNotNull(board, "Argument 'board' is not intended to be null.");
             final Set<CellInterface> cells = new HashSet<CellInterface>();
             for (final CellInterface cell : board) {
                 cells.add(CellFactory.Clone(cell));

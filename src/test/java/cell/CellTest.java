@@ -132,6 +132,14 @@ public class CellTest {
         assertFalse(this.cell.equals(yetAnotherCell));
 
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void testCompareToNull() {
+    	
+        this.cell.compareTo(null);
+        
+    }
+    
 
     @Test
     public void testCompareTo() {

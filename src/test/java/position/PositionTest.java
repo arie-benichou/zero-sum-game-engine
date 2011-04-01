@@ -85,6 +85,13 @@ public class PositionTest {
         assertNotSame(this.position, new Position(1, 2));
 
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void testCompareToNull() {
+    	
+        this.position.compareTo(null);
+    }    
+    
 
     @Test
     public void testCompareTo() {

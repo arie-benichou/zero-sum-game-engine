@@ -48,6 +48,14 @@ public class APITest {
         assertNotSame(Board(1, 2), new Board(cells));
         
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void testCloneWithNullPointer() {
+    	
+    	BoardFactory.Clone(null);
+        
+    }    
+    
 
     @Test
     public void testClone() {

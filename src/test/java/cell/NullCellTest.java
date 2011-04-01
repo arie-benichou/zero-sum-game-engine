@@ -35,6 +35,14 @@ public class NullCellTest {
         this.nullCell = new NullCell();
 
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void testCompareToNull() {
+    	
+        this.nullCell.compareTo(null);
+        
+    }    
+    
 
     @Test
     public void testNullCell() {

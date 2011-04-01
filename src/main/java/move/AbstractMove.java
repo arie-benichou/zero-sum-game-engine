@@ -17,8 +17,8 @@ abstract class AbstractMove implements MoveInterface {
 
     public AbstractMove(final PositionInterface position, final PieceInterface piece) {
         
-        checkNotNull(position, "Argument 'postion' must not be null.");
-        checkNotNull(piece, "Argument 'piece' must not be null.");
+        checkNotNull(position, "Argument 'postion' is not intended to be null.");
+        checkNotNull(piece, "Argument 'piece' is not intended to be null.");
         
         this.position = position;
         this.piece = piece;

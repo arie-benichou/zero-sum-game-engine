@@ -99,6 +99,9 @@ public class API {
             try {
                 return new Piece(side);
             }
+            catch (NullPointerException e) {
+                throw new IllegalPieceException(side);
+            }            
             catch (IllegalArgumentException e) {
                 throw new IllegalPieceException(side);
             }

@@ -8,7 +8,7 @@ public class Piece extends AbstractPiece {
     public Piece(final SideInterface side) {
         super(side);
         if (!side.isOneSide()) {
-            throw new IllegalArgumentException("Argument 'side' must be a player.");
+            throw new IllegalArgumentException("Argument 'side' is not intended to be a null side object");
         }
     }
 

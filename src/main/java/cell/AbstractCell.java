@@ -15,7 +15,7 @@ abstract class AbstractCell implements CellInterface {
     private volatile int hashCode;
 
     public AbstractCell(final PositionInterface position) {
-        checkNotNull(position, "Argument 'postion' must not be null.");
+        checkNotNull(position, "Argument 'postion' is not intended to be null.");
         this.position = position;
     }
 
@@ -78,10 +78,7 @@ abstract class AbstractCell implements CellInterface {
     }
 
     public final int compareTo(final CellInterface cell) {
-        
-        //TODO ajouter aux tests unitaires
         checkNotNull(cell,  "Argument 'cell' is not intended to be null.");
-        
         if (this.getRow() < cell.getRow()) {
             return -1;
         }
@@ -95,7 +92,6 @@ abstract class AbstractCell implements CellInterface {
             return 1;
         }
         return 0;
-
     }
 
     public abstract boolean isNull();
