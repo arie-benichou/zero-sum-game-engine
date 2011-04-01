@@ -35,8 +35,15 @@ public class CellTest {
 
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testIllegalCell1() {
+        
+        new Cell(null);
+        
+    }
+
     @Test
-    public void testNew() {
+    public void testCell() {
 
         assertFalse(this.cell.isNull());
         assertEquals(1, this.cell.getRow());
@@ -50,6 +57,27 @@ public class CellTest {
 
         new Cell(NULL_POSITION);
 
+    }
+    
+    public void testSetPiece1() {
+        
+        this.cell.setPiece(Piece(FIRST_SIDE));
+        assertTrue(this.cell.getPiece().equals(FIRST_SIDE));
+        
+    }
+    
+    public void testSetPiece2() {
+        
+        this.cell.setPiece(Piece(SECOND_SIDE));
+        assertTrue(this.cell.getPiece().equals(SECOND_SIDE));
+        
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testSetPieceWithNullPointer() {
+        
+        this.cell.setPiece(null);
+        
     }
 
     @Test

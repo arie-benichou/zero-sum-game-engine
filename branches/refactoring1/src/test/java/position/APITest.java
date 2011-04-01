@@ -10,7 +10,9 @@ import static position.API.PositionFactory.*;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -50,7 +52,7 @@ public class APITest {
     @Test
     public void testPositions() {
         
-        final List<PositionInterface> cells = new ArrayList<PositionInterface>(1);
+        final Set<PositionInterface> cells = new HashSet<PositionInterface>(1);
         
         cells.add(Position(1, 1));
         

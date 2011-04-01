@@ -17,6 +17,7 @@
 
 package piece;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static piece.API.*;
 import static side.API.*;
 
@@ -27,6 +28,7 @@ abstract class AbstractPiece implements PieceInterface {
     private final SideInterface side;
 
     public AbstractPiece(final SideInterface side) {
+        checkNotNull(side, "Argument 'side' must not be null.");
         this.side = side;
     }
 

@@ -5,14 +5,17 @@ import static cell.API.*;
 import static piece.API.*;
 import static position.API.*;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 abstract class AbstractCell implements CellInterface {
 
     private final PositionInterface position;
-    private transient PieceInterface piece = NULL_PIECE;
+    protected transient PieceInterface piece = NULL_PIECE;
 
     private volatile int hashCode;
 
     public AbstractCell(final PositionInterface position) {
+        checkNotNull(position, "Argument 'postion' must not be null.");
         this.position = position;
     }
 
@@ -26,10 +29,6 @@ abstract class AbstractCell implements CellInterface {
 
     public int getColumn() {
         return this.position.getColumn();
-    }
-
-    public final void setPiece(final PieceInterface piece) {
-        this.piece = piece;
     }
 
     public final PieceInterface getPiece() {

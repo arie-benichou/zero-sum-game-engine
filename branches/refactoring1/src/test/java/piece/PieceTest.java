@@ -21,13 +21,18 @@ public class PieceTest {
     }
 
     @Test
-    public void testNew() {
+    public void testPiece() {
         Assert.assertEquals(FIRST_SIDE, this.piece.getSide());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIllegalNew() {
+    public void testIllegalPiece1() {
         new Piece(NULL_SIDE);
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testIllegalPiece2() {
+        new Piece(null);
     }
 
     @Test

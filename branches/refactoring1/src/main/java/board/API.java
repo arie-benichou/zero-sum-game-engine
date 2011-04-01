@@ -24,7 +24,11 @@ import static dimension.API.DimensionFactory.*;
 
 import static position.API.PositionFactory.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import cell.API.CellInterface;
 
 import com.google.common.collect.Lists;
 
@@ -33,221 +37,221 @@ import com.google.common.collect.Lists;
  */
 public class API {
 
-	/**
-	 * Class for illegal board exceptions.
-	 */
-	public static class IllegalBoardException extends RuntimeException {
+    /**
+     * Class for illegal board exceptions.
+     */
+    public static class IllegalBoardException extends RuntimeException {
 
-		private static final String MESSAGE = "Board(numberOfRows=%d, numberOfColumns=%d) is not a legal Board.";
+        private static final String MESSAGE = "Board(numberOfRows=%d, numberOfColumns=%d) is not a legal Board.";
 
-		private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-		private int numberOfRows;
-		private int numberOfColumns;
+        private int numberOfRows;
+        private int numberOfColumns;
 
-		public IllegalBoardException(final int numberOfRows, final int numberOfColumns) {
-			super();
-			this.numberOfRows = numberOfRows;
-			this.numberOfColumns = numberOfColumns;
-		}
+        public IllegalBoardException(final int numberOfRows, final int numberOfColumns) {
+            super();
+            this.numberOfRows = numberOfRows;
+            this.numberOfColumns = numberOfColumns;
+        }
 
-		@Override
-		public String getMessage() {
-			return String.format(MESSAGE, this.numberOfRows, this.numberOfColumns);
-		}
+        @Override
+        public String getMessage() {
+            return String.format(MESSAGE, this.numberOfRows, this.numberOfColumns);
+        }
 
-	}
+    }
 
-	/**
-	 * This is the interface for a board.
-	 */
-	public static interface BoardInterface extends Iterable<CellInterface> {
+    /**
+     * This is the interface for a board.
+     */
+    public static interface BoardInterface extends Iterable<CellInterface> {
 
-		/**
-		 * Returns the cell related to a given row and a given column.
-		 * 
-		 * @param clientRowIndex
-		 *            a given row
-		 * 
-		 * @param clientColumnIndex
-		 *            a given column
-		 * 
-		 * @return the cell related to a given row index and a given column
-		 */
-		CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
+        /**
+         * Returns the cell related to a given row and a given column.
+         * 
+         * @param clientRowIndex
+         *            a given row
+         * 
+         * @param clientColumnIndex
+         *            a given column
+         * 
+         * @return the cell related to a given row index and a given column
+         */
+        CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
 
-		/**
-		 * Returns the lower bound of this board.
-		 * 
-		 * @return the lower bound of this board
-		 */
-		CellInterface getLowerBound();
+        /**
+         * Returns the lower bound of this board.
+         * 
+         * @return the lower bound of this board
+         */
+        CellInterface getLowerBound();
 
-		/**
-		 * Returns the upper bound of this board.
-		 * 
-		 * @return the upper bound of this board
-		 */
-		CellInterface getUpperBound();
-		
-	    /**
-	     * Returns the top-neighbour cell of this cell.
-	     * 
-	     * @return the top-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   | x |   |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    CellInterface topOf(CellInterface cell);
+        /**
+         * Returns the upper bound of this board.
+         * 
+         * @return the upper bound of this board
+         */
+        CellInterface getUpperBound();
 
-	    /**
-	     * Returns the right-neighbour cell of this cell.
-	     * 
-	     * @return the right-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    // |   | . | x |
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    CellInterface rightOf(CellInterface cell);
+        /**
+         * Returns the top-neighbour cell of this cell.
+         * 
+         * @return the top-neighbour cell of this cell
+         */
+        // -------------
+        // |   | x |   |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // |   |   |   |
+        // -------------
+        CellInterface topOf(CellInterface cell);
 
-	    /**
-	     * Returns the bottom-neighbour cell of this cell.
-	     * 
-	     * @return the bottom-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // |   | x |   |
-	    // -------------
-	    CellInterface bottomOf(CellInterface cell);
+        /**
+         * Returns the right-neighbour cell of this cell.
+         * 
+         * @return the right-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   |   |
+        // -------------
+        // |   | . | x |
+        // -------------
+        // |   |   |   |
+        // -------------
+        CellInterface rightOf(CellInterface cell);
 
-	    /**
-	     * Returns the left-neighbour cell of this cell.
-	     * 
-	     * @return the left-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    // | x | . |   |
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    CellInterface leftOf(CellInterface cell);
+        /**
+         * Returns the bottom-neighbour cell of this cell.
+         * 
+         * @return the bottom-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   |   |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // |   | x |   |
+        // -------------
+        CellInterface bottomOf(CellInterface cell);
 
-	    /**
-	     * Returns the top-right-neighbour cell of this cell.
-	     * 
-	     * @return the top-right-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   | x |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    CellInterface topRightOf(CellInterface cell);
+        /**
+         * Returns the left-neighbour cell of this cell.
+         * 
+         * @return the left-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   |   |
+        // -------------
+        // | x | . |   |
+        // -------------
+        // |   |   |   |
+        // -------------
+        CellInterface leftOf(CellInterface cell);
 
-	    /**
-	     * Returns the top-left-neighbour cell of this cell.
-	     * 
-	     * @return the top-left-neighbour cell of this cell
-	     */
-	    // -------------
-	    // | x |   |   |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    CellInterface topLeftOf(CellInterface cell);
+        /**
+         * Returns the top-right-neighbour cell of this cell.
+         * 
+         * @return the top-right-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   | x |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // |   |   |   |
+        // -------------
+        CellInterface topRightOf(CellInterface cell);
 
-	    /**
-	     * Returns the bottom-right-neighbour cell of this cell.
-	     * 
-	     * @return the bottom-right-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // |   |   | x |
-	    // -------------
-	    CellInterface bottomRightOf(CellInterface cell);
+        /**
+         * Returns the top-left-neighbour cell of this cell.
+         * 
+         * @return the top-left-neighbour cell of this cell
+         */
+        // -------------
+        // | x |   |   |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // |   |   |   |
+        // -------------
+        CellInterface topLeftOf(CellInterface cell);
 
-	    /**
-	     * Returns the bottom-left-neighbour cell of this cell.
-	     * 
-	     * @return the bottom-left-neighbour cell of this cell
-	     */
-	    // -------------
-	    // |   |   |   |
-	    // -------------
-	    // |   | . |   |
-	    // -------------
-	    // | x |   |   |
-	    // -------------
-	    CellInterface bottomLeftOf(CellInterface cell);
-		
+        /**
+         * Returns the bottom-right-neighbour cell of this cell.
+         * 
+         * @return the bottom-right-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   |   |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // |   |   | x |
+        // -------------
+        CellInterface bottomRightOf(CellInterface cell);
 
-		// TODO ? getCellsByColumn()
-		// TODO ? getCellsByRow()
+        /**
+         * Returns the bottom-left-neighbour cell of this cell.
+         * 
+         * @return the bottom-left-neighbour cell of this cell
+         */
+        // -------------
+        // |   |   |   |
+        // -------------
+        // |   | . |   |
+        // -------------
+        // | x |   |   |
+        // -------------
+        CellInterface bottomLeftOf(CellInterface cell);
 
-	}
+        // TODO ? getCellsByColumn()
+        // TODO ? getCellsByRow()
 
-	/**
-	 * The board factory.
-	 */
-	public static final class BoardFactory {
+    }
 
-		/**
-		 * Returns a new instance of a board for a given number of rows and a
-		 * given number of columns.
-		 * 
-		 * @param numberOfRows
-		 *            the number of rows for the new board
-		 * @param numberOfColumns
-		 *            the number of columns for the new board
-		 * @return a new instance of a board for a given number of rows and a
-		 *         given number of columns
-		 */
-		public static BoardInterface Board(final int numberOfRows, final int numberOfColumns) {
-			try {
-				return new Board(Cells(Positions(Dimension(numberOfRows, numberOfColumns))));
-			} catch (IllegalDimensionException e) {
-				throw new IllegalBoardException(numberOfRows, numberOfColumns);
-			}
-		}
+    /**
+     * The board factory.
+     */
+    public static final class BoardFactory {
 
-		/**
-		 * Returns a clone of an existing instance of a board.
-		 * 
-		 * @param board
-		 *            the board to clone.
-		 * 
-		 * @return a clone of an existing instance of a board
-		 */
-		public static BoardInterface Clone(final BoardInterface board) {
-			final List<CellInterface> cells = Lists.newArrayList();
-			for (final CellInterface cell : board) {
-				cells.add(CellFactory.Clone(cell));
-			}
-			return new Board(cells);
-		}
+        /**
+         * Returns a new instance of a board for a given number of rows and a
+         * given number of columns.
+         * 
+         * @param numberOfRows
+         *            the number of rows for the new board
+         * @param numberOfColumns
+         *            the number of columns for the new board
+         * @return a new instance of a board for a given number of rows and a
+         *         given number of columns
+         */
+        public static BoardInterface Board(final int numberOfRows, final int numberOfColumns) {
+            try {
+                return new Board(Cells(Positions(Dimension(numberOfRows, numberOfColumns))));
+            }
+            catch (IllegalDimensionException e) {
+                throw new IllegalBoardException(numberOfRows, numberOfColumns);
+            }
+        }
 
-	}
+        /**
+         * Returns a clone of an existing instance of a board.
+         * 
+         * @param board
+         *            the board to clone.
+         * 
+         * @return a clone of an existing instance of a board
+         */
+        public static BoardInterface Clone(final BoardInterface board) {
+            final Set<CellInterface> cells = new HashSet<CellInterface>();
+            for (final CellInterface cell : board) {
+                cells.add(CellFactory.Clone(cell));
+            }
+            return new Board(cells);
+        }
+
+    }
 
 }

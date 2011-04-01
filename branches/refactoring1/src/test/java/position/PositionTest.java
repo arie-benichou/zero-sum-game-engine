@@ -7,7 +7,6 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,7 +59,7 @@ public class PositionTest {
         new Position(0, -1);
         
     }
-
+    
     @Test
     public void testHashCode() {
 

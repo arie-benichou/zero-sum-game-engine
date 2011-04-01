@@ -1,6 +1,7 @@
 
 package dimension;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import dimension.API.*;
 
 final class Dimension implements DimensionInterface {
@@ -9,6 +10,8 @@ final class Dimension implements DimensionInterface {
     private final ColumnsRange columRange;
 
     public Dimension(final RowsRange rowsRange, final ColumnsRange columnsRange) {
+        checkNotNull(rowsRange, "Argument 'rowsRange' must not be null.");
+        checkNotNull(columnsRange, "Argument 'columnsRange' must not be null.");
         this.rowRange = rowsRange;
         this.columRange = columnsRange;
     }
