@@ -6,9 +6,10 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.piece.API.PieceInterface;
 
-abstract class Cell extends PotentialCell {
+//TODO à mettre dans API
+public abstract class AbstractCell extends PotentialCell {
 
-    public Cell(final PositionInterface position) {
+    public AbstractCell(final PositionInterface position) {
         super(position);
         checkArgument(!position.isNull(), "Argument 'position' is not intended to be the null position object");
     }

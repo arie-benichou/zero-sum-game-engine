@@ -21,7 +21,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.Cell;
+import abstractions.cell.AbstractCell;
 import abstractions.cell.NullCell;
 import abstractions.cell.API.*;
 
@@ -106,7 +106,7 @@ public class NullCellTest {
     public void testCompareTo() {
 
         assertEquals(0, this.nullCell.compareTo(this.nullCell));
-        assertEquals(-1, this.nullCell.compareTo(new Cell(Position(1, 1))));
+        assertEquals(-1, this.nullCell.compareTo(new AbstractCell(Position(1, 1))));
 
     }
 
@@ -115,26 +115,26 @@ public class NullCellTest {
 
         final List<CellInterface> cells = new ArrayList<CellInterface>(9);
 
-        cells.add(new Cell(Position(1, 4)));
+        cells.add(new AbstractCell(Position(1, 4)));
 
-        cells.add(new Cell(Position(2, 2)));
+        cells.add(new AbstractCell(Position(2, 2)));
 
-        cells.add(new Cell(Position(2, 1)));
+        cells.add(new AbstractCell(Position(2, 1)));
 
-        cells.add(new Cell(Position(1, 1)));
+        cells.add(new AbstractCell(Position(1, 1)));
 
-        cells.add(new Cell(Position(2, 3)));
+        cells.add(new AbstractCell(Position(2, 3)));
 
-        cells.add(new Cell(Position(2, 4)));
+        cells.add(new AbstractCell(Position(2, 4)));
 
-        cells.add(new Cell(Position(1, 3)));
+        cells.add(new AbstractCell(Position(1, 3)));
 
-        cells.add(new Cell(Position(1, 2)));
+        cells.add(new AbstractCell(Position(1, 2)));
 
         cells.add(new NullCell());
 
         assertEquals(new NullCell(), Collections.min(cells));
-        assertEquals(new Cell(Position(2, 4)), Collections.max(cells));
+        assertEquals(new AbstractCell(Position(2, 4)), Collections.max(cells));
 
     }
 

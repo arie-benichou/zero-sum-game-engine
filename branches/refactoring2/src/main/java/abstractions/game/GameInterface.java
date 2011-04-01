@@ -20,6 +20,9 @@ public interface GameInterface {
      * @return true if this game allows null move, false otherwise
      */
     boolean hasNullMove();
+    
+    
+    List<CellInterface> getMutableCells(final SideInterface side);
 
     /**
      * Returns the list of legal moves for a given side.
