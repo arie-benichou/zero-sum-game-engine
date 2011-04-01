@@ -78,6 +78,10 @@ abstract class AbstractCell implements CellInterface {
     }
 
     public final int compareTo(final CellInterface cell) {
+        
+        //TODO ajouter aux tests unitaires
+        checkNotNull(cell,  "Argument 'cell' is not intended to be null.");
+        
         if (this.getRow() < cell.getRow()) {
             return -1;
         }

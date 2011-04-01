@@ -1,9 +1,10 @@
 
 package position;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static position.API.*;
 
-abstract class AbstractPosition implements  PositionInterface {
+abstract class AbstractPosition implements PositionInterface {
 
     private final int row;
     private final int column;
@@ -54,11 +55,11 @@ abstract class AbstractPosition implements  PositionInterface {
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof  PositionInterface)) {
+        else if (!(object instanceof PositionInterface)) {
             isEqual = false;
         }
         else {
-            final  PositionInterface that = (PositionInterface) object;
+            final PositionInterface that = (PositionInterface) object;
             if (that.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
@@ -69,7 +70,11 @@ abstract class AbstractPosition implements  PositionInterface {
         return isEqual;
     }
 
-    public final int compareTo(final  PositionInterface position) {
+    public final int compareTo(final PositionInterface position) {
+
+        //TODO ajouter aux tests unitaires
+        checkNotNull(position, "Argument 'position' is not intended to be null.");
+
         if (this.getRow() < position.getRow()) {
             return -1;
         }

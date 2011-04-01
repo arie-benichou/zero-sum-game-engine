@@ -9,6 +9,7 @@ import piece.API.PieceInterface;
 final class Cell extends AbstractCell {
 
     public Cell(final PositionInterface position) {
+        checkNotNull(position, "Argument 'position' must not be null.");
         super(position);
         if (position.isNull()) {
             throw new IllegalArgumentException("Argument 'position' must be a legal position");
