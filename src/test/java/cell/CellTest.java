@@ -24,7 +24,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.Cell;
+import abstractions.cell.AbstractCell;
 
 public class CellTest {
 
@@ -33,14 +33,14 @@ public class CellTest {
     @Before
     public void setUp() {
 
-        this.cell = new Cell(Position(1, 2));
+        this.cell = new AbstractCell(Position(1, 2));
 
     }
 
     @Test(expected = NullPointerException.class)
     public void testIllegalCell1() {
         
-        new Cell(null);
+        new AbstractCell(null);
         
     }
 
@@ -57,7 +57,7 @@ public class CellTest {
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew() {
 
-        new Cell(NULL_POSITION);
+        new AbstractCell(NULL_POSITION);
 
     }
     
@@ -86,16 +86,16 @@ public class CellTest {
     public void testHashCode() {
 
         assertEquals(this.cell.hashCode(), this.cell.hashCode());
-        assertNotSame(this.cell.hashCode(), new Cell(Position(1, 3)).hashCode());
-        assertNotSame(this.cell.hashCode(), new Cell(Position(2, 2)).hashCode());
+        assertNotSame(this.cell.hashCode(), new AbstractCell(Position(1, 3)).hashCode());
+        assertNotSame(this.cell.hashCode(), new AbstractCell(Position(2, 2)).hashCode());
 
-        assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
+        assertEquals(this.cell.hashCode(), new AbstractCell(Position(1, 2)).hashCode());
 
         this.cell.setPiece(Piece(FIRST_SIDE));
-        assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
+        assertEquals(this.cell.hashCode(), new AbstractCell(Position(1, 2)).hashCode());
 
         this.cell.setPiece(Piece(SECOND_SIDE));
-        assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
+        assertEquals(this.cell.hashCode(), new AbstractCell(Position(1, 2)).hashCode());
 
     }
 
@@ -107,21 +107,21 @@ public class CellTest {
         assertFalse(this.cell.equals(null));
         assertFalse(this.cell.equals(new Random()));
 
-        assertFalse(this.cell.equals(new Cell(Position(1, 3))));
-        assertFalse(this.cell.equals(new Cell(Position(2, 2))));
+        assertFalse(this.cell.equals(new AbstractCell(Position(1, 3))));
+        assertFalse(this.cell.equals(new AbstractCell(Position(2, 2))));
 
-        assertTrue(this.cell.equals(new Cell(Position(1, 2))));
-        assertNotSame(this.cell, new Cell(Position(1, 2)));
+        assertTrue(this.cell.equals(new AbstractCell(Position(1, 2))));
+        assertNotSame(this.cell, new AbstractCell(Position(1, 2)));
 
         this.cell.setPiece(Piece(FIRST_SIDE));
         assertTrue(this.cell.equals(this.cell));
-        assertFalse(this.cell.equals(new Cell(Position(1, 2))));
+        assertFalse(this.cell.equals(new AbstractCell(Position(1, 2))));
 
         this.cell.setPiece(Piece(SECOND_SIDE));
         assertTrue(this.cell.equals(this.cell));
-        assertFalse(this.cell.equals(new Cell(Position(1, 2))));
+        assertFalse(this.cell.equals(new AbstractCell(Position(1, 2))));
 
-        final CellInterface anotherCell = new Cell(Position(1, 2));
+        final CellInterface anotherCell = new AbstractCell(Position(1, 2));
         anotherCell.setPiece(Piece(FIRST_SIDE));
         assertFalse(this.cell.equals(anotherCell));
 
@@ -129,7 +129,7 @@ public class CellTest {
         assertTrue(this.cell.equals(anotherCell));
         assertNotSame(this.cell, anotherCell);
 
-        final CellInterface yetAnotherCell = new Cell(Position(3, 3));
+        final CellInterface yetAnotherCell = new AbstractCell(Position(3, 3));
         yetAnotherCell.setPiece(Piece(SECOND_SIDE));
         assertFalse(this.cell.equals(yetAnotherCell));
 
@@ -147,10 +147,10 @@ public class CellTest {
     public void testCompareTo() {
 
         assertEquals(0, this.cell.compareTo(this.cell));
-        assertEquals(1, this.cell.compareTo(new Cell(Position(1, 1))));
-        assertEquals(-1, this.cell.compareTo(new Cell(Position(1, 3))));
-        assertEquals(-1, this.cell.compareTo(new Cell(Position(2, 2))));
-        assertEquals(-1, this.cell.compareTo(new Cell(Position(2, 3))));
+        assertEquals(1, this.cell.compareTo(new AbstractCell(Position(1, 1))));
+        assertEquals(-1, this.cell.compareTo(new AbstractCell(Position(1, 3))));
+        assertEquals(-1, this.cell.compareTo(new AbstractCell(Position(2, 2))));
+        assertEquals(-1, this.cell.compareTo(new AbstractCell(Position(2, 3))));
 
     }
 
@@ -159,17 +159,17 @@ public class CellTest {
 
         final List<CellInterface> cells = new ArrayList<CellInterface>(8);
 
-        cells.add(new Cell(Position(1, 4)));
-        cells.add(new Cell(Position(2, 2)));
-        cells.add(new Cell(Position(2, 1)));
-        cells.add(new Cell(Position(1, 1)));
-        cells.add(new Cell(Position(2, 3)));
-        cells.add(new Cell(Position(2, 4)));
-        cells.add(new Cell(Position(1, 3)));
-        cells.add(new Cell(Position(1, 2)));
+        cells.add(new AbstractCell(Position(1, 4)));
+        cells.add(new AbstractCell(Position(2, 2)));
+        cells.add(new AbstractCell(Position(2, 1)));
+        cells.add(new AbstractCell(Position(1, 1)));
+        cells.add(new AbstractCell(Position(2, 3)));
+        cells.add(new AbstractCell(Position(2, 4)));
+        cells.add(new AbstractCell(Position(1, 3)));
+        cells.add(new AbstractCell(Position(1, 2)));
 
-        assertEquals(new Cell(Position(1, 1)), Collections.min(cells));
-        assertEquals(new Cell(Position(2, 4)), Collections.max(cells));
+        assertEquals(new AbstractCell(Position(1, 1)), Collections.min(cells));
+        assertEquals(new AbstractCell(Position(2, 4)), Collections.max(cells));
 
     }
 

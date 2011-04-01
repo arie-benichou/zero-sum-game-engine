@@ -122,11 +122,13 @@ public final class API {
          * 
          * @return a new instance of a cell related to a given position
          */
+        /*
         public static final CellInterface Cell(final PositionInterface position) {
             checkNotNull(position, "Argument 'postion' is not intended to be null.");
-            return new Cell(position);
+            return new AbstractCell(position);
         }
-
+        */
+        
         /**
          * Returns a clone of a cell.
          * 
@@ -135,6 +137,7 @@ public final class API {
          * 
          * @return a clone of a cell
          */
+        /*
         public static final CellInterface Clone(final CellInterface cell) {
         	checkNotNull(cell, "Argument 'cell' is not intended to be null.");
             final CellInterface clone = CellFactory.Cell(cell.getPosition());
@@ -144,7 +147,8 @@ public final class API {
             }
             return clone;
         }
-
+        */
+        
         /**
          * Returns a set of new cells for a given set of positions.
          * 
@@ -153,6 +157,7 @@ public final class API {
          * 
          * @return a set of new cells for a given set of positions
          */
+        /*
         public static final Set<CellInterface> Cells(final Set<PositionInterface> positions) {
         	checkNotNull(positions, "Argument 'positions' is not intended to be null.");
             final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
@@ -161,7 +166,7 @@ public final class API {
             }
             return Collections.unmodifiableSet(cells);
         }
-
+        */
     }
 
 }

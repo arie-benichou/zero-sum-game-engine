@@ -21,6 +21,8 @@ import static abstractions.side.API.*;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.move.API.MoveInterface;
@@ -50,6 +52,16 @@ public abstract class AbstractGame implements GameInterface {
     @Override
     public final String toString() {
         return this.getClass().getSimpleName() + this.getBoard().toString();
+    }
+    
+    public final List<CellInterface> getMutableCells(final SideInterface side) {
+        List<CellInterface> mutableCells = Lists.newArrayList();
+        for(CellInterface cell : this.getBoard()) {
+            if(cell.isMutable()) {
+                mutableCells.add(cell);
+            }
+        }
+        return mutableCells;
     }
 
     public final SideInterface getNextSideToPlay(final MoveInterface playedMove, final boolean isMoveDone) {

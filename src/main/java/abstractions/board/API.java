@@ -24,12 +24,11 @@ import static abstractions.dimension.API.DimensionFactory.*;
 import static abstractions.position.API.PositionFactory.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
-
+import abstractions.cell.AbstractCellFactory;
 
 /**
  * API related to boards.
@@ -226,6 +225,7 @@ public class API {
          * @return a new instance of a board for a given number of rows and a
          *         given number of columns
          */
+        /*
         public static BoardInterface Board(final int numberOfRows, final int numberOfColumns) {
             try {
                 return new Board(Cells(Positions(Dimension(numberOfRows, numberOfColumns))));
@@ -234,7 +234,21 @@ public class API {
                 throw new IllegalBoardException(numberOfRows, numberOfColumns);
             }
         }
-
+        */
+        
+        /*
+        public static BoardInterface Board(Class<? extends CellInterface> CellClass, final int numberOfRows, final int numberOfColumns) {
+            // TODO avoir une instance de la BoardFactory à laquelle une instance de la CellFactory est injectée
+            AbstractCellFactory cellFactory = new AbstractCellFactory(CellClass);
+            try {
+                return new Board(cellFactory.cells(Positions(Dimension(numberOfRows, numberOfColumns))));
+            }
+            catch (IllegalDimensionException e) {
+                throw new IllegalBoardException(numberOfRows, numberOfColumns);
+            }
+        }
+        */
+        
         /**
          * Returns a clone of an existing instance of a board.
          * 
@@ -243,15 +257,18 @@ public class API {
          * 
          * @return a clone of an existing instance of a board
          */
+        /*
         public static BoardInterface Clone(final BoardInterface board) {
-        	checkNotNull(board, "Argument 'board' is not intended to be null.");
+            // TODO avoir une instance de la BoardFactory à laquelle une instance de la CellFactory est injectée
+            AbstractCellFactory cellFactory = new AbstractCellFactory(CellClass);
+            checkNotNull(board, "Argument 'board' is not intended to be null.");
             final Set<CellInterface> cells = new HashSet<CellInterface>();
             for (final CellInterface cell : board) {
-                cells.add(CellFactory.Clone(cell));
+                cells.add(this.clone(cell));
             }
             return new Board(cells);
         }
-
+        */
     }
 
 }

@@ -7,7 +7,7 @@ import static junit.framework.Assert.*;
 
 import org.junit.Test;
 
-import abstractions.cell.Cell;
+import abstractions.cell.AbstractCell;
 import abstractions.cell.API.CellInterface;
 
 
@@ -28,14 +28,14 @@ public class APITest {
     @Test(expected=NullPointerException.class)
     public void testCloneWithNull() {
         
-        CellFactory.Clone(null);
+        CellFactory.clone(null);
         
     }	    
 
     @Test
     public void testCell() {
 
-    	assertTrue(new Cell(Position(1, 1)).equals(CellFactory.Cell(Position(1,1))));
+    	assertTrue(new AbstractCell(Position(1, 1)).equals(CellFactory.Cell(Position(1,1))));
         
     }        
 	
@@ -43,9 +43,9 @@ public class APITest {
     public void testCells() {
     	
         HashSet<CellInterface> expectedCells = new HashSet<CellInterface>(3);
-        expectedCells.add(new Cell(Position(1, 1)));
-        expectedCells.add(new Cell(Position(1, 2)));
-        expectedCells.add(new Cell(Position(2, 1)));    	
+        expectedCells.add(new AbstractCell(Position(1, 1)));
+        expectedCells.add(new AbstractCell(Position(1, 2)));
+        expectedCells.add(new AbstractCell(Position(2, 1)));    	
         
         HashSet<PositionInterface> positions = new HashSet<PositionInterface>(4);
         
@@ -56,7 +56,7 @@ public class APITest {
         positions.add(Position(2, 1));
         positions.add(Position(2, 1));
         
-        Set<CellInterface> cells = CellFactory.Cells(positions);
+        Set<CellInterface> cells = CellFactory.cells(positions);
         
         assertTrue(expectedCells.equals(cells));
         
@@ -65,9 +65,9 @@ public class APITest {
     @Test
     public void testClone() {
     	
-    	Cell cell = new Cell(Position(2, 4));
-    	assertTrue(new Cell(Position(2, 4)).equals(CellFactory.Clone(cell)));
-    	assertNotSame(new Cell(Position(2, 4)), CellFactory.Clone(cell));
+    	AbstractCell cell = new AbstractCell(Position(2, 4));
+    	assertTrue(new AbstractCell(Position(2, 4)).equals(CellFactory.clone(cell)));
+    	assertNotSame(new AbstractCell(Position(2, 4)), CellFactory.clone(cell));
         
     }
 
