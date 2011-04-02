@@ -4,6 +4,9 @@ package abstractions.cell;
 import static abstractions.cell.API.*;
 import static abstractions.piece.API.*;
 import static abstractions.position.API.*;
+import abstractions.board.API.BoardInterface;
+import abstractions.cell.API.CellInterface;
+import abstractions.side.API.SideInterface;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -33,10 +36,6 @@ abstract class PotentialCell implements CellInterface {
 
     public final PieceInterface getPiece() {
         return this.piece;
-    }
-
-    public final boolean isEmpty() {
-        return this.getPiece().isNull();
     }
 
     @Override
@@ -93,10 +92,16 @@ abstract class PotentialCell implements CellInterface {
         }
         return 0;
     }
+    
+    public abstract void setBoard(BoardInterface board);
 
     public abstract boolean isNull();
     
-    public abstract boolean isMutable();
+    public abstract boolean isEmpty();
+    
+    public abstract boolean isMutable(SideInterface side);
+    
+    public abstract CellInterface getNext(int rowDelta, int columnDelta);
 
     @Override
     public abstract String toString();

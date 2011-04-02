@@ -7,13 +7,17 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import TicTacToe.TicTacToeCell;
+import concretisations.TicTacToe.Connect4Cell;
+import concretisations.TicTacToe.OthelloCell;
+import concretisations.TicTacToe.TicTacToeCell;
+
 import abstractions.board.API.BoardInterface;
 import abstractions.board.API.IllegalBoardException;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.AbstractCellFactory;
 import abstractions.dimension.API.IllegalDimensionException;
 import abstractions.piece.API.PieceFactory;
+import abstractions.side.API.SideInterface;
 
 /**
  * The board factory.
@@ -66,20 +70,95 @@ public final class BoardFactory {
     }
     
     public static void main(String[] args) {
-        BoardFactory bf = new BoardFactory(TicTacToeCell.class);
-        BoardInterface board = bf.Board(10, 10);
         
-        board.getCell(1, 1).setPiece(PieceFactory.Piece(abstractions.side.API.FIRST_SIDE));
-        board.getCell(5, 5).setPiece(PieceFactory.Piece(abstractions.side.API.FIRST_SIDE));
-        board.getCell(10, 10).setPiece(PieceFactory.Piece(abstractions.side.API.FIRST_SIDE));
+        BoardFactory bf;
+        BoardInterface board;
+        SideInterface sideToPlay = abstractions.side.API.FIRST_SIDE;        
+
+        System.out.println("--------------------------------------------------------------------");
+        
+        
+        bf = new BoardFactory(TicTacToeCell.class);
+        board = bf.Board(10, 10);
+        
+        board.getCell(1, 1).setPiece(PieceFactory.Piece(sideToPlay));
+        board.getCell(5, 5).setPiece(PieceFactory.Piece(sideToPlay));
+        board.getCell(10, 10).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
         
         System.out.println(board);
         
         for(CellInterface cell : board) {
-            if(!cell.isMutable()) {
+            if(!cell.isMutable(sideToPlay)) {
                 System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " n'est pas mutable.");
             }
         }
+        
+        System.out.println("--------------------------------------------------------------------");
+        
+        
+        bf = new BoardFactory(Connect4Cell.class);
+        board = bf.Board(6, 7);
+        
+        board.getCell(6, 1).setPiece(PieceFactory.Piece(sideToPlay));
+        board.getCell(6, 4).setPiece(PieceFactory.Piece(abstractions.side.API.SECOND_SIDE));
+        board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
+        
+        System.out.println(board);
+        
+        for(CellInterface cell : board) {
+            if(cell.isMutable(sideToPlay)) {
+                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
+            }
+        }
+        
+        System.out.println("--------------------------------------------------------------------");
+ 
+        
+        bf = new BoardFactory(OthelloCell.class);
+        board = bf.Board(6, 6);
+        
+        board.getCell(2, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(3, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(4, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
+        
+        System.out.println(board);
+        
+        for(CellInterface cell : board) {
+            if(cell.isMutable(sideToPlay)) {
+                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
+            }
+        }
+        
+        
+        System.out.println("--------------------------------------------------------------------");
+ 
+        
+        bf = new BoardFactory(OthelloCell.class);
+        board = bf.Board(6, 6);
+        
+        board.getCell(3, 3).setPiece(PieceFactory.Piece(sideToPlay));
+        board.getCell(4, 4).setPiece(PieceFactory.Piece(sideToPlay));
+        board.getCell(3, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        
+        System.out.println(board);
+        
+        for(CellInterface cell : board) {
+            if(cell.isMutable(sideToPlay)) {
+                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
+            }
+        }
+        
+        System.out.println(board);
+        
+        for(CellInterface cell : board) {
+            if(cell.isMutable(sideToPlay.getNextSide())) {
+                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
+            }
+        }
+        
+        System.out.println(board);
         
         
     }

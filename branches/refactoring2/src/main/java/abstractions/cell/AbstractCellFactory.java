@@ -8,13 +8,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Set;
 
-import TicTacToe.TicTacToeCell;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
 import abstractions.position.API.PositionFactory;
 import abstractions.position.API.PositionInterface;
 
 import com.google.common.collect.Sets;
+
+import concretisations.TicTacToe.TicTacToeCell;
 
 // TODO implémenter une interface
 public class AbstractCellFactory<T extends AbstractCell> {
