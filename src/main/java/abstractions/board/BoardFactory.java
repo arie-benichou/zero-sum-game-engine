@@ -138,7 +138,7 @@ public final class BoardFactory {
         
         System.out.println(board);
         
-        board.getMutableCells(sideToPlay);
+        board.getMutableCells(sideToPlay.getNextSide());
         
         System.out.println(board);
         
