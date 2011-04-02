@@ -106,7 +106,7 @@ public class API {
          */
         public static PositionInterface Position(final int rowIndex, final int columnIndex) {
             try {
-                return new Position(rowIndex, columnIndex);
+                return new AbsolutePosition(rowIndex, columnIndex);
             }
             catch (IllegalArgumentException e) {
                 throw new IllegalPositionException(rowIndex, columnIndex);

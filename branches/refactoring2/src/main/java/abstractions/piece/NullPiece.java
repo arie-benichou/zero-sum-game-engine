@@ -3,7 +3,7 @@ package abstractions.piece;
 
 import static abstractions.side.API.*;
 
-final class NullPiece extends AbstractPiece {
+final class NullPiece extends PotentialPiece {
 
     public NullPiece() {
         super(NULL_SIDE);
