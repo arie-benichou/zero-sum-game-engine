@@ -7,9 +7,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import concretisations.TicTacToe.Connect4Cell;
-import concretisations.TicTacToe.OthelloCell;
-import concretisations.TicTacToe.TicTacToeCell;
+import concretisations.connect4.Connect4Cell;
+import concretisations.othello.OthelloCell;
+import concretisations.tictactoe.TicTacToeCell;
 
 import abstractions.board.API.BoardInterface;
 import abstractions.board.API.IllegalBoardException;

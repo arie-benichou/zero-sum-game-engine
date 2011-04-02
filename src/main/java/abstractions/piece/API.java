@@ -76,17 +76,18 @@ public class API {
     /**
      * The piece factory.
      */
-    public static final class PieceFactory {
+    //public static final class PieceFactory {
 
         /**
          * Returns the null piece.
          * 
          * @return the null piece
          */
+        /*
         public static PieceInterface NullPiece() {
             return NULL_PIECE;
         }
-
+        */
         /**
          * Returns a new instance of a piece for a given side.
          * 
@@ -95,9 +96,10 @@ public class API {
          * 
          * @return a new instance of a piece for a given side
          */
+        /*
         public static PieceInterface Piece(SideInterface side) {
             try {
-                return new Piece(side);
+                return new AbstractPiece(side);
             }
             catch (NullPointerException e) {
                 throw new IllegalPieceException(side);
@@ -106,7 +108,7 @@ public class API {
                 throw new IllegalPieceException(side);
             }
         }
-
-    }
+        */
+    //}
 
 }

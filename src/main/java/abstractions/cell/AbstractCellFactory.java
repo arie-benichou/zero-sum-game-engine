@@ -15,7 +15,7 @@ import abstractions.position.API.PositionInterface;
 
 import com.google.common.collect.Sets;
 
-import concretisations.TicTacToe.TicTacToeCell;
+import concretisations.tictactoe.TicTacToeCell;
 
 // TODO implémenter une interface
 public class AbstractCellFactory<T extends AbstractCell> {
