@@ -29,6 +29,7 @@ import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.AbstractCellFactory;
+import abstractions.side.API.SideInterface;
 
 /**
  * API related to boards.
@@ -104,7 +105,7 @@ public class API {
         // -------------
         // |   |   |   |
         // -------------
-        CellInterface topOf(CellInterface cell);
+        //CellInterface topOf(CellInterface cell);
 
         /**
          * Returns the right-neighbour cell of this cell.
@@ -118,7 +119,7 @@ public class API {
         // -------------
         // |   |   |   |
         // -------------
-        CellInterface rightOf(CellInterface cell);
+        //CellInterface rightOf(CellInterface cell);
 
         /**
          * Returns the bottom-neighbour cell of this cell.
@@ -132,7 +133,7 @@ public class API {
         // -------------
         // |   | x |   |
         // -------------
-        CellInterface bottomOf(CellInterface cell);
+        //CellInterface bottomOf(CellInterface cell);
 
         /**
          * Returns the left-neighbour cell of this cell.
@@ -146,7 +147,7 @@ public class API {
         // -------------
         // |   |   |   |
         // -------------
-        CellInterface leftOf(CellInterface cell);
+        //CellInterface leftOf(CellInterface cell);
 
         /**
          * Returns the top-right-neighbour cell of this cell.
@@ -160,7 +161,7 @@ public class API {
         // -------------
         // |   |   |   |
         // -------------
-        CellInterface topRightOf(CellInterface cell);
+        //CellInterface topRightOf(CellInterface cell);
 
         /**
          * Returns the top-left-neighbour cell of this cell.
@@ -174,7 +175,7 @@ public class API {
         // -------------
         // |   |   |   |
         // -------------
-        CellInterface topLeftOf(CellInterface cell);
+        //CellInterface topLeftOf(CellInterface cell);
 
         /**
          * Returns the bottom-right-neighbour cell of this cell.
@@ -188,7 +189,7 @@ public class API {
         // -------------
         // |   |   | x |
         // -------------
-        CellInterface bottomRightOf(CellInterface cell);
+        //CellInterface bottomRightOf(CellInterface cell);
 
         /**
          * Returns the bottom-left-neighbour cell of this cell.
@@ -202,11 +203,10 @@ public class API {
         // -------------
         // | x |   |   |
         // -------------
-        CellInterface bottomLeftOf(CellInterface cell);
-
-        // TODO ? getCellsByColumn()
-        // TODO ? getCellsByRow()
-
+        //CellInterface bottomLeftOf(CellInterface cell);
+        
+        public Set<CellInterface> getMutableCells(SideInterface side);
+        
     }
 
     /**

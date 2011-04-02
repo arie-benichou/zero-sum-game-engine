@@ -13,26 +13,29 @@ import java.util.Set;
 
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
+import abstractions.side.API.SideInterface;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Constraint;
 import com.google.common.collect.Constraints;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 final class Board implements BoardInterface {
-    
+
     private static final Constraint<CellInterface> CONSTRAINT = new Constraint<CellInterface>() {
+
         public CellInterface checkElement(CellInterface cell) {
             if (cell == null) {
-                throw new NullPointerException("A cell of a board is not intended to be null.");    
+                throw new NullPointerException("A cell of a board is not intended to be null.");
             }
-            else if(cell.isNull()) {
+            else if (cell.isNull()) {
                 throw new IllegalArgumentException("A cell of a board must not be the null cell object.");
             }
             return cell;
         }
-    };    
+    };
 
     private final Map<String, CellInterface> boardCells;
 
@@ -43,9 +46,9 @@ final class Board implements BoardInterface {
     private final String computeHash(final CellInterface cell) {
         return this.computeHash(cell.getRow(), cell.getColumn());
     }
-    
+
     public Board(final Set<CellInterface> cells) {
-    	checkNotNull(cells, "Argument 'cells' is not intended to be null.");
+        checkNotNull(cells, "Argument 'cells' is not intended to be null.");
         final Set<CellInterface> checkedCells = Constraints.constrainedSet(new HashSet<CellInterface>(cells.size()), CONSTRAINT);
         checkedCells.addAll(cells);
         this.boardCells = Maps.newHashMapWithExpectedSize(checkedCells.size());
@@ -78,6 +81,7 @@ final class Board implements BoardInterface {
         return Collections.max(this.boardCells.values());
     }
 
+    /*
     // TODO ré-introduire l'objet CardinalPosition et utiliser une méthode privée prenant en paramètre la cellule et la position cardinale
 
     public CellInterface topOf(CellInterface cell) {
@@ -118,6 +122,17 @@ final class Board implements BoardInterface {
     public CellInterface bottomLeftOf(CellInterface cell) {
         checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         return cell.isNull() ? NULL_CELL : this.getCell(cell.getRow() + 1, cell.getColumn() - 1);
+    }
+    */
+
+    public Set<CellInterface> getMutableCells(SideInterface side) {
+        Set<CellInterface> mutableCells = Sets.newHashSet();
+        for (CellInterface cell : this) {
+            if (cell.isMutable(side)) {
+                mutableCells.add(cell);
+            }
+        }
+        return mutableCells;
     }
 
     @Override
