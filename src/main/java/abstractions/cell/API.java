@@ -24,6 +24,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collections;
 import java.util.Set;
 
+import abstractions.board.API.BoardInterface;
+import abstractions.side.API.SideInterface;
+
 import com.google.common.collect.Sets;
 
 /**
@@ -96,7 +99,11 @@ public final class API {
          * 
          * @return true if this cell is mutable, false otherwise
          */        
-        boolean isMutable();
+        boolean isMutable(SideInterface side);
+        
+        void setBoard(BoardInterface board);
+        
+        CellInterface getNext(int rowDelta, int columnDelta);
 
     }
 

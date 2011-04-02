@@ -51,6 +51,7 @@ final class Board implements BoardInterface {
         this.boardCells = Maps.newHashMapWithExpectedSize(checkedCells.size());
         // TODO regarder l'API du MapMaker
         for (final CellInterface cell : cells) {
+            cell.setBoard(this);
             this.boardCells.put(this.computeHash(cell), cell);
         }
     }

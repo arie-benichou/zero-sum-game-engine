@@ -3,7 +3,10 @@ package abstractions.cell;
 
 import static abstractions.position.API.*;
 import static com.google.common.base.Preconditions.*;
+import abstractions.board.API.BoardInterface;
+import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.side.API.SideInterface;
 
 final class NullCell extends PotentialCell {
 
@@ -28,8 +31,23 @@ final class NullCell extends PotentialCell {
     }
 
     @Override
-    public boolean isMutable() {
+    public boolean isMutable(SideInterface side) {
         return false;
+    }
+
+    @Override
+    public void setBoard(BoardInterface board) {
+        //no root  
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public CellInterface getNext(int rowDelta, int columnDelta) {
+         return this;
     }
 
 }
