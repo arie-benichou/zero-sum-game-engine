@@ -77,24 +77,18 @@ public final class BoardFactory {
 
         System.out.println("--------------------------------------------------------------------");
         
-        
         bf = new BoardFactory(TicTacToeCell.class);
-        board = bf.Board(10, 10);
+        board = bf.Board(3, 3);
         
         board.getCell(1, 1).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(5, 5).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(10, 10).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(3, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(2, 2).setPiece(PieceFactory.Piece(sideToPlay));
+        
+        board.getMutableCells(sideToPlay);
         
         System.out.println(board);
         
-        for(CellInterface cell : board) {
-            if(!cell.isMutable(sideToPlay)) {
-                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " n'est pas mutable.");
-            }
-        }
-        
         System.out.println("--------------------------------------------------------------------");
-        
         
         bf = new BoardFactory(Connect4Cell.class);
         board = bf.Board(6, 7);
@@ -103,16 +97,11 @@ public final class BoardFactory {
         board.getCell(6, 4).setPiece(PieceFactory.Piece(abstractions.side.API.SECOND_SIDE));
         board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
         
+        board.getMutableCells(sideToPlay);
+        
         System.out.println(board);
         
-        for(CellInterface cell : board) {
-            if(cell.isMutable(sideToPlay)) {
-                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
-            }
-        }
-        
         System.out.println("--------------------------------------------------------------------");
- 
         
         bf = new BoardFactory(OthelloCell.class);
         board = bf.Board(6, 6);
@@ -122,14 +111,17 @@ public final class BoardFactory {
         board.getCell(4, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
         board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
         
+        board.getMutableCells(sideToPlay);
+        
         System.out.println(board);
         
-        for(CellInterface cell : board) {
-            if(cell.isMutable(sideToPlay)) {
-                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
-            }
-        }
+        board.getCell(4, 2).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay));
         
+        board.getMutableCells(sideToPlay);
+        
+        System.out.println(board);
         
         System.out.println("--------------------------------------------------------------------");
  
@@ -142,24 +134,15 @@ public final class BoardFactory {
         board.getCell(3, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
         board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
         
-        System.out.println(board);
-        
-        for(CellInterface cell : board) {
-            if(cell.isMutable(sideToPlay)) {
-                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
-            }
-        }
+        board.getMutableCells(sideToPlay);
         
         System.out.println(board);
         
-        for(CellInterface cell : board) {
-            if(cell.isMutable(sideToPlay.getNextSide())) {
-                System.out.println("La cellule [" + cell.getRow() + "]" + "[" + cell.getColumn() + "]" + " est mutable.");
-            }
-        }
+        board.getMutableCells(sideToPlay);
         
         System.out.println(board);
         
+        System.out.println("--------------------------------------------------------------------");        
         
     }
 

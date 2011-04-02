@@ -11,6 +11,8 @@ import abstractions.side.API.SideInterface;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class PotentialCell implements CellInterface {
+    
+    protected boolean isMutable = false;
 
     private final PositionInterface position;
     protected transient PieceInterface piece = NULL_PIECE;
