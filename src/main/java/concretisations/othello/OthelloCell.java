@@ -5,6 +5,7 @@ import abstractions.cell.Cell;
 import abstractions.position.API.PositionInterface;
 import abstractions.side.API.SideInterface;
 
+//TODO ! à virer, mettre le comportement dans les pièces (pièce nulle comrise)
 public class OthelloCell extends Cell {
 
     public OthelloCell(PositionInterface position) {
