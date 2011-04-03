@@ -7,6 +7,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 //TODO à mettre dans API
@@ -27,6 +28,10 @@ public abstract class AbstractCell extends PotentialCell {
 
     public final CellInterface getNext(int rowDelta, int columnDelta) {
         return this.board.getCell(this.getRow() + rowDelta, this.getColumn() + columnDelta);
+    }
+    
+    public CellInterface getRelative(RelativePosition relativePosition) {
+        return this.board.getCell(this.getRow() + relativePosition.getRow(), this.getColumn() + relativePosition.getColumn());
     }
 
     @Override

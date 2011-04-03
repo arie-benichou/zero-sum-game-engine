@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.*;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 final class NullCell extends PotentialCell {
@@ -48,6 +49,10 @@ final class NullCell extends PotentialCell {
     @Override
     public CellInterface getNext(int rowDelta, int columnDelta) {
          return this;
+    }
+
+    public CellInterface getRelative(RelativePosition relativePosition) {
+        return this;
     }
 
 }

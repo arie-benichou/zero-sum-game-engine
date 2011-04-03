@@ -57,7 +57,7 @@ public abstract class AbstractGame implements GameInterface {
     public final List<CellInterface> getMutableCells(final SideInterface side) {
         List<CellInterface> mutableCells = Lists.newArrayList();
         for(CellInterface cell : this.getBoard()) {
-            if(cell.isMutable()) {
+            if(cell.isMutable(side)) {
                 mutableCells.add(cell);
             }
         }

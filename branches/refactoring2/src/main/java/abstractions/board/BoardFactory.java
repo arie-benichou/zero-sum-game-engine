@@ -16,7 +16,7 @@ import abstractions.board.API.IllegalBoardException;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.AbstractCellFactory;
 import abstractions.dimension.API.IllegalDimensionException;
-import abstractions.piece.API.PieceFactory;
+//import abstractions.piece.API.PieceFactory;
 import abstractions.side.API.SideInterface;
 
 /**
@@ -69,6 +69,7 @@ public final class BoardFactory {
         return new Board(cells);
     }
     
+    /*
     public static void main(String[] args) {
         
         BoardFactory bf;
@@ -145,5 +146,6 @@ public final class BoardFactory {
         System.out.println("--------------------------------------------------------------------");        
         
     }
+    */
 
 }

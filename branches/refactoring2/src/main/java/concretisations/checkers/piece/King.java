@@ -17,53 +17,26 @@
 
 package concretisations.checkers.piece;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import abstractions.cell.API.CellInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
+
+import com.google.common.collect.ImmutableSet;
 
 public class King extends CheckerPiece {
 
-    private static final BoardCardinalPosition[] POSITIONS = {
-        BoardCardinalPosition.TOP_RIGHT,
-        BoardCardinalPosition.BOTTOM_RIGHT,
-        BoardCardinalPosition.TOP_LEFT,
-        BoardCardinalPosition.BOTTOM_LEFT
-    };
-
     public King(SideInterface side) {
-        super(side);
+        super(side, ImmutableSet.of(RelativePosition.TOP, RelativePosition.BOTTOM));
     }
-
-    public List<BoardCardinalPosition> getWalkOptions(final CellInterface cell) {
-        // TODO ? utiliser un EnumSet
-        final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
-        for (final BoardCardinalPosition direction : King.POSITIONS) {
-            if (this.canWalkThrough(cell, direction)) {
-                options.add(direction);
-            }
-        }
-        return options;
-    }
-
-    public List<BoardCardinalPosition> getJumpOptions(final CellInterface cell) {
-        // TODO ? utiliser un EnumSet
-        final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
-        for (final BoardCardinalPosition direction : King.POSITIONS) {
-            if (this.canJumpOver(cell, direction)) {
-                options.add(direction);
-            }
-        }
-        return options;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString().toUpperCase();
-    }
-
+    
+    /*
     public boolean isPromotable(final CellInterface cell) {
         return false;
     }
+    */
+    
+    @Override
+    public String toString() {
+        return super.toString().toUpperCase();
+    }    
+    
 }

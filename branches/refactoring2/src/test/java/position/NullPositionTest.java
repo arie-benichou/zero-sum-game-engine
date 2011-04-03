@@ -18,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.position.NullPosition;
-import abstractions.position.Position;
+import abstractions.position.AbsolutePosition;
 import abstractions.position.API.*;
 
 
@@ -46,7 +46,7 @@ public class NullPositionTest {
     public void testHashCode() {
         
         assertEquals(this.position.hashCode(), this.position.hashCode());
-        assertNotSame(this.position.hashCode(), new Position(1, 1).hashCode());
+        assertNotSame(this.position.hashCode(), new AbsolutePosition(1, 1).hashCode());
         assertEquals(this.position.hashCode(), new NullPosition().hashCode());
         
     }
@@ -76,10 +76,10 @@ public class NullPositionTest {
     public void testCompareTo() {
 
         assertEquals(0, this.position.compareTo(this.position));
-        assertEquals(-1, this.position.compareTo(new Position(1, 1)));
-        assertEquals(-1, this.position.compareTo(new Position(1, 3)));
-        assertEquals(-1, this.position.compareTo(new Position(2, 2)));
-        assertEquals(-1, this.position.compareTo(new Position(2, 3)));
+        assertEquals(-1, this.position.compareTo(new AbsolutePosition(1, 1)));
+        assertEquals(-1, this.position.compareTo(new AbsolutePosition(1, 3)));
+        assertEquals(-1, this.position.compareTo(new AbsolutePosition(2, 2)));
+        assertEquals(-1, this.position.compareTo(new AbsolutePosition(2, 3)));
 
     }
 
@@ -88,18 +88,18 @@ public class NullPositionTest {
 
         final List<PositionInterface> positions = new ArrayList<PositionInterface>(9);
 
-        positions.add(new Position(1, 4));
-        positions.add(new Position(2, 2));
-        positions.add(new Position(2, 1));
-        positions.add(new Position(1, 1));
-        positions.add(new Position(2, 3));
-        positions.add(new Position(2, 4));
-        positions.add(new Position(1, 3));
-        positions.add(new Position(1, 2));
+        positions.add(new AbsolutePosition(1, 4));
+        positions.add(new AbsolutePosition(2, 2));
+        positions.add(new AbsolutePosition(2, 1));
+        positions.add(new AbsolutePosition(1, 1));
+        positions.add(new AbsolutePosition(2, 3));
+        positions.add(new AbsolutePosition(2, 4));
+        positions.add(new AbsolutePosition(1, 3));
+        positions.add(new AbsolutePosition(1, 2));
         positions.add(new NullPosition());
 
         assertEquals(new NullPosition(), Collections.min(positions));
-        assertEquals(new Position(2, 4), Collections.max(positions));
+        assertEquals(new AbsolutePosition(2, 4), Collections.max(positions));
 
     }
 

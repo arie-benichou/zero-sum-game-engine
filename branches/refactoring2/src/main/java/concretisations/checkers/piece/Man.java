@@ -17,69 +17,44 @@
 
 package concretisations.checkers.piece;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import abstractions.cell.API.CellInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
+
+import com.google.common.collect.ImmutableSet;
 
 // TODO refactoring
 // TODO pouvoir additionner les points cardinaux entre eux
-public class Man extends CheckerPiece {
+public final class Man extends CheckerPiece {
 
+    /*
+    // Spécialité
+    public RelativePosition getDirection() {
+        return this.directions.get(0);
+    }
+    */
 
     public Man(SideInterface side) {
-        super(side);
+        super(side, ImmutableSet.of(side.isFirstSide() ? RelativePosition.TOP : RelativePosition.BOTTOM));
     }
 
-    private BoardCardinalPosition getSideDirection() {
-        return this.getSide().isFirstSide() ? BoardCardinalPosition.TOP : BoardCardinalPosition.BOTTOM;
-    }
-
-    public List<BoardCardinalPosition> getWalkOptions(final CellInterface cell) {
-
-        // TODO ? utiliser un EnumSet
-        final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
-
-        final BoardCardinalPosition sideDirection = this.getSideDirection();
-
-        final BoardCardinalPosition direction1 = BoardCardinalPosition
-                .valueOf(sideDirection + "_"
-                        + BoardCardinalPosition.LEFT.toString());
-        if (this.canWalkThrough(cell, direction1)) {
-            options.add(direction1);
-        }
-
-        final BoardCardinalPosition direction2 = BoardCardinalPosition
-                .valueOf(sideDirection + "_"
-                        + BoardCardinalPosition.RIGHT.toString());
-        if (this.canWalkThrough(cell, direction2)) {
-            options.add(direction2);
-        }
-
-        return options;
-    }
-
-    public List<BoardCardinalPosition> getJumpOptions(final CellInterface cell) {
-
-        // TODO ? utiliser un EnumSet
-        final List<BoardCardinalPosition> options = new ArrayList<BoardCardinalPosition>();
-
-        final BoardCardinalPosition sideDirection = this.getSideDirection();
-
-        final BoardCardinalPosition direction1 = BoardCardinalPosition.valueOf(sideDirection + "_"+ BoardCardinalPosition.LEFT.toString());
-        if (this.canJumpOver(cell, direction1)) {
-            options.add(direction1);
-        }
-        final BoardCardinalPosition direction2 = BoardCardinalPosition.valueOf(sideDirection + "_"+ BoardCardinalPosition.RIGHT.toString());
-        if (this.canJumpOver(cell, direction2)) {
-            options.add(direction2);
-        }
-
-        return options;
-    }
-
+    /*
     public boolean isPromotable(final CellInterface cell) {
         return cell.getNeighbour(this.getSideDirection()).isNull();
     }
+    */
+
+    /*
+    public boolean isPromotable(CellInterface cell) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    */
+    
+    /*
+    public static void main(String[] args) {
+        new Man(abstractions.side.API.FIRST_SIDE);
+    }
+    */
+    
+    
 }

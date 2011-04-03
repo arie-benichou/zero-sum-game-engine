@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.piece.Piece;
+import abstractions.piece.AbstractPiece;
 
 public class PieceTest {
 
@@ -20,7 +20,7 @@ public class PieceTest {
     @Before
     public void setUp() {
     	
-        this.piece = new Piece(FIRST_SIDE);
+        this.piece = new AbstractPiece(FIRST_SIDE);
         
     }
 
@@ -34,14 +34,14 @@ public class PieceTest {
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalPiece1() {
     	
-        new Piece(NULL_SIDE);
+        new AbstractPiece(NULL_SIDE);
         
     }
     
     @Test(expected = NullPointerException.class)
     public void testIllegalPiece2() {
     	
-        new Piece(null);
+        new AbstractPiece(null);
         
     }
 
@@ -49,8 +49,8 @@ public class PieceTest {
     public void testHashCode() {
     	
         Assert.assertEquals(this.piece.hashCode(), this.piece.hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(SECOND_SIDE).hashCode());
-        Assert.assertEquals(this.piece.hashCode(), new Piece(FIRST_SIDE).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new AbstractPiece(SECOND_SIDE).hashCode());
+        Assert.assertEquals(this.piece.hashCode(), new AbstractPiece(FIRST_SIDE).hashCode());
         
     }
 
@@ -61,9 +61,9 @@ public class PieceTest {
         Assert.assertSame(this.piece, this.piece);
         Assert.assertFalse(this.piece.equals(null));
         Assert.assertFalse(this.piece.equals(new Random()));
-        Assert.assertFalse(this.piece.equals(new Piece(SECOND_SIDE)));
-        Assert.assertTrue(this.piece.equals(new Piece(FIRST_SIDE)));
-        Assert.assertNotSame(this.piece, new Piece(FIRST_SIDE));
+        Assert.assertFalse(this.piece.equals(new AbstractPiece(SECOND_SIDE)));
+        Assert.assertTrue(this.piece.equals(new AbstractPiece(FIRST_SIDE)));
+        Assert.assertNotSame(this.piece, new AbstractPiece(FIRST_SIDE));
         
     }
 
