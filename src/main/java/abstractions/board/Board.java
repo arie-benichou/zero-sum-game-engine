@@ -13,6 +13,7 @@ import java.util.Set;
 
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
+import abstractions.cell.mutation.MutationInterface;
 import abstractions.side.API.SideInterface;
 
 import com.google.common.base.Strings;
@@ -21,6 +22,8 @@ import com.google.common.collect.Constraints;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+
+import concretisations.checkers.mutations.CheckersMutation;
 
 final class Board implements BoardInterface {
 
@@ -125,6 +128,7 @@ final class Board implements BoardInterface {
     }
     */
 
+    /*
     public Set<CellInterface> getMutableCells(SideInterface side) {
         Set<CellInterface> mutableCells = Sets.newHashSet();
         for (CellInterface cell : this) {
@@ -134,6 +138,66 @@ final class Board implements BoardInterface {
         }
         return mutableCells;
     }
+    */
+    
+    public List<MutationInterface> getLegalMutations(SideInterface side) {
+        List<MutationInterface> availableMutations = Lists.newArrayList();
+        // TODO utiliser un prédicat "NotEmpty" en tant que contrainte sur la liste
+        for (CellInterface cell : this) {
+            Set<MutationInterface> result = cell.fetchAvailableMutations(side);
+            if (result.isEmpty()) {
+                cell.willGenerateMutations(false);
+            }
+            else {
+                //cell.willGenerateMutations(true);                
+                availableMutations.addAll(result);
+            }
+        }
+        
+        /*
+        for(Set<MutationInterface> ms : availableMutations) {
+            for(MutationInterface m : ms) {
+                if(m.)
+            }
+        }        
+        
+        for(Set<MutationInterface> ms : availableMutations) {
+            for(MutationInterface m : ms) {
+                System.out.println(m);
+            }
+        }
+        */
+        
+        
+        int min = Collections.min(availableMutations).getPriority();
+        
+        int max = Collections.max(availableMutations).getPriority();
+        
+        if(min == max) {
+            System.out.println("Il n y a que des coups de même priorité");
+        }
+        else {
+            System.out.println("Il va falloir garder que les mutations de priorité : " + min);
+        }
+        
+        // TODO utiliser un prédicat "> min" en tant que contrainte sur la liste
+        
+        List<MutationInterface> legalMutations = Lists.newArrayList();
+        
+        for(MutationInterface mutation : availableMutations) {
+            if(mutation.getPriority() == min) {
+                mutation.getCell().willGenerateMutations(true);
+                legalMutations.add(mutation);
+            }
+        }
+        
+        return legalMutations;
+        
+        
+        //System.out.println(availableMutations);
+        //return availableMutations;
+    }    
+    
 
     @Override
     public int hashCode() {
@@ -184,6 +248,11 @@ final class Board implements BoardInterface {
         }
         consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
         return consoleBoardView.toString();
+    }
+
+    public Set<CellInterface> getMutableCells(SideInterface side) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

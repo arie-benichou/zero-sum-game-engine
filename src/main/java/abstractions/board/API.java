@@ -17,18 +17,11 @@
 
 package abstractions.board;
 
-import static abstractions.cell.API.*;
-import static abstractions.cell.API.CellFactory.*;
-import static abstractions.dimension.API.*;
-import static abstractions.dimension.API.DimensionFactory.*;
-import static abstractions.position.API.PositionFactory.*;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
-import abstractions.cell.AbstractCellFactory;
+import abstractions.cell.mutation.MutationInterface;
 import abstractions.side.API.SideInterface;
 
 /**
@@ -205,7 +198,10 @@ public class API {
         // -------------
         //CellInterface bottomLeftOf(CellInterface cell);
         
-        public Set<CellInterface> getMutableCells(SideInterface side);
+        //public Set<CellInterface> getMutableCells(SideInterface side);
+        
+        public List<MutationInterface> getLegalMutations(SideInterface side);
+        
         
     }
 

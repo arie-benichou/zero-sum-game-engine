@@ -15,12 +15,14 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.piece;
+package concretisations.checkers.pieces;
 
 import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
+import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.API.PieceInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
@@ -28,7 +30,11 @@ import abstractions.side.API.SideInterface;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
-public abstract class CheckerPiece extends AbstractPiece implements PieceInterface {
+import concretisations.checkers.mutations.CheckersMutation;
+import concretisations.checkers.mutations.JumpMutation;
+import concretisations.checkers.mutations.WalkMutation;
+
+public abstract class CheckerPiece extends AbstractPiece {
 
     private static enum PieceAction { // TODO ? piecePromotion ou pieceEvolution
         JUMP, WALK,
@@ -40,25 +46,25 @@ public abstract class CheckerPiece extends AbstractPiece implements PieceInterfa
 
     private static interface Predicate {
 
-        boolean apply(CellInterface cell, RelativePosition relativePosition);
+        boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition);
     }
 
-    protected static final Predicate CAN_WALK_THROUGH = new Predicate() {
+    private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
-        public boolean apply(CellInterface cell, RelativePosition relativePosition) {
-            return cell.getRelative(relativePosition).isEmpty();
+        public boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition) {
+            return cell.getPiece().getSide().equals(side) && cell.getRelative(relativePosition).isEmpty();
         }
     };
-    
-    protected static final Predicate CAN_JUMP_OVER = new Predicate() {
-        public boolean apply(CellInterface cell, RelativePosition relativePosition) {
+
+    private final static Predicate CAN_JUMP_OVER = new Predicate() {
+
+        public boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition) {
             final CellInterface nextCell = cell.getRelative(relativePosition);
-            final SideInterface side = cell.getPiece().getSide();
             return nextCell.getPiece().getSide().getNextSide().equals(side) && nextCell.getRelative(relativePosition).isEmpty();
         }
-    };    
+    };
 
-    protected Set<RelativePosition> compileLegalRelativePositions(Set<RelativePosition> directions) {
+    private Set<RelativePosition> compileLegalRelativePositions(Set<RelativePosition> directions) {
         Set<RelativePosition> legalRelativePositions = Sets.newHashSetWithExpectedSize(PATHS.size() * directions.size());
         for (List<RelativePosition> list : Sets.cartesianProduct(PATHS, directions)) {
             legalRelativePositions.add(RelativePosition.reduce(list)); // TODO regarder l'API Guava pour le reduce
@@ -72,7 +78,7 @@ public abstract class CheckerPiece extends AbstractPiece implements PieceInterfa
         //System.out.println(this.legalRelativePositions);
     }
 
-    protected Predicate getPredicate(PieceAction action) {
+    private Predicate getPredicate(PieceAction action) {
         switch (action) {
             case JUMP:
                 return CAN_JUMP_OVER;
@@ -81,30 +87,39 @@ public abstract class CheckerPiece extends AbstractPiece implements PieceInterfa
                 return CAN_WALK_THROUGH;
         }
     }
-    
-    
-    public Set<RelativePosition> getOptions(final CellInterface cell) {
-        Set<RelativePosition> options = this.getOptions(cell, PieceAction.JUMP);
-        if(options.size() == 0) {
-            options = this.getOptions(cell, PieceAction.WALK);
-        }
-        return options;
-    }    
-    
 
-    public Set<RelativePosition> getOptions(final CellInterface cell, PieceAction action) {
+    private Set<RelativePosition> getOptions(final CellInterface cell, SideInterface side, PieceAction action) {
         final Set<RelativePosition> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
         Predicate predicate = this.getPredicate(action);
         for (final RelativePosition relativePosition : this.legalRelativePositions) {
-            if (predicate.apply(cell, relativePosition)) {
+            if (predicate.apply(cell, side, relativePosition)) {
                 options.add(relativePosition);
             }
         }
         return options;
     }
-    
+
+    public Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
+
+        final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
+
+        Set<RelativePosition> options = this.getOptions(cell, side, PieceAction.JUMP);
+        for (RelativePosition direction : options) {
+            availableMutations.add(new JumpMutation(cell).direction(direction));
+        }
+
+        if (options.size() == 0) {
+            options = this.getOptions(cell, side, PieceAction.WALK);
+            for (RelativePosition direction : options) {
+                availableMutations.add(new WalkMutation(cell).direction(direction));
+            }
+        }
+
+        return availableMutations;
+    }
+
     public static void main(String[] args) {
-        
+
         new Man(abstractions.side.API.FIRST_SIDE);
         System.out.println("-----------------------");
         new Man(abstractions.side.API.SECOND_SIDE);
@@ -112,7 +127,7 @@ public abstract class CheckerPiece extends AbstractPiece implements PieceInterfa
         new King(abstractions.side.API.FIRST_SIDE);
         System.out.println("-----------------------");
         new King(abstractions.side.API.SECOND_SIDE);
-        
+
     }
 
 }

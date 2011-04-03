@@ -1,17 +1,17 @@
 
 package abstractions.cell;
 
-import static abstractions.position.API.*;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.position.API.PositionInterface;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
-//TODO à mettre dans API
-public abstract class AbstractCell extends PotentialCell {
+// TODO à mettre dans API
+public class AbstractCell extends PotentialCell {
 
     private BoardInterface board;
 
@@ -22,14 +22,14 @@ public abstract class AbstractCell extends PotentialCell {
 
     public final void setPiece(final PieceInterface piece) {
         checkNotNull(piece, "Argument 'piece' is not intended to be null.");
-        checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
+        //checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
         this.piece = piece;
     }
 
     public final CellInterface getNext(int rowDelta, int columnDelta) {
         return this.board.getCell(this.getRow() + rowDelta, this.getColumn() + columnDelta);
     }
-    
+
     public CellInterface getRelative(RelativePosition relativePosition) {
         return this.board.getCell(this.getRow() + relativePosition.getRow(), this.getColumn() + relativePosition.getColumn());
     }
@@ -38,13 +38,10 @@ public abstract class AbstractCell extends PotentialCell {
     public final boolean isNull() {
         return false;
     }
-    
+
     public void setBoard(BoardInterface board) {
         this.board = board;
     }
-
-    @Override
-    public abstract boolean isMutable(SideInterface side); // TODO regarder comment tester une classe abstraite (faire un test qui hérite de la classe ?)
 
     @Override
     public final boolean isEmpty() {
@@ -53,8 +50,22 @@ public abstract class AbstractCell extends PotentialCell {
 
     @Override
     public String toString() {
-        return " " + this.getPiece() + " |";
-
+        return this.willGenerateMutations()? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
     }
-    
+
+    @Override
+    public boolean willGenerateMutations() {
+        return this.willGenerateMutations;
+    }
+
+    @Override
+    public void willGenerateMutations(boolean willItGenerateMutations) {
+        this.willGenerateMutations = willItGenerateMutations;
+    }
+
+    /*
+    @Override
+    public abstract Set<MutationInterface> fetchAvailableMutations(SideInterface side);
+    */
+
 }
