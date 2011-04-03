@@ -28,6 +28,7 @@ import com.google.common.collect.Maps;
 import abstractions.piece.API.PieceInterface;
 import abstractions.side.API.SideInterface;
 
+//TODO ! fixer la PieceFactory
 public class PieceFactory {
 
     private final Map<String, PieceInterface> pieces;

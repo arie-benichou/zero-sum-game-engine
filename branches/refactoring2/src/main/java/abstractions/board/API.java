@@ -17,11 +17,19 @@
 
 package abstractions.board;
 
+import static abstractions.dimension.API.DimensionFactory.*;
+import static abstractions.position.API.PositionFactory.*;
+import static abstractions.cell.API.CellFactory.*;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import abstractions.cell.API.CellFactory;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
+import abstractions.dimension.API.IllegalDimensionException;
 import abstractions.side.API.SideInterface;
 
 /**
@@ -86,123 +94,9 @@ public class API {
          */
         CellInterface getUpperBound();
 
-        /**
-         * Returns the top-neighbour cell of this cell.
-         * 
-         * @return the top-neighbour cell of this cell
-         */
-        // -------------
-        // |   | x |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------
-        //CellInterface topOf(CellInterface cell);
-
-        /**
-         * Returns the right-neighbour cell of this cell.
-         * 
-         * @return the right-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . | x |
-        // -------------
-        // |   |   |   |
-        // -------------
-        //CellInterface rightOf(CellInterface cell);
-
-        /**
-         * Returns the bottom-neighbour cell of this cell.
-         * 
-         * @return the bottom-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   | x |   |
-        // -------------
-        //CellInterface bottomOf(CellInterface cell);
-
-        /**
-         * Returns the left-neighbour cell of this cell.
-         * 
-         * @return the left-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   |   |
-        // -------------
-        // | x | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------
-        //CellInterface leftOf(CellInterface cell);
-
-        /**
-         * Returns the top-right-neighbour cell of this cell.
-         * 
-         * @return the top-right-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   | x |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------
-        //CellInterface topRightOf(CellInterface cell);
-
-        /**
-         * Returns the top-left-neighbour cell of this cell.
-         * 
-         * @return the top-left-neighbour cell of this cell
-         */
-        // -------------
-        // | x |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------
-        //CellInterface topLeftOf(CellInterface cell);
-
-        /**
-         * Returns the bottom-right-neighbour cell of this cell.
-         * 
-         * @return the bottom-right-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   | x |
-        // -------------
-        //CellInterface bottomRightOf(CellInterface cell);
-
-        /**
-         * Returns the bottom-left-neighbour cell of this cell.
-         * 
-         * @return the bottom-left-neighbour cell of this cell
-         */
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // | x |   |   |
-        // -------------
-        //CellInterface bottomLeftOf(CellInterface cell);
-        
-        //public Set<CellInterface> getMutableCells(SideInterface side);
-        
+        //TODO ! javadoc
         public List<MutationInterface> getLegalMutations(SideInterface side);
-        
-        
+
     }
 
     /**
@@ -221,7 +115,6 @@ public class API {
          * @return a new instance of a board for a given number of rows and a
          *         given number of columns
          */
-        /*
         public static BoardInterface Board(final int numberOfRows, final int numberOfColumns) {
             try {
                 return new Board(Cells(Positions(Dimension(numberOfRows, numberOfColumns))));
@@ -230,21 +123,7 @@ public class API {
                 throw new IllegalBoardException(numberOfRows, numberOfColumns);
             }
         }
-        */
-        
-        /*
-        public static BoardInterface Board(Class<? extends CellInterface> CellClass, final int numberOfRows, final int numberOfColumns) {
-            // TODO avoir une instance de la BoardFactory à laquelle une instance de la CellFactory est injectée
-            AbstractCellFactory cellFactory = new AbstractCellFactory(CellClass);
-            try {
-                return new Board(cellFactory.cells(Positions(Dimension(numberOfRows, numberOfColumns))));
-            }
-            catch (IllegalDimensionException e) {
-                throw new IllegalBoardException(numberOfRows, numberOfColumns);
-            }
-        }
-        */
-        
+
         /**
          * Returns a clone of an existing instance of a board.
          * 
@@ -253,18 +132,14 @@ public class API {
          * 
          * @return a clone of an existing instance of a board
          */
-        /*
         public static BoardInterface Clone(final BoardInterface board) {
-            // TODO avoir une instance de la BoardFactory à laquelle une instance de la CellFactory est injectée
-            AbstractCellFactory cellFactory = new AbstractCellFactory(CellClass);
             checkNotNull(board, "Argument 'board' is not intended to be null.");
             final Set<CellInterface> cells = new HashSet<CellInterface>();
             for (final CellInterface cell : board) {
-                cells.add(this.clone(cell));
+                cells.add(CellFactory.Clone(cell));
             }
             return new Board(cells);
         }
-        */
     }
 
 }
