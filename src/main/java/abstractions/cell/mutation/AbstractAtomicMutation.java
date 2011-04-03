@@ -24,7 +24,7 @@ public abstract class AbstractAtomicMutation implements AtomicMutationInterface 
         return previousState;
     }
 
-    public final PieceInterface getProtagonist() {
+    public final PieceInterface getProtagonist() { // TODO ? simplification possible pour Death.
         return this.protagonist;
     }
 
@@ -32,7 +32,6 @@ public abstract class AbstractAtomicMutation implements AtomicMutationInterface 
         this.protagonist = concernedPiece;
     }
 
-    // TODO ? méthode abstraite de l'interface de cell, plutôt
     public abstract void process();
 
 }

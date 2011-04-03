@@ -54,6 +54,8 @@ public abstract class AbstractGame implements GameInterface {
         return this.getClass().getSimpleName() + this.getBoard().toString();
     }
     
+    // TODO ! proxy vers le board
+    // TODO ! renommer en getLegalMoves dans le contexte du game
     public final List<CellInterface> getMutableCells(final SideInterface side) {
         List<CellInterface> mutableCells = Lists.newArrayList();
         for(CellInterface cell : this.getBoard()) {

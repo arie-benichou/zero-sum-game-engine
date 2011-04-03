@@ -7,29 +7,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import concretisations.connect4.Connect4Cell;
-import concretisations.othello.OthelloCell;
-import concretisations.tictactoe.TicTacToeCell;
-
 import abstractions.board.API.BoardInterface;
 import abstractions.board.API.IllegalBoardException;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.AbstractCellFactory;
 import abstractions.dimension.API.IllegalDimensionException;
-//import abstractions.piece.API.PieceFactory;
-import abstractions.side.API.SideInterface;
 
 /**
  * The board factory.
  */
-// TODO implémenter une interface
-// TODO utiliser un cache des nouvelles cellules créées 
-public final class BoardFactory {
+//TODO à virer 
+public final class _BoardFactory {
     
     private AbstractCellFactory cellFactory;
 
-    public BoardFactory(Class<? extends CellInterface> CellClass) {
-        this.cellFactory = new AbstractCellFactory(CellClass);
+    public BoardFactory(Class<? extends CellInterface> cellClass) {
+        this.cellFactory = new AbstractCellFactory(cellClass);
     }
 
     /**
@@ -68,84 +61,5 @@ public final class BoardFactory {
         }
         return new Board(cells);
     }
-    
-    /*
-    public static void main(String[] args) {
-        
-        BoardFactory bf;
-        BoardInterface board;
-        SideInterface sideToPlay = abstractions.side.API.FIRST_SIDE;        
-
-        System.out.println("--------------------------------------------------------------------");
-        
-        bf = new BoardFactory(TicTacToeCell.class);
-        board = bf.Board(3, 3);
-        
-        board.getCell(1, 1).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(3, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(2, 2).setPiece(PieceFactory.Piece(sideToPlay));
-        
-        board.getMutableCells(sideToPlay);
-        
-        System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");
-        
-        bf = new BoardFactory(Connect4Cell.class);
-        board = bf.Board(6, 7);
-        
-        board.getCell(6, 1).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(6, 4).setPiece(PieceFactory.Piece(abstractions.side.API.SECOND_SIDE));
-        board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
-        
-        board.getMutableCells(sideToPlay);
-        
-        System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");
-        
-        bf = new BoardFactory(OthelloCell.class);
-        board = bf.Board(6, 6);
-        
-        board.getCell(2, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(3, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(4, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(5, 4).setPiece(PieceFactory.Piece(sideToPlay));
-        
-        board.getMutableCells(sideToPlay);
-        
-        System.out.println(board);
-        
-        board.getCell(4, 2).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay));
-        
-        board.getMutableCells(sideToPlay);
-        
-        System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");
- 
-        
-        bf = new BoardFactory(OthelloCell.class);
-        board = bf.Board(6, 6);
-        
-        board.getCell(3, 3).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(4, 4).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(3, 4).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
-        
-        board.getMutableCells(sideToPlay);
-        
-        System.out.println(board);
-        
-        board.getMutableCells(sideToPlay.getNextSide());
-        
-        System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");        
-        
-    }
-    */
 
 }

@@ -31,8 +31,6 @@ import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.Sets;
 
-import concretisations.checkers.mutations.CheckersMutation;
-
 /**
  * API related to cells.
  */
@@ -97,24 +95,26 @@ public final class API {
          * @return true if this cell is the null object, false otherwise
          */
         boolean isNull();
+
+        //TODO ! javadoc        
+        void setBoard(BoardInterface board);
+
+        //TODO ! utiliser un interface RelativePositionInterface
+        //TODO ! javadoc
+        CellInterface getRelative(RelativePosition relativePosition);
+
+        //TODO ! javadoc
+        Set<MutationInterface> fetchAvailableMutations(SideInterface side);
         
-        /**
-         * Returns true if this cell is mutable, false otherwise.
-         * 
-         * @return true if this cell is mutable, false otherwise
-         */        
-        boolean willGenerateMutations();
+        //TODO ! javadoc
         void willGenerateMutations(boolean willItGenerateMutations);
         
-        void setBoard(BoardInterface board);
-        
-        // TODO à virer
-        CellInterface getNext(int rowDelta, int columnDelta);
-        
-        // TODO utiliser l'interface
-        CellInterface getRelative(RelativePosition relativePosition);
-        
-        Set<MutationInterface> fetchAvailableMutations(SideInterface side);        
+        /**
+         * Returns true if this cell has at least one legal mutation for a side to play.
+         * 
+         * @return true if this cell has at least one legal mutation for a side to play
+         */
+        boolean willGenerateMutations();
 
     }
 
@@ -140,13 +140,11 @@ public final class API {
          * 
          * @return a new instance of a cell related to a given position
          */
-        /*
         public static final CellInterface Cell(final PositionInterface position) {
             checkNotNull(position, "Argument 'postion' is not intended to be null.");
-            return new AbstractCell(position);
+            return new Cell(position);
         }
-        */
-        
+
         /**
          * Returns a clone of a cell.
          * 
@@ -155,18 +153,16 @@ public final class API {
          * 
          * @return a clone of a cell
          */
-        /*
         public static final CellInterface Clone(final CellInterface cell) {
-        	checkNotNull(cell, "Argument 'cell' is not intended to be null.");
+            checkNotNull(cell, "Argument 'cell' is not intended to be null.");
             final CellInterface clone = CellFactory.Cell(cell.getPosition());
             PieceInterface piece = cell.getPiece();
-            if(!piece.isNull()) {
-                clone.setPiece(piece);    
+            if (!piece.isNull()) {
+                clone.setPiece(piece);
             }
             return clone;
         }
-        */
-        
+
         /**
          * Returns a set of new cells for a given set of positions.
          * 
@@ -175,16 +171,14 @@ public final class API {
          * 
          * @return a set of new cells for a given set of positions
          */
-        /*
         public static final Set<CellInterface> Cells(final Set<PositionInterface> positions) {
-        	checkNotNull(positions, "Argument 'positions' is not intended to be null.");
+            checkNotNull(positions, "Argument 'positions' is not intended to be null.");
             final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
             for (final PositionInterface position : positions) {
                 cells.add(CellFactory.Cell(position));
             }
             return Collections.unmodifiableSet(cells);
         }
-        */
     }
 
 }

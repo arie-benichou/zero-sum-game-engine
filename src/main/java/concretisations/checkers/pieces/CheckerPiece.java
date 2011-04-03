@@ -75,7 +75,6 @@ public abstract class CheckerPiece extends AbstractPiece {
     public CheckerPiece(SideInterface side, Set<RelativePosition> directions) {
         super(side);
         this.legalRelativePositions = this.compileLegalRelativePositions(directions);
-        //System.out.println(this.legalRelativePositions);
     }
 
     private Predicate getPredicate(PieceAction action) {
@@ -118,6 +117,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         return availableMutations;
     }
 
+    // TODO ! tests unitaires
     public static void main(String[] args) {
 
         new Man(abstractions.side.API.FIRST_SIDE);

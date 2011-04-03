@@ -10,19 +10,15 @@ import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
-import abstractions.position.API.PositionFactory;
 import abstractions.position.API.PositionInterface;
 
 import com.google.common.collect.Sets;
 
-import concretisations.tictactoe.TicTacToeCell;
+public class _AbstractCellFactory<T extends Cell> {
 
-// TODO implémenter une interface
-public class AbstractCellFactory<T extends AbstractCell> {
+    private Constructor<? extends Cell> constructor = null;
 
-    private Constructor<? extends AbstractCell> constructor = null;
-
-    public AbstractCellFactory(Class<? extends AbstractCell> type) {
+    public AbstractCellFactory(Class<? extends Cell> type) {
         try {
             this.constructor = type.getDeclaredConstructor(PositionInterface.class);
         }
@@ -36,9 +32,9 @@ public class AbstractCellFactory<T extends AbstractCell> {
         }
     }
 
-    public final AbstractCell newCell(final PositionInterface position) {
+    public final Cell newCell(final PositionInterface position) {
 
-        AbstractCell instance = null;
+        Cell instance = null;
 
         try {
             instance = constructor.newInstance(position);
@@ -83,11 +79,4 @@ public class AbstractCellFactory<T extends AbstractCell> {
         return clone;
     }
 
-    /*
-    public static void main(String[] args) {
-        AbstractCellFactory<TicTacToeCell> cellFactory = new AbstractCellFactory<TicTacToeCell>(TicTacToeCell.class);
-        AbstractCell cell = cellFactory.newCell(PositionFactory.Position(1, 1));
-        System.out.println(cell.getClass());
-    }
-    */
 }

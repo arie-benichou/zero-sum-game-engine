@@ -1,11 +1,11 @@
 
 package concretisations.othello;
 
-import abstractions.cell.AbstractCell;
+import abstractions.cell.Cell;
 import abstractions.position.API.PositionInterface;
 import abstractions.side.API.SideInterface;
 
-public class OthelloCell extends AbstractCell {
+public class OthelloCell extends Cell {
 
     public OthelloCell(PositionInterface position) {
         super(position);

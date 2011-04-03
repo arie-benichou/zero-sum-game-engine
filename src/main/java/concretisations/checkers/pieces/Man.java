@@ -22,16 +22,7 @@ import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-// TODO refactoring
-// TODO pouvoir additionner les points cardinaux entre eux
 public final class Man extends CheckerPiece {
-
-    /*
-    // Spécialité
-    public RelativePosition getDirection() {
-        return this.directions.get(0);
-    }
-    */
 
     public Man(SideInterface side) {
         super(side, ImmutableSet.of(side.isFirstSide() ? RelativePosition.TOP : RelativePosition.BOTTOM));
@@ -43,18 +34,4 @@ public final class Man extends CheckerPiece {
     }
     */
 
-    /*
-    public boolean isPromotable(CellInterface cell) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    */
-    
-    /*
-    public static void main(String[] args) {
-        new Man(abstractions.side.API.FIRST_SIDE);
-    }
-    */
-    
-    
 }

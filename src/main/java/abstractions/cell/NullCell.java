@@ -16,27 +16,21 @@ import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-final class NullCell extends PotentialCell {
+final class NullCell extends AbstractCell {
 
     public NullCell() {
         super(NULL_POSITION);
-    }
-
-    public final void setPiece(final PieceInterface piece) {
-        checkNotNull(piece, "Argument 'piece' is not intended to be null.");
-        checkArgument(piece.isNull(), "Argument 'piece' must be the null piece object.");
-        //Anyway, your piece goes into the vacuum...
     }
 
     @Override
     public final boolean isNull() {
         return true;
     }
-
+    
     @Override
-    public String toString() {
-        return "";
-    }
+    public boolean isEmpty() {
+        return false;
+    }    
 
     @Override
     public boolean willGenerateMutations() {
@@ -44,27 +38,28 @@ final class NullCell extends PotentialCell {
     }
 
     @Override
-    public void setBoard(BoardInterface board) {
-        //no root  
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public CellInterface getNext(int rowDelta, int columnDelta) {
-        return this;
-    }
-
     public CellInterface getRelative(RelativePosition relativePosition) {
         return this;
     }
-
+    
+    @Override
+    public void setBoard(BoardInterface board) {
+        //goes into the vacuum...  
+    }    
+    
+    @Override    
+    public final void setPiece(final PieceInterface piece) {
+        //goes into the vacuum...
+    }
+    
     @Override
     public void willGenerateMutations(boolean willItGenerateMutations) {
-        //it goes into the vacuum...
+        //goes into the vacuum...
     }
+    
+    @Override
+    public String toString() {
+        return "";
+    }    
 
 }

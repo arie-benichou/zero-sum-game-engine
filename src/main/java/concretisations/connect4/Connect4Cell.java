@@ -1,11 +1,11 @@
 
 package concretisations.connect4;
 
-import abstractions.cell.AbstractCell;
+import abstractions.cell.Cell;
 import abstractions.position.API.PositionInterface;
 import abstractions.side.API.SideInterface;
 
-public class Connect4Cell extends AbstractCell {
+public class Connect4Cell extends Cell {
 
     public Connect4Cell(PositionInterface position) {
         super(position);

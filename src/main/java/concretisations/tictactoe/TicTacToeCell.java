@@ -1,11 +1,11 @@
 
 package concretisations.tictactoe;
 
-import abstractions.cell.AbstractCell;
+import abstractions.cell.Cell;
 import abstractions.position.API.PositionInterface;
 import abstractions.side.API.SideInterface;
 
-public class TicTacToeCell extends AbstractCell {
+public class TicTacToeCell extends Cell {
 
     public TicTacToeCell(PositionInterface position) {
         super(position);
