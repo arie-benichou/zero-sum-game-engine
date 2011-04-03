@@ -15,7 +15,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package utils.math;
+package abstractions.utils.math;
 
 import org.hamcrest.core.Is;
 import org.junit.Assert;

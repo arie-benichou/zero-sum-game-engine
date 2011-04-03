@@ -1,5 +1,5 @@
 
-package dimension;
+package abstractions.dimension;
 
 import static abstractions.dimension.API.*;
 import static abstractions.dimension.API.DimensionFactory.*;

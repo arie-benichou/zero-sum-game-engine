@@ -1,5 +1,5 @@
 
-package cell;
+package abstractions.cell;
 
 import static abstractions.piece.API.*;
 import static abstractions.piece.API.PieceFactory.*;

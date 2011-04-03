@@ -1,5 +1,5 @@
 
-package position;
+package abstractions.position;
 
 import static abstractions.dimension.API.DimensionFactory.*;
 import static abstractions.position.API.*;
