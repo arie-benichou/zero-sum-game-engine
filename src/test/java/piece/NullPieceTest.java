@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.piece.NullPiece;
-import abstractions.piece.Piece;
+import abstractions.piece.AbstractPiece;
 
 public class NullPieceTest {
 
@@ -38,8 +38,8 @@ public class NullPieceTest {
     public void testHashCode() {
     	
         Assert.assertEquals(this.piece.hashCode(), this.piece.hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(FIRST_SIDE).hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new Piece(SECOND_SIDE).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new AbstractPiece(FIRST_SIDE).hashCode());
+        Assert.assertNotSame(this.piece.hashCode(), new AbstractPiece(SECOND_SIDE).hashCode());
         Assert.assertEquals(this.piece.hashCode(), new NullPiece().hashCode());
         
     }
@@ -51,8 +51,8 @@ public class NullPieceTest {
         Assert.assertSame(this.piece, this.piece);
         Assert.assertFalse(this.piece.equals(null));
         Assert.assertFalse(this.piece.equals(new Random()));
-        Assert.assertFalse(this.piece.equals(new Piece(FIRST_SIDE)));
-        Assert.assertFalse(this.piece.equals(new Piece(SECOND_SIDE)));
+        Assert.assertFalse(this.piece.equals(new AbstractPiece(FIRST_SIDE)));
+        Assert.assertFalse(this.piece.equals(new AbstractPiece(SECOND_SIDE)));
         Assert.assertEquals(this.piece, new NullPiece());
         Assert.assertNotSame(this.piece, new NullPiece());
         

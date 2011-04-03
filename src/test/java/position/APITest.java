@@ -17,7 +17,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import abstractions.position.NullPosition;
-import abstractions.position.Position;
+import abstractions.position.AbsolutePosition;
 
 
 public class APITest {
@@ -40,8 +40,8 @@ public class APITest {
     @Test
     public void testLegalPosition() {
         
-        assertTrue(Position(1, 2).equals(new Position(1, 2)));
-        assertFalse(Position(1, 2) == new Position(1, 2));
+        assertTrue(Position(1, 2).equals(new AbsolutePosition(1, 2)));
+        assertFalse(Position(1, 2) == new AbsolutePosition(1, 2));
         
     }
 

@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 
 import abstractions.piece.NullPiece;
-import abstractions.piece.Piece;
+import abstractions.piece.AbstractPiece;
 
 public class APITest {
 
@@ -45,8 +45,8 @@ public class APITest {
     @Test
     public void testLegalPiece() {
         
-        assertTrue(Piece(FIRST_SIDE).equals(new Piece(FIRST_SIDE)));
-        assertFalse(Piece(FIRST_SIDE) == new Piece(FIRST_SIDE));
+        assertTrue(Piece(FIRST_SIDE).equals(new AbstractPiece(FIRST_SIDE)));
+        assertFalse(Piece(FIRST_SIDE) == new AbstractPiece(FIRST_SIDE));
         
     }
 

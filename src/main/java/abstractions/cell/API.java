@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import abstractions.board.API.BoardInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.Sets;
@@ -103,7 +104,11 @@ public final class API {
         
         void setBoard(BoardInterface board);
         
+        // TODO à virer
         CellInterface getNext(int rowDelta, int columnDelta);
+        
+        // TODO utiliser l'interface
+        CellInterface getRelative(RelativePosition relativePosition);
 
     }
 

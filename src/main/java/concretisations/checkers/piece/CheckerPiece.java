@@ -17,25 +17,102 @@
 
 package concretisations.checkers.piece;
 
+import java.util.List;
+import java.util.Set;
+
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.AbstractPiece;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 public abstract class CheckerPiece extends AbstractPiece implements PieceInterface {
 
-    public CheckerPiece(SideInterface side) {
+    private static enum PieceAction { // TODO ? piecePromotion ou pieceEvolution
+        JUMP, WALK,
+    }
+
+    private static final Set<RelativePosition> PATHS = ImmutableSet.of(RelativePosition.RIGHT, RelativePosition.LEFT);
+
+    private final Set<RelativePosition> legalRelativePositions;
+
+    private static interface Predicate {
+
+        boolean apply(CellInterface cell, RelativePosition relativePosition);
+    }
+
+    protected static final Predicate CAN_WALK_THROUGH = new Predicate() {
+
+        public boolean apply(CellInterface cell, RelativePosition relativePosition) {
+            return cell.getRelative(relativePosition).isEmpty();
+        }
+    };
+    
+    protected static final Predicate CAN_JUMP_OVER = new Predicate() {
+        public boolean apply(CellInterface cell, RelativePosition relativePosition) {
+            final CellInterface nextCell = cell.getRelative(relativePosition);
+            final SideInterface side = cell.getPiece().getSide();
+            return nextCell.getPiece().getSide().getNextSide().equals(side) && nextCell.getRelative(relativePosition).isEmpty();
+        }
+    };    
+
+    protected Set<RelativePosition> compileLegalRelativePositions(Set<RelativePosition> directions) {
+        Set<RelativePosition> legalRelativePositions = Sets.newHashSetWithExpectedSize(PATHS.size() * directions.size());
+        for (List<RelativePosition> list : Sets.cartesianProduct(PATHS, directions)) {
+            legalRelativePositions.add(RelativePosition.reduce(list)); // TODO regarder l'API Guava pour le reduce
+        }
+        return legalRelativePositions;
+    }
+
+    public CheckerPiece(SideInterface side, Set<RelativePosition> directions) {
         super(side);
+        this.legalRelativePositions = this.compileLegalRelativePositions(directions);
+        //System.out.println(this.legalRelativePositions);
     }
 
-    protected boolean canJumpOver(final CellInterface cell, final BoardCardinalPosition cardinalPosition) {
-        final CellInterface neighbourCell = cell.getNeighbour(cardinalPosition);
-        return !(neighbourCell.isNull() || neighbourCell.isEmpty() || (neighbourCell.getPiece().getSide() == this.getSide()) || neighbourCell.getNeighbour(
-                cardinalPosition).isNull())
-                && neighbourCell.getNeighbour(cardinalPosition).isEmpty();
+    protected Predicate getPredicate(PieceAction action) {
+        switch (action) {
+            case JUMP:
+                return CAN_JUMP_OVER;
+            case WALK:
+            default:
+                return CAN_WALK_THROUGH;
+        }
     }
+    
+    
+    public Set<RelativePosition> getOptions(final CellInterface cell) {
+        Set<RelativePosition> options = this.getOptions(cell, PieceAction.JUMP);
+        if(options.size() == 0) {
+            options = this.getOptions(cell, PieceAction.WALK);
+        }
+        return options;
+    }    
+    
 
-    protected boolean canWalkThrough(final CellInterface cell, final BoardCardinalPosition cardinalPosition) {
-        return !cell.getNeighbour(cardinalPosition).isNull() && cell.getNeighbour(cardinalPosition).isEmpty();
+    public Set<RelativePosition> getOptions(final CellInterface cell, PieceAction action) {
+        final Set<RelativePosition> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
+        Predicate predicate = this.getPredicate(action);
+        for (final RelativePosition relativePosition : this.legalRelativePositions) {
+            if (predicate.apply(cell, relativePosition)) {
+                options.add(relativePosition);
+            }
+        }
+        return options;
+    }
+    
+    public static void main(String[] args) {
+        
+        new Man(abstractions.side.API.FIRST_SIDE);
+        System.out.println("-----------------------");
+        new Man(abstractions.side.API.SECOND_SIDE);
+        System.out.println("-----------------------");
+        new King(abstractions.side.API.FIRST_SIDE);
+        System.out.println("-----------------------");
+        new King(abstractions.side.API.SECOND_SIDE);
+        
     }
 
 }

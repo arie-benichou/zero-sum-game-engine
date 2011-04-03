@@ -3,12 +3,16 @@ package concretisations.checkers.cell;
 
 import java.util.Set;
 
-import abstractions.board.BoardFactory;
+import concretisations.checkers.piece.CheckerPiece;
+import concretisations.checkers.piece.Man;
+
 import abstractions.board.API.BoardInterface;
+import abstractions.board.BoardFactory;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.AbstractCell;
-import abstractions.piece.API.PieceFactory;
+import abstractions.piece.PieceFactory;
 import abstractions.position.API.PositionInterface;
+import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 public class CheckersCell extends AbstractCell {
@@ -16,21 +20,23 @@ public class CheckersCell extends AbstractCell {
     public CheckersCell(PositionInterface position) {
         super(position);
     }
-
     
-    private boolean checkJump(SideInterface side) {
+    // TODO la piece doit retourner une collection d'objets Mutation
+    private Set<RelativePosition> getAvailableMutations(SideInterface side) {
         
-        boolean canJump = false;
+        CheckerPiece piece = (CheckerPiece)this.getPiece();
         
-        if(this.getNext(-1, 1).getPiece().getSide().getNextSide().equals(side) && this.getNext(-2, 2).isEmpty()) {
-            canJump = true;
-        }
+        Set<RelativePosition> options = piece.getOptions(this);
         
-        else if(this.getNext(-1, -1).getPiece().getSide().getNextSide().equals(side) && this.getNext(-2, -2).isEmpty()) {
-            canJump = true;
-        }        
+        System.out.println("Available mutations for cell [" + this.getRow() + "][" + this.getColumn() + "]");
+        System.out.println(options);
         
-        return canJump;
+        return options;
+        
+    }
+    
+    private boolean hasAvailableMutations(SideInterface side) {
+        return !this.getAvailableMutations(side).isEmpty();
     }    
 
     @Override
@@ -44,7 +50,7 @@ public class CheckersCell extends AbstractCell {
             this.isMutable = false;
         }
         else {
-            this.isMutable = this.checkJump(side); 
+            this.isMutable = this.hasAvailableMutations(side); 
         }
         return this.isMutable; 
         
@@ -55,25 +61,67 @@ public class CheckersCell extends AbstractCell {
         return this.isMutable ? "(" + this.getPiece() + ")|" : super.toString();
     }
     
-    
+    // TODO à intégrer dans les tests unitaires
     public static void main(String[] args) {
 
         BoardInterface board;
         BoardFactory boardFactory;
-        SideInterface sideToPlay = abstractions.side.API.FIRST_SIDE;        
+        SideInterface sideToPlay;
+        Set<CellInterface> mutableCells;
+        
+        
+        System.out.println("--------------------------------------------------------------------");
+        
         
         boardFactory = new BoardFactory(CheckersCell.class);
-        board = boardFactory.Board(4, 4);
+        board = boardFactory.Board(5, 5);
         
-        board.getCell(4, 1).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(4, 3).setPiece(PieceFactory.Piece(sideToPlay));
-        board.getCell(3, 2).setPiece(PieceFactory.Piece(sideToPlay.getNextSide()));
+        sideToPlay = abstractions.side.API.FIRST_SIDE;
         
-        Set<CellInterface> mutableCells = board.getMutableCells(sideToPlay);
+        board.getCell(4, 2).setPiece(new Man(sideToPlay));
+        board.getCell(4, 4).setPiece(new Man(sideToPlay));
+        
+        mutableCells = board.getMutableCells(sideToPlay);
         
         System.out.println(board);
                 
+
         System.out.println("--------------------------------------------------------------------");
+        
+        
+        boardFactory = new BoardFactory(CheckersCell.class);
+        board = boardFactory.Board(5, 5);
+        
+        sideToPlay = abstractions.side.API.FIRST_SIDE;
+        
+        board.getCell(4, 2).setPiece(new Man(sideToPlay));
+        board.getCell(4, 4).setPiece(new Man(sideToPlay));
+        board.getCell(3, 3).setPiece(new Man(sideToPlay.getNextSide()));
+        
+        mutableCells = board.getMutableCells(sideToPlay);
+        
+        System.out.println(board);
+        
+        
+        System.out.println("--------------------------------------------------------------------");
+        
+        
+        boardFactory = new BoardFactory(CheckersCell.class);
+        board = boardFactory.Board(5, 5);
+        
+        sideToPlay = abstractions.side.API.FIRST_SIDE;
+        
+        board.getCell(4, 1).setPiece(new Man(sideToPlay));
+        board.getCell(4, 4).setPiece(new Man(sideToPlay));
+        board.getCell(3, 3).setPiece(new Man(sideToPlay.getNextSide()));
+        
+        mutableCells = board.getMutableCells(sideToPlay);
+        
+        System.out.println(board);
+        
+        
+        System.out.println("--------------------------------------------------------------------");
+        
         
         
     }

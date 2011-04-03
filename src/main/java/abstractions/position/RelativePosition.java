@@ -1,13 +1,15 @@
 
 package abstractions.position;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
 
 //import static com.google.common.base.Preconditions.checkArgument;
 
-class RelativePosition extends AbstractPosition {
+public class RelativePosition extends AbstractPosition {
     
     public final static RelativePosition TOP = new RelativePosition(-1, 0);
     public final static RelativePosition RIGHT = new RelativePosition(0, 1);
@@ -62,8 +64,9 @@ class RelativePosition extends AbstractPosition {
     private static String hash(int rowDelta, int columnDelta) {
         return rowDelta + "|" + columnDelta;
     }
-
-    public static RelativePosition sum(final RelativePosition ... relativePositions) {
+    
+    // TODO ajouter de la granularité à cette méthode pour optimiser la méthode and()
+    public static RelativePosition reduce(final List<RelativePosition> relativePositions) {
         
         int rowDelta = 0, columnDelta = 0;
         
@@ -83,12 +86,17 @@ class RelativePosition extends AbstractPosition {
         }
         */
         return cache.get(key);
+        
+    }
+    
+    public static RelativePosition sum(final RelativePosition ... relativePositions) {
+        return reduce(Arrays.asList(relativePositions));
     }
     
     public RelativePosition and(RelativePosition that) {
         return sum(this, that);
     }
-
+    
     public static void main(String[] args) {
         System.out.println(RelativePosition.TOP);
         System.out.println(RelativePosition.LEFT);

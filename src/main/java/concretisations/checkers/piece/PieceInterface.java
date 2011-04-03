@@ -17,16 +17,19 @@
 
 package concretisations.checkers.piece;
 
-import java.util.List;
+import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
+import abstractions.position.RelativePosition;
 
 public interface PieceInterface {
 
-    List<BoardCardinalPosition> getJumpOptions(final CellInterface cell);
+    /*
+    Set<RelativePosition> getJumpOptions(final CellInterface cell);
 
-    List<BoardCardinalPosition> getWalkOptions(final CellInterface cell);
+    Set<RelativePosition> getWalkOptions(final CellInterface cell);
 
     boolean isPromotable(final CellInterface cell);
+    */
 
 }
