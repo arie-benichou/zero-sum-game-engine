@@ -36,12 +36,12 @@ public class OthelloCell extends AbstractCell {
 
     @Override
     public boolean isMutable(SideInterface side) {
-        return (this.isMutable = this.isEmpty() ? this.checkNeighbourhood(side) : false);
+        return (this.willGenerateMutations = this.isEmpty() ? this.checkNeighbourhood(side) : false);
     }
 
     @Override
     public final String toString() {
-        return this.isMutable ? " " + "." + " |" : super.toString();
+        return this.willGenerateMutations ? " " + "." + " |" : super.toString();
     }
 
 }

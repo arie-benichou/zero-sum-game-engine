@@ -19,6 +19,12 @@ package abstractions.piece;
 
 import static abstractions.side.API.*;
 
+import java.util.Set;
+
+import abstractions.cell.API.CellInterface;
+import abstractions.cell.mutation.MutationInterface;
+import abstractions.side.API.SideInterface;
+
 /**
  * API related to pieces.
  */
@@ -70,6 +76,9 @@ public class API {
          * @return true if this piece is the null object, false otherwise
          */
         boolean isNull();
+        
+        //Set<MutationInterface> computeAvailableMutations(final CellInterface cell);
+        Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
 
     }
 

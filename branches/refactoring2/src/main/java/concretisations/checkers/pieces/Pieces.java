@@ -15,28 +15,27 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.piece;
+package concretisations.checkers.pieces;
 
-import abstractions.position.RelativePosition;
-import abstractions.side.API.SideInterface;
+import abstractions.piece.AbstractPiece;
+import abstractions.piece.PiecesSetInterface;
 
-import com.google.common.collect.ImmutableSet;
 
-public class King extends CheckerPiece {
+public enum Pieces implements PiecesSetInterface {
 
-    public King(SideInterface side) {
-        super(side, ImmutableSet.of(RelativePosition.TOP, RelativePosition.BOTTOM));
-    }
-    
+    MAN /*(Man.class)*/,
+    KING/*(King.class)*/;
+
     /*
-    public boolean isPromotable(final CellInterface cell) {
-        return false;
+    private final Class<? extends AbstractPiece> classObject;
+
+    private Pieces(final Class<? extends AbstractPiece> classObject) {
+        this.classObject = classObject;
+    }
+
+    public final Class<? extends AbstractPiece> getClassObject() {
+        return this.classObject;
     }
     */
-    
-    @Override
-    public String toString() {
-        return super.toString().toUpperCase();
-    }    
-    
+
 }

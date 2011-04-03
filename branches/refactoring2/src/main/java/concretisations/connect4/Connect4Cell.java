@@ -13,12 +13,12 @@ public class Connect4Cell extends AbstractCell {
 
     @Override
     public boolean isMutable(SideInterface side) {
-        return this.isMutable = this.isEmpty() && !this.getNext(1, 0).isEmpty();
+        return this.willGenerateMutations = this.isEmpty() && !this.getNext(1, 0).isEmpty();
     }
     
     @Override
     public final String toString() {
-        return this.isMutable ? " " + "." + " |" : super.toString();
+        return this.willGenerateMutations ? " " + "." + " |" : super.toString();
     }
     
 }

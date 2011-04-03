@@ -13,12 +13,12 @@ public class TicTacToeCell extends AbstractCell {
 
     @Override
     public boolean isMutable(SideInterface side) {
-        return this.isMutable = this.isEmpty();
+        return this.willGenerateMutations = this.isEmpty();
     }
 
     @Override
     public final String toString() {
-        return this.isMutable ? " " + "." + " |" : super.toString();
+        return this.willGenerateMutations ? " " + "." + " |" : super.toString();
     }
 
 }

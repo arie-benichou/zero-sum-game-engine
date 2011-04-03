@@ -15,46 +15,28 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.piece;
+package concretisations.checkers.pieces;
 
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-// TODO refactoring
-// TODO pouvoir additionner les points cardinaux entre eux
-public final class Man extends CheckerPiece {
+public class King extends CheckerPiece {
 
-    /*
-    // Spécialité
-    public RelativePosition getDirection() {
-        return this.directions.get(0);
+    public King(SideInterface side) {
+        super(side, ImmutableSet.of(RelativePosition.TOP, RelativePosition.BOTTOM));
     }
-    */
-
-    public Man(SideInterface side) {
-        super(side, ImmutableSet.of(side.isFirstSide() ? RelativePosition.TOP : RelativePosition.BOTTOM));
-    }
-
+    
     /*
     public boolean isPromotable(final CellInterface cell) {
-        return cell.getNeighbour(this.getSideDirection()).isNull();
-    }
-    */
-
-    /*
-    public boolean isPromotable(CellInterface cell) {
-        // TODO Auto-generated method stub
         return false;
     }
     */
     
-    /*
-    public static void main(String[] args) {
-        new Man(abstractions.side.API.FIRST_SIDE);
-    }
-    */
-    
+    @Override
+    public String toString() {
+        return super.toString().toUpperCase();
+    }    
     
 }

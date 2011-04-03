@@ -1,18 +1,22 @@
 
 package abstractions.cell;
 
-import static abstractions.cell.API.*;
-import static abstractions.piece.API.*;
-import static abstractions.position.API.*;
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
-import abstractions.side.API.SideInterface;
-
+import static abstractions.piece.API.NULL_PIECE;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Set;
+
+import abstractions.board.API.BoardInterface;
+import abstractions.cell.API.CellInterface;
+import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.API.PieceInterface;
+import abstractions.position.API.PositionInterface;
+import abstractions.position.RelativePosition;
+import abstractions.side.API.SideInterface;
+
 abstract class PotentialCell implements CellInterface {
-    
-    protected boolean isMutable = false;
+
+    protected boolean willGenerateMutations = false;
 
     private final PositionInterface position;
     protected transient PieceInterface piece = NULL_PIECE;
@@ -79,7 +83,7 @@ abstract class PotentialCell implements CellInterface {
     }
 
     public final int compareTo(final CellInterface cell) {
-        checkNotNull(cell,  "Argument 'cell' is not intended to be null.");
+        checkNotNull(cell, "Argument 'cell' is not intended to be null.");
         if (this.getRow() < cell.getRow()) {
             return -1;
         }
@@ -95,17 +99,43 @@ abstract class PotentialCell implements CellInterface {
         return 0;
     }
     
+    public Set<MutationInterface> fetchAvailableMutations(SideInterface side) { // TODO ? injecter un contexte
+        // TODO utiliser l'objet null d'une piece
+        // TODO ? renommer en getAvailableChainedMutations
+        // TODO ? avoir une cellule universelle
+        PieceInterface piece = this.getPiece();
+        Set<MutationInterface> availableMutations = piece.computeAvailableMutations(this, side);
+        //System.out.println("Available mutations for cell [" + this.getRow() + "][" + this.getColumn() + "]");
+        //System.out.println(availableMutations);
+        
+        //availableMutations = this.filterAvailableMutations(availableMutations);
+        
+        //this.isMutable = !availableMutations.isEmpty();
+        
+        return availableMutations;
+    }
+
+    //public abstract Set<MutationInterface> filterAvailableMutations(Set<MutationInterface> availableMutations);
+
+
+    public abstract void willGenerateMutations(boolean willItGenerateMutations);
+
     public abstract void setBoard(BoardInterface board);
 
     public abstract boolean isNull();
-    
-    public abstract boolean isEmpty();
-    
-    public abstract boolean isMutable(SideInterface side);
-    
-    public abstract CellInterface getNext(int rowDelta, int columnDelta);
 
+    public abstract boolean isEmpty();
+
+    public abstract boolean willGenerateMutations();
+
+    //TODO à virer
+    public abstract CellInterface getNext(int rowDelta, int columnDelta);
+    
+    public abstract CellInterface getRelative(RelativePosition relativePosition);
+    
+    public abstract void setPiece(PieceInterface piece);
+    
     @Override
-    public abstract String toString();
+    public abstract String toString();    
 
 }

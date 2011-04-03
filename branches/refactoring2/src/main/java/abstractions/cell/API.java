@@ -25,10 +25,13 @@ import java.util.Collections;
 import java.util.Set;
 
 import abstractions.board.API.BoardInterface;
+import abstractions.cell.mutation.MutationInterface;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.Sets;
+
+import concretisations.checkers.mutations.CheckersMutation;
 
 /**
  * API related to cells.
@@ -100,7 +103,8 @@ public final class API {
          * 
          * @return true if this cell is mutable, false otherwise
          */        
-        boolean isMutable(SideInterface side);
+        boolean willGenerateMutations();
+        void willGenerateMutations(boolean willItGenerateMutations);
         
         void setBoard(BoardInterface board);
         
@@ -109,6 +113,8 @@ public final class API {
         
         // TODO utiliser l'interface
         CellInterface getRelative(RelativePosition relativePosition);
+        
+        Set<MutationInterface> fetchAvailableMutations(SideInterface side);        
 
     }
 
