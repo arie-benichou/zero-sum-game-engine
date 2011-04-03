@@ -1,5 +1,5 @@
 
-package board;
+package abstractions.board;
 
 import static abstractions.board.API.*;
 import static abstractions.board.API.BoardFactory.*;

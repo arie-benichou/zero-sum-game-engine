@@ -1,36 +1,47 @@
 
-package piece;
+package abstractions.piece;
 
 import static abstractions.piece.API.*;
 import static abstractions.side.API.*;
 
 import java.util.Random;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.piece.NullPiece;
 import abstractions.piece.AbstractPiece;
 
-public class NullPieceTest {
+public class PieceTest {
 
     private PieceInterface piece;
 
     @Before
     public void setUp() {
     	
-        this.piece = new NullPiece();
+        this.piece = new AbstractPiece(FIRST_SIDE);
         
     }
 
     @Test
-    public void testNew() {
+    public void testPiece() {
     	
-        Assert.assertEquals(NULL_SIDE, this.piece.getSide());
-        Assert.assertTrue(this.piece.isNull());
+        Assert.assertEquals(FIRST_SIDE, this.piece.getSide());
+        
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIllegalPiece1() {
+    	
+        new AbstractPiece(NULL_SIDE);
+        
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testIllegalPiece2() {
+    	
+        new AbstractPiece(null);
         
     }
 
@@ -38,23 +49,21 @@ public class NullPieceTest {
     public void testHashCode() {
     	
         Assert.assertEquals(this.piece.hashCode(), this.piece.hashCode());
-        Assert.assertNotSame(this.piece.hashCode(), new AbstractPiece(FIRST_SIDE).hashCode());
         Assert.assertNotSame(this.piece.hashCode(), new AbstractPiece(SECOND_SIDE).hashCode());
-        Assert.assertEquals(this.piece.hashCode(), new NullPiece().hashCode());
+        Assert.assertEquals(this.piece.hashCode(), new AbstractPiece(FIRST_SIDE).hashCode());
         
     }
 
     @Test
     public void testEquals() {
     	
-        Assert.assertEquals(this.piece, this.piece);
+        Assert.assertTrue(this.piece.equals(this.piece));
         Assert.assertSame(this.piece, this.piece);
         Assert.assertFalse(this.piece.equals(null));
         Assert.assertFalse(this.piece.equals(new Random()));
-        Assert.assertFalse(this.piece.equals(new AbstractPiece(FIRST_SIDE)));
         Assert.assertFalse(this.piece.equals(new AbstractPiece(SECOND_SIDE)));
-        Assert.assertEquals(this.piece, new NullPiece());
-        Assert.assertNotSame(this.piece, new NullPiece());
+        Assert.assertTrue(this.piece.equals(new AbstractPiece(FIRST_SIDE)));
+        Assert.assertNotSame(this.piece, new AbstractPiece(FIRST_SIDE));
         
     }
 

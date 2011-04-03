@@ -1,5 +1,5 @@
 
-package piece;
+package abstractions.piece;
 
 import static abstractions.piece.API.*;
 import static abstractions.piece.API.PieceFactory.*;

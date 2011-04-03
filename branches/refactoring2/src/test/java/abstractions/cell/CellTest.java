@@ -1,9 +1,9 @@
 
-package cell;
+package abstractions.cell;
 
 import static abstractions.cell.API.*;
 import static abstractions.piece.API.*;
-import static abstractions.piece.API.PieceFactory.*;
+import static abstractions.piece.API.*;
 import static abstractions.position.API.*;
 import static abstractions.position.API.PositionFactory.*;
 import static abstractions.side.API.*;

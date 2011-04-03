@@ -1,4 +1,4 @@
-package side;
+package abstractions.side;
 
 import static abstractions.side.API.*;
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package dimension;
+package abstractions.dimension;
 
 
 public class APITest {

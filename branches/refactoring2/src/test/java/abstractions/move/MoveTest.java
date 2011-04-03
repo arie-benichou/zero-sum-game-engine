@@ -1,5 +1,5 @@
 
-package move;
+package abstractions.move;
 
 import static abstractions.move.API.*;
 import static abstractions.piece.API.*;
