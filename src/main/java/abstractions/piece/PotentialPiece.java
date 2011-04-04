@@ -18,6 +18,11 @@
 package abstractions.piece;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Set;
+
+import abstractions.cell.CellInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
 // TODO renommer cette classe en AbstractPiece
@@ -26,10 +31,12 @@ abstract class PotentialPiece implements PieceInterface {
     private volatile int hashCode;
     
     private final SideInterface side;
+    //private final PieceFactory pieceFactory;    
 
-    public PotentialPiece(final SideInterface side) {
+    public PotentialPiece(final SideInterface side /*, final PieceFactory pieceFactory*/) {
         checkNotNull(side, "Argument 'side' is not intended to be null.");
         this.side = side;
+        //this.pieceFactory = pieceFactory;        
     }
 
     public final SideInterface getSide() {
@@ -85,4 +92,18 @@ abstract class PotentialPiece implements PieceInterface {
     @Override
     public abstract String toString();
 
+    public Set<MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /*
+    public PieceFactory getPieceFactory() {
+        return this.getPieceFactory();
+    }
+    */
+    
+    
+    
+    
 }

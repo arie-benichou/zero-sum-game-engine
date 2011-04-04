@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.CellInterface;
-import abstractions.cell.mutation.MutationInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
-import abstractions.position.RelativePosition;
+import abstractions.position.RelativePositionInterface;
+import abstractions.position.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
@@ -38,9 +39,9 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         JUMP, WALK,
     }
 
-    private static final Set<RelativePosition> PATHS = ImmutableSet.of(RelativePosition.RIGHT, RelativePosition.LEFT);
+    private static final Set<RelativePositionInterface> PATHS = ImmutableSet.of(RelativePositions.RIGHT, RelativePositions.LEFT);
 
-    private final Set<RelativePosition> legalRelativePositions;
+    private final Set<RelativePositionInterface> legalRelativePositions;
 
     private static interface Predicate {
 
@@ -63,15 +64,15 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
     };
 
     @SuppressWarnings("unchecked")
-    private Set<RelativePosition> compileLegalRelativePositions(Set<RelativePosition> directions) {
-        Set<RelativePosition> legalRelativePositions = Sets.newHashSetWithExpectedSize(PATHS.size() * directions.size());
-        for (List<RelativePosition> list : Sets.cartesianProduct(PATHS, directions)) {
-            legalRelativePositions.add(RelativePosition.reduce(list)); // TODO regarder l'API Guava pour le reduce
+    private Set<RelativePositionInterface> compileLegalRelativePositions(Set<RelativePositionInterface> directions) {
+        Set<RelativePositionInterface> legalRelativePositions = Sets.newHashSetWithExpectedSize(PATHS.size() * directions.size());
+        for (List<RelativePositionInterface> list : Sets.cartesianProduct(PATHS, directions)) {
+            legalRelativePositions.add(RelativePositions.reduce(list)); // TODO regarder l'API Guava pour le reduce
         }
         return legalRelativePositions;
     }
 
-    public AbstractCheckerPiece(SideInterface side, Set<RelativePosition> directions) {
+    public AbstractCheckerPiece(SideInterface side, Set<RelativePositionInterface> directions) {
         super(side);
         this.legalRelativePositions = this.compileLegalRelativePositions(directions);
     }
@@ -86,10 +87,10 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         }
     }
 
-    private Set<RelativePosition> getOptions(final CellInterface cell, SideInterface side, PieceAction action) {
-        final Set<RelativePosition> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
+    private Set<RelativePositionInterface> getOptions(final CellInterface cell, SideInterface side, PieceAction action) {
+        final Set<RelativePositionInterface> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
         Predicate predicate = this.getPredicate(action);
-        for (final RelativePositionInterface RelativePositionInterface : this.legalRelativePositions) {
+        for (final RelativePositionInterface relativePosition : this.legalRelativePositions) {
             if (predicate.apply(cell, side, relativePosition)) {
                 options.add(relativePosition);
             }
@@ -101,7 +102,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
 
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
 
-        Set<RelativePosition> options = this.getOptions(cell, side, PieceAction.JUMP);
+        Set<RelativePositionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
         for (RelativePositionInterface direction : options) {
             availableMutations.add(new JumpMutation(cell).direction(direction));
         }
@@ -119,6 +120,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
     // TODO ! tests unitaires
     public static void main(String[] args) {
 
+        /*
         new Man(abstractions.side.API.FIRST_SIDE);
         System.out.println("-----------------------");
         new Man(abstractions.side.API.SECOND_SIDE);
@@ -126,6 +128,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         new King(abstractions.side.API.FIRST_SIDE);
         System.out.println("-----------------------");
         new King(abstractions.side.API.SECOND_SIDE);
+        */
 
     }
 

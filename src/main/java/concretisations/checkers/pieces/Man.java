@@ -17,7 +17,7 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.position.RelativePosition;
+import abstractions.position.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
@@ -25,7 +25,7 @@ import com.google.common.collect.ImmutableSet;
 public final class Man extends AbstractCheckerPiece {
 
     public Man(SideInterface side) {
-        super(side, ImmutableSet.of(side.isFirstSide() ? RelativePosition.TOP : RelativePosition.BOTTOM));
+        super(side, ImmutableSet.of(side.isFirstSide() ? RelativePositions.TOP : RelativePositions.BOTTOM));
     }
 
     /*

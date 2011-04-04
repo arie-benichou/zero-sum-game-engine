@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.cell.CellInterface;
-import abstractions.cell.mutation.MutationInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceFactory;
 import abstractions.side.SideInterface;
 

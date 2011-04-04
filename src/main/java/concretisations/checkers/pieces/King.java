@@ -17,7 +17,8 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.position.RelativePosition;
+import abstractions.piece.PieceFactory;
+import abstractions.position.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
@@ -25,7 +26,7 @@ import com.google.common.collect.ImmutableSet;
 public class King extends AbstractCheckerPiece {
 
     public King(SideInterface side) {
-        super(side, ImmutableSet.of(RelativePosition.TOP, RelativePosition.BOTTOM));
+        super(side, ImmutableSet.of(RelativePositions.TOP, RelativePositions.BOTTOM));
     }
     
     /*
@@ -37,6 +38,6 @@ public class King extends AbstractCheckerPiece {
     @Override
     public String toString() {
         return super.toString().toUpperCase();
-    }    
+    }
     
 }

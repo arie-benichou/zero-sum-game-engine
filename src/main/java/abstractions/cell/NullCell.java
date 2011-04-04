@@ -63,4 +63,8 @@ public final class NullCell extends AbstractCell {
         return "";
     }
 
+    public void die() {
+        // null never die
+    }
+
 }
