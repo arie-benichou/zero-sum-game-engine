@@ -10,7 +10,7 @@ import static junit.framework.Assert.assertTrue;
 
 import org.junit.Test;
 
-import abstractions.piece.NullPiece;
+import abstractions.piece.AbstractNullPiece;
 import abstractions.piece.AbstractPiece;
 
 public class APITest {
@@ -18,11 +18,11 @@ public class APITest {
     @Test
     public void testNullPiece() {
         
-        assertTrue(new NullPiece().equals(NULL_PIECE));
-        assertTrue(new NullPiece().equals(NullPiece()));
+        assertTrue(new AbstractNullPiece().equals(NULL_PIECE));
+        assertTrue(new AbstractNullPiece().equals(NullPiece()));
         
-        assertFalse(new NullPiece() == NULL_PIECE);
-        assertFalse(new NullPiece() == NullPiece());
+        assertFalse(new AbstractNullPiece() == NULL_PIECE);
+        assertFalse(new AbstractNullPiece() == NullPiece());
         
         assertTrue(NULL_PIECE == NullPiece());
         

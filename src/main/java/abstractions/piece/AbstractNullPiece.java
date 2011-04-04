@@ -13,9 +13,9 @@ import com.google.common.collect.ImmutableSet;
 
 // TODO en faire une classe abstraite
 // Chaque jeu implémenté doit définir le comportement de la pièce nulle.
-final class NullPiece extends PotentialPiece {
+public abstract class AbstractNullPiece extends PotentialPiece {
 
-    public NullPiece() {
+    public AbstractNullPiece() {
         super(NULL_SIDE);
     }
 
@@ -29,18 +29,16 @@ final class NullPiece extends PotentialPiece {
         return " ";
     }
 
-    
-    
+    /*
     // spécialisation pour checkers    
     private final static Set<MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
-    
     // TODO ! en faire une méthode abstraite
     public Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
-        
         // spécialisation pour checkers
         return AVAILABLE_MUTATIONS;
-        
     }
+    */
     
+    public abstract Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
 
 }

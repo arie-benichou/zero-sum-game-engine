@@ -22,7 +22,7 @@ import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-public final class Man extends CheckerPiece {
+public final class Man extends AbstractCheckerPiece {
 
     public Man(SideInterface side) {
         super(side, ImmutableSet.of(side.isFirstSide() ? RelativePosition.TOP : RelativePosition.BOTTOM));

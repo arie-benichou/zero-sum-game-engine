@@ -33,7 +33,7 @@ public class API {
     /**
      * The null object for a piece.
      */
-    public final static NullPiece NULL_PIECE = new NullPiece();
+    public final static AbstractNullPiece NULL_PIECE = new AbstractNullPiece();
 
     /**
      * Class for illegal piece exceptions.
