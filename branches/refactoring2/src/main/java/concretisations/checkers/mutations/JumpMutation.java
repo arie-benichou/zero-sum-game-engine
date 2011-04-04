@@ -20,14 +20,13 @@ public class JumpMutation extends CheckersMutation {
         super(PRIORITY, cell, direction);
     }
 
-    public List<AtomicMutationInterface> getSequence() {
-        
+    protected List<AtomicMutationInterface> generateSequence() {
         return ImmutableList.of(
                 
             MutationFactory.death(
                 this.getConcernedCell()
             ).setProtagonist(
-                this.getConcernedCell().getPiece()
+                this.getConcernedCell().getPieceFactory().getNullPiece()
             ),
             
             MutationFactory.birth(
@@ -39,11 +38,11 @@ public class JumpMutation extends CheckersMutation {
             MutationFactory.death(
                 this.getConcernedCell().getRelative(this.getDirection())
             ).setProtagonist(
-                this.getConcernedCell().getRelative(this.getDirection()).getPiece()
+                this.getConcernedCell().getPieceFactory().getNullPiece()
             )                    
             
         );
-        
     }
+    
     
 }

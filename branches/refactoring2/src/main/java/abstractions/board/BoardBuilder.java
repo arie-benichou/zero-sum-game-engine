@@ -38,7 +38,7 @@ public class BoardBuilder {
         catch (IllegalDimensionException e) {
             // TODO ? utiliser une IllegalStateException
             throw new IllegalBoardException(numberOfRows, numberOfColumns);
-        }        
+        }
         this.pieces = pieces;
     }
 
@@ -54,43 +54,43 @@ public class BoardBuilder {
         return this;
     }
 
-    
     /**
-     * Returns a new instance of a board for a given number of rows and a
-     * given number of columns.
+     * Returns a new instance of a board for a given number of rows and a given
+     * number of columns.
      * 
      * @param numberOfRows
      *            the number of rows for the new board
      * @param numberOfColumns
      *            the number of columns for the new board
-     * @return a new instance of a board for a given number of rows and a
-     *         given number of columns
-     */    
+     * @return a new instance of a board for a given number of rows and a given
+     *         number of columns
+     */
     @SuppressWarnings("unchecked")
     public BoardInterface build() {
-        
-        // Il doit être possible de fournir une factory de positions différente
+
+        // Il doit être possible de fournir une autre factory de positions,
         // en attendant de pouvoir gérer d'autres dimensions que des quadrilatères
-        if(this.positionFactory == null) {
+        if (this.positionFactory == null) {
             this.positionFactory = Positions.getInstance();
-        }        
+        }
         Set<PositionInterface> positions = this.positionFactory.getAllPositions(this.dimension);
-        
+
         PieceFactory pieceFactory = new PieceFactory(this.pieces);
-        
-        if(this.cellFactory == null) {
+
+        if (this.cellFactory == null) {
             this.cellFactory = new CellFactory(pieceFactory);
-        }        
+        }
         Set<CellInterface> cells = this.cellFactory.cells(positions);
-        
+
         Board board = new Board(cells);
+
+        // TODO ? utiliser la pieceFactory injectée dans la cellFactory, ou bien injecter la cellFactory au board
         board.injectPieceFactory(pieceFactory);
-        
+
         return board;
-        
+
     }
-    
-    
+
     /**
      * Returns a clone of an existing instance of a board.
      * 

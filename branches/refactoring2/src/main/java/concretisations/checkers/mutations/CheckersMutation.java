@@ -1,11 +1,8 @@
 
 package concretisations.checkers.mutations;
 
-import java.util.List;
-
 import abstractions.cell.CellInterface;
 import abstractions.mutation.AbstractMutation;
-import abstractions.mutation.AtomicMutationInterface;
 import abstractions.position.RelativePositionInterface;
 
 public abstract class CheckersMutation extends AbstractMutation implements CheckersMutationInterface {
@@ -20,9 +17,6 @@ public abstract class CheckersMutation extends AbstractMutation implements Check
     public final RelativePositionInterface getDirection() {
         return this.direction;
     }
-
-    //TODO avoir une seule interface
-    public abstract List<AtomicMutationInterface> getSequence();
 
     @Override
     public final String toString() {

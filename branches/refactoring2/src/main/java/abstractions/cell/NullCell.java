@@ -2,6 +2,7 @@
 package abstractions.cell;
 
 import abstractions.board.BoardInterface;
+import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.piece.Pieces;
@@ -63,8 +64,10 @@ public final class NullCell extends AbstractCell {
         return "";
     }
 
-    public void die() {
-        // null never die
+    @Override
+    public PieceFactory getPieceFactory() {
+        // TODO à revoir
+        return null;
     }
 
 }
