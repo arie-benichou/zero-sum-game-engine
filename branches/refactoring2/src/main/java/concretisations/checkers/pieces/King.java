@@ -22,7 +22,7 @@ import abstractions.side.API.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-public class King extends CheckerPiece {
+public class King extends AbstractCheckerPiece {
 
     public King(SideInterface side) {
         super(side, ImmutableSet.of(RelativePosition.TOP, RelativePosition.BOTTOM));

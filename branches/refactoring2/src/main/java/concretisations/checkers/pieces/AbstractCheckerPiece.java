@@ -22,7 +22,6 @@ import java.util.Set;
 
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
-import abstractions.piece.API.PieceInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
@@ -30,13 +29,12 @@ import abstractions.side.API.SideInterface;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
-import concretisations.checkers.mutations.CheckersMutation;
 import concretisations.checkers.mutations.JumpMutation;
 import concretisations.checkers.mutations.WalkMutation;
 
-public abstract class CheckerPiece extends AbstractPiece {
+public abstract class AbstractCheckerPiece extends AbstractPiece {
 
-    private static enum PieceAction { // TODO ? piecePromotion ou pieceEvolution
+    private static enum PieceAction { // TODO ? piecePromotion/pieceEvolution/pieceAlteration
         JUMP, WALK,
     }
 
@@ -64,6 +62,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         }
     };
 
+    @SuppressWarnings("unchecked")
     private Set<RelativePosition> compileLegalRelativePositions(Set<RelativePosition> directions) {
         Set<RelativePosition> legalRelativePositions = Sets.newHashSetWithExpectedSize(PATHS.size() * directions.size());
         for (List<RelativePosition> list : Sets.cartesianProduct(PATHS, directions)) {
@@ -72,7 +71,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         return legalRelativePositions;
     }
 
-    public CheckerPiece(SideInterface side, Set<RelativePosition> directions) {
+    public AbstractCheckerPiece(SideInterface side, Set<RelativePosition> directions) {
         super(side);
         this.legalRelativePositions = this.compileLegalRelativePositions(directions);
     }

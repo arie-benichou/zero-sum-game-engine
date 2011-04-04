@@ -19,14 +19,6 @@ package abstractions.piece;
 
 /**
  * This is the interface for a type of piece.
+ * It's a marker interface in order to simulate inheritance for enum. 
  */
-public interface PiecesSetInterface {
-
-    /**
-     * Returns the class of a a piece from this set.
-     * 
-     * @return the class of a a piece from this set
-     */
-    //Class<? extends AbstractPiece> getClassObject();
-
-}
+public interface PiecesSetInterface {}
