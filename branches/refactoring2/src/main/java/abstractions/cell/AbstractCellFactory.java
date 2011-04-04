@@ -14,6 +14,7 @@ import abstractions.position.API.PositionInterface;
 
 import com.google.common.collect.Sets;
 
+@Deprecated
 public class _AbstractCellFactory<T extends Cell> {
 
     private Constructor<? extends Cell> constructor = null;

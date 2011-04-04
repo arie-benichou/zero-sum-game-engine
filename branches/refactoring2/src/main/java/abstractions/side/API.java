@@ -86,36 +86,4 @@ public class API {
 
     }
 
-    /*
-    // TODO ? à virer
-    public static boolean isNull(final SideInterface side) {
-        return side.isNull();
-    }
-
-    // TODO ? à virer    
-    public static boolean isFirstSide(final SideInterface side) {
-        return side.isFirstSide();
-    }
-
-    // TODO ? à virer    
-    public static boolean isSecondSide(final SideInterface side) {
-        return side.isSecondSide();
-    }
-
-    // TODO ? à virer    
-    public static boolean isOneSide(final SideInterface side) {
-        return side.isOneSide();
-    }
-
-    // TODO ? à virer    
-    public static SideInterface next(final SideInterface side) {
-        return side.getNextSide();
-    }
-
-    // TODO ? à virer    
-    public static SideInterface not(final SideInterface side) {
-        return side.getNegation();
-    }
-    */
-
 }

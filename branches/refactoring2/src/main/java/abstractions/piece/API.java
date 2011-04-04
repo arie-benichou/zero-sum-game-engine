@@ -28,6 +28,7 @@ import abstractions.side.API.SideInterface;
 /**
  * API related to pieces.
  */
+@Deprecated
 public class API {
 
     /**
@@ -61,6 +62,7 @@ public class API {
     /**
      * This is the interface for a piece.
      */
+    // TODO Déplacer dans la factory
     public interface PieceInterface {
 
         /**
@@ -85,6 +87,7 @@ public class API {
     /**
      * The piece factory.
      */
+    //@Deprecated
     //public static final class PieceFactory {
 
         /**
