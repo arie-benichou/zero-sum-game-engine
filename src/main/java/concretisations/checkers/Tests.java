@@ -4,6 +4,7 @@ package concretisations.checkers;
 import static abstractions.dimension.API.DimensionFactory.Dimension;
 
 import java.util.List;
+import java.util.Random;
 
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
@@ -20,9 +21,9 @@ public class Tests {
         //--------------------------------------------------------------------        
         BoardInterface board;
         SideInterface side;
-        List<MutationInterface> legalMutations;
+        List<MutationInterface> legalMutations = null;
         //--------------------------------------------------------------------        
-
+        /*
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         side = Sides.FIRST_SIDE;
 
@@ -109,9 +110,40 @@ public class Tests {
         }
         
         System.out.println("--------------------------------------------------------------------");
-        
+        */
         //--------------------------------------------------------------------
 
+        board = new BoardBuilder(Pieces.class, Dimension(10, 10)).build();
+        side = Sides.FIRST_SIDE;
+
+        
+        Random random = new Random();
+        for(int k=1; k<=9*9; ++k) {
+            board.getCell(random.nextInt(10) + 1, random.nextInt(10) + 1).setPiece(random.nextInt(10)%2 == 0 ? side : side.getNextSide(), Pieces.MAN);
+        }
+        
+        //for(int i = 0; i<5000; ++i) {
+            //System.out.println(i);
+            legalMutations = board.getLegalMutations(side);
+        //}
+        
+        System.out.println(board);
+        
+        System.out.println("--------------------------------------------------------------------");        
+        //--------------------------------------------------------------------
+        /*
+        board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
+        side = Sides.FIRST_SIDE;
+
+        board.getCell(3, 3).setPiece(side.getNextSide(), Pieces.MAN);
+        board.getCell(2, 4).setPiece(side.getNextSide(), Pieces.MAN);
+
+        legalMutations = board.getLegalMutations(side);
+        System.out.println(board);
+        
+        System.out.println("--------------------------------------------------------------------");        
+        */
+        //--------------------------------------------------------------------
     }
 
 }

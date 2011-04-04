@@ -108,14 +108,17 @@ final class Board implements BoardInterface {
             }
         }
         
-        int min = Collections.min(availableMutations).getPriority();
+        List<MutationInterface> legalMutations = Lists.newArrayList();        
         
-        // TODO utiliser un prédicat "> min" en tant que contrainte sur la liste
-        List<MutationInterface> legalMutations = Lists.newArrayList();
-        for (MutationInterface mutation : availableMutations) {
-            if (mutation.getPriority() == min) {
-                mutation.getConcernedCell().willGenerateMutations(true);
-                legalMutations.add(mutation);
+        if(!availableMutations.isEmpty()) {
+            int min = Collections.min(availableMutations).getPriority();
+            
+            // TODO utiliser un prédicat "> min" en tant que contrainte sur la liste
+            for (MutationInterface mutation : availableMutations) {
+                if (mutation.getPriority() == min) {
+                    mutation.getConcernedCell().willGenerateMutations(true);
+                    legalMutations.add(mutation);
+                }
             }
         }
 
@@ -160,7 +163,7 @@ final class Board implements BoardInterface {
         final StringBuilder consoleBoardView = new StringBuilder();
         final Iterator<CellInterface> it = this.iterator();
         
-        // TODO ? les cellules injectées au board pourraient contenir la celulle nulle
+        // TODO ? la liste de cellules injectées au board pourrait contenir la celulle nulle
         CellInterface previousCell = CellInterface.NULL_CELL;
         
         while (it.hasNext()) {
