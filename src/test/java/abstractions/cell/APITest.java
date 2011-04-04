@@ -19,21 +19,21 @@ public class APITest {
     @Test(expected=NullPointerException.class)
     public void testCellWithNull() {
         
-        Cell(null);
+        cell(null);
         
     }
         
     @Test(expected=NullPointerException.class)
     public void testCloneWithNull() {
         
-        Clone(null);
+        clone(null);
         
     }	    
 
     @Test
     public void testCell() {
 
-    	assertTrue(new Cell(Position(1, 1)).equals(Cell(Position(1,1))));
+    	assertTrue(new Cell(Position(1, 1)).equals(cell(Position(1,1))));
         
     }        
 	
@@ -54,7 +54,7 @@ public class APITest {
         positions.add(Position(2, 1));
         positions.add(Position(2, 1));
         
-        Set<CellInterface> cells = Cells(positions);
+        Set<CellInterface> cells = cells(positions);
         
         assertTrue(expectedCells.equals(cells));
         
@@ -64,8 +64,8 @@ public class APITest {
     public void testClone() {
     	
     	Cell cell = new Cell(Position(2, 4));
-    	assertTrue(new Cell(Position(2, 4)).equals(Clone(cell)));
-    	assertNotSame(new Cell(Position(2, 4)), Clone(cell));
+    	assertTrue(new Cell(Position(2, 4)).equals(clone(cell)));
+    	assertNotSame(new Cell(Position(2, 4)), clone(cell));
         
     }
 

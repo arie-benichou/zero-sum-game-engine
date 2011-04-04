@@ -88,7 +88,7 @@ public final class API {
          * @param piece
          *            the piece to be contained by this cell
          */
-        //void setPiece(final PieceInterface piece);
+        void setPiece(final PieceInterface piece);
         //TODO ! injecter la factory de pieces au board
         void setPiece(SideInterface side, PieceTypeInterface pieceType);
 
@@ -124,17 +124,18 @@ public final class API {
     /**
      * The cell factory.
      */
-    public static final class CellFactory {
+    //public static final class CellFactory {
 
         /**
          * Returns the null cell.
          * 
          * @return the null cell
          */
+        /*
         public static CellInterface NullCell() {
             return NULL_CELL;
         }
-
+        */
         /**
          * Returns a new instance of a cell related to a given position.
          * 
@@ -143,11 +144,12 @@ public final class API {
          * 
          * @return a new instance of a cell related to a given position
          */
+        /*
         public static final CellInterface Cell(final PositionInterface position) {
             checkNotNull(position, "Argument 'postion' is not intended to be null.");
             return new Cell(position);
         }
-
+        */
         /**
          * Returns a clone of a cell.
          * 
@@ -156,6 +158,7 @@ public final class API {
          * 
          * @return a clone of a cell
          */
+        /*
         public static final CellInterface Clone(final CellInterface cell) {
             checkNotNull(cell, "Argument 'cell' is not intended to be null.");
             final CellInterface clone = CellFactory.Cell(cell.getPosition());
@@ -165,7 +168,7 @@ public final class API {
             }
             return clone;
         }
-
+        */
         /**
          * Returns a set of new cells for a given set of positions.
          * 
@@ -174,6 +177,7 @@ public final class API {
          * 
          * @return a set of new cells for a given set of positions
          */
+        /*
         public static final Set<CellInterface> Cells(final Set<PositionInterface> positions) {
             checkNotNull(positions, "Argument 'positions' is not intended to be null.");
             final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
@@ -182,6 +186,7 @@ public final class API {
             }
             return Collections.unmodifiableSet(cells);
         }
-    }
+        */
+    //}
 
 }

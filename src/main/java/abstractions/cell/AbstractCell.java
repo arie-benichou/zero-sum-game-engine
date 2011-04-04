@@ -1,7 +1,7 @@
 
 package abstractions.cell;
 
-import static abstractions.piece.API.NULL_PIECE;
+//import static abstractions.piece.API.NULL_PIECE;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Set;
@@ -9,6 +9,7 @@ import java.util.Set;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.piece.API.PieceInterface;
 import abstractions.position.API.PositionInterface;
 import abstractions.position.RelativePosition;
@@ -19,8 +20,7 @@ abstract class AbstractCell implements CellInterface {
     protected boolean willGenerateMutations = false;
 
     private final PositionInterface position;
-    protected transient PieceInterface piece = NULL_PIECE;
-
+    
     private volatile int hashCode;
 
     public AbstractCell(final PositionInterface position) {
@@ -40,15 +40,21 @@ abstract class AbstractCell implements CellInterface {
         return this.position.getColumn();
     }
 
-    public final PieceInterface getPiece() {
-        return this.piece;
-    }
+    public abstract PieceInterface getPiece() ;
     
     // TODO ? injecter un contexte
     public final Set<MutationInterface> fetchAvailableMutations(final SideInterface side) {
         return this.getPiece().computeAvailableMutations(this, side);
     }    
-
+    
+    public void willGenerateMutations(boolean willItGenerateMutations) {
+        this.willGenerateMutations = willItGenerateMutations;
+    }
+    
+    public boolean willGenerateMutations() {
+        return this.willGenerateMutations;
+    }    
+    
     @Override
     public int hashCode() {
         int result = this.hashCode;
@@ -104,19 +110,16 @@ abstract class AbstractCell implements CellInterface {
         return 0;
     }
 
-    public abstract void willGenerateMutations(boolean willItGenerateMutations);
-
     public abstract void setBoard(BoardInterface board);
 
     public abstract boolean isNull();
 
     public abstract boolean isEmpty();
-
-    public abstract boolean willGenerateMutations();
-    
-    public abstract CellInterface getRelative(RelativePosition relativePosition);
     
     public abstract void setPiece(PieceInterface piece);
+    public abstract void setPiece(SideInterface side, PieceTypeInterface pieceType);
+    
+    public abstract CellInterface getRelative(RelativePosition relativePosition);    
     
     public abstract String toString();
 

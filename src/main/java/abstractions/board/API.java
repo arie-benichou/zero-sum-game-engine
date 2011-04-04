@@ -30,6 +30,7 @@ import abstractions.cell.API.CellFactory;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
 import abstractions.dimension.API.IllegalDimensionException;
+import abstractions.piece.PieceFactory;
 import abstractions.side.API.SideInterface;
 
 /**
@@ -95,7 +96,13 @@ public class API {
         CellInterface getUpperBound();
 
         //TODO ! javadoc
-        public List<MutationInterface> getLegalMutations(SideInterface side);
+        List<MutationInterface> getLegalMutations(SideInterface side);
+        
+        // TODO ? utiliser une interface
+        PieceFactory getPieceFactory();
+        
+        //TODO ! javadoc
+        void injectPieceFactory(PieceFactory pieceFactory);
 
     }
 
@@ -116,12 +123,14 @@ public class API {
          *         given number of columns
          */
         public static BoardInterface Board(final int numberOfRows, final int numberOfColumns) {
+            BoardInterface board;
             try {
-                return new Board(Cells(Positions(Dimension(numberOfRows, numberOfColumns))));
+                board =  new Board(cells(Positions(Dimension(numberOfRows, numberOfColumns))));
             }
             catch (IllegalDimensionException e) {
                 throw new IllegalBoardException(numberOfRows, numberOfColumns);
             }
+            return board;
         }
 
         /**
@@ -136,7 +145,7 @@ public class API {
             checkNotNull(board, "Argument 'board' is not intended to be null.");
             final Set<CellInterface> cells = new HashSet<CellInterface>();
             for (final CellInterface cell : board) {
-                cells.add(CellFactory.Clone(cell));
+                cells.add(CellFactory.clone(cell));
             }
             return new Board(cells);
         }

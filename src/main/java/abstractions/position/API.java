@@ -17,13 +17,6 @@
 
 package abstractions.position;
 
-import static abstractions.dimension.API.*;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Collections;
-import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 /**
  * API related to positions.
@@ -91,8 +84,9 @@ public class API {
     /**
      * The position factory.
      */
+    /*
     public static final class PositionFactory {
-
+    */
         /**
          * Returns a new instance of a position.
          * 
@@ -104,6 +98,7 @@ public class API {
          * 
          * @return a new instance of a position
          */
+        /*
         public static PositionInterface Position(final int rowIndex, final int columnIndex) {
             try {
                 return new AbsolutePosition(rowIndex, columnIndex);
@@ -112,7 +107,7 @@ public class API {
                 throw new IllegalPositionException(rowIndex, columnIndex);
             }
         }
-
+        */
         /**
          * Returns an unmodifiable set of new positions for a given dimension.
          * 
@@ -121,6 +116,7 @@ public class API {
          * 
          * @return an unmodifiable set of new positions for a given dimension.
          */
+        /*
         public static Set<PositionInterface> Positions(final DimensionInterface dimension) {
         	checkNotNull(dimension, "Argument 'dimension' is not intended to be null.");
             final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity());
@@ -131,7 +127,8 @@ public class API {
             }
             return Collections.unmodifiableSet(positions);
         }
-
+        */
+    /*
     }
-
+    */
 }

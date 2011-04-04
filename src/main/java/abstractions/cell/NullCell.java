@@ -1,25 +1,19 @@
 
 package abstractions.cell;
 
-import static abstractions.position.API.NULL_POSITION;
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Set;
-
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
-import abstractions.cell.mutation.MutationInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
-import com.google.common.collect.ImmutableSet;
-
 final class NullCell extends AbstractCell {
+    
+    private final static PieceInterface NULL_PIECE = abstractions.piece.API.NULL_PIECE;
 
     public NullCell() {
-        super(NULL_POSITION);
+        super(abstractions.position.API.NULL_POSITION);
     }
 
     @Override
@@ -53,13 +47,19 @@ final class NullCell extends AbstractCell {
     }
     
     @Override
-    public void willGenerateMutations(boolean willItGenerateMutations) {
+    public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
         //goes into the vacuum...
     }
     
     @Override
-    public String toString() {
-        return "";
+    public PieceInterface getPiece() {
+        return NULL_PIECE;
     }    
+        
+    @Override
+    public String toString() {
+        // returns vacuum ;)
+        return "";
+    }
 
 }

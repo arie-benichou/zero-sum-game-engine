@@ -6,34 +6,43 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.API.PieceInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.position.API.PositionInterface;
 import abstractions.position.RelativePosition;
+import abstractions.side.API.SideInterface;
 
-public class Cell extends AbstractCell {
+//TODO enlever la visibilité publique
+public final class Cell extends AbstractCell {
 
     private BoardInterface board;
+    
+    private transient PieceInterface piece; //= this.board.getPieceFactory().getNullPiece();
 
     public Cell(final PositionInterface position) {
         super(position);
         checkArgument(!position.isNull(), "Argument 'position' is not intended to be the null position object");
     }
 
-    public final void setPiece(final PieceInterface piece) {
+    public void setPiece(final PieceInterface piece) {
         checkNotNull(piece, "Argument 'piece' is not intended to be null.");
         //checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
         this.piece = piece;
     }
 
-    public final CellInterface getNext(int rowDelta, int columnDelta) {
-        return this.board.getCell(this.getRow() + rowDelta, this.getColumn() + columnDelta);
+    public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
+        this.setPiece(this.board.getPieceFactory().getPiece(side, pieceType));
     }
+    
+    public PieceInterface getPiece() {
+        return this.piece;
+    }    
 
     public CellInterface getRelative(RelativePosition relativePosition) {
         return this.board.getCell(this.getRow() + relativePosition.getRow(), this.getColumn() + relativePosition.getColumn());
     }
 
     @Override
-    public final boolean isNull() {
+    public boolean isNull() {
         return false;
     }
 
@@ -42,7 +51,7 @@ public class Cell extends AbstractCell {
     }
 
     @Override
-    public final boolean isEmpty() {
+    public boolean isEmpty() {
         return this.getPiece().isNull();
     }
 
@@ -51,14 +60,6 @@ public class Cell extends AbstractCell {
         return this.willGenerateMutations() ? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
     }
 
-    @Override
-    public boolean willGenerateMutations() {
-        return this.willGenerateMutations;
-    }
 
-    @Override
-    public void willGenerateMutations(boolean willItGenerateMutations) {
-        this.willGenerateMutations = willItGenerateMutations;
-    }
 
 }

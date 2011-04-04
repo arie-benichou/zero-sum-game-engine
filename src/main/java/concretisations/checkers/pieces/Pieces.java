@@ -24,7 +24,7 @@ import abstractions.piece.PieceTypeInterface;
 import abstractions.side.API.SideInterface;
 
 
-public enum Alphabet implements PieceTypeInterface {
+public enum Pieces implements PieceTypeInterface {
 
     NULL, 
     MAN,

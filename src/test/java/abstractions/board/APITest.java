@@ -36,13 +36,13 @@ public class APITest {
         
         Set<CellInterface> cells = new HashSet<CellInterface>(1);
         
-        cells.add(Cell(Position(1,1)));
+        cells.add(cell(Position(1,1)));
         
         assertFalse(Board(1, 2).equals(new Board(cells)));
         assertTrue(Board(1, 1).equals(new Board(cells)));
         assertNotSame(Board(1, 1), new Board(cells));
         
-        cells.add(Cell(Position(1,2)));
+        cells.add(cell(Position(1,2)));
         
         assertTrue(Board(1, 2).equals(new Board(cells)));
         assertNotSame(Board(1, 2), new Board(cells));
