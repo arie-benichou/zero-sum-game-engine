@@ -7,31 +7,35 @@ import abstractions.piece.PieceInterface;
 public abstract class AbstractAtomicMutation implements AtomicMutationInterface {
 
     private final CellInterface concernedCell;
-    private final PieceInterface previousState;
-
+    private final PieceInterface savedSate;
+    
     private transient PieceInterface protagonist;
 
-    public AbstractAtomicMutation(CellInterface concernedCell) {
+    public AbstractAtomicMutation(final CellInterface concernedCell) {
         this.concernedCell = concernedCell;
-        this.previousState = concernedCell.getPiece(); // TODO ? différé au process
+        this.savedSate = concernedCell.getPiece();
     }
 
     public final CellInterface getConcernedCell() {
         return this.concernedCell;
     }
-
-    public final PieceInterface getPreviousState() {
-        return previousState;
-    }
-
-    public final PieceInterface getProtagonist() { // TODO ? simplification possible pour Death.
+    
+    public final PieceInterface getProtagonist() {
         return this.protagonist;
     }
 
-    public final void setProtagonist(final PieceInterface concernedPiece) {
+    public final AtomicMutationInterface setProtagonist(final PieceInterface concernedPiece) {
         this.protagonist = concernedPiece;
+        return this;
     }
 
-    public abstract void process();
+    public void process() {
+        this.getConcernedCell().setPiece(this.getProtagonist());
+    }
+    
+    
+    public void cancel() {
+        this.getConcernedCell().setPiece(this.savedSate);
+    }    
 
 }

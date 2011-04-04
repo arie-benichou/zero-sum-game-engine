@@ -17,7 +17,6 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.piece.PieceFactory;
 import abstractions.position.RelativePositions;
 import abstractions.side.SideInterface;
 

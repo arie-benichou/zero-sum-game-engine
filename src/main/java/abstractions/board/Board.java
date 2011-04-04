@@ -114,7 +114,7 @@ final class Board implements BoardInterface {
         List<MutationInterface> legalMutations = Lists.newArrayList();
         for (MutationInterface mutation : availableMutations) {
             if (mutation.getPriority() == min) {
-                mutation.getCell().willGenerateMutations(true);
+                mutation.getConcernedCell().willGenerateMutations(true);
                 legalMutations.add(mutation);
             }
         }

@@ -1,38 +1,49 @@
 
 package concretisations.checkers.mutations;
 
+import java.util.List;
+
 import abstractions.cell.CellInterface;
 import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
+import abstractions.position.RelativePositionInterface;
+import abstractions.position.RelativePositions;
 
+import com.google.common.collect.ImmutableList;
 
-// TODO ? utiliser une manyJumpMutation
+// TODO ? utiliser une ManyJumpMutation
 public class JumpMutation extends CheckersMutation {
-    
+
     private final static int PRIORITY = 1;
 
-    public JumpMutation(CellInterface cell) {
-        super(cell, PRIORITY);
+    public JumpMutation(CellInterface cell, RelativePositionInterface direction) {
+        super(PRIORITY, cell, direction);
     }
 
-    // TODO interface
-    public void process() {
-
-        //TODO à mettre dans une liste pour l'historisation.
-
-        AtomicMutationInterface death1 = MutationFactory.death(this.getCell());
-        death1.setProtagonist(this.getCell().getPiece());
-        death1.process();
-
-        AtomicMutationInterface birth = MutationFactory.birth(this.getCell().getRelative(this.getDirection()).getRelative(this.getDirection()));
+    public List<AtomicMutationInterface> getSequence() {
         
-        birth.setProtagonist(this.getCell().getPiece());
-        birth.process();
-
-        AtomicMutationInterface death2 = MutationFactory.death(this.getCell().getRelative(this.getDirection()));
-        death2.setProtagonist(this.getCell().getRelative(this.getDirection()).getPiece());
-        death2.process();
-
+        return ImmutableList.of(
+                
+            MutationFactory.death(
+                this.getConcernedCell()
+            ).setProtagonist(
+                this.getConcernedCell().getPiece()
+            ),
+            
+            MutationFactory.birth(
+                this.getConcernedCell().getRelative(RelativePositions.reduce(this.getDirection(), this.getDirection()))
+            ).setProtagonist(
+                this.getConcernedCell().getPiece()
+            ),
+                    
+            MutationFactory.death(
+                this.getConcernedCell().getRelative(this.getDirection())
+            ).setProtagonist(
+                this.getConcernedCell().getRelative(this.getDirection()).getPiece()
+            )                    
+            
+        );
+        
     }
-
+    
 }
