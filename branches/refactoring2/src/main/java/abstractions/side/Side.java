@@ -1,7 +1,6 @@
 
 package abstractions.side;
 
-import static abstractions.side.API.*;
 
 enum Side implements SideInterface {
 

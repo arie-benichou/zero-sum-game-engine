@@ -3,9 +3,8 @@ package abstractions.game;
 
 import java.util.List;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.move.API.MoveInterface;
-import abstractions.position.API.PositionInterface;
 import abstractions.side.API.SideInterface;
 
 

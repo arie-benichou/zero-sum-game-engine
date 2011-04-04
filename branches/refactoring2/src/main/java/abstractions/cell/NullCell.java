@@ -1,19 +1,20 @@
 
 package abstractions.cell;
 
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
-import abstractions.piece.API.PieceInterface;
+import abstractions.board.BoardInterface;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.RelativePosition;
-import abstractions.side.API.SideInterface;
+import abstractions.piece.Pieces;
+import abstractions.position.Positions;
+import abstractions.position.RelativePositionInterface;
+import abstractions.side.SideInterface;
 
-final class NullCell extends AbstractCell {
+public final class NullCell extends AbstractCell {
     
-    private final static PieceInterface NULL_PIECE = abstractions.piece.API.NULL_PIECE;
+    private final static PieceInterface NULL_PIECE = Pieces.NULL_PIECE;
 
     public NullCell() {
-        super(abstractions.position.API.NULL_POSITION);
+        super(Positions.NULL_POSITION);
     }
 
     @Override
@@ -32,7 +33,7 @@ final class NullCell extends AbstractCell {
     }
 
     @Override
-    public CellInterface getRelative(RelativePosition relativePosition) {
+    public CellInterface getRelative(RelativePositionInterface relativePosition) {
         return this;
     }
     

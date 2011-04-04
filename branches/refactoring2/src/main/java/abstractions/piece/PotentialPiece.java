@@ -17,9 +17,8 @@
 
 package abstractions.piece;
 
-import static abstractions.piece.API.*;
-import static abstractions.side.API.*;
 import static com.google.common.base.Preconditions.checkNotNull;
+import abstractions.side.SideInterface;
 
 // TODO renommer cette classe en AbstractPiece
 abstract class PotentialPiece implements PieceInterface {

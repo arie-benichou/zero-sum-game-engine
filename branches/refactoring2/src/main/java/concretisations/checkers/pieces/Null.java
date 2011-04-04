@@ -2,10 +2,10 @@ package concretisations.checkers.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
 import abstractions.piece.NullPiece;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 

@@ -2,6 +2,9 @@ package abstractions.strategy;
 
 import java.util.List;
 
+import abstractions.game.GameInterface;
+import abstractions.move.API.MoveInterface;
+
 public interface StrategyInterface {
 
 	EvaluatorInterface getEvaluator();

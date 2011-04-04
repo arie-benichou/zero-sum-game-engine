@@ -1,7 +1,7 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.AtomicMutationInterface;
 import abstractions.cell.mutation.MutationFactory;
 

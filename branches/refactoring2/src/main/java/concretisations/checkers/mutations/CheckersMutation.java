@@ -2,9 +2,8 @@
 package concretisations.checkers.mutations;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
-import abstractions.move.API.MoveInterface;
 import abstractions.position.RelativePosition;
 
 public abstract class CheckersMutation implements MutationInterface {
@@ -12,7 +11,7 @@ public abstract class CheckersMutation implements MutationInterface {
     private final CellInterface cell;
     
     // TODO ? mettre en final et rajouter au constructeur
-    private transient RelativePosition direction;
+    private transient RelativePositionInterface direction;
     
     // TODO ? utiliser un double pour les infinis ou bien utiliser 0 comme priorité infinie
     // TODO ? mettre en final
@@ -23,7 +22,7 @@ public abstract class CheckersMutation implements MutationInterface {
         this.priority = priority;
     }
 
-    public final CheckersMutation direction(RelativePosition direction) {
+    public final CheckersMutation direction(RelativePositionInterface direction) {
         this.direction = direction;
         return this;
     }
@@ -32,7 +31,7 @@ public abstract class CheckersMutation implements MutationInterface {
         return cell;
     }
 
-    public final RelativePosition getDirection() {
+    public final RelativePositionInterface getDirection() {
         return direction;
     }
     

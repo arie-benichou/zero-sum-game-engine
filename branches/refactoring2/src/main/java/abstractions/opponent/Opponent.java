@@ -1,7 +1,9 @@
 
 package abstractions.opponent;
 
-import abstractions.side.API.SideInterface;
+import abstractions.game.GameInterface;
+import abstractions.side.SideInterface;
+import abstractions.strategy.StrategyInterface;
 
 class Opponent implements OpponentInterface {
 

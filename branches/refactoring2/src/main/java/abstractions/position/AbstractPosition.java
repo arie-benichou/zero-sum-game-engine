@@ -1,7 +1,6 @@
 
 package abstractions.position;
 
-import static abstractions.position.API.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 abstract class AbstractPosition implements PositionInterface {

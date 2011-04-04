@@ -17,16 +17,14 @@
 
 package abstractions.piece;
 
-import static abstractions.side.API.*;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import abstractions.piece.API.PieceInterface;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
+import abstractions.side.Sides;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -144,12 +142,12 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain at least one not-NULL piece type.");
         }
         
-        this.nullPiece = this.createPiece(nullType, NULL_SIDE);
-        this.pieces.put(this.hash(NULL_SIDE, nullType), this.nullPiece);
+        this.nullPiece = this.createPiece(nullType, Sides.NULL_SIDE);
+        this.pieces.put(this.hash(Sides.NULL_SIDE, nullType), this.nullPiece);
         
         for (final PieceTypeInterface pieceType : piecesAlphabet) {
-            this.pieces.put(this.hash(FIRST_SIDE, pieceType), this.createPiece(pieceType, FIRST_SIDE));
-            this.pieces.put(this.hash(SECOND_SIDE, pieceType), this.createPiece(pieceType, SECOND_SIDE));            
+            this.pieces.put(this.hash(Sides.FIRST_SIDE, pieceType), this.createPiece(pieceType, Sides.FIRST_SIDE));
+            this.pieces.put(this.hash(Sides.SECOND_SIDE, pieceType), this.createPiece(pieceType, Sides.SECOND_SIDE));            
         }        
 
     }
@@ -168,14 +166,14 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         //PieceFactory<CheckerPiece> pieceFactory = new PieceFactory<CheckerPiece>(Pieces.class);
         PieceFactory pieceFactory = new PieceFactory(Pieces.class);
         
-        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Pieces.MAN));
-        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Pieces.KING));
+        System.out.println(pieceFactory.getPiece(Sides.FIRST_SIDE, Pieces.MAN));
+        System.out.println(pieceFactory.getPiece(Sides.FIRST_SIDE, Pieces.KING));
         
-        System.out.println(pieceFactory.getPiece(NULL_SIDE, Pieces.NULL));
+        System.out.println(pieceFactory.getPiece(Sides.NULL_SIDE, Pieces.NULL));
         System.out.println(pieceFactory.getNullPiece());
         
-        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Pieces.MAN));
-        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Pieces.KING));
+        System.out.println(pieceFactory.getPiece(Sides.SECOND_SIDE, Pieces.MAN));
+        System.out.println(pieceFactory.getPiece(Sides.SECOND_SIDE, Pieces.KING));
         
     }
 

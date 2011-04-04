@@ -3,9 +3,10 @@ package abstractions.piece;
 
 import java.util.Set;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
+import abstractions.side.Sides;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -14,7 +15,7 @@ public class NullPiece extends PotentialPiece {
     private final static Set<MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
 
     public NullPiece() {
-        super(abstractions.side.API.NULL_SIDE);
+        super(Sides.NULL_SIDE);
     }
 
     @Override

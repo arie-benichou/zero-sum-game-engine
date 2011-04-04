@@ -1,6 +1,6 @@
 package abstractions.cell.mutation;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 
 
 public class Birth extends AbstractAtomicMutation {

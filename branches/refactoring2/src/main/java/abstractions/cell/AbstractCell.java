@@ -1,19 +1,17 @@
 
 package abstractions.cell;
 
-//import static abstractions.piece.API.NULL_PIECE;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Set;
 
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
+import abstractions.board.BoardInterface;
 import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.piece.API.PieceInterface;
-import abstractions.position.API.PositionInterface;
-import abstractions.position.RelativePosition;
-import abstractions.side.API.SideInterface;
+import abstractions.position.PositionInterface;
+import abstractions.position.RelativePositionInterface;
+import abstractions.side.SideInterface;
 
 abstract class AbstractCell implements CellInterface {
 
@@ -119,7 +117,7 @@ abstract class AbstractCell implements CellInterface {
     public abstract void setPiece(PieceInterface piece);
     public abstract void setPiece(SideInterface side, PieceTypeInterface pieceType);
     
-    public abstract CellInterface getRelative(RelativePosition relativePosition);    
+    public abstract CellInterface getRelative(RelativePositionInterface relativePosition);    
     
     public abstract String toString();
 

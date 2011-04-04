@@ -1,7 +1,7 @@
 
 package abstractions.cell.mutation;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 
 //TODO utiliser la factory
 //TODO ajouter un cache
