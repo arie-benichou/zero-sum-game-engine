@@ -50,15 +50,24 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
         public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
-            return cell.getPiece().getSide().equals(side) && cell.getRelative(relativePosition).isEmpty();
+            return
+                side.equals(cell.getPiece().getSide())
+                &&
+                cell.getRelative(relativePosition).isEmpty()
+            ;
         }
     };
 
     private final static Predicate CAN_JUMP_OVER = new Predicate() {
 
         public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
-            final CellInterface nextCell = cell.getRelative(relativePosition);
-            return nextCell.getPiece().getSide().getNextSide().equals(side) && nextCell.getRelative(relativePosition).isEmpty();
+            return
+                side.equals(cell.getPiece().getSide())
+                &&
+                side.getNextSide().equals(cell.getRelative(relativePosition).getPiece().getSide())
+                &&
+                cell.getRelative(relativePosition).getRelative(relativePosition).isEmpty()
+            ;
         }
     };
 
