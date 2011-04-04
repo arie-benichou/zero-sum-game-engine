@@ -26,6 +26,7 @@ import java.util.Set;
 
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.position.RelativePosition;
 import abstractions.side.API.SideInterface;
 
@@ -87,7 +88,9 @@ public final class API {
          * @param piece
          *            the piece to be contained by this cell
          */
-        void setPiece(final PieceInterface piece);
+        //void setPiece(final PieceInterface piece);
+        //TODO ! injecter la factory de pieces au board
+        void setPiece(SideInterface side, PieceTypeInterface pieceType);
 
         /**
          * Returns true if this cell is the null object, false otherwise.

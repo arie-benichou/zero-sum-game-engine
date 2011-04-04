@@ -20,11 +20,11 @@ package concretisations.checkers.pieces;
 import java.lang.reflect.InvocationTargetException;
 
 import abstractions.piece.API.PieceInterface;
-import abstractions.piece.PiecesSetInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.API.SideInterface;
 
 
-public enum Alphabet implements PiecesSetInterface {
+public enum Alphabet implements PieceTypeInterface {
 
     NULL, 
     MAN,
