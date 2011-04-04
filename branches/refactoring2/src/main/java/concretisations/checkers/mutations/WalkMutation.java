@@ -2,8 +2,8 @@
 package concretisations.checkers.mutations;
 
 import abstractions.cell.CellInterface;
-import abstractions.cell.mutation.AtomicMutationInterface;
-import abstractions.cell.mutation.MutationFactory;
+import abstractions.mutation.AtomicMutationInterface;
+import abstractions.mutation.MutationFactory;
 
 public class WalkMutation extends CheckersMutation {
     

@@ -6,7 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Set;
 
 import abstractions.board.BoardInterface;
-import abstractions.cell.mutation.MutationInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -120,5 +120,8 @@ abstract class AbstractCell implements CellInterface {
     public abstract CellInterface getRelative(RelativePositionInterface relativePosition);    
     
     public abstract String toString();
+    
+    public abstract void die();
+    
 
 }

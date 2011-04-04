@@ -17,55 +17,12 @@
 
 package concretisations.checkers.pieces;
 
-import java.lang.reflect.InvocationTargetException;
-
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
-
 
 public enum Pieces implements PieceTypeInterface {
 
-    NULL, 
+    NULL,
     MAN,
     KING;
-    
-    public static void main(String[] args) {
-        
-        String path = "concretisations.checkers.pieces";
-        String type = "MAN";
-        
-        type = Character.toUpperCase(type.charAt(0)) + type.substring(1).toLowerCase();
-        
-        PieceInterface pieceInstance = null;
-        
-        try {
-            pieceInstance = (PieceInterface) Class.forName(path + "." + type ).getConstructor(SideInterface.class).newInstance(FIRST_SIDE);
-        }
-        catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-        catch (SecurityException e) {
-            e.printStackTrace();
-        }
-        catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.println(pieceInstance);
-        
-    }
-    
+
 }

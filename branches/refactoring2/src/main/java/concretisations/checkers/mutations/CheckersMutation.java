@@ -3,8 +3,8 @@ package concretisations.checkers.mutations;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.cell.CellInterface;
-import abstractions.cell.mutation.MutationInterface;
-import abstractions.position.RelativePosition;
+import abstractions.mutation.MutationInterface;
+import abstractions.position.RelativePositionInterface;
 
 public abstract class CheckersMutation implements MutationInterface {
 

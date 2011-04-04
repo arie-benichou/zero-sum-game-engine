@@ -3,7 +3,7 @@ package abstractions.cell;
 import java.util.Set;
 
 import abstractions.board.BoardInterface;
-import abstractions.cell.mutation.MutationInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -89,5 +89,7 @@ public interface CellInterface extends Comparable<CellInterface> {
      * @return true if this cell has at least one legal mutation for a side to play
      */
     boolean willGenerateMutations();
+    
+    public void die();
 
 }

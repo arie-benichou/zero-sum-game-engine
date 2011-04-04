@@ -2,8 +2,8 @@
 package concretisations.checkers.mutations;
 
 import abstractions.cell.CellInterface;
-import abstractions.cell.mutation.AtomicMutationInterface;
-import abstractions.cell.mutation.MutationFactory;
+import abstractions.mutation.AtomicMutationInterface;
+import abstractions.mutation.MutationFactory;
 
 
 // TODO ? utiliser une manyJumpMutation
@@ -24,7 +24,8 @@ public class JumpMutation extends CheckersMutation {
         death1.setProtagonist(this.getCell().getPiece());
         death1.process();
 
-        AtomicMutationInterface birth = MutationFactory.birth(this.getCell().getRelative(this.getDirection().and(this.getDirection())));
+        AtomicMutationInterface birth = MutationFactory.birth(this.getCell().getRelative(this.getDirection()).getRelative(this.getDirection()));
+        
         birth.setProtagonist(this.getCell().getPiece());
         birth.process();
 

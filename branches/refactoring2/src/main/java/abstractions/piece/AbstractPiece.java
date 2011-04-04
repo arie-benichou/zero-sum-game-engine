@@ -21,7 +21,7 @@ public abstract class AbstractPiece extends PotentialPiece {
     @Override
     public String toString() {
         String consoleView;
-        if(this.getSide().isFirstSide()) {
+        if (this.getSide().isFirstSide()) {
             consoleView = "x";
         }
         else {

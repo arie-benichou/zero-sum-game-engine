@@ -59,6 +59,8 @@ public final class Cell extends AbstractCell {
         return this.willGenerateMutations() ? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
     }
 
-
+    public void die() {
+        this.setPiece(this.board.getPieceFactory().getNullPiece());
+    }
 
 }
