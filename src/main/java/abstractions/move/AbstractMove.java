@@ -8,6 +8,7 @@ import abstractions.position.API.PositionInterface;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 // TODO ? utiliser move en tant que décorateur de mutation pour l'évaluation de la mutation
+@Deprecated
 abstract class AbstractMove implements MoveInterface {
 
     private final PieceInterface piece;

@@ -16,7 +16,7 @@ import abstractions.dimension.API.IllegalDimensionException;
 /**
  * The board factory.
  */
-//TODO à virer 
+@Deprecated
 public final class _BoardFactory {
     
     private AbstractCellFactory cellFactory;

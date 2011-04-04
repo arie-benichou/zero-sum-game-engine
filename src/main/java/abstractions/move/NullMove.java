@@ -3,6 +3,7 @@ package abstractions.move;
 import static abstractions.piece.API.*;
 import static abstractions.position.API.*;
 
+@Deprecated
 class NullMove extends AbstractMove {
 
 	public NullMove() {

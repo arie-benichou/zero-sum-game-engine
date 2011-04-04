@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import abstractions.piece.API.PieceInterface;
 import abstractions.position.API.PositionInterface;
 
-
+@Deprecated
 class Move extends AbstractMove {
 
     public Move(final PositionInterface position, final PieceInterface piece) {

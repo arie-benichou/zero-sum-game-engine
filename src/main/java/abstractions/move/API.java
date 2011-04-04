@@ -7,6 +7,7 @@ import abstractions.position.API.PositionInterface;
 /**
  * API related to moves.
  */
+@Deprecated
 public class API {
 
     public final static MoveInterface NULL_MOVE = new NullMove();
