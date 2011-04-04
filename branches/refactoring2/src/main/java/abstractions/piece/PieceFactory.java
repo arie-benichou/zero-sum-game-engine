@@ -58,9 +58,9 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         private static final long serialVersionUID = 1L;
 
         private SideInterface side;
-        private PiecesSetInterface pieceType;
+        private PieceTypeInterface pieceType;
 
-        public IllegalPieceException(final SideInterface side, final PiecesSetInterface pieceType) {
+        public IllegalPieceException(final SideInterface side, final PieceTypeInterface pieceType) {
             super();
             this.side = side;
             this.pieceType = pieceType;
@@ -79,7 +79,7 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
     
 
 //    @SuppressWarnings("unchecked")
-    private final /*PT*/ PieceInterface createPiece(final PiecesSetInterface pieceType, final SideInterface side) {
+    private final /*PT*/ PieceInterface createPiece(final PieceTypeInterface pieceType, final SideInterface side) {
         String type = pieceType.toString();
         type = Character.toUpperCase(type.charAt(0)) + type.substring(1).toLowerCase();
         PieceInterface pieceInstance = null;
@@ -115,11 +115,11 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         return /*(PT)*/ pieceInstance;
     }
 
-    private final int hash(final SideInterface side, final PiecesSetInterface gamePieceType) {
-        return side.hashCode() + gamePieceType.hashCode();
+    private final int hash(final SideInterface side, final PieceTypeInterface pieceType) {
+        return side.hashCode() + pieceType.hashCode();
     }
 
-    public <T extends Enum<T> & PiecesSetInterface> PieceFactory(final Class<T> piecesSet) {
+    public <T extends Enum<T> & PieceTypeInterface> PieceFactory(final Class<T> piecesSet) {
 
         this.path = piecesSet.getPackage().getName();
         this.pieces = Maps.newHashMapWithExpectedSize(2 * piecesSet.getEnumConstants().length);
@@ -147,7 +147,7 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         this.nullPiece = this.createPiece(nullType, NULL_SIDE);
         this.pieces.put(this.hash(NULL_SIDE, nullType), this.nullPiece);
         
-        for (final PiecesSetInterface pieceType : piecesAlphabet) {
+        for (final PieceTypeInterface pieceType : piecesAlphabet) {
             this.pieces.put(this.hash(FIRST_SIDE, pieceType), this.createPiece(pieceType, FIRST_SIDE));
             this.pieces.put(this.hash(SECOND_SIDE, pieceType), this.createPiece(pieceType, SECOND_SIDE));            
         }        
@@ -158,8 +158,8 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         return this.nullPiece;
     }    
 
-    public PieceInterface getPiece(final SideInterface side, final PiecesSetInterface gamePieceType) {
-        return this.pieces.get(this.hash(side, gamePieceType));
+    public PieceInterface getPiece(final SideInterface side, final PieceTypeInterface pieceType) {
+        return this.pieces.get(this.hash(side, pieceType));
     }
 
     // TODO tests unitaires
