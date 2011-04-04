@@ -20,11 +20,11 @@ package concretisations.checkers.pieces;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.RelativePosition;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -44,19 +44,19 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
 
     private static interface Predicate {
 
-        boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition);
+        boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition);
     }
 
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
-        public boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition) {
+        public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
             return cell.getPiece().getSide().equals(side) && cell.getRelative(relativePosition).isEmpty();
         }
     };
 
     private final static Predicate CAN_JUMP_OVER = new Predicate() {
 
-        public boolean apply(CellInterface cell, SideInterface side, RelativePosition relativePosition) {
+        public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
             final CellInterface nextCell = cell.getRelative(relativePosition);
             return nextCell.getPiece().getSide().getNextSide().equals(side) && nextCell.getRelative(relativePosition).isEmpty();
         }
@@ -89,7 +89,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
     private Set<RelativePosition> getOptions(final CellInterface cell, SideInterface side, PieceAction action) {
         final Set<RelativePosition> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
         Predicate predicate = this.getPredicate(action);
-        for (final RelativePosition relativePosition : this.legalRelativePositions) {
+        for (final RelativePositionInterface RelativePositionInterface : this.legalRelativePositions) {
             if (predicate.apply(cell, side, relativePosition)) {
                 options.add(relativePosition);
             }
@@ -102,13 +102,13 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
 
         Set<RelativePosition> options = this.getOptions(cell, side, PieceAction.JUMP);
-        for (RelativePosition direction : options) {
+        for (RelativePositionInterface direction : options) {
             availableMutations.add(new JumpMutation(cell).direction(direction));
         }
 
         if (options.size() == 0) {
             options = this.getOptions(cell, side, PieceAction.WALK);
-            for (RelativePosition direction : options) {
+            for (RelativePositionInterface direction : options) {
                 availableMutations.add(new WalkMutation(cell).direction(direction));
             }
         }

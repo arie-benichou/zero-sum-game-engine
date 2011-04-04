@@ -1,8 +1,8 @@
 
 package abstractions.cell.mutation;
 
-import abstractions.cell.API.CellInterface;
-import abstractions.piece.API.PieceInterface;
+import abstractions.cell.CellInterface;
+import abstractions.piece.PieceInterface;
 
 public abstract class AbstractAtomicMutation implements AtomicMutationInterface {
 

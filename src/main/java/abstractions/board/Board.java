@@ -1,7 +1,6 @@
 
 package abstractions.board;
 
-import static abstractions.cell.API.NULL_CELL;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collections;
@@ -11,11 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
 import abstractions.piece.PieceFactory;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Constraint;
@@ -72,7 +70,10 @@ final class Board implements BoardInterface {
 
     public final CellInterface getCell(final int row, final int column) {
         CellInterface cell = this.boardCells.get(this.computeHash(row, column));
-        return cell == null ? NULL_CELL : cell;
+        
+        // TODO ? les cellules injectées au board pourraient contenir la celulle nulle
+        return cell == null ? CellInterface.NULL_CELL : cell;
+        
     }
 
     // TODO ? à mettre en cache
@@ -106,19 +107,9 @@ final class Board implements BoardInterface {
                 availableMutations.addAll(result);
             }
         }
-
+        
         int min = Collections.min(availableMutations).getPriority();
-
-        /*
-        int max = Collections.max(availableMutations).getPriority();
-        if(min == max) {
-            System.out.println("Il n y a que des coups de même priorité");
-        }
-        else {
-            System.out.println("Il va falloir garder que les mutations de priorité : " + min);
-        }
-        */
-
+        
         // TODO utiliser un prédicat "> min" en tant que contrainte sur la liste
         List<MutationInterface> legalMutations = Lists.newArrayList();
         for (MutationInterface mutation : availableMutations) {
@@ -168,7 +159,10 @@ final class Board implements BoardInterface {
         final int maximalNumberOfCellsByRow = Collections.max(this.boardCells.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
         final Iterator<CellInterface> it = this.iterator();
-        CellInterface previousCell = NULL_CELL;
+        
+        // TODO ? les cellules injectées au board pourraient contenir la celulle nulle
+        CellInterface previousCell = CellInterface.NULL_CELL;
+        
         while (it.hasNext()) {
             final CellInterface cell = it.next();
             if (previousCell.getRow() != cell.getRow()) {

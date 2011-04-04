@@ -1,7 +1,7 @@
 
 package abstractions.cell.mutation;
 
-import abstractions.cell.API.CellInterface;
+import abstractions.cell.CellInterface;
 
 public class Death extends AbstractAtomicMutation {
 
@@ -11,7 +11,8 @@ public class Death extends AbstractAtomicMutation {
 
     @Override
     public void process() {
-        this.getConcernedCell().setPiece(abstractions.piece.API.NULL_PIECE);
+        // TODO utiliser la factory de pieces
+        this.getConcernedCell().setPiece(NULL_PIECE);
     }
 
     

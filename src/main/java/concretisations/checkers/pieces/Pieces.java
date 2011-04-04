@@ -19,9 +19,9 @@ package concretisations.checkers.pieces;
 
 import java.lang.reflect.InvocationTargetException;
 
-import abstractions.piece.API.PieceInterface;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.side.API.SideInterface;
+import abstractions.side.SideInterface;
 
 
 public enum Pieces implements PieceTypeInterface {
@@ -40,7 +40,7 @@ public enum Pieces implements PieceTypeInterface {
         PieceInterface pieceInstance = null;
         
         try {
-            pieceInstance = (PieceInterface) Class.forName(path + "." + type ).getConstructor(SideInterface.class).newInstance(abstractions.side.API.FIRST_SIDE);
+            pieceInstance = (PieceInterface) Class.forName(path + "." + type ).getConstructor(SideInterface.class).newInstance(FIRST_SIDE);
         }
         catch (IllegalArgumentException e) {
             e.printStackTrace();

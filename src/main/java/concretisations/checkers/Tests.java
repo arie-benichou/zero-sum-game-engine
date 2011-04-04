@@ -2,10 +2,9 @@
 package concretisations.checkers;
 
 import static abstractions.dimension.API.DimensionFactory.Dimension;
-import static abstractions.side.API.FIRST_SIDE;
-import abstractions.board.API.BoardInterface;
 import abstractions.board.BoardBuilder;
-import abstractions.side.API.SideInterface;
+import abstractions.board.BoardInterface;
+import abstractions.side.SideInterface;
 import concretisations.checkers.pieces.Pieces;
 
 // TODO ! tests unitaires

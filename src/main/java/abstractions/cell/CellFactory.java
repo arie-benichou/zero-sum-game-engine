@@ -1,17 +1,14 @@
 
 package abstractions.cell;
 
-import static abstractions.cell.API.NULL_CELL;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collections;
 import java.util.Set;
 
-import abstractions.cell.API.CellInterface;
-import abstractions.piece.API.PieceInterface;
 import abstractions.piece.PieceFactory;
-import abstractions.position.PositionFactory;
-import abstractions.position.API.PositionInterface;
+import abstractions.piece.PieceInterface;
+import abstractions.position.PositionInterface;
 
 import com.google.common.collect.Sets;
 
@@ -32,7 +29,7 @@ public final class CellFactory {
      * @return the null cell
      */
     public CellInterface getNullCell() {
-        return NULL_CELL;
+        return CellInterface.NULL_CELL;
     }
 
     /**

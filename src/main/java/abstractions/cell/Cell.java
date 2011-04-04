@@ -3,13 +3,12 @@ package abstractions.cell;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
-import abstractions.piece.API.PieceInterface;
+import abstractions.board.BoardInterface;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.API.PositionInterface;
-import abstractions.position.RelativePosition;
-import abstractions.side.API.SideInterface;
+import abstractions.position.PositionInterface;
+import abstractions.position.RelativePositionInterface;
+import abstractions.side.SideInterface;
 
 //TODO enlever la visibilité publique
 public final class Cell extends AbstractCell {
@@ -37,8 +36,8 @@ public final class Cell extends AbstractCell {
         return this.piece;
     }    
 
-    public CellInterface getRelative(RelativePosition relativePosition) {
-        return this.board.getCell(this.getRow() + relativePosition.getRow(), this.getColumn() + relativePosition.getColumn());
+    public CellInterface getRelative(RelativePositionInterface relativePosition) {
+        return this.board.getCell(relativePosition.computeRow(this.getRow()), relativePosition.computeColumn(this.getColumn()));
     }
 
     @Override

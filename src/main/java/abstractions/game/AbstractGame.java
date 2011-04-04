@@ -17,16 +17,16 @@
 
 package abstractions.game;
 
-import static abstractions.side.API.*;
+import static abstractions.side.API.NULL_SIDE;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
-import abstractions.board.API.BoardInterface;
-import abstractions.cell.API.CellInterface;
+import abstractions.board.BoardInterface;
+import abstractions.cell.CellInterface;
 import abstractions.move.API.MoveInterface;
 import abstractions.side.API.SideInterface;
+
+import com.google.common.collect.Lists;
 
 /**
  * This class provides a skeletal implementation of the Game interface, to

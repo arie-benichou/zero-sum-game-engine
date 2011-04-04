@@ -1,7 +1,7 @@
 
 package abstractions.piece;
 
-import static abstractions.side.API.*;
+import abstractions.side.SideInterface;
 
 // TODO ? transformer cette classe en classe Pawn, la pièce de base est le pion
 public abstract class AbstractPiece extends PotentialPiece {
