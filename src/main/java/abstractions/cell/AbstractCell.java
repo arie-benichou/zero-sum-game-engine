@@ -7,6 +7,7 @@ import java.util.Set;
 
 import abstractions.board.BoardInterface;
 import abstractions.mutation.MutationInterface;
+import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -121,7 +122,6 @@ abstract class AbstractCell implements CellInterface {
     
     public abstract String toString();
     
-    public abstract void die();
-    
+    public abstract PieceFactory getPieceFactory();
 
 }

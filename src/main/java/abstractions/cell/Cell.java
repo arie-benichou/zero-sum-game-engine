@@ -4,6 +4,7 @@ package abstractions.cell;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.board.BoardInterface;
+import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -59,8 +60,9 @@ public final class Cell extends AbstractCell {
         return this.willGenerateMutations() ? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
     }
 
-    public void die() {
-        this.setPiece(this.board.getPieceFactory().getNullPiece());
+    @Override
+    public PieceFactory getPieceFactory() {
+        return this.board.getPieceFactory();
     }
 
 }
