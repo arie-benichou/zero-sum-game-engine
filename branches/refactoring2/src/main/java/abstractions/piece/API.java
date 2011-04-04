@@ -28,13 +28,13 @@ import abstractions.side.API.SideInterface;
 /**
  * API related to pieces.
  */
-@Deprecated
+//@Deprecated
 public class API {
 
     /**
      * The null object for a piece.
      */
-    public final static AbstractNullPiece NULL_PIECE = new AbstractNullPiece();
+    public final static NullPiece NULL_PIECE = new NullPiece();
 
     /**
      * Class for illegal piece exceptions.

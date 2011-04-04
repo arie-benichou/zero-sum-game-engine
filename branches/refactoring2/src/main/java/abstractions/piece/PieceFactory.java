@@ -31,7 +31,7 @@ import abstractions.side.API.SideInterface;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import concretisations.checkers.pieces.Alphabet;
+import concretisations.checkers.pieces.Pieces;
 
 public final class PieceFactory/*<PT extends PieceInterface>*/ {
     
@@ -166,16 +166,16 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
     public static void main(String[] args) {
         
         //PieceFactory<CheckerPiece> pieceFactory = new PieceFactory<CheckerPiece>(Pieces.class);
-        PieceFactory pieceFactory = new PieceFactory(Alphabet.class);
+        PieceFactory pieceFactory = new PieceFactory(Pieces.class);
         
-        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Alphabet.MAN));
-        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Alphabet.KING));
+        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Pieces.MAN));
+        System.out.println(pieceFactory.getPiece(FIRST_SIDE, Pieces.KING));
         
-        System.out.println(pieceFactory.getPiece(NULL_SIDE, Alphabet.NULL));
+        System.out.println(pieceFactory.getPiece(NULL_SIDE, Pieces.NULL));
         System.out.println(pieceFactory.getNullPiece());
         
-        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Alphabet.MAN));
-        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Alphabet.KING));
+        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Pieces.MAN));
+        System.out.println(pieceFactory.getPiece(SECOND_SIDE, Pieces.KING));
         
     }
 

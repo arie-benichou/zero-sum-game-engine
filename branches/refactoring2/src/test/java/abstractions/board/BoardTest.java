@@ -19,9 +19,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import concretisations.checkers.pieces.Pieces;
+
 
 import abstractions.board.Board;
 import abstractions.cell.API.CellInterface;
+import abstractions.piece.PieceFactory;
 import abstractions.position.RelativePosition;
 
 public class BoardTest {
@@ -31,15 +34,16 @@ public class BoardTest {
     @Before
     public void setUp() {
         this.board = Board(2, 3);
+        this.board.injectPieceFactory(new PieceFactory(Pieces.class));
     }
 
     @Test
     public final void testBoard() {
 
-        assertTrue(this.board.getLowerBound().equals(Cell(Position(1, 1))));
+        assertTrue(this.board.getLowerBound().equals(cell(Position(1, 1))));
         assertTrue(this.board.getLowerBound().equals(this.board.getCell(1, 1)));
 
-        assertTrue(this.board.getUpperBound().equals(Cell(Position(2, 3))));
+        assertTrue(this.board.getUpperBound().equals(cell(Position(2, 3))));
         assertTrue(this.board.getUpperBound().equals(this.board.getCell(2, 3)));
 
     }
@@ -56,7 +60,7 @@ public class BoardTest {
 
         Set<CellInterface> cells = new HashSet<CellInterface>(2 * 3);
 
-        cells.add(Cell(Position(1, 1)));
+        cells.add(cell(Position(1, 1)));
         cells.add(null);
 
         new Board(cells);
@@ -69,7 +73,7 @@ public class BoardTest {
 
         Set<CellInterface> cells = new HashSet<CellInterface>(2 * 3);
 
-        cells.add(Cell(Position(1, 1)));
+        cells.add(cell(Position(1, 1)));
         cells.add(NULL_CELL);
 
         new Board(cells);
@@ -79,8 +83,8 @@ public class BoardTest {
     @Test
     public final void testCell() {
 
-        assertTrue(this.board.getCell(1, 2).equals(Cell(Position(1, 2))));
-        assertFalse(this.board.getCell(1, 2) == (Cell(Position(1, 2))));
+        assertTrue(this.board.getCell(1, 2).equals(cell(Position(1, 2))));
+        assertFalse(this.board.getCell(1, 2) == (cell(Position(1, 2))));
 
     }
 
@@ -176,9 +180,9 @@ public class BoardTest {
         assertNotSame(this.board, Board(2, 3));
 
         Set<CellInterface> cells = new HashSet<CellInterface>(3);
-        cells.add(Cell(Position(1, 1)));
-        cells.add(Cell(Position(1, 2)));
-        cells.add(Cell(Position(1, 3)));
+        cells.add(cell(Position(1, 1)));
+        cells.add(cell(Position(1, 2)));
+        cells.add(cell(Position(1, 3)));
 
         Board board1 = new Board(cells);
         Board board2 = new Board(cells);
@@ -198,13 +202,13 @@ public class BoardTest {
 
         List<CellInterface> expectedCells = new ArrayList<CellInterface>(2 * 3);
 
-        expectedCells.add(Cell(Position(1, 1)));
-        expectedCells.add(Cell(Position(1, 2)));
-        expectedCells.add(Cell(Position(1, 3)));
+        expectedCells.add(cell(Position(1, 1)));
+        expectedCells.add(cell(Position(1, 2)));
+        expectedCells.add(cell(Position(1, 3)));
 
-        expectedCells.add(Cell(Position(2, 1)));
-        expectedCells.add(Cell(Position(2, 2)));
-        expectedCells.add(Cell(Position(2, 3)));
+        expectedCells.add(cell(Position(2, 1)));
+        expectedCells.add(cell(Position(2, 2)));
+        expectedCells.add(cell(Position(2, 3)));
 
         List<CellInterface> testedCells = new ArrayList<CellInterface>(2 * 3);
         for (CellInterface cell : this.board) {

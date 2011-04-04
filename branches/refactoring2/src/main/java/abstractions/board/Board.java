@@ -14,6 +14,7 @@ import java.util.Set;
 import abstractions.board.API.BoardInterface;
 import abstractions.cell.API.CellInterface;
 import abstractions.cell.mutation.MutationInterface;
+import abstractions.piece.PieceFactory;
 import abstractions.side.API.SideInterface;
 
 import com.google.common.base.Strings;
@@ -38,6 +39,16 @@ final class Board implements BoardInterface {
     };
 
     private final Map<String, CellInterface> boardCells;
+
+    private transient PieceFactory pieceFactory;
+    
+    public void injectPieceFactory(final PieceFactory pieceFactory) {
+        this.pieceFactory = pieceFactory;
+    }    
+
+    public PieceFactory getPieceFactory() {
+        return this.pieceFactory;
+    }    
 
     private final String computeHash(final int row, final int column) {
         return "r" + row + "c" + column;

@@ -21,6 +21,7 @@ import static abstractions.piece.API.*;
 import static abstractions.side.API.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+// TODO renommer cette classe en AbstractPiece
 abstract class PotentialPiece implements PieceInterface {
 
     private volatile int hashCode;
