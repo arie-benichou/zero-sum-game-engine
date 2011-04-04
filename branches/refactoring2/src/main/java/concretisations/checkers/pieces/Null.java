@@ -19,8 +19,4 @@ public class Null extends NullPiece {
         return AVAILABLE_MUTATIONS;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Null());
-    }
-
 }

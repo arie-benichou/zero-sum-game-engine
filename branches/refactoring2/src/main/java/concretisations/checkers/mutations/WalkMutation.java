@@ -1,29 +1,41 @@
 
 package concretisations.checkers.mutations;
 
+import java.util.List;
+
 import abstractions.cell.CellInterface;
 import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
+import abstractions.position.RelativePositionInterface;
+
+import com.google.common.collect.ImmutableList;
 
 public class WalkMutation extends CheckersMutation {
-    
+
     private final static int PRIORITY = 2;
 
-    public WalkMutation(CellInterface cell) {
-        super(cell, PRIORITY);
+    public WalkMutation(CellInterface cell, RelativePositionInterface direction) {
+        super(PRIORITY, cell, direction);
     }
 
-    // TODO interface
-    public void process() {
-
-        AtomicMutationInterface death = MutationFactory.death(this.getCell());
-        death.setProtagonist(this.getCell().getPiece());
-        death.process();
-
-        AtomicMutationInterface birth = MutationFactory.birth(this.getCell().getRelative(this.getDirection()));
-        birth.setProtagonist(this.getCell().getPiece());
-        birth.process();
-
+    public List<AtomicMutationInterface> getSequence() {
+        
+        return ImmutableList.of(
+                
+            MutationFactory.death(
+                this.getConcernedCell()
+            ).setProtagonist(
+                this.getConcernedCell().getPiece()
+            ),
+            
+            MutationFactory.birth(
+                this.getConcernedCell().getRelative(this.getDirection())
+            ).setProtagonist(
+                this.getConcernedCell().getPiece()
+            )
+            
+        );
+        
     }
-
+    
 }

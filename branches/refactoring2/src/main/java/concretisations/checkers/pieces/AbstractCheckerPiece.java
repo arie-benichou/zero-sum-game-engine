@@ -30,8 +30,7 @@ import abstractions.side.SideInterface;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
-import concretisations.checkers.mutations.JumpMutation;
-import concretisations.checkers.mutations.WalkMutation;
+import concretisations.checkers.mutations.CheckersMutationFactory;
 
 public abstract class AbstractCheckerPiece extends AbstractPiece {
 
@@ -99,37 +98,18 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
     }
 
     public Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
-
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
-
         Set<RelativePositionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
         for (RelativePositionInterface direction : options) {
-            availableMutations.add(new JumpMutation(cell).direction(direction));
+            availableMutations.add(CheckersMutationFactory.jump(cell, direction));
         }
-
         if (options.size() == 0) {
             options = this.getOptions(cell, side, PieceAction.WALK);
             for (RelativePositionInterface direction : options) {
-                availableMutations.add(new WalkMutation(cell).direction(direction));
+                availableMutations.add(CheckersMutationFactory.walk(cell, direction));
             }
         }
-
         return availableMutations;
-    }
-
-    // TODO ! tests unitaires
-    public static void main(String[] args) {
-
-        /*
-        new Man(abstractions.side.API.FIRST_SIDE);
-        System.out.println("-----------------------");
-        new Man(abstractions.side.API.SECOND_SIDE);
-        System.out.println("-----------------------");
-        new King(abstractions.side.API.FIRST_SIDE);
-        System.out.println("-----------------------");
-        new King(abstractions.side.API.SECOND_SIDE);
-        */
-
     }
 
 }
