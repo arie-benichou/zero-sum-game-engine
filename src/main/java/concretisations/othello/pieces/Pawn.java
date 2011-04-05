@@ -21,21 +21,17 @@ import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.AbstractPiece;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableSet;
-
-public final class Pawn extends AbstractPiece {
-
-    private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
+public final class Pawn extends OthelloPiece {
 
     public Pawn(SideInterface side) {
         super(side);
     }
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+        System.out.println(this);
+        return EMPTY_MUTATION_SET;
     }
 
 }

@@ -32,6 +32,7 @@ import com.google.common.collect.Sets;
 
 import concretisations.checkers.mutations.CheckersMutationFactory;
 
+// TODO ? faire une interface
 public abstract class AbstractCheckerPiece extends AbstractPiece {
 
     private static enum PieceAction { // TODO ? piecePromotion/pieceEvolution/pieceAlteration
