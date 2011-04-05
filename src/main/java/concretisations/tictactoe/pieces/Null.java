@@ -1,5 +1,5 @@
 
-package concretisations.checkers.pieces;
+package concretisations.tictactoe.pieces;
 
 import java.util.Set;
 
@@ -10,12 +10,12 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
+import concretisations.tictactoe.mutations.NewPawnMutation;
+
 public class Null extends NullPiece {
 
-    private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
-
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+        return ImmutableSet.of(new NewPawnMutation(cell, side));
     }
 
 }

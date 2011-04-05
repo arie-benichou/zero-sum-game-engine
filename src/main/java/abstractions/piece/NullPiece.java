@@ -28,7 +28,7 @@ public class NullPiece extends PotentialPiece {
         return " ";
     }
 
-    public Set<MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
         return AVAILABLE_MUTATIONS;
     }
 

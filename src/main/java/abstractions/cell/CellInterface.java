@@ -81,7 +81,7 @@ public interface CellInterface extends Comparable<CellInterface> {
     CellInterface getRelative(RelativePositionInterface relativePosition);
 
     //TODO ! javadoc
-    Set<MutationInterface> fetchAvailableMutations(SideInterface side);
+    Set<? extends MutationInterface> fetchAvailableMutations(SideInterface side);
     
     //TODO ! javadoc
     void willGenerateMutations(boolean willItGenerateMutations);
