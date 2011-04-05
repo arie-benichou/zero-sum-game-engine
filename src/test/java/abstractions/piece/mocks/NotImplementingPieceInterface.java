@@ -15,7 +15,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.tictactoe.pieces;
+package abstractions.piece.mocks;
 
 import java.util.Set;
 
@@ -23,18 +23,17 @@ import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableSet;
+public final class NotImplementingPieceInterface {
 
-public final class Pawn extends TicTacToePiece {
-
-    private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
-
-    public Pawn(SideInterface side) {
-        super(side);
-    }
+    public NotImplementingPieceInterface(SideInterface side) {}
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 
 }

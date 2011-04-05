@@ -17,6 +17,8 @@
 
 package abstractions.piece;
 
+import static com.google.common.base.CaseFormat.*;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,22 +31,20 @@ import abstractions.side.Sides;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import concretisations.checkers.pieces.Pieces;
+public final class PieceFactory {
 
-public final class PieceFactory/*<PT extends PieceInterface>*/ {
-    
     /**
      * Class for illegal pieces alphabet.
      */
     public static final class IllegalPiecesAlphabetException extends RuntimeException {
-        
+
         private static final long serialVersionUID = 1L;
-        
+
         public IllegalPiecesAlphabetException(String message) {
             super(message);
         }
-        
-    }        
+
+    }
 
     /**
      * Class for illegal pieces.
@@ -70,48 +70,47 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
         }
 
     }
-    
+
     private final String path;
     private final Map<Integer, PieceInterface> pieces;
     private final PieceInterface nullPiece;
-    
 
-//    @SuppressWarnings("unchecked")
-    private final /*PT*/ PieceInterface createPiece(final PieceTypeInterface pieceType, final SideInterface side) {
+    //    @SuppressWarnings("unchecked")
+    private final PieceInterface createPiece(final PieceTypeInterface pieceType, final SideInterface side) {
         String type = pieceType.toString();
-        type = Character.toUpperCase(type.charAt(0)) + type.substring(1).toLowerCase();
+        //type = Character.toUpperCase(type.charAt(0)) + type.substring(1).toLowerCase();
+        
+        type = LOWER_UNDERSCORE.to(UPPER_CAMEL, type);
+        
         PieceInterface pieceInstance = null;
         try {
-            if(side.isNull()) {
-                pieceInstance = (PieceInterface) Class.forName(this.path + "." + type).newInstance();    
-            }
-            else {
-                pieceInstance = (PieceInterface) Class.forName(this.path + "." + type).getConstructor(SideInterface.class).newInstance(side);
-            }
+            pieceInstance = (PieceInterface) Class.forName(this.path + "." + type).getConstructor(SideInterface.class).newInstance(side);
+        }
+        catch (ClassCastException e) {
+            throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' must implement PieceInterface.");
         }
         catch (IllegalArgumentException e) {
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (SecurityException e) {
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (InstantiationException e) {
-            System.out.println(e.getMessage());
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (IllegalAccessException e) {
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (InvocationTargetException e) {
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (NoSuchMethodException e) {
-            throw new IllegalPieceException(side, pieceType);
+            //throw new IllegalPieceException(side, pieceType);
         }
         catch (ClassNotFoundException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' not found.");
         }
-        return /*(PT)*/ pieceInstance;
+        return pieceInstance;
     }
 
     private final int hash(final SideInterface side, final PieceTypeInterface pieceType) {
@@ -122,60 +121,54 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
 
         this.path = piecesSet.getPackage().getName();
         this.pieces = Maps.newHashMapWithExpectedSize(2 * piecesSet.getEnumConstants().length);
-        
+
         HashSet<T> piecesAlphabet = Sets.newHashSet(piecesSet.getEnumConstants());
-        
-        if(piecesAlphabet.isEmpty()) {
-            throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain the NULL piece type and at least one not-NULL piece type.");
+
+        if (piecesAlphabet.isEmpty()) {
+            throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName()
+                    + " must contain the NULL piece type and at least one not-NULL piece type.");
         }
-        
+
         Iterator<T> piecesAlphabetIterator = piecesAlphabet.iterator();
         T nullType = null;
         try {
-            while(!(nullType = piecesAlphabetIterator.next()).name().toLowerCase().equals("null"));
+            while (!(nullType = piecesAlphabetIterator.next()).name().toLowerCase().equals("null"))
+                ;
         }
         catch (NoSuchElementException e) {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain the NULL piece type.");
         }
         piecesAlphabet.remove(nullType);
-        
-        if(piecesAlphabet.isEmpty()) {
+
+        if (piecesAlphabet.isEmpty()) {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain at least one not-NULL piece type.");
         }
-        
+
         this.nullPiece = this.createPiece(nullType, Sides.NULL_SIDE);
         this.pieces.put(this.hash(Sides.NULL_SIDE, nullType), this.nullPiece);
-        
+
         for (final PieceTypeInterface pieceType : piecesAlphabet) {
             this.pieces.put(this.hash(Sides.FIRST_SIDE, pieceType), this.createPiece(pieceType, Sides.FIRST_SIDE));
-            this.pieces.put(this.hash(Sides.SECOND_SIDE, pieceType), this.createPiece(pieceType, Sides.SECOND_SIDE));            
-        }        
+            this.pieces.put(this.hash(Sides.SECOND_SIDE, pieceType), this.createPiece(pieceType, Sides.SECOND_SIDE));
+        }
 
     }
-    
-    public final PieceInterface getNullPiece() {
+
+    public final PieceInterface NullPiece() {
         return this.nullPiece;
-    }    
-
-    public PieceInterface getPiece(final SideInterface side, final PieceTypeInterface pieceType) {
-        return this.pieces.get(this.hash(side, pieceType));
     }
 
-    // TODO tests unitaires
+    public PieceInterface Piece(final SideInterface side, final PieceTypeInterface pieceType) {
+        PieceInterface piece = this.pieces.get(this.hash(side, pieceType));
+        if (piece == null) {
+            throw new IllegalPieceException(side, pieceType);
+        }
+        return piece;
+    }
+
     public static void main(String[] args) {
-        
-        //PieceFactory<CheckerPiece> pieceFactory = new PieceFactory<CheckerPiece>(Pieces.class);
-        PieceFactory pieceFactory = new PieceFactory(Pieces.class);
-        
-        System.out.println(pieceFactory.getPiece(Sides.FIRST_SIDE, Pieces.MAN));
-        System.out.println(pieceFactory.getPiece(Sides.FIRST_SIDE, Pieces.KING));
-        
-        System.out.println(pieceFactory.getPiece(Sides.NULL_SIDE, Pieces.NULL));
-        System.out.println(pieceFactory.getNullPiece());
-        
-        System.out.println(pieceFactory.getPiece(Sides.SECOND_SIDE, Pieces.MAN));
-        System.out.println(pieceFactory.getPiece(Sides.SECOND_SIDE, Pieces.KING));
-        
+
+        //System.out.println(result);
     }
 
 }

@@ -12,7 +12,7 @@ import abstractions.side.SideInterface;
 
 public final class NullCell extends AbstractCell {
     
-    private final static PieceInterface NULL_PIECE = Pieces.NULL_PIECE;
+    private final static PieceInterface NULL_PIECE = PiecesAlphabetWithoutNullPiece.NULL_PIECE;
 
     public NullCell() {
         super(Positions.NULL_POSITION);

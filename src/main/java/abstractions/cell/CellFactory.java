@@ -74,7 +74,7 @@ public final class CellFactory {
         final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
         for (final PositionInterface position : positions) {
             CellInterface cell = this.cell(position);
-            cell.setPiece(this.pieceFactory.getNullPiece());
+            cell.setPiece(this.pieceFactory.NullPiece());
             cells.add(cell);
         }
         return Collections.unmodifiableSet(cells);
