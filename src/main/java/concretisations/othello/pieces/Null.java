@@ -20,17 +20,6 @@ public class Null extends OthelloPiece implements OthelloPieceInterface {
 
     @Override
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        System.out.println("------------------------------------------");
-        System.out.println(cell.getRow());
-        System.out.println(cell.getColumn());
-        
-        if(this.checkNeighbourhood(cell, side)) {
-            System.out.println("mutation available");
-            return ImmutableSet.of(new NewPawnMutation(cell, side));
-        }
-        else {
-            System.out.println("no mutation available");
-        }
-        return EMPTY_MUTATION_SET;
+        return this.isMutable(cell, side) ? ImmutableSet.of(new NewPawnMutation(cell, side)) : EMPTY_MUTATION_SET;
     }
 }
