@@ -26,7 +26,7 @@ public class WalkMutation extends CheckersMutation {
             MutationFactory.death(
                 this.getConcernedCell()
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().getNullPiece()
+                this.getConcernedCell().getPieceFactory().NullPiece()
             ),
             
             MutationFactory.birth(

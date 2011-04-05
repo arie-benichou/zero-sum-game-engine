@@ -30,7 +30,7 @@ public final class Cell extends AbstractCell {
     }
 
     public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
-        this.setPiece(this.board.getPieceFactory().getPiece(side, pieceType));
+        this.setPiece(this.board.getPieceFactory().Piece(side, pieceType));
     }
     
     public PieceInterface getPiece() {

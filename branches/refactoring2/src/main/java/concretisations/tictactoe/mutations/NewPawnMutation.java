@@ -25,7 +25,7 @@ public class NewPawnMutation extends AbstractMutation {
             MutationFactory.birth(
                 this.getConcernedCell()
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().getPiece(this.getSide(), Pieces.PAWN)
+                this.getConcernedCell().getPieceFactory().Piece(this.getSide(), Pieces.PAWN)
             )
             
         );

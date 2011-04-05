@@ -27,7 +27,7 @@ public class JumpMutation extends CheckersMutation {
             MutationFactory.death(
                 this.getConcernedCell()
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().getNullPiece()
+                this.getConcernedCell().getPieceFactory().NullPiece()
             ),
             
             MutationFactory.birth(
@@ -39,7 +39,7 @@ public class JumpMutation extends CheckersMutation {
             MutationFactory.death(
                 this.getConcernedCell().getRelative(this.getDirection())
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().getNullPiece()
+                this.getConcernedCell().getPieceFactory().NullPiece()
             )                    
             
         );

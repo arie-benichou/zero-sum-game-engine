@@ -19,15 +19,6 @@ public interface PieceInterface {
      */
     SideInterface getSide();
 
-    /**
-     * Returns true if this piece is the null object, false otherwise.
-     * 
-     * @return true if this piece is the null object, false otherwise
-     */
-    boolean isNull();
-
     Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
-    
-    //PieceFactory getPieceFactory();
 
 }
