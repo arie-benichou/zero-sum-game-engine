@@ -6,26 +6,37 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.List;
 
 import abstractions.cell.CellInterface;
+import abstractions.side.SideInterface;
 
 public abstract class AbstractMutation implements MutationInterface {
 
     private final int priority;
     private final CellInterface concernedCell;
+    private final SideInterface side;
     
     private transient List<AtomicMutationInterface> sequence = null;
 
-    public AbstractMutation(int priority, CellInterface concernedCell) {
+    public AbstractMutation(int priority, CellInterface concernedCell, SideInterface side) {
         this.priority = priority;
         this.concernedCell = concernedCell;
+        this.side = side;
     }
+    
+    public AbstractMutation(CellInterface concernedCell, SideInterface side) {
+        this(0, concernedCell, side);
+    }    
 
     public final int getPriority() {
         return this.priority;
     }
 
     public final CellInterface getConcernedCell() {
-        return concernedCell;
+        return this.concernedCell;
     }
+    
+    public SideInterface getSide() {
+        return this.side;
+    }    
 
     protected abstract List<AtomicMutationInterface> generateSequence();    
     
@@ -60,7 +71,7 @@ public abstract class AbstractMutation implements MutationInterface {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + ": " + this.concernedCell.getPiece().getSide() + " | "
+        return this.getClass().getSimpleName() + ": " + this.getSide() + " | "
                 + this.concernedCell.getPiece().getClass().getSimpleName() + " | [" + this.concernedCell.getRow() + "][" + this.concernedCell.getColumn() + "]";
     }
 

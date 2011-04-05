@@ -1,5 +1,5 @@
 
-package concretisations.checkers.pieces;
+package concretisations.othello.pieces;
 
 import java.util.Set;
 
@@ -12,10 +12,11 @@ import com.google.common.collect.ImmutableSet;
 
 public class Null extends NullPiece {
 
+    // TODO mutation nulle
     private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+           //TODO getNeighbour
     }
 
 }

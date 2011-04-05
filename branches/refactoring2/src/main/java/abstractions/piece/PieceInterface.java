@@ -26,7 +26,7 @@ public interface PieceInterface {
      */
     boolean isNull();
 
-    Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
+    Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
     
     //PieceFactory getPieceFactory();
 

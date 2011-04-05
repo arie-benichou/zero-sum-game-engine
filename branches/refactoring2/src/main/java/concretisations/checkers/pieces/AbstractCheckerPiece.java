@@ -110,12 +110,12 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
         Set<RelativePositionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
         for (RelativePositionInterface direction : options) {
-            availableMutations.add(CheckersMutationFactory.jump(cell, direction));
+            availableMutations.add(CheckersMutationFactory.jump(cell, side, direction));
         }
         if (options.size() == 0) {
             options = this.getOptions(cell, side, PieceAction.WALK);
             for (RelativePositionInterface direction : options) {
-                availableMutations.add(CheckersMutationFactory.walk(cell, direction));
+                availableMutations.add(CheckersMutationFactory.walk(cell, side, direction));
             }
         }
         return availableMutations;

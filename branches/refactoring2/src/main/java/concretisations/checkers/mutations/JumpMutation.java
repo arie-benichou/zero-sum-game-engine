@@ -8,6 +8,7 @@ import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
 import abstractions.position.RelativePositionInterface;
 import abstractions.position.RelativePositions;
+import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
 
@@ -16,8 +17,8 @@ public class JumpMutation extends CheckersMutation {
 
     private final static int PRIORITY = 1;
 
-    public JumpMutation(CellInterface cell, RelativePositionInterface direction) {
-        super(PRIORITY, cell, direction);
+    public JumpMutation(CellInterface cell, SideInterface side, RelativePositionInterface direction) {
+        super(PRIORITY, cell, side, direction);
     }
 
     protected List<AtomicMutationInterface> generateSequence() {

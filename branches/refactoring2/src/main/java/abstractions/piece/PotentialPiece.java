@@ -92,7 +92,7 @@ abstract class PotentialPiece implements PieceInterface {
     @Override
     public abstract String toString();
 
-    public Set<MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
         // TODO Auto-generated method stub
         return null;
     }

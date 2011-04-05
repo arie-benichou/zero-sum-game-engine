@@ -4,6 +4,7 @@ package abstractions.mutation;
 import java.util.List;
 
 import abstractions.cell.CellInterface;
+import abstractions.side.SideInterface;
 
 // TODO utiliser le pattern composite
 // TODO renommer en CompositeMutationInterface
@@ -13,6 +14,8 @@ public interface MutationInterface extends Comparable<MutationInterface> {
     int getPriority();
     
     CellInterface getConcernedCell();
+    
+    SideInterface getSide();    
     
     void process();
     

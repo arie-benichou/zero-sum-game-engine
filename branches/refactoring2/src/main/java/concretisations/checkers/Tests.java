@@ -23,7 +23,6 @@ public class Tests {
         SideInterface side;
         List<MutationInterface> legalMutations = null;
         //--------------------------------------------------------------------        
-        /*
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         side = Sides.FIRST_SIDE;
 
@@ -33,41 +32,40 @@ public class Tests {
 
         legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        for(MutationInterface mutation : legalMutations) {
+
+        for (MutationInterface mutation : legalMutations) {
             System.out.println(mutation);
             mutation.process();
             System.out.println(board);
             mutation.cancel();
             System.out.println(board);
         }
-        
+
         System.out.println("--------------------------------------------------------------------");
-        
+
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         side = Sides.FIRST_SIDE;
 
-        
         board.getCell(4, 1).setPiece(side, Pieces.MAN);
         board.getCell(4, 4).setPiece(side, Pieces.MAN);
 
         legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        for(MutationInterface mutation : legalMutations) {
+
+        for (MutationInterface mutation : legalMutations) {
             System.out.println(mutation);
             mutation.process();
             System.out.println(board);
             mutation.cancel();
             System.out.println(board);
         }
-        
-        System.out.println("--------------------------------------------------------------------");        
+
+        System.out.println("--------------------------------------------------------------------");
 
         //--------------------------------------------------------------------
-        
+
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         side = Sides.FIRST_SIDE;
 
@@ -77,8 +75,8 @@ public class Tests {
 
         legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        for(MutationInterface mutation : legalMutations) {
+
+        for (MutationInterface mutation : legalMutations) {
             System.out.println(mutation);
             mutation.process();
             System.out.println(board);
@@ -87,7 +85,7 @@ public class Tests {
         }
 
         System.out.println("--------------------------------------------------------------------");
-        
+
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
@@ -100,38 +98,42 @@ public class Tests {
 
         legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        for(MutationInterface mutation : legalMutations) {
+
+        for (MutationInterface mutation : legalMutations) {
             System.out.println(mutation);
             mutation.process();
             System.out.println(board);
             mutation.cancel();
             System.out.println(board);
         }
-        
+
         System.out.println("--------------------------------------------------------------------");
-        */
+
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(10, 10)).build();
         side = Sides.FIRST_SIDE;
 
-        
         Random random = new Random();
-        for(int k=1; k<=9*9; ++k) {
-            board.getCell(random.nextInt(10) + 1, random.nextInt(10) + 1).setPiece(random.nextInt(10)%2 == 0 ? side : side.getNextSide(), Pieces.MAN);
+        for (int k = 1; k <= 9 * 9; ++k) {
+            board.getCell(random.nextInt(10) + 1, random.nextInt(10) + 1).setPiece(random.nextInt(10) % 2 == 0 ? side : side.getNextSide(), Pieces.MAN);
         }
-        
-        //for(int i = 0; i<5000; ++i) {
-            //System.out.println(i);
-            legalMutations = board.getLegalMutations(side);
-        //}
-        
+
+        legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");        
+
+        for (MutationInterface mutation : legalMutations) {
+            System.out.println(mutation);
+            mutation.process();
+            System.out.println(board);
+            mutation.cancel();
+            System.out.println(board);
+        }
+
+        System.out.println("--------------------------------------------------------------------");
+
         //--------------------------------------------------------------------
-        /*
+
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         side = Sides.FIRST_SIDE;
 
@@ -140,9 +142,9 @@ public class Tests {
 
         legalMutations = board.getLegalMutations(side);
         System.out.println(board);
-        
-        System.out.println("--------------------------------------------------------------------");        
-        */
+
+        System.out.println("--------------------------------------------------------------------");
+
         //--------------------------------------------------------------------
     }
 

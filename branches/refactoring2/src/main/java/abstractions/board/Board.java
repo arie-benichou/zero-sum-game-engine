@@ -99,7 +99,7 @@ final class Board implements BoardInterface {
 
         // TODO ? utiliser un prédicat "NotEmpty" en tant que contrainte sur la liste
         for (CellInterface cell : this) {
-            Set<MutationInterface> result = cell.fetchAvailableMutations(side);
+            Set<? extends MutationInterface> result = cell.fetchAvailableMutations(side);
             if (result.isEmpty()) {
                 cell.willGenerateMutations(false);
             }

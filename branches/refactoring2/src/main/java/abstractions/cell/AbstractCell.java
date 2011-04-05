@@ -42,7 +42,7 @@ abstract class AbstractCell implements CellInterface {
     public abstract PieceInterface getPiece() ;
     
     // TODO ? injecter un contexte
-    public final Set<MutationInterface> fetchAvailableMutations(final SideInterface side) {
+    public final Set<? extends MutationInterface> fetchAvailableMutations(final SideInterface side) {
         return this.getPiece().computeAvailableMutations(this, side);
     }    
     
