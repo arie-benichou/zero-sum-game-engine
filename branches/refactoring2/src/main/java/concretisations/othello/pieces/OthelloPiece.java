@@ -47,26 +47,19 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
         return willBeConnected;
     }
 
-    protected boolean checkNeighbourhood(CellInterface cell, SideInterface side) {
+    protected boolean isMutable(CellInterface cell, SideInterface side) {
         boolean willBeConnected = false;
         for (int index = 0, maxIndex = NEIGHBOURS_POSITIONS.size(); index < maxIndex && !willBeConnected; ++index) {
             RelativePositionInterface relativePosition = NEIGHBOURS_POSITIONS.get(index);
             CellInterface nextCell = cell.getRelative(relativePosition);
-            System.out.println(relativePosition);
-            System.out.println("isNull : " + nextCell.isNull());
             if(nextCell.isNull()) {
-                continue;
+                continue; //TODO revoir la partie concernant la pièce nulle
             }
-            System.out.println("nextSide : " + side.getNextSide());
-            System.out.println("nextCell.getPiece().getSide() : " + nextCell.getPiece().getSide());
-            if(!side.getNextSide().equals(nextCell.getPiece().getSide())) {
-                continue;
+            if(side.getNextSide().equals(nextCell.getPiece().getSide())) {
+                CellInterface nextNextCell = nextCell.getRelative(relativePosition);
+                OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
+                willBeConnected = nextNextPiece.willItBeConnected(nextNextCell, side, relativePosition);
             }
-            CellInterface nextNextCell = nextCell.getRelative(relativePosition);
-            OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
-            System.out.println("nextNextPiece : " + nextNextPiece);
-            System.out.println("...");
-            willBeConnected = nextNextPiece.willItBeConnected(nextNextCell, side, relativePosition);
         }
         return willBeConnected;
     }

@@ -21,16 +21,32 @@ public class Tests {
         board = new BoardBuilder(Pieces.class, Dimension(8, 8)).build();
         side = Sides.FIRST_SIDE;
         
-        board.getCell(4, 4).setPiece(side, Pieces.PAWN);
-        board.getCell(4, 5).setPiece(side.getNextSide(), Pieces.PAWN);
+        board.getCell(4, 4).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
+        board.getCell(4, 5).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
         
-        board.getCell(5, 4).setPiece(side.getNextSide(), Pieces.PAWN);
-        board.getCell(5, 5).setPiece(side, Pieces.PAWN);
+        board.getCell(5, 4).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
+        board.getCell(5, 5).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
         
         board.getLegalMutations(side);
         System.out.println(board);
 
         System.out.println("--------------------------------------------------------------------");
+        
+        //--------------------------------------------------------------------        
+        
+        board = new BoardBuilder(Pieces.class, Dimension(8, 8)).build();
+        side = Sides.SECOND_SIDE;
+        
+        board.getCell(4, 4).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
+        board.getCell(4, 5).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
+        
+        board.getCell(5, 4).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
+        board.getCell(5, 5).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
+        
+        board.getLegalMutations(side);
+        System.out.println(board);
+
+        System.out.println("--------------------------------------------------------------------");        
 
     }
 
