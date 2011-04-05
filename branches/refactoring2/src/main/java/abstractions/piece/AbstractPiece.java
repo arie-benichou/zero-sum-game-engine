@@ -8,14 +8,17 @@ public abstract class AbstractPiece extends PotentialPiece {
 
     public AbstractPiece(final SideInterface side) {
         super(side);
+        /*
         if (!side.isOneSide()) {
             throw new IllegalArgumentException("Argument 'side' is not intended to be a null side object");
         }
+        */
     }
 
     @Override
     public final boolean isNull() {
-        return false;
+        //return false;
+        return this.getSide().isNull();
     }
 
     @Override
@@ -24,8 +27,11 @@ public abstract class AbstractPiece extends PotentialPiece {
         if (this.getSide().isFirstSide()) {
             consoleView = "x";
         }
-        else {
+        else if (this.getSide().isSecondSide()) {
             consoleView = "o";
+        }
+        else {
+            consoleView = " ";
         }
         return consoleView;
     }

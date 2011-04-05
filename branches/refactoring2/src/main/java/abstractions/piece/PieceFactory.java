@@ -96,6 +96,7 @@ public final class PieceFactory/*<PT extends PieceInterface>*/ {
             throw new IllegalPieceException(side, pieceType);
         }
         catch (InstantiationException e) {
+            System.out.println(e.getMessage());
             throw new IllegalPieceException(side, pieceType);
         }
         catch (IllegalAccessException e) {

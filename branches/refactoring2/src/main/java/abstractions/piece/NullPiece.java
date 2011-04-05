@@ -10,10 +10,9 @@ import abstractions.side.Sides;
 
 import com.google.common.collect.ImmutableSet;
 
-public class NullPiece extends PotentialPiece {
+// TODO ? typer la pièce nulle dynamiquement
+public abstract class NullPiece extends PotentialPiece {
     
-    private final static Set<MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
-
     public NullPiece() {
         super(Sides.NULL_SIDE);
     }
@@ -28,8 +27,6 @@ public class NullPiece extends PotentialPiece {
         return " ";
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
-    }
+    public abstract Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side);
 
 }
