@@ -1,14 +1,6 @@
 
 package abstractions.cell;
 
-import static abstractions.cell.API.*;
-import static abstractions.piece.API.*;
-import static abstractions.piece.API.*;
-import static abstractions.position.API.*;
-import static abstractions.position.API.PositionFactory.*;
-import static abstractions.side.API.*;
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
@@ -24,24 +16,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.Cell;
+import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.absolute.AbsolutePositions;
 
 public class CellTest {
 
     private CellInterface cell;
+    private AbsolutePositions factory;
 
     @Before
     public void setUp() {
 
-        this.cell = new Cell(Position(1, 2));
+        this.factory = AbsolutePositions.getInstance();
+        final AbsolutePositionInterface position = this.factory.getPosition(1, 2);
+        this.cell = new Cell(position);
 
     }
 
     @Test(expected = NullPointerException.class)
     public void testIllegalCell1() {
-        
+
         new Cell(null);
-        
+
     }
 
     @Test
@@ -60,26 +56,26 @@ public class CellTest {
         new Cell(NULL_POSITION);
 
     }
-    
+
     public void testSetPiece1() {
-        
+
         this.cell.setPiece(Piece(FIRST_SIDE));
         assertTrue(this.cell.getPiece().equals(FIRST_SIDE));
-        
+
     }
-    
+
     public void testSetPiece2() {
-        
+
         this.cell.setPiece(Piece(SECOND_SIDE));
         assertTrue(this.cell.getPiece().equals(SECOND_SIDE));
-        
+
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testSetPieceWithNullPointer() {
-        
+
         this.cell.setPiece(null);
-        
+
     }
 
     @Test
@@ -134,14 +130,13 @@ public class CellTest {
         assertFalse(this.cell.equals(yetAnotherCell));
 
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testCompareToNull() {
-    	
+
         this.cell.compareTo(null);
-        
+
     }
-    
 
     @Test
     public void testCompareTo() {

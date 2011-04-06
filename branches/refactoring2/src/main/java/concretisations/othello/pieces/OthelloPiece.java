@@ -4,15 +4,15 @@ package concretisations.othello.pieces;
 import java.util.List;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
-
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 
 public abstract class OthelloPiece extends AbstractPiece implements OthelloPieceInterface {
     
@@ -29,7 +29,7 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             RelativePositions.BOTTOM_LEFT
     );                
     
-    protected final static Set<? extends MutationInterface> EMPTY_MUTATION_SET = ImmutableSet.of();    
+    protected final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();
 
     public OthelloPiece(SideInterface side) {
         super(side);
@@ -63,6 +63,20 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
         }
         return willBeConnected;
     }
+    
+    public final String toString() {
+        String consoleView;
+        if (this.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else if (this.getSide().isSecondSide()) {
+            consoleView = "o";
+        }
+        else {
+            consoleView = " ";
+        }
+        return consoleView;
+    }    
 
     public abstract Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side);
 

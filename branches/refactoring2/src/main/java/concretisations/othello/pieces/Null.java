@@ -14,12 +14,12 @@ import concretisations.othello.mutations.NewPawnMutation;
 
 public class Null extends OthelloPiece implements OthelloPieceInterface {
 
-    public Null() {
-        super(Sides.NULL);
+    public Null(SideInterface side) {
+        super(side);
     }
 
     @Override
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return this.isMutable(cell, side) ? ImmutableSet.of(new NewPawnMutation(cell, side)) : EMPTY_MUTATION_SET;
+        return this.isMutable(cell, side) ? ImmutableSet.of(new NewPawnMutation(cell, side)) : NULL_MUTATIONS;
     }
 }

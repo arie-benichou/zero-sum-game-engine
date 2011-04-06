@@ -27,14 +27,14 @@ import com.google.common.collect.ImmutableSet;
 
 public final class Pawn extends TicTacToePiece {
 
-    private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
+    private final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();
 
     public Pawn(SideInterface side) {
         super(side);
     }
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+        return NULL_MUTATIONS;
     }
 
 }
