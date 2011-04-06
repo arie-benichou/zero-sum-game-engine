@@ -19,18 +19,18 @@ public class PawnTest {
 
     @Before
     public void setUp() throws Exception {
-        this.piece = new Pawn(Sides.FIRST_SIDE);
+        this.piece = new Pawn(Sides.FIRST);
     }
 
     @Test
     public final void testGetSide() {
-        assertTrue(this.piece.getSide().equals(Sides.FIRST_SIDE));
+        assertTrue(this.piece.getSide().equals(Sides.FIRST));
     }
 
     @Test
     public final void testHashCode() {
-        assertTrue(new Pawn(Sides.FIRST_SIDE).hashCode() == this.piece.hashCode());
-        assertFalse(new Pawn(Sides.SECOND_SIDE).hashCode() == this.piece.hashCode());
+        assertTrue(new Pawn(Sides.FIRST).hashCode() == this.piece.hashCode());
+        assertFalse(new Pawn(Sides.SECOND).hashCode() == this.piece.hashCode());
     }
 
     @Test
@@ -38,9 +38,9 @@ public class PawnTest {
         assertTrue(this.piece.equals(this.piece));
         assertFalse(this.piece.equals(null));
         assertFalse(this.piece.equals(new Random()));
-        assertFalse(this.piece.equals(new Pawn(Sides.SECOND_SIDE)));
-        assertTrue(this.piece.equals(new Pawn(Sides.FIRST_SIDE)));
-        assertFalse(this.piece == new Pawn(Sides.FIRST_SIDE));
+        assertFalse(this.piece.equals(new Pawn(Sides.SECOND)));
+        assertTrue(this.piece.equals(new Pawn(Sides.FIRST)));
+        assertFalse(this.piece == new Pawn(Sides.FIRST));
     }
 
     @After

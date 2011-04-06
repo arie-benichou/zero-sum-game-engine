@@ -20,7 +20,7 @@ public class NullTest {
 
     @Before
     public void setUp() throws Exception {
-        this.piece = new Null(Sides.NULL_SIDE);
+        this.piece = new Null(Sides.NULL);
     }
 
     @Test
@@ -30,14 +30,14 @@ public class NullTest {
 
     @Test
     public final void testAbstractPiece() {
-        assertTrue(new Null(Sides.NULL_SIDE).hashCode() == this.piece.hashCode());
-        assertFalse(new Pawn(Sides.FIRST_SIDE).hashCode() == this.piece.hashCode());
-        assertFalse(new Pawn(Sides.SECOND_SIDE).hashCode() == this.piece.hashCode());
+        assertTrue(new Null(Sides.NULL).hashCode() == this.piece.hashCode());
+        assertFalse(new Pawn(Sides.FIRST).hashCode() == this.piece.hashCode());
+        assertFalse(new Pawn(Sides.SECOND).hashCode() == this.piece.hashCode());
     }
 
     @Test
     public final void testGetSide() {
-        assertTrue(this.piece.getSide().equals(Sides.NULL_SIDE));
+        assertTrue(this.piece.getSide().equals(Sides.NULL));
     }
 
     @Test
@@ -45,9 +45,9 @@ public class NullTest {
         assertTrue(this.piece.equals(this.piece));
         assertFalse(this.piece.equals(null));
         assertFalse(this.piece.equals(new Random()));
-        assertFalse(this.piece.equals(new Pawn(Sides.FIRST_SIDE)));
-        assertFalse(this.piece.equals(new Pawn(Sides.SECOND_SIDE)));
-        assertFalse(this.piece == new Null(Sides.NULL_SIDE));
+        assertFalse(this.piece.equals(new Pawn(Sides.FIRST)));
+        assertFalse(this.piece.equals(new Pawn(Sides.SECOND)));
+        assertFalse(this.piece == new Null(Sides.NULL));
     }
 
     @After

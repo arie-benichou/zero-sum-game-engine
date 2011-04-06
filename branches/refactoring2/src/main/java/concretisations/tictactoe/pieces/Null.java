@@ -15,7 +15,7 @@ import concretisations.tictactoe.mutations.NewPawnMutation;
 public class Null extends TicTacToePiece {
 
     public Null() {
-        super(Sides.NULL_SIDE);
+        super(Sides.NULL);
     }
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {

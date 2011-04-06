@@ -6,16 +6,16 @@ public class Sides {
     /**
      * The null object for a side.
      */
-    public final static SideInterface NULL_SIDE = Side.NULL_SIDE;
+    public final static SideInterface NULL = Side.NULL_SIDE;
 
     /**
      * The first side.
      */
-    public final static SideInterface FIRST_SIDE = Side.FIRST_SIDE;
+    public final static SideInterface FIRST = Side.FIRST_SIDE;
 
     /**
      * The second side.
      */
-    public final static SideInterface SECOND_SIDE = Side.SECOND_SIDE;
+    public final static SideInterface SECOND = Side.SECOND_SIDE;
 
 }

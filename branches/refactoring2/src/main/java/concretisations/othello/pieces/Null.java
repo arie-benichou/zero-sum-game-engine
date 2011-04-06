@@ -15,7 +15,7 @@ import concretisations.othello.mutations.NewPawnMutation;
 public class Null extends OthelloPiece implements OthelloPieceInterface {
 
     public Null() {
-        super(Sides.NULL_SIDE);
+        super(Sides.NULL);
     }
 
     @Override

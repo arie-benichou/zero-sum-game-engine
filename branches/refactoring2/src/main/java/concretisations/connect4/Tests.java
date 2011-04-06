@@ -23,7 +23,7 @@ public class Tests {
         List<MutationInterface> legalMutations = null;
         //--------------------------------------------------------------------        
         board = new BoardBuilder(Pieces.class, Dimension(5, 6)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(5, 2).setPiece(side, Pieces.PAWN);
         

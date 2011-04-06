@@ -144,12 +144,12 @@ public final class PieceFactory {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain at least one not-NULL piece type.");
         }
 
-        this.nullPiece = this.createPiece(nullType, Sides.NULL_SIDE);
-        this.pieces.put(this.hash(Sides.NULL_SIDE, nullType), this.nullPiece);
+        this.nullPiece = this.createPiece(nullType, Sides.NULL);
+        this.pieces.put(this.hash(Sides.NULL, nullType), this.nullPiece);
 
         for (final PieceTypeInterface pieceType : piecesAlphabet) {
-            this.pieces.put(this.hash(Sides.FIRST_SIDE, pieceType), this.createPiece(pieceType, Sides.FIRST_SIDE));
-            this.pieces.put(this.hash(Sides.SECOND_SIDE, pieceType), this.createPiece(pieceType, Sides.SECOND_SIDE));
+            this.pieces.put(this.hash(Sides.FIRST, pieceType), this.createPiece(pieceType, Sides.FIRST));
+            this.pieces.put(this.hash(Sides.SECOND, pieceType), this.createPiece(pieceType, Sides.SECOND));
         }
 
     }
