@@ -69,7 +69,7 @@ public interface CellInterface extends Comparable<CellInterface> {
      * 
      * @return true if this cell is the null object, false otherwise
      */
-    boolean isNull();
+    //boolean isNull();
 
     //TODO ! javadoc        
     void setBoard(BoardInterface board);
