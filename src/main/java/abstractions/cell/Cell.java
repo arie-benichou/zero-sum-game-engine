@@ -2,7 +2,6 @@
 package abstractions.cell;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 import abstractions.board.BoardInterface;
 import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
@@ -11,11 +10,11 @@ import abstractions.position.absolute.AbsolutePositionInterface;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
-//TODO enlever la visibilité publique
+// TODO enlever la visibilité publique
 public final class Cell extends AbstractCell {
 
     private BoardInterface board;
-    
+
     private transient PieceInterface piece; //= this.board.getPieceFactory().getNullPiece();
 
     public Cell(final AbsolutePositionInterface position) {
@@ -32,10 +31,10 @@ public final class Cell extends AbstractCell {
     public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
         this.setPiece(this.board.getPieceFactory().Piece(side, pieceType));
     }
-    
+
     public PieceInterface getPiece() {
         return this.piece;
-    }    
+    }
 
     public CellInterface getRelative(RelativePositionInterface relativePosition) {
         return this.board.getCell(relativePosition.computeRow(this.getRow()), relativePosition.computeColumn(this.getColumn()));
@@ -45,11 +44,11 @@ public final class Cell extends AbstractCell {
     public boolean isNull() {
         return false;
     }
-    
+
     public void setBoard(BoardInterface board) {
         this.board = board;
     }
-    
+
     @Override
     public String toString() {
         return this.willGenerateMutations() ? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
