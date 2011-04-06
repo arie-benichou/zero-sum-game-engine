@@ -1,48 +1,44 @@
+
 package abstractions.position.relative;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class RelativePositionTest {
 
+    private RelativePosition relativePosition;
+
     @Before
-    public void setUp() throws Exception {}
-
-    @After
-    public void tearDown() throws Exception {}
-
-    @Test
-    public final void testRelativePosition() {
-        fail("Not yet implemented"); // TODO
+    public void setUp() throws Exception {
+        this.relativePosition = new RelativePosition(1, -1);
     }
 
     @Test
     public final void testGetRowDelta() {
-        fail("Not yet implemented"); // TODO
+        assertTrue(this.relativePosition.getRowDelta() == 1);
     }
 
     @Test
     public final void testGetColumnDelta() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    @Test
-    public final void testToString() {
-        fail("Not yet implemented"); // TODO
+        assertTrue(this.relativePosition.getColumnDelta() == -1);
     }
 
     @Test
     public final void testComputeRow() {
-        fail("Not yet implemented"); // TODO
+        assertTrue(this.relativePosition.computeRow(3) == 4);
     }
 
     @Test
     public final void testComputeColumn() {
-        fail("Not yet implemented"); // TODO
+        assertTrue(this.relativePosition.computeColumn(5) == 4);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        this.relativePosition = null;
     }
 
 }
