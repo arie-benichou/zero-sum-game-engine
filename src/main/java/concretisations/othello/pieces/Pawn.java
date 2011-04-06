@@ -30,7 +30,7 @@ public final class Pawn extends OthelloPiece {
     }
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return EMPTY_MUTATION_SET;
+        return NULL_MUTATIONS;
     }
 
 }

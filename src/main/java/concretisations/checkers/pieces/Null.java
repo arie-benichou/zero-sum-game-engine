@@ -5,17 +5,23 @@ import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.NullPiece;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-public class Null extends NullPiece {
+public class Null extends CheckerPiece {
 
-    private final static Set<? extends MutationInterface> AVAILABLE_MUTATIONS = ImmutableSet.of();
+    // TODO à mettre dans chaque classe abstraite d'une pièce d'un jeu et à laisser mutable    
+    private final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();
+    private final static Set<RelativePositionInterface> NULL_DIRECTIONS = ImmutableSet.of();
+
+    public Null(SideInterface side) {
+        super(side, NULL_DIRECTIONS);
+    }
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return AVAILABLE_MUTATIONS;
+        return NULL_MUTATIONS;
     }
 
 }

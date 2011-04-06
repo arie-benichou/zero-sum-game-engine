@@ -24,7 +24,7 @@ public final class Cell extends AbstractCell {
     }
 
     public void setPiece(final PieceInterface piece) {
-        checkNotNull(piece, "Argument 'piece' is not intended to be null.");
+        //checkNotNull(piece, "Argument 'piece' is not intended to be null.");
         //checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
         this.piece = piece;
     }
@@ -41,23 +41,14 @@ public final class Cell extends AbstractCell {
         return this.board.getCell(relativePosition.computeRow(this.getRow()), relativePosition.computeColumn(this.getColumn()));
     }
 
-    /*
     @Override
     public boolean isNull() {
         return false;
     }
-    */
     
     public void setBoard(BoardInterface board) {
         this.board = board;
     }
-
-    /*
-    @Override
-    public boolean isEmpty() {
-        return this.getPiece().isNull();
-    }
-    */
     
     @Override
     public String toString() {
@@ -67,12 +58,6 @@ public final class Cell extends AbstractCell {
     @Override
     public PieceFactory getPieceFactory() {
         return this.board.getPieceFactory();
-    }
-
-    @Override
-    public boolean isNull() {
-        // TODO Auto-generated method stub
-        return false;
     }
 
 }

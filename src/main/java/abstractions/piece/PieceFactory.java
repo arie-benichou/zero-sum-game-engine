@@ -90,22 +90,22 @@ public final class PieceFactory {
             throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' must implement PieceInterface.");
         }
         catch (IllegalArgumentException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (SecurityException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (InstantiationException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (IllegalAccessException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (InvocationTargetException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (NoSuchMethodException e) {
-            //throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType);
         }
         catch (ClassNotFoundException e) {
             throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' not found.");
@@ -145,6 +145,9 @@ public final class PieceFactory {
         }
 
         this.nullPiece = this.createPiece(nullType, Sides.NULL);
+        
+        System.out.println(this.nullPiece);
+        
         this.pieces.put(this.hash(Sides.NULL, nullType), this.nullPiece);
 
         for (final PieceTypeInterface pieceType : piecesAlphabet) {

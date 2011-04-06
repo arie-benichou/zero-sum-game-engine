@@ -33,7 +33,7 @@ import com.google.common.collect.Sets;
 import concretisations.checkers.mutations.CheckersMutationFactory;
 
 // TODO ? faire une interface
-public abstract class AbstractCheckerPiece extends AbstractPiece {
+public abstract class CheckerPiece extends AbstractPiece {
 
     private static enum PieceAction { // TODO ? piecePromotion/pieceEvolution/pieceAlteration
         JUMP, WALK,
@@ -65,6 +65,8 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
             return
                 side.equals(cell.getPiece().getSide())
                 &&
+                !cell.getRelative(relativePosition).isNull() // TODO ! à améliorer
+                &&
                 side.getNextSide().equals(cell.getRelative(relativePosition).getPiece().getSide())
                 &&
                 cell.getRelative(relativePosition).getRelative(relativePosition).isEmpty()
@@ -81,7 +83,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         return legalRelativePositions;
     }
 
-    public AbstractCheckerPiece(SideInterface side, Set<RelativePositionInterface> directions) {
+    public CheckerPiece(SideInterface side, Set<RelativePositionInterface> directions) {
         super(side);
         this.legalRelativePositions = this.compileLegalRelativePositions(directions);
     }
@@ -107,7 +109,7 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         return options;
     }
 
-    public Set<MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
         Set<RelativePositionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
         for (RelativePositionInterface direction : options) {
@@ -121,5 +123,20 @@ public abstract class AbstractCheckerPiece extends AbstractPiece {
         }
         return availableMutations;
     }
+    
+    public String toString() {
+        String consoleView;
+        if (this.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else if (this.getSide().isSecondSide()) {
+            consoleView = "o";
+        }
+        else {
+            consoleView = " ";
+        }
+        return consoleView;
+    }    
+    
 
 }

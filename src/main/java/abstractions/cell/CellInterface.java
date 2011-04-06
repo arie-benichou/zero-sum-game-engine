@@ -41,13 +41,6 @@ public interface CellInterface extends Comparable<CellInterface> {
     int getColumn();
 
     /**
-     * Returns true if this cell is empty.
-     * 
-     * @return true if this cell is empty
-     */
-    boolean isEmpty();
-
-    /**
      * Returns the piece contained by this cell.
      * 
      * @return the piece contained by this cell
@@ -69,7 +62,9 @@ public interface CellInterface extends Comparable<CellInterface> {
      * 
      * @return true if this cell is the null object, false otherwise
      */
-    //boolean isNull();
+    boolean isNull();
+    
+    boolean isEmpty();
 
     //TODO ! javadoc        
     void setBoard(BoardInterface board);

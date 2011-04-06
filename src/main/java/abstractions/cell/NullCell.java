@@ -22,14 +22,7 @@ public final class NullCell extends AbstractCell {
     public final boolean isNull() {
         return true;
     }
-    
-    /*
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }    
-    */
-    
+        
     @Override
     public boolean willGenerateMutations() {
         return false;
