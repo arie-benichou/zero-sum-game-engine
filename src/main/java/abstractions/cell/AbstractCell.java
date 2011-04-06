@@ -113,7 +113,7 @@ abstract class AbstractCell implements CellInterface {
 
     public abstract boolean isNull();
 
-    public abstract boolean isEmpty();
+    //public abstract boolean isEmpty();
     
     public abstract void setPiece(PieceInterface piece);
     public abstract void setPiece(SideInterface side, PieceTypeInterface pieceType);

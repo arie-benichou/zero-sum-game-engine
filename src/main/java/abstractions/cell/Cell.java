@@ -41,20 +41,24 @@ public final class Cell extends AbstractCell {
         return this.board.getCell(relativePosition.computeRow(this.getRow()), relativePosition.computeColumn(this.getColumn()));
     }
 
+    /*
     @Override
     public boolean isNull() {
         return false;
     }
-
+    */
+    
     public void setBoard(BoardInterface board) {
         this.board = board;
     }
 
+    /*
     @Override
     public boolean isEmpty() {
         return this.getPiece().isNull();
     }
-
+    */
+    
     @Override
     public String toString() {
         return this.willGenerateMutations() ? "(" + this.getPiece() + ")|" : " " + this.getPiece() + " |";
@@ -63,6 +67,12 @@ public final class Cell extends AbstractCell {
     @Override
     public PieceFactory getPieceFactory() {
         return this.board.getPieceFactory();
+    }
+
+    @Override
+    public boolean isNull() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

@@ -5,14 +5,14 @@ import abstractions.board.BoardInterface;
 import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.piece.Pieces;
+import abstractions.piece.mocks.PiecesAlphabetWithoutNullPiece;
 import abstractions.position.absolute.AbsolutePositions;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public final class NullCell extends AbstractCell {
     
-    private final static PieceInterface NULL_PIECE = PiecesAlphabetWithoutNullPiece.NULL_PIECE;
+    //private final static PieceInterface NULL_PIECE = PiecesAlphabetWithoutNullPiece.NULL_PIECE;
 
     public NullCell() {
         super(AbsolutePositions.NULL_POSITION);
@@ -23,11 +23,13 @@ public final class NullCell extends AbstractCell {
         return true;
     }
     
+    /*
     @Override
     public boolean isEmpty() {
         return false;
     }    
-
+    */
+    
     @Override
     public boolean willGenerateMutations() {
         return false;
@@ -55,7 +57,8 @@ public final class NullCell extends AbstractCell {
     
     @Override
     public PieceInterface getPiece() {
-        return NULL_PIECE;
+        //return NULL_PIECE;
+        return null;
     }    
         
     @Override
