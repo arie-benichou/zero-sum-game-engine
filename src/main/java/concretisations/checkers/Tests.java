@@ -24,7 +24,7 @@ public class Tests {
         List<MutationInterface> legalMutations = null;
         //--------------------------------------------------------------------        
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(4, 1).setPiece(side, Pieces.MAN);
         board.getCell(4, 4).setPiece(side, Pieces.MAN);
@@ -46,7 +46,7 @@ public class Tests {
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(4, 1).setPiece(side, Pieces.MAN);
         board.getCell(4, 4).setPiece(side, Pieces.MAN);
@@ -67,7 +67,7 @@ public class Tests {
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(4, 2).setPiece(side, Pieces.MAN);
         board.getCell(4, 4).setPiece(side, Pieces.MAN);
@@ -89,7 +89,7 @@ public class Tests {
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(3, 1).setPiece(side, Pieces.MAN);
         board.getCell(4, 2).setPiece(side, Pieces.MAN);
@@ -112,7 +112,7 @@ public class Tests {
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(10, 10)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         Random random = new Random();
         for (int k = 1; k <= 9 * 9; ++k) {
@@ -135,7 +135,7 @@ public class Tests {
         //--------------------------------------------------------------------
 
         board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
 
         board.getCell(3, 3).setPiece(side.getNextSide(), Pieces.MAN);
         board.getCell(2, 4).setPiece(side.getNextSide(), Pieces.MAN);

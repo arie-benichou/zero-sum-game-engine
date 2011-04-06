@@ -29,14 +29,14 @@ public class PieceFactoryTest {
 
     @Test
     public final void testNullPiece() {
-        assertTrue(this.pieceFactory.NullPiece().equals(new Null(Sides.NULL_SIDE)));
+        assertTrue(this.pieceFactory.NullPiece().equals(new Null(Sides.NULL)));
     }
 
     //@Test
     public final void testPiece() {
-        assertTrue(pieceFactory.Piece(Sides.NULL_SIDE, LegalPiecesAlphabet.NULL).equals(new Null(Sides.NULL_SIDE)));
-        assertTrue(pieceFactory.Piece(Sides.FIRST_SIDE, LegalPiecesAlphabet.PAWN).equals(new Pawn(Sides.FIRST_SIDE)));
-        assertTrue(pieceFactory.Piece(Sides.SECOND_SIDE, LegalPiecesAlphabet.PAWN).equals(new Pawn(Sides.SECOND_SIDE)));
+        assertTrue(pieceFactory.Piece(Sides.NULL, LegalPiecesAlphabet.NULL).equals(new Null(Sides.NULL)));
+        assertTrue(pieceFactory.Piece(Sides.FIRST, LegalPiecesAlphabet.PAWN).equals(new Pawn(Sides.FIRST)));
+        assertTrue(pieceFactory.Piece(Sides.SECOND, LegalPiecesAlphabet.PAWN).equals(new Pawn(Sides.SECOND)));
 
         //TODO à faire dans AbstractPieceTest
         /*

@@ -19,13 +19,13 @@ public class Tests {
         SideInterface side;
         //--------------------------------------------------------------------        
         board = new BoardBuilder(Pieces.class, Dimension(8, 8)).build();
-        side = Sides.FIRST_SIDE;
+        side = Sides.FIRST;
         
-        board.getCell(4, 4).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
-        board.getCell(4, 5).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
+        board.getCell(4, 4).setPiece(Sides.FIRST, Pieces.PAWN);
+        board.getCell(4, 5).setPiece(Sides.SECOND, Pieces.PAWN);
         
-        board.getCell(5, 4).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
-        board.getCell(5, 5).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
+        board.getCell(5, 4).setPiece(Sides.SECOND, Pieces.PAWN);
+        board.getCell(5, 5).setPiece(Sides.FIRST, Pieces.PAWN);
         
         board.getLegalMutations(side);
         System.out.println(board);
@@ -35,13 +35,13 @@ public class Tests {
         //--------------------------------------------------------------------        
         
         board = new BoardBuilder(Pieces.class, Dimension(8, 8)).build();
-        side = Sides.SECOND_SIDE;
+        side = Sides.SECOND;
         
-        board.getCell(4, 4).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
-        board.getCell(4, 5).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
+        board.getCell(4, 4).setPiece(Sides.FIRST, Pieces.PAWN);
+        board.getCell(4, 5).setPiece(Sides.SECOND, Pieces.PAWN);
         
-        board.getCell(5, 4).setPiece(Sides.SECOND_SIDE, Pieces.PAWN);
-        board.getCell(5, 5).setPiece(Sides.FIRST_SIDE, Pieces.PAWN);
+        board.getCell(5, 4).setPiece(Sides.SECOND, Pieces.PAWN);
+        board.getCell(5, 5).setPiece(Sides.FIRST, Pieces.PAWN);
         
         board.getLegalMutations(side);
         System.out.println(board);
