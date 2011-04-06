@@ -23,8 +23,8 @@ import java.util.Set;
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
-import abstractions.position.RelativePositionInterface;
-import abstractions.position.RelativePositions;
+import abstractions.position.relative.RelativePositionInterface;
+import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;

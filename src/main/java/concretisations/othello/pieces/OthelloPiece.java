@@ -10,8 +10,8 @@ import com.google.common.collect.ImmutableSet;
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
-import abstractions.position.RelativePositionInterface;
-import abstractions.position.RelativePositions;
+import abstractions.position.relative.RelativePositionInterface;
+import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
 
 public abstract class OthelloPiece extends AbstractPiece implements OthelloPieceInterface {

@@ -1,5 +1,5 @@
 
-package abstractions.position;
+package abstractions.position.relative;
 
 import java.util.Arrays;
 import java.util.List;

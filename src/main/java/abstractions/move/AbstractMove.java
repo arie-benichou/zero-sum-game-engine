@@ -12,11 +12,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 abstract class AbstractMove implements MoveInterface {
 
     private final PieceInterface piece;
-    private final PositionInterface position;
+    private final AbsolutePositionInterface position;
     
     private volatile int hashCode;
 
-    public AbstractMove(final PositionInterface position, final PieceInterface piece) {
+    public AbstractMove(final AbsolutePositionInterface position, final PieceInterface piece) {
         
         checkNotNull(position, "Argument 'postion' is not intended to be null.");
         checkNotNull(piece, "Argument 'piece' is not intended to be null.");
@@ -25,7 +25,7 @@ abstract class AbstractMove implements MoveInterface {
         this.piece = piece;
     }
 
-    final public PositionInterface getPosition() {
+    final public AbsolutePositionInterface getPosition() {
         return this.position;
     }
 

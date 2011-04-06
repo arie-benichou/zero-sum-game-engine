@@ -1,10 +1,10 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 /**
  * Class for illegal positions.
  */
-public final class IllegalPositionException extends RuntimeException {
+public final class IllegalAbsolutePositionException extends RuntimeException {
 
     private static final String MESSAGE = "Position(row=%d, column=%d) is not a legal position.";
 
@@ -13,7 +13,7 @@ public final class IllegalPositionException extends RuntimeException {
     private int rowIndex;
     private int columnIndex;
 
-    public IllegalPositionException(final int rowIndex, final int columnIndex) {
+    public IllegalAbsolutePositionException(final int rowIndex, final int columnIndex) {
         super();
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;

@@ -1,5 +1,5 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -13,20 +13,20 @@ import com.google.common.collect.Sets;
 /**
  * The position factory.
  */
-public final class Positions {
+public final class AbsolutePositions {
 
     /**
      * The null object for a position.
      */
-    public final static PositionInterface NULL_POSITION = new NullPosition();
+    public final static AbsolutePositionInterface NULL_POSITION = new NullAbsolutePosition();
 
-    private final static Positions INSTANCE = new Positions();
+    private final static AbsolutePositions INSTANCE = new AbsolutePositions();
 
-    public final static Positions getInstance() {
+    public final static AbsolutePositions getInstance() {
         return INSTANCE;
     }
 
-    private Positions() {}
+    private AbsolutePositions() {}
 
     /**
      * Returns a new instance of a position.
@@ -39,12 +39,12 @@ public final class Positions {
      * 
      * @return a new instance of a position
      */
-    public PositionInterface getPosition(final int rowIndex, final int columnIndex) {
+    public AbsolutePositionInterface getPosition(final int rowIndex, final int columnIndex) {
         try {
             return new AbsolutePosition(rowIndex, columnIndex);
         }
         catch (IllegalArgumentException e) {
-            throw new IllegalPositionException(rowIndex, columnIndex);
+            throw new IllegalAbsolutePositionException(rowIndex, columnIndex);
         }
     }
 
@@ -56,9 +56,9 @@ public final class Positions {
      * 
      * @return an unmodifiable set of new positions for a given dimension.
      */
-    public Set<PositionInterface> getAllPositions(final DimensionInterface dimension) {
+    public Set<AbsolutePositionInterface> getAllPositions(final DimensionInterface dimension) {
         checkNotNull(dimension, "Argument 'dimension' is not intended to be null.");
-        final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity());
+        final Set<AbsolutePositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity());
         for (int rowIndex = dimension.lowerBoundForRows(), maxRowIndex = dimension.upperBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
             for (int columnIndex = dimension.lowerBoundForColumns(), maxColumnIndex = dimension.upperBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
                 positions.add(this.getPosition(rowIndex, columnIndex));

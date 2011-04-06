@@ -11,8 +11,8 @@ import abstractions.dimension.API.DimensionInterface;
 import abstractions.dimension.API.IllegalDimensionException;
 import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.Positions;
-import abstractions.position.PositionInterface;
+import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.absolute.AbsolutePositions;
 
 public class BoardBuilder {
 
@@ -21,7 +21,7 @@ public class BoardBuilder {
 
     private DimensionInterface dimension;
 
-    private Positions positionFactory;
+    private AbsolutePositions positionFactory;
 
     private CellFactory cellFactory;
 
@@ -43,7 +43,7 @@ public class BoardBuilder {
     }
 
     // TODO créer une interface pour la positionFactory
-    public BoardBuilder positionFactory(Positions positionFactory) {
+    public BoardBuilder positionFactory(AbsolutePositions positionFactory) {
         this.positionFactory = positionFactory;
         return this;
     }
@@ -71,9 +71,9 @@ public class BoardBuilder {
         // Il doit être possible de fournir une autre factory de positions,
         // en attendant de pouvoir gérer d'autres dimensions que des quadrilatères
         if (this.positionFactory == null) {
-            this.positionFactory = Positions.getInstance();
+            this.positionFactory = AbsolutePositions.getInstance();
         }
-        Set<PositionInterface> positions = this.positionFactory.getAllPositions(this.dimension);
+        Set<AbsolutePositionInterface> positions = this.positionFactory.getAllPositions(this.dimension);
 
         PieceFactory pieceFactory = new PieceFactory(this.pieces);
 

@@ -17,7 +17,7 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.position.RelativePositions;
+import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;

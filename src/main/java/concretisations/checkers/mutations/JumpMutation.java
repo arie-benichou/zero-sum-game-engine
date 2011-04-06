@@ -6,8 +6,8 @@ import java.util.List;
 import abstractions.cell.CellInterface;
 import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
-import abstractions.position.RelativePositionInterface;
-import abstractions.position.RelativePositions;
+import abstractions.position.relative.RelativePositionInterface;
+import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
