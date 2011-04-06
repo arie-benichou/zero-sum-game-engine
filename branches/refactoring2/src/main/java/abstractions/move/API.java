@@ -18,10 +18,10 @@ public class API {
 
         private static final long serialVersionUID = 1L;
 
-        private final PositionInterface position;
+        private final AbsolutePositionInterface position;
         private final PieceInterface piece;
 
-        public IllegalMoveException(final PositionInterface position, final PieceInterface piece) {
+        public IllegalMoveException(final AbsolutePositionInterface position, final PieceInterface piece) {
             super();
             this.position = position;
             this.piece = piece;
@@ -44,7 +44,7 @@ public class API {
          * 
          * @return the position related to this move
          */
-        PositionInterface getPosition();
+        AbsolutePositionInterface getPosition();
 
         /**
          * Returns the piece related to this move.
@@ -64,7 +64,7 @@ public class API {
 
     public final static class MoveFactory {
 
-        public final static MoveInterface Move(PositionInterface position, PieceInterface piece) {
+        public final static MoveInterface Move(AbsolutePositionInterface position, PieceInterface piece) {
             try {
                 return new Move(position, piece);
             }

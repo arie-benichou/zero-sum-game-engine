@@ -9,7 +9,7 @@ import abstractions.side.API.SideInterface;
 //TODO ! à virer, mettre le comportement dans les pièces (pièce nulle comrise)
 public class Connect4Cell extends Cell {
 
-    public Connect4Cell(PositionInterface position) {
+    public Connect4Cell(AbsolutePositionInterface position) {
         super(position);
     }
 

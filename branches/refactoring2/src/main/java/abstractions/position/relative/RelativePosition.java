@@ -1,5 +1,5 @@
 
-package abstractions.position;
+package abstractions.position.relative;
 
 class RelativePosition implements RelativePositionInterface {
 

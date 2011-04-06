@@ -1,7 +1,7 @@
 package concretisations.checkers.mutations;
 
 import abstractions.cell.CellInterface;
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public class CheckersMutationFactory {

@@ -1,10 +1,8 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -16,57 +14,57 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.position.AbsolutePosition;
-import abstractions.position.API.*;
+import abstractions.position.absolute.AbsolutePositionInterface;
 
+public class AbsolutePositionTest {
 
-public class PositionTest {
-
-    private PositionInterface position;
+    private AbsolutePositionInterface position;
 
     @Before
     public void setUp() {
-        
+
         this.position = new AbsolutePosition(1, 2);
-        
+
     }
 
     @Test
     public void testNew() {
 
-        assertEquals(1, this.position.getRow());
-        assertEquals(2, this.position.getColumn());
+        assertTrue(1 == this.position.getRow());
+        assertTrue(2 == this.position.getColumn());
         assertFalse(this.position.isNull());
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew1() {
-        
+
         new AbsolutePosition(0, 0);
-        
+
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew2() {
-        
+
         new AbsolutePosition(-1, 0);
-        
+
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew3() {
-        
+
         new AbsolutePosition(0, -1);
-        
+
     }
-    
+
     @Test
     public void testHashCode() {
 
-        assertEquals(this.position.hashCode(), this.position.hashCode());
-        assertNotSame(this.position.hashCode(), new AbsolutePosition(1, 1).hashCode());
-        assertEquals(this.position.hashCode(), new AbsolutePosition(1, 2).hashCode());
+        assertTrue(this.position.hashCode() == this.position.hashCode());
+        assertTrue(this.position.hashCode() == new AbsolutePosition(1, 2).hashCode());
+
+        assertFalse(this.position.hashCode() == new AbsolutePosition(1, 3).hashCode());
+        assertFalse(this.position.hashCode() == new AbsolutePosition(2, 2).hashCode());
 
     }
 
@@ -74,7 +72,7 @@ public class PositionTest {
     public void testEquals() {
 
         assertTrue(this.position.equals(this.position));
-        assertSame(this.position, this.position);
+        assertTrue(this.position.equals(new AbsolutePosition(1, 2)));
 
         assertFalse(this.position.equals(null));
         assertFalse(this.position.equals(new Random()));
@@ -82,17 +80,15 @@ public class PositionTest {
         assertFalse(this.position.equals(new AbsolutePosition(1, 3)));
         assertFalse(this.position.equals(new AbsolutePosition(2, 2)));
 
-        assertTrue(this.position.equals(new AbsolutePosition(1, 2)));
-        assertNotSame(this.position, new AbsolutePosition(1, 2));
+        assertFalse(this.position == new AbsolutePosition(1, 2));
 
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testCompareToNull() {
-    	
+
         this.position.compareTo(null);
-    }    
-    
+    }
 
     @Test
     public void testCompareTo() {
@@ -108,7 +104,7 @@ public class PositionTest {
     @Test
     public void testOrder() {
 
-        final List<PositionInterface> positions = new ArrayList<PositionInterface>(8);
+        final List<AbsolutePositionInterface> positions = new ArrayList<AbsolutePositionInterface>(8);
 
         positions.add(new AbsolutePosition(1, 4));
         positions.add(new AbsolutePosition(2, 2));
@@ -126,9 +122,9 @@ public class PositionTest {
 
     @After
     public void tearDown() {
-        
+
         this.position = null;
-        
+
     }
 
 }

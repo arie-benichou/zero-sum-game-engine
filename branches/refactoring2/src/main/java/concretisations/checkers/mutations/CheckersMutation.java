@@ -3,7 +3,7 @@ package concretisations.checkers.mutations;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.AbstractMutation;
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public abstract class CheckersMutation extends AbstractMutation implements CheckersMutationInterface {

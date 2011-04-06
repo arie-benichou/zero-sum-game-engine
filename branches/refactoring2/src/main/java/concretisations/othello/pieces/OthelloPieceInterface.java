@@ -2,7 +2,7 @@
 package concretisations.othello.pieces;
 
 import abstractions.cell.CellInterface;
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public interface OthelloPieceInterface {

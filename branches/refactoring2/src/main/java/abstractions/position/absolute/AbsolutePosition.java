@@ -1,9 +1,9 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-final class AbsolutePosition extends AbstractPosition {
+final class AbsolutePosition extends AbstractAbsolutePosition {
 
     public AbsolutePosition(final int row, final int column) {
         super(row, column);

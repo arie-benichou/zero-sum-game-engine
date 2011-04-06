@@ -1,12 +1,9 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotSame;
-import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
-
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,59 +14,51 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.position.NullPosition;
-import abstractions.position.AbsolutePosition;
-import abstractions.position.API.*;
+public class NullAbsolutePositionTest {
 
-
-public class NullPositionTest {
-
-    private PositionInterface position;
+    private AbsolutePositionInterface position;
 
     @Before
     public void setUp() {
-        
-        this.position = new NullPosition();
-        
+
+        this.position = new NullAbsolutePosition();
+
     }
 
     @Test
     public void testNew() {
 
-        assertEquals(0, this.position.getRow());
-        assertEquals(0, this.position.getColumn());
+        assertTrue(0 == this.position.getRow());
+        assertTrue(0 == this.position.getColumn());
         assertTrue(this.position.isNull());
 
     }
 
     @Test
     public void testHashCode() {
-        
-        assertEquals(this.position.hashCode(), this.position.hashCode());
-        assertNotSame(this.position.hashCode(), new AbsolutePosition(1, 1).hashCode());
-        assertEquals(this.position.hashCode(), new NullPosition().hashCode());
-        
+
+        assertTrue(this.position.hashCode() == this.position.hashCode());
+        assertFalse(this.position.hashCode() == new AbsolutePosition(1, 1).hashCode());
+        assertTrue(this.position.hashCode() == new NullAbsolutePosition().hashCode());
+
     }
 
     @Test
     public void testEquals() {
 
-        assertEquals(this.position, this.position);
-        assertSame(this.position, this.position);
-
+        assertTrue(this.position.equals(this.position));
         assertFalse(this.position.equals(null));
         assertFalse(this.position.equals(new Random()));
-
-        assertEquals(this.position, new NullPosition());
-        assertNotSame(this.position, new NullPosition());
+        assertTrue(this.position.equals(new NullAbsolutePosition()));
+        assertFalse(this.position == new NullAbsolutePosition());
 
     }
-    
+
     @Test(expected = NullPointerException.class)
     public void testCompareToNull() {
-    	
+
         this.position.compareTo(null);
-        
+
     }
 
     @Test
@@ -86,7 +75,7 @@ public class NullPositionTest {
     @Test
     public void testOrder() {
 
-        final List<PositionInterface> positions = new ArrayList<PositionInterface>(9);
+        final List<AbsolutePositionInterface> positions = new ArrayList<AbsolutePositionInterface>(9);
 
         positions.add(new AbsolutePosition(1, 4));
         positions.add(new AbsolutePosition(2, 2));
@@ -96,18 +85,18 @@ public class NullPositionTest {
         positions.add(new AbsolutePosition(2, 4));
         positions.add(new AbsolutePosition(1, 3));
         positions.add(new AbsolutePosition(1, 2));
-        positions.add(new NullPosition());
+        positions.add(new NullAbsolutePosition());
 
-        assertEquals(new NullPosition(), Collections.min(positions));
+        assertEquals(new NullAbsolutePosition(), Collections.min(positions));
         assertEquals(new AbsolutePosition(2, 4), Collections.max(positions));
 
     }
 
     @After
     public void tearDown() {
-        
+
         this.position = null;
-        
+
     }
 
 }

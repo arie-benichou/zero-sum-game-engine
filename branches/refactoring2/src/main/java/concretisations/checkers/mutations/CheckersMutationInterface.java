@@ -1,7 +1,7 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.relative.RelativePositionInterface;
 
 interface CheckersMutationInterface {
 

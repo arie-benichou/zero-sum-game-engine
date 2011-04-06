@@ -7,8 +7,8 @@ import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.PositionInterface;
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 
@@ -24,7 +24,7 @@ public interface CellInterface extends Comparable<CellInterface> {
      * 
      * @return the position of this cell
      */
-    PositionInterface getPosition();
+    AbsolutePositionInterface getPosition();
 
     /**
      * Returns the row for this cell.

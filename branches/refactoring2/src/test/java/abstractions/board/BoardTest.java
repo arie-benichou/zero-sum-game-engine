@@ -25,7 +25,7 @@ import concretisations.checkers.pieces.Pieces;
 import abstractions.board.Board;
 import abstractions.cell.API.CellInterface;
 import abstractions.piece.PieceFactory;
-import abstractions.position.RelativePosition;
+import abstractions.position.relative.RelativePosition;
 
 public class BoardTest {
 

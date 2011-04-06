@@ -6,8 +6,8 @@ import abstractions.piece.PieceFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.piece.Pieces;
-import abstractions.position.Positions;
-import abstractions.position.RelativePositionInterface;
+import abstractions.position.absolute.AbsolutePositions;
+import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public final class NullCell extends AbstractCell {
@@ -15,7 +15,7 @@ public final class NullCell extends AbstractCell {
     private final static PieceInterface NULL_PIECE = PiecesAlphabetWithoutNullPiece.NULL_PIECE;
 
     public NullCell() {
-        super(Positions.NULL_POSITION);
+        super(AbsolutePositions.NULL_POSITION);
     }
 
     @Override

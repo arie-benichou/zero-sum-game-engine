@@ -1,16 +1,16 @@
 
-package abstractions.position;
+package abstractions.position.absolute;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-abstract class AbstractPosition implements PositionInterface {
+abstract class AbstractAbsolutePosition implements AbsolutePositionInterface {
 
     private final int row;
     private final int column;
 
     private volatile int hashCode;
 
-    public AbstractPosition(final int row, final int column) {
+    public AbstractAbsolutePosition(final int row, final int column) {
         this.row = row;
         this.column = column;
     }
@@ -54,11 +54,11 @@ abstract class AbstractPosition implements PositionInterface {
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof PositionInterface)) {
+        else if (!(object instanceof AbsolutePositionInterface)) {
             isEqual = false;
         }
         else {
-            final PositionInterface that = (PositionInterface) object;
+            final AbsolutePositionInterface that = (AbsolutePositionInterface) object;
             if (that.hashCode() != this.hashCode()) {
                 isEqual = false;
             }
@@ -69,7 +69,7 @@ abstract class AbstractPosition implements PositionInterface {
         return isEqual;
     }
 
-    public final int compareTo(final PositionInterface position) {
+    public final int compareTo(final AbsolutePositionInterface position) {
 
         //TODO ajouter aux tests unitaires
         checkNotNull(position, "Argument 'position' is not intended to be null.");
