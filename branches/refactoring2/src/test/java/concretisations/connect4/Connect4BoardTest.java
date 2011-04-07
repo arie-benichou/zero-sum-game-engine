@@ -3,9 +3,7 @@ package concretisations.connect4;
 
 import static abstractions.dimension.API.DimensionFactory.Dimension;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
