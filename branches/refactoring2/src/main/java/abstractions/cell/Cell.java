@@ -22,14 +22,16 @@ public final class Cell extends AbstractCell {
         checkArgument(!position.isNull(), "Argument 'position' is not intended to be the null position object");
     }
 
-    public void setPiece(final PieceInterface piece) {
+    public CellInterface setPiece(final PieceInterface piece) {
         //checkNotNull(piece, "Argument 'piece' is not intended to be null.");
         //checkArgument(!piece.isNull(), "Argument 'piece' is not intended to be the null piece object.");
         this.piece = piece;
+        return this;
     }
 
-    public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
+    public CellInterface setPiece(SideInterface side, PieceTypeInterface pieceType) {
         this.setPiece(this.board.getPieceFactory().Piece(side, pieceType));
+        return this;
     }
 
     public PieceInterface getPiece() {

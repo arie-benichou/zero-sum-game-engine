@@ -11,8 +11,6 @@ import abstractions.side.SideInterface;
 
 public final class NullCell extends AbstractCell {
 
-    //private final static PieceInterface NULL_PIECE = PiecesAlphabetWithoutNullPiece.NULL_PIECE;
-
     public NullCell() {
         super(AbsolutePositions.NULL_POSITION);
     }
@@ -38,13 +36,15 @@ public final class NullCell extends AbstractCell {
     }
 
     @Override
-    public final void setPiece(final PieceInterface piece) {
+    public CellInterface setPiece(final PieceInterface piece) {
         //goes into the vacuum...
+        return this;
     }
 
     @Override
-    public void setPiece(SideInterface side, PieceTypeInterface pieceType) {
+    public CellInterface setPiece(SideInterface side, PieceTypeInterface pieceType) {
         //goes into the vacuum...
+        return this;
     }
 
     @Override

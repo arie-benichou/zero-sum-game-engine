@@ -53,9 +53,9 @@ public interface CellInterface extends Comparable<CellInterface> {
      * @param piece
      *            the piece to be contained by this cell
      */
-    void setPiece(final PieceInterface piece);
+    CellInterface setPiece(final PieceInterface piece);
     //TODO ! injecter la factory de pieces au board
-    void setPiece(SideInterface side, PieceTypeInterface pieceType);
+    CellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
 
     /**
      * Returns true if this cell is the null object, false otherwise.

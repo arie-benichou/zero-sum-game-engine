@@ -1,6 +1,8 @@
 
 package abstractions.cell;
 
+
+import static abstractions.dimension.API.DimensionFactory.Dimension;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
@@ -16,21 +18,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.board.BoardBuilder;
+import abstractions.board.BoardInterface;
+import abstractions.piece.mocks.LegalPiecesAlphabet;
 import abstractions.position.absolute.AbsolutePositions;
 import abstractions.side.Sides;
 
 public class CellTest {
 
     private CellInterface cell;
-    private AbsolutePositions factory;
+    private AbsolutePositions positionFactory;
+    private BoardInterface board;
 
     @Before
     public void setUp() {
 
-        this.factory = AbsolutePositions.getInstance();
-        final AbsolutePositionInterface position = this.factory.getPosition(1, 2);
-        this.cell = new Cell(position);
+        this.positionFactory = AbsolutePositions.getInstance();
+        this.board = new BoardBuilder(LegalPiecesAlphabet.class, Dimension(5, 5)).build();
+        this.cell = new Cell(this.positionFactory.getPosition(1, 2));
 
     }
 
@@ -47,20 +52,23 @@ public class CellTest {
         assertFalse(this.cell.isNull());
         assertEquals(1, this.cell.getRow());
         assertEquals(2, this.cell.getColumn());
-        assertEquals(NULL_PIECE, this.cell.getPiece());
+        
+        assertTrue(this.cell.getPiece() == null); // TODO à revoir
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testIllegalNew() {
 
-        new Cell(NULL_POSITION);
+        new Cell(this.positionFactory.getNullPosition());
 
     }
 
+    @Test
     public void testSetPiece1() {
 
-        this.cell.setPiece(Piece(Sides.FIRST));
+        //this.cell.setPiece(Sides.FIRST, LegalPiecesAlphabet.PAWN);
+        this.cell.setPiece(Sides.FIRST, LegalPiecesAlphabet.PAWN);
         assertTrue(this.cell.getPiece().equals(Sides.FIRST));
 
     }
