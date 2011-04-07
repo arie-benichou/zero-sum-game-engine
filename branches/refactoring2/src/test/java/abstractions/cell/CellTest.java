@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import abstractions.position.absolute.AbsolutePositionInterface;
 import abstractions.position.absolute.AbsolutePositions;
+import abstractions.side.Sides;
 
 public class CellTest {
 
@@ -59,15 +60,15 @@ public class CellTest {
 
     public void testSetPiece1() {
 
-        this.cell.setPiece(Piece(FIRST_SIDE));
-        assertTrue(this.cell.getPiece().equals(FIRST_SIDE));
+        this.cell.setPiece(Piece(Sides.FIRST));
+        assertTrue(this.cell.getPiece().equals(Sides.FIRST));
 
     }
 
     public void testSetPiece2() {
 
-        this.cell.setPiece(Piece(SECOND_SIDE));
-        assertTrue(this.cell.getPiece().equals(SECOND_SIDE));
+        this.cell.setPiece(Piece(Sides.SECOND));
+        assertTrue(this.cell.getPiece().equals(Sides.SECOND));
 
     }
 
@@ -87,10 +88,10 @@ public class CellTest {
 
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
 
-        this.cell.setPiece(Piece(FIRST_SIDE));
+        this.cell.setPiece(Piece(Sides.FIRST));
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
 
-        this.cell.setPiece(Piece(SECOND_SIDE));
+        this.cell.setPiece(Piece(Sides.SECOND));
         assertEquals(this.cell.hashCode(), new Cell(Position(1, 2)).hashCode());
 
     }
@@ -109,24 +110,24 @@ public class CellTest {
         assertTrue(this.cell.equals(new Cell(Position(1, 2))));
         assertNotSame(this.cell, new Cell(Position(1, 2)));
 
-        this.cell.setPiece(Piece(FIRST_SIDE));
+        this.cell.setPiece(Piece(Sides.FIRST));
         assertTrue(this.cell.equals(this.cell));
         assertFalse(this.cell.equals(new Cell(Position(1, 2))));
 
-        this.cell.setPiece(Piece(SECOND_SIDE));
+        this.cell.setPiece(Piece(Sides.SECOND));
         assertTrue(this.cell.equals(this.cell));
         assertFalse(this.cell.equals(new Cell(Position(1, 2))));
 
         final CellInterface anotherCell = new Cell(Position(1, 2));
-        anotherCell.setPiece(Piece(FIRST_SIDE));
+        anotherCell.setPiece(Piece(Sides.FIRST));
         assertFalse(this.cell.equals(anotherCell));
 
-        anotherCell.setPiece(Piece(SECOND_SIDE));
+        anotherCell.setPiece(Piece(Sides.SECOND));
         assertTrue(this.cell.equals(anotherCell));
         assertNotSame(this.cell, anotherCell);
 
         final CellInterface yetAnotherCell = new Cell(Position(3, 3));
-        yetAnotherCell.setPiece(Piece(SECOND_SIDE));
+        yetAnotherCell.setPiece(Piece(Sides.SECOND));
         assertFalse(this.cell.equals(yetAnotherCell));
 
     }
