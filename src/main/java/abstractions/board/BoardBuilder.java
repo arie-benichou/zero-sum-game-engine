@@ -2,8 +2,12 @@
 package abstractions.board;
 
 import static abstractions.dimension.API.DimensionFactory.Dimension;
+import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collections;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 
 import abstractions.cell.CellFactory;
 import abstractions.cell.CellInterface;
@@ -80,9 +84,17 @@ public class BoardBuilder {
         if (this.cellFactory == null) {
             this.cellFactory = new CellFactory(pieceFactory);
         }
-        Set<CellInterface> cells = this.cellFactory.cells(positions);
 
-        Board board = new Board(cells);
+        Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
+        for (final AbsolutePositionInterface position : positions) {
+            CellInterface cell = this.cellFactory.cell(position)
+                .setPiece(pieceFactory.NullPiece()
+                        
+            );
+            cells.add(cell);
+        }
+
+        Board board = new Board(Collections.unmodifiableSet(cells));
 
         // TODO ? utiliser la pieceFactory injectée dans la cellFactory, ou bien injecter la cellFactory au board
         board.injectPieceFactory(pieceFactory);

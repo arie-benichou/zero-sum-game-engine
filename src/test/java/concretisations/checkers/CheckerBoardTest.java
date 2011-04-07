@@ -100,7 +100,7 @@ public class CheckerBoardTest {
     ---------------------    
     */
     @Test
-    public void testOnePieceTwoJumpMutation() {
+    public void testOneOpponentPieceTwoJumpMutation() {
         
         BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;
@@ -134,7 +134,7 @@ public class CheckerBoardTest {
     ---------------------
     */
     @Test
-    public void testLegalMutations() {
+    public void testNoMutations() {
         
         BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;        

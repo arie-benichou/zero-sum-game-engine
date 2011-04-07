@@ -28,6 +28,10 @@ public final class AbsolutePositions {
 
     private AbsolutePositions() {}
 
+    public final AbsolutePositionInterface getNullPosition() {
+        return NULL_POSITION;
+    }
+    
     /**
      * Returns a new instance of a position.
      * 

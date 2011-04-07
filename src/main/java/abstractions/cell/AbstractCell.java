@@ -113,8 +113,8 @@ abstract class AbstractCell implements CellInterface {
 
     public abstract boolean isNull();
 
-    public abstract void setPiece(PieceInterface piece);
-    public abstract void setPiece(SideInterface side, PieceTypeInterface pieceType);
+    public abstract CellInterface setPiece(PieceInterface piece);
+    public abstract CellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
     
     public abstract CellInterface getRelative(RelativePositionInterface relativePosition);    
     
