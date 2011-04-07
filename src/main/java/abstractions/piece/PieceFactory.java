@@ -146,7 +146,7 @@ public final class PieceFactory {
 
         this.nullPiece = this.createPiece(nullType, Sides.NULL);
         
-        System.out.println(this.nullPiece);
+        //System.out.println(this.nullPiece);
         
         this.pieces.put(this.hash(Sides.NULL, nullType), this.nullPiece);
 

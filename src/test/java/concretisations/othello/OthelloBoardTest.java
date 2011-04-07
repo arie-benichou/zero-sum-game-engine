@@ -32,9 +32,6 @@ public class OthelloBoardTest {
 
         Set<MutationInterface> legalMutations = board.getLegalMutations(Sides.FIRST);
 
-        for (MutationInterface mutation : legalMutations) {
-            System.out.println(mutation);
-        }
         Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
 
         expectedLegalMutations.add(new NewPawnMutation(board.getCell(4, 6), Sides.FIRST));

@@ -20,6 +20,7 @@ public class IntegersRange extends Range<Integer> implements IntegersRangeInterf
         return 1 + this.getUpperBound() - this.getLowerBound();
     }
 
+    /*
     public static void main(final String[] args) {
 
         final IntegersRange range = new IntegersRange(1, 4);
@@ -35,5 +36,6 @@ public class IntegersRange extends Range<Integer> implements IntegersRangeInterf
 
         System.out.println(range.contains(subRange));
     }
+    */
 
 }
