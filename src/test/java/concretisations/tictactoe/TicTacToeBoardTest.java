@@ -3,8 +3,8 @@ package concretisations.tictactoe;
 
 import static abstractions.dimension.API.DimensionFactory.Dimension;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import abstractions.side.Sides;
 import concretisations.tictactoe.mutations.NewPawnMutation;
 import concretisations.tictactoe.pieces.Pieces;
 
-public class TictacToeBoardTest {
+public class TicTacToeBoardTest {
 
     @Test
     public void testLegalMutations() {
@@ -25,16 +25,12 @@ public class TictacToeBoardTest {
         board.getCell(1, 1).setPiece(Sides.FIRST, Pieces.PAWN);
         board.getCell(1, 2).setPiece(Sides.FIRST, Pieces.PAWN);
         board.getCell(2, 1).setPiece(Sides.FIRST, Pieces.PAWN);
-        System.out.println(board);
 
-        List<MutationInterface> expectedLegalMutations = new ArrayList<MutationInterface>();
-        
+        Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
         expectedLegalMutations.add(new NewPawnMutation(board.getCell(2, 2), Sides.FIRST));
-        System.out.println(expectedLegalMutations);
         
-        List<MutationInterface> legalMutations = board.getLegalMutations(Sides.FIRST);
-        System.out.println(legalMutations);
-
+        Set<MutationInterface> legalMutations = board.getLegalMutations(Sides.FIRST);
+        
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
         
     }
