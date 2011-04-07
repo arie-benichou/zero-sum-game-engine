@@ -128,16 +128,4 @@ public class RelativePositions {
         return reduce(Arrays.asList(relativePositions));
     }
 
-    // TODO ! tests unitaires
-    public static void main(String[] args) {
-
-        System.out.println(RelativePositions.TOP);
-        System.out.println(RelativePositions.LEFT);
-
-        System.out.println(RelativePositions.reduce(RelativePositions.TOP, RelativePositions.LEFT, RelativePositions.BOTTOM));
-        System.out.println(RelativePositions.reduce(RelativePositions.TOP, RelativePositions.LEFT, RelativePositions.BOTTOM, RelativePositions.LEFT));
-        System.out.println(RelativePositions.reduce(RelativePositions.TOP, RelativePositions.LEFT, RelativePositions.BOTTOM, RelativePositions.LEFT));
-
-    }
-
 }

@@ -117,8 +117,6 @@ public class CheckerBoardTest {
         expectedLegalMutations.add(new JumpMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));        
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
-        
-        System.out.println(board);
 
     }
 
@@ -149,8 +147,6 @@ public class CheckerBoardTest {
         Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
-        
-        System.out.println(board);
         
     }
 
