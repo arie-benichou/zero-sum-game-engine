@@ -10,7 +10,7 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-import concretisations.tictactoe.mutations.NewPawnMutation;
+import concretisations.connect4.mutations.NewPawnMutation;
 
 public class Null extends Connect4Piece {
 

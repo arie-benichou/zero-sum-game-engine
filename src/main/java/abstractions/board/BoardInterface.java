@@ -1,7 +1,7 @@
 
 package abstractions.board;
 
-import java.util.List;
+import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
@@ -41,7 +41,7 @@ public interface BoardInterface extends Iterable<CellInterface> {
     CellInterface getUpperBound();
 
     //TODO ! javadoc
-    List<MutationInterface> getLegalMutations(SideInterface side);
+    Set<MutationInterface> getLegalMutations(SideInterface side);
 
     // TODO ? utiliser une interface
     PieceFactory getPieceFactory();
