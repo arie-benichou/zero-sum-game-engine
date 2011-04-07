@@ -20,6 +20,7 @@ import com.google.common.collect.Constraint;
 import com.google.common.collect.Constraints;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 final class Board implements BoardInterface {
 
@@ -93,7 +94,7 @@ final class Board implements BoardInterface {
         return Collections.max(this.boardCells.values());
     }
 
-    public List<MutationInterface> getLegalMutations(SideInterface side) {
+    public Set<MutationInterface> getLegalMutations(SideInterface side) {
 
         List<MutationInterface> availableMutations = Lists.newArrayList();
 
@@ -108,7 +109,7 @@ final class Board implements BoardInterface {
             }
         }
         
-        List<MutationInterface> legalMutations = Lists.newArrayList();        
+        Set<MutationInterface> legalMutations = Sets.newHashSet();        
         
         if(!availableMutations.isEmpty()) {
             int min = Collections.min(availableMutations).getPriority();
