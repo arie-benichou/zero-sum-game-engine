@@ -18,7 +18,14 @@ public interface PieceInterface {
      * @return the side related to this piece
      */
     SideInterface getSide();
+    
+    /**
+     * Returns the type related to this piece.
+     * 
+     * @return the type related to this piece
+     */    
+    PieceTypeInterface getType();
 
-    Set<? extends MutationTypeInterface> computePotentialMutationTypes(final CellInterface cell, SideInterface side);
+    //Set<? extends MutationTypeInterface> computePotentialMutationTypes(final CellInterface cell, SideInterface side);
 
 }

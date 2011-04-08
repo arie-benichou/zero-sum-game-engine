@@ -31,15 +31,21 @@ public abstract class AbstractPiece implements PieceInterface {
     private volatile int hashCode;
     
     private final SideInterface side;
+    private PieceTypeInterface type;
 
-    public AbstractPiece(final SideInterface side) {
+    public AbstractPiece(final SideInterface side, final PieceTypeInterface type) {
         checkNotNull(side, "Argument 'side' is not intended to be null.");
         this.side = side;
+        this.type = type;
     }
 
     public final SideInterface getSide() {
         return this.side;
     }
+    
+    public final PieceTypeInterface getType() {
+        return this.type;
+    }    
 
     @Override
     public final int hashCode() {
@@ -47,7 +53,7 @@ public abstract class AbstractPiece implements PieceInterface {
         if (result == 0) {
             result = 17;
             result *= 31;
-            result += this.getClass().hashCode();
+            result += this.getType().hashCode();
             result *= 31;
             result += this.getSide().hashCode();
             this.hashCode = result;

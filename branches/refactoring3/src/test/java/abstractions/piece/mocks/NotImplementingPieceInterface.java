@@ -21,11 +21,12 @@ import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 public final class NotImplementingPieceInterface {
 
-    public NotImplementingPieceInterface(SideInterface side) {}
+    public NotImplementingPieceInterface(SideInterface side, PieceTypeInterface type) {}
 
     public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
         return null;

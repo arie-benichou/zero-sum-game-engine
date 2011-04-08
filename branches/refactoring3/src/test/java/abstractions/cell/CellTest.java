@@ -20,7 +20,7 @@ import org.junit.Test;
 
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
-import abstractions.piece.mocks.LegalPiecesAlphabet;
+import abstractions.piece.mocks.PieceSet;
 import abstractions.position.absolute.AbsolutePositions;
 import abstractions.side.Sides;
 
@@ -34,7 +34,7 @@ public class CellTest {
     public void setUp() {
 
         this.positionFactory = AbsolutePositions.getInstance();
-        this.board = new BoardBuilder(LegalPiecesAlphabet.class, Dimension(5, 5)).build();
+        this.board = new BoardBuilder(PieceSet.class, Dimension(5, 5)).build();
         this.cell = new Cell(this.positionFactory.getPosition(1, 2));
 
     }
@@ -68,7 +68,7 @@ public class CellTest {
     public void testSetPiece1() {
 
         //this.cell.setPiece(Sides.FIRST, LegalPiecesAlphabet.PAWN);
-        this.cell.setPiece(Sides.FIRST, LegalPiecesAlphabet.PAWN);
+        this.cell.setPiece(Sides.FIRST, PieceSet.PAWN);
         assertTrue(this.cell.getPiece().equals(Sides.FIRST));
 
     }
