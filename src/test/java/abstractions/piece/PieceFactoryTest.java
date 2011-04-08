@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.piece.PieceFactory.IllegalPiecesAlphabetException;
+import abstractions.piece.PieceSetFactory.IllegalPiecesAlphabetException;
 import abstractions.piece.mocks.EmptyPiecesAlphabet;
 import abstractions.piece.mocks.LegalPiecesAlphabet;
 import abstractions.piece.mocks.Null;
@@ -20,11 +20,11 @@ import abstractions.side.Sides;
 
 public class PieceFactoryTest {
 
-    private PieceFactory pieceFactory;
+    private PieceSetFactory pieceFactory;
 
     @Before
     public void setUp() throws Exception {
-        this.pieceFactory = new PieceFactory(LegalPiecesAlphabet.class);
+        this.pieceFactory = new PieceSetFactory(LegalPiecesAlphabet.class);
     }
 
     @Test
@@ -54,27 +54,27 @@ public class PieceFactoryTest {
 
     @Test(expected = IllegalPiecesAlphabetException.class)
     public final void testEmptyPiecesAlphabet() {
-        new PieceFactory(EmptyPiecesAlphabet.class);
+        new PieceSetFactory(EmptyPiecesAlphabet.class);
     }
 
     @Test(expected = IllegalPiecesAlphabetException.class)
     public final void testPiecesAlphabetWithAtLeastOneNotFoundPiece() {
-        new PieceFactory(PiecesAlphabetWithAtLeastOneNotFoundPieceClass.class);
+        new PieceSetFactory(PiecesAlphabetWithAtLeastOneNotFoundPieceClass.class);
     }
 
     @Test(expected = IllegalPiecesAlphabetException.class)
     public final void testPiecesAlphabetWithAtLeastOnePieceClassNotImplementingPieceInterface() {
-        new PieceFactory(PiecesAlphabetWithAtLeastOnePieceClassNotImplementingPieceInterface.class);
+        new PieceSetFactory(PiecesAlphabetWithAtLeastOnePieceClassNotImplementingPieceInterface.class);
     }
 
     @Test(expected = IllegalPiecesAlphabetException.class)
     public final void testPiecesAlphabetWithOnlyNullPiece() {
-        new PieceFactory(PiecesAlphabetWithOnlyNullPiece.class);
+        new PieceSetFactory(PiecesAlphabetWithOnlyNullPiece.class);
     }
 
     @Test(expected = IllegalPiecesAlphabetException.class)
     public final void testPiecesAlphabetWithoutNullPiece() {
-        new PieceFactory(PiecesAlphabetWithoutNullPiece.class);
+        new PieceSetFactory(PiecesAlphabetWithoutNullPiece.class);
     }
 
     @After

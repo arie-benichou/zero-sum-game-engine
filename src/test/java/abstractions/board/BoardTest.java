@@ -24,7 +24,7 @@ import concretisations.checkers.pieces.Pieces;
 
 import abstractions.board.Board;
 import abstractions.cell.API.CellInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.position.relative.RelativePosition;
 
 public class BoardTest {
@@ -34,7 +34,7 @@ public class BoardTest {
     @Before
     public void setUp() {
         this.board = Board(2, 3);
-        this.board.injectPieceFactory(new PieceFactory(Pieces.class));
+        this.board.injectPieceFactory(new PieceSetFactory(Pieces.class));
     }
 
     @Test

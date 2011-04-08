@@ -6,7 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collections;
 import java.util.Set;
 
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.position.absolute.AbsolutePositionInterface;
 
@@ -17,9 +17,9 @@ import com.google.common.collect.Sets;
  */
 public final class CellFactory {
 
-    private PieceFactory pieceFactory;
+    private PieceSetFactory pieceFactory;
 
-    public CellFactory(PieceFactory pieceFactory) {
+    public CellFactory(PieceSetFactory pieceFactory) {
         this.pieceFactory = pieceFactory;
     }
 

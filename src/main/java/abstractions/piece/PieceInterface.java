@@ -19,6 +19,6 @@ public interface PieceInterface {
      */
     SideInterface getSide();
 
-    Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side);
+    Set<? extends MutationTypeInterface> computePotentialMutationTypes(final CellInterface cell, SideInterface side);
 
 }
