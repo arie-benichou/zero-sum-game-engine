@@ -12,7 +12,7 @@ import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Strings;
@@ -39,13 +39,13 @@ final class Board implements BoardInterface {
 
     private final Map<String, CellInterface> boardCells;
 
-    private transient PieceFactory pieceFactory;
+    private transient PieceSetFactory pieceFactory;
     
-    public void injectPieceFactory(final PieceFactory pieceFactory) {
+    public void injectPieceFactory(final PieceSetFactory pieceFactory) {
         this.pieceFactory = pieceFactory;
     }    
 
-    public PieceFactory getPieceFactory() {
+    public PieceSetFactory getPieceFactory() {
         return this.pieceFactory;
     }    
 

@@ -17,13 +17,15 @@
 
 package abstractions.piece;
 
-import static com.google.common.base.CaseFormat.*;
+import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
+import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
@@ -31,60 +33,19 @@ import abstractions.side.Sides;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-public final class PieceFactory {
+public final class PieceSetFactory implements PieceSetFactoryInterface {
 
-    /**
-     * Class for illegal pieces alphabet.
-     */
-    public static final class IllegalPiecesAlphabetException extends RuntimeException {
+    private String path;
 
-        private static final long serialVersionUID = 1L;
-
-        public IllegalPiecesAlphabetException(String message) {
-            super(message);
-        }
-
+    public PieceSetFactory(String path) {
+        this.path = path;
     }
 
-    /**
-     * Class for illegal pieces.
-     */
-    public static final class IllegalPieceException extends RuntimeException {
-
-        private static final String MESSAGE = "Piece(side=%s, type=%s) is not a legal piece.";
-
-        private static final long serialVersionUID = 1L;
-
-        private SideInterface side;
-        private PieceTypeInterface pieceType;
-
-        public IllegalPieceException(final SideInterface side, final PieceTypeInterface pieceType) {
-            super();
-            this.side = side;
-            this.pieceType = pieceType;
-        }
-
-        @Override
-        public String getMessage() {
-            return String.format(MESSAGE, this.side, this.pieceType);
-        }
-
-    }
-
-    private final String path;
-    private final Map<Integer, PieceInterface> pieces;
-    private final PieceInterface nullPiece;
-
-    //    @SuppressWarnings("unchecked")
-    private final PieceInterface createPiece(final PieceTypeInterface pieceType, final SideInterface side) {
-        String type = pieceType.toString();
-        //type = Character.toUpperCase(type.charAt(0)) + type.substring(1).toLowerCase();
-        
-        type = LOWER_UNDERSCORE.to(UPPER_CAMEL, type);
-        
+    private final PieceInterface newPiece(final SideInterface side, final PieceTypeInterface pieceType) {
         PieceInterface pieceInstance = null;
         try {
-            pieceInstance = (PieceInterface) Class.forName(this.path + "." + type).getConstructor(SideInterface.class).newInstance(side);
+            pieceInstance = (PieceInterface) Class.forName(this.path + "." + LOWER_UNDERSCORE.to(UPPER_CAMEL, pieceType.toString()))
+                    .getConstructor(SideInterface.class).newInstance(side);
         }
         catch (ClassCastException e) {
             throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' must implement PieceInterface.");
@@ -113,16 +74,7 @@ public final class PieceFactory {
         return pieceInstance;
     }
 
-    private final int hash(final SideInterface side, final PieceTypeInterface pieceType) {
-        return side.hashCode() + pieceType.hashCode();
-    }
-
-    public <T extends Enum<T> & PieceTypeInterface> PieceFactory(final Class<T> piecesSet) {
-
-        this.path = piecesSet.getPackage().getName();
-        this.pieces = Maps.newHashMapWithExpectedSize(2 * piecesSet.getEnumConstants().length);
-
-        HashSet<T> piecesAlphabet = Sets.newHashSet(piecesSet.getEnumConstants());
+    public <T extends Enum<T> & PieceTypeInterface> Set<PieceInterface> newPieceSet(final Class<T> piecesSet) {
 
         if (piecesAlphabet.isEmpty()) {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName()
@@ -144,34 +96,17 @@ public final class PieceFactory {
             throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain at least one not-NULL piece type.");
         }
 
-        this.nullPiece = this.createPiece(nullType, Sides.NULL);
-        
+        this.nullPiece = this.newPiece(nullType, Sides.NULL);
+
         //System.out.println(this.nullPiece);
-        
+
         this.pieces.put(this.hash(Sides.NULL, nullType), this.nullPiece);
 
         for (final PieceTypeInterface pieceType : piecesAlphabet) {
-            this.pieces.put(this.hash(Sides.FIRST, pieceType), this.createPiece(pieceType, Sides.FIRST));
-            this.pieces.put(this.hash(Sides.SECOND, pieceType), this.createPiece(pieceType, Sides.SECOND));
+            this.pieces.put(this.hash(Sides.FIRST, pieceType), this.newPiece(pieceType, Sides.FIRST));
+            this.pieces.put(this.hash(Sides.SECOND, pieceType), this.newPiece(pieceType, Sides.SECOND));
         }
 
-    }
-
-    public final PieceInterface NullPiece() {
-        return this.nullPiece;
-    }
-
-    public PieceInterface Piece(final SideInterface side, final PieceTypeInterface pieceType) {
-        PieceInterface piece = this.pieces.get(this.hash(side, pieceType));
-        if (piece == null) {
-            throw new IllegalPieceException(side, pieceType);
-        }
-        return piece;
-    }
-
-    public static void main(String[] args) {
-
-        //System.out.println(result);
     }
 
 }

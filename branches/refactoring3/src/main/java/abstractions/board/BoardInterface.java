@@ -5,7 +5,7 @@ import java.util.Set;
 
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.side.SideInterface;
 
 /**
@@ -44,9 +44,9 @@ public interface BoardInterface extends Iterable<CellInterface> {
     Set<MutationInterface> getLegalMutations(SideInterface side);
 
     // TODO ? utiliser une interface
-    PieceFactory getPieceFactory();
+    PieceSetFactory getPieceFactory();
 
     //TODO ! javadoc
-    void injectPieceFactory(PieceFactory pieceFactory);
+    void injectPieceFactory(PieceSetFactory pieceFactory);
 
 }

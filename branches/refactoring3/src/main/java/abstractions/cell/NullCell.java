@@ -2,7 +2,7 @@
 package abstractions.cell;
 
 import abstractions.board.BoardInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.absolute.AbsolutePositions;
@@ -60,7 +60,7 @@ public final class NullCell extends AbstractCell {
     }
 
     @Override
-    public PieceFactory getPieceFactory() {
+    public PieceSetFactory getPieceFactory() {
         // TODO à revoir
         return null;
     }

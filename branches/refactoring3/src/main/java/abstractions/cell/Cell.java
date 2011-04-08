@@ -3,7 +3,7 @@ package abstractions.cell;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import abstractions.board.BoardInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.absolute.AbsolutePositionInterface;
@@ -57,7 +57,7 @@ public final class Cell extends AbstractCell {
     }
 
     @Override
-    public PieceFactory getPieceFactory() {
+    public PieceSetFactory getPieceFactory() {
         return this.board.getPieceFactory();
     }
 

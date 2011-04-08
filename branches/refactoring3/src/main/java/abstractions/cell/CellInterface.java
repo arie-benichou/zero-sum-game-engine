@@ -4,7 +4,7 @@ import java.util.Set;
 
 import abstractions.board.BoardInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceFactory;
+import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.absolute.AbsolutePositionInterface;
@@ -54,7 +54,7 @@ public interface CellInterface extends Comparable<CellInterface> {
      *            the piece to be contained by this cell
      */
     CellInterface setPiece(final PieceInterface piece);
-    //TODO ! injecter la factory de pieces au board
+
     CellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
 
     /**
@@ -69,7 +69,7 @@ public interface CellInterface extends Comparable<CellInterface> {
     //TODO ! javadoc        
     void setBoard(BoardInterface board);
     
-    PieceFactory getPieceFactory();
+    PieceSetFactory getPieceFactory();
 
     //TODO ! javadoc
     //TODO ? utiliser un facteur (times)    
