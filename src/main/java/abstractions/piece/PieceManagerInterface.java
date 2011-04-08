@@ -1,8 +1,10 @@
+
 package abstractions.piece;
 
+import abstractions.side.SideInterface;
 
 public interface PieceManagerInterface {
 
-    PieceInterface getPiece(SideInterface Side, PieceTypeInterface PieceType);
-    
+    PieceInterface getPiece(SideInterface side, PieceTypeInterface type);
+
 }

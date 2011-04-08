@@ -19,7 +19,9 @@ package abstractions.piece.mocks;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum EmptyPiecesAlphabet implements PieceTypeInterface {
+public enum PieceSetWithAtLeastOneNotFoundPieceClass implements PieceTypeInterface {
 
-
+    NULL,
+    PAWN,
+    SOULD_BE_NOT_FOUND;
 }

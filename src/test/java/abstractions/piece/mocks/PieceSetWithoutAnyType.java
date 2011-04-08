@@ -17,9 +17,9 @@
 
 package abstractions.piece.mocks;
 
-public enum PiecesAlphabetNotImplementingPieceTypeInterface /*implements PieceTypeInterface*/{
+import abstractions.piece.PieceTypeInterface;
 
-    NULL,
-    PAWN;
-    
+public enum PieceSetWithoutAnyType implements PieceTypeInterface {
+
+
 }

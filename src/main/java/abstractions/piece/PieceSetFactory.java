@@ -23,32 +23,26 @@ import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 public final class PieceSetFactory implements PieceSetFactoryInterface {
 
-    private String path;
-
-    public PieceSetFactory(String path) {
-        this.path = path;
-    }
-
-    private final PieceInterface newPiece(final SideInterface side, final PieceTypeInterface pieceType) {
+    private final PieceInterface newPiece(final String path, final PieceTypeInterface pieceType, final SideInterface side) {
+        System.out.println("Construction d'une pièce " + path + " " + pieceType + " " + side);
+        
         PieceInterface pieceInstance = null;
         try {
-            pieceInstance = (PieceInterface) Class.forName(this.path + "." + LOWER_UNDERSCORE.to(UPPER_CAMEL, pieceType.toString()))
-                    .getConstructor(SideInterface.class).newInstance(side);
+            pieceInstance = (PieceInterface) Class.forName(path + "." + LOWER_UNDERSCORE.to(UPPER_CAMEL, pieceType.toString()))
+                    .getConstructor(SideInterface.class, PieceTypeInterface.class).newInstance(side, pieceType);
         }
         catch (ClassCastException e) {
-            throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' must implement PieceInterface.");
+            throw new IllegalPieceSetException("Class '" + pieceType + "' must implement PieceInterface.");
         }
         catch (IllegalArgumentException e) {
             throw new IllegalPieceException(side, pieceType);
@@ -69,44 +63,45 @@ public final class PieceSetFactory implements PieceSetFactoryInterface {
             throw new IllegalPieceException(side, pieceType);
         }
         catch (ClassNotFoundException e) {
-            throw new IllegalPiecesAlphabetException("Class '" + pieceType + "' not found.");
+            throw new IllegalPieceSetException("Class '" + pieceType + "' not found.");
         }
         return pieceInstance;
     }
 
-    public <T extends Enum<T> & PieceTypeInterface> Set<PieceInterface> newPieceSet(final Class<T> piecesSet) {
+    public <T extends Enum<T> & PieceTypeInterface> Set<PieceInterface> newPieceSet(final Class<T> pieceTypeSetClass) {
 
-        if (piecesAlphabet.isEmpty()) {
-            throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName()
+        String path = pieceTypeSetClass.getPackage().getName();
+
+        HashSet<T> pieceTypeSet = Sets.newHashSet(pieceTypeSetClass.getEnumConstants());
+
+        if (pieceTypeSet.isEmpty()) {
+            throw new IllegalPieceSetException("Alphabet " + pieceTypeSetClass.getSimpleName()
                     + " must contain the NULL piece type and at least one not-NULL piece type.");
         }
 
-        Iterator<T> piecesAlphabetIterator = piecesAlphabet.iterator();
+        Iterator<T> piecesAlphabetIterator = pieceTypeSet.iterator();
         T nullType = null;
         try {
-            while (!(nullType = piecesAlphabetIterator.next()).name().toLowerCase().equals("null"))
-                ;
+            while (!(nullType = piecesAlphabetIterator.next()).name().toLowerCase().equals("null"));
         }
         catch (NoSuchElementException e) {
-            throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain the NULL piece type.");
+            throw new IllegalPieceSetException("Alphabet " + pieceTypeSetClass.getSimpleName() + " must contain the NULL piece type.");
         }
-        piecesAlphabet.remove(nullType);
+        pieceTypeSet.remove(nullType);
 
-        if (piecesAlphabet.isEmpty()) {
-            throw new IllegalPiecesAlphabetException("Alphabet " + piecesSet.getSimpleName() + " must contain at least one not-NULL piece type.");
-        }
-
-        this.nullPiece = this.newPiece(nullType, Sides.NULL);
-
-        //System.out.println(this.nullPiece);
-
-        this.pieces.put(this.hash(Sides.NULL, nullType), this.nullPiece);
-
-        for (final PieceTypeInterface pieceType : piecesAlphabet) {
-            this.pieces.put(this.hash(Sides.FIRST, pieceType), this.newPiece(pieceType, Sides.FIRST));
-            this.pieces.put(this.hash(Sides.SECOND, pieceType), this.newPiece(pieceType, Sides.SECOND));
+        if (pieceTypeSet.isEmpty()) {
+            throw new IllegalPieceSetException("Alphabet " + pieceTypeSetClass.getSimpleName() + " must contain at least one not-NULL piece type.");
         }
 
+        HashSet<PieceInterface> pieceSet = Sets.newHashSetWithExpectedSize(2 * pieceTypeSet.size() - 1);
+
+        pieceSet.add(this.newPiece(path, nullType, Sides.NULL));
+        for (final PieceTypeInterface pieceType : pieceTypeSet) {
+            pieceSet.add(this.newPiece(path, pieceType, Sides.FIRST));
+            pieceSet.add(this.newPiece(path, pieceType, Sides.SECOND));
+        }
+
+        return pieceSet;
     }
 
 }

@@ -19,9 +19,8 @@ package abstractions.piece.mocks;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum LegalPiecesAlphabet implements PieceTypeInterface {
+public enum PieceSetWithoutNullType implements PieceTypeInterface {
 
-    NULL,
     PAWN;
-    
+
 }
