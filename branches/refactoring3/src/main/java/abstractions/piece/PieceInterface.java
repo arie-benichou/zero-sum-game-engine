@@ -4,7 +4,6 @@ package abstractions.piece;
 import java.util.Set;
 
 import abstractions.cell.CellInterface;
-import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
 /**
@@ -18,12 +17,12 @@ public interface PieceInterface {
      * @return the side related to this piece
      */
     SideInterface getSide();
-    
+
     /**
      * Returns the type related to this piece.
      * 
      * @return the type related to this piece
-     */    
+     */
     PieceTypeInterface getType();
 
     Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, SideInterface side);

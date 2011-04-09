@@ -18,7 +18,7 @@
 package abstractions.piece;
 
 /**
- * This is the interface for a type of piece.
- * It's a marker interface in order to simulate inheritance for enum. 
+ * This is the interface for a type of piece. It's a marker interface in order
+ * to simulate inheritance for enum.
  */
 public interface PieceTypeInterface {}

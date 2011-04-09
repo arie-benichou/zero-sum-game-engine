@@ -33,7 +33,6 @@ public final class Pawn extends AbstractPiece {
 
     @Override
     public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, final SideInterface side) {
-        // TODO Auto-generated method stub
         return null;
     }
 
