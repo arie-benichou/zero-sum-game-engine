@@ -21,7 +21,7 @@ public class Null extends AbstractPiece {
 
     @Override
     public String toString() {
-        return null;
+        return this.getType() + " " + this.getSide();
     }
 
 }
