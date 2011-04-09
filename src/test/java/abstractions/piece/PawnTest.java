@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.piece.mocks.Pawn;
+import abstractions.piece.mocks.PieceSet;
 import abstractions.side.Sides;
 
 public class PawnTest {
@@ -19,7 +20,7 @@ public class PawnTest {
 
     @Before
     public void setUp() throws Exception {
-        this.piece = new Pawn(Sides.FIRST);
+        this.piece = new Pawn(Sides.FIRST, PieceSet.PAWN);
     }
 
     @Test
@@ -29,8 +30,8 @@ public class PawnTest {
 
     @Test
     public final void testHashCode() {
-        assertTrue(new Pawn(Sides.FIRST).hashCode() == this.piece.hashCode());
-        assertFalse(new Pawn(Sides.SECOND).hashCode() == this.piece.hashCode());
+        assertTrue(new Pawn(Sides.FIRST, PieceSet.PAWN).hashCode() == this.piece.hashCode());
+        assertFalse(new Pawn(Sides.SECOND, PieceSet.PAWN).hashCode() == this.piece.hashCode());
     }
 
     @Test
@@ -38,9 +39,9 @@ public class PawnTest {
         assertTrue(this.piece.equals(this.piece));
         assertFalse(this.piece.equals(null));
         assertFalse(this.piece.equals(new Random()));
-        assertFalse(this.piece.equals(new Pawn(Sides.SECOND)));
-        assertTrue(this.piece.equals(new Pawn(Sides.FIRST)));
-        assertFalse(this.piece == new Pawn(Sides.FIRST));
+        assertFalse(this.piece.equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
+        assertTrue(this.piece.equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
+        assertFalse(this.piece == new Pawn(Sides.FIRST, PieceSet.PAWN));
     }
 
     @After

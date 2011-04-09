@@ -85,7 +85,8 @@ public abstract class AbstractPiece implements PieceInterface {
         return isEqual;
     }
 
-    public abstract Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side);
+    @Override
+    public abstract Set<? extends PieceActionTypeInterface> computePotentialActionTypes(CellInterface cell, SideInterface side);
     
     public abstract String toString();    
 
