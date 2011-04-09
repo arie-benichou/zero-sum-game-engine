@@ -32,9 +32,4 @@ public final class NotImplementingPieceInterface {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
-
 }

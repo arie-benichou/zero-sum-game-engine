@@ -1,10 +1,24 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package abstractions.side;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,54 +36,54 @@ public class SideTest {
     @Test
     public final void testIsFirstSide() {
 
-        assertTrue(this.side.isFirstSide());
-        assertFalse(Side.SECOND_SIDE.isFirstSide());
-        assertFalse(Side.NULL_SIDE.isFirstSide());
+        Assert.assertTrue(this.side.isFirstSide());
+        Assert.assertFalse(Side.SECOND_SIDE.isFirstSide());
+        Assert.assertFalse(Side.NULL_SIDE.isFirstSide());
 
     }
 
     @Test
     public final void testIsSecondSide() {
 
-        assertTrue(Side.SECOND_SIDE.isSecondSide());
-        assertFalse(side.isSecondSide());
-        assertFalse(Side.NULL_SIDE.isSecondSide());
+        Assert.assertTrue(Side.SECOND_SIDE.isSecondSide());
+        Assert.assertFalse(this.side.isSecondSide());
+        Assert.assertFalse(Side.NULL_SIDE.isSecondSide());
 
     }
 
     @Test
     public final void testIsOneSide() {
 
-        assertTrue(this.side.isOneSide());
-        assertTrue(Side.SECOND_SIDE.isOneSide());
-        assertFalse(Side.NULL_SIDE.isOneSide());
+        Assert.assertTrue(this.side.isOneSide());
+        Assert.assertTrue(Side.SECOND_SIDE.isOneSide());
+        Assert.assertFalse(Side.NULL_SIDE.isOneSide());
 
     }
 
     @Test
     public final void testIsNull() {
 
-        assertTrue(Side.NULL_SIDE.isNull());
-        assertFalse(this.side.isNull());
-        assertFalse(Side.SECOND_SIDE.isNull());
+        Assert.assertTrue(Side.NULL_SIDE.isNull());
+        Assert.assertFalse(this.side.isNull());
+        Assert.assertFalse(Side.SECOND_SIDE.isNull());
 
     }
 
     @Test
     public final void testGetNextSide() {
 
-        assertTrue(Side.SECOND_SIDE == this.side.getNextSide());
-        assertTrue(this.side == Side.SECOND_SIDE.getNextSide());
-        assertTrue(Side.NULL_SIDE == Side.NULL_SIDE.getNextSide());
+        Assert.assertTrue(Side.SECOND_SIDE == this.side.getNextSide());
+        Assert.assertTrue(this.side == Side.SECOND_SIDE.getNextSide());
+        Assert.assertTrue(Side.NULL_SIDE == Side.NULL_SIDE.getNextSide());
 
     }
 
     @Test
     public final void testGetNegation() {
 
-        assertTrue(Side.NOT_FIRST_SIDE == this.side.getNegation());
-        assertTrue(Side.NOT_SECOND_SIDE == Side.SECOND_SIDE.getNegation());
-        assertTrue(Side.NULL_SIDE == Side.NULL_SIDE.getNegation());
+        Assert.assertTrue(Side.NOT_FIRST_SIDE == this.side.getNegation());
+        Assert.assertTrue(Side.NOT_SECOND_SIDE == Side.SECOND_SIDE.getNegation());
+        Assert.assertTrue(Side.NULL_SIDE == Side.NULL_SIDE.getNegation());
 
     }
 

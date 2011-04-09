@@ -18,33 +18,34 @@
 /**
  * API related to dimensions.
  */
+
 package abstractions.dimension;
 
 public final class API {
-	
-	/**
-	 * Class for illegal dimension exceptions.
-	 */	
+
+    /**
+     * Class for illegal dimension exceptions.
+     */
     public static class IllegalDimensionException extends RuntimeException {
-    		
+
         private static final String MESSAGE = "Dimension(numberOfRows=%d, numberOfColumns=%d) is not a legal dimension.";
-        
+
         private static final long serialVersionUID = 1L;
-        
-        private int numberOfRows;
-        private int numberOfColumns;
-        
+
+        private final int numberOfRows;
+        private final int numberOfColumns;
+
         public IllegalDimensionException(final int numberOfRows, final int numberOfColumns) {
             super();
             this.numberOfRows = numberOfRows;
             this.numberOfColumns = numberOfColumns;
         }
-        
+
         @Override
         public String getMessage() {
-            return String.format(MESSAGE, this.numberOfRows, this.numberOfColumns);
-        }		
-    		
+            return String.format(IllegalDimensionException.MESSAGE, this.numberOfRows, this.numberOfColumns);
+        }
+
     }
 
     /**
@@ -123,14 +124,15 @@ public final class API {
      */
     public final static class DimensionFactory {
 
-        public static  DimensionInterface Dimension(final int numberOfRows, final int numberOfColumns) {
-        	
+        public static DimensionInterface Dimension(final int numberOfRows, final int numberOfColumns) {
+
             try {
-				return new Dimension(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
-			} catch (IllegalArgumentException e) {
-				throw new IllegalDimensionException(numberOfRows, numberOfColumns);
-			}
-            
+                return new Dimension(new RowsRange(1, numberOfRows), new ColumnsRange(1, numberOfColumns));
+            }
+            catch (final IllegalArgumentException e) {
+                throw new IllegalDimensionException(numberOfRows, numberOfColumns);
+            }
+
         }
     }
 

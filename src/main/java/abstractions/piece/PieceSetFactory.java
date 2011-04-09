@@ -107,8 +107,4 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
         return Collections.unmodifiableSet(pieceSet);
     }
 
-    public static void main(final String[] args) {
-        final PieceSetFactory pieceSetFactory = new PieceSetFactory();
-    }
-
 }
