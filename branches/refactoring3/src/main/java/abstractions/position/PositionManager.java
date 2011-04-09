@@ -17,6 +17,7 @@
 
 package abstractions.position;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import abstractions.dimension.API.DimensionInterface;
 
 import com.google.common.collect.Maps;
 
-public class PositionManager implements PositionManagerInterface {
+public final class PositionManager implements PositionManagerInterface {
 
     public static interface DirectionInterface {
 
@@ -127,8 +128,8 @@ public class PositionManager implements PositionManagerInterface {
         // -------------        
         BOTTOM_LEFT(1, -1);
 
-        private int rowDelta;
-        private int columnDelta;
+        private final int rowDelta;
+        private final int columnDelta;
 
         private Direction(final int rowDelta, final int columnDelta) {
             this.rowDelta = rowDelta;
@@ -146,18 +147,18 @@ public class PositionManager implements PositionManagerInterface {
         }
 
         @Override
-        public String toString() {
+        public final String toString() {
             return "[rowDelta = " + this.getRowDelta() + "]" + "[columnDelta = " + this.getColumnDelta() + "]";
         }
 
     }
 
-    private final PositionSetFactoryInterface factory = new PositionSetFactory();
-    private final Map<Integer, PositionInterface> data;
-    private final int hashBase;
+    private final static PositionSetFactoryInterface factory = new PositionSetFactory();
 
-    private final PositionInterface nullPosition;
     private final DimensionInterface dimension;
+    private final int hashBase;
+    private final Map<Integer, PositionInterface> data;
+    private final PositionInterface nullPosition;
 
     private final int hash(final int row, final int column) {
         return this.hashBase * row + column;
@@ -168,14 +169,18 @@ public class PositionManager implements PositionManagerInterface {
         return this.data.get(0);
     }
 
+    private Map<Integer, PositionInterface> initializeData(final Set<PositionInterface> set) {
+        final Map<Integer, PositionInterface> data = Maps.newHashMapWithExpectedSize(set.size());
+        for (final PositionInterface element : set) {
+            data.put(this.hash(element.getRow(), element.getColumn()), element);
+        }
+        return Collections.unmodifiableMap(data);
+    }
+
     public PositionManager(final DimensionInterface dimension) {
         this.dimension = dimension;
         this.hashBase = Math.max(dimension.numberOfRows(), dimension.numberOfColumns());
-        final Set<PositionInterface> set = this.factory.newPositionSet(dimension);
-        this.data = Maps.newHashMapWithExpectedSize(set.size());
-        for (final PositionInterface element : set) {
-            this.data.put(this.hash(element.getRow(), element.getColumn()), element);
-        }
+        this.data = this.initializeData(PositionManager.factory.newPositionSet(this.dimension));
         this.nullPosition = this.getNullPosition();
     }
 
