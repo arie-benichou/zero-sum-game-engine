@@ -18,6 +18,7 @@
 package abstractions.position;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -200,5 +201,10 @@ public final class PositionManager implements PositionManagerInterface {
     public PositionInterface getPosition(final PositionInterface position, final DirectionInterface direction) {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
 
+    }
+
+    @Override
+    public Iterator<PositionInterface> iterator() {
+        return this.data.values().iterator();
     }
 }

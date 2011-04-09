@@ -21,6 +21,8 @@ import abstractions.side.SideInterface;
 
 public interface PieceManagerInterface {
 
+    PieceInterface getNullPiece();
+
     PieceInterface getPiece(SideInterface side, PieceTypeInterface type);
 
 }
