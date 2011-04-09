@@ -75,7 +75,7 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
         final HashSet<T> pieceTypeSet = Sets.newHashSet(pieceTypeSetClass.getEnumConstants());
 
         if (pieceTypeSet.isEmpty()) {
-            throw new IllegalPieceSetException("Set od pieces '" + pieceTypeSetClass.getSimpleName()
+            throw new IllegalPieceSetException("Set of pieces '" + pieceTypeSetClass.getSimpleName()
                     + "' must contain the NULL piece type and at least one not-NULL piece type.");
         }
 
