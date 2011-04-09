@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.piece.mocks.PieceSet;
-//import abstractions.piece.mocks.PieceSetWithoutNullType;
+import abstractions.piece.mocks.PieceSetWithoutNullType;
 import abstractions.side.Sides;
 
 public class PieceManagerTest {
@@ -20,17 +20,17 @@ public class PieceManagerTest {
 
     }
 
-    //@Test(expected = IllegalPieceException.class)
+    @Test(expected = IllegalPieceException.class)
     public final void testGetIllegalPiece() {
 
-        //this.pieceManager.getPiece(Sides.FIRST, PieceSetWithoutNullType.PAWN);
+        this.pieceManager.getPiece(Sides.FIRST, PieceSetWithoutNullType.PAWN);
 
     }
 
     @Test
     public final void testGetNullPiece() {
 
-        this.pieceManager.getPiece(Sides.NULL, PieceSet.PAWN);
+        this.pieceManager.getPiece(Sides.NULL, PieceSet.NULL);
 
     }
 
