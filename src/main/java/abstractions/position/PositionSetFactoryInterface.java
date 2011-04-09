@@ -5,7 +5,7 @@ import java.util.Set;
 
 import abstractions.dimension.API.DimensionInterface;
 
-public interface PositionSetFactoryInterface {
+interface PositionSetFactoryInterface {
 
     /**
      * Returns an unmodifiable set of new positions for a given dimension.
@@ -15,6 +15,6 @@ public interface PositionSetFactoryInterface {
      * 
      * @return an unmodifiable set of new positions for a given dimension.
      */
-    public Set<PositionInterface> NewPositionSet(final DimensionInterface dimension);
+    public Set<PositionInterface> newPositionSet(final DimensionInterface dimension);
 
 }

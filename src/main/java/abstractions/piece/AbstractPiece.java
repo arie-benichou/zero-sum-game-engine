@@ -17,35 +17,36 @@
 
 package abstractions.piece;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Set;
 
 import abstractions.cell.CellInterface;
-import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
+
+import com.google.common.base.Preconditions;
 
 // TODO renommer cette classe en AbstractPiece
 public abstract class AbstractPiece implements PieceInterface {
 
     private volatile int hashCode;
-    
+
     private final SideInterface side;
-    private PieceTypeInterface type;
+    private final PieceTypeInterface type;
 
     public AbstractPiece(final SideInterface side, final PieceTypeInterface type) {
-        checkNotNull(side, "Argument 'side' is not intended to be null.");
+        Preconditions.checkNotNull(side, "Argument 'side' is not intended to be null.");
         this.side = side;
         this.type = type;
     }
 
+    @Override
     public final SideInterface getSide() {
         return this.side;
     }
-    
+
+    @Override
     public final PieceTypeInterface getType() {
         return this.type;
-    }    
+    }
 
     @Override
     public final int hashCode() {
@@ -86,8 +87,11 @@ public abstract class AbstractPiece implements PieceInterface {
     }
 
     @Override
+    public String toString() {
+        return this.getType() + " " + this.getSide();
+    }
+
+    @Override
     public abstract Set<? extends PieceActionTypeInterface> computePotentialActionTypes(CellInterface cell, SideInterface side);
-    
-    public abstract String toString();    
 
 }

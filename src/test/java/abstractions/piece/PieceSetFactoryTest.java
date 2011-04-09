@@ -19,7 +19,7 @@ import abstractions.piece.mocks.PieceSetWithoutAnyType;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
 import abstractions.side.Sides;
 
-public class PieceSetFactoryTest {
+public final class PieceSetFactoryTest {
 
     private PieceSetFactory pieceSetFactory;
 
@@ -31,42 +31,42 @@ public class PieceSetFactoryTest {
     }
 
     @Test(expected = IllegalPieceSetException.class)
-    public final void testEmptyPieceSet() {
+    public void testEmptyPieceSet() {
 
         this.pieceSetFactory.newPieceSet(PieceSetWithoutAnyType.class);
 
     }
 
     @Test(expected = IllegalPieceSetException.class)
-    public final void testPieceSetWithAtLeastOneNotFoundPiece() {
+    public void testPieceSetWithAtLeastOneNotFoundPiece() {
 
         this.pieceSetFactory.newPieceSet(PieceSetWithAtLeastOneNotFoundPieceClass.class);
 
     }
 
     @Test(expected = IllegalPieceSetException.class)
-    public final void testPieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface() {
+    public void testPieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface() {
 
         this.pieceSetFactory.newPieceSet(PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface.class);
 
     }
 
     @Test(expected = IllegalPieceSetException.class)
-    public final void testPieceSetWithOnlyNullPiece() {
+    public void testPieceSetWithOnlyNullPiece() {
 
         this.pieceSetFactory.newPieceSet(PieceSetWithOnlyNullType.class);
 
     }
 
     @Test(expected = IllegalPieceSetException.class)
-    public final void testPieceSetWithoutNullPiece() {
+    public void testPieceSetWithoutNullPiece() {
 
         this.pieceSetFactory.newPieceSet(PieceSetWithoutNullType.class);
 
     }
 
     @Test
-    public final void testLegalPieceSet() {
+    public void testLegalPieceSet() {
 
         final HashSet<PieceInterface> expectedPieceSet = new HashSet<PieceInterface>();
         expectedPieceSet.add(new Null(Sides.NULL, PieceSet.NULL));
@@ -74,6 +74,7 @@ public class PieceSetFactoryTest {
         expectedPieceSet.add(new Pawn(Sides.SECOND, PieceSet.PAWN));
 
         final Set<PieceInterface> pieceSet = this.pieceSetFactory.newPieceSet(PieceSet.class);
+
         Assert.assertTrue(pieceSet.equals(expectedPieceSet));
 
     }

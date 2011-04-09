@@ -67,9 +67,9 @@ public class PositionTest {
     public void testHashCodeUnicity() {
 
         final int minRowIndex = 1;
-        final int maxRowIndex = 999;
+        final int maxRowIndex = 99;
         final int minColumnIndex = 1;
-        final int maxColumnIndex = 1000;
+        final int maxColumnIndex = 100;
 
         final Set<Integer> set = new HashSet<Integer>();
         set.add(PositionTest.NULL_POSITION.hashCode());
