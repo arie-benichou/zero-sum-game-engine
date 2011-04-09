@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.side.SideInterface;
+import abstractions.side.Sides;
 
 import com.google.common.collect.Maps;
 
@@ -29,6 +30,8 @@ public class PieceManager implements PieceManagerInterface {
 
     private final PieceSetFactoryInterface factory = new PieceSetFactory();
     private final Map<Integer, PieceInterface> data;
+    private final Class<? extends PieceTypeInterface> pieceTypeSetClass;
+    private final PieceInterface nullPiece;
 
     private final int hash(final SideInterface side, final PieceTypeInterface type) {
         return side.hashCode() + type.hashCode();
@@ -45,9 +48,32 @@ public class PieceManager implements PieceManagerInterface {
         return Collections.unmodifiableMap(data);
     }
 
+    // TODO la factory doir retourner une hashMap <side, piece>
     public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
+        this.pieceTypeSetClass = pieceTypeSetClass;
+
         final Set<PieceInterface> set = this.factory.newPieceSet(pieceTypeSetClass);
         this.data = this.initializeData(set);
+        PieceInterface nullpiece = null;
+        try {
+            nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("NULL").get(null));
+        }
+        catch (final Exception e1) {
+            try {
+                nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("Null").get(null));
+            }
+            catch (final Exception e2) {
+                try {
+                    nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("null").get(null));
+                }
+                catch (final Exception e3) {}
+            }
+        }
+        this.nullPiece = nullpiece;
+    }
+
+    public PieceInterface getNullPiece() {
+        return this.nullPiece;
     }
 
     @Override
