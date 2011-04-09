@@ -17,10 +17,13 @@
 
 package abstractions.piece;
 
+import java.util.Map;
 import java.util.Set;
+
+import abstractions.side.SideInterface;
 
 interface PieceSetFactoryInterface {
 
-    public <T extends Enum<T> & PieceTypeInterface> Set<PieceInterface> newPieceSet(final Class<T> piecesSet);
+    public <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> piecesSet);
 
 }

@@ -17,7 +17,9 @@
 
 package abstractions.piece;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -33,6 +35,7 @@ import abstractions.piece.mocks.PieceSetWithAtLeastOnePieceClassNotImplementingP
 import abstractions.piece.mocks.PieceSetWithOnlyNullType;
 import abstractions.piece.mocks.PieceSetWithoutAnyType;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
+import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
 public final class PieceSetFactoryTest {
@@ -84,14 +87,21 @@ public final class PieceSetFactoryTest {
     @Test
     public void testLegalPieceSet() {
 
-        final HashSet<PieceInterface> expectedPieceSet = new HashSet<PieceInterface>();
-        expectedPieceSet.add(new Null(Sides.NULL, PieceSet.NULL));
-        expectedPieceSet.add(new Pawn(Sides.FIRST, PieceSet.PAWN));
-        expectedPieceSet.add(new Pawn(Sides.SECOND, PieceSet.PAWN));
+        final Map<SideInterface, Set<PieceInterface>> expectedPiecesMap = new HashMap<SideInterface, Set<PieceInterface>>(3);
 
-        final Set<PieceInterface> pieceSet = this.pieceSetFactory.newPieceSet(PieceSet.class);
+        final Set<PieceInterface> nullSidePieceSet = new HashSet<PieceInterface>();
+        nullSidePieceSet.add(new Null(Sides.NULL, PieceSet.NULL));
+        expectedPiecesMap.put(Sides.NULL, nullSidePieceSet);
 
-        Assert.assertTrue(pieceSet.equals(expectedPieceSet));
+        final Set<PieceInterface> firstSidePieceSet = new HashSet<PieceInterface>();
+        firstSidePieceSet.add(new Pawn(Sides.FIRST, PieceSet.PAWN));
+        expectedPiecesMap.put(Sides.FIRST, firstSidePieceSet);
+
+        final Set<PieceInterface> secondSidePieceSet = new HashSet<PieceInterface>();
+        secondSidePieceSet.add(new Pawn(Sides.SECOND, PieceSet.PAWN));
+        expectedPiecesMap.put(Sides.SECOND, secondSidePieceSet);
+
+        Assert.assertTrue(expectedPiecesMap.equals(this.pieceSetFactory.newPieceSet(PieceSet.class)));
 
     }
 

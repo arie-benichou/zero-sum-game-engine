@@ -18,9 +18,11 @@
 package abstractions.piece;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import abstractions.piece.mocks.Pawn;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
 import abstractions.side.Sides;
@@ -46,15 +48,15 @@ public class PieceManagerTest {
     @Test
     public final void testGetNullPiece() {
 
-        this.pieceManager.getPiece(Sides.NULL, PieceSet.NULL);
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.NULL, PieceSet.NULL) == this.pieceManager.getNullPiece());
 
     }
 
     @Test
     public final void testGetPiece() {
 
-        this.pieceManager.getPiece(Sides.FIRST, PieceSet.PAWN);
-        this.pieceManager.getPiece(Sides.SECOND, PieceSet.PAWN);
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.FIRST, PieceSet.PAWN).equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.SECOND, PieceSet.PAWN).equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
 
     }
 
