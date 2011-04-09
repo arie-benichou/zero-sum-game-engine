@@ -22,6 +22,7 @@ import java.util.Set;
 import abstractions.cell.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
+import abstractions.piece.PieceActionTypeInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -30,10 +31,12 @@ public final class Pawn extends AbstractPiece {
     public Pawn(SideInterface side, PieceTypeInterface type) {
         super(side, type);
     }
-
-    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+    
+    @Override
+    public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(CellInterface cell, SideInterface side) {
+        // TODO Auto-generated method stub
         return null;
-    }
+    }    
 
     @Override
     public String toString() {
