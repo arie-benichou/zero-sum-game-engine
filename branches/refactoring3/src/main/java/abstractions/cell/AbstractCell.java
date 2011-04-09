@@ -10,7 +10,7 @@ import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.PositionInterface;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
@@ -18,16 +18,16 @@ abstract class AbstractCell implements CellInterface {
 
     protected boolean willGenerateMutations = false;
 
-    private final AbsolutePositionInterface position;
+    private final PositionInterface position;
     
     private volatile int hashCode;
 
-    public AbstractCell(final AbsolutePositionInterface position) {
+    public AbstractCell(final PositionInterface position) {
         checkNotNull(position, "Argument 'postion' is not intended to be null.");
         this.position = position;
     }
 
-    public final AbsolutePositionInterface getPosition() {
+    public final PositionInterface getPosition() {
         return this.position;
     }
 

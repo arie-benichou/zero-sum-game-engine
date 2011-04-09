@@ -1,12 +1,10 @@
 
 package abstractions.piece;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Random;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,23 +23,23 @@ public class PawnTest {
 
     @Test
     public final void testGetSide() {
-        assertTrue(this.piece.getSide().equals(Sides.FIRST));
+        Assert.assertTrue(this.piece.getSide().equals(Sides.FIRST));
     }
 
     @Test
     public final void testHashCode() {
-        assertTrue(new Pawn(Sides.FIRST, PieceSet.PAWN).hashCode() == this.piece.hashCode());
-        assertFalse(new Pawn(Sides.SECOND, PieceSet.PAWN).hashCode() == this.piece.hashCode());
+        Assert.assertTrue(new Pawn(Sides.FIRST, PieceSet.PAWN).hashCode() == this.piece.hashCode());
+        Assert.assertFalse(new Pawn(Sides.SECOND, PieceSet.PAWN).hashCode() == this.piece.hashCode());
     }
 
     @Test
     public final void testEqualsObject() {
-        assertTrue(this.piece.equals(this.piece));
-        assertFalse(this.piece.equals(null));
-        assertFalse(this.piece.equals(new Random()));
-        assertFalse(this.piece.equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
-        assertTrue(this.piece.equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
-        assertFalse(this.piece == new Pawn(Sides.FIRST, PieceSet.PAWN));
+        Assert.assertTrue(this.piece.equals(this.piece));
+        Assert.assertFalse(this.piece.equals(null));
+        Assert.assertFalse(this.piece.equals(new Random()));
+        Assert.assertFalse(this.piece.equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
+        Assert.assertTrue(this.piece.equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
+        Assert.assertFalse(this.piece == new Pawn(Sides.FIRST, PieceSet.PAWN));
     }
 
     @After

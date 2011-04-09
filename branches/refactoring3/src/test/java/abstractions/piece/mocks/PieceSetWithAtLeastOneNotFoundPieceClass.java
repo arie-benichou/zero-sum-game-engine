@@ -21,7 +21,5 @@ import abstractions.piece.PieceTypeInterface;
 
 public enum PieceSetWithAtLeastOneNotFoundPieceClass implements PieceTypeInterface {
 
-    NULL,
-    PAWN,
-    SOULD_BE_NOT_FOUND;
+    NULL, PAWN, SOULD_BE_NOT_FOUND;
 }

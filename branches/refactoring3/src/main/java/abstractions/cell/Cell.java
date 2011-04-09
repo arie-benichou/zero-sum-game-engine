@@ -6,7 +6,7 @@ import abstractions.board.BoardInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.PositionInterface;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
@@ -17,7 +17,7 @@ public final class Cell extends AbstractCell {
 
     private transient PieceInterface piece; //= this.board.getPieceFactory().getNullPiece();
 
-    public Cell(final AbsolutePositionInterface position) {
+    public Cell(final PositionInterface position) {
         super(position);
         checkArgument(!position.isNull(), "Argument 'position' is not intended to be the null position object");
     }

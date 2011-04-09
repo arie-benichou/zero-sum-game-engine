@@ -5,14 +5,14 @@ import abstractions.board.BoardInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.absolute.AbsolutePositions;
+import abstractions.position.PositionSetFactory;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 
 public final class NullCell extends AbstractCell {
 
     public NullCell() {
-        super(AbsolutePositions.NULL_POSITION);
+        super(PositionSetFactory.NULL_POSITION);
     }
 
     @Override

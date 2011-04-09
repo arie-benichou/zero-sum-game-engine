@@ -1,12 +1,11 @@
 
 package abstractions.piece;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -69,13 +68,13 @@ public class PieceSetFactoryTest {
     @Test
     public final void testLegalPieceSet() {
 
-        HashSet<PieceInterface> expectedPieceSet = new HashSet<PieceInterface>();
+        final HashSet<PieceInterface> expectedPieceSet = new HashSet<PieceInterface>();
         expectedPieceSet.add(new Null(Sides.NULL, PieceSet.NULL));
         expectedPieceSet.add(new Pawn(Sides.FIRST, PieceSet.PAWN));
         expectedPieceSet.add(new Pawn(Sides.SECOND, PieceSet.PAWN));
 
-        Set<PieceInterface> pieceSet = this.pieceSetFactory.newPieceSet(PieceSet.class);
-        assertTrue(pieceSet.equals(expectedPieceSet));
+        final Set<PieceInterface> pieceSet = this.pieceSetFactory.newPieceSet(PieceSet.class);
+        Assert.assertTrue(pieceSet.equals(expectedPieceSet));
 
     }
 
