@@ -19,7 +19,7 @@ package abstractions.position;
 
 import abstractions.position.PositionManager.DirectionInterface;
 
-public interface PositionManagerInterface {
+public interface PositionManagerInterface extends Iterable<PositionInterface> {
 
     PositionInterface getNullPosition();
 
