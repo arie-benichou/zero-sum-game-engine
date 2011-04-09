@@ -19,6 +19,7 @@ package abstractions.piece;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import abstractions.side.SideInterface;
@@ -30,46 +31,27 @@ public class PieceManager implements PieceManagerInterface {
 
     private final PieceSetFactoryInterface factory = new PieceSetFactory();
     private final Map<Integer, PieceInterface> data;
-    private final Class<? extends PieceTypeInterface> pieceTypeSetClass;
     private final PieceInterface nullPiece;
 
     private final int hash(final SideInterface side, final PieceTypeInterface type) {
         return side.hashCode() + type.hashCode();
     }
 
-    private Map<Integer, PieceInterface> initializeData(final Set<PieceInterface> set) {
-        final Map<Integer, PieceInterface> data = Maps.newHashMapWithExpectedSize(set.size());
-        for (final PieceInterface element : set) {
-            data.put(this.hash(element.getSide(), element.getType()), element);
-        }
-        if (data.size() != set.size()) {
-            throw new RuntimeException("Method hash is not valid for this set of pieces");
+    private Map<Integer, PieceInterface> initializeData(final Map<SideInterface, Set<PieceInterface>> map) {
+        final Map<Integer, PieceInterface> data = Maps.newHashMapWithExpectedSize(map.size());
+        for (final Entry<SideInterface, Set<PieceInterface>> mapEntry : map.entrySet()) {
+            for (final PieceInterface sidedPiece : mapEntry.getValue()) {
+                data.put(this.hash(sidedPiece.getSide(), sidedPiece.getType()), sidedPiece);
+            }
         }
         return Collections.unmodifiableMap(data);
     }
 
-    // TODO la factory doir retourner une hashMap <side, piece>
     public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
-        this.pieceTypeSetClass = pieceTypeSetClass;
+        final Map<SideInterface, Set<PieceInterface>> pieceMap = this.factory.newPieceSet(pieceTypeSetClass);
+        this.data = this.initializeData(pieceMap);
+        this.nullPiece = pieceMap.get(Sides.NULL).iterator().next();
 
-        final Set<PieceInterface> set = this.factory.newPieceSet(pieceTypeSetClass);
-        this.data = this.initializeData(set);
-        PieceInterface nullpiece = null;
-        try {
-            nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("NULL").get(null));
-        }
-        catch (final Exception e1) {
-            try {
-                nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("Null").get(null));
-            }
-            catch (final Exception e2) {
-                try {
-                    nullpiece = this.getPiece(Sides.NULL, (PieceTypeInterface) pieceTypeSetClass.getDeclaredField("null").get(null));
-                }
-                catch (final Exception e3) {}
-            }
-        }
-        this.nullPiece = nullpiece;
     }
 
     public PieceInterface getNullPiece() {

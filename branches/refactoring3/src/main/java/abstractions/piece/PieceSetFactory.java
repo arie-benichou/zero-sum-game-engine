@@ -22,14 +22,15 @@ import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 final class PieceSetFactory implements PieceSetFactoryInterface {
@@ -70,9 +71,9 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
     }
 
     @Override
-    public <T extends Enum<T> & PieceTypeInterface> Set<PieceInterface> newPieceSet(final Class<T> pieceTypeSetClass) {
+    public <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> pieceTypeSetClass) {
 
-        final HashSet<T> pieceTypeSet = Sets.newHashSet(pieceTypeSetClass.getEnumConstants());
+        final Set<T> pieceTypeSet = Sets.newHashSet(pieceTypeSetClass.getEnumConstants());
 
         if (pieceTypeSet.isEmpty()) {
             throw new IllegalPieceSetException("Set of pieces '" + pieceTypeSetClass.getSimpleName()
@@ -95,16 +96,25 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
             throw new IllegalPieceSetException("Set of pieces '" + pieceTypeSetClass.getSimpleName() + "' must contain at least one not-NULL piece type.");
         }
 
-        final HashSet<PieceInterface> pieceSet = Sets.newHashSet();
-
         final String path = pieceTypeSetClass.getPackage().getName();
-        pieceSet.add(this.newPiece(path, nullType, Sides.NULL));
+
+        final Map<SideInterface, Set<PieceInterface>> piecesMap = Maps.newHashMapWithExpectedSize(3);
+
+        final Set<PieceInterface> NullPiece = Sets.newHashSet(this.newPiece(path, nullType, Sides.NULL));
+        piecesMap.put(Sides.NULL, NullPiece);
+
+        final Set<PieceInterface> firstSidePieces = Sets.newHashSetWithExpectedSize(pieceTypeSet.size());
         for (final PieceTypeInterface pieceType : pieceTypeSet) {
-            pieceSet.add(this.newPiece(path, pieceType, Sides.FIRST));
-            pieceSet.add(this.newPiece(path, pieceType, Sides.SECOND));
+            firstSidePieces.add(this.newPiece(path, pieceType, Sides.FIRST));
         }
+        piecesMap.put(Sides.FIRST, firstSidePieces);
 
-        return Collections.unmodifiableSet(pieceSet);
+        final Set<PieceInterface> SecondSidePieces = Sets.newHashSetWithExpectedSize(pieceTypeSet.size());
+        for (final PieceTypeInterface pieceType : pieceTypeSet) {
+            SecondSidePieces.add(this.newPiece(path, pieceType, Sides.SECOND));
+        }
+        piecesMap.put(Sides.SECOND, SecondSidePieces);
+
+        return Collections.unmodifiableMap(piecesMap);
     }
-
 }
