@@ -1,6 +1,7 @@
 
 package abstractions.piece;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,15 +18,20 @@ public class PieceManager implements PieceManagerInterface {
         return side.hashCode() + type.hashCode();
     }
 
-    public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
-        final Set<PieceInterface> set = this.factory.newPieceSet(pieceTypeSetClass);
-        this.data = Maps.newHashMapWithExpectedSize(set.size());
+    private Map<Integer, PieceInterface> initializeData(final Set<PieceInterface> set) {
+        final Map<Integer, PieceInterface> data = Maps.newHashMapWithExpectedSize(set.size());
         for (final PieceInterface element : set) {
-            this.data.put(this.hash(element.getSide(), element.getType()), element);
+            data.put(this.hash(element.getSide(), element.getType()), element);
         }
-        if (this.data.size() != set.size()) {
+        if (data.size() != set.size()) {
             throw new RuntimeException("Method hash is not valid for this set of pieces");
         }
+        return Collections.unmodifiableMap(data);
+    }
+
+    public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
+        final Set<PieceInterface> set = this.factory.newPieceSet(pieceTypeSetClass);
+        this.data = this.initializeData(set);
     }
 
     @Override

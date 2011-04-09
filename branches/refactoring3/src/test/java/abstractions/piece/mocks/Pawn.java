@@ -37,9 +37,4 @@ public final class Pawn extends AbstractPiece {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return this.getType() + " " + this.getSide();
-    }
-
 }
