@@ -45,7 +45,7 @@ public class APITest {
         expectedCells.add(new Cell(Position(1, 2)));
         expectedCells.add(new Cell(Position(2, 1)));    	
         
-        HashSet<AbsolutePositionInterface> positions = new HashSet<AbsolutePositionInterface>(4);
+        HashSet<PositionInterface> positions = new HashSet<PositionInterface>(4);
         
         positions.add(Position(1, 1));
         positions.add(Position(1, 2));

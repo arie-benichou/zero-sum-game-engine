@@ -21,8 +21,6 @@ import abstractions.piece.PieceTypeInterface;
 
 public enum PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface implements PieceTypeInterface {
 
-    NULL,
-    PAWN,
-    NOT_IMPLEMENTING_PIECE_INTERFACE;
-    
+    NULL, PAWN, NOT_IMPLEMENTING_PIECE_INTERFACE;
+
 }

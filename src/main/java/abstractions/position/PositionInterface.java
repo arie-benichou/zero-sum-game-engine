@@ -1,11 +1,11 @@
 
-package abstractions.position.absolute;
+package abstractions.position;
 
 
 /**
  * This is the interface for a position.
  */
-public interface AbsolutePositionInterface extends Comparable<AbsolutePositionInterface> {
+public interface PositionInterface extends Comparable<PositionInterface> {
 
     /**
      * Returns the column index of this position.

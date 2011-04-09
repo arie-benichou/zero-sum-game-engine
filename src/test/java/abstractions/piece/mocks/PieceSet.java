@@ -21,7 +21,6 @@ import abstractions.piece.PieceTypeInterface;
 
 public enum PieceSet implements PieceTypeInterface {
 
-    NULL,
-    PAWN;
-    
+    NULL, PAWN;
+
 }

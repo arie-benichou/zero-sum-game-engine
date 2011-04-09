@@ -20,7 +20,6 @@ package abstractions.piece.mocks;
 import java.util.Set;
 
 import abstractions.cell.CellInterface;
-import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceActionTypeInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -28,15 +27,15 @@ import abstractions.side.SideInterface;
 
 public final class Pawn extends AbstractPiece {
 
-    public Pawn(SideInterface side, PieceTypeInterface type) {
+    public Pawn(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
     }
-    
+
     @Override
-    public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(CellInterface cell, SideInterface side) {
+    public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, final SideInterface side) {
         // TODO Auto-generated method stub
         return null;
-    }    
+    }
 
     @Override
     public String toString() {

@@ -8,7 +8,7 @@ import java.util.Set;
 
 import abstractions.piece.PieceSetFactory;
 import abstractions.piece.PieceInterface;
-import abstractions.position.absolute.AbsolutePositionInterface;
+import abstractions.position.PositionInterface;
 
 import com.google.common.collect.Sets;
 
@@ -40,7 +40,7 @@ public final class CellFactory {
      * 
      * @return a new instance of a cell related to a given position
      */
-    public final CellInterface cell(final AbsolutePositionInterface position) {
+    public final CellInterface cell(final PositionInterface position) {
         checkNotNull(position, "Argument 'postion' is not intended to be null.");
         return new Cell(position);
     }
@@ -69,10 +69,10 @@ public final class CellFactory {
      * 
      * @return a set of new cells for a given set of positions
      */
-    public final Set<CellInterface> cells(final Set<AbsolutePositionInterface> positions) {
+    public final Set<CellInterface> cells(final Set<PositionInterface> positions) {
         checkNotNull(positions, "Argument 'positions' is not intended to be null.");
         final Set<CellInterface> cells = Sets.newHashSetWithExpectedSize(positions.size());
-        for (final AbsolutePositionInterface position : positions) {
+        for (final PositionInterface position : positions) {
             CellInterface cell = this.cell(position);
             cell.setPiece(this.pieceFactory.NullPiece());
             cells.add(cell);

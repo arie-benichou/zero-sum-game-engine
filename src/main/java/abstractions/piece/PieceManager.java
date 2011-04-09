@@ -10,23 +10,27 @@ import com.google.common.collect.Maps;
 
 public class PieceManager implements PieceManagerInterface {
 
-    private final PieceSetFactoryInterface pieceSetFactory = new PieceSetFactory();
-    private Map<Integer, PieceInterface> pieces;
-
-    public <T extends Enum<T> & PieceTypeInterface> PieceManager(Class<T> pieceTypeSetClass) {
-        Set<PieceInterface> pieceSet = this.pieceSetFactory.newPieceSet(pieceTypeSetClass);
-        this.pieces = Maps.newHashMapWithExpectedSize(pieceSet.size());
-        for (PieceInterface piece : pieceSet) {
-            this.pieces.put(this.hash(piece.getSide(), piece.getType()), piece);
-        }
-    }
+    private final PieceSetFactoryInterface factory = new PieceSetFactory();
+    private final Map<Integer, PieceInterface> data;
 
     private final int hash(final SideInterface side, final PieceTypeInterface type) {
         return side.hashCode() + type.hashCode();
     }
 
-    public PieceInterface getPiece(SideInterface side, PieceTypeInterface type) {
-        PieceInterface piece = this.pieces.get(this.hash(side, type));
+    public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
+        final Set<PieceInterface> set = this.factory.newPieceSet(pieceTypeSetClass);
+        this.data = Maps.newHashMapWithExpectedSize(set.size());
+        for (final PieceInterface element : set) {
+            this.data.put(this.hash(element.getSide(), element.getType()), element);
+        }
+        if (this.data.size() != set.size()) {
+            throw new RuntimeException("Method hash is not valid for this set of pieces");
+        }
+    }
+
+    @Override
+    public PieceInterface getPiece(final SideInterface side, final PieceTypeInterface type) {
+        final PieceInterface piece = this.data.get(this.hash(side, type));
         if (piece == null) {
             throw new IllegalPieceException(side, type);
         }

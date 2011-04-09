@@ -21,21 +21,21 @@ import org.junit.Test;
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
 import abstractions.piece.mocks.PieceSet;
-import abstractions.position.absolute.AbsolutePositions;
+import abstractions.position.PositionSetFactory;
 import abstractions.side.Sides;
 
 public class CellTest {
 
     private CellInterface cell;
-    private AbsolutePositions positionFactory;
+    private PositionSetFactory positionFactory;
     private BoardInterface board;
 
     @Before
     public void setUp() {
 
-        this.positionFactory = AbsolutePositions.getInstance();
+        this.positionFactory = PositionSetFactory.getInstance();
         this.board = new BoardBuilder(PieceSet.class, Dimension(5, 5)).build();
-        this.cell = new Cell(this.positionFactory.getPosition(1, 2));
+        this.cell = new Cell(this.positionFactory.newPosition(1, 2));
 
     }
 

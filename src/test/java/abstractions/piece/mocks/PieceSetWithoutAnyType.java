@@ -21,5 +21,4 @@ import abstractions.piece.PieceTypeInterface;
 
 public enum PieceSetWithoutAnyType implements PieceTypeInterface {
 
-
 }

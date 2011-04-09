@@ -100,7 +100,7 @@ public final class PieceSetFactory implements PieceSetFactoryInterface {
             pieceSet.add(this.newPiece(path, pieceType, Sides.SECOND));
         }
 
-        return pieceSet;
+        return pieceSet; // TODO return unmodifiable set
     }
 
 }
