@@ -7,15 +7,21 @@ import abstractions.position.PositionInterface;
 import abstractions.position.PositionManager.Direction;
 import abstractions.side.SideInterface;
 
+import com.google.common.base.Preconditions;
+
 public class ManagedCell implements ManagedCellInterface {
 
     private final PositionInterface position;
     private final CellManagerInterface cellManager;
-    private PieceInterface piece;
+
+    private transient PieceInterface piece;
 
     public ManagedCell(final CellManagerInterface cellManager, final PositionInterface position) {
+
         this.cellManager = cellManager;
         this.position = position;
+
+        this.piece = this.cellManager.getNullPiece();
     }
 
     @Override
@@ -39,7 +45,15 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
+    public boolean isNull() {
+        return this.position.isNull();
+    }
+
+    @Override
     public ManagedCellInterface setPiece(final PieceInterface piece) {
+        if (this.isNull()) {
+            throw new NullPointerException("This cell is null.");
+        }
         this.piece = piece;
         return this;
     }
@@ -50,28 +64,19 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
-    public boolean isNull() {
-        return this.position.isNull();
-    }
-
-    @Override
     public boolean isEmpty() {
-        return !this.isNull() && this.piece.getSide().isNull();
+        return this.isNull() ? false : this.piece.getSide().isNull();
     }
 
     @Override
     public ManagedCellInterface getRelative(final Direction direction) {
-        return this.cellManager.getCell(this.cellManager.position(this.position, direction));
+        return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
 
     @Override
     public int compareTo(final ManagedCellInterface that) {
+        Preconditions.checkNotNull(that, "That argument is not intended to be null.");
         return this.position.compareTo(that.getPosition());
-    }
-
-    @Override
-    public String toString() {
-        return " " + this.getPiece() + " |";
     }
 
     @Override
@@ -97,4 +102,35 @@ public class ManagedCell implements ManagedCellInterface {
         }
         return isEqual;
     }
+
+    // TODO create class PieceRenderer(PieceInterface pieceToRender)
+    private String pieceRenderer(final PieceInterface pieceToRender) {
+        String consoleView = "";
+        if (pieceToRender.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else if (pieceToRender.getSide().isSecondSide()) {
+            consoleView = "o";
+        }
+        else {
+            consoleView = " ";
+        }
+        return consoleView;
+    }
+
+    // TODO create class CellRenderer(ManagedCellInterface cellToRender)
+    private String cellRenderer() {
+        String consoleView = "";
+        if (!this.isNull()) {
+            consoleView = " " + this.pieceRenderer(this.getPiece()) + " |";
+        }
+        return consoleView;
+    }
+
+    // TODO use only on trace purpose
+    @Override
+    public String toString() {
+        return this.cellRenderer();
+    }
+
 }

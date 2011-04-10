@@ -98,7 +98,7 @@ final class Position implements PositionInterface {
     @Override
     public int compareTo(final PositionInterface that) {
 
-        Preconditions.checkNotNull(that, "Argument 'position' is not intended to be null.");
+        Preconditions.checkNotNull(that, "That argument is not intended to be null.");
 
         int value;
 

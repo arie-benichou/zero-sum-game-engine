@@ -26,9 +26,7 @@ public class CellManager implements CellManagerInterface {
     private final ManagedCellInterface nullCell;
 
     private ManagedCellInterface newCell(final PositionInterface position) {
-        final ManagedCellInterface managedCell = new ManagedCell(this, position);
-        managedCell.setPiece(this.pieceManager.getNullPiece());
-        return managedCell;
+        return new ManagedCell(this, position);
     }
 
     private Map<PositionInterface, ManagedCellInterface> intializeData() {
@@ -83,5 +81,10 @@ public class CellManager implements CellManagerInterface {
         final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
         Collections.sort(values);
         return values.iterator();
+    }
+
+    @Override
+    public PieceInterface getNullPiece() {
+        return this.pieceManager.getNullPiece();
     }
 }

@@ -27,4 +27,6 @@ public interface PieceInterface {
 
     Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, SideInterface side);
 
+    // TODO add method isNull()
+
 }
