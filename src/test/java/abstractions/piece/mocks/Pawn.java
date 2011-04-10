@@ -20,8 +20,8 @@ package abstractions.piece.mocks;
 import java.util.Set;
 
 import abstractions.cell.old.ManagedCellInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceActionTypeInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -32,7 +32,8 @@ public final class Pawn extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends PieceActionTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        // TODO Auto-generated method stub
         return null;
     }
 
