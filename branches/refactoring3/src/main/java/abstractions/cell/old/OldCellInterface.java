@@ -3,13 +3,14 @@ package abstractions.cell.old;
 
 import java.util.Set;
 
+import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
 /**
  * This is the interface for a cell.
  */
-public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
+public interface _ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     Set<? extends MutationInterface> fetchAvailableMutations(SideInterface side);
 
