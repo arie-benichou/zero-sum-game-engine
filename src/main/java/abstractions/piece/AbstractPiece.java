@@ -19,7 +19,7 @@ package abstractions.piece;
 
 import java.util.Set;
 
-import abstractions.cell.old.ManagedCellInterface;
+import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.side.SideInterface;
 

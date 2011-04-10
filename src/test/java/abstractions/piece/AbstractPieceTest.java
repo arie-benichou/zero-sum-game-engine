@@ -25,7 +25,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.old.ManagedCellInterface;
+import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.side.SideInterface;
