@@ -21,7 +21,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -102,5 +104,14 @@ public class CellManager implements CellManagerInterface {
     @Override
     public PieceInterface getNullPiece() {
         return this.pieceManager.getNullPiece();
+    }
+
+    @Override
+    public Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(final SideInterface side) {
+        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypesMap = Maps.newHashMap();
+        for (final ManagedCellInterface cell : this) {
+            potentialMutationTypesMap.put(cell, cell.getPotentialMutationTypes(side));
+        }
+        return potentialMutationTypesMap;
     }
 }

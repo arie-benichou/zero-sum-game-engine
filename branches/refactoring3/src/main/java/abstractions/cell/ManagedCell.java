@@ -17,6 +17,9 @@
 
 package abstractions.cell;
 
+import java.util.Set;
+
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -149,4 +152,8 @@ public class ManagedCell implements ManagedCellInterface {
         return this.cellRenderer();
     }
 
+    @Override
+    public Set<? extends MutationTypeInterface> getPotentialMutationTypes(final SideInterface side) {
+        return this.getPiece().computePotentialMutationTypes(this, side);
+    }
 }
