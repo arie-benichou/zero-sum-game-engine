@@ -48,9 +48,4 @@ public final class Pawn extends LifePiece {
         return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
     }
 
-    @Override
-    public String toString() {
-        return "o";
-    }
-
 }
