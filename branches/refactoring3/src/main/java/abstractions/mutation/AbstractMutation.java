@@ -57,6 +57,11 @@ public abstract class AbstractMutation implements MutationInterface {
     }
 
     @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " " + this.getSide() + " " + this.getCell().getPosition() + " " + this.getPieceType();
+    }
+
+    @Override
     public abstract void process();
 
     @Override

@@ -33,6 +33,7 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -106,11 +107,19 @@ public class CellManager implements CellManagerInterface {
         return this.pieceManager.getNullPiece();
     }
 
+    // TODO
+    private final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
+
     @Override
     public Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(final SideInterface side) {
+        // TODO utiliser une contrainte sur la map (guava)
         final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypesMap = Maps.newHashMap();
         for (final ManagedCellInterface cell : this) {
-            potentialMutationTypesMap.put(cell, cell.getPotentialMutationTypes(side));
+            final Set<? extends MutationTypeInterface> p = cell.getPotentialMutationTypes(side);
+            if (!p.equals(CellManager.NULL_POTENTIAL_MUTATION_TYPES_SET)) {
+                potentialMutationTypesMap.put(cell, p);
+            }
+
         }
         return potentialMutationTypesMap;
     }

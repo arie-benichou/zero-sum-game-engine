@@ -38,7 +38,7 @@ import abstractions.side.Sides;
 
 public class CellManagerTest {
 
-    private CellManager cellManager;
+    private CellManagerInterface cellManager;
 
     @Before
     public void setUp() throws Exception {
