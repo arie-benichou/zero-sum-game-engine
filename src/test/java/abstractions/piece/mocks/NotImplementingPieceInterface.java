@@ -19,7 +19,7 @@ package abstractions.piece.mocks;
 
 import java.util.Set;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;

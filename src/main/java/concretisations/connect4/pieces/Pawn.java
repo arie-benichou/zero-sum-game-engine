@@ -19,7 +19,7 @@ package concretisations.connect4.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 

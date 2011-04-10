@@ -9,8 +9,8 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
-import abstractions.cell.CellFactory;
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellFactory;
+import abstractions.cell.old.CellInterface;
 import abstractions.dimension.API.DimensionInterface;
 import abstractions.dimension.API.IllegalDimensionException;
 import abstractions.piece.PieceFactory;

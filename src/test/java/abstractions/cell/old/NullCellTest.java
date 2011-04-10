@@ -1,5 +1,5 @@
 
-package abstractions.cell;
+package abstractions.cell.old;
 
 import static abstractions.piece.API.*;
 import static abstractions.piece.API.PieceFactory.*;
@@ -21,9 +21,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.Cell;
-import abstractions.cell.NullCell;
 import abstractions.cell.API.*;
+import abstractions.cell.old.Cell;
+import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.NullCell;
 
 
 public class NullCellTest {

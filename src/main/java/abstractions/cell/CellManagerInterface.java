@@ -7,8 +7,13 @@ import abstractions.position.PositionInterface;
 import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
-public interface CellManagerInterface {
+public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
 
+    /**
+     * Returns the null cell.
+     * 
+     * @return the null cell
+     */
     ManagedCellInterface getNullCell();
 
     ManagedCellInterface getCell(final int rowIndex, final int columnIndex);

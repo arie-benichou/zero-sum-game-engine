@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.side.SideInterface;
 
 public abstract class AbstractMutation implements MutationInterface {

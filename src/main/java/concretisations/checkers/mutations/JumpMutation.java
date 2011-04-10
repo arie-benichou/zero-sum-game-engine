@@ -3,7 +3,7 @@ package concretisations.checkers.mutations;
 
 import java.util.List;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
 import abstractions.position.relative.RelativePositionInterface;

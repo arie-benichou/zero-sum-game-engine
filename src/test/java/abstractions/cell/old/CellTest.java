@@ -1,5 +1,5 @@
 
-package abstractions.cell;
+package abstractions.cell.old;
 
 
 import static abstractions.dimension.API.DimensionFactory.Dimension;
@@ -20,6 +20,8 @@ import org.junit.Test;
 
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
+import abstractions.cell.old.Cell;
+import abstractions.cell.old.CellInterface;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.position.PositionSetFactory;
 import abstractions.side.Sides;

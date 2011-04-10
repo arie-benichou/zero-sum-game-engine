@@ -22,7 +22,7 @@ import static abstractions.side.API.NULL_SIDE;
 import java.util.List;
 
 import abstractions.board.BoardInterface;
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.move.API.MoveInterface;
 import abstractions.side.API.SideInterface;
 

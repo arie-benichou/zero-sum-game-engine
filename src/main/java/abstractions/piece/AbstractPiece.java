@@ -19,7 +19,7 @@ package abstractions.piece;
 
 import java.util.Set;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
