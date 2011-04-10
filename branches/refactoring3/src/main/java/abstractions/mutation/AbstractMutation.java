@@ -29,6 +29,8 @@ public abstract class AbstractMutation implements MutationInterface {
     private final PieceTypeInterface pieceType;
     private final PieceInterface savedSate;
 
+    // TODO virer le pieceType
+    // TODO coder les mutations de bases dans la cellule
     public AbstractMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
         this.concernedCell = cell;
         this.side = side;

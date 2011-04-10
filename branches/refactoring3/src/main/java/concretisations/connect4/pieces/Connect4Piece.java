@@ -1,37 +1,45 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package concretisations.connect4.pieces;
 
 import java.util.Set;
 
-import com.google.common.collect.ImmutableSet;
-
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.AbstractPiece;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public abstract class Connect4Piece extends AbstractPiece {
-    
-    protected final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();    
+import com.google.common.collect.ImmutableSet;
 
-    public Connect4Piece(SideInterface side) {
-        super(side);
+public abstract class Connect4Piece extends AbstractPiece {
+
+    //TODO en faire une constante de classe de la pièce abstraite, voire même de l'interface d'une pièce
+    protected final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
+
+    protected final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
+            .of(concretisations.connect4.mutations.Mutations.NEW_PAWN);
+
+    public Connect4Piece(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type);
     }
-    
-    public final String toString() {
-        String consoleView;
-        if (this.getSide().isFirstSide()) {
-            consoleView = "x";
-        }
-        else if (this.getSide().isSecondSide()) {
-            consoleView = "o";
-        }
-        else {
-            consoleView = " ";
-        }
-        return consoleView;
-    }
-    
-    public abstract Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side);    
+
+    @Override
+    public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }

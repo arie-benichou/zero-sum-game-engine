@@ -15,14 +15,12 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.pieces;
+package concretisations.connect4.pieces;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum Pieces implements PieceTypeInterface {
+public enum Connect4PieceSet implements PieceTypeInterface {
 
-    NULL,
-    MAN,
-    KING;
+    NULL, PAWN;
 
 }

@@ -19,7 +19,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import concretisations.checkers.pieces.Pieces;
+import concretisations.checkers.pieces.CheckersPieceSet;
 
 
 import abstractions.board.Board;
@@ -34,7 +34,7 @@ public class BoardTest {
     @Before
     public void setUp() {
         this.board = Board(2, 3);
-        this.board.injectPieceFactory(new PieceSetFactory(Pieces.class));
+        this.board.injectPieceFactory(new PieceSetFactory(CheckersPieceSet.class));
     }
 
     @Test

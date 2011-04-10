@@ -15,28 +15,35 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.othello.mutations;
-
-import java.util.List;
+package concretisations.connect4.mutations;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.AbstractCompositeMutation;
-import abstractions.mutation.BasicMutationFactory;
 import abstractions.mutation.MutationInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableList;
+// TODO ? do the same for pieces
+public enum Mutations implements MutationTypeInterface {
 
-public final class NewPawnMutation extends AbstractCompositeMutation {
+    /*
+    NULL {
 
-    public NewPawnMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
-    }
+        @Override
+        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+            return NullMutation.getInstance();
+        }
 
-    @Override
-    protected List<MutationInterface> sequence() {
-        return ImmutableList.of(BasicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
-    }
+    },
+    */
+
+    NEW_PAWN {
+
+        @Override
+        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+            // TODO utiliser la Birth mutation
+            return new NewPawnMutation(cell, side, pieceType);
+        }
+    };
 
 }

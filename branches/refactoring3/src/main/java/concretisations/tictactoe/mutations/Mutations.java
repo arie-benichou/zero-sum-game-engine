@@ -20,13 +20,13 @@ package concretisations.tictactoe.mutations;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
-import abstractions.mutation.NullMutation;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 // TODO ? do the same for pieces
 public enum Mutations implements MutationTypeInterface {
 
+    /*
     NULL {
 
         @Override
@@ -35,6 +35,7 @@ public enum Mutations implements MutationTypeInterface {
         }
 
     },
+    */
 
     NEW_PAWN {
 

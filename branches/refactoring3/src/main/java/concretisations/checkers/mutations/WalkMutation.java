@@ -3,40 +3,27 @@ package concretisations.checkers.mutations;
 
 import java.util.List;
 
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
+import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.BasicMutationFactory;
-import abstractions.position.relative.RelativePositionInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
 
+// TODO ? utiliser une ManyJumpMutation
 public class WalkMutation extends CheckersMutation {
 
-    private final static int PRIORITY = 2;
-
-    public WalkMutation(ManagedCellInterface cell, SideInterface side, RelativePositionInterface direction) {
-        super(PRIORITY, cell, side, direction);
+    public WalkMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType, final DirectionInterface direction) {
+        super(cell, side, pieceType, direction);
     }
 
-    protected List<MutationInterface> generateSequence() {
-        
+    @Override
+    protected List<MutationInterface> sequence() {
         return ImmutableList.of(
-                
-            BasicMutationFactory.death(
-                this.getCell()
-            ).setProtagonist(
-                this.getCell().getPieceFactory().NullPiece()
-            ),
-            
-            BasicMutationFactory.birth(
-                this.getCell().getRelative(this.getDirection())
-            ).setProtagonist(
-                this.getCell().getPiece()
-            )
-            
-        );
-        
+                BasicMutationFactory.newDeath(this.getCell()),
+                BasicMutationFactory.newBirth(this.getCell().getRelative(this.getDirection()), this.getCell().getPiece())
+                );
     }
-    
 }

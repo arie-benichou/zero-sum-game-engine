@@ -19,18 +19,20 @@ package concretisations.othello.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationTypeInterface;
+import abstractions.piece.PieceInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 public final class Pawn extends OthelloPiece {
 
-    public Pawn(SideInterface side) {
-        super(side);
+    public Pawn(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type);
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side) {
-        return NULL_MUTATIONS;
+    @Override
+    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
     }
-
 }

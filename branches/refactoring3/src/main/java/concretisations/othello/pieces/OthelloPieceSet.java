@@ -19,9 +19,8 @@ package concretisations.othello.pieces;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum Pieces implements PieceTypeInterface {
+public enum OthelloPieceSet implements PieceTypeInterface {
 
-    NULL,
-    PAWN;
+    NULL, PAWN;
 
 }
