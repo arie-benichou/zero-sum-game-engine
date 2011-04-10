@@ -24,7 +24,7 @@ import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 // TODO ? do the same for pieces
-public enum Mutations implements MutationTypeInterface {
+public enum TicTacToeMutations implements MutationTypeInterface {
 
     /*
     NULL {
