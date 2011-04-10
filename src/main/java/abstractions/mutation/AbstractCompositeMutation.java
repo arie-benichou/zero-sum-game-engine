@@ -9,6 +9,7 @@ import abstractions.side.SideInterface;
 
 public abstract class AbstractCompositeMutation extends AbstractMutation {
 
+    // TODO virer le pieceType
     public AbstractCompositeMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
         super(cell, side, pieceType);
     }

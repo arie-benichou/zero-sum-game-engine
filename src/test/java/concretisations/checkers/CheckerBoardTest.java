@@ -17,7 +17,7 @@ import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 import concretisations.checkers.mutations.JumpMutation;
 import concretisations.checkers.mutations.WalkMutation;
-import concretisations.checkers.pieces.Pieces;
+import concretisations.checkers.pieces.CheckersPieceSet;
 
 public class CheckerBoardTest {
 
@@ -37,12 +37,12 @@ public class CheckerBoardTest {
     @Test
     public void testJumpMutationPriority() {
 
-        BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
+        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;
 
-        board.getCell(4, 1).setPiece(side, Pieces.MAN);
-        board.getCell(4, 4).setPiece(side, Pieces.MAN);
-        board.getCell(3, 3).setPiece(side.getNextSide(), Pieces.MAN);
+        board.getCell(4, 1).setPiece(side, CheckersPieceSet.MAN);
+        board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
+        board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
 
         Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
@@ -69,11 +69,11 @@ public class CheckerBoardTest {
     @Test
     public void testManWalkMutation() {
 
-        BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
+        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;
 
-        board.getCell(4, 1).setPiece(side, Pieces.MAN);
-        board.getCell(4, 4).setPiece(side, Pieces.MAN);
+        board.getCell(4, 1).setPiece(side, CheckersPieceSet.MAN);
+        board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
 
         Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
@@ -102,12 +102,12 @@ public class CheckerBoardTest {
     @Test
     public void testOneOpponentPieceTwoJumpMutation() {
         
-        BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
+        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;
 
-        board.getCell(4, 2).setPiece(side, Pieces.MAN);
-        board.getCell(4, 4).setPiece(side, Pieces.MAN);
-        board.getCell(3, 3).setPiece(side.getNextSide(), Pieces.MAN);
+        board.getCell(4, 2).setPiece(side, CheckersPieceSet.MAN);
+        board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
+        board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
 
         Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
@@ -136,11 +136,11 @@ public class CheckerBoardTest {
     @Test
     public void testNoMutations() {
         
-        BoardInterface board = new BoardBuilder(Pieces.class, Dimension(5, 5)).build();
+        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
         SideInterface side = Sides.FIRST;        
         
-        board.getCell(2, 4).setPiece(side.getNextSide(), Pieces.MAN);
-        board.getCell(3, 3).setPiece(side.getNextSide(), Pieces.MAN);        
+        board.getCell(2, 4).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
+        board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);        
 
         Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 

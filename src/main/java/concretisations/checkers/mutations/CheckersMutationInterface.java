@@ -1,10 +1,10 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.position.relative.RelativePositionInterface;
+import abstractions.position.PositionManager.DirectionInterface;
 
 interface CheckersMutationInterface {
 
-    RelativePositionInterface getDirection();
+    DirectionInterface getDirection();
 
 }

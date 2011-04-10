@@ -27,12 +27,12 @@ import com.google.common.collect.ImmutableSet;
 
 import concretisations.tictactoe.mutations.Mutations;
 
-public class Null extends TicTacToePiece {
+public final class Null extends TicTacToePiece {
 
-    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES = ImmutableSet.of(Mutations.NEW_PAWN);
+    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(Mutations.NEW_PAWN);
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type, Null.POTENTIAL_MUTATION_TYPES);
+        super(side, type, Null.POTENTIAL_MUTATION_TYPES_SET);
     }
 
 }

@@ -113,6 +113,7 @@ public class CellManager implements CellManagerInterface {
     @Override
     public Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(final SideInterface side) {
         // TODO utiliser une contrainte sur la map (guava)
+        // TODO utiliser le type de mutation comme clé de map
         final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypesMap = Maps.newHashMap();
         for (final ManagedCellInterface cell : this) {
             final Set<? extends MutationTypeInterface> p = cell.getPotentialMutationTypes(side);

@@ -19,7 +19,7 @@ package concretisations.tictactoe.pieces;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum Pieces implements PieceTypeInterface {
+public enum TicTacToePieceSet implements PieceTypeInterface {
 
     NULL, PAWN;
 

@@ -35,7 +35,7 @@ import abstractions.piece.PieceManagerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
-import concretisations.tictactoe.pieces.Pieces;
+import concretisations.tictactoe.pieces.TicTacToePieceSet;
 
 public class TicTacToePotentialMutationTypesTest {
 
@@ -45,17 +45,17 @@ public class TicTacToePotentialMutationTypesTest {
     public void setUp() throws Exception {
 
         final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(3, 3));
-        final PieceManagerInterface pieceManager = new PieceManager(concretisations.tictactoe.pieces.Pieces.class);
+        final PieceManagerInterface pieceManager = new PieceManager(concretisations.tictactoe.pieces.TicTacToePieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
     }
 
     @Test
-    public void testLegalMutations() {
+    public void testGetPotentialMutationTypes() {
 
-        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, Pieces.PAWN);
-        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, Pieces.PAWN);
-        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, Pieces.PAWN);
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
 
         /*
         final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();

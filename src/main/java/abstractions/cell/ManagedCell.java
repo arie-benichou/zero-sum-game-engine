@@ -23,7 +23,7 @@ import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager.Direction;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
@@ -88,7 +88,7 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
-    public ManagedCellInterface getRelative(final Direction direction) {
+    public ManagedCellInterface getRelative(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
 

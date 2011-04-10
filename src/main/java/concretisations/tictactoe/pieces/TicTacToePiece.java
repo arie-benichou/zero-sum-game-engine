@@ -25,7 +25,7 @@ import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public class TicTacToePiece extends AbstractPiece {
+public abstract class TicTacToePiece extends AbstractPiece {
 
     private final Set<? extends MutationTypeInterface> potentialMutationTypes;
 
@@ -35,7 +35,7 @@ public class TicTacToePiece extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+    public final Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
         return this.potentialMutationTypes;
     }
 

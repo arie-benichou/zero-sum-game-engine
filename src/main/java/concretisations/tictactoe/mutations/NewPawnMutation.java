@@ -28,7 +28,7 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
 
-public class NewPawnMutation extends AbstractCompositeMutation {
+public final class NewPawnMutation extends AbstractCompositeMutation {
 
     public NewPawnMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
         super(cell, side, pieceType);

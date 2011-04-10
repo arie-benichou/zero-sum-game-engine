@@ -7,10 +7,14 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.side.SideInterface;
 
+import com.google.common.collect.ImmutableSet;
+
 /**
  * This is the interface for a piece.
  */
 public interface PieceInterface {
+
+    final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
 
     /**
      * Returns the side related to this piece.

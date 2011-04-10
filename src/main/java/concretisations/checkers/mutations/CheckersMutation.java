@@ -1,23 +1,31 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.mutation.old._AbstractMutation;
-import abstractions.position.relative.RelativePositionInterface;
+import java.util.List;
+
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.AbstractCompositeMutation;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
-public abstract class CheckersMutation extends _AbstractMutation implements CheckersMutationInterface {
+public abstract class CheckersMutation extends AbstractCompositeMutation implements CheckersMutationInterface {
 
-    private final RelativePositionInterface direction;
+    private final DirectionInterface direction;
 
-    public CheckersMutation(final int priority, final ManagedCellInterface cell, SideInterface side, final RelativePositionInterface direction) {
-        super(priority, cell, side);
+    public CheckersMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType, final DirectionInterface direction) {
+        super(cell, side, pieceType);
         this.direction = direction;
     }
 
-    public final RelativePositionInterface getDirection() {
+    @Override
+    public final DirectionInterface getDirection() {
         return this.direction;
     }
+
+    @Override
+    protected abstract List<MutationInterface> sequence();
 
     @Override
     public final String toString() {
