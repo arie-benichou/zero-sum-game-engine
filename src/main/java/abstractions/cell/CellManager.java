@@ -32,6 +32,7 @@ import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.SideInterface;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -124,4 +125,26 @@ public class CellManager implements CellManagerInterface {
         }
         return potentialMutationTypesMap;
     }
+
+    @Override
+    public String toString() {
+        final int maximalNumberOfCellsByRow = Collections.max(this.data.values()).getColumn();
+        final StringBuilder consoleBoardView = new StringBuilder();
+        final Iterator<ManagedCellInterface> it = this.iterator();
+
+        ManagedCellInterface previousCell = it.next();
+
+        while (it.hasNext()) {
+            final ManagedCellInterface cell = it.next();
+            if (previousCell.getRow() != cell.getRow()) {
+                consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
+                consoleBoardView.append("|");
+            }
+            consoleBoardView.append(cell);
+            previousCell = cell;
+        }
+        consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
+        return consoleBoardView.toString();
+    }
+
 }
