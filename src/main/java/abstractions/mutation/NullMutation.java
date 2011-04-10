@@ -15,22 +15,24 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.othello.pieces;
+package abstractions.mutation;
 
-import java.util.Set;
+public class NullMutation extends AbstractMutation {
 
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.side.SideInterface;
+    private final static MutationInterface INSTANCE = new NullMutation();
 
-public final class Pawn extends OthelloPiece {
-
-    public Pawn(SideInterface side) {
-        super(side);
+    public final static MutationInterface getInstance() {
+        return NullMutation.INSTANCE;
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side) {
-        return NULL_MUTATIONS;
+    private NullMutation() {
+        super(null, null, null);
     }
+
+    @Override
+    public void process() {}
+
+    @Override
+    public void cancel() {}
 
 }

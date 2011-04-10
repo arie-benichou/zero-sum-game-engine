@@ -3,29 +3,29 @@ package concretisations.othello.mutations;
 
 import java.util.List;
 
-import abstractions.cell.old.CellInterface;
-import abstractions.mutation.AbstractMutation;
-import abstractions.mutation.AtomicMutationInterface;
-import abstractions.mutation.MutationFactory;
+import abstractions.cell.old.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.mutation.BasicMutationFactory;
+import abstractions.mutation.old._AbstractMutation;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
 
 import concretisations.tictactoe.pieces.Pieces;
 
-public class NewPawnMutation extends AbstractMutation {
+public class NewPawnMutation extends _AbstractMutation {
 
-    public NewPawnMutation(final CellInterface cell, SideInterface side) {
+    public NewPawnMutation(final ManagedCellInterface cell, SideInterface side) {
         super(cell, side);
     }
     
-    protected List<AtomicMutationInterface> generateSequence() {
+    protected List<MutationInterface> generateSequence() {
         
         return ImmutableList.of(
-            MutationFactory.birth(
-                this.getConcernedCell()
+            BasicMutationFactory.birth(
+                this.getCell()
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().Piece(this.getSide(), Pieces.PAWN)
+                this.getCell().getPieceFactory().Piece(this.getSide(), Pieces.PAWN)
             )
             
         );

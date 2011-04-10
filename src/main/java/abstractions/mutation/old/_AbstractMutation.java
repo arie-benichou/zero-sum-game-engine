@@ -15,51 +15,66 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.mutation;
+package abstractions.mutation.old;
+
+import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public abstract class AbstractMutation implements MutationInterface {
+public class _AbstractMutation implements MutationInterface {
 
-    private final ManagedCellInterface concernedCell;
+    private final ManagedCellInterface cell;
     private final SideInterface side;
     private final PieceTypeInterface pieceType;
-    private final PieceInterface savedSate;
 
-    public AbstractMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        this.concernedCell = cell;
+    public _AbstractMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        this.cell = cell;
         this.side = side;
         this.pieceType = pieceType;
-        this.savedSate = cell.getPiece();
     }
 
     @Override
     public final ManagedCellInterface getCell() {
-        return this.concernedCell;
+        return this.cell;
     }
 
     @Override
-    public final SideInterface getSide() {
+    public SideInterface getSide() {
         return this.side;
     }
 
     @Override
-    public final PieceTypeInterface getPieceType() {
+    public PieceTypeInterface getPieceType() {
         return this.pieceType;
     }
 
     @Override
-    public final PieceInterface getSavedSate() {
-        return this.savedSate;
+    public void process() {
+        for (final MutationInterface atomicMutation : this.getSequence()) {
+            atomicMutation.process();
+        }
     }
 
     @Override
-    public abstract void process();
+    public void cancel() {
+        for (final MutationInterface atomicMutation : this.getSequence()) {
+            atomicMutation.cancel();
+        }
+    }
+
+    private transient List<MutationInterface> sequence = null;
+
+    protected abstract List<MutationInterface> generateSequence();
 
     @Override
-    public abstract void cancel();
+    protected List<MutationInterface> getSequence() {
+        if (this.sequence == null) {
+            this.sequence = this.generateSequence();
+        }
+        return this.sequence;
+    }
 
 }

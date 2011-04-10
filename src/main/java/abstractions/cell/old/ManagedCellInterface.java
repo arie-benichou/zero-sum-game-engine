@@ -9,7 +9,7 @@ import abstractions.side.SideInterface;
 /**
  * This is the interface for a cell.
  */
-public interface CellInterface extends Comparable<CellInterface> {
+public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     Set<? extends MutationInterface> fetchAvailableMutations(SideInterface side);
 

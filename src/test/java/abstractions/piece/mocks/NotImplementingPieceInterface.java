@@ -19,7 +19,7 @@ package abstractions.piece.mocks;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
@@ -28,7 +28,7 @@ public final class NotImplementingPieceInterface {
 
     public NotImplementingPieceInterface(final SideInterface side, final PieceTypeInterface type) {}
 
-    public Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, final SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, final SideInterface side) {
         return null;
     }
 

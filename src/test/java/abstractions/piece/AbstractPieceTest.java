@@ -25,7 +25,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
@@ -42,7 +42,7 @@ public class AbstractPieceTest {
         this.nullPiece = new AbstractPiece(Sides.NULL, PieceSet.NULL) {
 
             @Override
-            public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, final SideInterface side) {
+            public Set<? extends PieceActionTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
         };
@@ -50,7 +50,7 @@ public class AbstractPieceTest {
         this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet.PAWN) {
 
             @Override
-            public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, final SideInterface side) {
+            public Set<? extends PieceActionTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
         };
@@ -58,7 +58,7 @@ public class AbstractPieceTest {
         this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet.PAWN) {
 
             @Override
-            public Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, final SideInterface side) {
+            public Set<? extends PieceActionTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
         };

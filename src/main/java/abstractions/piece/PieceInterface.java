@@ -3,7 +3,8 @@ package abstractions.piece;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.side.SideInterface;
 
 /**
@@ -25,7 +26,7 @@ public interface PieceInterface {
      */
     PieceTypeInterface getType();
 
-    Set<? extends PieceActionTypeInterface> computePotentialActionTypes(final CellInterface cell, SideInterface side);
+    Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, SideInterface side);
 
     // TODO add method isNull()
 

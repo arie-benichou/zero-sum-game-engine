@@ -58,7 +58,7 @@ public class BoardTest {
     @Test(expected = NullPointerException.class)
     public final void testNewBoardWithListContainingAtLeastOneNullPointer() {
 
-        Set<CellInterface> cells = new HashSet<CellInterface>(2 * 3);
+        Set<ManagedCellInterface> cells = new HashSet<ManagedCellInterface>(2 * 3);
 
         cells.add(cell(Position(1, 1)));
         cells.add(null);
@@ -71,7 +71,7 @@ public class BoardTest {
     @Test(expected = IllegalArgumentException.class)
     public final void testNewBoardWithListContainingAtLeastOneNullCellObject() {
 
-        Set<CellInterface> cells = new HashSet<CellInterface>(2 * 3);
+        Set<ManagedCellInterface> cells = new HashSet<ManagedCellInterface>(2 * 3);
 
         cells.add(cell(Position(1, 1)));
         cells.add(NULL_CELL);
@@ -179,7 +179,7 @@ public class BoardTest {
         assertTrue(this.board.equals(Board(2, 3)));
         assertNotSame(this.board, Board(2, 3));
 
-        Set<CellInterface> cells = new HashSet<CellInterface>(3);
+        Set<ManagedCellInterface> cells = new HashSet<ManagedCellInterface>(3);
         cells.add(cell(Position(1, 1)));
         cells.add(cell(Position(1, 2)));
         cells.add(cell(Position(1, 3)));
@@ -190,7 +190,7 @@ public class BoardTest {
         assertTrue(board1.equals(board2));
         assertNotSame(board1, board2);
 
-        for (CellInterface cell : board1) {
+        for (ManagedCellInterface cell : board1) {
             assertSame(cell, board2.getCell(cell.getRow(), cell.getColumn()));
             assertEquals(cell, board2.getCell(cell.getRow(), cell.getColumn()));
         }
@@ -200,7 +200,7 @@ public class BoardTest {
     @Test
     public final void testIterator() {
 
-        List<CellInterface> expectedCells = new ArrayList<CellInterface>(2 * 3);
+        List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(2 * 3);
 
         expectedCells.add(cell(Position(1, 1)));
         expectedCells.add(cell(Position(1, 2)));
@@ -210,8 +210,8 @@ public class BoardTest {
         expectedCells.add(cell(Position(2, 2)));
         expectedCells.add(cell(Position(2, 3)));
 
-        List<CellInterface> testedCells = new ArrayList<CellInterface>(2 * 3);
-        for (CellInterface cell : this.board) {
+        List<ManagedCellInterface> testedCells = new ArrayList<ManagedCellInterface>(2 * 3);
+        for (ManagedCellInterface cell : this.board) {
             testedCells.add(cell);
         }
 

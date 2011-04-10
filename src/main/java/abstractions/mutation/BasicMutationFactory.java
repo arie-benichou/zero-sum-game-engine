@@ -15,25 +15,25 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.piece.mocks;
+package abstractions.mutation;
 
-import java.util.Set;
-
-import abstractions.cell.old.ManagedCellInterface;
-import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceActionTypeInterface;
+import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public final class Pawn extends AbstractPiece {
+// TODO MutationManager
+public class BasicMutationFactory {
 
-    public Pawn(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type);
+    public static MutationInterface newBirth(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        return new Birth(cell, side, pieceType);
     }
 
-    @Override
-    public Set<? extends PieceActionTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
-        return null;
+    public static MutationInterface newDeath(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        return new Death(cell, side, pieceType);
+    }
+
+    public static MutationInterface newAlteration(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        return new Alteration(cell, side, pieceType);
     }
 
 }

@@ -19,7 +19,7 @@ package concretisations.connect4.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
@@ -29,7 +29,7 @@ public final class Pawn extends Connect4Piece {
         super(side);
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side) {
         return NULL_MUTATIONS;
     }
 

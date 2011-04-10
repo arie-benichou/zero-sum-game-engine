@@ -3,7 +3,7 @@ package abstractions.game;
 
 import java.util.List;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.move.API.MoveInterface;
 import abstractions.side.API.SideInterface;
 
@@ -21,7 +21,7 @@ public interface GameInterface {
     boolean hasNullMove();
     
     
-    List<CellInterface> getMutableCells(final SideInterface side);
+    List<ManagedCellInterface> getMutableCells(final SideInterface side);
 
     /**
      * Returns the list of legal moves for a given side.
@@ -155,6 +155,6 @@ public interface GameInterface {
      * 
      * @return the board cell related to a given row and a given column
      */
-    CellInterface cell(final int clientRowIndex, final int clientColumnIndex);
+    ManagedCellInterface cell(final int clientRowIndex, final int clientColumnIndex);
 
 }

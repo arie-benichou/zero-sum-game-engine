@@ -3,9 +3,9 @@ package concretisations.checkers.mutations;
 
 import java.util.List;
 
-import abstractions.cell.old.CellInterface;
-import abstractions.mutation.AtomicMutationInterface;
-import abstractions.mutation.MutationFactory;
+import abstractions.cell.old.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.mutation.BasicMutationFactory;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
@@ -17,29 +17,29 @@ public class JumpMutation extends CheckersMutation {
 
     private final static int PRIORITY = 1;
 
-    public JumpMutation(CellInterface cell, SideInterface side, RelativePositionInterface direction) {
+    public JumpMutation(ManagedCellInterface cell, SideInterface side, RelativePositionInterface direction) {
         super(PRIORITY, cell, side, direction);
     }
 
-    protected List<AtomicMutationInterface> generateSequence() {
+    protected List<MutationInterface> generateSequence() {
         return ImmutableList.of(
                 
-            MutationFactory.death(
-                this.getConcernedCell()
+            BasicMutationFactory.death(
+                this.getCell()
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().NullPiece()
+                this.getCell().getPieceFactory().NullPiece()
             ),
             
-            MutationFactory.birth(
-                this.getConcernedCell().getRelative(RelativePositions.reduce(this.getDirection(), this.getDirection()))
+            BasicMutationFactory.birth(
+                this.getCell().getRelative(RelativePositions.reduce(this.getDirection(), this.getDirection()))
             ).setProtagonist(
-                this.getConcernedCell().getPiece()
+                this.getCell().getPiece()
             ),
                     
-            MutationFactory.death(
-                this.getConcernedCell().getRelative(this.getDirection())
+            BasicMutationFactory.death(
+                this.getCell().getRelative(this.getDirection())
             ).setProtagonist(
-                this.getConcernedCell().getPieceFactory().NullPiece()
+                this.getCell().getPieceFactory().NullPiece()
             )                    
             
         );

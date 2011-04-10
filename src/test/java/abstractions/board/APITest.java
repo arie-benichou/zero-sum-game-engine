@@ -34,7 +34,7 @@ public class APITest {
     @Test
     public void testLegalBoard() {
         
-        Set<CellInterface> cells = new HashSet<CellInterface>(1);
+        Set<ManagedCellInterface> cells = new HashSet<ManagedCellInterface>(1);
         
         cells.add(cell(Position(1,1)));
         
@@ -66,7 +66,7 @@ public class APITest {
         assertNotSame(board1, board2);
         assertTrue(board1.equals(board2));
         
-        for(CellInterface cell: board1) {
+        for(ManagedCellInterface cell: board1) {
             assertNotSame(cell, board2.getCell(cell.getRow(), cell.getColumn()));
             assertEquals(cell, board2.getCell(cell.getRow(), cell.getColumn()));
         }

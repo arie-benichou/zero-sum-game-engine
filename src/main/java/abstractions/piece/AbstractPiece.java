@@ -19,7 +19,8 @@ package abstractions.piece;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
@@ -92,6 +93,6 @@ public abstract class AbstractPiece implements PieceInterface {
     }
 
     @Override
-    public abstract Set<? extends PieceActionTypeInterface> computePotentialActionTypes(CellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }
