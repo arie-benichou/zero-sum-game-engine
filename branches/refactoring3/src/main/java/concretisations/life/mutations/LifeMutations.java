@@ -28,7 +28,6 @@ public enum LifeMutations implements MutationTypeInterface {
 
     BIRTH_PAWN {
 
-        @Override
         public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
             // TODO ? utiliser la Birth mutation
             return new BirthPawnMutation(cell, side, pieceType);
@@ -37,7 +36,6 @@ public enum LifeMutations implements MutationTypeInterface {
 
     DEATH_PAWN {
 
-        @Override
         public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
             // TODO ? utiliser la Death mutation
             return new DeathPawnMutation(cell, side, pieceType);

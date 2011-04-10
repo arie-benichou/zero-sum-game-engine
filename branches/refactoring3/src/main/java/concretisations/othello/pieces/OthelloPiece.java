@@ -44,7 +44,6 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
         super(side, type);
     }
 
-    @Override
     public boolean willItBeConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
         boolean willBeConnected = false;
         if (side.equals(cell.getPiece().getSide())) {

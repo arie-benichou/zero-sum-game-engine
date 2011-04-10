@@ -19,7 +19,6 @@ public abstract class CheckersMutation extends AbstractCompositeMutation impleme
         this.direction = direction;
     }
 
-    @Override
     public final DirectionInterface getDirection() {
         return this.direction;
     }

@@ -39,7 +39,6 @@ public enum OthelloMutations implements MutationTypeInterface {
 
     NEW_PAWN {
 
-        @Override
         public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
             // TODO utiliser la Birth mutation
             return new NewPawnMutation(cell, side, pieceType);

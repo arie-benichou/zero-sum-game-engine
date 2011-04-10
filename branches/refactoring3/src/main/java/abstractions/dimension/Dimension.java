@@ -33,42 +33,34 @@ final class Dimension implements DimensionInterface {
         this.columRange = columnsRange;
     }
 
-    @Override
     public final int lowerBoundForRows() {
         return this.rowRange.getLowerBound();
     }
 
-    @Override
     public final int upperBoundForRows() {
         return this.rowRange.getUpperBound();
     }
 
-    @Override
     public final int lowerBoundForColumns() {
         return this.columRange.getLowerBound();
     }
 
-    @Override
     public final int upperBoundForColumns() {
         return this.columRange.getUpperBound();
     }
 
-    @Override
     public final int numberOfRows() {
         return this.rowRange.getCapacity();
     }
 
-    @Override
     public final int numberOfColumns() {
         return this.columRange.getCapacity();
     }
 
-    @Override
     public final int boardCapacity() {
         return this.numberOfRows() * this.numberOfColumns();
     }
 
-    @Override
     public final boolean contains(final int rowIndex, final int columnIndex) {
         return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
     }

@@ -38,22 +38,18 @@ public abstract class AbstractMutation implements MutationInterface {
         this.savedSate = cell.getPiece();
     }
 
-    @Override
     public final ManagedCellInterface getCell() {
         return this.concernedCell;
     }
 
-    @Override
     public final SideInterface getSide() {
         return this.side;
     }
 
-    @Override
     public final PieceTypeInterface getPieceType() {
         return this.pieceType;
     }
 
-    @Override
     public final PieceInterface getSavedSate() {
         return this.savedSate;
     }
@@ -63,10 +59,8 @@ public abstract class AbstractMutation implements MutationInterface {
         return this.getClass().getSimpleName() + " " + this.getSide() + " " + this.getCell().getPosition() + " " + this.getPieceType();
     }
 
-    @Override
     public abstract void process();
 
-    @Override
     public abstract void cancel();
 
 }

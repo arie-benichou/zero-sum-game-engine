@@ -137,12 +137,10 @@ public final class PositionManager implements PositionManagerInterface {
             this.columnDelta = columnDelta;
         }
 
-        @Override
         public final int getRowDelta() {
             return this.rowDelta;
         }
 
-        @Override
         public final int getColumnDelta() {
             return this.columnDelta;
         }
@@ -165,7 +163,6 @@ public final class PositionManager implements PositionManagerInterface {
         return this.hashBase * row + column;
     }
 
-    @Override
     public PositionInterface getNullPosition() {
         return this.nullPosition;
     }
@@ -186,7 +183,6 @@ public final class PositionManager implements PositionManagerInterface {
         this.nullPosition = this.data.get(0);
     }
 
-    @Override
     public PositionInterface getPosition(final int row, final int column) {
         final PositionInterface position;
         if (this.dimension.contains(row, column)) {
@@ -198,13 +194,11 @@ public final class PositionManager implements PositionManagerInterface {
         return position;
     }
 
-    @Override
     public PositionInterface getPosition(final PositionInterface position, final DirectionInterface direction) {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
 
     }
 
-    @Override
     public Iterator<PositionInterface> iterator() {
         return this.data.values().iterator();
     }

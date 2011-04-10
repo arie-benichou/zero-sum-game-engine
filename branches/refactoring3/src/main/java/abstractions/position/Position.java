@@ -33,21 +33,18 @@ final class Position implements PositionInterface {
 
     }
 
-    @Override
     public int getRow() {
 
         return this.row;
 
     }
 
-    @Override
     public int getColumn() {
 
         return this.column;
 
     }
 
-    @Override
     public boolean isNull() {
 
         return this.getRow() == 0 || this.getColumn() == 0;
@@ -95,7 +92,6 @@ final class Position implements PositionInterface {
 
     }
 
-    @Override
     public int compareTo(final PositionInterface that) {
 
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
