@@ -26,17 +26,10 @@ public class CellManagerTest {
 
     @Before
     public void setUp() throws Exception {
+
         final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(3, 3));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
-    }
-
-    @Test
-    public void testIsNull() {
-
-        Assert.assertTrue(this.cellManager.getNullCell().isNull());
-        Assert.assertTrue(this.cellManager.getCell(0, 0).isNull());
-        Assert.assertFalse(this.cellManager.getCell(1, 1).isNull());
 
     }
 
@@ -45,6 +38,16 @@ public class CellManagerTest {
 
         final ManagedCellInterface nullCell = this.cellManager.getNullCell();
         Assert.assertTrue(nullCell.isNull());
+        Assert.assertTrue(nullCell == this.cellManager.getCell(0, 0));
+        Assert.assertTrue(nullCell == this.cellManager.getCell(3, 4));
+
+    }
+
+    @Test
+    public void testGetNullPiece() {
+
+        Assert.assertTrue(this.cellManager.getNullPiece().getSide().isNull());
+        Assert.assertTrue(this.cellManager.getNullPiece().getType().equals(PieceSet.NULL));
 
     }
 
@@ -156,7 +159,6 @@ public class CellManagerTest {
 
         final List<ManagedCellInterface> cells = new ArrayList<ManagedCellInterface>();
         for (final ManagedCellInterface cell : this.cellManager) {
-            System.out.println(cell.getPosition());
             cells.add(cell);
         }
 

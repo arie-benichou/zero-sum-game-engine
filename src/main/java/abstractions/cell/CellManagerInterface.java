@@ -16,6 +16,8 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      */
     ManagedCellInterface getNullCell();
 
+    PieceInterface getNullPiece();
+
     ManagedCellInterface getCell(final int rowIndex, final int columnIndex);
 
     ManagedCellInterface getCell(final PositionInterface position);
