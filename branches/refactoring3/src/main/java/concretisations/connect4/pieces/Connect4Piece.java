@@ -29,11 +29,8 @@ import com.google.common.collect.ImmutableSet;
 
 public abstract class Connect4Piece extends AbstractPiece {
 
-    //TODO en faire une constante de classe de la pièce abstraite, voire même de l'interface d'une pièce
-    protected final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
-
     protected final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
-            .of(concretisations.connect4.mutations.Mutations.NEW_PAWN);
+            .of(concretisations.connect4.mutations.Connect4Mutations.NEW_PAWN);
 
     public Connect4Piece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);

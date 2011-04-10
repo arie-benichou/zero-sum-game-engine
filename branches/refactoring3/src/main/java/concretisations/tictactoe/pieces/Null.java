@@ -25,11 +25,11 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-import concretisations.tictactoe.mutations.Mutations;
+import concretisations.tictactoe.mutations.TicTacToeMutations;
 
 public final class Null extends TicTacToePiece {
 
-    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(Mutations.NEW_PAWN);
+    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(TicTacToeMutations.NEW_PAWN);
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, Null.POTENTIAL_MUTATION_TYPES_SET);

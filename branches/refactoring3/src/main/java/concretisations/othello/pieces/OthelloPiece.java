@@ -34,7 +34,7 @@ import com.google.common.collect.ImmutableSet;
 public abstract class OthelloPiece extends AbstractPiece implements OthelloPieceInterface {
 
     protected final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
-            .of(concretisations.othello.mutations.Mutations.NEW_PAWN);
+            .of(concretisations.othello.mutations.OthelloMutations.NEW_PAWN);
 
     // TODO ? avoir une méthode dans Cell qui pemet de récupérer toutes cases les voisines    
     public static List<? extends DirectionInterface> NEIGHBOURS_POSITIONS = ImmutableList.of(Direction.TOP, Direction.RIGHT, Direction.BOTTOM, Direction.LEFT,
