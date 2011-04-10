@@ -17,7 +17,6 @@
 
 package abstractions.piece;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -25,6 +24,7 @@ import java.util.Set;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 public class PieceManager implements PieceManagerInterface {
@@ -44,7 +44,8 @@ public class PieceManager implements PieceManagerInterface {
                 data.put(this.hash(sidedPiece.getSide(), sidedPiece.getType()), sidedPiece);
             }
         }
-        return Collections.unmodifiableMap(data);
+        // TODO regarder l'API du builder
+        return ImmutableMap.copyOf(data);
     }
 
     public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
@@ -54,6 +55,7 @@ public class PieceManager implements PieceManagerInterface {
 
     }
 
+    @Override
     public PieceInterface getNullPiece() {
         return this.nullPiece;
     }

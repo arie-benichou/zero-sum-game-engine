@@ -4,6 +4,7 @@ package abstractions.cell;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
+import abstractions.position.PositionManager.Direction;
 import abstractions.side.SideInterface;
 
 /**
@@ -57,5 +58,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
     boolean isNull();
 
     boolean isEmpty();
+
+    ManagedCellInterface getRelative(Direction direction);
 
 }

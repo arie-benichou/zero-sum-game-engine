@@ -17,13 +17,13 @@
 
 package abstractions.position;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 import abstractions.dimension.API.DimensionInterface;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 public final class PositionManager implements PositionManagerInterface {
@@ -167,7 +167,7 @@ public final class PositionManager implements PositionManagerInterface {
 
     @Override
     public PositionInterface getNullPosition() {
-        return this.data.get(0);
+        return this.nullPosition;
     }
 
     private Map<Integer, PositionInterface> initializeData(final Set<PositionInterface> set) {
@@ -175,14 +175,15 @@ public final class PositionManager implements PositionManagerInterface {
         for (final PositionInterface element : set) {
             data.put(this.hash(element.getRow(), element.getColumn()), element);
         }
-        return Collections.unmodifiableMap(data);
+        // TODO regarder l'API du builder
+        return ImmutableMap.copyOf(data);
     }
 
     public PositionManager(final DimensionInterface dimension) {
         this.dimension = dimension;
         this.hashBase = Math.max(dimension.numberOfRows(), dimension.numberOfColumns());
         this.data = this.initializeData(PositionManager.factory.newPositionSet(this.dimension));
-        this.nullPosition = this.getNullPosition();
+        this.nullPosition = this.data.get(0);
     }
 
     @Override
