@@ -1,6 +1,9 @@
 
 package abstractions.cell;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -129,6 +132,35 @@ public class CellManagerTest {
         position = this.cellManager.position(initialPosition, Direction.RIGHT);
         expectedPosition = this.cellManager.position(2, 3);
         Assert.assertTrue(position.equals(expectedPosition));
+
+    }
+
+    @Test
+    public void testIterableInterface() {
+
+        final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(1 + 3 * 3);
+
+        expectedCells.add(this.cellManager.getNullCell());
+
+        expectedCells.add(this.cellManager.getCell(1, 1));
+        expectedCells.add(this.cellManager.getCell(1, 2));
+        expectedCells.add(this.cellManager.getCell(1, 3));
+
+        expectedCells.add(this.cellManager.getCell(2, 1));
+        expectedCells.add(this.cellManager.getCell(2, 2));
+        expectedCells.add(this.cellManager.getCell(2, 3));
+
+        expectedCells.add(this.cellManager.getCell(3, 1));
+        expectedCells.add(this.cellManager.getCell(3, 2));
+        expectedCells.add(this.cellManager.getCell(3, 3));
+
+        final List<ManagedCellInterface> cells = new ArrayList<ManagedCellInterface>();
+        for (final ManagedCellInterface cell : this.cellManager) {
+            System.out.println(cell.getPosition());
+            cells.add(cell);
+        }
+
+        Assert.assertTrue(expectedCells.equals(cells));
 
     }
 

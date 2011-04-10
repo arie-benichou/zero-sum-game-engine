@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.side.SideInterface;

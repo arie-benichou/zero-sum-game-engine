@@ -65,9 +65,36 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
-    public int compareTo(final ManagedCellInterface o) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int compareTo(final ManagedCellInterface that) {
+        return this.position.compareTo(that.getPosition());
     }
 
+    @Override
+    public String toString() {
+        return " " + this.getPiece() + " |";
+    }
+
+    @Override
+    public int hashCode() {
+        return this.position.hashCode();
+    }
+
+    @Override
+    public final boolean equals(final Object object) {
+        final boolean isEqual;
+        if (object == this) {
+            isEqual = true;
+        }
+        else if (object == null) {
+            isEqual = false;
+        }
+        else if (!(object instanceof ManagedCellInterface)) {
+            isEqual = false;
+        }
+        else {
+            final ManagedCellInterface that = (ManagedCellInterface) object;
+            isEqual = that.isNull() == this.isNull() && that.getPiece().equals(this.getPiece());
+        }
+        return isEqual;
+    }
 }

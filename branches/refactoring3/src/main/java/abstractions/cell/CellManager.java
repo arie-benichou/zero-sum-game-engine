@@ -1,6 +1,9 @@
 
 package abstractions.cell;
 
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import abstractions.piece.PieceInterface;
@@ -12,6 +15,7 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class CellManager implements CellManagerInterface {
@@ -28,14 +32,9 @@ public class CellManager implements CellManagerInterface {
     }
 
     private Map<PositionInterface, ManagedCellInterface> intializeData() {
-
         final Map<PositionInterface, ManagedCellInterface> data = Maps.newHashMap();
-
-        ManagedCellInterface cell;
         for (final PositionInterface position : this.positionManager) {
-            cell = this.newCell(position);
-            //System.out.println(cell);
-            data.put(position, cell);
+            data.put(position, this.newCell(position));
         }
         // TODO regarder l'API du builder
         return ImmutableMap.copyOf(data);
@@ -46,7 +45,6 @@ public class CellManager implements CellManagerInterface {
         this.pieceManager = pieceManager;
         this.data = this.intializeData();
         this.nullCell = this.data.get(this.positionManager.getNullPosition());
-
     }
 
     @Override
@@ -79,4 +77,11 @@ public class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, direction);
     }
 
+    @Override
+    public Iterator<ManagedCellInterface> iterator() {
+        // TODO In order to avoid this overhead, use data structure SortedMap/TreeMap instead of basic HashMap.
+        final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
+        Collections.sort(values);
+        return values.iterator();
+    }
 }

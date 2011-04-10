@@ -1,7 +1,7 @@
 
 package concretisations.othello.pieces;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
 

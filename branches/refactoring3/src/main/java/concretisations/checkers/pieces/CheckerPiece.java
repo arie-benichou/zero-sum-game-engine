@@ -20,7 +20,7 @@ package concretisations.checkers.pieces;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.relative.RelativePositionInterface;

@@ -1,7 +1,7 @@
 
 package abstractions.mutation;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.piece.PieceInterface;
 
 //TODO utiliser le pattern composite

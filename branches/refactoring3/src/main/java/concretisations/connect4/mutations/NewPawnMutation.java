@@ -3,7 +3,7 @@ package concretisations.connect4.mutations;
 
 import java.util.List;
 
-import abstractions.cell.CellInterface;
+import abstractions.cell.old.CellInterface;
 import abstractions.mutation.AbstractMutation;
 import abstractions.mutation.AtomicMutationInterface;
 import abstractions.mutation.MutationFactory;
