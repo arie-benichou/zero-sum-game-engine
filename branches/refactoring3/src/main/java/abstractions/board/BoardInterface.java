@@ -3,7 +3,7 @@ package abstractions.board;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.side.SideInterface;
@@ -11,7 +11,7 @@ import abstractions.side.SideInterface;
 /**
  * This is the interface for a board.
  */
-public interface BoardInterface extends Iterable<CellInterface> {
+public interface BoardInterface extends Iterable<ManagedCellInterface> {
 
     /**
      * Returns the cell related to a given row and a given column.
@@ -24,21 +24,21 @@ public interface BoardInterface extends Iterable<CellInterface> {
      * 
      * @return the cell related to a given row index and a given column
      */
-    CellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
+    ManagedCellInterface getCell(final int clientRowIndex, final int clientColumnIndex);
 
     /**
      * Returns the lower bound of this board.
      * 
      * @return the lower bound of this board
      */
-    CellInterface getLowerBound();
+    ManagedCellInterface getLowerBound();
 
     /**
      * Returns the upper bound of this board.
      * 
      * @return the upper bound of this board
      */
-    CellInterface getUpperBound();
+    ManagedCellInterface getUpperBound();
 
     //TODO ! javadoc
     Set<MutationInterface> getLegalMutations(SideInterface side);

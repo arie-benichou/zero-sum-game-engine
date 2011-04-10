@@ -20,7 +20,7 @@ package concretisations.checkers.pieces;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.position.relative.RelativePositionInterface;
@@ -45,12 +45,12 @@ public abstract class CheckerPiece extends AbstractPiece {
 
     private static interface Predicate {
 
-        boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition);
+        boolean apply(ManagedCellInterface cell, SideInterface side, RelativePositionInterface relativePosition);
     }
 
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
-        public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
+        public boolean apply(ManagedCellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
             return
                 side.equals(cell.getPiece().getSide())
                 &&
@@ -61,7 +61,7 @@ public abstract class CheckerPiece extends AbstractPiece {
 
     private final static Predicate CAN_JUMP_OVER = new Predicate() {
 
-        public boolean apply(CellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
+        public boolean apply(ManagedCellInterface cell, SideInterface side, RelativePositionInterface relativePosition) {
             return
                 side.equals(cell.getPiece().getSide())
                 &&
@@ -98,7 +98,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         }
     }
 
-    private Set<RelativePositionInterface> getOptions(final CellInterface cell, SideInterface side, PieceAction action) {
+    private Set<RelativePositionInterface> getOptions(final ManagedCellInterface cell, SideInterface side, PieceAction action) {
         final Set<RelativePositionInterface> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
         Predicate predicate = this.getPredicate(action);
         for (final RelativePositionInterface relativePosition : this.legalRelativePositions) {
@@ -109,7 +109,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         return options;
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(final CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, SideInterface side) {
         final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
         Set<RelativePositionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
         for (RelativePositionInterface direction : options) {

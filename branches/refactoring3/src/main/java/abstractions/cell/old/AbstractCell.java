@@ -6,7 +6,7 @@ import java.util.Set;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
-abstract class AbstractCell implements CellInterface {
+abstract class AbstractCell implements ManagedCellInterface {
 
     protected boolean willGenerateMutations = false;
 

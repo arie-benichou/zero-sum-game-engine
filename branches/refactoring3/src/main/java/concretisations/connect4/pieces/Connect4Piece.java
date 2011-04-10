@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.side.SideInterface;
@@ -32,6 +32,6 @@ public abstract class Connect4Piece extends AbstractPiece {
         return consoleView;
     }
     
-    public abstract Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side);    
+    public abstract Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side);    
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceSetFactory;
 import abstractions.side.SideInterface;
@@ -24,9 +24,9 @@ import com.google.common.collect.Sets;
 
 final class Board implements BoardInterface {
 
-    private static final Constraint<CellInterface> CONSTRAINT = new Constraint<CellInterface>() {
+    private static final Constraint<ManagedCellInterface> CONSTRAINT = new Constraint<ManagedCellInterface>() {
 
-        public CellInterface checkElement(CellInterface cell) {
+        public ManagedCellInterface checkElement(ManagedCellInterface cell) {
             if (cell == null) {
                 throw new NullPointerException("A cell of a board is not intended to be null.");
             }
@@ -37,7 +37,7 @@ final class Board implements BoardInterface {
         }
     };
 
-    private final Map<String, CellInterface> boardCells;
+    private final Map<String, ManagedCellInterface> boardCells;
 
     private transient PieceSetFactory pieceFactory;
     
@@ -53,44 +53,44 @@ final class Board implements BoardInterface {
         return "r" + row + "c" + column;
     }
 
-    private final String computeHash(final CellInterface cell) {
+    private final String computeHash(final ManagedCellInterface cell) {
         return this.computeHash(cell.getRow(), cell.getColumn());
     }
 
-    public Board(final Set<CellInterface> cells) {
+    public Board(final Set<ManagedCellInterface> cells) {
         checkNotNull(cells, "Argument 'cells' is not intended to be null.");
-        final Set<CellInterface> checkedCells = Constraints.constrainedSet(new HashSet<CellInterface>(cells.size()), CONSTRAINT);
+        final Set<ManagedCellInterface> checkedCells = Constraints.constrainedSet(new HashSet<ManagedCellInterface>(cells.size()), CONSTRAINT);
         checkedCells.addAll(cells);
         this.boardCells = Maps.newHashMapWithExpectedSize(checkedCells.size());
         // TODO regarder l'API Guava du MapMaker
-        for (final CellInterface cell : cells) {
+        for (final ManagedCellInterface cell : cells) {
             cell.setBoard(this);
             this.boardCells.put(this.computeHash(cell), cell);
         }
     }
 
-    public final CellInterface getCell(final int row, final int column) {
-        CellInterface cell = this.boardCells.get(this.computeHash(row, column));
+    public final ManagedCellInterface getCell(final int row, final int column) {
+        ManagedCellInterface cell = this.boardCells.get(this.computeHash(row, column));
         
         // TODO ? les cellules injectées au board pourraient contenir la celulle nulle
-        return cell == null ? CellInterface.NULL_CELL : cell;
+        return cell == null ? ManagedCellInterface.NULL_CELL : cell;
         
     }
 
     // TODO ? à mettre en cache
-    public Iterator<CellInterface> iterator() {
-        final List<CellInterface> cells = Lists.newArrayList(this.boardCells.values());
+    public Iterator<ManagedCellInterface> iterator() {
+        final List<ManagedCellInterface> cells = Lists.newArrayList(this.boardCells.values());
         Collections.sort(cells);
         return cells.iterator();
     }
 
     // TODO ? à mettre en cache
-    public CellInterface getLowerBound() {
+    public ManagedCellInterface getLowerBound() {
         return Collections.min(this.boardCells.values());
     }
 
     // TODO ? à mettre en cache
-    public CellInterface getUpperBound() {
+    public ManagedCellInterface getUpperBound() {
         return Collections.max(this.boardCells.values());
     }
 
@@ -99,7 +99,7 @@ final class Board implements BoardInterface {
         List<MutationInterface> availableMutations = Lists.newArrayList();
 
         // TODO ? utiliser un prédicat "NotEmpty" en tant que contrainte sur la liste
-        for (CellInterface cell : this) {
+        for (ManagedCellInterface cell : this) {
             Set<? extends MutationInterface> result = cell.fetchAvailableMutations(side);
             if (result.isEmpty()) {
                 cell.willGenerateMutations(false);
@@ -117,7 +117,7 @@ final class Board implements BoardInterface {
             // TODO utiliser un prédicat "> min" en tant que contrainte sur la liste
             for (MutationInterface mutation : availableMutations) {
                 if (mutation.getPriority() == min) {
-                    mutation.getConcernedCell().willGenerateMutations(true);
+                    mutation.getCell().willGenerateMutations(true);
                     legalMutations.add(mutation);
                 }
             }
@@ -162,13 +162,13 @@ final class Board implements BoardInterface {
     public String toString() {
         final int maximalNumberOfCellsByRow = Collections.max(this.boardCells.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
-        final Iterator<CellInterface> it = this.iterator();
+        final Iterator<ManagedCellInterface> it = this.iterator();
         
         // TODO ? la liste de cellules injectées au board pourrait contenir la celulle nulle
-        CellInterface previousCell = CellInterface.NULL_CELL;
+        ManagedCellInterface previousCell = ManagedCellInterface.NULL_CELL;
         
         while (it.hasNext()) {
-            final CellInterface cell = it.next();
+            final ManagedCellInterface cell = it.next();
             if (previousCell.getRow() != cell.getRow()) {
                 consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
                 consoleBoardView.append("|");

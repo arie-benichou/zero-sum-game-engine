@@ -18,9 +18,9 @@ public final class CellFactory {
      * 
      * @return a clone of a cell
      */
-    public final CellInterface clone(final CellInterface cell) {
+    public final ManagedCellInterface clone(final ManagedCellInterface cell) {
         Preconditions.checkNotNull(cell, "Argument 'cell' is not intended to be null.");
-        final CellInterface clone = this.cell(cell.getPosition());
+        final ManagedCellInterface clone = this.cell(cell.getPosition());
         final PieceInterface piece = cell.getPiece();
         clone.setPiece(piece);
         return clone;

@@ -19,22 +19,20 @@ package concretisations.tictactoe.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
-import abstractions.mutation.MutationInterface;
+import abstractions.mutation.MutationTypeInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
+import concretisations.tictactoe.mutations.Mutations;
+
 public final class Pawn extends TicTacToePiece {
 
-    private final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();
+    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES = ImmutableSet.of(Mutations.NULL);
 
-    public Pawn(SideInterface side) {
-        super(side);
-    }
-
-    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
-        return NULL_MUTATIONS;
+    public Pawn(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type, Pawn.POTENTIAL_MUTATION_TYPES);
     }
 
 }

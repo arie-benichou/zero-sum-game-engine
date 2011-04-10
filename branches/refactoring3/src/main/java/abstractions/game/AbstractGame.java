@@ -22,7 +22,7 @@ import static abstractions.side.API.NULL_SIDE;
 import java.util.List;
 
 import abstractions.board.BoardInterface;
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.move.API.MoveInterface;
 import abstractions.side.API.SideInterface;
 
@@ -45,7 +45,7 @@ public abstract class AbstractGame implements GameInterface {
         this.board = board;
     }
     
-    public final CellInterface cell(final int rowIndex, final int ColumnIndex) {
+    public final ManagedCellInterface cell(final int rowIndex, final int ColumnIndex) {
         return this.getBoard().getCell(rowIndex, ColumnIndex);
     }    
 
@@ -56,9 +56,9 @@ public abstract class AbstractGame implements GameInterface {
     
     // TODO ! proxy vers le board
     // TODO ! renommer en getLegalMoves dans le contexte du game
-    public final List<CellInterface> getMutableCells(final SideInterface side) {
-        List<CellInterface> mutableCells = Lists.newArrayList();
-        for(CellInterface cell : this.getBoard()) {
+    public final List<ManagedCellInterface> getMutableCells(final SideInterface side) {
+        List<ManagedCellInterface> mutableCells = Lists.newArrayList();
+        for(ManagedCellInterface cell : this.getBoard()) {
             if(cell.isMutable(side)) {
                 mutableCells.add(cell);
             }

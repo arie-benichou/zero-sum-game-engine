@@ -1,41 +1,24 @@
 
 package abstractions.mutation;
 
-import abstractions.cell.old.CellInterface;
-import abstractions.piece.PieceInterface;
+import abstractions.cell.ManagedCellInterface;
+import abstractions.piece.PieceTypeInterface;
+import abstractions.side.SideInterface;
 
-public abstract class AbstractAtomicMutation implements AtomicMutationInterface {
+public class AbstractAtomicMutation extends AbstractMutation {
 
-    private final CellInterface concernedCell;
-    private final PieceInterface savedSate;
-    
-    private transient PieceInterface protagonist;
-
-    public AbstractAtomicMutation(final CellInterface concernedCell) {
-        this.concernedCell = concernedCell;
-        this.savedSate = concernedCell.getPiece();
+    public AbstractAtomicMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        super(cell, side, pieceType);
     }
 
-    public final CellInterface getConcernedCell() {
-        return this.concernedCell;
-    }
-    
-    public final PieceInterface getProtagonist() {
-        return this.protagonist;
-    }
-
-    public final AtomicMutationInterface setProtagonist(final PieceInterface concernedPiece) {
-        this.protagonist = concernedPiece;
-        return this;
-    }
-
+    @Override
     public void process() {
-        this.getConcernedCell().setPiece(this.getProtagonist());
+        this.getCell().setPiece(this.getSide(), this.getPieceType());
     }
-    
-    
+
+    @Override
     public void cancel() {
-        this.getConcernedCell().setPiece(this.savedSate);
-    }    
+        this.getCell().setPiece(this.getSavedSate());
+    }
 
 }

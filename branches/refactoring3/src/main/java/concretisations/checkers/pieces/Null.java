@@ -3,7 +3,7 @@ package concretisations.checkers.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.old.CellInterface;
+import abstractions.cell.old.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.position.relative.RelativePositionInterface;
 import abstractions.side.SideInterface;
@@ -20,7 +20,7 @@ public class Null extends CheckerPiece {
         super(side, NULL_DIRECTIONS);
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(CellInterface cell, SideInterface side) {
+    public Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side) {
         return NULL_MUTATIONS;
     }
 
