@@ -55,12 +55,10 @@ public class PieceManager implements PieceManagerInterface {
 
     }
 
-    @Override
     public PieceInterface getNullPiece() {
         return this.nullPiece;
     }
 
-    @Override
     public PieceInterface getPiece(final SideInterface side, final PieceTypeInterface type) {
         final PieceInterface piece = this.data.get(this.hash(side, type));
         if (piece == null) {

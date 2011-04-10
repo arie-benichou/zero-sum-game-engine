@@ -43,32 +43,26 @@ public class ManagedCell implements ManagedCellInterface {
         this.piece = this.cellManager.getNullPiece();
     }
 
-    @Override
     public PositionInterface getPosition() {
         return this.position;
     }
 
-    @Override
     public int getRow() {
         return this.position.getRow();
     }
 
-    @Override
     public int getColumn() {
         return this.position.getColumn();
     }
 
-    @Override
     public PieceInterface getPiece() {
         return this.piece;
     }
 
-    @Override
     public boolean isNull() {
         return this.position.isNull();
     }
 
-    @Override
     public ManagedCellInterface setPiece(final PieceInterface piece) {
         if (this.isNull()) {
             throw new NullPointerException("This cell is null.");
@@ -77,22 +71,18 @@ public class ManagedCell implements ManagedCellInterface {
         return this;
     }
 
-    @Override
     public ManagedCellInterface setPiece(final SideInterface side, final PieceTypeInterface pieceType) {
         return this.setPiece(this.cellManager.piece(side, pieceType));
     }
 
-    @Override
     public boolean isEmpty() {
         return this.isNull() ? false : this.piece.getSide().isNull();
     }
 
-    @Override
     public ManagedCellInterface getRelative(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
 
-    @Override
     public int compareTo(final ManagedCellInterface that) {
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
         return this.position.compareTo(that.getPosition());
@@ -152,7 +142,6 @@ public class ManagedCell implements ManagedCellInterface {
         return this.cellRenderer();
     }
 
-    @Override
     public Set<? extends MutationTypeInterface> getPotentialMutationTypes(final SideInterface side) {
         return this.getPiece().computePotentialMutationTypes(this, side);
     }

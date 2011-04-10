@@ -23,17 +23,14 @@ public class IntegersRange extends Range<Integer> implements IntegersRangeInterf
         super(lowerBound, upperBound);
     }
 
-    @Override
     public final int getLowerBound() {
         return this.lowerBound;
     }
 
-    @Override
     public final int getUpperBound() {
         return this.upperBound;
     }
 
-    @Override
     public final int getCapacity() {
         return 1 + this.getUpperBound() - this.getLowerBound();
     }

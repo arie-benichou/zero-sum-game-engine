@@ -70,7 +70,6 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
 
     }
 
-    @Override
     public <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> pieceTypeSetClass) {
 
         final Set<T> pieceTypeSet = Sets.newHashSet(pieceTypeSetClass.getEnumConstants());

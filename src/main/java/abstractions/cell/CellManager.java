@@ -65,37 +65,30 @@ public class CellManager implements CellManagerInterface {
         this.nullCell = this.data.get(this.positionManager.getNullPosition());
     }
 
-    @Override
     public ManagedCellInterface getNullCell() {
         return this.nullCell;
     }
 
-    @Override
     public ManagedCellInterface getCell(final int rowIndex, final int columnIndex) {
         return this.data.get(this.positionManager.getPosition(rowIndex, columnIndex));
     }
 
-    @Override
     public ManagedCellInterface getCell(final PositionInterface position) {
         return this.data.get(position);
     }
 
-    @Override
     public PieceInterface piece(final SideInterface side, final PieceTypeInterface pieceType) {
         return this.pieceManager.getPiece(side, pieceType);
     }
 
-    @Override
     public PositionInterface position(final int rowIndex, final int columnIndex) {
         return this.positionManager.getPosition(rowIndex, columnIndex);
     }
 
-    @Override
     public PositionInterface position(final PositionInterface position, final DirectionInterface direction) {
         return this.positionManager.getPosition(position, direction);
     }
 
-    @Override
     public Iterator<ManagedCellInterface> iterator() {
         // TODO In order to avoid this overhead, use data structure SortedMap/TreeMap instead of basic HashMap.
         final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
@@ -103,7 +96,6 @@ public class CellManager implements CellManagerInterface {
         return values.iterator();
     }
 
-    @Override
     public PieceInterface getNullPiece() {
         return this.pieceManager.getNullPiece();
     }
@@ -111,7 +103,6 @@ public class CellManager implements CellManagerInterface {
     // TODO
     private final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
 
-    @Override
     public Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(final SideInterface side) {
         // TODO utiliser une contrainte sur la map (guava)
         // TODO utiliser le type de mutation comme clé de map

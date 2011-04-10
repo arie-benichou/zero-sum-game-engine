@@ -44,7 +44,6 @@ public class CheckerPiece extends AbstractPiece {
 
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
-        @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface relativePosition) {
             return side.equals(cell.getPiece().getSide()) && cell.getRelative(relativePosition).isEmpty();
         }
@@ -52,7 +51,6 @@ public class CheckerPiece extends AbstractPiece {
 
     private final static Predicate CAN_JUMP_OVER = new Predicate() {
 
-        @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface relativePosition) {
             return side.equals(cell.getPiece().getSide())
                     && !cell.getRelative(relativePosition).isNull() // TODO ! à améliorer

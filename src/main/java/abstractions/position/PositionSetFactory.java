@@ -34,7 +34,6 @@ final class PositionSetFactory implements PositionSetFactoryInterface {
         return new Position(rowIndex, columnIndex);
     }
 
-    @Override
     public Set<PositionInterface> newPositionSet(final DimensionInterface dimension) {
         Preconditions.checkNotNull(dimension, "Argument 'dimension' is not intended to be null.");
         final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(dimension.boardCapacity() + 1);

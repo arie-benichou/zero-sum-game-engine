@@ -39,12 +39,10 @@ public abstract class AbstractPiece implements PieceInterface {
         this.type = type;
     }
 
-    @Override
     public final SideInterface getSide() {
         return this.side;
     }
 
-    @Override
     public final PieceTypeInterface getType() {
         return this.type;
     }
@@ -92,7 +90,6 @@ public abstract class AbstractPiece implements PieceInterface {
         return this.getType() + " " + this.getSide();
     }
 
-    @Override
     public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }
