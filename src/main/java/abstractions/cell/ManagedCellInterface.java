@@ -19,7 +19,7 @@ package abstractions.cell;
 
 import java.util.Set;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -80,7 +80,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     ManagedCellInterface getRelative(DirectionInterface direction);
 
-    Set<? extends MutationTypeInterface> getPotentialMutationTypes(SideInterface side);
+    Set<? extends MutationInterface> getPotentialMutation(SideInterface side);
 
     ManagedCellInterface die();
 }

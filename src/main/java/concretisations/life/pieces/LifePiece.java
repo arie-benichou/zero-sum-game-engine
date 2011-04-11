@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionManager.Direction;
@@ -64,6 +64,6 @@ public abstract class LifePiece extends AbstractPiece {
     }
 
     @Override
-    public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }

@@ -52,7 +52,7 @@ public class OthelloPotentialMutationTypesTest {
         expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(3, 5), Sides.FIRST));
         */
 
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutationTypes(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<? extends MutationTypeInterface>> entry : potentialMutationTypes.entrySet()) {
             System.out.println(entry.getKey().getPosition() + " " + entry.getValue());

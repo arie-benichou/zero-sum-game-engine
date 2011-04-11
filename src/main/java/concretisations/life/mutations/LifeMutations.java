@@ -18,7 +18,7 @@
 package concretisations.life.mutations;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.BasicMutationFactory;
+import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceInterface;
@@ -30,7 +30,7 @@ public enum LifeMutations implements MutationTypeInterface {
     BIRTH {
 
         public MutationInterface operation() {
-            return BasicMutationFactory.newBirth(this.getCell(), this.getPiece());
+            return AtomicMutationFactory.newBirth(this.getCell(), this.getPiece());
         }
 
     },
@@ -38,7 +38,7 @@ public enum LifeMutations implements MutationTypeInterface {
     DEATH {
 
         public MutationInterface operation() {
-            return BasicMutationFactory.newDeath(this.getCell());
+            return AtomicMutationFactory.newDeath(this.getCell());
         }
     };
 

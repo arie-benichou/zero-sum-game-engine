@@ -5,9 +5,9 @@ import abstractions.cell.ManagedCellInterface;
 
 public abstract class AbstractAtomicMutation extends AbstractMutation {
 
-    // TODO coder les mutations de bases dans la cellule
-    public AbstractAtomicMutation(final ManagedCellInterface cell) {
-        super(cell);
+    // TODO ? coder les mutations de bases dans la cellule
+    public AbstractAtomicMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
+        super(cell, mutationType);
     }
 
     @Override

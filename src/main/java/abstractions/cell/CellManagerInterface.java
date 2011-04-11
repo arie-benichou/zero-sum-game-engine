@@ -20,7 +20,7 @@ package abstractions.cell;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -51,6 +51,6 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
     // Façade du PositionManager    
     PositionInterface position(final PositionInterface position, final DirectionInterface direction);
 
-    Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(SideInterface side);
+    Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(SideInterface side);
 
 }

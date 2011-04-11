@@ -20,18 +20,15 @@ package concretisations.life.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.AtomicMutationFactory;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-import concretisations.life.mutations.LifeMutations;
-
 public final class Null extends LifePiece {
-
-    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(LifeMutations.BIRTH_PAWN);
 
     private final static int NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN = 3;
 
@@ -40,9 +37,9 @@ public final class Null extends LifePiece {
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
         if (this.count(cell) == Null.NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN) {
-            return Null.POTENTIAL_MUTATION_TYPES_SET;
+            return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, LifePieceSet.PAWN));
         }
         return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
     }

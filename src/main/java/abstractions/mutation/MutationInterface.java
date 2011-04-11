@@ -24,6 +24,8 @@ public interface MutationInterface {
 
     ManagedCellInterface getCell();
 
+    public MutationTypeInterface getType();
+
     PieceInterface getSavedSate();
 
     void process();

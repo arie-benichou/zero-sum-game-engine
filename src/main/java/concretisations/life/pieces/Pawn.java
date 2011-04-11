@@ -20,32 +20,26 @@ package concretisations.life.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.AtomicMutationFactory;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-import concretisations.life.mutations.LifeMutations;
-
 public final class Pawn extends LifePiece {
-
-    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(LifeMutations.DEATH_PAWN);
 
     public Pawn(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
-        if (this.count(cell) < 2) {
-            return Pawn.POTENTIAL_MUTATION_TYPES_SET;
-        }
-        if (this.count(cell) > 3) {
-            return Pawn.POTENTIAL_MUTATION_TYPES_SET;
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        final int n = this.count(cell);
+        if (n < 2 || n > 3) {
+            return ImmutableSet.of(AtomicMutationFactory.newDeath(cell));
         }
         return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
     }
-
 }
