@@ -107,13 +107,18 @@ public class CellManager implements CellManagerInterface {
         // TODO utiliser une contrainte sur la map (guava)
         // TODO utiliser le type de mutation comme clé de map
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypesMap = Maps.newHashMap();
-        for (final ManagedCellInterface cell : this) {
+
+        final Iterator<ManagedCellInterface> it = this.iterator();
+        ManagedCellInterface cell = it.next(); // cellule nulle
+
+        while (it.hasNext()) {
+            cell = it.next();
             final Set<? extends MutationInterface> p = cell.getPotentialMutation(side);
             if (!p.equals(CellManager.NULL_POTENTIAL_MUTATION_TYPES_SET)) {
                 potentialMutationTypesMap.put(cell, p);
             }
-
         }
+
         return potentialMutationTypesMap;
     }
 
@@ -136,6 +141,10 @@ public class CellManager implements CellManagerInterface {
         }
         consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
         return consoleBoardView.toString();
+    }
+
+    public List<? extends DirectionInterface> getDirections() {
+        return this.positionManager.getDirections();
     }
 
 }

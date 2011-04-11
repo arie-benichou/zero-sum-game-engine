@@ -23,6 +23,6 @@ import abstractions.side.SideInterface;
 
 public interface OthelloPieceInterface {
 
-    boolean willItBeConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction);
+    boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction);
 
 }

@@ -18,25 +18,57 @@
 package concretisations.othello.mutations;
 
 import java.util.List;
+import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
+import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceTypeInterface;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import concretisations.othello.pieces.OthelloPiece;
 
 public final class NewPawnMutation extends AbstractCompositeMutation {
 
-    public NewPawnMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    private final SideInterface side;
+    private final PieceTypeInterface pieceType;
+
+    public NewPawnMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final SideInterface side,
+            final PieceTypeInterface pieceType) {
+        super(cell, mutationType);
+        this.side = side;
+        this.pieceType = pieceType;
+    }
+
+    private final SideInterface getSide() {
+        return this.side;
+    }
+
+    private final PieceTypeInterface getPieceType() {
+        return this.pieceType;
     }
 
     @Override
     protected List<MutationInterface> sequence() {
-        return ImmutableList.of(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
+        final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
+        final Set<ManagedCellInterface> cellsToRevert = Sets.newHashSet();
+        final Set<ManagedCellInterface> cellsToRevertInOneDirection = Sets.newHashSet();
+        for (final DirectionInterface direction : this.getCell().getDirections()) {
+            cellsToRevert.addAll(
+                    ((OthelloPiece) this.getCell().getPiece()).
+                            getConnected(this.getCell(), this.getSide(), direction, cellsToRevertInOneDirection)
+                    );
+            cellsToRevertInOneDirection.clear();
+        }
+        for (final ManagedCellInterface cell : cellsToRevert) {
+            sequence.add(AtomicMutationFactory.newAlteration(cell, this.getSide(), this.getPieceType()));
+        }
+        return sequence;
     }
-
 }

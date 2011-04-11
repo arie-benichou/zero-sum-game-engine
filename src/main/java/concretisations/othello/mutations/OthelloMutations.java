@@ -17,32 +17,11 @@
 
 package concretisations.othello.mutations;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
 // TODO ? do the same for pieces
 public enum OthelloMutations implements MutationTypeInterface {
 
-    /*
-    NULL {
-
-        @Override
-        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-            return NullMutation.getInstance();
-        }
-    
-    },
-    */
-
-    NEW_PAWN {
-
-        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-            // TODO utiliser la Birth mutation
-            return new NewPawnMutation(cell, side, pieceType);
-        }
-    };
+    NEW_PAWN
 
 }

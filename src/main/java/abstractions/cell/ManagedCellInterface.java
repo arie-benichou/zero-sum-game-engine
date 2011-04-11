@@ -17,6 +17,8 @@
 
 package abstractions.cell;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import abstractions.mutation.MutationInterface;
@@ -83,4 +85,9 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
     Set<? extends MutationInterface> getPotentialMutation(SideInterface side);
 
     ManagedCellInterface die();
+
+    Map<DirectionInterface, ManagedCellInterface> getNeighbourhood();
+
+    List<? extends DirectionInterface> getDirections();
+
 }

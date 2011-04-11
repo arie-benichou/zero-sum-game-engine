@@ -13,7 +13,7 @@ import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.position.PositionManager;
@@ -68,10 +68,17 @@ public class Connect4PotentialMutationTypesTest {
         expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(1, 5), Sides.FIRST));
         */
 
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
+        System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationTypeInterface>> entry : potentialMutationTypes.entrySet()) {
-            System.out.println(entry.getKey().getPosition() + " " + entry.getValue());
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+            for (final MutationInterface mutation : mutations.getValue()) {
+                mutation.process();
+                System.out.println(this.cellManager);
+                mutation.cancel();
+                System.out.println(this.cellManager);
+            }
         }
 
         /*

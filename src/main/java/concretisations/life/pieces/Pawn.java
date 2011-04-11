@@ -40,6 +40,6 @@ public final class Pawn extends LifePiece {
         if (n < 2 || n > 3) {
             return ImmutableSet.of(AtomicMutationFactory.newDeath(cell));
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 }

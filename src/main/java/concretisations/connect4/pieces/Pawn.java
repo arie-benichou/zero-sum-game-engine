@@ -20,19 +20,21 @@ package concretisations.connect4.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.AbstractPiece;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public final class Pawn extends Connect4Piece {
+public final class Pawn extends AbstractPiece {
 
     public Pawn(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
-        return Connect4Piece.NULL_POTENTIAL_MUTATION_TYPES_SET;
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 
 }

@@ -13,7 +13,7 @@ import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.position.PositionManager;
@@ -34,8 +34,8 @@ public class OthelloPotentialMutationTypesTest {
 
     }
 
-    @Test
-    public void testGetPotentialMutationTypes() {
+    //@Test
+    public void testGetPotentialMutationTypes1() {
 
         this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
         this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
@@ -52,10 +52,54 @@ public class OthelloPotentialMutationTypesTest {
         expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(3, 5), Sides.FIRST));
         */
 
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
+        System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationTypeInterface>> entry : potentialMutationTypes.entrySet()) {
-            System.out.println(entry.getKey().getPosition() + " " + entry.getValue());
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+            for (final MutationInterface mutation : mutations.getValue()) {
+                mutation.process();
+                System.out.println(this.cellManager);
+                mutation.cancel();
+                System.out.println(this.cellManager);
+            }
+        }
+
+        //Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
+
+    }
+
+    @Test
+    public void testGetPotentialMutationTypes2() {
+
+        this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 6).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 7).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+
+        this.cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+
+        /*
+        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
+
+        expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(4, 6), Sides.FIRST));
+        expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(5, 3), Sides.FIRST));
+        expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(6, 4), Sides.FIRST));
+        expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(3, 5), Sides.FIRST));
+        */
+
+        System.out.println(this.cellManager);
+
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+            for (final MutationInterface mutation : mutations.getValue()) {
+                mutation.process();
+                System.out.println(this.cellManager);
+                mutation.cancel();
+                System.out.println(this.cellManager);
+            }
         }
 
         //Assert.assertTrue(legalMutations.equals(expectedLegalMutations));

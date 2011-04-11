@@ -17,6 +17,8 @@
 
 package abstractions.cell;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import abstractions.mutation.MutationInterface;
@@ -27,6 +29,7 @@ import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
 
 public class ManagedCell implements ManagedCellInterface {
 
@@ -64,8 +67,9 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     public ManagedCellInterface setPiece(final PieceInterface piece) {
-        if (this.isNull())
+        if (this.isNull()) {
             throw new NullPointerException("This cell is null.");
+        }
         this.piece = piece;
         return this;
     }
@@ -78,6 +82,7 @@ public class ManagedCell implements ManagedCellInterface {
         return this.isNull() ? false : this.piece.getSide().isNull();
     }
 
+    //TODO utiliser getNeighbourhood(), une fois les cases voisines mises en cache
     public ManagedCellInterface getRelative(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
@@ -148,5 +153,19 @@ public class ManagedCell implements ManagedCellInterface {
     public ManagedCellInterface die() {
         this.setPiece(this.cellManager.getNullPiece());
         return this;
+    }
+
+    //TODO à tester
+    //TODO utiliser un cache ou initialiser la map dans le constructeur avec un final
+    public Map<DirectionInterface, ManagedCellInterface> getNeighbourhood() {
+        final Map<DirectionInterface, ManagedCellInterface> neighbourhood = Maps.newHashMap();
+        for (final DirectionInterface direction : this.getDirections()) {
+            neighbourhood.put(direction, this.getRelative(direction));
+        }
+        return neighbourhood;
+    }
+
+    public List<? extends DirectionInterface> getDirections() {
+        return this.cellManager.getDirections();
     }
 }

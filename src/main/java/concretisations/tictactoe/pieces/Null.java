@@ -19,20 +19,23 @@ package concretisations.tictactoe.pieces;
 
 import java.util.Set;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.AtomicMutationFactory;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-import concretisations.tictactoe.mutations.TicTacToeMutations;
-
-public final class Null extends TicTacToePiece {
-
-    private final static Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of(TicTacToeMutations.NEW_PAWN);
+public final class Null extends AbstractPiece {
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type, Null.POTENTIAL_MUTATION_TYPES_SET);
+        super(side, type);
     }
 
+    @Override
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, TicTacToePieceSet.PAWN));
+    }
 }

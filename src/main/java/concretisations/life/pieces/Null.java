@@ -41,6 +41,6 @@ public final class Null extends LifePiece {
         if (this.count(cell) == Null.NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN) {
             return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, LifePieceSet.PAWN));
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 }

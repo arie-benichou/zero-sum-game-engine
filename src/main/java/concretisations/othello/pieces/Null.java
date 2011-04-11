@@ -20,10 +20,14 @@ package concretisations.othello.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
+
+import com.google.common.collect.ImmutableSet;
+
+import concretisations.othello.mutations.OthelloMutationFactory;
 
 public class Null extends OthelloPiece {
 
@@ -32,13 +36,11 @@ public class Null extends OthelloPiece {
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
-
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
         if (this.isMutable(cell, side)) {
-            return OthelloPiece.POTENTIAL_MUTATION_TYPES_SET;
+            return ImmutableSet.of(OthelloMutationFactory.newPawnMutation(cell, side));
         }
-
-        return PieceInterface.NULL_POTENTIAL_MUTATION_TYPES_SET;
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
 
     }
 }

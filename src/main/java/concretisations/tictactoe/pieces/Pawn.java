@@ -17,13 +17,23 @@
 
 package concretisations.tictactoe.pieces;
 
+import java.util.Set;
+
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.AbstractPiece;
+import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public final class Pawn extends TicTacToePiece {
+public final class Pawn extends AbstractPiece {
 
     public Pawn(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type, Pawn.NULL_POTENTIAL_MUTATION_TYPES_SET);
+        super(side, type);
     }
 
+    @Override
+    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+    }
 }

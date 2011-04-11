@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableSet;
  */
 public interface PieceInterface {
 
-    final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
+    final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of();
 
     /**
      * Returns the side related to this piece.
