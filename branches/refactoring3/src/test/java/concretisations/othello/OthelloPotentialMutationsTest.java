@@ -21,7 +21,7 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 import concretisations.othello.pieces.OthelloPieceSet;
 
-public class OthelloPotentialMutationTypesTest {
+public class OthelloPotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
@@ -35,7 +35,7 @@ public class OthelloPotentialMutationTypesTest {
     }
 
     //@Test
-    public void testGetPotentialMutationTypes1() {
+    public void testGetPotentialMutations1() {
 
         this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
         this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
@@ -70,7 +70,7 @@ public class OthelloPotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes2() {
+    public void testGetPotentialMutation2() {
 
         this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
         this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);

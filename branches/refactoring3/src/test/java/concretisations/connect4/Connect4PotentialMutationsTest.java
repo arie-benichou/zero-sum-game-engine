@@ -21,7 +21,7 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 import concretisations.connect4.pieces.Connect4PieceSet;
 
-public class Connect4PotentialMutationTypesTest {
+public class Connect4PotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
@@ -35,7 +35,7 @@ public class Connect4PotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes() {
+    public void testGetPotentialMutations() {
 
         this.cellManager.getCell(5, 2).setPiece(Sides.FIRST, Connect4PieceSet.PAWN);
 

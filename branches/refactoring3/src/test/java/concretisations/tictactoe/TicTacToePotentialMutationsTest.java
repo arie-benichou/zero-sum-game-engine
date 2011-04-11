@@ -36,7 +36,7 @@ import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 
-public class TicTacToePotentialMutationTypesTest {
+public class TicTacToePotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
@@ -50,7 +50,7 @@ public class TicTacToePotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes() {
+    public void testGetPotentialMutations() {
 
         /*
         this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
@@ -76,7 +76,7 @@ public class TicTacToePotentialMutationTypesTest {
             }
         }
 
-        //Assert.assertTrue(potentialMutationTypes.equals(expectedPotentialMutationTypes));
+        //Assert.assertTrue(potentialMutations.equals(expectedPotentialMutations));
 
     }
 
