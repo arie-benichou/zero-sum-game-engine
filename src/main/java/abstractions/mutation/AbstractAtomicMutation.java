@@ -2,19 +2,16 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
-public class AbstractAtomicMutation extends AbstractMutation {
+public abstract class AbstractAtomicMutation extends AbstractMutation {
 
-    public AbstractAtomicMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    // TODO coder les mutations de bases dans la cellule
+    public AbstractAtomicMutation(final ManagedCellInterface cell) {
+        super(cell);
     }
 
     @Override
-    public void process() {
-        this.getCell().setPiece(this.getSide(), this.getPieceType());
-    }
+    public abstract void process();
 
     @Override
     public void cancel() {

@@ -19,35 +19,19 @@ package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
 public abstract class AbstractMutation implements MutationInterface {
 
     private final ManagedCellInterface concernedCell;
-    private final SideInterface side;
-    private final PieceTypeInterface pieceType;
     private final PieceInterface savedSate;
 
-    // TODO virer le pieceType
-    // TODO coder les mutations de bases dans la cellule
-    public AbstractMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+    public AbstractMutation(final ManagedCellInterface cell) {
         this.concernedCell = cell;
-        this.side = side;
-        this.pieceType = pieceType;
         this.savedSate = cell.getPiece();
     }
 
     public final ManagedCellInterface getCell() {
         return this.concernedCell;
-    }
-
-    public final SideInterface getSide() {
-        return this.side;
-    }
-
-    public final PieceTypeInterface getPieceType() {
-        return this.pieceType;
     }
 
     public final PieceInterface getSavedSate() {
@@ -56,7 +40,7 @@ public abstract class AbstractMutation implements MutationInterface {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " " + this.getSide() + " " + this.getCell().getPosition() + " " + this.getPieceType();
+        return this.getClass().getSimpleName() + " " + this.getCell().getPosition() + " ";
     }
 
     public abstract void process();

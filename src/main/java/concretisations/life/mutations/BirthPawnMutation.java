@@ -23,15 +23,14 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.BasicMutationFactory;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.piece.PieceInterface;
 
 import com.google.common.collect.ImmutableList;
 
 public final class BirthPawnMutation extends AbstractCompositeMutation {
 
-    public BirthPawnMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    public BirthPawnMutation(final ManagedCellInterface cell, final PieceInterface piece) {
+        super(cell, piece);
     }
 
     @Override

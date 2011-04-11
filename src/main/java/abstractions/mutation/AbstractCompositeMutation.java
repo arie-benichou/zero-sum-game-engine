@@ -4,14 +4,11 @@ package abstractions.mutation;
 import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
 public abstract class AbstractCompositeMutation extends AbstractMutation {
 
-    // TODO virer le pieceType
-    public AbstractCompositeMutation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    public AbstractCompositeMutation(final ManagedCellInterface cell) {
+        super(cell);
     }
 
     private transient List<MutationInterface> sequence;

@@ -145,4 +145,9 @@ public class ManagedCell implements ManagedCellInterface {
     public Set<? extends MutationTypeInterface> getPotentialMutationTypes(final SideInterface side) {
         return this.getPiece().computePotentialMutationTypes(this, side);
     }
+
+    public ManagedCellInterface die() {
+        this.setPiece(this.cellManager.getNullPiece());
+        return this;
+    }
 }

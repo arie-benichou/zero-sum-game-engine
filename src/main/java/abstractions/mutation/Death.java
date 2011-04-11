@@ -18,13 +18,16 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
 public class Death extends AbstractAtomicMutation {
 
-    public Death(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    public Death(final ManagedCellInterface cell) {
+        super(cell);
+    }
+
+    @Override
+    public void process() {
+        this.getCell().die();
     }
 
 }

@@ -18,13 +18,12 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.piece.PieceInterface;
 
-public class Alteration extends AbstractAtomicMutation {
+public class Alteration extends Birth {
 
-    public Alteration(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    public Alteration(final ManagedCellInterface cell, final PieceInterface piece) {
+        super(cell, piece);
     }
 
 }

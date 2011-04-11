@@ -19,16 +19,10 @@ package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
 
 public interface MutationInterface {
 
     ManagedCellInterface getCell();
-
-    SideInterface getSide();
-
-    PieceTypeInterface getPieceType();
 
     PieceInterface getSavedSate();
 

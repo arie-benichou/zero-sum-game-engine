@@ -82,4 +82,5 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     Set<? extends MutationTypeInterface> getPotentialMutationTypes(SideInterface side);
 
+    ManagedCellInterface die();
 }

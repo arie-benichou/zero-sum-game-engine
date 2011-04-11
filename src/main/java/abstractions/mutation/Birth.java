@@ -18,13 +18,21 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.piece.PieceInterface;
 
 public class Birth extends AbstractAtomicMutation {
 
-    public Birth(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-        super(cell, side, pieceType);
+    private final PieceInterface piece;
+
+    // TODO ? utiler le cellManager ou bien injecter le pieceManager aux pieces.
+    public Birth(final ManagedCellInterface cell, final PieceInterface piece) {
+        super(cell);
+        this.piece = piece;
+    }
+
+    @Override
+    public void process() {
+        this.getCell().setPiece(this.piece);
     }
 
 }
