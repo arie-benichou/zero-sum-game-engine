@@ -37,7 +37,7 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 import concretisations.life.pieces.LifePieceSet;
 
-public class LifePotentialMutationTypesTest {
+public class LifePotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
@@ -51,20 +51,20 @@ public class LifePotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes1() {
+    public void testGetPotentialMutations1() {
 
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(6, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> entry : potentialMutationTypes.entrySet()) {
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> entry : potentialMutations.entrySet()) {
             System.out.println(entry.getValue());
         }
 
         System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutationTypes.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
             }
@@ -72,7 +72,7 @@ public class LifePotentialMutationTypesTest {
 
         System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutationTypes.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.cancel();
             }
@@ -83,21 +83,21 @@ public class LifePotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes2() {
+    public void testGetPotentialMutations2() {
 
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 4).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 6).setPiece(Sides.FIRST, LifePieceSet.PAWN);
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> entry : potentialMutationTypes.entrySet()) {
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> entry : potentialMutations.entrySet()) {
             System.out.println(entry.getValue());
         }
 
         System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutationTypes.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
             }
@@ -105,7 +105,7 @@ public class LifePotentialMutationTypesTest {
 
         System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutationTypes.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.cancel();
             }
@@ -116,7 +116,7 @@ public class LifePotentialMutationTypesTest {
     }
 
     @Test
-    public void testGetPotentialMutationTypes3() {
+    public void testGetPotentialMutations3() {
 
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 4).setPiece(Sides.FIRST, LifePieceSet.PAWN);
@@ -128,8 +128,8 @@ public class LifePotentialMutationTypesTest {
             System.out.println("Génération " + n);
             System.out.println(this.cellManager);
 
-            final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
-            for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutationTypes.entrySet()) {
+            final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+            for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
                 for (final MutationInterface mutation : mutations.getValue()) {
                     mutation.process();
                 }
