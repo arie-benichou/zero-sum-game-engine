@@ -22,16 +22,22 @@ import abstractions.piece.PieceInterface;
 
 public abstract class AbstractMutation implements MutationInterface {
 
-    private final ManagedCellInterface concernedCell;
+    private final ManagedCellInterface cell;
     private final PieceInterface savedSate;
+    private final MutationTypeInterface type;
 
-    public AbstractMutation(final ManagedCellInterface cell) {
-        this.concernedCell = cell;
+    public AbstractMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
+        this.type = mutationType;
+        this.cell = cell;
         this.savedSate = cell.getPiece();
     }
 
     public final ManagedCellInterface getCell() {
-        return this.concernedCell;
+        return this.cell;
+    }
+
+    public final MutationTypeInterface getType() {
+        return this.type;
     }
 
     public final PieceInterface getSavedSate() {
@@ -40,7 +46,7 @@ public abstract class AbstractMutation implements MutationInterface {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " " + this.getCell().getPosition() + " ";
+        return this.getType() + " " + this.getCell().getPosition() + " ";
     }
 
     public abstract void process();

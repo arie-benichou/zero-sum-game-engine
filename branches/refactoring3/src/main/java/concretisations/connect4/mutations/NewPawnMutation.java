@@ -21,7 +21,7 @@ import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.AbstractCompositeMutation;
-import abstractions.mutation.BasicMutationFactory;
+import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
@@ -36,7 +36,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation {
 
     @Override
     protected List<MutationInterface> sequence() {
-        return ImmutableList.of(BasicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
+        return ImmutableList.of(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
     }
 
 }

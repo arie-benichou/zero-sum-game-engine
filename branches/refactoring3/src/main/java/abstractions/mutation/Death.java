@@ -19,10 +19,10 @@ package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
 
-public class Death extends AbstractAtomicMutation {
+class Death extends AbstractAtomicMutation {
 
-    public Death(final ManagedCellInterface cell) {
-        super(cell);
+    public Death(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
+        super(cell, mutationType);
     }
 
     @Override

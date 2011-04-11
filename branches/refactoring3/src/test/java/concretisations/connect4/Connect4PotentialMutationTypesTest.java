@@ -68,7 +68,7 @@ public class Connect4PotentialMutationTypesTest {
         expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(1, 5), Sides.FIRST));
         */
 
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutationTypes(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<? extends MutationTypeInterface>> entry : potentialMutationTypes.entrySet()) {
             System.out.println(entry.getKey().getPosition() + " " + entry.getValue());

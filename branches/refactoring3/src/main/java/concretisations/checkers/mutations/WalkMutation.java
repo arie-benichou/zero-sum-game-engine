@@ -4,7 +4,7 @@ package concretisations.checkers.mutations;
 import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.BasicMutationFactory;
+import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionManager.DirectionInterface;
@@ -22,8 +22,8 @@ public class WalkMutation extends CheckersMutation {
     @Override
     protected List<MutationInterface> sequence() {
         return ImmutableList.of(
-                BasicMutationFactory.newDeath(this.getCell()),
-                BasicMutationFactory.newBirth(this.getCell().getRelative(this.getDirection()), this.getCell().getPiece())
+                AtomicMutationFactory.newDeath(this.getCell()),
+                AtomicMutationFactory.newBirth(this.getCell().getRelative(this.getDirection()), this.getCell().getPiece())
                 );
     }
 }

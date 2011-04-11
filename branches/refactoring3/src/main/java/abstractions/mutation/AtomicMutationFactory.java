@@ -18,21 +18,22 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceInterface;
+import abstractions.piece.PieceTypeInterface;
+import abstractions.side.SideInterface;
 
 // TODO ? MutationManager(CellManager)
-public class BasicMutationFactory {
+// TODO mettre les mutations atomiques au niveau de la cellule
+public class AtomicMutationFactory {
 
-    public static MutationInterface newBirth(final ManagedCellInterface cell, final PieceInterface piece) {
-        return new Birth(cell, piece);
+    public static MutationInterface newBirth(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        return new Birth(cell, AtomicMutationTypes.BIRTH, pieceType, side);
     }
 
     public static MutationInterface newDeath(final ManagedCellInterface cell) {
-        return new Death(cell);
+        return new Death(cell, AtomicMutationTypes.DEATH);
     }
 
-    public static MutationInterface newAlteration(final ManagedCellInterface cell, final PieceInterface piece) {
-        return new Alteration(cell, piece);
+    public static MutationInterface newAlteration(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
+        return new Alteration(cell, AtomicMutationTypes.ALTERATION, pieceType, side);
     }
-
 }

@@ -4,7 +4,7 @@ package abstractions.piece;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableSet;
  */
 public interface PieceInterface {
 
-    final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
+    final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
 
     /**
      * Returns the side related to this piece.
@@ -30,7 +30,7 @@ public interface PieceInterface {
      */
     PieceTypeInterface getType();
 
-    Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, SideInterface side);
+    Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, SideInterface side);
 
     // TODO add method isNull()
 

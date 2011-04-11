@@ -20,7 +20,7 @@ package abstractions.piece;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
@@ -90,6 +90,6 @@ public abstract class AbstractPiece implements PieceInterface {
         return this.getType() + " " + this.getSide();
     }
 
-    public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }

@@ -7,8 +7,8 @@ import abstractions.cell.ManagedCellInterface;
 
 public abstract class AbstractCompositeMutation extends AbstractMutation {
 
-    public AbstractCompositeMutation(final ManagedCellInterface cell) {
-        super(cell);
+    public AbstractCompositeMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
+        super(cell, mutationType);
     }
 
     private transient List<MutationInterface> sequence;

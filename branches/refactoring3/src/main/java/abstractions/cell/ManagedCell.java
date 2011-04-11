@@ -19,7 +19,7 @@ package abstractions.cell;
 
 import java.util.Set;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
@@ -64,9 +64,8 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     public ManagedCellInterface setPiece(final PieceInterface piece) {
-        if (this.isNull()) {
+        if (this.isNull())
             throw new NullPointerException("This cell is null.");
-        }
         this.piece = piece;
         return this;
     }
@@ -142,7 +141,7 @@ public class ManagedCell implements ManagedCellInterface {
         return this.cellRenderer();
     }
 
-    public Set<? extends MutationTypeInterface> getPotentialMutationTypes(final SideInterface side) {
+    public Set<? extends MutationInterface> getPotentialMutation(final SideInterface side) {
         return this.getPiece().computePotentialMutationTypes(this, side);
     }
 

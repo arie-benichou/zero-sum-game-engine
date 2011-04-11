@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -101,14 +101,14 @@ public class CellManager implements CellManagerInterface {
     }
 
     // TODO
-    private final static Set<? extends MutationTypeInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
+    private final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
 
-    public Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> getPotentialMutationTypes(final SideInterface side) {
+    public Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side) {
         // TODO utiliser une contrainte sur la map (guava)
         // TODO utiliser le type de mutation comme clé de map
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypesMap = Maps.newHashMap();
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypesMap = Maps.newHashMap();
         for (final ManagedCellInterface cell : this) {
-            final Set<? extends MutationTypeInterface> p = cell.getPotentialMutationTypes(side);
+            final Set<? extends MutationInterface> p = cell.getPotentialMutation(side);
             if (!p.equals(CellManager.NULL_POTENTIAL_MUTATION_TYPES_SET)) {
                 potentialMutationTypesMap.put(cell, p);
             }
