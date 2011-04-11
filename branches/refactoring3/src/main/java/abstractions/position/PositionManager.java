@@ -18,11 +18,13 @@
 package abstractions.position;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import abstractions.dimension.API.DimensionInterface;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
@@ -152,6 +154,17 @@ public final class PositionManager implements PositionManagerInterface {
 
     }
 
+    private final static List<? extends DirectionInterface> DIRECTIONS = ImmutableList.of(
+            Direction.TOP,
+            Direction.TOP_RIGHT,
+            Direction.RIGHT,
+            Direction.BOTTOM_RIGHT,
+            Direction.BOTTOM,
+            Direction.BOTTOM_LEFT,
+            Direction.LEFT,
+            Direction.TOP_LEFT
+            );
+
     private final static PositionSetFactoryInterface factory = new PositionSetFactory();
 
     private final DimensionInterface dimension;
@@ -202,4 +215,9 @@ public final class PositionManager implements PositionManagerInterface {
     public Iterator<PositionInterface> iterator() {
         return this.data.values().iterator();
     }
+
+    public List<? extends DirectionInterface> getDirections() {
+        return PositionManager.DIRECTIONS;
+    }
+
 }

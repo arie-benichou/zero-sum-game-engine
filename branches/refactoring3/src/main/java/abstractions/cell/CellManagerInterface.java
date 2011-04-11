@@ -17,6 +17,7 @@
 
 package abstractions.cell;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,5 +53,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
     PositionInterface position(final PositionInterface position, final DirectionInterface direction);
 
     Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(SideInterface side);
+
+    List<? extends DirectionInterface> getDirections();
 
 }

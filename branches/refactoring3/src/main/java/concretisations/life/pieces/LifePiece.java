@@ -36,7 +36,6 @@ public abstract class LifePiece extends AbstractPiece {
     protected static List<? extends DirectionInterface> NEIGHBOURS_POSITIONS = ImmutableList.of(
             Direction.TOP,
             Direction.RIGHT,
-
             Direction.BOTTOM,
             Direction.LEFT,
             Direction.TOP_RIGHT,

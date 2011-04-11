@@ -29,13 +29,12 @@ import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
-import concretisations.tictactoe.pieces.TicTacToePieceSet;
 
 public class TicTacToePotentialMutationTypesTest {
 
@@ -53,19 +52,28 @@ public class TicTacToePotentialMutationTypesTest {
     @Test
     public void testGetPotentialMutationTypes() {
 
+        /*
         this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
         this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
         this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, TicTacToePieceSet.PAWN);
+        */
 
         /*
         final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
         expectedLegalMutations.add(new NewPawnMutation(this.cellManager.getCell(2, 2), Sides.FIRST));
         */
 
-        final Map<ManagedCellInterface, Set<? extends MutationTypeInterface>> potentialMutationTypes = this.cellManager.getPotentialMutations(Sides.FIRST);
+        System.out.println(this.cellManager);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationTypeInterface>> entry : potentialMutationTypes.entrySet()) {
-            System.out.println(entry.getKey().getPosition() + " " + entry.getValue());
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+
+        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+            for (final MutationInterface mutation : mutations.getValue()) {
+                mutation.process();
+                System.out.println(this.cellManager);
+                mutation.cancel();
+                System.out.println(this.cellManager);
+            }
         }
 
         //Assert.assertTrue(potentialMutationTypes.equals(expectedPotentialMutationTypes));

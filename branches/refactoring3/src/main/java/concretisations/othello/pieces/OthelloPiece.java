@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
@@ -44,18 +45,35 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
         super(side, type);
     }
 
-    public boolean willItBeConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
+    public boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
         boolean willBeConnected = false;
         if (side.equals(cell.getPiece().getSide())) {
             willBeConnected = true;
         }
         else if (side.getNextSide().equals(cell.getPiece().getSide())) {
             final ManagedCellInterface nextCell = cell.getRelative(direction);
-            willBeConnected = ((OthelloPiece) nextCell.getPiece()).willItBeConnected(nextCell, side, direction);
+            willBeConnected = ((OthelloPiece) nextCell.getPiece()).isConnected(nextCell, side, direction);
         }
         return willBeConnected;
     }
 
+    public Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction,
+            Set<ManagedCellInterface> cellsToRevert) {
+        if (side.equals(cell.getRelative(direction).getPiece().getSide())) {
+            return cellsToRevert;
+        }
+        final ManagedCellInterface nextCell = cell.getRelative(direction);
+        if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
+            cellsToRevert.add(nextCell);
+            cellsToRevert = ((OthelloPiece) nextCell.getPiece()).getConnected(nextCell, side, direction, cellsToRevert);
+        }
+        else {
+            cellsToRevert.clear();
+        }
+        return cellsToRevert;
+    }
+
+    // TODO à simplifier
     protected boolean isMutable(final ManagedCellInterface cell, final SideInterface side) {
 
         boolean willBeConnected = false;
@@ -73,7 +91,7 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
                 final ManagedCellInterface nextNextCell = nextCell.getRelative(relativePosition);
                 final OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
-                willBeConnected = nextNextPiece.willItBeConnected(nextNextCell, side, relativePosition);
+                willBeConnected = nextNextPiece.isConnected(nextNextCell, side, relativePosition);
             }
 
         }
@@ -83,6 +101,6 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     }
 
     @Override
-    public abstract Set<? extends MutationTypeInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
 
 }
