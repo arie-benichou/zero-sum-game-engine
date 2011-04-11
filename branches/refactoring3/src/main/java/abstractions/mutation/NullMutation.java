@@ -17,6 +17,7 @@
 
 package abstractions.mutation;
 
+// TODO à virer
 public class NullMutation extends AbstractMutation {
 
     private final static MutationInterface INSTANCE = new NullMutation();
@@ -25,8 +26,9 @@ public class NullMutation extends AbstractMutation {
         return NullMutation.INSTANCE;
     }
 
-    private NullMutation() {
-        super(null, null, null);
+    // TODO injecter la cellule nulle
+    public NullMutation() {
+        super(null);
     }
 
     @Override

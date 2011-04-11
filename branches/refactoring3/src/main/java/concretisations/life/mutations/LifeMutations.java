@@ -18,28 +18,48 @@
 package concretisations.life.mutations;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.BasicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.piece.PieceInterface;
 
 // TODO ? do the same for pieces
+// TODO ! typer les mutations (getType())
 public enum LifeMutations implements MutationTypeInterface {
 
-    BIRTH_PAWN {
+    BIRTH {
 
-        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-            // TODO ? utiliser la Birth mutation
-            return new BirthPawnMutation(cell, side, pieceType);
+        public MutationInterface operation() {
+            return BasicMutationFactory.newBirth(this.getCell(), this.getPiece());
         }
+
     },
 
-    DEATH_PAWN {
+    DEATH {
 
-        public MutationInterface operation(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
-            // TODO ? utiliser la Death mutation
-            return new DeathPawnMutation(cell, side, pieceType);
+        public MutationInterface operation() {
+            return BasicMutationFactory.newDeath(this.getCell());
         }
     };
+
+    private final ManagedCellInterface cell;
+    private final PieceInterface piece;
+
+    private LifeMutations(final ManagedCellInterface cell) {
+        this.cell = cell;
+    }
+
+    private LifeMutations(final ManagedCellInterface cell, final PieceInterface piece) {
+        this.cell = cell;
+        this.piece = piece;
+    }
+
+    public ManagedCellInterface getCell() {
+        return this.cell;
+    }
+
+    public PieceInterface getPiece() {
+        return this.piece;
+    }
 
 }
