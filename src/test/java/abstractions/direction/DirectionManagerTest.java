@@ -23,18 +23,20 @@ public class DirectionManagerTest {
     }
 
     @Test
-    public void testDirectionManager() {
+    public void testGetDirection() {
         Assert.fail("Not yet implemented");
     }
 
     @Test
     public void testGetNamedDirection() {
-        Assert.fail("Not yet implemented");
-    }
-
-    @Test
-    public void testReduce() {
-        Assert.fail("Not yet implemented");
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP) == this.directionManager.getDirection(-1, 0));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP_RIGHT) == this.directionManager.getDirection(-1, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.RIGHT) == this.directionManager.getDirection(0, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM_RIGHT) == this.directionManager.getDirection(1, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM) == this.directionManager.getDirection(1, 0));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM_LEFT) == this.directionManager.getDirection(1, -1));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.LEFT) == this.directionManager.getDirection(0, -1));
+        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP_LEFT) == this.directionManager.getDirection(-1, -1));
     }
 
     @Test
@@ -43,8 +45,8 @@ public class DirectionManagerTest {
     }
 
     @Test
-    public void testMain() {
-        Assert.fail("Not yet implemented");
+    public void testReduce() {
+        Assert.assertTrue(this.directionManager.reduce(this.directionManager.getDirectionsMap().values()) == this.directionManager.getDirection(0, 0));
     }
 
 }

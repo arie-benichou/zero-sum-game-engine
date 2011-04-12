@@ -90,6 +90,10 @@ public class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, direction);
     }
 
+    public PositionInterface position(final PositionInterface position, final NamedDirection direction) {
+        return this.positionManager.getPosition(position, direction);
+    }
+
     public Iterator<ManagedCellInterface> iterator() {
         // TODO In order to avoid this overhead, use data structure SortedMap/TreeMap instead of basic HashMap.
         final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
@@ -146,11 +150,6 @@ public class CellManager implements CellManagerInterface {
 
     public List<DirectionInterface> getDirections() {
         return this.positionManager.getDirections();
-    }
-
-    public PositionInterface position(final PositionInterface position, final NamedDirection direction) {
-        // TODO utiliser le positionManager
-        return null;
     }
 
 }
