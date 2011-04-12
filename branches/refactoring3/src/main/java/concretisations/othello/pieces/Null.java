@@ -43,4 +43,5 @@ public class Null extends OthelloPiece {
         return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
 
     }
+
 }

@@ -20,12 +20,12 @@ package concretisations.connect4.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.PositionManager.Direction;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
@@ -38,7 +38,7 @@ public final class Null extends AbstractPiece {
 
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
-        if (cell.isEmpty() && !cell.getRelative(Direction.BOTTOM).isEmpty()) {
+        if (cell.isEmpty() && !cell.getRelative(NamedDirection.BOTTOM).isEmpty()) {
             return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, Connect4PieceSet.PAWN));
         }
         return PieceInterface.NULL_POTENTIAL_MUTATION_SET;

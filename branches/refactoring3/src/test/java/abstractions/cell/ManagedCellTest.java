@@ -25,13 +25,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
+import abstractions.direction.NamedDirection;
 import abstractions.piece.IllegalPieceException;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.position.PositionManager;
-import abstractions.position.PositionManager.Direction;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 
@@ -83,7 +83,7 @@ public class ManagedCellTest {
     public void testIsNull() {
 
         Assert.assertFalse(this.cell.isNull());
-        Assert.assertTrue(this.cell.getRelative(Direction.TOP).isNull());
+        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).isNull());
 
     }
 
@@ -104,7 +104,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell0() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(Direction.TOP);
+        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
         nullCell.setPiece(Sides.NULL, PieceSet.NULL);
 
     }
@@ -112,7 +112,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell1() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(Direction.TOP);
+        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
         nullCell.setPiece(Sides.FIRST, PieceSet.PAWN);
 
     }
@@ -120,7 +120,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell2() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(Direction.TOP);
+        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
         nullCell.setPiece(Sides.SECOND, PieceSet.PAWN);
 
     }
@@ -154,15 +154,15 @@ public class ManagedCellTest {
     @Test
     public void testGetRelative() {
 
-        Assert.assertTrue(this.cell.getRelative(Direction.TOP).getPosition().getRow() == 0);
-        Assert.assertTrue(this.cell.getRelative(Direction.TOP).getPosition().getColumn() == 0);
+        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).getPosition().getRow() == 0);
+        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).getPosition().getColumn() == 0);
 
-        Assert.assertTrue(this.cell.getRelative(Direction.BOTTOM).getPosition().getRow() == 2);
-        Assert.assertTrue(this.cell.getRelative(Direction.BOTTOM).getPosition().getColumn() == 2);
+        Assert.assertTrue(this.cell.getRelative(NamedDirection.BOTTOM).getPosition().getRow() == 2);
+        Assert.assertTrue(this.cell.getRelative(NamedDirection.BOTTOM).getPosition().getColumn() == 2);
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(Direction.TOP);
+        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
 
-        Assert.assertTrue(nullCell.getRelative(Direction.BOTTOM_RIGHT) == nullCell);
+        Assert.assertTrue(nullCell.getRelative(NamedDirection.BOTTOM_RIGHT) == nullCell);
 
     }
 
@@ -170,7 +170,7 @@ public class ManagedCellTest {
     public void testIsEmpty() {
 
         Assert.assertTrue(this.cell.isEmpty());
-        Assert.assertFalse(this.cell.getRelative(Direction.TOP).isEmpty());
+        Assert.assertFalse(this.cell.getRelative(NamedDirection.TOP).isEmpty());
         Assert.assertFalse(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).isEmpty());
 
     }
@@ -185,13 +185,13 @@ public class ManagedCellTest {
     @Test
     public void testCompareTo() {
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(Direction.TOP)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.TOP)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(Direction.BOTTOM)) == -1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.BOTTOM)) == -1);
         Assert.assertTrue(this.cell.compareTo(this.cell) == 0);
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(Direction.LEFT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.LEFT)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(Direction.RIGHT).getRelative(Direction.BOTTOM_RIGHT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.RIGHT).getRelative(NamedDirection.BOTTOM_RIGHT)) == 1);
 
     }
 
@@ -200,19 +200,19 @@ public class ManagedCellTest {
 
         Assert.assertFalse(this.cell.equals(null));
         Assert.assertFalse(this.cell.equals(new Random()));
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(Direction.TOP)));
+        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.TOP)));
 
         Assert.assertTrue(this.cell.equals(this.cell));
-        Assert.assertTrue(this.cell.equals(this.cell.getRelative(Direction.RIGHT)));
+        Assert.assertTrue(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(Direction.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(Direction.RIGHT)));
+        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(Direction.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(Direction.RIGHT)));
+        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(Direction.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
-        Assert.assertTrue(this.cell.equals(this.cell.getRelative(Direction.RIGHT)));
+        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
+        Assert.assertTrue(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
 
     }
 

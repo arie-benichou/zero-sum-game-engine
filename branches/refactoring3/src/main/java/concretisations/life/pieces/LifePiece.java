@@ -21,11 +21,10 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.PositionManager.Direction;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
@@ -33,15 +32,15 @@ import com.google.common.collect.ImmutableList;
 public abstract class LifePiece extends AbstractPiece {
 
     // TODO ajouter une méthode dans ManagedCell qui permet de récupérer toutes cellules les voisines d'une cellule    
-    protected static List<? extends DirectionInterface> NEIGHBOURS_POSITIONS = ImmutableList.of(
-            Direction.TOP,
-            Direction.RIGHT,
-            Direction.BOTTOM,
-            Direction.LEFT,
-            Direction.TOP_RIGHT,
-            Direction.BOTTOM_RIGHT,
-            Direction.TOP_LEFT,
-            Direction.BOTTOM_LEFT
+    protected static List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
+            NamedDirection.TOP,
+            NamedDirection.RIGHT,
+            NamedDirection.BOTTOM,
+            NamedDirection.LEFT,
+            NamedDirection.TOP_RIGHT,
+            NamedDirection.BOTTOM_RIGHT,
+            NamedDirection.TOP_LEFT,
+            NamedDirection.BOTTOM_LEFT
             );
 
     protected static int MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL = LifePiece.NEIGHBOURS_POSITIONS.size();

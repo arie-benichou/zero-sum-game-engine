@@ -21,12 +21,12 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.PositionManager.Direction;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
@@ -38,14 +38,14 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             .of(concretisations.othello.mutations.OthelloMutations.NEW_PAWN);
 
     // TODO ? avoir une méthode dans Cell qui pemet de récupérer toutes cases les voisines    
-    public static List<? extends DirectionInterface> NEIGHBOURS_POSITIONS = ImmutableList.of(Direction.TOP, Direction.RIGHT, Direction.BOTTOM, Direction.LEFT,
-            Direction.TOP_RIGHT, Direction.BOTTOM_RIGHT, Direction.TOP_LEFT, Direction.BOTTOM_LEFT);
+    public static List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(NamedDirection.TOP, NamedDirection.RIGHT, NamedDirection.BOTTOM,
+            NamedDirection.LEFT, NamedDirection.TOP_RIGHT, NamedDirection.BOTTOM_RIGHT, NamedDirection.TOP_LEFT, NamedDirection.BOTTOM_LEFT);
 
     public OthelloPiece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
     }
 
-    public boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
+    public boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction) {
         boolean willBeConnected = false;
         if (side.equals(cell.getPiece().getSide())) {
             willBeConnected = true;
@@ -80,7 +80,7 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
 
         for (int index = 0, maxIndex = OthelloPiece.NEIGHBOURS_POSITIONS.size(); index < maxIndex && !willBeConnected; ++index) {
 
-            final DirectionInterface relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
+            final NamedDirection relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
 
             final ManagedCellInterface nextCell = cell.getRelative(relativePosition);
 

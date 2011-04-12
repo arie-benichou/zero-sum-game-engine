@@ -20,7 +20,7 @@ package abstractions.piece.mocks;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
@@ -32,7 +32,7 @@ public class Null extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         return null;
     }
 
