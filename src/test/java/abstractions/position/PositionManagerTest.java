@@ -23,7 +23,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.position.PositionManager.Direction;
+import abstractions.direction.NamedDirection;
 
 public class PositionManagerTest {
 
@@ -62,15 +62,15 @@ public class PositionManagerTest {
 
         final PositionInterface position = new Position(1, 1);
 
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP) == this.manager.getNullPosition());
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM).equals(new Position(2, 1)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.LEFT) == this.manager.getNullPosition());
-        Assert.assertTrue(this.manager.getPosition(position, Direction.RIGHT).equals(new Position(1, 2)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP) == this.manager.getNullPosition());
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM).equals(new Position(2, 1)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.LEFT) == this.manager.getNullPosition());
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.RIGHT).equals(new Position(1, 2)));
 
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP_LEFT) == this.manager.getNullPosition());
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP_RIGHT) == this.manager.getNullPosition());
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM_LEFT) == this.manager.getNullPosition());
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM_RIGHT).equals(new Position(2, 2)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP_LEFT) == this.manager.getNullPosition());
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP_RIGHT) == this.manager.getNullPosition());
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM_LEFT) == this.manager.getNullPosition());
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM_RIGHT).equals(new Position(2, 2)));
 
     }
 
@@ -79,15 +79,15 @@ public class PositionManagerTest {
 
         final PositionInterface position = new Position(2, 2);
 
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP).equals(new Position(1, 2)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM).equals(new Position(3, 2)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.LEFT).equals(new Position(2, 1)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.RIGHT).equals(new Position(2, 3)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP).equals(new Position(1, 2)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM).equals(new Position(3, 2)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.LEFT).equals(new Position(2, 1)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.RIGHT).equals(new Position(2, 3)));
 
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP_LEFT).equals(new Position(1, 1)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.TOP_RIGHT).equals(new Position(1, 3)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM_LEFT).equals(new Position(3, 1)));
-        Assert.assertTrue(this.manager.getPosition(position, Direction.BOTTOM_RIGHT).equals(new Position(3, 3)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP_LEFT).equals(new Position(1, 1)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.TOP_RIGHT).equals(new Position(1, 3)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM_LEFT).equals(new Position(3, 1)));
+        Assert.assertTrue(this.manager.getPosition(position, NamedDirection.BOTTOM_RIGHT).equals(new Position(3, 3)));
 
     }
 

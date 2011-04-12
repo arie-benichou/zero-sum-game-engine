@@ -26,13 +26,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
+import abstractions.direction.NamedDirection;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.piece.mocks.PieceSet;
 import abstractions.position.PositionInterface;
 import abstractions.position.PositionManager;
-import abstractions.position.PositionManager.Direction;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 
@@ -134,21 +134,21 @@ public class CellManagerTest {
 
         initialPosition = this.cellManager.position(1, 1);
 
-        position = this.cellManager.position(initialPosition, Direction.TOP);
+        position = this.cellManager.position(initialPosition, NamedDirection.TOP);
         expectedPosition = this.cellManager.position(0, 0);
         Assert.assertTrue(position.equals(expectedPosition));
 
-        position = this.cellManager.position(initialPosition, Direction.RIGHT);
+        position = this.cellManager.position(initialPosition, NamedDirection.RIGHT);
         expectedPosition = this.cellManager.position(1, 2);
         Assert.assertTrue(position.equals(expectedPosition));
 
         initialPosition = this.cellManager.position(2, 2);
 
-        position = this.cellManager.position(initialPosition, Direction.TOP);
+        position = this.cellManager.position(initialPosition, NamedDirection.TOP);
         expectedPosition = this.cellManager.position(1, 2);
         Assert.assertTrue(position.equals(expectedPosition));
 
-        position = this.cellManager.position(initialPosition, Direction.RIGHT);
+        position = this.cellManager.position(initialPosition, NamedDirection.RIGHT);
         expectedPosition = this.cellManager.position(2, 3);
         Assert.assertTrue(position.equals(expectedPosition));
 

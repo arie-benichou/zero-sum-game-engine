@@ -18,11 +18,11 @@
 package concretisations.othello.pieces;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.position.PositionManager.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.side.SideInterface;
 
 public interface OthelloPieceInterface {
 
-    boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction);
+    boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction);
 
 }

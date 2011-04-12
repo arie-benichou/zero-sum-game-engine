@@ -23,12 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.SideInterface;
 
@@ -143,8 +144,13 @@ public class CellManager implements CellManagerInterface {
         return consoleBoardView.toString();
     }
 
-    public List<? extends DirectionInterface> getDirections() {
+    public List<DirectionInterface> getDirections() {
         return this.positionManager.getDirections();
+    }
+
+    public PositionInterface position(final PositionInterface position, final NamedDirection direction) {
+        // TODO utiliser le positionManager
+        return null;
     }
 
 }

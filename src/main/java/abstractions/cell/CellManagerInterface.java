@@ -21,11 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
@@ -49,11 +50,13 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
     // Façade du PositionManager    
     PositionInterface position(final int rowIndex, final int columnIndex);
 
-    // Façade du PositionManager    
     PositionInterface position(final PositionInterface position, final DirectionInterface direction);
 
-    Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(SideInterface side);
+    // Façade du PositionManager    
+    PositionInterface position(final PositionInterface position, final NamedDirection direction);
 
-    List<? extends DirectionInterface> getDirections();
+    Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side);
+
+    List<DirectionInterface> getDirections();
 
 }

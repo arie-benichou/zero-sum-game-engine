@@ -21,12 +21,12 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.direction.DirectionInterface;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceTypeInterface;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.Lists;

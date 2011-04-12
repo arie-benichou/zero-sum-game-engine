@@ -23,119 +23,13 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.dimension.API.DimensionInterface;
+import abstractions.direction.DirectionInterface;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+// TODO injecter le DirectionManager au PositionManager
 public final class PositionManager implements PositionManagerInterface {
-
-
-    public static enum Direction implements DirectionInterface {
-
-        // -------------
-        // |   | x |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------    
-        TOP(-1, 0),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . | x |
-        // -------------
-        // |   |   |   |
-        // -------------                    
-        RIGHT(0, 1),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   | x |   |
-        // -------------            
-        BOTTOM(1, 0),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // | x | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------            
-        LEFT(0, -1),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------            
-        //NULL(0, 0),
-
-        // -------------
-        // |   |   | x |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------    
-        TOP_RIGHT(-1, 1),
-
-        // -------------
-        // | x |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   |   |
-        // -------------    
-        TOP_LEFT(-1, -1),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // |   |   | x |
-        // -------------    
-        BOTTOM_RIGHT(1, 1),
-
-        // -------------
-        // |   |   |   |
-        // -------------
-        // |   | . |   |
-        // -------------
-        // | x |   |   |
-        // -------------        
-        BOTTOM_LEFT(1, -1);
-
-        private final int rowDelta;
-        private final int columnDelta;
-
-        private Direction(final int rowDelta, final int columnDelta) {
-            this.rowDelta = rowDelta;
-            this.columnDelta = columnDelta;
-        }
-
-        public final int getRowDelta() {
-            return this.rowDelta;
-        }
-
-        public final int getColumnDelta() {
-            return this.columnDelta;
-        }
-
-
-
-        }
-
-    }
-
 
     private final static PositionSetFactoryInterface factory = new PositionSetFactory();
 
@@ -161,7 +55,7 @@ public final class PositionManager implements PositionManagerInterface {
         return ImmutableMap.copyOf(data);
     }
 
-    // TODO ? DimensionManager(DirectionManager) / DirectionManager(DimensionManager) 
+    // TODO DirectionManager(DimensionManager) 
     public PositionManager(final DimensionInterface dimension) {
         this.dimension = dimension;
         this.hashBase = Math.max(dimension.numberOfRows(), dimension.numberOfColumns());
@@ -189,8 +83,9 @@ public final class PositionManager implements PositionManagerInterface {
         return this.data.values().iterator();
     }
 
-    public List<Direction> getDirections() {
-        return PositionManager.DIRECTIONS;
+    public List<DirectionInterface> getDirections() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

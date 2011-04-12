@@ -21,11 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 /**
@@ -80,6 +81,8 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     boolean isEmpty();
 
+    ManagedCellInterface getRelative(NamedDirection direction);
+
     ManagedCellInterface getRelative(DirectionInterface direction);
 
     Set<? extends MutationInterface> getPotentialMutation(SideInterface side);
@@ -88,6 +91,6 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
     Map<DirectionInterface, ManagedCellInterface> getNeighbourhood();
 
-    List<? extends DirectionInterface> getDirections();
+    List<DirectionInterface> getDirections();
 
 }

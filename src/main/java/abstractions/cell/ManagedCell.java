@@ -21,11 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
@@ -85,6 +86,11 @@ public class ManagedCell implements ManagedCellInterface {
     //TODO utiliser getNeighbourhood(), une fois les cases voisines mises en cache
     public ManagedCellInterface getRelative(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
+    }
+
+    public ManagedCellInterface getRelative(final NamedDirection direction) {
+        // TODO utiliser le positionManager
+        return null;
     }
 
     public int compareTo(final ManagedCellInterface that) {
@@ -165,7 +171,8 @@ public class ManagedCell implements ManagedCellInterface {
         return neighbourhood;
     }
 
-    public List<? extends DirectionInterface> getDirections() {
+    public List<DirectionInterface> getDirections() {
         return this.cellManager.getDirections();
     }
+
 }
