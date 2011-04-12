@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface DirectionManagerInterface {
 
-    DirectionInterface getDirection(final NamedDirection directionLabel);
+    DirectionInterface getDirection(final NamedDirection label);
 
     DirectionInterface reduce(final List<DirectionInterface> directions);
 

@@ -30,9 +30,6 @@ import com.google.common.collect.Maps;
 
 public final class PositionManager implements PositionManagerInterface {
 
-    public static interface DirectionInterface {
-
-    }
 
     public static enum Direction implements DirectionInterface {
 
