@@ -63,6 +63,6 @@ public abstract class LifePiece extends AbstractPiece {
     }
 
     @Override
-    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

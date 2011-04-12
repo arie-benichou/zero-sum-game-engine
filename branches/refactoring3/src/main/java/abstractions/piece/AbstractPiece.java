@@ -90,6 +90,6 @@ public abstract class AbstractPiece implements PieceInterface {
         return this.getType() + " " + this.getSide();
     }
 
-    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

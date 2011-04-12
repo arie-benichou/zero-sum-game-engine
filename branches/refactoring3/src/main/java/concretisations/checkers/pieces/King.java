@@ -17,26 +17,26 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.position.relative.RelativePositions;
+import java.util.Set;
+
+import abstractions.piece.PieceTypeInterface;
+import abstractions.position.PositionManager.Direction;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
 public class King extends CheckerPiece {
 
-    public King(SideInterface side) {
-        super(side, ImmutableSet.of(RelativePositions.TOP, RelativePositions.BOTTOM));
+    private final static Set<? extends DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(Direction.TOP, Direction.BOTTOM);
+
+    public King(final SideInterface side, final PieceTypeInterface type, final Set<DirectionInterface> directions) {
+        super(side, type, King.LEGAL_DIRECTIONS);
     }
-    
-    /*
-    public boolean isPromotable(final CellInterface cell) {
-        return false;
-    }
-    */
-    
+
     @Override
     public String toString() {
         return super.toString().toUpperCase();
     }
-    
+
 }

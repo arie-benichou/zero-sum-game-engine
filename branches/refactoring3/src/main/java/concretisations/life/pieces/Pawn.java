@@ -35,7 +35,7 @@ public final class Pawn extends LifePiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         final int n = this.count(cell);
         if (n < 2 || n > 3) {
             return ImmutableSet.of(AtomicMutationFactory.newDeath(cell));

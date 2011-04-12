@@ -32,20 +32,6 @@ public final class PositionManager implements PositionManagerInterface {
 
     public static interface DirectionInterface {
 
-        /**
-         * Returns the row index of this position.
-         * 
-         * @return the row index of this position
-         */
-        int getRowDelta();
-
-        /**
-         * Returns the column index of this position.
-         * 
-         * @return the column index of this position
-         */
-        int getColumnDelta();
-
     }
 
     public static enum Direction implements DirectionInterface {
@@ -147,23 +133,12 @@ public final class PositionManager implements PositionManagerInterface {
             return this.columnDelta;
         }
 
-        @Override
-        public final String toString() {
-            return "[rowDelta = " + this.getRowDelta() + "]" + "[columnDelta = " + this.getColumnDelta() + "]";
+
+
         }
 
     }
 
-    private final static List<? extends DirectionInterface> DIRECTIONS = ImmutableList.of(
-            Direction.TOP,
-            Direction.TOP_RIGHT,
-            Direction.RIGHT,
-            Direction.BOTTOM_RIGHT,
-            Direction.BOTTOM,
-            Direction.BOTTOM_LEFT,
-            Direction.LEFT,
-            Direction.TOP_LEFT
-            );
 
     private final static PositionSetFactoryInterface factory = new PositionSetFactory();
 
@@ -189,6 +164,7 @@ public final class PositionManager implements PositionManagerInterface {
         return ImmutableMap.copyOf(data);
     }
 
+    // TODO ? DimensionManager(DirectionManager) / DirectionManager(DimensionManager) 
     public PositionManager(final DimensionInterface dimension) {
         this.dimension = dimension;
         this.hashBase = Math.max(dimension.numberOfRows(), dimension.numberOfColumns());
@@ -216,7 +192,7 @@ public final class PositionManager implements PositionManagerInterface {
         return this.data.values().iterator();
     }
 
-    public List<? extends DirectionInterface> getDirections() {
+    public List<Direction> getDirections() {
         return PositionManager.DIRECTIONS;
     }
 

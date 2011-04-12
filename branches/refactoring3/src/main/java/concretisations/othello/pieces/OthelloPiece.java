@@ -101,6 +101,6 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     }
 
     @Override
-    public abstract Set<? extends MutationInterface> computePotentialMutationTypes(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

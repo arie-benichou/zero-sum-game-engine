@@ -30,7 +30,7 @@ public interface PieceInterface {
      */
     PieceTypeInterface getType();
 
-    Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, SideInterface side);
+    Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
 
     // TODO add method isNull()
 
