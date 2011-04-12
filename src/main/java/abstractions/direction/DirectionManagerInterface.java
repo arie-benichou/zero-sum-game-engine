@@ -1,12 +1,15 @@
 
 package abstractions.direction;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 public interface DirectionManagerInterface {
 
-    DirectionInterface getDirection(final NamedDirection label);
+    DirectionInterface getNamedDirection(final NamedDirection label);
 
-    DirectionInterface reduce(final List<DirectionInterface> directions);
+    DirectionInterface reduce(final Collection<DirectionInterface> directions);
+
+    Map<NamedDirection, DirectionInterface> getDirectionsMap();
 
 }
