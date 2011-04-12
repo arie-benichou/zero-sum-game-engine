@@ -76,7 +76,6 @@ public class DirectionManager implements DirectionManagerInterface {
         this.hashFactor = this.computeHashFactor(this.dimension);
         this.hashOffset = this.computeHashOffset(this.dimension);
         this.data = this.initializeData(new ArrayList<DirectionInterface>(2 * this.hashOffset + 1));
-
     }
 
     public DirectionInterface getNamedDirection(final NamedDirection label) {
@@ -115,7 +114,7 @@ public class DirectionManager implements DirectionManagerInterface {
 
         new DirectionManager(DimensionFactory.Dimension(4, 5));
         new DirectionManager(DimensionFactory.Dimension(3, 3));
-        final DirectionManagerInterface manager = new DirectionManager(DimensionFactory.Dimension(5, 4));
+        final DirectionManagerInterface manager = new DirectionManager(DimensionFactory.Dimension(10, 10));
 
         System.out.println(manager.getNamedDirection(NamedDirection.TOP));
         System.out.println(manager.getNamedDirection(NamedDirection.TOP_RIGHT));
