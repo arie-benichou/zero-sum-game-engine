@@ -17,9 +17,19 @@ public class DirectionManagerTest {
         this.directionManager = new DirectionManager(DimensionFactory.Dimension(3, 3));
     }
 
+    @After
+    public void tearDown() throws Exception {
+        this.directionManager = null;
+    }
+
     @Test
-    public void testGetDirection() {
-        //this.directionManager.getDirection(NamedDirection.TOP);
+    public void testDirectionManager() {
+        Assert.fail("Not yet implemented");
+    }
+
+    @Test
+    public void testGetNamedDirection() {
+        Assert.fail("Not yet implemented");
     }
 
     @Test
@@ -27,9 +37,14 @@ public class DirectionManagerTest {
         Assert.fail("Not yet implemented");
     }
 
-    @After
-    public void tearDown() throws Exception {
-        this.directionManager = null;
+    @Test
+    public void testGetDirectionsMap() {
+        Assert.fail("Not yet implemented");
+    }
+
+    @Test
+    public void testMain() {
+        Assert.fail("Not yet implemented");
     }
 
 }
