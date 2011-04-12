@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionManager.Direction;
@@ -31,56 +31,52 @@ import abstractions.side.SideInterface;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
-// TODO ? faire une interface
-public class CheckerPiece extends AbstractPiece {
+import concretisations.checkers.mutations.CheckersMutationFactory;
+import concretisations.checkers.mutations.CheckersMutations;
+
+public abstract class CheckerPiece extends AbstractPiece {
 
     private static final Set<? extends DirectionInterface> PATHS = ImmutableSet.of(Direction.RIGHT, Direction.LEFT);
-    private final Set<DirectionInterface> legalRelativePositions;
+    private final Set<? extends DirectionInterface> legalDirections;
 
     private static interface Predicate {
 
-        boolean apply(ManagedCellInterface cell, SideInterface side, DirectionInterface relativePosition);
+        boolean apply(ManagedCellInterface cell, SideInterface side, DirectionInterface direction);
     }
 
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
-        public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface relativePosition) {
-            return side.equals(cell.getPiece().getSide()) && cell.getRelative(relativePosition).isEmpty();
+        public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
+            return side.equals(cell.getPiece().getSide()) && cell.getRelative(direction).isEmpty();
         }
     };
 
     private final static Predicate CAN_JUMP_OVER = new Predicate() {
 
-        public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface relativePosition) {
+        public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide())
-                    && !cell.getRelative(relativePosition).isNull() // TODO ! à améliorer
-                    && side.getNextSide().equals(cell.getRelative(relativePosition).getPiece().getSide())
-                    && cell.getRelative(relativePosition).getRelative(relativePosition).isEmpty();
+                    && !cell.getRelative(direction).isNull() // TODO ! à améliorer
+                    && side.getNextSide().equals(cell.getRelative(direction).getPiece().getSide())
+                    && cell.getRelative(direction).getRelative(direction).isEmpty();
         }
     };
 
     @SuppressWarnings("unchecked")
-    private Set<DirectionInterface> compileLegalRelativePositions(final Set<DirectionInterface> directions) {
+    private Set<DirectionInterface> compileLegalRelativePositions(final Set<Direction> directions) {
         final Set<DirectionInterface> legalRelativePositions = Sets.newHashSetWithExpectedSize(CheckerPiece.PATHS.size() * directions.size());
         for (final List<DirectionInterface> list : Sets.cartesianProduct(CheckerPiece.PATHS, directions)) {
-            legalRelativePositions.add(RelativePositions.reduce(list)); // TODO regarder l'API Guava pour le reduce
+            legalRelativePositions.add(Direction.reduce(list));
         }
         return legalRelativePositions;
     }
 
-    public CheckerPiece(final SideInterface side, final PieceTypeInterface type, final Set<DirectionInterface> directions) {
+    public CheckerPiece(final SideInterface side, final PieceTypeInterface type, final Set<Direction> directions) {
         super(side, type);
-        this.legalRelativePositions = this.compileLegalRelativePositions(directions);
+        this.legalDirections = this.compileLegalRelativePositions(directions);
     }
 
-    /*    
-    // TODO ? piecePromotion/pieceEvolution/pieceAlteration    
-    private static enum PieceAction {
-        JUMP, WALK;
-    }
-    
-    private Predicate getPredicate(final PieceAction action) {
-        switch (action) {
+    private Predicate getPredicate(final CheckersMutations mutationType) {
+        switch (mutationType) {
             case JUMP:
                 return CheckerPiece.CAN_JUMP_OVER;
             case WALK:
@@ -89,65 +85,27 @@ public class CheckerPiece extends AbstractPiece {
         }
     }
 
-    private Set<DirectionInterface> getOptions(final ManagedCellInterface cell, final SideInterface side, final PieceAction action) {
-        final Set<DirectionInterface> options = Sets.newHashSetWithExpectedSize(this.legalRelativePositions.size());
-        final Predicate predicate = this.getPredicate(action);
-        for (final DirectionInterface relativePosition : this.legalRelativePositions) {
+    private Set<? extends DirectionInterface> getMutations(final ManagedCellInterface cell, final SideInterface side, final CheckersMutations mutationType) {
+        final Set<? extends DirectionInterface> mutations = Sets.newHashSetWithExpectedSize(this.legalDirections.size());
+        final Predicate predicate = this.getPredicate(mutationType);
+        for (final DirectionInterface relativePosition : this.legalDirections) {
             if (predicate.apply(cell, side, relativePosition)) {
-                options.add(relativePosition);
+                mutations.add(relativePosition);
             }
         }
-        return options;
-    }
-
-    public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, final SideInterface side) {
-        final Set<MutationInterface> availableMutations = Sets.newHashSetWithExpectedSize(4); // TODO à affiner
-        Set<DirectionInterface> options = this.getOptions(cell, side, PieceAction.JUMP);
-        for (final DirectionInterface direction : options) {
-            availableMutations.add(CheckersMutationFactory.jump(cell, side, direction));
-        }
-        if (options.size() == 0) {
-            options = this.getOptions(cell, side, PieceAction.WALK);
-            for (final DirectionInterface direction : options) {
-                availableMutations.add(CheckersMutationFactory.walk(cell, side, direction));
-            }
-        }
-        return availableMutations;
-    }
-    */
-
-    private boolean hasPotentialJumpMutation(final ManagedCellInterface cell, final SideInterface side) {
-        for (final DirectionInterface relativePosition : this.legalRelativePositions) {
-            if (CheckerPiece.CAN_JUMP_OVER.apply(cell, side, relativePosition)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean hasPotentialWalkMutation(final ManagedCellInterface cell, final SideInterface side) {
-        for (final DirectionInterface relativePosition : this.legalRelativePositions) {
-            if (CheckerPiece.CAN_WALK_THROUGH.apply(cell, side, relativePosition)) {
-                return true;
-            }
-        }
-        return false;
+        return mutations;
     }
 
     @Override
-    public Set<? extends MutationTypeInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
-
-        final Set<MutationTypeInterface> potentialMutationTypes = Sets.newHashSetWithExpectedSize(2);
-
-        if (this.hasPotentialJumpMutation(cell, side)) {
-            potentialMutationTypes.add(null);
+    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+        final Set<MutationInterface> potentialMutations = Sets.newHashSetWithExpectedSize(4);
+        for (final DirectionInterface direction : this.getMutations(cell, side, CheckersMutations.JUMP)) {
+            potentialMutations.add(CheckersMutationFactory.newJumpMutation(cell, direction));
         }
-
-        if (this.hasPotentialWalkMutation(cell, side)) {
-            potentialMutationTypes.add(null);
+        for (final DirectionInterface direction : this.getMutations(cell, side, CheckersMutations.WALK)) {
+            potentialMutations.add(CheckersMutationFactory.newWalkMutation(cell, direction));
         }
-
-        return potentialMutationTypes;
+        return potentialMutations;
     }
 
 }

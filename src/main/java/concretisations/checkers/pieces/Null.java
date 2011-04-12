@@ -3,25 +3,23 @@ package concretisations.checkers.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.old.ManagedCellInterface;
+import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.position.relative.RelativePositionInterface;
+import abstractions.piece.PieceInterface;
+import abstractions.position.PositionManager.DirectionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
 public class Null extends CheckerPiece {
 
-    // TODO à mettre dans chaque classe abstraite d'une pièce d'un jeu et à laisser mutable    
-    private final static Set<? extends MutationInterface> NULL_MUTATIONS = ImmutableSet.of();
-    private final static Set<RelativePositionInterface> NULL_DIRECTIONS = ImmutableSet.of();
+    private final static Set<DirectionInterface> NULL_DIRECTIONS = ImmutableSet.of();
 
-    public Null(SideInterface side) {
-        super(side, NULL_DIRECTIONS);
+    public Null(final SideInterface side) {
+        super(side, Null.NULL_DIRECTIONS);
     }
 
-    public Set<? extends MutationInterface> computeAvailableMutations(ManagedCellInterface cell, SideInterface side) {
-        return NULL_MUTATIONS;
+    public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, final SideInterface side) {
+        return PieceInterface.NULL_POTENTIAL_MUTATION_SET
     }
-
 }

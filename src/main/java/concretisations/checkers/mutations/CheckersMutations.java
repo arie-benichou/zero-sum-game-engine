@@ -15,25 +15,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.othello.pieces;
+package concretisations.checkers.mutations;
 
-import java.util.Set;
+import abstractions.mutation.MutationTypeInterface;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+// TODO ? do the same for pieces
+public enum CheckersMutations implements MutationTypeInterface {
 
-public final class Pawn extends OthelloPiece {
-
-    public Pawn(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type);
-    }
-
-    @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
-    }
+    JUMP,
+    WALK,
+    //MAN_TO_KING
 
 }

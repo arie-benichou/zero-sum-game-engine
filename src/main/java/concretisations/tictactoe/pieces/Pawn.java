@@ -33,7 +33,7 @@ public final class Pawn extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutationTypes(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 }
