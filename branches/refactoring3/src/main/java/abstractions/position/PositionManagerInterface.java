@@ -20,6 +20,7 @@ package abstractions.position;
 import java.util.List;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 
 public interface PositionManagerInterface extends Iterable<PositionInterface> {
 
@@ -28,6 +29,8 @@ public interface PositionManagerInterface extends Iterable<PositionInterface> {
     PositionInterface getPosition(int rowIndex, int columnIndex);
 
     PositionInterface getPosition(PositionInterface position, DirectionInterface direction);
+
+    PositionInterface getPosition(PositionInterface position, NamedDirection direction);
 
     List<DirectionInterface> getDirections();
 

@@ -89,8 +89,8 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     public ManagedCellInterface getRelative(final NamedDirection direction) {
-        // TODO utiliser le positionManager
-        return null;
+        // TODO ? utiliser le positionManager
+        return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
 
     public int compareTo(final ManagedCellInterface that) {

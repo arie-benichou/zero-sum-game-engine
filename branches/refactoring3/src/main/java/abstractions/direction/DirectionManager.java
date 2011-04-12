@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import abstractions.dimension.API.DimensionFactory;
 import abstractions.dimension.API.DimensionInterface;
 
 import com.google.common.collect.ImmutableBiMap;
@@ -82,16 +81,16 @@ public class DirectionManager implements DirectionManagerInterface {
         return this.data.get(this.computeNaturalHash(label.getRowDelta(), label.getColumnDelta()));
     }
 
-    private DirectionInterface getDirection(final int rowDelta, final int columnDelta) {
+    public DirectionInterface getDirection(final int rowDelta, final int columnDelta) {
         final int hash = this.computeNaturalHash(rowDelta, columnDelta);
         DirectionInterface direction = this.data.get(hash);
         if (direction == null) {
             direction = DirectionManager.newDirection(rowDelta, columnDelta);
             this.data.set(hash, direction);
-            System.out.println("Direction " + direction + " created and added to cache.");
+            //System.out.println("Direction " + direction + " created and added to cache.");
         }
         else {
-            System.out.println("Direction " + direction + " fetched from cache.");
+            //System.out.println("Direction " + direction + " fetched from cache.");
         }
         return direction;
     }
@@ -108,28 +107,6 @@ public class DirectionManager implements DirectionManagerInterface {
 
     public Map<NamedDirection, DirectionInterface> getDirectionsMap() {
         return DirectionManager.NAMED_DIRECTIONS;
-    }
-
-    public static void main(final String[] args) {
-
-        new DirectionManager(DimensionFactory.Dimension(4, 5));
-        new DirectionManager(DimensionFactory.Dimension(3, 3));
-        final DirectionManagerInterface manager = new DirectionManager(DimensionFactory.Dimension(10, 10));
-
-        System.out.println(manager.getNamedDirection(NamedDirection.TOP));
-        System.out.println(manager.getNamedDirection(NamedDirection.TOP_RIGHT));
-        System.out.println(manager.getNamedDirection(NamedDirection.RIGHT));
-        System.out.println(manager.getNamedDirection(NamedDirection.BOTTOM_RIGHT));
-        System.out.println(manager.getNamedDirection(NamedDirection.BOTTOM));
-        System.out.println(manager.getNamedDirection(NamedDirection.BOTTOM_LEFT));
-        System.out.println(manager.getNamedDirection(NamedDirection.LEFT));
-        System.out.println(manager.getNamedDirection(NamedDirection.TOP_LEFT));
-
-        System.out.println(manager.getDirectionsMap());
-
-        System.out.println(manager.reduce(manager.getDirectionsMap().values()));
-        System.out.println(manager.reduce(manager.getDirectionsMap().values()));
-
     }
 
 }

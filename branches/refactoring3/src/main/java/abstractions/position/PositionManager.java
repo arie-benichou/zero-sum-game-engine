@@ -24,6 +24,7 @@ import java.util.Set;
 
 import abstractions.dimension.API.DimensionInterface;
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.NamedDirection;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -76,7 +77,11 @@ public final class PositionManager implements PositionManagerInterface {
 
     public PositionInterface getPosition(final PositionInterface position, final DirectionInterface direction) {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
+    }
 
+    // TODO ? utiliser le DirectionManager
+    public PositionInterface getPosition(final PositionInterface position, final NamedDirection namedDirection) {
+        return this.getPosition(position.getRow() + namedDirection.getRowDelta(), position.getColumn() + namedDirection.getColumnDelta());
     }
 
     public Iterator<PositionInterface> iterator() {
