@@ -113,21 +113,21 @@ public final class DirectionManager implements DirectionManagerInterface {
     public static void measureGetNamedDirectionFromList() {
         final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
         final long startTime = System.currentTimeMillis();
-        for (int n = 0; n < 100000000; ++n) {
+        for (int n = 0; n < 500000000; ++n) {
             directionManager.getNamedDirectionFromList(NamedDirection.TOP);
         }
         final long endTime = System.currentTimeMillis();
-        System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + "ms");
+        System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
     }
 
     public static void measureGetNamedDirectionFromMap() {
         final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
         final long startTime = System.currentTimeMillis();
-        for (int n = 0; n < 100000000; ++n) {
+        for (int n = 0; n < 500000000; ++n) {
             directionManager.getNamedDirectionFromMap(NamedDirection.TOP);
         }
         final long endTime = System.currentTimeMillis();
-        System.out.println("Total execution time with 'getNamedDirectionFromMap': " + (endTime - startTime) + "ms");
+        System.out.println("Total execution time with 'getNamedDirectionFromMap' : " + (endTime - startTime) + " ms");
     }
 
     public static void main(final String[] args) {
