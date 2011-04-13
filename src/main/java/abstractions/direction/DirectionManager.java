@@ -9,31 +9,9 @@ import java.util.Map;
 import abstractions.dimension.API.DimensionFactory;
 import abstractions.dimension.API.DimensionInterface;
 
-import com.google.common.collect.ImmutableMap;
-
 public final class DirectionManager implements DirectionManagerInterface {
 
-    //private final static DirectionInterface NULL_DIRECTION = new Direction(0, 0);
-
-    private static DirectionInterface newDirection(final int rowDelta, final int columnDelta) {
-        return new Direction(rowDelta, columnDelta);
-    }
-
-    private static DirectionInterface newDirection(final NamedDirection namedDirection) {
-        return DirectionManager.newDirection(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
-    }
-
-    private final static Map<NamedDirection, DirectionInterface> NAMED_DIRECTIONS =
-            new ImmutableMap.Builder<NamedDirection, DirectionInterface>()
-                    .put(NamedDirection.TOP, DirectionManager.newDirection(NamedDirection.TOP))
-                    .put(NamedDirection.TOP_RIGHT, DirectionManager.newDirection(NamedDirection.TOP_RIGHT))
-                    .put(NamedDirection.RIGHT, DirectionManager.newDirection(NamedDirection.RIGHT))
-                    .put(NamedDirection.BOTTOM_RIGHT, DirectionManager.newDirection(NamedDirection.BOTTOM_RIGHT))
-                    .put(NamedDirection.BOTTOM, DirectionManager.newDirection(NamedDirection.BOTTOM))
-                    .put(NamedDirection.BOTTOM_LEFT, DirectionManager.newDirection(NamedDirection.BOTTOM_LEFT))
-                    .put(NamedDirection.LEFT, DirectionManager.newDirection(NamedDirection.LEFT))
-                    .put(NamedDirection.TOP_LEFT, DirectionManager.newDirection(NamedDirection.TOP_LEFT))
-                    .build();
+    private final static DirectionInterface NULL_DIRECTION = new Direction(0, 0);
 
     private final DimensionInterface dimension;
     private final int hashFactor;
@@ -53,6 +31,14 @@ public final class DirectionManager implements DirectionManagerInterface {
         return this.hashOffset + this.hashFactor * rowDelta + columnDelta;
     }
 
+    private DirectionInterface newDirection(final int rowDelta, final int columnDelta) {
+        return new Direction(rowDelta, columnDelta);
+    }
+
+    private DirectionInterface newDirection(final NamedDirection namedDirection) {
+        return new Direction(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
+    }
+
     private List<DirectionInterface> initializeData(final List<DirectionInterface> data) {
         final int maxRowDelta = this.dimension.numberOfRows() - 1;
         final int maxColumnDelta = this.dimension.numberOfColumns() - 1;
@@ -65,8 +51,12 @@ public final class DirectionManager implements DirectionManagerInterface {
                 data.add(hash, null);
             }
         }
-        for (final DirectionInterface direction : this.getDirectionsMap().values()) {
-            data.set(this.computeNaturalHash(direction.getRowDelta(), direction.getColumnDelta()), direction);
+        int index;
+        for (final NamedDirection namedDirection : NamedDirection.values()) {
+            index = this.computeNaturalHash(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
+            if (index > -1 && index < data.size()) {
+                data.set(index, this.newDirection(namedDirection));
+            }
         }
         return data;
     }
@@ -80,24 +70,40 @@ public final class DirectionManager implements DirectionManagerInterface {
 
     public DirectionInterface getDirection(final int rowDelta, final int columnDelta) {
         final int hash = this.computeNaturalHash(rowDelta, columnDelta);
+
+        System.out.println("\ngetDirection(" + rowDelta + ", " + columnDelta + ")");
+        System.out.println(hash);
+        System.out.println(hash < 0);
+        System.out.println(hash >= this.data.size());
+
+        if (hash < 0 || hash >= this.data.size()) { // TODO utiliser les dimensions
+            throw new IllegalDirectionException(rowDelta, columnDelta);
+        }
         DirectionInterface direction = this.data.get(hash);
         if (direction == null) {
-            direction = DirectionManager.newDirection(rowDelta, columnDelta);
+            direction = this.newDirection(rowDelta, columnDelta);
             this.data.set(hash, direction);
         }
         return direction;
     }
 
     public Map<NamedDirection, DirectionInterface> getDirectionsMap() {
-        return DirectionManager.NAMED_DIRECTIONS;
+        //return DirectionManager.NAMED_DIRECTIONS;
+        return null;
     }
 
     public DirectionInterface getNamedDirectionFromMap(final NamedDirection namedDirection) {
-        return DirectionManager.NAMED_DIRECTIONS.get(namedDirection);
+        //return DirectionManager.NAMED_DIRECTIONS.get(namedDirection);
+        return null;
     }
 
     public DirectionInterface getNamedDirectionFromList(final NamedDirection namedDirection) {
-        return this.data.get(this.computeNaturalHash(namedDirection.getRowDelta(), namedDirection.getColumnDelta()));
+        try { // TODO utiliser les dimensions
+            return this.data.get(this.computeNaturalHash(namedDirection.getRowDelta(), namedDirection.getColumnDelta()));
+        }
+        catch (final ArrayIndexOutOfBoundsException e) {
+            throw new IllegalDirectionException(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
+        }
     }
 
     public DirectionInterface reduce(final Collection<DirectionInterface> directions) {
@@ -120,18 +126,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
     }
 
-    public static void measureGetNamedDirectionFromMap() {
-        final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
-        final long startTime = System.currentTimeMillis();
-        for (int n = 0; n < 500000000; ++n) {
-            directionManager.getNamedDirectionFromMap(NamedDirection.TOP);
-        }
-        final long endTime = System.currentTimeMillis();
-        System.out.println("Total execution time with 'getNamedDirectionFromMap' : " + (endTime - startTime) + " ms");
-    }
-
     public static void main(final String[] args) {
         DirectionManager.measureGetNamedDirectionFromList();
-        DirectionManager.measureGetNamedDirectionFromMap();
     }
 }
