@@ -29,14 +29,14 @@ public class DirectionManagerTest {
 
     @Test
     public void testGetNamedDirection() {
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP) == this.directionManager.getDirection(-1, 0));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP_RIGHT) == this.directionManager.getDirection(-1, 1));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.RIGHT) == this.directionManager.getDirection(0, 1));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM_RIGHT) == this.directionManager.getDirection(1, 1));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM) == this.directionManager.getDirection(1, 0));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.BOTTOM_LEFT) == this.directionManager.getDirection(1, -1));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.LEFT) == this.directionManager.getDirection(0, -1));
-        Assert.assertTrue(this.directionManager.getNamedDirection(NamedDirection.TOP_LEFT) == this.directionManager.getDirection(-1, -1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.TOP) == this.directionManager.getDirection(-1, 0));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.TOP_RIGHT) == this.directionManager.getDirection(-1, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.RIGHT) == this.directionManager.getDirection(0, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.BOTTOM_RIGHT) == this.directionManager.getDirection(1, 1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.BOTTOM) == this.directionManager.getDirection(1, 0));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.BOTTOM_LEFT) == this.directionManager.getDirection(1, -1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.LEFT) == this.directionManager.getDirection(0, -1));
+        Assert.assertTrue(this.directionManager.getNamedDirectionFromList(NamedDirection.TOP_LEFT) == this.directionManager.getDirection(-1, -1));
     }
 
     @Test

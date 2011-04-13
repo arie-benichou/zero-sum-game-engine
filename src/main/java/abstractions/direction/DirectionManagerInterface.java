@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface DirectionManagerInterface {
 
-    DirectionInterface getNamedDirection(final NamedDirection label);
+    DirectionInterface getNamedDirectionFromList(final NamedDirection label);
 
     DirectionInterface getDirection(final int rowDelta, final int columnDelta);
 
