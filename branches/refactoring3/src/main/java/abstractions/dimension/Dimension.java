@@ -65,4 +65,9 @@ final class Dimension implements DimensionInterface {
         return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
     }
 
+    @Override
+    public String toString() {
+        return this.rowRange.toString() + " " + this.columRange.toString();
+    }
+
 }
