@@ -6,16 +6,25 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import abstractions.dimension.API.DimensionFactory;
 import abstractions.dimension.API.DimensionInterface;
 
-import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableMap;
 
-public class DirectionManager implements DirectionManagerInterface {
+public final class DirectionManager implements DirectionManagerInterface {
 
     //private final static DirectionInterface NULL_DIRECTION = new Direction(0, 0);
 
+    private static DirectionInterface newDirection(final int rowDelta, final int columnDelta) {
+        return new Direction(rowDelta, columnDelta);
+    }
+
+    private static DirectionInterface newDirection(final NamedDirection namedDirection) {
+        return DirectionManager.newDirection(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
+    }
+
     private final static Map<NamedDirection, DirectionInterface> NAMED_DIRECTIONS =
-            new ImmutableBiMap.Builder<NamedDirection, DirectionInterface>()
+            new ImmutableMap.Builder<NamedDirection, DirectionInterface>()
                     .put(NamedDirection.TOP, DirectionManager.newDirection(NamedDirection.TOP))
                     .put(NamedDirection.TOP_RIGHT, DirectionManager.newDirection(NamedDirection.TOP_RIGHT))
                     .put(NamedDirection.RIGHT, DirectionManager.newDirection(NamedDirection.RIGHT))
@@ -31,14 +40,6 @@ public class DirectionManager implements DirectionManagerInterface {
     private final int hashOffset;
     private final List<DirectionInterface> data;
 
-    private static DirectionInterface newDirection(final NamedDirection namedDirection) {
-        return new Direction(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
-    }
-
-    private static DirectionInterface newDirection(final int rowDelta, final int columnDelta) {
-        return new Direction(rowDelta, columnDelta);
-    }
-
     private int computeHashFactor(final DimensionInterface dimension) {
         return (dimension.numberOfColumns() - 1) * 2 + 1;
     }
@@ -48,7 +49,7 @@ public class DirectionManager implements DirectionManagerInterface {
         return (2 * dimension.numberOfRows() - 1) * (2 * dimension.numberOfColumns() - 1) / 2;
     }
 
-    private int computeNaturalHash(final int rowDelta, final int columnDelta) {
+    private final int computeNaturalHash(final int rowDelta, final int columnDelta) {
         return this.hashOffset + this.hashFactor * rowDelta + columnDelta;
     }
 
@@ -77,22 +78,26 @@ public class DirectionManager implements DirectionManagerInterface {
         this.data = this.initializeData(new ArrayList<DirectionInterface>(2 * this.hashOffset + 1));
     }
 
-    public DirectionInterface getNamedDirection(final NamedDirection label) {
-        return this.data.get(this.computeNaturalHash(label.getRowDelta(), label.getColumnDelta()));
-    }
-
     public DirectionInterface getDirection(final int rowDelta, final int columnDelta) {
         final int hash = this.computeNaturalHash(rowDelta, columnDelta);
         DirectionInterface direction = this.data.get(hash);
         if (direction == null) {
             direction = DirectionManager.newDirection(rowDelta, columnDelta);
             this.data.set(hash, direction);
-            //System.out.println("Direction " + direction + " created and added to cache.");
-        }
-        else {
-            //System.out.println("Direction " + direction + " fetched from cache.");
         }
         return direction;
+    }
+
+    public Map<NamedDirection, DirectionInterface> getDirectionsMap() {
+        return DirectionManager.NAMED_DIRECTIONS;
+    }
+
+    public DirectionInterface getNamedDirectionFromMap(final NamedDirection namedDirection) {
+        return DirectionManager.NAMED_DIRECTIONS.get(namedDirection);
+    }
+
+    public DirectionInterface getNamedDirectionFromList(final NamedDirection namedDirection) {
+        return this.data.get(this.computeNaturalHash(namedDirection.getRowDelta(), namedDirection.getColumnDelta()));
     }
 
     public DirectionInterface reduce(final Collection<DirectionInterface> directions) {
@@ -105,8 +110,28 @@ public class DirectionManager implements DirectionManagerInterface {
         return this.getDirection(reducedRowDelta, reducedColumnDelta);
     }
 
-    public Map<NamedDirection, DirectionInterface> getDirectionsMap() {
-        return DirectionManager.NAMED_DIRECTIONS;
+    public static void measureGetNamedDirectionFromList() {
+        final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
+        final long startTime = System.currentTimeMillis();
+        for (int n = 0; n < 100000000; ++n) {
+            directionManager.getNamedDirectionFromList(NamedDirection.TOP);
+        }
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + "ms");
     }
 
+    public static void measureGetNamedDirectionFromMap() {
+        final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
+        final long startTime = System.currentTimeMillis();
+        for (int n = 0; n < 100000000; ++n) {
+            directionManager.getNamedDirectionFromMap(NamedDirection.TOP);
+        }
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time with 'getNamedDirectionFromMap': " + (endTime - startTime) + "ms");
+    }
+
+    public static void main(final String[] args) {
+        DirectionManager.measureGetNamedDirectionFromList();
+        DirectionManager.measureGetNamedDirectionFromMap();
+    }
 }
