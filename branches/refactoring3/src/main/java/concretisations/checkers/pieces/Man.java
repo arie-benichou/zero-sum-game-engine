@@ -17,8 +17,6 @@
 
 package concretisations.checkers.pieces;
 
-import java.util.Set;
-
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
@@ -27,7 +25,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class Man extends CheckerPiece {
 
-    public Man(final SideInterface side, final PieceTypeInterface type, final Set<NamedDirection> directions) {
+    public Man(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, ImmutableSet.of(side.isFirstSide() ? NamedDirection.TOP : NamedDirection.BOTTOM));
     }
 
