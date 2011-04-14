@@ -25,6 +25,7 @@ import java.util.List;
 import abstractions.dimension.DimensionFactory;
 import abstractions.dimension.DimensionManagerInterface;
 
+// TODO benchmark space
 public final class DirectionManager implements DirectionManagerInterface {
 
     public enum NamedDirection implements DirectionInterface {
