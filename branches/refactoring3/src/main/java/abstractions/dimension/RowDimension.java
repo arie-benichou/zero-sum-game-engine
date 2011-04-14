@@ -15,22 +15,14 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.position;
+package abstractions.dimension;
 
-import java.util.Set;
+import abstractions.utils.math.IntegersRange;
 
-import abstractions.dimension.API.DimensionInterface;
+final class RowDimension extends IntegersRange {
 
-interface PositionSetFactoryInterface {
-
-    /**
-     * Returns an unmodifiable set of new positions for a given dimension.
-     * 
-     * @param dimension
-     *            a given dimension
-     * 
-     * @return an unmodifiable set of new positions for a given dimension.
-     */
-    public Set<PositionInterface> newPositionSet(final DimensionInterface dimension);
+    public RowDimension(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
+        super(lowerBound, upperBound);
+    }
 
 }

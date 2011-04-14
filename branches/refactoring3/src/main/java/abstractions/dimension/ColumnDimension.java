@@ -19,9 +19,9 @@ package abstractions.dimension;
 
 import abstractions.utils.math.IntegersRange;
 
-final class ColumnsRange extends IntegersRange {
+final class ColumnDimension extends IntegersRange {
 
-    public ColumnsRange(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
+    public ColumnDimension(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
         super(lowerBound, upperBound);
     }
 }

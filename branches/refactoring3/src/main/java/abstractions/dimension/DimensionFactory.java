@@ -15,14 +15,24 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * API related to dimensions.
+ */
+
 package abstractions.dimension;
 
-import abstractions.utils.math.IntegersRange;
+// TODO à intégrer dans DimensionManager
+public final class DimensionFactory {
 
-final class RowsRange extends IntegersRange {
+    public static DimensionManagerInterface Dimension(final int numberOfRows, final int numberOfColumns) {
 
-    public RowsRange(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
-        super(lowerBound, upperBound);
+        try {
+            return new DimensionManager(new RowDimension(1, numberOfRows), new ColumnDimension(1, numberOfColumns));
+        }
+        catch (final IllegalArgumentException e) {
+            throw new IllegalDimensionException(numberOfRows, numberOfColumns);
+        }
+
     }
 
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
-import abstractions.dimension.API.DimensionFactory;
+import abstractions.dimension.DimensionFactory.DimensionFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;

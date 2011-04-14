@@ -22,8 +22,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import abstractions.dimension.API.DimensionFactory;
-import abstractions.dimension.API.DimensionInterface;
+import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManagerInterface;
 
 public final class DirectionManager implements DirectionManagerInterface {
 
@@ -148,16 +148,16 @@ public final class DirectionManager implements DirectionManagerInterface {
 
     private final static List<NamedDirection> NAMED_DIRECTIONS = Arrays.asList(NamedDirection.values());
 
-    private final DimensionInterface dimension;
+    private final DimensionManagerInterface dimension;
     private final int hashFactor;
     private final int hashOffset;
     private final List<DirectionInterface> data;
 
-    private int computeHashFactor(final DimensionInterface dimension) {
+    private int computeHashFactor(final DimensionManagerInterface dimension) {
         return (dimension.numberOfColumns() - 1) * 2 + 1;
     }
 
-    private int computeHashOffset(final DimensionInterface dimension) {
+    private int computeHashOffset(final DimensionManagerInterface dimension) {
         //((dimension.numberOfRows() - 1) + (dimension.numberOfRows() - 0)) * ((dimension.numberOfColumns() - 1) + (dimension.numberOfColumns() - 0)) / 2
         return (2 * dimension.numberOfRows() - 1) * (2 * dimension.numberOfColumns() - 1) / 2;
     }
@@ -196,7 +196,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         return data;
     }
 
-    public DirectionManager(final DimensionInterface dimension) {
+    public DirectionManager(final DimensionManagerInterface dimension) {
         this.dimension = dimension;
         this.hashFactor = this.computeHashFactor(this.dimension);
         this.hashOffset = this.computeHashOffset(this.dimension);
@@ -244,7 +244,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
     }
 
-    public DimensionInterface getDimensionManager() {
+    public DimensionManagerInterface getDimensionManager() {
         return this.dimension;
     }
 
