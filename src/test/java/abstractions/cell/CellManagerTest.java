@@ -26,7 +26,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
@@ -43,7 +44,7 @@ public class CellManagerTest {
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(3, 3));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
@@ -184,7 +185,9 @@ public class CellManagerTest {
 
     @After
     public void tearDown() throws Exception {
+
         this.cellManager = null;
+
     }
 
 }

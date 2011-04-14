@@ -17,27 +17,26 @@
 
 package abstractions.position;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import abstractions.dimension.API.DimensionInterface;
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManagerInterface;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
-// TODO injecter le DirectionManager au PositionManager
 public final class PositionManager implements PositionManagerInterface {
 
-    private final static PositionSetFactoryInterface factory = new PositionSetFactory();
-
-    private final DimensionInterface dimension;
     private final int hashBase;
     private final Map<Integer, PositionInterface> data;
     private final PositionInterface nullPosition;
+
+    private final DirectionManagerInterface directionManager;
 
     private final int hash(final int row, final int column) {
         return this.hashBase * row + column;
@@ -45,6 +44,23 @@ public final class PositionManager implements PositionManagerInterface {
 
     public PositionInterface getNullPosition() {
         return this.nullPosition;
+    }
+
+    private PositionInterface newPosition(final int rowIndex, final int columnIndex) {
+        return new Position(rowIndex, columnIndex);
+    }
+
+    public Set<PositionInterface> newPositionSet() {
+        final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(this.directionManager.getDimensionManager().capacity() + 1);
+        positions.add(this.newPosition(0, 0));
+        final int maxRowIndex = this.directionManager.getDimensionManager().upperBoundForRows();
+        final int maxColumnIndex = this.directionManager.getDimensionManager().upperBoundForColumns();
+        for (int rowIndex = this.directionManager.getDimensionManager().lowerBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
+            for (int columnIndex = this.directionManager.getDimensionManager().lowerBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
+                positions.add(this.newPosition(rowIndex, columnIndex));
+            }
+        }
+        return Collections.unmodifiableSet(positions);
     }
 
     private Map<Integer, PositionInterface> initializeData(final Set<PositionInterface> set) {
@@ -56,17 +72,16 @@ public final class PositionManager implements PositionManagerInterface {
         return ImmutableMap.copyOf(data);
     }
 
-    // TODO DirectionManager(DimensionManager) 
-    public PositionManager(final DimensionInterface dimension) {
-        this.dimension = dimension;
-        this.hashBase = Math.max(dimension.numberOfRows(), dimension.numberOfColumns());
-        this.data = this.initializeData(PositionManager.factory.newPositionSet(this.dimension));
+    public PositionManager(final DirectionManagerInterface directionManager) {
+        this.directionManager = directionManager;
+        this.hashBase = Math.max(this.directionManager.getDimensionManager().numberOfRows(), this.directionManager.getDimensionManager().numberOfColumns());
+        this.data = this.initializeData(this.newPositionSet());
         this.nullPosition = this.data.get(0);
     }
 
     public PositionInterface getPosition(final int row, final int column) {
         final PositionInterface position;
-        if (this.dimension.contains(row, column)) {
+        if (this.directionManager.getDimensionManager().contains(row, column)) {
             position = this.data.get(this.hash(row, column));
         }
         else {
@@ -79,18 +94,20 @@ public final class PositionManager implements PositionManagerInterface {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
     }
 
+    /*
     // TODO ? utiliser le DirectionManager
     public PositionInterface getPosition(final PositionInterface position, final NamedDirection namedDirection) {
         return this.getPosition(position.getRow() + namedDirection.getRowDelta(), position.getColumn() + namedDirection.getColumnDelta());
     }
+    */
 
     public Iterator<PositionInterface> iterator() {
         return this.data.values().iterator();
     }
 
-    public List<DirectionInterface> getDirections() {
-        // TODO Auto-generated method stub
-        return null;
+    // TODO ? faire une méthode getRelativePositions()
+    public List<? extends DirectionInterface> getNamedDirections() {
+        return this.directionManager.getNamedDirections();
     }
 
 }

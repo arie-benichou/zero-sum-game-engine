@@ -244,4 +244,8 @@ public final class DirectionManager implements DirectionManagerInterface {
         System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
     }
 
+    public DimensionInterface getDimensionManager() {
+        return this.dimension;
+    }
+
 }

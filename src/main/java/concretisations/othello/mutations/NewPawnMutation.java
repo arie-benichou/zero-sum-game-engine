@@ -59,7 +59,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation {
         final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
         final Set<ManagedCellInterface> cellsToRevert = Sets.newHashSet();
         final Set<ManagedCellInterface> cellsToRevertInOneDirection = Sets.newHashSet();
-        for (final DirectionInterface direction : this.getCell().getDirections()) {
+        for (final DirectionInterface direction : this.getCell().getNamedDirections()) {
             cellsToRevert.addAll(
                     ((OthelloPiece) this.getCell().getPiece()).
                             getConnected(this.getCell(), this.getSide(), direction, cellsToRevertInOneDirection)

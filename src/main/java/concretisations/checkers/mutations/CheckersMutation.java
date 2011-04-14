@@ -4,7 +4,7 @@ package concretisations.checkers.mutations;
 import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;

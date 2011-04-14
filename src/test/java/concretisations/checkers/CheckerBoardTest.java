@@ -1,8 +1,6 @@
 
 package concretisations.checkers;
 
-import static abstractions.dimension.API.DimensionFactory.Dimension;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,8 +9,8 @@ import org.junit.Test;
 
 import abstractions.board.BoardBuilder;
 import abstractions.board.BoardInterface;
+import abstractions.dimension.API.DimensionFactory;
 import abstractions.mutation.MutationInterface;
-import abstractions.position.relative.RelativePositions;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 import concretisations.checkers.mutations.JumpMutation;
@@ -37,16 +35,16 @@ public class CheckerBoardTest {
     @Test
     public void testJumpMutationPriority() {
 
-        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
-        SideInterface side = Sides.FIRST;
+        final BoardInterface board = new BoardBuilder(CheckersPieceSet.class, DimensionFactory.Dimension(5, 5)).build();
+        final SideInterface side = Sides.FIRST;
 
         board.getCell(4, 1).setPiece(side, CheckersPieceSet.MAN);
         board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
         board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
 
-        Set<MutationInterface> legalMutations = board.getLegalMutations(side);
+        final Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
-        Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
+        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
         expectedLegalMutations.add(new JumpMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
@@ -69,23 +67,23 @@ public class CheckerBoardTest {
     @Test
     public void testManWalkMutation() {
 
-        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
-        SideInterface side = Sides.FIRST;
+        final BoardInterface board = new BoardBuilder(CheckersPieceSet.class, DimensionFactory.Dimension(5, 5)).build();
+        final SideInterface side = Sides.FIRST;
 
         board.getCell(4, 1).setPiece(side, CheckersPieceSet.MAN);
         board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
 
-        Set<MutationInterface> legalMutations = board.getLegalMutations(side);
+        final Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
-        Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
+        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
         expectedLegalMutations.add(new WalkMutation(board.getCell(4, 1), Sides.FIRST, RelativePositions.TOP_RIGHT));
-        expectedLegalMutations.add(new WalkMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));        
+        expectedLegalMutations.add(new WalkMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));
         expectedLegalMutations.add(new WalkMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_RIGHT));
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
 
     }
-    
+
     /*
     ---------------------
     |   |   |   |   |   |
@@ -101,20 +99,20 @@ public class CheckerBoardTest {
     */
     @Test
     public void testOneOpponentPieceTwoJumpMutation() {
-        
-        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
-        SideInterface side = Sides.FIRST;
+
+        final BoardInterface board = new BoardBuilder(CheckersPieceSet.class, DimensionFactory.Dimension(5, 5)).build();
+        final SideInterface side = Sides.FIRST;
 
         board.getCell(4, 2).setPiece(side, CheckersPieceSet.MAN);
         board.getCell(4, 4).setPiece(side, CheckersPieceSet.MAN);
         board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
 
-        Set<MutationInterface> legalMutations = board.getLegalMutations(side);
+        final Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
-        Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
-        
+        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
+
         expectedLegalMutations.add(new JumpMutation(board.getCell(4, 2), Sides.FIRST, RelativePositions.TOP_RIGHT));
-        expectedLegalMutations.add(new JumpMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));        
+        expectedLegalMutations.add(new JumpMutation(board.getCell(4, 4), Sides.FIRST, RelativePositions.TOP_LEFT));
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
 
@@ -135,19 +133,19 @@ public class CheckerBoardTest {
     */
     @Test
     public void testNoMutations() {
-        
-        BoardInterface board = new BoardBuilder(CheckersPieceSet.class, Dimension(5, 5)).build();
-        SideInterface side = Sides.FIRST;        
-        
+
+        final BoardInterface board = new BoardBuilder(CheckersPieceSet.class, DimensionFactory.Dimension(5, 5)).build();
+        final SideInterface side = Sides.FIRST;
+
         board.getCell(2, 4).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
-        board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);        
+        board.getCell(3, 3).setPiece(side.getNextSide(), CheckersPieceSet.MAN);
 
-        Set<MutationInterface> legalMutations = board.getLegalMutations(side);
+        final Set<MutationInterface> legalMutations = board.getLegalMutations(side);
 
-        Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
+        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
 
         Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
-        
+
     }
 
 }

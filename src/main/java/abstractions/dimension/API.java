@@ -100,7 +100,7 @@ public final class API {
          * 
          * @return the capacity of a board with this dimension
          */
-        int boardCapacity();
+        int capacity();
 
         /**
          * Returns true if the row index and column index are contained in these

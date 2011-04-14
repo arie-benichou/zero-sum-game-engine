@@ -21,8 +21,24 @@ import abstractions.side.SideInterface;
 
 public interface PieceManagerInterface {
 
+    /**
+     * Returns the null piece.
+     * 
+     * @return the null piece
+     */
     PieceInterface getNullPiece();
 
+    /**
+     * Returns a piece for a given side and a given type of piece.
+     * 
+     * @param side
+     *            the side for this piece
+     * 
+     * @param type
+     *            the type of the piece
+     * 
+     * @return a piece for a given side and a given type of piece
+     */
     PieceInterface getPiece(SideInterface side, PieceTypeInterface type);
 
 }

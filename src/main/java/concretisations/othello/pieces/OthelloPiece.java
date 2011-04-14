@@ -22,7 +22,7 @@ import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.AbstractPiece;
@@ -51,7 +51,7 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             willBeConnected = true;
         }
         else if (side.getNextSide().equals(cell.getPiece().getSide())) {
-            final ManagedCellInterface nextCell = cell.getRelative(direction);
+            final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
             willBeConnected = ((OthelloPiece) nextCell.getPiece()).isConnected(nextCell, side, direction);
         }
         return willBeConnected;
@@ -59,10 +59,10 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
 
     public Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction,
             Set<ManagedCellInterface> cellsToRevert) {
-        if (side.equals(cell.getRelative(direction).getPiece().getSide())) {
+        if (side.equals(cell.getNeihgbour(direction).getPiece().getSide())) {
             return cellsToRevert;
         }
-        final ManagedCellInterface nextCell = cell.getRelative(direction);
+        final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
         if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
             cellsToRevert.add(nextCell);
             cellsToRevert = ((OthelloPiece) nextCell.getPiece()).getConnected(nextCell, side, direction, cellsToRevert);
@@ -82,14 +82,14 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
 
             final NamedDirection relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
 
-            final ManagedCellInterface nextCell = cell.getRelative(relativePosition);
+            final ManagedCellInterface nextCell = cell.getNeihgbour(relativePosition);
 
             if (nextCell.isNull()) {
                 continue; //TODO revoir la partie concernant la pièce nulle
             }
 
             if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
-                final ManagedCellInterface nextNextCell = nextCell.getRelative(relativePosition);
+                final ManagedCellInterface nextNextCell = nextCell.getNeihgbour(relativePosition);
                 final OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
                 willBeConnected = nextNextPiece.isConnected(nextNextCell, side, relativePosition);
             }

@@ -20,18 +20,49 @@ package abstractions.position;
 import java.util.List;
 
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
 
 public interface PositionManagerInterface extends Iterable<PositionInterface> {
 
+    /**
+     * Returns the null position.
+     * 
+     * @return the null position
+     */
     PositionInterface getNullPosition();
 
+    /**
+     * Returns the position related to a couple of (row index, column index).
+     * 
+     * @param rowIndex
+     *            a given row index
+     * 
+     * @param columnIndex
+     *            a given column index
+     * 
+     * @return the position related to a couple of (row index, column index)
+     */
     PositionInterface getPosition(int rowIndex, int columnIndex);
 
+    /**
+     * Returns the position related to a couple of (position, direction)
+     * 
+     * @param position
+     *            a given position
+     * 
+     * @param direction
+     *            a given direction
+     * 
+     * @return the position related to a couple of (position, direction)
+     */
     PositionInterface getPosition(PositionInterface position, DirectionInterface direction);
 
-    PositionInterface getPosition(PositionInterface position, NamedDirection direction);
-
-    List<DirectionInterface> getDirections();
+    /**
+     * Returns the 8 named directions in this order : TOP, TOP_RIGHT, RIGHT,
+     * BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT.
+     * 
+     * @return the 8 named directions in this order : TOP, TOP_RIGHT,
+     *         RIGHT,BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT.
+     */
+    List<? extends DirectionInterface> getNamedDirections();
 
 }

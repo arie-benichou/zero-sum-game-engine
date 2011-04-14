@@ -111,7 +111,7 @@ public class DimensionTest {
     @Test
     public final void testBoardCapacity() {
         
-        assertTrue(this.dimension.boardCapacity() == 3 * 3);
+        assertTrue(this.dimension.capacity() == 3 * 3);
         
     }
 

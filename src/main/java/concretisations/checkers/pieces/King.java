@@ -19,7 +19,7 @@ package concretisations.checkers.pieces;
 
 import java.util.Set;
 
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 

@@ -25,7 +25,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.IllegalPieceException;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
@@ -41,13 +42,11 @@ public class ManagedCellTest {
 
     @Before
     public void setUp() throws Exception {
-
-        final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(3, 3));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         final CellManager cellManager = new CellManager(positionManager, pieceManager);
         this.cell = new ManagedCell(cellManager, positionManager.getPosition(1, 2));
         this.cell.setPiece(Sides.NULL, PieceSet.NULL);
-
     }
 
     @Test
@@ -83,7 +82,7 @@ public class ManagedCellTest {
     public void testIsNull() {
 
         Assert.assertFalse(this.cell.isNull());
-        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).isNull());
+        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).isNull());
 
     }
 
@@ -104,7 +103,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell0() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.NULL, PieceSet.NULL);
 
     }
@@ -112,7 +111,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell1() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.FIRST, PieceSet.PAWN);
 
     }
@@ -120,7 +119,7 @@ public class ManagedCellTest {
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell2() {
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.SECOND, PieceSet.PAWN);
 
     }
@@ -154,15 +153,15 @@ public class ManagedCellTest {
     @Test
     public void testGetRelative() {
 
-        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).getPosition().getRow() == 0);
-        Assert.assertTrue(this.cell.getRelative(NamedDirection.TOP).getPosition().getColumn() == 0);
+        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).getPosition().getRow() == 0);
+        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).getPosition().getColumn() == 0);
 
-        Assert.assertTrue(this.cell.getRelative(NamedDirection.BOTTOM).getPosition().getRow() == 2);
-        Assert.assertTrue(this.cell.getRelative(NamedDirection.BOTTOM).getPosition().getColumn() == 2);
+        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.BOTTOM).getPosition().getRow() == 2);
+        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.BOTTOM).getPosition().getColumn() == 2);
 
-        final ManagedCellInterface nullCell = this.cell.getRelative(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
 
-        Assert.assertTrue(nullCell.getRelative(NamedDirection.BOTTOM_RIGHT) == nullCell);
+        Assert.assertTrue(nullCell.getNeihgbour(NamedDirection.BOTTOM_RIGHT) == nullCell);
 
     }
 
@@ -170,7 +169,7 @@ public class ManagedCellTest {
     public void testIsEmpty() {
 
         Assert.assertTrue(this.cell.isEmpty());
-        Assert.assertFalse(this.cell.getRelative(NamedDirection.TOP).isEmpty());
+        Assert.assertFalse(this.cell.getNeihgbour(NamedDirection.TOP).isEmpty());
         Assert.assertFalse(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).isEmpty());
 
     }
@@ -185,13 +184,13 @@ public class ManagedCellTest {
     @Test
     public void testCompareTo() {
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.TOP)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.TOP)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.BOTTOM)) == -1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.BOTTOM)) == -1);
         Assert.assertTrue(this.cell.compareTo(this.cell) == 0);
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.LEFT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.LEFT)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getRelative(NamedDirection.RIGHT).getRelative(NamedDirection.BOTTOM_RIGHT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.RIGHT).getNeihgbour(NamedDirection.BOTTOM_RIGHT)) == 1);
 
     }
 
@@ -200,19 +199,19 @@ public class ManagedCellTest {
 
         Assert.assertFalse(this.cell.equals(null));
         Assert.assertFalse(this.cell.equals(new Random()));
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.TOP)));
+        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.TOP)));
 
         Assert.assertTrue(this.cell.equals(this.cell));
-        Assert.assertTrue(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
+        Assert.assertTrue(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
+        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
+        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
 
-        this.cell.getRelative(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
-        Assert.assertTrue(this.cell.equals(this.cell.getRelative(NamedDirection.RIGHT)));
+        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
+        Assert.assertTrue(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
 
     }
 

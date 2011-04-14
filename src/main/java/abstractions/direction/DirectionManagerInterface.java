@@ -20,16 +20,55 @@ package abstractions.direction;
 import java.util.Collection;
 import java.util.List;
 
+import abstractions.dimension.API.DimensionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 
 public interface DirectionManagerInterface {
 
-    DirectionInterface getNamedDirection(final NamedDirection label);
+    /**
+     * Returns a named direction.
+     * 
+     * @param name
+     *            the name of the direction
+     * 
+     * @return a named direction
+     */
+    DirectionInterface getNamedDirection(final NamedDirection name);
 
+    /**
+     * Returns a direction.
+     * 
+     * @param rowDelta
+     *            row delta
+     * @param columnDelta
+     *            column delta
+     * 
+     * @return a direction
+     */
     DirectionInterface getDirection(final int rowDelta, final int columnDelta);
 
+    /**
+     * Reduces a collection of directions.
+     * 
+     * @param directions
+     *            a collection of directions.
+     * 
+     * @return a collection of directions
+     */
     DirectionInterface reduce(final Collection<? extends DirectionInterface> directions);
 
+    /**
+     * Returns the named directions.
+     * 
+     * @return the named directions
+     */
     List<NamedDirection> getNamedDirections();
+
+    /**
+     * Returns the dimension manager.
+     * 
+     * @return the dimension manager
+     */
+    DimensionInterface getDimensionManager();
 
 }

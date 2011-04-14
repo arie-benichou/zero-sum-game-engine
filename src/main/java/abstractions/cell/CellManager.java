@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManagerInterface;
@@ -118,7 +118,7 @@ public class CellManager implements CellManagerInterface {
 
         while (it.hasNext()) {
             cell = it.next();
-            final Set<? extends MutationInterface> p = cell.getPotentialMutation(side);
+            final Set<? extends MutationInterface> p = cell.getPotentialMutations(side);
             if (!p.equals(CellManager.NULL_POTENTIAL_MUTATION_TYPES_SET)) {
                 potentialMutationTypesMap.put(cell, p);
             }
@@ -148,8 +148,8 @@ public class CellManager implements CellManagerInterface {
         return consoleBoardView.toString();
     }
 
-    public List<DirectionInterface> getDirections() {
-        return this.positionManager.getDirections();
+    public List<? extends DirectionInterface> getNamedDirections() {
+        return this.positionManager.getNamedDirections();
     }
 
 }
