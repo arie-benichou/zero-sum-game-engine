@@ -29,7 +29,8 @@ import abstractions.position.PositionInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 
 public class ManagedCell implements ManagedCellInterface {
 
@@ -37,6 +38,7 @@ public class ManagedCell implements ManagedCellInterface {
     private final CellManagerInterface cellManager;
 
     private transient PieceInterface piece;
+    private transient Map<DirectionInterface, ManagedCellInterface> neighbourhood;
 
     public ManagedCell(final CellManagerInterface cellManager, final PositionInterface position) {
 
@@ -162,14 +164,15 @@ public class ManagedCell implements ManagedCellInterface {
         return this;
     }
 
-    //TODO à tester
-    //TODO utiliser un cache ou initialiser la map dans le constructeur avec un final
     public Map<DirectionInterface, ManagedCellInterface> getNeighbourhood() {
-        final Map<DirectionInterface, ManagedCellInterface> neighbourhood = Maps.newHashMap();
-        for (final DirectionInterface direction : this.getNamedDirections()) {
-            neighbourhood.put(direction, this.getNeihgbour(direction));
+        if (this.neighbourhood == null) {
+            final Builder<DirectionInterface, ManagedCellInterface> neighbourhoodMapBuilder = ImmutableMap.builder();
+            for (final DirectionInterface namedDirection : this.getNamedDirections()) {
+                neighbourhoodMapBuilder.put(namedDirection, this.getNeihgbour(namedDirection));
+            }
+            this.neighbourhood = neighbourhoodMapBuilder.build();
         }
-        return neighbourhood;
+        return this.neighbourhood;
     }
 
     public List<? extends DirectionInterface> getNamedDirections() {
