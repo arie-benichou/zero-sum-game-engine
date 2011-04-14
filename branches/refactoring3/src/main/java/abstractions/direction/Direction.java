@@ -22,6 +22,8 @@ public final class Direction implements DirectionInterface {
     private final int rowDelta;
     private final int columnDelta;
 
+    private volatile int hashCode;
+
     public Direction(final int rowDelta, final int columnDelta) {
         this.rowDelta = rowDelta;
         this.columnDelta = columnDelta;
@@ -38,6 +40,16 @@ public final class Direction implements DirectionInterface {
     @Override
     public final String toString() {
         return "[rowDelta = " + this.getRowDelta() + "]" + "[columnDelta = " + this.getColumnDelta() + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.hashCode;
+        if (result == 0) {
+            result = new StringBuilder("rowDelta").append(this.getRowDelta()).append("columnDelta").append(this.getColumnDelta()).toString().hashCode();
+            this.hashCode = result;
+        }
+        return result;
     }
 
     @Override
