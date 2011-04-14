@@ -20,7 +20,7 @@ package abstractions.direction;
 import java.util.Collection;
 import java.util.List;
 
-import abstractions.dimension.API.DimensionInterface;
+import abstractions.dimension.DimensionManagerInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 
 public interface DirectionManagerInterface {
@@ -69,6 +69,6 @@ public interface DirectionManagerInterface {
      * 
      * @return the dimension manager
      */
-    DimensionInterface getDimensionManager();
+    DimensionManagerInterface getDimensionManager();
 
 }

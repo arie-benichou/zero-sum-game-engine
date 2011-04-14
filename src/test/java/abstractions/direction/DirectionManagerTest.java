@@ -26,14 +26,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.dimension.API.DimensionFactory;
-import abstractions.dimension.API.DimensionInterface;
+import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManagerInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 
 public class DirectionManagerTest {
 
     private DirectionManagerInterface directionManager;
-    private DimensionInterface dimension;
+    private DimensionManagerInterface dimension;
 
     @Before
     public void setUp() throws Exception {

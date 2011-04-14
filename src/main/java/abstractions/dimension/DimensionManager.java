@@ -17,16 +17,14 @@
 
 package abstractions.dimension;
 
-import abstractions.dimension.API.DimensionInterface;
-
 import com.google.common.base.Preconditions;
 
-final class Dimension implements DimensionInterface {
+final class DimensionManager implements DimensionManagerInterface {
 
-    private final RowsRange rowRange;
-    private final ColumnsRange columRange;
+    private final RowDimension rowRange;
+    private final ColumnDimension columRange;
 
-    public Dimension(final RowsRange rowsRange, final ColumnsRange columnsRange) {
+    public DimensionManager(final RowDimension rowsRange, final ColumnDimension columnsRange) {
         Preconditions.checkNotNull(rowsRange, "Argument 'rowsRange' must not be null.");
         Preconditions.checkNotNull(columnsRange, "Argument 'columnsRange' must not be null.");
         this.rowRange = rowsRange;

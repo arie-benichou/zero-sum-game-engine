@@ -65,7 +65,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         final Set<NamedDirection> legalRelativePositions = Sets.newHashSetWithExpectedSize(CheckerPiece.PATHS.size() * directions.size());
 
         for (final List<NamedDirection> list : Sets.cartesianProduct(CheckerPiece.PATHS, directions)) {
-            legalRelativePositions.add(NamedDirection.reduce(list));
+            legalRelativePositions.add(NamedDirection.reduce(list)); // TODO ? injecter le DirectionManager au NamedDirection 
         }
 
         return legalRelativePositions;

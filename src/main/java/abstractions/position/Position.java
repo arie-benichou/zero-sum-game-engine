@@ -27,48 +27,35 @@ final class Position implements PositionInterface {
     private volatile int hashCode;
 
     public Position(final int row, final int column) {
-
         this.row = row;
         this.column = column;
-
     }
 
     public int getRow() {
-
         return this.row;
-
     }
 
     public int getColumn() {
-
         return this.column;
-
     }
 
     public boolean isNull() {
-
         return this.getRow() == 0 || this.getColumn() == 0;
-
     }
 
     @Override
     public int hashCode() {
-
         int result = this.hashCode;
-
         if (result == 0) {
             result = new StringBuilder('r').append(this.getRow()).append('c').append(this.getColumn()).toString().hashCode();
             this.hashCode = result;
         }
-
         return result;
     }
 
     @Override
     public boolean equals(final Object object) {
-
         final boolean isEqual;
-
         if (object == this) {
             isEqual = true;
         }
@@ -87,17 +74,12 @@ final class Position implements PositionInterface {
                 isEqual = that.isNull() == this.isNull() && that.getRow() == this.getRow() && that.getColumn() == this.getColumn();
             }
         }
-
         return isEqual;
-
     }
 
     public int compareTo(final PositionInterface that) {
-
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
-
         int value;
-
         if (this.getRow() < that.getRow()) {
             value = -1;
         }
@@ -113,16 +95,12 @@ final class Position implements PositionInterface {
         else {
             value = 0;
         }
-
         return value;
-
     }
 
     @Override
     public String toString() {
-
         return "[row = " + this.getRow() + "][column = " + this.getColumn() + "]";
-
     }
 
 }

@@ -94,13 +94,6 @@ public final class PositionManager implements PositionManagerInterface {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
     }
 
-    /*
-    // TODO ? utiliser le DirectionManager
-    public PositionInterface getPosition(final PositionInterface position, final NamedDirection namedDirection) {
-        return this.getPosition(position.getRow() + namedDirection.getRowDelta(), position.getColumn() + namedDirection.getColumnDelta());
-    }
-    */
-
     public Iterator<PositionInterface> iterator() {
         return this.data.values().iterator();
     }
