@@ -1,10 +1,10 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.direction.DirectionManager.NamedDirection;
+import abstractions.direction.DirectionInterface;
 
 interface CheckersMutationInterface {
 
-    NamedDirection getDirection();
+    DirectionInterface getDirection();
 
 }

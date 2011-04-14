@@ -19,6 +19,7 @@ package concretisations.checkers.pieces;
 
 import java.util.Set;
 
+import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
@@ -27,9 +28,9 @@ import com.google.common.collect.ImmutableSet;
 
 public class King extends CheckerPiece {
 
-    private final static Set<NamedDirection> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP, NamedDirection.BOTTOM);
+    private final static Set<? extends DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP, NamedDirection.BOTTOM);
 
-    public King(final SideInterface side, final PieceTypeInterface type, final Set<NamedDirection> directions) {
+    public King(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, King.LEGAL_DIRECTIONS);
     }
 

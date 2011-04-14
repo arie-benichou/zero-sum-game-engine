@@ -4,7 +4,7 @@ package concretisations.checkers.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionManager.NamedDirection;
+import abstractions.direction.DirectionInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -14,9 +14,9 @@ import com.google.common.collect.ImmutableSet;
 
 public class Null extends CheckerPiece {
 
-    private final static Set<NamedDirection> NULL_DIRECTIONS = ImmutableSet.of();
+    private final static Set<? extends DirectionInterface> NULL_DIRECTIONS = ImmutableSet.of();
 
-    public Null(final SideInterface side, final PieceTypeInterface type, final Set<NamedDirection> directions) {
+    public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, Null.NULL_DIRECTIONS);
     }
 
