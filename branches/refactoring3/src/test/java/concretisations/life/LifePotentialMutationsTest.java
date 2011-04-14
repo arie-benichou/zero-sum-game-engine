@@ -29,6 +29,7 @@ import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.API.DimensionFactory;
+import abstractions.direction.DirectionManager;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
@@ -44,7 +45,7 @@ public class LifePotentialMutationsTest {
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(9, 9));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(9, 9)));
         final PieceManagerInterface pieceManager = new PieceManager(LifePieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 

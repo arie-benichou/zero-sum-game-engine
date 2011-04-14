@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -38,25 +37,92 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      */
     ManagedCellInterface getNullCell();
 
+    /**
+     * Returns the null piece.
+     * 
+     * @return the null piece
+     */
     PieceInterface getNullPiece();
 
+    /**
+     * Returns the cell related to a couple of (rowIndex, columnIndex).
+     * 
+     * @param rowIndex
+     *            the row index
+     * 
+     * @param columnIndex
+     *            the column index
+     * 
+     * @return the cell related to the position(rowIndex, columnIndex)
+     */
     ManagedCellInterface getCell(final int rowIndex, final int columnIndex);
 
+    /**
+     * Returns the cell related to a position.
+     * 
+     * @param position
+     *            a given position
+     * 
+     * @return the cell related to a position
+     */
     ManagedCellInterface getCell(final PositionInterface position);
 
-    // Façade du PieceManager    
-    PieceInterface piece(SideInterface side, PieceTypeInterface pieceType);
-
-    // Façade du PositionManager    
-    PositionInterface position(final int rowIndex, final int columnIndex);
-
-    PositionInterface position(final PositionInterface position, final DirectionInterface direction);
-
-    // Façade du PositionManager    
-    PositionInterface position(final PositionInterface position, final NamedDirection direction);
-
+    /**
+     * Returns a set of potential mutations for this cell.
+     * 
+     * @param side
+     *            the side to play
+     * 
+     * @return a set of potential mutations for this cell
+     */
     Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side);
 
-    List<DirectionInterface> getDirections();
+    /////////////////////////////////////////////////////////////////
+    // PieceManager facade
+    /////////////////////////////////////////////////////////////////
+    /**
+     * Returns a piece for a given side and a given type of piece.
+     * 
+     * @param side
+     *            the side for this piece
+     * 
+     * @param type
+     *            the type of the piece
+     * 
+     * @return a piece for a given side and a given type of piece
+     */
+    PieceInterface piece(SideInterface side, PieceTypeInterface pieceType);
+
+    /////////////////////////////////////////////////////////////////
+    // PositionManager facade
+    /////////////////////////////////////////////////////////////////    
+    /**
+     * Façade du PositionManager
+     * 
+     * @param rowIndex
+     * @param columnIndex
+     * @return
+     */
+    PositionInterface position(final int rowIndex, final int columnIndex);
+
+    /**
+     * Façade du PositionManager
+     * 
+     * @param position
+     * @param direction
+     * @return
+     */
+    PositionInterface position(final PositionInterface position, final DirectionInterface direction);
+
+    /////////////////////////////////////////////////////////////////
+    // DirectionManager facade
+    /////////////////////////////////////////////////////////////////    
+
+    /**
+     * Façade du DirectionManager
+     * 
+     * @return
+     */
+    List<? extends DirectionInterface> getNamedDirections();
 
 }

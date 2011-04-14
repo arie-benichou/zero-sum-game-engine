@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -84,14 +83,16 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     //TODO utiliser getNeighbourhood(), une fois les cases voisines mises en cache
-    public ManagedCellInterface getRelative(final DirectionInterface direction) {
+    public ManagedCellInterface getNeihgbour(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
 
+    /*
     public ManagedCellInterface getRelative(final NamedDirection direction) {
         // TODO ? utiliser le positionManager
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
+    */
 
     public int compareTo(final ManagedCellInterface that) {
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
@@ -152,7 +153,7 @@ public class ManagedCell implements ManagedCellInterface {
         return this.cellRenderer();
     }
 
-    public Set<? extends MutationInterface> getPotentialMutation(final SideInterface side) {
+    public Set<? extends MutationInterface> getPotentialMutations(final SideInterface side) {
         return this.getPiece().computePotentialMutations(this, side);
     }
 
@@ -165,14 +166,14 @@ public class ManagedCell implements ManagedCellInterface {
     //TODO utiliser un cache ou initialiser la map dans le constructeur avec un final
     public Map<DirectionInterface, ManagedCellInterface> getNeighbourhood() {
         final Map<DirectionInterface, ManagedCellInterface> neighbourhood = Maps.newHashMap();
-        for (final DirectionInterface direction : this.getDirections()) {
-            neighbourhood.put(direction, this.getRelative(direction));
+        for (final DirectionInterface direction : this.getNamedDirections()) {
+            neighbourhood.put(direction, this.getNeihgbour(direction));
         }
         return neighbourhood;
     }
 
-    public List<DirectionInterface> getDirections() {
-        return this.cellManager.getDirections();
+    public List<? extends DirectionInterface> getNamedDirections() {
+        return this.cellManager.getNamedDirections();
     }
 
 }

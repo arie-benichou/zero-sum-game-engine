@@ -23,7 +23,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.dimension.API.DimensionFactory;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager;
+import abstractions.direction.DirectionManager.NamedDirection;
 
 public class PositionManagerTest {
 
@@ -31,9 +32,7 @@ public class PositionManagerTest {
 
     @Before
     public void setUp() throws Exception {
-
-        this.manager = new PositionManager(DimensionFactory.Dimension(3, 3));
-
+        this.manager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
     }
 
     @Test

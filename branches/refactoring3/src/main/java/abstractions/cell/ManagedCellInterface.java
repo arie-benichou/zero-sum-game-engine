@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
-import abstractions.direction.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -70,6 +69,17 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      */
     ManagedCellInterface setPiece(final PieceInterface piece);
 
+    /**
+     * Assigns a piece to this cell.
+     * 
+     * @param side
+     *            the side of the piece
+     * 
+     * @param pieceType
+     *            the type of the piece
+     * 
+     * @return
+     */
     ManagedCellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
 
     /**
@@ -79,18 +89,52 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      */
     boolean isNull();
 
+    /**
+     * Returns true if this cell is empty, false otherwise.
+     * 
+     * @return true if this cell is empty, false otherwise
+     */
     boolean isEmpty();
 
-    ManagedCellInterface getRelative(NamedDirection direction);
+    /**
+     * Returns a neighbour of this cell in a given direction.
+     * 
+     * @param direction
+     *            a legal direction
+     * 
+     * @return a neighbour of this cell in a given direction
+     */
+    ManagedCellInterface getNeihgbour(DirectionInterface direction);
 
-    ManagedCellInterface getRelative(DirectionInterface direction);
+    /**
+     * Returns a set of potential mutations for this cell and for a given side.
+     * 
+     * @param side
+     *            the side to play
+     * 
+     * @return a set of potential mutations for this cell and for a given side
+     */
+    Set<? extends MutationInterface> getPotentialMutations(SideInterface side);
 
-    Set<? extends MutationInterface> getPotentialMutation(SideInterface side);
-
-    ManagedCellInterface die();
-
+    /**
+     * Returns the neighbour cells to this cell.
+     * 
+     * @return the neighbour cells to this cell
+     */
     Map<DirectionInterface, ManagedCellInterface> getNeighbourhood();
 
-    List<DirectionInterface> getDirections();
+    /**
+     * Returns a list of the 8 named directions.
+     * 
+     * @return a list of the 8 named directions
+     */
+    List<? extends DirectionInterface> getNamedDirections();
+
+    /**
+     * Death for this cell: this cell will become empty.
+     * 
+     * @return this cell
+     */
+    ManagedCellInterface die();
 
 }

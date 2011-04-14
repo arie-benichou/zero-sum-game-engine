@@ -2,7 +2,7 @@
 package concretisations.checkers.mutations;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 
 public class CheckersMutationFactory {
 

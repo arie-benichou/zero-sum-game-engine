@@ -91,16 +91,16 @@ public class BoardTest {
     @Test
     public final void testTopOf() {
 
-        assertTrue(this.board.getCell(1, 1).getRelative(RelativePosition.TOP).equals(NULL_CELL));
-        assertTrue(this.board.getCell(2, 1).getRelative(RelativePosition.TOP).equals(this.board.getCell(1, 1)));
+        assertTrue(this.board.getCell(1, 1).getNeihgbour(RelativePosition.TOP).equals(NULL_CELL));
+        assertTrue(this.board.getCell(2, 1).getNeihgbour(RelativePosition.TOP).equals(this.board.getCell(1, 1)));
 
     }
 
     @Test
     public final void testRightOf() {
 
-        assertTrue(this.board.getCell(1, 3).getRelative(RelativePosition.RIGHT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(1, 2).getRelative(RelativePosition.RIGHT).equals(this.board.getCell(1, 3)));
+        assertTrue(this.board.getCell(1, 3).getNeihgbour(RelativePosition.RIGHT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(1, 2).getNeihgbour(RelativePosition.RIGHT).equals(this.board.getCell(1, 3)));
         
 
     }
@@ -108,32 +108,32 @@ public class BoardTest {
     @Test
     public final void testBottomOf() {
 
-        assertTrue(this.board.getCell(2, 1).getRelative(RelativePosition.BOTTOM).equals(NULL_CELL));
-        assertTrue(this.board.getCell(1, 1).getRelative(RelativePosition.BOTTOM).equals(this.board.getCell(2, 1)));
+        assertTrue(this.board.getCell(2, 1).getNeihgbour(RelativePosition.BOTTOM).equals(NULL_CELL));
+        assertTrue(this.board.getCell(1, 1).getNeihgbour(RelativePosition.BOTTOM).equals(this.board.getCell(2, 1)));
 
     }
 
     @Test
     public final void testLeftOf() {
         
-        assertTrue(this.board.getCell(1, 1).getRelative(RelativePosition.LEFT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(1, 2).getRelative(RelativePosition.LEFT).equals(this.board.getCell(1, 1)));
+        assertTrue(this.board.getCell(1, 1).getNeihgbour(RelativePosition.LEFT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(1, 2).getNeihgbour(RelativePosition.LEFT).equals(this.board.getCell(1, 1)));
 
     }
 
     @Test
     public final void testTopRightOf() {
         
-        assertTrue(this.board.getCell(1, 3).getRelative(RelativePosition.TOP_RIGHT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(2, 2).getRelative(RelativePosition.TOP_RIGHT).equals(this.board.getCell(1, 3)));        
+        assertTrue(this.board.getCell(1, 3).getNeihgbour(RelativePosition.TOP_RIGHT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(2, 2).getNeihgbour(RelativePosition.TOP_RIGHT).equals(this.board.getCell(1, 3)));        
         
     }
 
     @Test
     public final void testTopLeftOf() {
 
-        assertTrue(this.board.getCell(1, 1).getRelative(RelativePosition.TOP_LEFT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(2, 2).getRelative(RelativePosition.TOP_LEFT).equals(this.board.getCell(1, 1)));                
+        assertTrue(this.board.getCell(1, 1).getNeihgbour(RelativePosition.TOP_LEFT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(2, 2).getNeihgbour(RelativePosition.TOP_LEFT).equals(this.board.getCell(1, 1)));                
         
 
     }
@@ -141,8 +141,8 @@ public class BoardTest {
     @Test
     public final void testBottomRightOf() {
 
-        assertTrue(this.board.getCell(2, 3).getRelative(RelativePosition.BOTTOM_RIGHT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(1, 2).getRelative(RelativePosition.BOTTOM_RIGHT).equals(this.board.getCell(2, 3)));
+        assertTrue(this.board.getCell(2, 3).getNeihgbour(RelativePosition.BOTTOM_RIGHT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(1, 2).getNeihgbour(RelativePosition.BOTTOM_RIGHT).equals(this.board.getCell(2, 3)));
         
 
     }
@@ -150,8 +150,8 @@ public class BoardTest {
     @Test
     public final void testBottomLeftOf() {
 
-        assertTrue(this.board.getCell(2, 1).getRelative(RelativePosition.BOTTOM_LEFT).equals(NULL_CELL));
-        assertTrue(this.board.getCell(1, 2).getRelative(RelativePosition.BOTTOM_LEFT).equals(this.board.getCell(2, 1)));                        
+        assertTrue(this.board.getCell(2, 1).getNeihgbour(RelativePosition.BOTTOM_LEFT).equals(NULL_CELL));
+        assertTrue(this.board.getCell(1, 2).getNeihgbour(RelativePosition.BOTTOM_LEFT).equals(this.board.getCell(2, 1)));                        
 
     }
 

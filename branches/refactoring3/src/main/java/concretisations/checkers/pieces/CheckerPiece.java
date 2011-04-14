@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
@@ -46,7 +46,7 @@ public abstract class CheckerPiece extends AbstractPiece {
     private final static Predicate CAN_WALK_THROUGH = new Predicate() {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction) {
-            return side.equals(cell.getPiece().getSide()) && cell.getRelative(direction).isEmpty();
+            return side.equals(cell.getPiece().getSide()) && cell.getNeihgbour(direction).isEmpty();
         }
     };
 
@@ -54,9 +54,9 @@ public abstract class CheckerPiece extends AbstractPiece {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction) {
             return side.equals(cell.getPiece().getSide())
-                    && !cell.getRelative(direction).isNull() // TODO ! à améliorer
-                    && side.getNextSide().equals(cell.getRelative(direction).getPiece().getSide())
-                    && cell.getRelative(direction).getRelative(direction).isEmpty();
+                    && !cell.getNeihgbour(direction).isNull() // TODO ! à améliorer
+                    && side.getNextSide().equals(cell.getNeihgbour(direction).getPiece().getSide())
+                    && cell.getNeihgbour(direction).getNeihgbour(direction).isEmpty();
         }
     };
 

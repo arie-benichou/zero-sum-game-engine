@@ -57,7 +57,7 @@ final class Dimension implements DimensionInterface {
         return this.columRange.getCapacity();
     }
 
-    public final int boardCapacity() {
+    public final int capacity() {
         return this.numberOfRows() * this.numberOfColumns();
     }
 

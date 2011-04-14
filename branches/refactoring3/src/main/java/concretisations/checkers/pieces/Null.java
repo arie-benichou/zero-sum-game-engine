@@ -4,7 +4,7 @@ package concretisations.checkers.pieces;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;

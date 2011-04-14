@@ -1,7 +1,7 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 
 interface CheckersMutationInterface {
 

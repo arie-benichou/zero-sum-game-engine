@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
@@ -54,7 +54,7 @@ public abstract class LifePiece extends AbstractPiece {
     protected int count(final ManagedCellInterface cell) {
         int n = 0;
         for (int index = 0; index < LifePiece.MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL && n < LifePiece.CUT_OFF; ++index) {
-            if (!cell.getRelative(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {
+            if (!cell.getNeihgbour(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {
                 ++n;
             }
         }

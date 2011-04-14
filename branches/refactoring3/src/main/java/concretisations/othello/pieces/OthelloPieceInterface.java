@@ -18,7 +18,7 @@
 package concretisations.othello.pieces;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.NamedDirection;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.side.SideInterface;
 
 public interface OthelloPieceInterface {

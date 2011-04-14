@@ -13,6 +13,7 @@ import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.API.DimensionFactory;
+import abstractions.direction.DirectionManager;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
@@ -28,7 +29,7 @@ public class Connect4PotentialMutationsTest {
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(DimensionFactory.Dimension(5, 6));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(5, 6)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.connect4.pieces.Connect4PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
