@@ -129,20 +129,26 @@ public final class DirectionManager implements DirectionManagerInterface {
         */
         TOP_LEFT(-1, -1);
 
-        private final int rowDelta;
-        private final int columnDelta;
+        private final int rowDelta; // TODO à virer
+        private final int columnDelta; // TODO à virer
+        private final DirectionInterface value;
 
         private NamedDirection(final int rowDelta, final int columnDelta) {
-            this.rowDelta = rowDelta;
-            this.columnDelta = columnDelta;
+            this.rowDelta = rowDelta; // TODO à virer
+            this.columnDelta = columnDelta; // TODO à virer
+            this.value = new Direction(rowDelta, columnDelta);
         }
 
-        public final int getRowDelta() {
+        public final int getRowDelta() { // TODO à virer
             return this.rowDelta;
         }
 
-        public final int getColumnDelta() {
+        public final int getColumnDelta() { // TODO à virer
             return this.columnDelta;
+        }
+
+        public final DirectionInterface value() {
+            return this.value;
         }
 
     }
@@ -171,10 +177,6 @@ public final class DirectionManager implements DirectionManagerInterface {
         return new Direction(rowDelta, columnDelta);
     }
 
-    private DirectionInterface newDirection(final NamedDirection namedDirection) {
-        return new Direction(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
-    }
-
     private List<DirectionInterface> initializeData(final List<DirectionInterface> data) {
         final int maxRowDelta = this.dimension.numberOfRows() - 1;
         final int maxColumnDelta = this.dimension.numberOfColumns() - 1;
@@ -191,7 +193,8 @@ public final class DirectionManager implements DirectionManagerInterface {
         for (final NamedDirection namedDirection : NamedDirection.values()) {
             index = this.computeNaturalHash(namedDirection.getRowDelta(), namedDirection.getColumnDelta());
             if (index > -1 && index < data.size()) {
-                data.set(index, this.newDirection(namedDirection));
+                //data.set(index, this.newDirection(namedDirection));
+                data.set(index, namedDirection.value());
             }
         }
         return data;

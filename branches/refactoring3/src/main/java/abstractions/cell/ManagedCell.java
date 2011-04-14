@@ -102,12 +102,12 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() { // TODO à revoir
         return this.position.hashCode();
     }
 
     @Override
-    public final boolean equals(final Object object) {
+    public final boolean equals(final Object object) { // TODO à revoir
         final boolean isEqual;
         if (object == this) {
             isEqual = true;
