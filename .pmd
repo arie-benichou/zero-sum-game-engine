@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd>
     <useProjectRuleSet>false</useProjectRuleSet>
-    <ruleSetFile>ruleset</ruleSetFile>
+    <ruleSetFile>.ruleset</ruleSetFile>
     <rules>
         <rule>
             <name>AvoidDecimalLiteralsInBigDecimalConstructor</name>
@@ -156,6 +156,10 @@
             <ruleset>Braces Rules</ruleset>
         </rule>
         <rule>
+            <name>CloneMethodMustImplementCloneable</name>
+            <ruleset>Clone Implementation Rules</ruleset>
+        </rule>
+        <rule>
             <name>CloneThrowsCloneNotSupportedException</name>
             <ruleset>Clone Implementation Rules</ruleset>
         </rule>
@@ -285,6 +289,10 @@
         </rule>
         <rule>
             <name>ExcessiveImports</name>
+            <ruleset>Coupling Rules</ruleset>
+        </rule>
+        <rule>
+            <name>LooseCoupling</name>
             <ruleset>Coupling Rules</ruleset>
         </rule>
         <rule>
@@ -517,6 +525,10 @@
         </rule>
         <rule>
             <name>TooManyStaticImports</name>
+            <ruleset>Import Statement Rules</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedImports</name>
             <ruleset>Import Statement Rules</ruleset>
         </rule>
         <rule>
@@ -821,6 +833,10 @@
         </rule>
         <rule>
             <name>ExceptionAsFlowControl</name>
+            <ruleset>Strict Exception Rules</ruleset>
+        </rule>
+        <rule>
+            <name>SignatureDeclareThrowsException</name>
             <ruleset>Strict Exception Rules</ruleset>
         </rule>
         <rule>
