@@ -1,0 +1,193 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells;
+
+import java.util.Map;
+
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.cells.BoardCellInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.BoardCardinalPosition;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.dimensions.cells.pieces.PieceInterface;
+import fr.designpattern.zerosumgames.framework.service.gameplay.game.board.positions.BoardPositionInterface;
+import fr.designpattern.zerosumgames.util.NullObjectAvailableInterface;
+
+/**
+ * This is the interface for a game board cell.
+ */
+public interface _CellInterface extends NullObjectAvailableInterface, Cloneable {
+
+    /**
+     * Returns true if this cell is empty.
+     * 
+     * @return true if this cell is empty
+     */
+    boolean isEmpty();
+
+    /**
+     * Returns the piece contained by this cell, null if the cell is empty.
+     * 
+     * @return the piece contained by this cell, null if the cell is empty
+     */
+    PieceInterface getPiece(); // TODO ! retourner un null object
+
+    /**
+     * Assigns a piece to this cell.
+     * 
+     * @param piece
+     *            the piece to be contained by this cell
+     */
+    void setPiece(final PieceInterface piece);
+
+    /**
+     * Returns the position of this cell.
+     * 
+     * @return the position of this cell
+     */
+    BoardPositionInterface getPosition();
+
+    BoardCellInterface clone();
+
+    /**
+     * Returns the neighbours cells of this cell.
+     * 
+     * @return the neighbours cells of this cell
+     */
+    Map<BoardCardinalPosition, BoardCellInterface> getNeighbourhood();
+
+    /**
+     * Returns a neighbour cell of this cell for a given direction.
+     * 
+     * @param direction
+     *            the direction
+     * 
+     * @return a neighbour cell of this cell for a given direction
+     */
+    BoardCellInterface getNeighbour(final BoardCardinalPosition direction);
+
+    /**
+     * Returns the top-neighbour cell of this cell.
+     * 
+     * @return the top-neighbour cell of this cell
+     */
+    // -------------
+    // |   | x |   |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // |   |   |   |
+    // -------------
+    BoardCellInterface top();
+
+    /**
+     * Returns the right-neighbour cell of this cell.
+     * 
+     * @return the right-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   |   |
+    // -------------
+    // |   | . | x |
+    // -------------
+    // |   |   |   |
+    // -------------
+    BoardCellInterface right();
+
+    /**
+     * Returns the bottom-neighbour cell of this cell.
+     * 
+     * @return the bottom-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   |   |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // |   | x |   |
+    // -------------
+    BoardCellInterface bottom();
+
+    /**
+     * Returns the left-neighbour cell of this cell.
+     * 
+     * @return the left-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   |   |
+    // -------------
+    // | x | . |   |
+    // -------------
+    // |   |   |   |
+    // -------------
+    BoardCellInterface left();
+
+    /**
+     * Returns the top-right-neighbour cell of this cell.
+     * 
+     * @return the top-right-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   | x |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // |   |   |   |
+    // -------------
+    BoardCellInterface topRight();
+
+    /**
+     * Returns the top-left-neighbour cell of this cell.
+     * 
+     * @return the top-left-neighbour cell of this cell
+     */
+    // -------------
+    // | x |   |   |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // |   |   |   |
+    // -------------
+    BoardCellInterface topLeft();
+
+    /**
+     * Returns the bottom-right-neighbour cell of this cell.
+     * 
+     * @return the bottom-right-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   |   |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // |   |   | x |
+    // -------------
+    BoardCellInterface bottomRight();
+
+    /**
+     * Returns the bottom-left-neighbour cell of this cell.
+     * 
+     * @return the bottom-left-neighbour cell of this cell
+     */
+    // -------------
+    // |   |   |   |
+    // -------------
+    // |   | . |   |
+    // -------------
+    // | x |   |   |
+    // -------------
+    BoardCellInterface bottomLeft();
+
+}
