@@ -29,13 +29,13 @@ import concretisations.checkers.mutations.CheckersMutationFactory;
 import concretisations.checkers.pieces.CheckersPieceSet;
 
 // TODO à compléter
-public class CheckerPotentialMutationsTest {
+public final class CheckerPotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
     @Before
     public void setUp() throws Exception {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(5, 5)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(5, 5)));
         final PieceManagerInterface pieceManager = new PieceManager(CheckersPieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
     }
@@ -70,7 +70,7 @@ public class CheckerPotentialMutationsTest {
 
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
-        System.out.println(this.cellManager);
+        //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
@@ -112,7 +112,7 @@ public class CheckerPotentialMutationsTest {
 
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
-        System.out.println(this.cellManager);
+        //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
@@ -126,9 +126,9 @@ public class CheckerPotentialMutationsTest {
         for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
                 mutation.cancel();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
             }
         }
     }
@@ -162,7 +162,7 @@ public class CheckerPotentialMutationsTest {
 
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
-        System.out.println(this.cellManager);
+        //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
@@ -176,9 +176,9 @@ public class CheckerPotentialMutationsTest {
         for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
                 mutation.cancel();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
             }
         }
     }
@@ -213,7 +213,7 @@ public class CheckerPotentialMutationsTest {
 
     @After
     public void tearDown() throws Exception {
-        this.cellManager = null;
+        this.cellManager = null; // NOPMD 
     }
 
 }

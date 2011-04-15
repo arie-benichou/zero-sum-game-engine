@@ -21,6 +21,9 @@ import java.util.List;
 
 import abstractions.direction.DirectionInterface;
 
+/**
+ * This is the interface for the position manager.
+ */
 public interface PositionManagerInterface extends Iterable<PositionInterface> {
 
     /**
@@ -44,7 +47,7 @@ public interface PositionManagerInterface extends Iterable<PositionInterface> {
     PositionInterface getPosition(int rowIndex, int columnIndex);
 
     /**
-     * Returns the position related to a couple of (position, direction)
+     * Returns the position related to a couple of (position, direction).
      * 
      * @param position
      *            a given position

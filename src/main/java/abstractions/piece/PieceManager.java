@@ -27,16 +27,17 @@ import abstractions.side.Sides;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
-public class PieceManager implements PieceManagerInterface {
+public final class PieceManager implements PieceManagerInterface {
 
     private final PieceSetFactoryInterface factory = new PieceSetFactory();
     private final Map<Integer, PieceInterface> data;
     private final PieceInterface nullPiece;
 
-    private final int hash(final SideInterface side, final PieceTypeInterface type) {
+    private int hash(final SideInterface side, final PieceTypeInterface type) {
         return side.hashCode() + type.hashCode();
     }
 
+    // TODO utiliser le builder d'une map immutable
     private Map<Integer, PieceInterface> initializeData(final Map<SideInterface, Set<PieceInterface>> map) {
         final Map<Integer, PieceInterface> data = Maps.newHashMapWithExpectedSize(map.size());
         for (final Entry<SideInterface, Set<PieceInterface>> mapEntry : map.entrySet()) {
@@ -44,7 +45,6 @@ public class PieceManager implements PieceManagerInterface {
                 data.put(this.hash(sidedPiece.getSide(), sidedPiece.getType()), sidedPiece);
             }
         }
-        // TODO regarder l'API du builder
         return ImmutableMap.copyOf(data);
     }
 

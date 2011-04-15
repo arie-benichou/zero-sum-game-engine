@@ -31,35 +31,35 @@ final class DimensionManager implements DimensionManagerInterface {
         this.columRange = columnsRange;
     }
 
-    public final int lowerBoundForRows() {
+    public int lowerBoundForRows() {
         return this.rowRange.getLowerBound();
     }
 
-    public final int upperBoundForRows() {
+    public int upperBoundForRows() {
         return this.rowRange.getUpperBound();
     }
 
-    public final int lowerBoundForColumns() {
+    public int lowerBoundForColumns() {
         return this.columRange.getLowerBound();
     }
 
-    public final int upperBoundForColumns() {
+    public int upperBoundForColumns() {
         return this.columRange.getUpperBound();
     }
 
-    public final int numberOfRows() {
+    public int numberOfRows() {
         return this.rowRange.getCapacity();
     }
 
-    public final int numberOfColumns() {
+    public int numberOfColumns() {
         return this.columRange.getCapacity();
     }
 
-    public final int capacity() {
+    public int capacity() {
         return this.numberOfRows() * this.numberOfColumns();
     }
 
-    public final boolean contains(final int rowIndex, final int columnIndex) {
+    public boolean contains(final int rowIndex, final int columnIndex) {
         return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
     }
 

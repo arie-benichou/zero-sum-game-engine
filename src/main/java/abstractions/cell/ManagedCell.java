@@ -32,7 +32,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 
-public class ManagedCell implements ManagedCellInterface {
+public final class ManagedCell implements ManagedCellInterface {
 
     private final PositionInterface position;
     private final CellManagerInterface cellManager;
@@ -70,7 +70,7 @@ public class ManagedCell implements ManagedCellInterface {
 
     public ManagedCellInterface setPiece(final PieceInterface piece) {
         if (this.isNull()) {
-            throw new NullPointerException("This cell is null.");
+            throw new NullPointerException("This cell is null."); // NOPMD
         }
         this.piece = piece;
         return this;
@@ -84,17 +84,10 @@ public class ManagedCell implements ManagedCellInterface {
         return this.isNull() ? false : this.piece.getSide().isNull();
     }
 
-    //TODO utiliser getNeighbourhood(), une fois les cases voisines mises en cache
+    //TODO ! utiliser getNeighbourhood(), une fois les cases voisines mises en cache
     public ManagedCellInterface getNeihgbour(final DirectionInterface direction) {
         return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
     }
-
-    /*
-    public ManagedCellInterface getRelative(final NamedDirection direction) {
-        // TODO ? utiliser le positionManager
-        return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
-    }
-    */
 
     public int compareTo(final ManagedCellInterface that) {
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
@@ -107,15 +100,15 @@ public class ManagedCell implements ManagedCellInterface {
     }
 
     @Override
-    public final boolean equals(final Object object) { // TODO à revoir
-        final boolean isEqual;
+    public boolean equals(final Object object) { // TODO à revoir
+        final boolean isEqual; // NOPMD 
         if (object == this) {
             isEqual = true;
         }
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof ManagedCellInterface)) {
+        else if (!(object instanceof ManagedCellInterface)) { // NOPMD 
             isEqual = false;
         }
         else {
@@ -125,34 +118,19 @@ public class ManagedCell implements ManagedCellInterface {
         return isEqual;
     }
 
-    // TODO create class PieceRenderer(PieceInterface pieceToRender)
-    private String pieceRenderer(final PieceInterface pieceToRender) {
-        String consoleView = "";
-        if (pieceToRender.getSide().isFirstSide()) {
-            consoleView = "x";
-        }
-        else if (pieceToRender.getSide().isSecondSide()) {
-            consoleView = "o";
-        }
-        else {
-            consoleView = " ";
-        }
-        return consoleView;
-    }
-
     // TODO create class CellRenderer(ManagedCellInterface cellToRender)
-    private String cellRenderer() {
+    public String render() {
         String consoleView = "";
         if (!this.isNull()) {
-            consoleView = " " + this.pieceRenderer(this.getPiece()) + " |";
+            consoleView = " " + this.getPiece().toString() + " |";
         }
         return consoleView;
     }
 
-    // TODO use only on trace purpose
+    // use only on trace purpose
     @Override
     public String toString() {
-        return this.cellRenderer();
+        return this.getPosition().toString() + " " + this.getPiece().getSide() + " " + this.getPiece().getType();
     }
 
     public Set<? extends MutationInterface> getPotentialMutations(final SideInterface side) {

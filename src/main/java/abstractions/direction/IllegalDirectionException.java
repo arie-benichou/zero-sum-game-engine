@@ -17,7 +17,7 @@
 
 package abstractions.direction;
 
-public class IllegalDirectionException extends RuntimeException {
+public final class IllegalDirectionException extends RuntimeException {
 
     private static final String MESSAGE = "Direction(rowDelta=%s, columnDelta=%s) is not a legal direction.";
 

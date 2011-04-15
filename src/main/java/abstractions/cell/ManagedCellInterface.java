@@ -66,6 +66,8 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * 
      * @param piece
      *            the piece to be contained by this cell
+     * 
+     * @return this cell
      */
     ManagedCellInterface setPiece(final PieceInterface piece);
 
@@ -78,7 +80,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * @param pieceType
      *            the type of the piece
      * 
-     * @return
+     * @return this cell.
      */
     ManagedCellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
 
@@ -136,5 +138,12 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * @return this cell
      */
     ManagedCellInterface die();
+
+    /**
+     * Returns a console view of this cell.
+     * 
+     * @return a console view of this cell
+     */
+    String render();
 
 }

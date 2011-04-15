@@ -22,7 +22,6 @@ import java.util.Set;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -30,7 +29,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class Null extends LifePiece {
 
-    private final static int NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN = 3;
+    private static final int NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN = 3;
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -39,8 +38,13 @@ public final class Null extends LifePiece {
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (this.count(cell) == Null.NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN) {
-            return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, LifePieceSet.PAWN));
+            return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, LifePieceSet.PAWN)); // NOPMD 
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
+    }
+
+    @Override
+    public String toString() {
+        return " "; // space
     }
 }

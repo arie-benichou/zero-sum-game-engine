@@ -11,7 +11,7 @@ public abstract class AbstractCompositeMutation extends AbstractMutation {
         super(cell, mutationType);
     }
 
-    private transient List<MutationInterface> sequence;
+    private transient List<MutationInterface> sequence; // NOPMD 
 
     private List<MutationInterface> getSequence() {
         if (this.sequence == null) {
@@ -23,14 +23,15 @@ public abstract class AbstractCompositeMutation extends AbstractMutation {
     protected abstract List<MutationInterface> sequence();
 
     @Override
-    public void process() {
+    public final void process() {
         for (final MutationInterface mutation : this.getSequence()) {
             mutation.process();
         }
     }
 
     @Override
-    public void cancel() {
+    public final void cancel() {
+        // TODO Cut-off si la mutation n'a pas été processée.
         for (final MutationInterface mutation : this.getSequence()) {
             mutation.cancel();
         }

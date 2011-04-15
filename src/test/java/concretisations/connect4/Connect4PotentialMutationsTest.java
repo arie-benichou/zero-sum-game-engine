@@ -22,21 +22,22 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 import concretisations.connect4.pieces.Connect4PieceSet;
 
-public class Connect4PotentialMutationsTest {
+// TODO à compléter
+public final class Connect4PotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(5, 6)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(5, 6)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.connect4.pieces.Connect4PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
     }
 
     @Test
-    public void testGetPotentialMutations() {
+    public void testGetPotentialMutations() { // NOPMD 
 
         this.cellManager.getCell(5, 2).setPiece(Sides.FIRST, Connect4PieceSet.PAWN);
 
@@ -58,39 +59,25 @@ public class Connect4PotentialMutationsTest {
         this.cellManager.getCell(4, 6).setPiece(Sides.FIRST, Connect4PieceSet.PAWN);
         this.cellManager.getCell(5, 6).setPiece(Sides.FIRST, Connect4PieceSet.PAWN);
 
-        /*
-        final Set<MutationInterface> legalMutations = this.cellManager.getLegalMutations(Sides.FIRST);
-
-        final Set<MutationInterface> expectedLegalMutations = new HashSet<MutationInterface>();
-        expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(5, 1), Sides.FIRST));
-        expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(4, 2), Sides.FIRST));
-        expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(3, 3), Sides.FIRST));
-        expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(2, 4), Sides.FIRST));
-        expectedLegalMutations.add(new _NewPawnMutation(this.cellManager.getCell(1, 5), Sides.FIRST));
-        */
-
-        System.out.println(this.cellManager);
+        //System.out.println(this.cellManager);
 
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
                 mutation.cancel();
-                System.out.println(this.cellManager);
+                //System.out.println(this.cellManager);
             }
         }
 
-        /*
-        Assert.assertTrue(legalMutations.equals(expectedLegalMutations));
-        */
-
+        // TODO à tester unitairement
     }
 
     @After
     public void tearDown() throws Exception {
-        this.cellManager = null;
+        this.cellManager = null; // NOPMD 
     }
 
 }

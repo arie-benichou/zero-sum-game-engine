@@ -40,13 +40,13 @@ import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 
-public class ManagedCellTest {
+public final class ManagedCellTest { // NOPMD
 
     private ManagedCellInterface cell;
 
     @Before
     public void setUp() throws Exception {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         final CellManager cellManager = new CellManager(positionManager, pieceManager);
         this.cell = new ManagedCell(cellManager, positionManager.getPosition(1, 2));
@@ -170,7 +170,7 @@ public class ManagedCellTest {
 
     @Test
     public void testEqualsObject() {
-        Assert.assertFalse(this.cell.equals(null));
+        Assert.assertFalse(this.cell.equals(null)); // NOPMD
         Assert.assertFalse(this.cell.equals(new Random()));
         Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.TOP)));
 
@@ -190,7 +190,7 @@ public class ManagedCellTest {
     @Test
     public void testGetNeihgbourhood() {
         boolean isEqual;
-        final ManagedCellInterface cell;
+        final ManagedCellInterface cell; // NOPMD
         Map<DirectionInterface, ManagedCellInterface> expected;
 
         cell = this.cell.getNeihgbour(NamedDirection.BOTTOM);
@@ -207,7 +207,7 @@ public class ManagedCellTest {
         isEqual = true;
         final Map<DirectionInterface, ManagedCellInterface> result = cell.getNeighbourhood();
         for (final Entry<DirectionInterface, ManagedCellInterface> entry : expected.entrySet()) {
-            // TODO ? revoir l'override de la méthode equals de la classe ManagedCell
+            // TODO ! revoir l'override de la méthode equals de la classe ManagedCell
             isEqual = isEqual && result.get(entry.getKey()).getPosition().equals(entry.getValue().getPosition());
         }
         Assert.assertFalse(isEqual);
@@ -225,7 +225,7 @@ public class ManagedCellTest {
 
     @After
     public void tearDown() throws Exception {
-        this.cell = null;
+        this.cell = null; // NOPMD
     }
 
 }

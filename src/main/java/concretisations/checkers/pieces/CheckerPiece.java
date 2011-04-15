@@ -35,24 +35,26 @@ import com.google.common.collect.Sets;
 import concretisations.checkers.mutations.CheckersMutationFactory;
 import concretisations.checkers.mutations.CheckersMutations;
 
+// TODO gérer les jumps successifs
+// TODO gérer les promotions de pions.
 public abstract class CheckerPiece extends AbstractPiece {
 
     private static final Set<? extends DirectionInterface> PATHS = ImmutableSet.of(NamedDirection.RIGHT, NamedDirection.LEFT);
     private final Set<DirectionInterface> legalDirections;
 
-    private static interface Predicate {
+    private interface Predicate {
 
         boolean apply(ManagedCellInterface cell, SideInterface side, DirectionInterface direction);
     }
 
-    private final static Predicate CAN_WALK_THROUGH = new Predicate() {
+    private static final Predicate CAN_WALK_THROUGH = new Predicate() {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide()) && cell.getNeihgbour(direction).isEmpty();
         }
     };
 
-    private final static Predicate CAN_JUMP_OVER = new Predicate() {
+    private static final Predicate CAN_JUMP_OVER = new Predicate() {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide())
@@ -73,7 +75,7 @@ public abstract class CheckerPiece extends AbstractPiece {
                 rowDelta += namedDirection.getRowDelta();
                 columnDelta += namedDirection.getColumnDelta();
             }
-            legalRelativePositions.add(new Direction(rowDelta, columnDelta));
+            legalRelativePositions.add(new Direction(rowDelta, columnDelta)); // NOPMD
         }
 
         return legalRelativePositions;
@@ -85,9 +87,9 @@ public abstract class CheckerPiece extends AbstractPiece {
     }
 
     private Predicate getPredicate(final CheckersMutations mutationType) {
-        switch (mutationType) {
+        switch (mutationType) { // NOPMD 
             case JUMP:
-                return CheckerPiece.CAN_JUMP_OVER;
+                return CheckerPiece.CAN_JUMP_OVER; // NOPMD 
             case WALK:
             default:
                 return CheckerPiece.CAN_WALK_THROUGH;
@@ -106,7 +108,7 @@ public abstract class CheckerPiece extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public final Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         final Set<MutationInterface> potentialMutations = Sets.newHashSetWithExpectedSize(4);
         for (final DirectionInterface direction : this.getMutations(cell, side, CheckersMutations.JUMP)) {
             potentialMutations.add(CheckersMutationFactory.newJumpMutation(cell, direction));

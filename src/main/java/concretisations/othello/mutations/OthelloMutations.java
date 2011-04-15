@@ -19,7 +19,6 @@ package concretisations.othello.mutations;
 
 import abstractions.mutation.MutationTypeInterface;
 
-// TODO ? do the same for pieces
 public enum OthelloMutations implements MutationTypeInterface {
 
     NEW_PAWN

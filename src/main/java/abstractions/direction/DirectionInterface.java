@@ -17,19 +17,22 @@
 
 package abstractions.direction;
 
+/**
+ * This is the interface for a direction.
+ */
 public interface DirectionInterface {
 
     /**
-     * Returns the row index of this position.
+     * Returns the row index delta.
      * 
-     * @return the row index of this position
+     * @return the row index delta
      */
     int getRowDelta();
 
     /**
-     * Returns the column index of this position.
+     * Returns the column index delta.
      * 
-     * @return the column index of this position
+     * @return the column index delta
      */
     int getColumnDelta();
 

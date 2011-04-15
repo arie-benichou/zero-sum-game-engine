@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import abstractions.direction.DirectionManager.NamedDirection;
 
-public class DirectionTest {
+public final class DirectionTest {
 
     private DirectionInterface direction;
 
@@ -47,7 +47,7 @@ public class DirectionTest {
 
     @Test
     public void testEqualsObject() {
-        Assert.assertFalse(this.direction.equals(null));
+        Assert.assertFalse(this.direction.equals(null)); // NOPMD
         Assert.assertTrue(this.direction.equals(this.direction));
         Assert.assertTrue(this.direction.equals(new Direction(-1, 1)));
         Assert.assertFalse(this.direction.equals(new Direction(1, -1)));
@@ -57,7 +57,7 @@ public class DirectionTest {
 
     @After
     public void tearDown() throws Exception {
-        this.direction = null;
+        this.direction = null; // NOPMD
     }
 
 }

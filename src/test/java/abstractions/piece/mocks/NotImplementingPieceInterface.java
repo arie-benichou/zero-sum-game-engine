@@ -26,7 +26,7 @@ import abstractions.side.SideInterface;
 
 public final class NotImplementingPieceInterface {
 
-    public NotImplementingPieceInterface(final SideInterface side, final PieceTypeInterface type) {}
+    public NotImplementingPieceInterface(final SideInterface side, final PieceTypeInterface type) {} // NOPMD 
 
     public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, final SideInterface side) {
         return null;

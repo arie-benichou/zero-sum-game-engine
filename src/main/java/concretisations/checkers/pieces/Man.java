@@ -23,16 +23,23 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
+// TODO promotion d'un MAN en KING
 public final class Man extends CheckerPiece {
 
     public Man(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, ImmutableSet.of(side.isFirstSide() ? NamedDirection.TOP : NamedDirection.BOTTOM));
     }
 
-    /*
-    public boolean isPromotable(final CellInterface cell) {
-        return cell.getNeighbour(this.getSideDirection()).isNull();
+    @Override
+    public String toString() {
+        String consoleView = "";
+        if (this.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else if (this.getSide().isSecondSide()) {
+            consoleView = "o";
+        }
+        return consoleView;
     }
-    */
 
 }

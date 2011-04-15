@@ -37,14 +37,14 @@ import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 
-public class CellManagerTest {
+public final class CellManagerTest {
 
     private CellManagerInterface cellManager;
 
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
@@ -71,7 +71,7 @@ public class CellManagerTest {
     @Test
     public void testGetCellFromPrimitives() {
 
-        final int rowIndex = 1, columnIndex = 1;
+        final int rowIndex = 1, columnIndex = 1; // NOPMD 
         final ManagedCellInterface cell = this.cellManager.getCell(rowIndex, columnIndex);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(rowIndex, columnIndex));
@@ -186,7 +186,7 @@ public class CellManagerTest {
     @After
     public void tearDown() throws Exception {
 
-        this.cellManager = null;
+        this.cellManager = null; // NOPMD
 
     }
 

@@ -11,7 +11,7 @@ import abstractions.mutation.MutationTypeInterface;
 
 import com.google.common.collect.ImmutableList;
 
-public class WalkMutation extends CheckersMutation {
+public final class WalkMutation extends CheckersMutation {
 
     public WalkMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final DirectionInterface direction) {
         super(cell, mutationType, direction);

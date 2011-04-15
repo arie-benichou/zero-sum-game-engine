@@ -21,7 +21,6 @@ import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -29,7 +28,7 @@ import com.google.common.collect.ImmutableSet;
 
 import concretisations.othello.mutations.OthelloMutationFactory;
 
-public class Null extends OthelloPiece {
+public final class Null extends OthelloPiece {
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -38,10 +37,15 @@ public class Null extends OthelloPiece {
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (this.isMutable(cell, side)) {
-            return ImmutableSet.of(OthelloMutationFactory.newPawnMutation(cell, side));
+            return ImmutableSet.of(OthelloMutationFactory.newPawnMutation(cell, side)); // NOPMD 
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
 
+    }
+
+    @Override
+    public String toString() {
+        return " "; // space
     }
 
 }

@@ -21,9 +21,12 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-// TODO ? MutationManager(CellManager)
-// TODO mettre les mutations atomiques au niveau de la cellule
-public class AtomicMutationFactory {
+// TODO MutationManager(CellManager)
+// TODO implémenter les mutations atomiques au niveau de la cellule (façades:
+// die(), born(as piece), alterate(to piece))
+public final class AtomicMutationFactory {
+
+    private AtomicMutationFactory() {}
 
     public static MutationInterface newBirth(final ManagedCellInterface cell, final SideInterface side, final PieceTypeInterface pieceType) {
         return new Birth(cell, AtomicMutationTypes.BIRTH, pieceType, side);

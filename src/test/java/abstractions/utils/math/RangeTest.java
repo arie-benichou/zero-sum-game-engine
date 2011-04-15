@@ -21,8 +21,6 @@ import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 
-import abstractions.utils.math.Range;
-
 /**
  * Unit test for {@code Range} class.
  * 
@@ -31,12 +29,12 @@ import abstractions.utils.math.Range;
 public final class RangeTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public final void constructorWithInterchangedBounds() {
+    public void constructorWithInterchangedBounds() {
         new Range<Integer>(2, 1);
     }
 
     @Test
-    public final void _equals() {
+    public void _equals() { // NOPMD
         Assert.assertThat("(null, null).equals(123)", new Range<Integer>(null, null).equals(123), Is.is(false));
         Assert.assertThat("(null, null).equals(null, null)", new Range<Integer>(null, null).equals(new Range<Integer>(null, null)), Is.is(true));
         Assert.assertThat("(1, 2).equals(1, 2)", new Range<Integer>(1, 2).equals(new Range<Integer>(1, 2)), Is.is(true));
@@ -53,12 +51,12 @@ public final class RangeTest {
     }
 
     @Test
-    public final void _toString() {
+    public void _toString() { // NOPMD
         Assert.assertThat("(A, B).toString()", new Range<String>("A", "B").toString(), Is.is("Range[A, B]"));
     }
 
     @Test
-    public final void contains() {
+    public void contains() {
         Assert.assertThat("(1, 3).contains(0)", new Range<Integer>(1, 3).contains(0), Is.is(false));
         Assert.assertThat("(1, 3).contains(1)", new Range<Integer>(1, 3).contains(1), Is.is(true));
         Assert.assertThat("(1, 3).contains(2)", new Range<Integer>(1, 3).contains(2), Is.is(true));
@@ -70,12 +68,12 @@ public final class RangeTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void containsNull() {
+    public void containsNull() {
         new Range<Integer>(1, 3).contains((Integer) null);
     }
 
     @Test
-    public final void containsRange() {
+    public void containsRange() {
         final Range<Integer> boundedRange = new Range<Integer>(0, 10);
         Assert.assertThat("Bounded range contains smaller bounded range", boundedRange.contains(new Range<Integer>(2, 3)), Is.is(true));
         Assert.assertThat("Bounded range contains equal bounded range", boundedRange.contains(new Range<Integer>(0, 10)), Is.is(true));
@@ -113,7 +111,7 @@ public final class RangeTest {
     }
 
     @Test
-    public final void overlaps() {
+    public void overlaps() {
         final Range<Integer> boundedRange = new Range<Integer>(0, 10);
         Assert.assertThat("Bounded range overlaps smaller bounded range", boundedRange.overlaps(new Range<Integer>(2, 3)), Is.is(true));
         Assert.assertThat("Bounded range overlaps smaller bounded range overlapping right", boundedRange.overlaps(new Range<Integer>(9, 11)), Is.is(true));
@@ -152,7 +150,7 @@ public final class RangeTest {
     }
 
     @Test
-    public final void _hashCode() {
+    public void _hashCode() { // NOPMD
         final Integer hashCodeOfMaxValue = Integer.valueOf(Integer.MAX_VALUE).hashCode();
         final Integer hashCodeOfMinValue = Integer.valueOf(Integer.MIN_VALUE).hashCode();
         final Integer hashCodeOf7 = Integer.valueOf(7).hashCode();
@@ -175,7 +173,7 @@ public final class RangeTest {
      * {@code -N} and {@code N}.
      */
     @Test
-    public final void compareStringRegression() {
+    public void compareStringRegression() {
         Assert.assertThat("(\"c\", \"e\").contains(\"a\")", new Range<String>("c", "e").contains("a"), Is.is(false));
         Assert.assertThat("(\"c\", \"e\").contains(\"g\")", new Range<String>("c", "e").contains("g"), Is.is(false));
     }
@@ -191,7 +189,7 @@ public final class RangeTest {
      * {@code -N} and {@code N}.
      */
     @Test(expected = IllegalArgumentException.class)
-    public final void interchangedLimitsStringRegression() {
+    public void interchangedLimitsStringRegression() {
         new Range<String>("c", "a");
     }
 }

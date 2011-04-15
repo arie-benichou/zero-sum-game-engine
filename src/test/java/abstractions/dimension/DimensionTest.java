@@ -6,110 +6,103 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DimensionTest {
+public final class DimensionTest { // NOPMD
 
-    private DimensionManagerInterface dimension;
+    private transient DimensionManagerInterface dimension;
 
     @Before
     public void setUp() throws Exception {
 
-        this.dimension = DimensionFactory.Dimension(3, 3);
+        this.dimension = DimensionFactory.dimension(3, 3);
+
+    }
+
+    @Test(expected = IllegalDimensionException.class)
+    public void testIllegalDimensions1() {
+
+        DimensionFactory.dimension(0, 0);
+
+    }
+
+    @Test(expected = IllegalDimensionException.class)
+    public void testIllegalDimensions2() {
+
+        DimensionFactory.dimension(0, 1);
+
+    }
+
+    @Test(expected = IllegalDimensionException.class)
+    public void testIllegalDimensions3() {
+
+        DimensionFactory.dimension(1, 0);
+
+    }
+
+    @Test(expected = IllegalDimensionException.class)
+    public void testIllegalDimensions4() {
+
+        DimensionFactory.dimension(-1, 1);
+
+    }
+
+    @Test(expected = IllegalDimensionException.class)
+    public void testIllegalDimensions5() {
+
+        DimensionFactory.dimension(1, -1);
 
     }
 
     @Test
-    public final void testLegalDimensions() {
-
-        Assert.assertTrue(this.dimension instanceof DimensionManagerInterface);
-
-    }
-
-    @Test(expected = IllegalDimensionException.class)
-    public final void testIllegalDimensions1() {
-
-        DimensionFactory.Dimension(0, 0);
-
-    }
-
-    @Test(expected = IllegalDimensionException.class)
-    public final void testIllegalDimensions2() {
-
-        DimensionFactory.Dimension(0, 1);
-
-    }
-
-    @Test(expected = IllegalDimensionException.class)
-    public final void testIllegalDimensions3() {
-
-        DimensionFactory.Dimension(1, 0);
-
-    }
-
-    @Test(expected = IllegalDimensionException.class)
-    public final void testIllegalDimensions4() {
-
-        DimensionFactory.Dimension(-1, 1);
-
-    }
-
-    @Test(expected = IllegalDimensionException.class)
-    public final void testIllegalDimensions5() {
-
-        DimensionFactory.Dimension(1, -1);
-
-    }
-
-    @Test
-    public final void testLowerBoundForRows() {
+    public void testLowerBoundForRows() {
 
         Assert.assertTrue(this.dimension.lowerBoundForRows() == 1);
 
     }
 
     @Test
-    public final void testUpperBoundForRows() {
+    public void testUpperBoundForRows() {
 
         Assert.assertTrue(this.dimension.upperBoundForRows() == 3);
 
     }
 
     @Test
-    public final void testLowerBoundForColumns() {
+    public void testLowerBoundForColumns() {
 
         Assert.assertTrue(this.dimension.lowerBoundForColumns() == 1);
 
     }
 
     @Test
-    public final void testUpperBoundForColumns() {
+    public void testUpperBoundForColumns() {
 
         Assert.assertTrue(this.dimension.upperBoundForColumns() == 3);
 
     }
 
     @Test
-    public final void testNumberOfRows() {
+    public void testNumberOfRows() {
 
         Assert.assertTrue(this.dimension.numberOfRows() == 3);
 
     }
 
     @Test
-    public final void testNumberOfColumns() {
+    public void testNumberOfColumns() {
 
         Assert.assertTrue(this.dimension.numberOfColumns() == 3);
 
     }
 
     @Test
-    public final void testBoardCapacity() {
+    public void testBoardCapacity() {
 
         Assert.assertTrue(this.dimension.capacity() == 3 * 3);
 
     }
 
     @Test
-    public final void testContains() {
+    public void testContains() {
 
         Assert.assertFalse(this.dimension.contains(0, 1));
         Assert.assertFalse(this.dimension.contains(1, 0));
@@ -133,7 +126,7 @@ public class DimensionTest {
 
     @After
     public void tearDown() throws Exception {
-        this.dimension = null;
+        this.dimension = null; // NOPMD 
     }
 
 }

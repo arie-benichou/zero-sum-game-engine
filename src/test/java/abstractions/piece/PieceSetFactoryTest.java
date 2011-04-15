@@ -107,7 +107,7 @@ public final class PieceSetFactoryTest {
 
     @After
     public void tearDown() throws Exception {
-        this.pieceSetFactory = null;
+        this.pieceSetFactory = null; // NOPMD 
     }
 
 }

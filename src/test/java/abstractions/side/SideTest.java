@@ -22,7 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SideTest {
+public final class SideTest {
 
     private SideInterface side;
 
@@ -34,7 +34,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testIsFirstSide() {
+    public void testIsFirstSide() {
 
         Assert.assertTrue(this.side.isFirstSide());
         Assert.assertFalse(Side.SECOND_SIDE.isFirstSide());
@@ -43,7 +43,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testIsSecondSide() {
+    public void testIsSecondSide() {
 
         Assert.assertTrue(Side.SECOND_SIDE.isSecondSide());
         Assert.assertFalse(this.side.isSecondSide());
@@ -52,7 +52,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testIsOneSide() {
+    public void testIsOneSide() {
 
         Assert.assertTrue(this.side.isOneSide());
         Assert.assertTrue(Side.SECOND_SIDE.isOneSide());
@@ -61,7 +61,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testIsNull() {
+    public void testIsNull() {
 
         Assert.assertTrue(Side.NULL_SIDE.isNull());
         Assert.assertFalse(this.side.isNull());
@@ -70,7 +70,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testGetNextSide() {
+    public void testGetNextSide() {
 
         Assert.assertTrue(Side.SECOND_SIDE == this.side.getNextSide());
         Assert.assertTrue(this.side == Side.SECOND_SIDE.getNextSide());
@@ -79,7 +79,7 @@ public class SideTest {
     }
 
     @Test
-    public final void testGetNegation() {
+    public void testGetNegation() {
 
         Assert.assertTrue(Side.NOT_FIRST_SIDE == this.side.getNegation());
         Assert.assertTrue(Side.NOT_SECOND_SIDE == Side.SECOND_SIDE.getNegation());
@@ -90,7 +90,7 @@ public class SideTest {
     @After
     public void tearDown() {
 
-        this.side = null;
+        this.side = null; // NOPMD 
 
     }
 

@@ -21,7 +21,6 @@ import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -33,7 +32,19 @@ public final class Pawn extends OthelloPiece {
 
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
+    }
+
+    @Override
+    public String toString() {
+        String consoleView = "";
+        if (this.getSide().isFirstSide()) {
+            consoleView = "x";
+        }
+        else if (this.getSide().isSecondSide()) {
+            consoleView = "o";
+        }
+        return consoleView;
     }
 
 }

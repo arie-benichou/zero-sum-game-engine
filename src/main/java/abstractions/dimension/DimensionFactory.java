@@ -21,16 +21,18 @@
 
 package abstractions.dimension;
 
-// TODO à intégrer dans DimensionManager
+// TODO à intégrer dans le dimension manager
 public final class DimensionFactory {
 
-    public static DimensionManagerInterface Dimension(final int numberOfRows, final int numberOfColumns) {
+    private DimensionFactory() {}
+
+    public static DimensionManagerInterface dimension(final int numberOfRows, final int numberOfColumns) {
 
         try {
             return new DimensionManager(new RowDimension(1, numberOfRows), new ColumnDimension(1, numberOfColumns));
         }
         catch (final IllegalArgumentException e) {
-            throw new IllegalDimensionException(numberOfRows, numberOfColumns);
+            throw new IllegalDimensionException(numberOfRows, numberOfColumns); // NOPMD 
         }
 
     }

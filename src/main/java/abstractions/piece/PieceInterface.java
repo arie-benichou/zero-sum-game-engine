@@ -7,14 +7,10 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableSet;
-
 /**
  * This is the interface for a piece.
  */
 public interface PieceInterface {
-
-    final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of();
 
     /**
      * Returns the side related to this piece.
@@ -30,8 +26,21 @@ public interface PieceInterface {
      */
     PieceTypeInterface getType();
 
+    /**
+     * Returns the potential cell mutations induced by the piece (see a piece as
+     * a kind of cell kernel).
+     * 
+     * @param cell
+     *            the cell concerned by these mutations.
+     * 
+     * @param side
+     *            the side to play
+     * 
+     * @return the potential cell mutations induced by the piece (see a piece as
+     *         a kind of cell kernel)
+     */
     Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
 
-    // TODO add method isNull()
+    // TODO ? add method isNull() to a piece interface    
 
 }
