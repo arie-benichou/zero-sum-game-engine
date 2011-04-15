@@ -1,17 +1,28 @@
-permettre la copie en profondeur du contexte fourni à l'évaluateur afin de préparer le multithread 
-utiliser un thread pour chaque coup légal de premier niveau à évaluer
-ne pas envisager d'avoir une instance de pièce de jeu par celulle
-revoir la composition du board
+Tests et implémentations pour l'itération "refactoring4" :
+--------------------------------------------------------------------------------
+opponent	: adversaire
+strategy	: stratégie d'un adversaire
+game		: spécifications d'un jeu
+gameplay	: état d'une partie de jeu
+gameservice	: service de de parties de jeu
 
-tests unitaires (regarder groovy)
 
-fixer othello
-fixer checkers
+Documentation
+--------------------------------------------------------------------------------
+Présenter le contexte, l'objectif, les moyens, les méthodes et les résultats.
 
-implémenter LegalMovesHistory
-implémenter les heuristiques
 
-créer les builders manquants
-ecrire le serveur de jeux et un client (toujours en mode console)
+UML
+--------------------------------------------------------------------------------
+Générer un diagramme abstrait à partir des interfaces de chaque composant.
+Dessiner au propre un diagrammes de séquence (zoom sur les mutations).
 
-faire gui
+
+Spring
+--------------------------------------------------------------------------------
+Utiliser le mécanisme de génération automatique de factory prévu par Spring.
+
+
+OSGi
+--------------------------------------------------------------------------------
+Faire un bundle OSGi par composant.
