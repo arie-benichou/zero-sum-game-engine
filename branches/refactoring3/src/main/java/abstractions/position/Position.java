@@ -24,7 +24,7 @@ final class Position implements PositionInterface {
     private final int row;
     private final int column;
 
-    private volatile int hashCode;
+    private volatile int hashCode; // NOPMD
 
     public Position(final int row, final int column) {
         this.row = row;
@@ -55,19 +55,19 @@ final class Position implements PositionInterface {
 
     @Override
     public boolean equals(final Object object) {
-        final boolean isEqual;
+        final boolean isEqual; // NOPMD
         if (object == this) {
             isEqual = true;
         }
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof PositionInterface)) {
+        else if (!(object instanceof PositionInterface)) { // NOPMD
             isEqual = false;
         }
         else {
             final PositionInterface that = (PositionInterface) object;
-            if (that.hashCode() != this.hashCode()) {
+            if (that.hashCode() != this.hashCode()) { // NOPMD
                 isEqual = false;
             }
             else {

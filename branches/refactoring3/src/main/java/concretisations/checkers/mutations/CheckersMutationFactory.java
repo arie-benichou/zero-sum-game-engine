@@ -4,7 +4,7 @@ package concretisations.checkers.mutations;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
 
-public class CheckersMutationFactory {
+public final class CheckersMutationFactory {
 
     private CheckersMutationFactory() {}
 

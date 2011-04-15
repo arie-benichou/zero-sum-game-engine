@@ -17,19 +17,54 @@
 
 package abstractions.mutation;
 
+import java.util.Set;
+
 import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceInterface;
 
+import com.google.common.collect.ImmutableSet;
+
+/**
+ * This is the interface for a cell mutation.
+ */
 public interface MutationInterface {
 
+    /**
+     * Constant for the empty set of potential mutations.
+     */
+    Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of(); // TODO ! classe MutationManager
+
+    /**
+     * Returns the cell concerned by this mutation.
+     * 
+     * @return the cell concerned by this mutation
+     */
     ManagedCellInterface getCell();
 
-    public MutationTypeInterface getType();
+    /**
+     * Returns the type of this mutation.
+     * 
+     * @return the type of this mutation
+     */
+    MutationTypeInterface getType();
 
+    /**
+     * Returns the state of the cell concerned by this mutation, before the
+     * process of this mutation.
+     * 
+     * @return the state of the cell concerned by this mutation, before the
+     *         process of this mutation
+     */
     PieceInterface getSavedSate();
 
+    /**
+     * Process this mutation.
+     */
     void process();
 
+    /**
+     * Cancels this mutation.
+     */
     void cancel();
 
 }

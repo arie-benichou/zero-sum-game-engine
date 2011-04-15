@@ -12,7 +12,7 @@ import abstractions.mutation.MutationTypeInterface;
 import com.google.common.collect.ImmutableList;
 
 // TODO ? SeveralJumpsMutation
-public class JumpMutation extends CheckersMutation {
+public final class JumpMutation extends CheckersMutation {
 
     public JumpMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final DirectionInterface direction) {
         super(cell, mutationType, direction);

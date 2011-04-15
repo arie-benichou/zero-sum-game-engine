@@ -31,27 +31,27 @@ import com.google.common.collect.ImmutableList;
 
 public abstract class LifePiece extends AbstractPiece {
 
-    // TODO ajouter une méthode dans ManagedCell qui permet de récupérer toutes cellules les voisines d'une cellule    
-    protected static List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
+    protected static final int CUT_OFF = 4;
+
+    // TODO ! réutiliser l'API d'une cellule
+    private static final List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
             NamedDirection.TOP,
-            NamedDirection.RIGHT,
-            NamedDirection.BOTTOM,
-            NamedDirection.LEFT,
             NamedDirection.TOP_RIGHT,
+            NamedDirection.RIGHT,
             NamedDirection.BOTTOM_RIGHT,
-            NamedDirection.TOP_LEFT,
-            NamedDirection.BOTTOM_LEFT
+            NamedDirection.BOTTOM,
+            NamedDirection.BOTTOM_LEFT,
+            NamedDirection.LEFT,
+            NamedDirection.TOP_LEFT
             );
 
-    protected static int MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL = LifePiece.NEIGHBOURS_POSITIONS.size();
-
-    protected final static int CUT_OFF = 4;
+    protected static final int MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL = LifePiece.NEIGHBOURS_POSITIONS.size();
 
     public LifePiece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
     }
 
-    protected int count(final ManagedCellInterface cell) {
+    protected final int count(final ManagedCellInterface cell) {
         int n = 0;
         for (int index = 0; index < LifePiece.MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL && n < LifePiece.CUT_OFF; ++index) {
             if (!cell.getNeihgbour(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {

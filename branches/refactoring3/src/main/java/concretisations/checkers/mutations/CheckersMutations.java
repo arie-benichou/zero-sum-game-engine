@@ -19,11 +19,10 @@ package concretisations.checkers.mutations;
 
 import abstractions.mutation.MutationTypeInterface;
 
-// TODO ? do the same for pieces
 public enum CheckersMutations implements MutationTypeInterface {
 
     JUMP,
     WALK,
-    //MAN_TO_KING
+    //TODO MAN_TO_KING
 
 }

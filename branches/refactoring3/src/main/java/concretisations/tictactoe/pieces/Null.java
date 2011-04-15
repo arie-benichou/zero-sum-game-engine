@@ -38,4 +38,10 @@ public final class Null extends AbstractPiece {
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, TicTacToePieceSet.PAWN));
     }
+
+    @Override
+    public String toString() {
+        return " "; // space
+    }
+
 }

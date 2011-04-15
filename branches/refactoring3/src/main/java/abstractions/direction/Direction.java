@@ -22,23 +22,23 @@ public final class Direction implements DirectionInterface {
     private final int rowDelta;
     private final int columnDelta;
 
-    private volatile int hashCode;
+    private volatile int hashCode; // NOPMD
 
     public Direction(final int rowDelta, final int columnDelta) {
         this.rowDelta = rowDelta;
         this.columnDelta = columnDelta;
     }
 
-    public final int getRowDelta() {
+    public int getRowDelta() {
         return this.rowDelta;
     }
 
-    public final int getColumnDelta() {
+    public int getColumnDelta() {
         return this.columnDelta;
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return "[rowDelta = " + this.getRowDelta() + "]" + "[columnDelta = " + this.getColumnDelta() + "]";
     }
 
@@ -54,15 +54,14 @@ public final class Direction implements DirectionInterface {
 
     @Override
     public boolean equals(final Object object) {
-        final boolean isEqual;
-
+        final boolean isEqual; // NOPMD 
         if (object == this) {
             isEqual = true;
         }
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof DirectionInterface)) {
+        else if (!(object instanceof DirectionInterface)) { // NOPMD 
             isEqual = false;
         }
         else {

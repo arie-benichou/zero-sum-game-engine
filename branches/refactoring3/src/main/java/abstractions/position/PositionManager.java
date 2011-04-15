@@ -38,7 +38,7 @@ public final class PositionManager implements PositionManagerInterface {
 
     private final DirectionManagerInterface directionManager;
 
-    private final int hash(final int row, final int column) {
+    private int hash(final int row, final int column) {
         return this.hashBase * row + column;
     }
 
@@ -63,12 +63,12 @@ public final class PositionManager implements PositionManagerInterface {
         return Collections.unmodifiableSet(positions);
     }
 
+    // TODO utiliser le builder d'une map immutable    
     private Map<Integer, PositionInterface> initializeData(final Set<PositionInterface> set) {
         final Map<Integer, PositionInterface> data = Maps.newHashMapWithExpectedSize(set.size());
         for (final PositionInterface element : set) {
             data.put(this.hash(element.getRow(), element.getColumn()), element);
         }
-        // TODO regarder l'API du builder
         return ImmutableMap.copyOf(data);
     }
 
@@ -80,7 +80,7 @@ public final class PositionManager implements PositionManagerInterface {
     }
 
     public PositionInterface getPosition(final int row, final int column) {
-        final PositionInterface position;
+        final PositionInterface position; // NOPMD TODO ? this.position
         if (this.directionManager.getDimensionManager().contains(row, column)) {
             position = this.data.get(this.hash(row, column));
         }

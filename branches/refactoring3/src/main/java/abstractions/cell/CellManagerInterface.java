@@ -28,6 +28,9 @@ import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
 import abstractions.side.SideInterface;
 
+/**
+ * This is the interface for the cell manager.
+ */
 public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
 
     /**
@@ -86,7 +89,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * @param side
      *            the side for this piece
      * 
-     * @param type
+     * @param pieceType
      *            the type of the piece
      * 
      * @return a piece for a given side and a given type of piece
@@ -95,22 +98,31 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
 
     /////////////////////////////////////////////////////////////////
     // PositionManager facade
-    /////////////////////////////////////////////////////////////////    
+    /////////////////////////////////////////////////////////////////
+
     /**
-     * Façade du PositionManager
+     * Returns the position related to a couple of (row index, column index).
      * 
      * @param rowIndex
+     *            a given row index
+     * 
      * @param columnIndex
-     * @return
+     *            a given column index
+     * 
+     * @return the position related to a couple of (row index, column index)
      */
     PositionInterface position(final int rowIndex, final int columnIndex);
 
     /**
-     * Façade du PositionManager
+     * Returns the position related to a couple of (position, direction).
      * 
      * @param position
+     *            a given position
+     * 
      * @param direction
-     * @return
+     *            a given direction
+     * 
+     * @return the position related to a couple of (position, direction)
      */
     PositionInterface position(final PositionInterface position, final DirectionInterface direction);
 
@@ -119,9 +131,9 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
     /////////////////////////////////////////////////////////////////    
 
     /**
-     * Façade du DirectionManager
+     * Returns the named directions.
      * 
-     * @return
+     * @return the named directions
      */
     List<? extends DirectionInterface> getNamedDirections();
 

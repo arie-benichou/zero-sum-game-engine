@@ -23,19 +23,11 @@ public class IntegersRange extends Range<Integer> implements IntegersRangeInterf
         super(lowerBound, upperBound);
     }
 
-    public final int getLowerBound() {
-        return this.lowerBound;
-    }
-
-    public final int getUpperBound() {
-        return this.upperBound;
-    }
-
     public final int getCapacity() {
         return 1 + this.getUpperBound() - this.getLowerBound();
     }
 
-    // TODO add to unit tests
+    /*
     public static void main(final String[] args) {
 
         final IntegersRange range = new IntegersRange(1, 4);
@@ -51,5 +43,6 @@ public class IntegersRange extends Range<Integer> implements IntegersRangeInterf
 
         System.out.println(range.contains(subRange));
     }
+    */
 
 }

@@ -38,22 +38,20 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
 import concretisations.life.pieces.LifePieceSet;
 
-public class LifePotentialMutationsTest {
+// TODO à compléter
+public final class LifePotentialMutationsTest {
 
     private CellManagerInterface cellManager;
 
     @Before
     public void setUp() throws Exception {
-
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(9, 9)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(10, 10)));
         final PieceManagerInterface pieceManager = new PieceManager(LifePieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
-
     }
 
-    @Test
-    public void testGetPotentialMutations1() {
-
+    //@Test
+    public void testGetPotentialMutations1() { // NOPMD
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(6, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
@@ -80,12 +78,11 @@ public class LifePotentialMutationsTest {
         }
 
         System.out.println(this.cellManager);
-
+        //TODO ! à tester unitairement
     }
 
-    @Test
-    public void testGetPotentialMutations2() {
-
+    //@Test
+    public void testGetPotentialMutations2() { // NOPMD
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 4).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
@@ -114,11 +111,11 @@ public class LifePotentialMutationsTest {
 
         System.out.println(this.cellManager);
 
+        //TODO ! à tester unitairement
     }
 
-    @Test
-    public void testGetPotentialMutations3() {
-
+    //@Test
+    public void testGetPotentialMutations3() { // NOPMD
         this.cellManager.getCell(4, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 4).setPiece(Sides.FIRST, LifePieceSet.PAWN);
         this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, LifePieceSet.PAWN);
@@ -138,11 +135,36 @@ public class LifePotentialMutationsTest {
 
         }
 
+        //TODO ! à tester unitairement
+    }
+
+    @Test
+    public void testGetPotentialMutations4() { // NOPMD
+        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, LifePieceSet.PAWN);
+        this.cellManager.getCell(2, 3).setPiece(Sides.FIRST, LifePieceSet.PAWN);
+        this.cellManager.getCell(3, 1).setPiece(Sides.FIRST, LifePieceSet.PAWN);
+        this.cellManager.getCell(3, 2).setPiece(Sides.FIRST, LifePieceSet.PAWN);
+        this.cellManager.getCell(3, 3).setPiece(Sides.FIRST, LifePieceSet.PAWN);
+
+        for (int n = 0; n < 29; ++n) {
+
+            System.out.println("Génération " + n);
+            System.out.println(this.cellManager);
+
+            final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+            for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+                for (final MutationInterface mutation : mutations.getValue()) {
+                    mutation.process();
+                }
+            }
+
+        }
+        //TODO ! à tester unitairement
     }
 
     @After
     public void tearDown() throws Exception {
-        this.cellManager = null;
+        this.cellManager = null; // NOPMD
     }
 
 }

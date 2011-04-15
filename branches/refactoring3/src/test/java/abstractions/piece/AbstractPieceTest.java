@@ -31,11 +31,11 @@ import abstractions.piece.mocks.PieceSet;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
-public class AbstractPieceTest {
+public final class AbstractPieceTest { // NOPMD 
 
-    private AbstractPiece nullPiece;
-    private AbstractPiece firstSidePiece;
-    private AbstractPiece secondSidePiece;;
+    private transient AbstractPiece nullPiece;
+    private transient AbstractPiece firstSidePiece;
+    private transient AbstractPiece secondSidePiece;;
 
     @Before
     public void setUp() throws Exception {
@@ -47,6 +47,11 @@ public class AbstractPieceTest {
                 return null;
             }
 
+            @Override
+            public String toString() {
+                return "";
+            }
+
         };
 
         this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet.PAWN) {
@@ -56,6 +61,11 @@ public class AbstractPieceTest {
                 return null;
             }
 
+            @Override
+            public String toString() {
+                return "";
+            }
+
         };
 
         this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet.PAWN) {
@@ -63,6 +73,11 @@ public class AbstractPieceTest {
             @Override
             public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
+            }
+
+            @Override
+            public String toString() {
+                return "";
             }
 
         };
@@ -99,7 +114,7 @@ public class AbstractPieceTest {
         Assert.assertFalse(this.firstSidePiece.equals(this.nullPiece));
         Assert.assertFalse(this.firstSidePiece.equals(this.secondSidePiece));
         Assert.assertFalse(this.firstSidePiece.equals(new Random()));
-        Assert.assertFalse(this.firstSidePiece.equals(null));
+        Assert.assertFalse(this.firstSidePiece.equals(null)); // NOPMD
     }
 
     @Test
@@ -108,7 +123,7 @@ public class AbstractPieceTest {
         Assert.assertTrue(this.nullPiece.equals(this.nullPiece));
         Assert.assertFalse(this.nullPiece.equals(this.secondSidePiece));
         Assert.assertFalse(this.nullPiece.equals(new Random()));
-        Assert.assertFalse(this.nullPiece.equals(null));
+        Assert.assertFalse(this.nullPiece.equals(null)); // NOPMD
     }
 
     @Test
@@ -117,15 +132,15 @@ public class AbstractPieceTest {
         Assert.assertFalse(this.secondSidePiece.equals(this.nullPiece));
         Assert.assertTrue(this.secondSidePiece.equals(this.secondSidePiece));
         Assert.assertFalse(this.secondSidePiece.equals(new Random()));
-        Assert.assertFalse(this.secondSidePiece.equals(null));
+        Assert.assertFalse(this.secondSidePiece.equals(null)); // NOPMD
     }
 
     @After
     public void tearDown() throws Exception {
 
-        this.nullPiece = null;
-        this.firstSidePiece = null;
-        this.secondSidePiece = null;
+        this.nullPiece = null; // NOPMD 
+        this.firstSidePiece = null; // NOPMD 
+        this.secondSidePiece = null; // NOPMD 
 
     }
 

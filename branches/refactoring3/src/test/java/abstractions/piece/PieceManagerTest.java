@@ -27,7 +27,7 @@ import abstractions.piece.mocks.PieceSet;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
 import abstractions.side.Sides;
 
-public class PieceManagerTest {
+public final class PieceManagerTest {
 
     private PieceManager pieceManager;
 
@@ -39,21 +39,21 @@ public class PieceManagerTest {
     }
 
     @Test(expected = IllegalPieceException.class)
-    public final void testGetIllegalPiece() {
+    public void testGetIllegalPiece() {
 
         this.pieceManager.getPiece(Sides.FIRST, PieceSetWithoutNullType.PAWN);
 
     }
 
     @Test
-    public final void testGetNullPiece() {
+    public void testGetNullPiece() {
 
         Assert.assertTrue(this.pieceManager.getPiece(Sides.NULL, PieceSet.NULL) == this.pieceManager.getNullPiece());
 
     }
 
     @Test
-    public final void testGetPiece() {
+    public void testGetPiece() {
 
         Assert.assertTrue(this.pieceManager.getPiece(Sides.FIRST, PieceSet.PAWN).equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
         Assert.assertTrue(this.pieceManager.getPiece(Sides.SECOND, PieceSet.PAWN).equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
@@ -63,7 +63,7 @@ public class PieceManagerTest {
     @After
     public void tearDown() throws Exception {
 
-        this.pieceManager = null;
+        this.pieceManager = null; // NOPMD 
 
     }
 

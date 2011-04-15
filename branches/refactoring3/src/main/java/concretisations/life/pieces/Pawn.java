@@ -22,13 +22,15 @@ import java.util.Set;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
 public final class Pawn extends LifePiece {
+
+    private static final int MIN = 2;
+    private static final int MAX = 3;
 
     public Pawn(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -37,9 +39,15 @@ public final class Pawn extends LifePiece {
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         final int n = this.count(cell);
-        if (n < 2 || n > 3) {
-            return ImmutableSet.of(AtomicMutationFactory.newDeath(cell));
+        if (n < Pawn.MIN || n > Pawn.MAX) {
+            return ImmutableSet.of(AtomicMutationFactory.newDeath(cell)); // NOPMD
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
     }
+
+    @Override
+    public String toString() {
+        return "0";
+    }
+
 }

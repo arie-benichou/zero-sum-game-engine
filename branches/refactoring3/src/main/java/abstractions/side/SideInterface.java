@@ -55,13 +55,13 @@ public interface SideInterface {
      * 
      * @return the side after this one
      */
-    abstract SideInterface getNextSide();
+    SideInterface getNextSide();
 
     /**
      * Returns the negation of this side.
      * 
      * @return the negation of this side
      */
-    abstract SideInterface getNegation();
+    SideInterface getNegation();
 
 }

@@ -24,7 +24,6 @@ import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -39,9 +38,14 @@ public final class Null extends AbstractPiece {
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (cell.isEmpty() && !cell.getNeihgbour(NamedDirection.BOTTOM).isEmpty()) {
-            return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, Connect4PieceSet.PAWN));
+            return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, Connect4PieceSet.PAWN)); // NOPMD
         }
-        return PieceInterface.NULL_POTENTIAL_MUTATION_SET;
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
+    }
+
+    @Override
+    public String toString() {
+        return " "; // space
     }
 
 }

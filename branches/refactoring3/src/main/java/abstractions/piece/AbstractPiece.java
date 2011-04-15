@@ -25,10 +25,9 @@ import abstractions.side.SideInterface;
 
 import com.google.common.base.Preconditions;
 
-// TODO renommer cette classe en AbstractPiece
 public abstract class AbstractPiece implements PieceInterface {
 
-    private volatile int hashCode;
+    private volatile int hashCode; // NOPMD
 
     private final SideInterface side;
     private final PieceTypeInterface type;
@@ -63,19 +62,19 @@ public abstract class AbstractPiece implements PieceInterface {
 
     @Override
     public final boolean equals(final Object object) {
-        final boolean isEqual;
+        final boolean isEqual; // NOPMD
         if (object == this) {
             isEqual = true;
         }
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof PieceInterface)) {
+        else if (!(object instanceof PieceInterface)) { // NOPMD 
             isEqual = false;
         }
         else {
             final PieceInterface that = (PieceInterface) object;
-            if (that.hashCode() != this.hashCode()) {
+            if (that.hashCode() != this.hashCode()) { // NOPMD 
                 isEqual = false;
             }
             else {
@@ -85,11 +84,9 @@ public abstract class AbstractPiece implements PieceInterface {
         return isEqual;
     }
 
-    @Override
-    public String toString() {
-        return this.getType() + " " + this.getSide();
-    }
-
     public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
+
+    @Override
+    public abstract String toString();
 
 }

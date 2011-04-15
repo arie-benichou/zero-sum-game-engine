@@ -23,12 +23,29 @@ package abstractions.utils.math;
  * 
  * @author Markus KARG (markus@headcrashing.eu)
  * @version 1.2.1
+ * 
  */
 public/*final*/class Range<T extends Comparable<T>> {
 
-    protected/*private*/final T lowerBound;
+    private final T lowerBound;
 
-    protected/*private*/final T upperBound;
+    /*
+     * Adaptation of original code: in order to preserve immutatibility,
+     * getLowerBound() and getUpperBound() should return defensive copies if T
+     * is not immutable. This is not done in this adaptation.
+     */
+
+    public final T getLowerBound() {
+        return this.lowerBound;
+    }
+
+    public final T getUpperBound() {
+        return this.upperBound;
+    }
+
+    //////////////////////////////////////////////////////
+
+    private final T upperBound;
 
     /**
      * Creates a range with the specified bounds. The bounds will be included,
@@ -70,11 +87,11 @@ public/*final*/class Range<T extends Comparable<T>> {
         }
 
         if (this.lowerBound != null && object.compareTo(this.lowerBound) < 0) {
-            return false;
+            return false; // NOPMD
         }
 
         if (this.upperBound != null && object.compareTo(this.upperBound) > 0) {
-            return false;
+            return false; // NOPMD
         }
 
         return true;
@@ -100,11 +117,11 @@ public/*final*/class Range<T extends Comparable<T>> {
         }
 
         if (this.lowerBound != null && (range.lowerBound == null || range.lowerBound.compareTo(this.lowerBound) < 0)) {
-            return false;
+            return false; // NOPMD
         }
 
         if (this.upperBound != null && (range.upperBound == null || range.upperBound.compareTo(this.upperBound) > 0)) {
-            return false;
+            return false; // NOPMD
         }
 
         return true;
@@ -129,11 +146,11 @@ public/*final*/class Range<T extends Comparable<T>> {
         }
 
         if (this.upperBound != null && range.lowerBound != null && this.upperBound.compareTo(range.lowerBound) < 0) {
-            return false;
+            return false; // NOPMD 
         }
 
         if (this.lowerBound != null && range.upperBound != null && this.lowerBound.compareTo(range.upperBound) > 0) {
-            return false;
+            return false; // NOPMD
         }
 
         return true;
@@ -155,7 +172,7 @@ public/*final*/class Range<T extends Comparable<T>> {
     @Override
     public final boolean equals(final Object other) {
         if (!(other instanceof Range)) {
-            return false;
+            return false; // NOPMD
         }
 
         final Range<?> that = (Range<?>) other;
@@ -165,11 +182,11 @@ public/*final*/class Range<T extends Comparable<T>> {
 
     protected/*private*/static final boolean equals(final Object a, final Object b) {
         if (a == null && b == null) {
-            return true;
+            return true; // NOPMD 
         }
 
         if (a != null && b != null) {
-            return a.equals(b);
+            return a.equals(b); // NOPMD
         }
 
         return false;

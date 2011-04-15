@@ -22,8 +22,24 @@ import java.util.Set;
 
 import abstractions.side.SideInterface;
 
+// TODO à intégrer dans le piece manager.
+/**
+ * This is the factory of pieces alphabet.
+ */
 interface PieceSetFactoryInterface {
 
-    public <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> piecesSet);
+    /**
+     * Returns the alphabet of pieces.
+     * 
+     * @param <T>
+     *            an enumeration of the types of pieces, the enum class must
+     *            implement the marker interface PieceTypeInterface.
+     * 
+     * @param piecesSet
+     *            the class object of the enumeration of piece types
+     * 
+     * @return the alphabet of pieces
+     */
+    <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> piecesSet);
 
 }

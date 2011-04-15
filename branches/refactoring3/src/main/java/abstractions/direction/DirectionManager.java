@@ -131,7 +131,7 @@ public final class DirectionManager implements DirectionManagerInterface {
 
         private final int rowDelta; // TODO à virer
         private final int columnDelta; // TODO à virer
-        private final DirectionInterface value;
+        private final DirectionInterface value; // NOPMD 
 
         private NamedDirection(final int rowDelta, final int columnDelta) {
             this.rowDelta = rowDelta; // TODO à virer
@@ -139,21 +139,21 @@ public final class DirectionManager implements DirectionManagerInterface {
             this.value = new Direction(rowDelta, columnDelta);
         }
 
-        public final int getRowDelta() { // TODO à virer
+        public int getRowDelta() { // TODO à virer
             return this.rowDelta;
         }
 
-        public final int getColumnDelta() { // TODO à virer
+        public int getColumnDelta() { // TODO à virer
             return this.columnDelta;
         }
 
-        public final DirectionInterface value() {
+        public DirectionInterface value() {
             return this.value;
         }
 
     }
 
-    private final static List<NamedDirection> NAMED_DIRECTIONS = Arrays.asList(NamedDirection.values());
+    private static final List<NamedDirection> NAMED_DIRECTIONS = Arrays.asList(NamedDirection.values());
 
     private final DimensionManagerInterface dimension;
     private final int hashFactor;
@@ -169,7 +169,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         return (2 * dimension.numberOfRows() - 1) * (2 * dimension.numberOfColumns() - 1) / 2;
     }
 
-    private final int computeNaturalHash(final int rowDelta, final int columnDelta) {
+    private int computeNaturalHash(final int rowDelta, final int columnDelta) {
         return this.hashOffset + this.hashFactor * rowDelta + columnDelta;
     }
 
@@ -184,7 +184,7 @@ public final class DirectionManager implements DirectionManagerInterface {
             for (int columnDelta = -maxColumnDelta; columnDelta <= maxColumnDelta; ++columnDelta) {
                 final int hash = this.computeNaturalHash(rowDelta, columnDelta);
                 if (hash != checkSum++) {
-                    throw new RuntimeException("Error in hash function.");
+                    throw new RuntimeException("Error in hash function."); // NOPMD
                 }
                 data.add(hash, null);
             }
@@ -228,6 +228,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         return DirectionManager.NAMED_DIRECTIONS;
     }
 
+    //FIXME / FIX_TEST : fails on Dimension(Range[1, x], Range[1, 1])
     public DirectionInterface reduce(final Collection<? extends DirectionInterface> directions) {
         int reducedRowDelta = 0;
         int reducedColumnDelta = 0;
@@ -238,18 +239,18 @@ public final class DirectionManager implements DirectionManagerInterface {
         return this.getDirection(reducedRowDelta, reducedColumnDelta);
     }
 
+    public DimensionManagerInterface getDimensionManager() {
+        return this.dimension;
+    }
+
     public static void main(final String[] args) {
-        final DirectionManager directionManager = new DirectionManager(DimensionFactory.Dimension(10, 10));
+        final DirectionManager directionManager = new DirectionManager(DimensionFactory.dimension(10, 10));
         final long startTime = System.currentTimeMillis();
         for (int n = 0; n < 10000000; ++n) {
             directionManager.getNamedDirection(NamedDirection.TOP);
         }
         final long endTime = System.currentTimeMillis();
         System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
-    }
-
-    public DimensionManagerInterface getDimensionManager() {
-        return this.dimension;
     }
 
 }

@@ -26,9 +26,9 @@ import abstractions.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
-public class King extends CheckerPiece {
+public final class King extends CheckerPiece {
 
-    private final static Set<? extends DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP, NamedDirection.BOTTOM);
+    private static final Set<? extends DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP, NamedDirection.BOTTOM);
 
     public King(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, King.LEGAL_DIRECTIONS);
@@ -36,7 +36,14 @@ public class King extends CheckerPiece {
 
     @Override
     public String toString() {
-        return super.toString().toUpperCase();
+        String consoleView = "";
+        if (this.getSide().isFirstSide()) {
+            consoleView = "X";
+        }
+        else if (this.getSide().isSecondSide()) {
+            consoleView = "O";
+        }
+        return consoleView;
     }
 
 }

@@ -25,7 +25,7 @@ import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public class Null extends AbstractPiece {
+public final class Null extends AbstractPiece {
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -34,6 +34,11 @@ public class Null extends AbstractPiece {
     @Override
     public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 
 }

@@ -19,6 +19,9 @@ package abstractions.piece;
 
 import abstractions.side.SideInterface;
 
+/**
+ * This is the interface for the piece manager.
+ */
 public interface PieceManagerInterface {
 
     /**

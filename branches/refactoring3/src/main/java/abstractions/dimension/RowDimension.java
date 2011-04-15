@@ -21,7 +21,7 @@ import abstractions.utils.math.IntegersRange;
 
 final class RowDimension extends IntegersRange {
 
-    public RowDimension(final Integer lowerBound, final Integer upperBound) throws IllegalArgumentException {
+    public RowDimension(final Integer lowerBound, final Integer upperBound) {
         super(lowerBound, upperBound);
     }
 

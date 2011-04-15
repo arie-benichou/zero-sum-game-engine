@@ -35,7 +35,7 @@ import com.google.common.collect.Sets;
 
 final class PieceSetFactory implements PieceSetFactoryInterface {
 
-    private final PieceInterface newPiece(final String path, final PieceTypeInterface pieceType, final SideInterface side) {
+    private PieceInterface newPiece(final String path, final PieceTypeInterface pieceType, final SideInterface side) {
         final String qualifiedName = path + "." + LOWER_UNDERSCORE.to(UPPER_CAMEL, pieceType.toString());
         PieceInterface pieceInstance = null;
         try {
@@ -43,28 +43,28 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
                     .newInstance(side, pieceType);
         }
         catch (final ClassCastException e) {
-            throw new IllegalPieceSetException("Class '" + pieceType + "' must implement PieceInterface.");
+            throw new IllegalPieceSetException("Class '" + pieceType + "' must implement PieceInterface."); // NOPMD
         }
         catch (final IllegalArgumentException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD
         }
         catch (final SecurityException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD
         }
         catch (final InstantiationException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD 
         }
         catch (final IllegalAccessException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD 
         }
         catch (final InvocationTargetException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD
         }
         catch (final NoSuchMethodException e) {
-            throw new IllegalPieceException(side, pieceType);
+            throw new IllegalPieceException(side, pieceType); // NOPMD 
         }
         catch (final ClassNotFoundException e) {
-            throw new IllegalPieceSetException("Class '" + pieceType + "' not found.");
+            throw new IllegalPieceSetException("Class '" + pieceType + "' not found."); // NOPMD
         }
         return pieceInstance;
 
@@ -82,12 +82,12 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
         final Iterator<T> piecesAlphabetIterator = pieceTypeSet.iterator();
         T nullType = null;
         try {
-            while (!(nullType = piecesAlphabetIterator.next()).name().toLowerCase().equals("null")) {
+            while (!(nullType = piecesAlphabetIterator.next()).name().equalsIgnoreCase("null")) { // NOPMD
                 ;
             }
         }
         catch (final NoSuchElementException e) {
-            throw new IllegalPieceSetException("Set of pieces '" + pieceTypeSetClass.getSimpleName() + "' must contain the NULL piece type.");
+            throw new IllegalPieceSetException("Set of pieces '" + pieceTypeSetClass.getSimpleName() + "' must contain the NULL piece type."); // NOPMD
         }
         pieceTypeSet.remove(nullType);
 
@@ -99,8 +99,8 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
 
         final Map<SideInterface, Set<PieceInterface>> piecesMap = Maps.newHashMapWithExpectedSize(3);
 
-        final Set<PieceInterface> NullPiece = Sets.newHashSet(this.newPiece(path, nullType, Sides.NULL));
-        piecesMap.put(Sides.NULL, NullPiece);
+        final Set<PieceInterface> nullPiece = Sets.newHashSet(this.newPiece(path, nullType, Sides.NULL));
+        piecesMap.put(Sides.NULL, nullPiece);
 
         final Set<PieceInterface> firstSidePieces = Sets.newHashSetWithExpectedSize(pieceTypeSet.size());
         for (final PieceTypeInterface pieceType : pieceTypeSet) {
@@ -108,11 +108,11 @@ final class PieceSetFactory implements PieceSetFactoryInterface {
         }
         piecesMap.put(Sides.FIRST, firstSidePieces);
 
-        final Set<PieceInterface> SecondSidePieces = Sets.newHashSetWithExpectedSize(pieceTypeSet.size());
+        final Set<PieceInterface> secondSidePieces = Sets.newHashSetWithExpectedSize(pieceTypeSet.size());
         for (final PieceTypeInterface pieceType : pieceTypeSet) {
-            SecondSidePieces.add(this.newPiece(path, pieceType, Sides.SECOND));
+            secondSidePieces.add(this.newPiece(path, pieceType, Sides.SECOND));
         }
-        piecesMap.put(Sides.SECOND, SecondSidePieces);
+        piecesMap.put(Sides.SECOND, secondSidePieces);
 
         return Collections.unmodifiableMap(piecesMap);
     }

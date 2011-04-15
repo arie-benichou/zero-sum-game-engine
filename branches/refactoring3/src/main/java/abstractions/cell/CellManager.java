@@ -35,11 +35,10 @@ import abstractions.side.SideInterface;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class CellManager implements CellManagerInterface {
+public final class CellManager implements CellManagerInterface {
 
     private final PieceManagerInterface pieceManager;
     private final PositionManagerInterface positionManager;
@@ -50,12 +49,12 @@ public class CellManager implements CellManagerInterface {
         return new ManagedCell(this, position);
     }
 
+    // TODO utiliser le builder d'une map immutable
     private Map<PositionInterface, ManagedCellInterface> intializeData() {
         final Map<PositionInterface, ManagedCellInterface> data = Maps.newHashMap();
         for (final PositionInterface position : this.positionManager) {
             data.put(position, this.newCell(position));
         }
-        // TODO regarder l'API du builder
         return ImmutableMap.copyOf(data);
     }
 
@@ -94,8 +93,8 @@ public class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, direction);
     }
 
+    // TODO in order to avoid sorting overhead, use data structure SortedMap/TreeMap instead of basic HashMap
     public Iterator<ManagedCellInterface> iterator() {
-        // TODO In order to avoid this overhead, use data structure SortedMap/TreeMap instead of basic HashMap.
         final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
         Collections.sort(values);
         return values.iterator();
@@ -105,43 +104,36 @@ public class CellManager implements CellManagerInterface {
         return this.pieceManager.getNullPiece();
     }
 
-    // TODO
-    private final static Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_TYPES_SET = ImmutableSet.of();
-
+    // TODO utiliser une contrainte sur la map (guava)
+    // TODO utiliser le type de mutation comme clé de map
     public Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side) {
-        // TODO utiliser une contrainte sur la map (guava)
-        // TODO utiliser le type de mutation comme clé de map
         final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypesMap = Maps.newHashMap();
-
         final Iterator<ManagedCellInterface> it = this.iterator();
         ManagedCellInterface cell = it.next(); // cellule nulle
-
         while (it.hasNext()) {
             cell = it.next();
             final Set<? extends MutationInterface> p = cell.getPotentialMutations(side);
-            if (!p.equals(CellManager.NULL_POTENTIAL_MUTATION_TYPES_SET)) {
+            if (!p.equals(MutationInterface.NULL_POTENTIAL_MUTATION_SET)) {
                 potentialMutationTypesMap.put(cell, p);
             }
         }
-
         return potentialMutationTypesMap;
     }
 
     @Override
+    // TODO à simplifier
     public String toString() {
         final int maximalNumberOfCellsByRow = Collections.max(this.data.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
         final Iterator<ManagedCellInterface> it = this.iterator();
-
         ManagedCellInterface previousCell = it.next();
-
         while (it.hasNext()) {
             final ManagedCellInterface cell = it.next();
             if (previousCell.getRow() != cell.getRow()) {
                 consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");
                 consoleBoardView.append("|");
             }
-            consoleBoardView.append(cell);
+            consoleBoardView.append(cell.render());
             previousCell = cell;
         }
         consoleBoardView.append("\n" + Strings.repeat("----", maximalNumberOfCellsByRow) + "-" + "\n");

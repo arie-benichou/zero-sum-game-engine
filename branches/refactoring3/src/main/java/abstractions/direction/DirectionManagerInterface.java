@@ -23,6 +23,9 @@ import java.util.List;
 import abstractions.dimension.DimensionManagerInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 
+/**
+ * This is the interface for the direction manager.
+ */
 public interface DirectionManagerInterface {
 
     /**

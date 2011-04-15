@@ -26,12 +26,7 @@ public abstract class CheckersMutation extends AbstractCompositeMutation impleme
     protected abstract List<MutationInterface> sequence();
 
     @Override
-    public final String toString() {
-        return super.toString() + " | " + this.getDirection();
-    }
-
-    @Override
-    public int hashCode() {
+    public final int hashCode() {
 
         int hashCode = 17;
 
@@ -48,20 +43,20 @@ public abstract class CheckersMutation extends AbstractCompositeMutation impleme
     }
 
     @Override
-    public boolean equals(final Object object) {
-        final boolean isEqual;
+    public final boolean equals(final Object object) {
+        final boolean isEqual; // NOPMD
         if (object == this) {
             isEqual = true;
         }
         else if (object == null) {
             isEqual = false;
         }
-        else if (!(object instanceof CheckersMutation)) {
+        else if (!(object instanceof CheckersMutation)) { // NOPMD
             isEqual = false;
         }
         else {
             // TODO ! revoir la méthode equals() d'une cellule
-            final CheckersMutation that = (CheckersMutation) object;        
+            final CheckersMutation that = (CheckersMutation) object;
             isEqual =
                     that.getType().equals(this.getType())
                             &&

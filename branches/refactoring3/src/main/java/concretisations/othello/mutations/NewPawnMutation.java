@@ -46,11 +46,11 @@ public final class NewPawnMutation extends AbstractCompositeMutation {
         this.pieceType = pieceType;
     }
 
-    private final SideInterface getSide() {
+    private SideInterface getSide() {
         return this.side;
     }
 
-    private final PieceTypeInterface getPieceType() {
+    private PieceTypeInterface getPieceType() {
         return this.pieceType;
     }
 

@@ -26,17 +26,17 @@ import abstractions.dimension.DimensionFactory;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
 
-public class PositionManagerTest {
+public final class PositionManagerTest {
 
     private PositionManager manager;
 
     @Before
     public void setUp() throws Exception {
-        this.manager = new PositionManager(new DirectionManager(DimensionFactory.Dimension(3, 3)));
+        this.manager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
     }
 
     @Test
-    public final void testGetPosition() {
+    public void testGetPosition() {
 
         Assert.assertTrue(this.manager.getPosition(0, 0) == this.manager.getNullPosition());
 
@@ -57,7 +57,7 @@ public class PositionManagerTest {
     }
 
     @Test
-    public final void testGetPositionWithOffset1() {
+    public void testGetPositionWithOffset1() {
 
         final PositionInterface position = new Position(1, 1);
 
@@ -74,7 +74,7 @@ public class PositionManagerTest {
     }
 
     @Test
-    public final void testGetPositionWithOffset2() {
+    public void testGetPositionWithOffset2() {
 
         final PositionInterface position = new Position(2, 2);
 
@@ -93,7 +93,7 @@ public class PositionManagerTest {
     @After
     public void tearDown() throws Exception {
 
-        this.manager = null;
+        this.manager = null; // NOPMD 
 
     }
 

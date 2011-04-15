@@ -4,7 +4,7 @@ package abstractions.dimension;
 /**
  * Class for illegal dimension exceptions.
  */
-public class IllegalDimensionException extends RuntimeException {
+public final class IllegalDimensionException extends RuntimeException {
 
     private static final String MESSAGE = "Dimension(numberOfRows=%d, numberOfColumns=%d) is not a legal dimension.";
 
