@@ -1,0 +1,2 @@
+Revoir la visibilté des classes.
+Page wiki : exemple d'implémentation d'un jeu
