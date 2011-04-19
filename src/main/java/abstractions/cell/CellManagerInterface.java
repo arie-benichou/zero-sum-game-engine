@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -94,7 +95,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return a piece for a given side and a given type of piece
      */
-    PieceInterface piece(SideInterface side, PieceTypeInterface pieceType);
+    PieceInterface piece(final SideInterface side, final PieceTypeInterface pieceType);
 
     /////////////////////////////////////////////////////////////////
     // PositionManager facade
@@ -135,6 +136,6 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return the named directions
      */
-    List<? extends DirectionInterface> getNamedDirections();
+    List<NamedDirection> getNamedDirections();
 
 }

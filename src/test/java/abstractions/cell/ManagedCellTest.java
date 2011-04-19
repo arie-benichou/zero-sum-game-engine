@@ -76,7 +76,7 @@ public final class ManagedCellTest { // NOPMD
     @Test
     public void testIsNull() {
         Assert.assertFalse(this.cell.isNull());
-        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).isNull());
+        Assert.assertTrue(this.cell.getNeighbour(NamedDirection.TOP).isNull());
     }
 
     @Test
@@ -91,19 +91,19 @@ public final class ManagedCellTest { // NOPMD
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell0() {
-        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.NULL, PieceSet.NULL);
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell1() {
-        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.FIRST, PieceSet.PAWN);
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell2() {
-        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
         nullCell.setPiece(Sides.SECOND, PieceSet.PAWN);
     }
 
@@ -132,22 +132,22 @@ public final class ManagedCellTest { // NOPMD
     }
 
     @Test
-    public void testGetNeihgbour() {
-        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).getPosition().getRow() == 0);
-        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.TOP).getPosition().getColumn() == 0);
+    public void testGetNeighbour() {
+        Assert.assertTrue(this.cell.getNeighbour(NamedDirection.TOP).getPosition().getRow() == 0);
+        Assert.assertTrue(this.cell.getNeighbour(NamedDirection.TOP).getPosition().getColumn() == 0);
 
-        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.BOTTOM).getPosition().getRow() == 2);
-        Assert.assertTrue(this.cell.getNeihgbour(NamedDirection.BOTTOM).getPosition().getColumn() == 2);
+        Assert.assertTrue(this.cell.getNeighbour(NamedDirection.BOTTOM).getPosition().getRow() == 2);
+        Assert.assertTrue(this.cell.getNeighbour(NamedDirection.BOTTOM).getPosition().getColumn() == 2);
 
-        final ManagedCellInterface nullCell = this.cell.getNeihgbour(NamedDirection.TOP);
+        final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
 
-        Assert.assertTrue(nullCell.getNeihgbour(NamedDirection.BOTTOM_RIGHT) == nullCell);
+        Assert.assertTrue(nullCell.getNeighbour(NamedDirection.BOTTOM_RIGHT) == nullCell);
     }
 
     @Test
     public void testIsEmpty() {
         Assert.assertTrue(this.cell.isEmpty());
-        Assert.assertFalse(this.cell.getNeihgbour(NamedDirection.TOP).isEmpty());
+        Assert.assertFalse(this.cell.getNeighbour(NamedDirection.TOP).isEmpty());
         Assert.assertFalse(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).isEmpty());
 
     }
@@ -159,32 +159,32 @@ public final class ManagedCellTest { // NOPMD
 
     @Test
     public void testCompareTo() {
-        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.TOP)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeighbour(NamedDirection.TOP)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.BOTTOM)) == -1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeighbour(NamedDirection.BOTTOM)) == -1);
         Assert.assertTrue(this.cell.compareTo(this.cell) == 0);
-        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.LEFT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeighbour(NamedDirection.LEFT)) == 1);
 
-        Assert.assertTrue(this.cell.compareTo(this.cell.getNeihgbour(NamedDirection.RIGHT).getNeihgbour(NamedDirection.BOTTOM_RIGHT)) == 1);
+        Assert.assertTrue(this.cell.compareTo(this.cell.getNeighbour(NamedDirection.RIGHT).getNeighbour(NamedDirection.BOTTOM_RIGHT)) == 1);
     }
 
     @Test
     public void testEqualsObject() {
         Assert.assertFalse(this.cell.equals(null)); // NOPMD
         Assert.assertFalse(this.cell.equals(new Random()));
-        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.TOP)));
+        Assert.assertFalse(this.cell.equals(this.cell.getNeighbour(NamedDirection.TOP)));
 
         Assert.assertTrue(this.cell.equals(this.cell));
-        Assert.assertTrue(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
+        Assert.assertTrue(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
-        Assert.assertFalse(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
+        Assert.assertFalse(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeihgbour(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
-        Assert.assertTrue(this.cell.equals(this.cell.getNeihgbour(NamedDirection.RIGHT)));
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
+        Assert.assertTrue(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
     }
 
     @Test
@@ -193,16 +193,16 @@ public final class ManagedCellTest { // NOPMD
         final ManagedCellInterface cell; // NOPMD
         Map<DirectionInterface, ManagedCellInterface> expected;
 
-        cell = this.cell.getNeihgbour(NamedDirection.BOTTOM);
+        cell = this.cell.getNeighbour(NamedDirection.BOTTOM);
         expected = new HashMap<DirectionInterface, ManagedCellInterface>(8);
-        expected.put(NamedDirection.TOP, cell.getNeihgbour(NamedDirection.TOP));
-        expected.put(NamedDirection.TOP_RIGHT, cell.getNeihgbour(NamedDirection.TOP_RIGHT));
-        expected.put(NamedDirection.RIGHT, cell.getNeihgbour(NamedDirection.RIGHT));
-        expected.put(NamedDirection.BOTTOM_RIGHT, cell.getNeihgbour(NamedDirection.BOTTOM_RIGHT));
-        expected.put(NamedDirection.BOTTOM, cell.getNeihgbour(NamedDirection.BOTTOM));
-        expected.put(NamedDirection.BOTTOM_LEFT, cell.getNeihgbour(NamedDirection.BOTTOM_LEFT));
-        expected.put(NamedDirection.LEFT, cell.getNeihgbour(NamedDirection.LEFT));
-        expected.put(NamedDirection.TOP_LEFT, cell.getNeihgbour(NamedDirection.TOP_RIGHT)); // should have been TOP_LEFT
+        expected.put(NamedDirection.TOP.value(), cell.getNeighbour(NamedDirection.TOP));
+        expected.put(NamedDirection.TOP_RIGHT.value(), cell.getNeighbour(NamedDirection.TOP_RIGHT));
+        expected.put(NamedDirection.RIGHT.value(), cell.getNeighbour(NamedDirection.RIGHT));
+        expected.put(NamedDirection.BOTTOM_RIGHT.value(), cell.getNeighbour(NamedDirection.BOTTOM_RIGHT));
+        expected.put(NamedDirection.BOTTOM.value(), cell.getNeighbour(NamedDirection.BOTTOM));
+        expected.put(NamedDirection.BOTTOM_LEFT.value(), cell.getNeighbour(NamedDirection.BOTTOM_LEFT));
+        expected.put(NamedDirection.LEFT.value(), cell.getNeighbour(NamedDirection.LEFT));
+        expected.put(NamedDirection.TOP_LEFT.value(), cell.getNeighbour(NamedDirection.TOP_RIGHT)); // should have been TOP_LEFT
 
         isEqual = true;
         final Map<DirectionInterface, ManagedCellInterface> result = cell.getNeighbourhood();
@@ -212,8 +212,8 @@ public final class ManagedCellTest { // NOPMD
         }
         Assert.assertFalse(isEqual);
 
-        expected.remove(NamedDirection.TOP_LEFT);
-        expected.put(NamedDirection.TOP_LEFT, cell.getNeihgbour(NamedDirection.TOP_LEFT));
+        expected.remove(NamedDirection.TOP_LEFT.value());
+        expected.put(NamedDirection.TOP_LEFT.value(), cell.getNeighbour(NamedDirection.TOP_LEFT));
 
         isEqual = true;
         for (final Entry<DirectionInterface, ManagedCellInterface> entry : expected.entrySet()) {

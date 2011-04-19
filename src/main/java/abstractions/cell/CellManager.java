@@ -140,7 +140,7 @@ public final class CellManager implements CellManagerInterface {
         return consoleBoardView.toString();
     }
 
-    public List<? extends DirectionInterface> getNamedDirections() {
+    public List<NamedDirection> getNamedDirections() {
         return this.positionManager.getNamedDirections();
     }
 

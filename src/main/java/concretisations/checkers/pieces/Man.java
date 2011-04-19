@@ -27,7 +27,7 @@ import com.google.common.collect.ImmutableSet;
 public final class Man extends CheckerPiece {
 
     public Man(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type, ImmutableSet.of(side.isFirstSide() ? NamedDirection.TOP : NamedDirection.BOTTOM));
+        super(side, type, ImmutableSet.of(side.isFirstSide() ? NamedDirection.TOP.value() : NamedDirection.BOTTOM.value()));
     }
 
     @Override

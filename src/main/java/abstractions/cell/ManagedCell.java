@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -84,11 +85,6 @@ public final class ManagedCell implements ManagedCellInterface {
         return this.isNull() ? false : this.piece.getSide().isNull();
     }
 
-    //TODO ! utiliser getNeighbourhood(), une fois les cases voisines mises en cache
-    public ManagedCellInterface getNeihgbour(final DirectionInterface direction) {
-        return this.isNull() ? this : this.cellManager.getCell(this.cellManager.position(this.position, direction));
-    }
-
     public int compareTo(final ManagedCellInterface that) {
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
         return this.position.compareTo(that.getPosition());
@@ -145,15 +141,27 @@ public final class ManagedCell implements ManagedCellInterface {
     public Map<DirectionInterface, ManagedCellInterface> getNeighbourhood() {
         if (this.neighbourhood == null) {
             final Builder<DirectionInterface, ManagedCellInterface> neighbourhoodMapBuilder = ImmutableMap.builder();
-            for (final DirectionInterface namedDirection : this.getNamedDirections()) {
-                neighbourhoodMapBuilder.put(namedDirection, this.getNeihgbour(namedDirection));
+            for (final NamedDirection namedDirection : this.getNamedDirections()) {
+                final ManagedCellInterface neighbourCell = this.isNull() ?
+                        this : this.cellManager.getCell(this.cellManager.position(this.position, namedDirection.value()));
+                neighbourhoodMapBuilder.put(namedDirection.value(), neighbourCell);
             }
             this.neighbourhood = neighbourhoodMapBuilder.build();
         }
         return this.neighbourhood;
     }
 
-    public List<? extends DirectionInterface> getNamedDirections() {
+    //TODO ? parer le risque de NullPointerException en renvoyant une exception si la direction ne correspond pas à une position cardinale
+    //TODO permettre le rerverse lorsque possible entre une direction nommée et une direction quelquonque
+    public ManagedCellInterface getNeighbour(final DirectionInterface direction) {
+        return this.getNeighbourhood().get(direction);
+    }
+
+    public ManagedCellInterface getNeighbour(final NamedDirection namedDirection) {
+        return this.getNeighbour(namedDirection.value());
+    }
+
+    public List<NamedDirection> getNamedDirections() {
         return this.cellManager.getNamedDirections();
     }
 

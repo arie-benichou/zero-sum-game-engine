@@ -28,7 +28,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class King extends CheckerPiece {
 
-    private static final Set<? extends DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP, NamedDirection.BOTTOM);
+    private static final Set<DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP.value(), NamedDirection.BOTTOM.value());
 
     public King(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, King.LEGAL_DIRECTIONS);

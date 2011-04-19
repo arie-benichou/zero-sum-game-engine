@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.direction.DirectionManagerInterface;
 
 import com.google.common.collect.ImmutableMap;
@@ -98,8 +99,7 @@ public final class PositionManager implements PositionManagerInterface {
         return this.data.values().iterator();
     }
 
-    // TODO ? faire une méthode getRelativePositions()
-    public List<? extends DirectionInterface> getNamedDirections() {
+    public List<NamedDirection> getNamedDirections() {
         return this.directionManager.getNamedDirections();
     }
 

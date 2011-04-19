@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
@@ -59,7 +59,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation {
         final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
         final Set<ManagedCellInterface> cellsToRevert = Sets.newHashSet();
         final Set<ManagedCellInterface> cellsToRevertInOneDirection = Sets.newHashSet();
-        for (final DirectionInterface direction : this.getCell().getNamedDirections()) {
+        for (final NamedDirection direction : this.getCell().getNamedDirections()) {
             cellsToRevert.addAll(
                     ((OthelloPiece) this.getCell().getPiece()).
                             getConnected(this.getCell(), this.getSide(), direction, cellsToRevertInOneDirection)
