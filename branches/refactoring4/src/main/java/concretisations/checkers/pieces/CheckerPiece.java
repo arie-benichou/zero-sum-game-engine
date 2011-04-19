@@ -39,36 +39,38 @@ import concretisations.checkers.mutations.CheckersMutations;
 // TODO gérer les promotions de pions.
 public abstract class CheckerPiece extends AbstractPiece {
 
-    private static final Set<? extends DirectionInterface> PATHS = ImmutableSet.of(NamedDirection.RIGHT, NamedDirection.LEFT);
+    private static final Set<DirectionInterface> PATHS = ImmutableSet.of(NamedDirection.RIGHT.value(), NamedDirection.LEFT.value());
     private final Set<DirectionInterface> legalDirections;
 
     private interface Predicate {
 
         boolean apply(ManagedCellInterface cell, SideInterface side, DirectionInterface direction);
+
     }
 
     private static final Predicate CAN_WALK_THROUGH = new Predicate() {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
-            return side.equals(cell.getPiece().getSide()) && cell.getNeihgbour(direction).isEmpty();
+            return side.equals(cell.getPiece().getSide()) && cell.getNeighbour(direction).isEmpty();
         }
+
     };
 
     private static final Predicate CAN_JUMP_OVER = new Predicate() {
 
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide())
-                    && !cell.getNeihgbour(direction).isNull() // TODO ! à améliorer
-                    && side.getNextSide().equals(cell.getNeihgbour(direction).getPiece().getSide())
-                    && cell.getNeihgbour(direction).getNeihgbour(direction).isEmpty();
+                    && !cell.getNeighbour(direction).isNull() // TODO ! à améliorer
+                    && side.getNextSide().equals(cell.getNeighbour(direction).getPiece().getSide())
+                    && cell.getNeighbour(direction).getNeighbour(direction).isEmpty();
         }
+
     };
 
     @SuppressWarnings("unchecked")
-    private Set<DirectionInterface> compileLegalRelativePositions(final Set<? extends DirectionInterface> directions) {
-        final Set<DirectionInterface> legalRelativePositions = Sets.newHashSetWithExpectedSize(CheckerPiece.PATHS.size() * directions.size());
-
-        for (final List<? extends DirectionInterface> list : Sets.cartesianProduct(CheckerPiece.PATHS, directions)) {
+    private Set<DirectionInterface> compileLegalRelativePositions(final Set<DirectionInterface> namedDirections) {
+        final Set<DirectionInterface> legalRelativePositions = Sets.newHashSetWithExpectedSize(CheckerPiece.PATHS.size() * namedDirections.size());
+        for (final List<DirectionInterface> list : Sets.cartesianProduct(CheckerPiece.PATHS, namedDirections)) {
             int rowDelta = 0;
             int columnDelta = 0;
             for (final DirectionInterface namedDirection : list) {
@@ -77,11 +79,10 @@ public abstract class CheckerPiece extends AbstractPiece {
             }
             legalRelativePositions.add(new Direction(rowDelta, columnDelta)); // NOPMD
         }
-
         return legalRelativePositions;
     }
 
-    public CheckerPiece(final SideInterface side, final PieceTypeInterface type, final Set<? extends DirectionInterface> directions) {
+    public CheckerPiece(final SideInterface side, final PieceTypeInterface type, final Set<DirectionInterface> directions) {
         super(side, type);
         this.legalDirections = this.compileLegalRelativePositions(directions);
     }

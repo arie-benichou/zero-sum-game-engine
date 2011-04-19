@@ -20,6 +20,7 @@ package abstractions.position;
 import java.util.List;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 
 /**
  * This is the interface for the position manager.
@@ -66,6 +67,6 @@ public interface PositionManagerInterface extends Iterable<PositionInterface> {
      * @return the 8 named directions in this order : TOP, TOP_RIGHT,
      *         RIGHT,BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT.
      */
-    List<? extends DirectionInterface> getNamedDirections();
+    List<NamedDirection> getNamedDirections();
 
 }

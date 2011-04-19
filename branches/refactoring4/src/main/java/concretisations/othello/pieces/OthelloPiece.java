@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
@@ -59,18 +58,18 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             willBeConnected = true;
         }
         else if (side.getNextSide().equals(cell.getPiece().getSide())) {
-            final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
+            final ManagedCellInterface nextCell = cell.getNeighbour(direction);
             willBeConnected = ((OthelloPiece) nextCell.getPiece()).isConnected(nextCell, side, direction);
         }
         return willBeConnected;
     }
 
-    public final Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction,
+    public final Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction,
             final Set<ManagedCellInterface> cellsToRevert) {
-        if (side.equals(cell.getNeihgbour(direction).getPiece().getSide())) {
+        if (side.equals(cell.getNeighbour(direction).getPiece().getSide())) {
             return cellsToRevert; // NOPMD
         }
-        final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
+        final ManagedCellInterface nextCell = cell.getNeighbour(direction);
         if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
             cellsToRevert.add(nextCell);
             return ((OthelloPiece) nextCell.getPiece()).getConnected(nextCell, side, direction, cellsToRevert); // NOPMD
@@ -85,12 +84,12 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
         final int maxIndex = OthelloPiece.NEIGHBOURS_POSITIONS.size();
         for (int index = 0; index < maxIndex && !willBeConnected; ++index) {
             final NamedDirection relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
-            final ManagedCellInterface nextCell = cell.getNeihgbour(relativePosition);
+            final ManagedCellInterface nextCell = cell.getNeighbour(relativePosition);
             if (nextCell.isNull()) {
                 continue;
             }
             if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
-                final ManagedCellInterface nextNextCell = nextCell.getNeihgbour(relativePosition);
+                final ManagedCellInterface nextNextCell = nextCell.getNeighbour(relativePosition);
                 final OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
                 willBeConnected = nextNextPiece.isConnected(nextNextCell, side, relativePosition);
             }

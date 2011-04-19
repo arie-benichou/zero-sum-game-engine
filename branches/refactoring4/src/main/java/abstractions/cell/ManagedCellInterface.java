@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -82,7 +83,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * 
      * @return this cell.
      */
-    ManagedCellInterface setPiece(SideInterface side, PieceTypeInterface pieceType);
+    ManagedCellInterface setPiece(final SideInterface side, final PieceTypeInterface pieceType);
 
     /**
      * Returns true if this cell is the null object, false otherwise.
@@ -102,11 +103,21 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * Returns a neighbour of this cell in a given direction.
      * 
      * @param direction
-     *            a legal direction
+     *            a given direction
      * 
      * @return a neighbour of this cell in a given direction
      */
-    ManagedCellInterface getNeihgbour(DirectionInterface direction);
+    ManagedCellInterface getNeighbour(final DirectionInterface direction);
+
+    /**
+     * Returns a neighbour of this cell in a given named direction.
+     * 
+     * @param namedDirection
+     *            a named direction
+     * 
+     * @return a neighbour of this cell in a given named direction
+     */
+    ManagedCellInterface getNeighbour(final NamedDirection namedDirection);
 
     /**
      * Returns a set of potential mutations for this cell and for a given side.
@@ -116,7 +127,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * 
      * @return a set of potential mutations for this cell and for a given side
      */
-    Set<? extends MutationInterface> getPotentialMutations(SideInterface side);
+    Set<? extends MutationInterface> getPotentialMutations(final SideInterface side);
 
     /**
      * Returns the neighbour cells to this cell.
@@ -130,7 +141,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * 
      * @return a list of the 8 named directions
      */
-    List<? extends DirectionInterface> getNamedDirections();
+    List<NamedDirection> getNamedDirections();
 
     /**
      * Death for this cell: this cell will become empty.

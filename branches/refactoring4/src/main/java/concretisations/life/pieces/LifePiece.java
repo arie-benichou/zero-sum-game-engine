@@ -54,7 +54,7 @@ public abstract class LifePiece extends AbstractPiece {
     protected final int count(final ManagedCellInterface cell) {
         int n = 0;
         for (int index = 0; index < LifePiece.MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL && n < LifePiece.CUT_OFF; ++index) {
-            if (!cell.getNeihgbour(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {
+            if (!cell.getNeighbour(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {
                 ++n;
             }
         }
