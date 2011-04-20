@@ -29,10 +29,25 @@ import abstractions.piece.PieceTypeInterface;
 import abstractions.position.PositionInterface;
 import abstractions.side.SideInterface;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * This is the interface for a cell.
  */
 public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
+
+    List<NamedDirection> NEIGHBOUR_DIRECTIONS = ImmutableList.of(
+            NamedDirection.TOP,
+            NamedDirection.TOP_RIGHT,
+            NamedDirection.RIGHT,
+            NamedDirection.BOTTOM_RIGHT,
+            NamedDirection.BOTTOM,
+            NamedDirection.BOTTOM_LEFT,
+            NamedDirection.LEFT,
+            NamedDirection.TOP_LEFT
+            );
+
+    int MAXIMAL_NUMBER_OF_NEIGHBOURS = ManagedCellInterface.NEIGHBOUR_DIRECTIONS.size();
 
     /**
      * Returns the position of this cell.

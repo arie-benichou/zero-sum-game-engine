@@ -17,7 +17,6 @@
 
 package concretisations.othello.pieces;
 
-import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
@@ -28,25 +27,12 @@ import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 public abstract class OthelloPiece extends AbstractPiece implements OthelloPieceInterface {
 
     protected static final Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
             .of(concretisations.othello.mutations.OthelloMutations.NEW_PAWN);
-
-    // TODO ! réutiliser l'API d'une cellule
-    private static final List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
-            NamedDirection.TOP,
-            NamedDirection.TOP_RIGHT,
-            NamedDirection.RIGHT,
-            NamedDirection.BOTTOM_RIGHT,
-            NamedDirection.BOTTOM,
-            NamedDirection.BOTTOM_LEFT,
-            NamedDirection.LEFT,
-            NamedDirection.TOP_LEFT
-            );
 
     public OthelloPiece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -81,9 +67,8 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     // TODO à simplifier
     protected final boolean isMutable(final ManagedCellInterface cell, final SideInterface side) {
         boolean willBeConnected = false;
-        final int maxIndex = OthelloPiece.NEIGHBOURS_POSITIONS.size();
-        for (int index = 0; index < maxIndex && !willBeConnected; ++index) {
-            final NamedDirection relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
+        for (int index = 0; index < ManagedCellInterface.MAXIMAL_NUMBER_OF_NEIGHBOURS && !willBeConnected; ++index) {
+            final NamedDirection relativePosition = ManagedCellInterface.NEIGHBOUR_DIRECTIONS.get(index);
             final ManagedCellInterface nextCell = cell.getNeighbour(relativePosition);
             if (nextCell.isNull()) {
                 continue;
