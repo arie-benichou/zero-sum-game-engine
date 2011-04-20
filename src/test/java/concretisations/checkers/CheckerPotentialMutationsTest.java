@@ -14,7 +14,7 @@ import org.junit.Test;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.Direction;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
@@ -35,7 +35,7 @@ public final class CheckerPotentialMutationsTest {
 
     @Before
     public void setUp() throws Exception {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(5, 5)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(5, 5)));
         final PieceManagerInterface pieceManager = new PieceManager(CheckersPieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
     }

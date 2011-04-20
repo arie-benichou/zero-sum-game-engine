@@ -28,7 +28,7 @@ import org.junit.Test;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
@@ -45,7 +45,7 @@ public final class LifePotentialMutationsTest {
 
     @Before
     public void setUp() throws Exception {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(10, 10)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(10, 10)));
         final PieceManagerInterface pieceManager = new PieceManager(LifePieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
     }

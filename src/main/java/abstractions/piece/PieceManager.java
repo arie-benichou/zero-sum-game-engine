@@ -25,7 +25,7 @@ import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMap.Builder;
 
 public final class PieceManager implements PieceManagerInterface {
 
@@ -37,15 +37,14 @@ public final class PieceManager implements PieceManagerInterface {
         return side.hashCode() + type.hashCode();
     }
 
-    // TODO utiliser le builder d'une map immutable
     private Map<Integer, PieceInterface> initializeData(final Map<SideInterface, Set<PieceInterface>> map) {
-        final Map<Integer, PieceInterface> data = Maps.newHashMapWithExpectedSize(map.size());
+        final Builder<Integer, PieceInterface> mapBuilder = ImmutableMap.builder();
         for (final Entry<SideInterface, Set<PieceInterface>> mapEntry : map.entrySet()) {
             for (final PieceInterface sidedPiece : mapEntry.getValue()) {
-                data.put(this.hash(sidedPiece.getSide(), sidedPiece.getType()), sidedPiece);
+                mapBuilder.put(this.hash(sidedPiece.getSide(), sidedPiece.getType()), sidedPiece);
             }
         }
-        return ImmutableMap.copyOf(data);
+        return mapBuilder.build();
     }
 
     public <T extends Enum<T> & PieceTypeInterface> PieceManager(final Class<T> pieceTypeSetClass) {
