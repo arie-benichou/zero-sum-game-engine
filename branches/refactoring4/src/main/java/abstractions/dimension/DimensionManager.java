@@ -17,18 +17,19 @@
 
 package abstractions.dimension;
 
-import com.google.common.base.Preconditions;
-
-final class DimensionManager implements DimensionManagerInterface {
+public final class DimensionManager implements DimensionManagerInterface {
 
     private final RowDimension rowRange;
     private final ColumnDimension columRange;
 
-    public DimensionManager(final RowDimension rowsRange, final ColumnDimension columnsRange) {
-        Preconditions.checkNotNull(rowsRange, "Argument 'rowsRange' must not be null.");
-        Preconditions.checkNotNull(columnsRange, "Argument 'columnsRange' must not be null.");
-        this.rowRange = rowsRange;
-        this.columRange = columnsRange;
+    public DimensionManager(final int numberOfRows, final int numberOfColumns) {
+        try {
+            this.rowRange = new RowDimension(1, numberOfRows);
+            this.columRange = new ColumnDimension(1, numberOfColumns);
+        }
+        catch (final IllegalArgumentException e) {
+            throw new IllegalDimensionException(numberOfRows, numberOfColumns); // NOPMD 
+        }
     }
 
     public int lowerBoundForRows() {

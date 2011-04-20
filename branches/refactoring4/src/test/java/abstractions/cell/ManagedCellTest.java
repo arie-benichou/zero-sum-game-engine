@@ -27,7 +27,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
@@ -46,7 +46,7 @@ public final class ManagedCellTest { // NOPMD
 
     @Before
     public void setUp() throws Exception {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         final CellManager cellManager = new CellManager(positionManager, pieceManager);
         this.cell = new ManagedCell(cellManager, positionManager.getPosition(1, 2));

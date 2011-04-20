@@ -25,7 +25,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceInterface;
@@ -43,56 +43,45 @@ public final class CellManagerTest {
 
     @Before
     public void setUp() throws Exception {
-
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
-
     }
 
     @Test
     public void testGetNullCell() {
-
         final ManagedCellInterface nullCell = this.cellManager.getNullCell();
         Assert.assertTrue(nullCell.isNull());
         Assert.assertTrue(nullCell == this.cellManager.getCell(0, 0));
         Assert.assertTrue(nullCell == this.cellManager.getCell(3, 4));
-
     }
 
     @Test
     public void testGetNullPiece() {
-
         Assert.assertTrue(this.cellManager.getNullPiece().getSide().isNull());
         Assert.assertTrue(this.cellManager.getNullPiece().getType().equals(PieceSet.NULL));
-
     }
 
     @Test
     public void testGetCellFromPrimitives() {
-
         final int rowIndex = 1, columnIndex = 1; // NOPMD 
         final ManagedCellInterface cell = this.cellManager.getCell(rowIndex, columnIndex);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(rowIndex, columnIndex));
         Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet.NULL));
-
     }
 
     @Test
     public void testGetCellFromPositionObject() {
-
         final PositionInterface position = this.cellManager.position(1, 1);
         final ManagedCellInterface cell = this.cellManager.getCell(position);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(1, 1));
         Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet.NULL));
-
     }
 
     @Test
     public void testPieceManagerFacade() {
-
         PieceInterface piece;
 
         piece = this.cellManager.piece(Sides.NULL, PieceSet.NULL);
@@ -106,12 +95,10 @@ public final class CellManagerTest {
         piece = this.cellManager.piece(Sides.SECOND, PieceSet.PAWN);
         Assert.assertTrue(piece.getSide().equals(Sides.SECOND));
         Assert.assertTrue(piece.getType().equals(PieceSet.PAWN));
-
     }
 
     @Test
     public void testPositionManagerFacade1() {
-
         PositionInterface position;
 
         position = this.cellManager.position(0, 0);
@@ -125,12 +112,10 @@ public final class CellManagerTest {
         position = this.cellManager.position(4, 4);
         Assert.assertTrue(position.getRow() == 0);
         Assert.assertTrue(position.getColumn() == 0);
-
     }
 
     @Test
     public void testPositionManagerFacade2() {
-
         PositionInterface initialPosition, position, expectedPosition;
 
         initialPosition = this.cellManager.position(1, 1);
@@ -152,12 +137,10 @@ public final class CellManagerTest {
         position = this.cellManager.position(initialPosition, NamedDirection.RIGHT);
         expectedPosition = this.cellManager.position(2, 3);
         Assert.assertTrue(position.equals(expectedPosition));
-
     }
 
     @Test
     public void testIterableInterface() {
-
         final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(1 + 3 * 3);
 
         expectedCells.add(this.cellManager.getNullCell());
@@ -180,14 +163,11 @@ public final class CellManagerTest {
         }
 
         Assert.assertTrue(expectedCells.equals(cells));
-
     }
 
     @After
     public void tearDown() throws Exception {
-
         this.cellManager = null; // NOPMD
-
     }
 
 }

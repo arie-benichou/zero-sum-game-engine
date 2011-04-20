@@ -36,6 +36,7 @@ import com.google.common.collect.ImmutableList;
  */
 public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
 
+    // TODO ? à mettre dans DirectionManager
     List<NamedDirection> NEIGHBOUR_DIRECTIONS = ImmutableList.of(
             NamedDirection.TOP,
             NamedDirection.TOP_RIGHT,

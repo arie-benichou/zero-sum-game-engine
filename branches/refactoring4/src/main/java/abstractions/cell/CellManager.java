@@ -89,8 +89,8 @@ public final class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, direction);
     }
 
-    public PositionInterface position(final PositionInterface position, final NamedDirection direction) {
-        return this.positionManager.getPosition(position, direction);
+    public PositionInterface position(final PositionInterface position, final NamedDirection namedDirection) {
+        return this.positionManager.getPosition(position, namedDirection.value());
     }
 
     // TODO in order to avoid sorting overhead, use data structure SortedMap/TreeMap instead of basic HashMap
