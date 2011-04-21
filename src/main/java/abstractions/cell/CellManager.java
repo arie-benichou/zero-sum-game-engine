@@ -35,6 +35,7 @@ import abstractions.side.SideInterface;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -49,13 +50,12 @@ public final class CellManager implements CellManagerInterface {
         return new ManagedCell(this, position);
     }
 
-    // TODO utiliser le builder d'une map immutable
     private Map<PositionInterface, ManagedCellInterface> intializeData() {
-        final Map<PositionInterface, ManagedCellInterface> data = Maps.newHashMap();
+        final Builder<PositionInterface, ManagedCellInterface> builder = ImmutableMap.builder();
         for (final PositionInterface position : this.positionManager) {
-            data.put(position, this.newCell(position));
+            builder.put(position, this.newCell(position));
         }
-        return ImmutableMap.copyOf(data);
+        return builder.build();
     }
 
     public CellManager(final PositionManagerInterface positionManager, final PieceManagerInterface pieceManager) {
