@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
@@ -34,8 +35,6 @@ import abstractions.position.PositionManagerInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -43,26 +42,29 @@ public final class CellManager implements CellManagerInterface {
 
     private final PieceManagerInterface pieceManager;
     private final PositionManagerInterface positionManager;
-    private final Map<PositionInterface, ManagedCellInterface> data;
+    private final Map<PositionInterface, ManagedCellInterface> map;
     private final ManagedCellInterface nullCell;
+    private final List<ManagedCellInterface> cells;
 
     private ManagedCellInterface newCell(final PositionInterface position) {
         return new ManagedCell(this, position);
     }
 
     private Map<PositionInterface, ManagedCellInterface> intializeData() {
-        final Builder<PositionInterface, ManagedCellInterface> builder = ImmutableMap.builder();
+        //final Builder<PositionInterface, ManagedCellInterface> builder = ImmutableSortedMap.builder();
+        final TreeMap<PositionInterface, ManagedCellInterface> map = new TreeMap<PositionInterface, ManagedCellInterface>();
         for (final PositionInterface position : this.positionManager) {
-            builder.put(position, this.newCell(position));
+            map.put(position, this.newCell(position));
         }
-        return builder.build();
+        return map;
     }
 
     public CellManager(final PositionManagerInterface positionManager, final PieceManagerInterface pieceManager) {
         this.positionManager = positionManager;
         this.pieceManager = pieceManager;
-        this.data = this.intializeData();
-        this.nullCell = this.data.get(this.positionManager.getNullPosition());
+        this.map = this.intializeData();
+        this.nullCell = this.map.get(this.positionManager.getNullPosition());
+        this.cells = Lists.newArrayList(this.map.values());
     }
 
     public ManagedCellInterface getNullCell() {
@@ -70,11 +72,11 @@ public final class CellManager implements CellManagerInterface {
     }
 
     public ManagedCellInterface getCell(final int rowIndex, final int columnIndex) {
-        return this.data.get(this.positionManager.getPosition(rowIndex, columnIndex));
+        return this.map.get(this.positionManager.getPosition(rowIndex, columnIndex));
     }
 
     public ManagedCellInterface getCell(final PositionInterface position) {
-        return this.data.get(position);
+        return this.map.get(position);
     }
 
     public PieceInterface piece(final SideInterface side, final PieceTypeInterface pieceType) {
@@ -93,37 +95,33 @@ public final class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, namedDirection.value());
     }
 
-    // TODO in order to avoid sorting overhead, use data structure SortedMap/TreeMap instead of basic HashMap
     public Iterator<ManagedCellInterface> iterator() {
-        final List<ManagedCellInterface> values = Lists.newArrayList(this.data.values());
-        Collections.sort(values);
-        return values.iterator();
+        return this.cells.iterator();
     }
 
     public PieceInterface getNullPiece() {
         return this.pieceManager.getNullPiece();
     }
 
-    // TODO utiliser une contrainte sur la map (guava)
     // TODO utiliser le type de mutation comme clé de map
     public Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side) {
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationTypesMap = Maps.newHashMap();
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationsMap = Maps.newHashMap();
         final Iterator<ManagedCellInterface> it = this.iterator();
         ManagedCellInterface cell = it.next(); // cellule nulle
         while (it.hasNext()) {
             cell = it.next();
             final Set<? extends MutationInterface> p = cell.getPotentialMutations(side);
             if (!p.equals(MutationInterface.NULL_POTENTIAL_MUTATION_SET)) {
-                potentialMutationTypesMap.put(cell, p);
+                potentialMutationsMap.put(cell, p);
             }
         }
-        return potentialMutationTypesMap;
+        return potentialMutationsMap;
     }
 
     @Override
     // TODO à simplifier
     public String toString() {
-        final int maximalNumberOfCellsByRow = Collections.max(this.data.values()).getColumn();
+        final int maximalNumberOfCellsByRow = Collections.max(this.map.values()).getColumn();
         final StringBuilder consoleBoardView = new StringBuilder();
         final Iterator<ManagedCellInterface> it = this.iterator();
         ManagedCellInterface previousCell = it.next();
