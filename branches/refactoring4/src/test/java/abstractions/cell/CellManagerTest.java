@@ -31,7 +31,7 @@ import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
-import abstractions.piece.mocks.PieceSet;
+import abstractions.piece.mocks.PieceSet1;
 import abstractions.position.PositionInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
@@ -44,7 +44,7 @@ public final class CellManagerTest {
     @Before
     public void setUp() throws Exception {
         final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
-        final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
+        final PieceManagerInterface pieceManager = new PieceManager(PieceSet1.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
     }
 
@@ -59,7 +59,7 @@ public final class CellManagerTest {
     @Test
     public void testGetNullPiece() {
         Assert.assertTrue(this.cellManager.getNullPiece().getSide().isNull());
-        Assert.assertTrue(this.cellManager.getNullPiece().getType().equals(PieceSet.NULL));
+        Assert.assertTrue(this.cellManager.getNullPiece().getType().equals(PieceSet1.NULL));
     }
 
     @Test
@@ -68,7 +68,7 @@ public final class CellManagerTest {
         final ManagedCellInterface cell = this.cellManager.getCell(rowIndex, columnIndex);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(rowIndex, columnIndex));
-        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet.NULL));
+        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet1.NULL));
     }
 
     @Test
@@ -77,24 +77,24 @@ public final class CellManagerTest {
         final ManagedCellInterface cell = this.cellManager.getCell(position);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(1, 1));
-        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet.NULL));
+        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet1.NULL));
     }
 
     @Test
     public void testPieceManagerFacade() {
         PieceInterface piece;
 
-        piece = this.cellManager.piece(Sides.NULL, PieceSet.NULL);
+        piece = this.cellManager.piece(Sides.NULL, PieceSet1.NULL);
         Assert.assertTrue(piece.getSide().equals(Sides.NULL));
-        Assert.assertTrue(piece.getType().equals(PieceSet.NULL));
+        Assert.assertTrue(piece.getType().equals(PieceSet1.NULL));
 
-        piece = this.cellManager.piece(Sides.FIRST, PieceSet.PAWN);
+        piece = this.cellManager.piece(Sides.FIRST, PieceSet1.PAWN);
         Assert.assertTrue(piece.getSide().equals(Sides.FIRST));
-        Assert.assertTrue(piece.getType().equals(PieceSet.PAWN));
+        Assert.assertTrue(piece.getType().equals(PieceSet1.PAWN));
 
-        piece = this.cellManager.piece(Sides.SECOND, PieceSet.PAWN);
+        piece = this.cellManager.piece(Sides.SECOND, PieceSet1.PAWN);
         Assert.assertTrue(piece.getSide().equals(Sides.SECOND));
-        Assert.assertTrue(piece.getType().equals(PieceSet.PAWN));
+        Assert.assertTrue(piece.getType().equals(PieceSet1.PAWN));
     }
 
     @Test

@@ -19,7 +19,7 @@ package abstractions.piece.mocks;
 
 import abstractions.piece.PieceTypeInterface;
 
-public enum PieceSet implements PieceTypeInterface {
+public enum PieceSet1 implements PieceTypeInterface {
 
     NULL, PAWN;
 

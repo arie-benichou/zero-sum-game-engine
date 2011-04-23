@@ -23,7 +23,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.piece.mocks.Pawn;
-import abstractions.piece.mocks.PieceSet;
+import abstractions.piece.mocks.PieceSet1;
+import abstractions.piece.mocks.PieceSet2;
+import abstractions.piece.mocks.PieceSetWithAtLeastOneNotFoundPieceClass;
+import abstractions.piece.mocks.PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface;
+import abstractions.piece.mocks.PieceSetWithOnlyNullType;
+import abstractions.piece.mocks.PieceSetWithoutAnyType;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
 import abstractions.side.Sides;
 
@@ -33,38 +38,53 @@ public final class PieceManagerTest {
 
     @Before
     public void setUp() throws Exception {
+        this.pieceManager = new PieceManager(PieceSet1.class);
+    }
 
-        this.pieceManager = new PieceManager(PieceSet.class);
+    @Test(expected = IllegalPieceSetException.class)
+    public void testEmptyPieceSet() {
+        new PieceManager(PieceSetWithoutAnyType.class);
+    }
 
+    @Test(expected = IllegalPieceSetException.class)
+    public void testPieceSetWithAtLeastOneNotFoundPiece() {
+        new PieceManager(PieceSetWithAtLeastOneNotFoundPieceClass.class);
+    }
+
+    @Test(expected = IllegalPieceSetException.class)
+    public void testPieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface() {
+        new PieceManager(PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface.class);
+    }
+
+    @Test(expected = IllegalPieceSetException.class)
+    public void testPieceSetWithOnlyNullPiece() {
+        new PieceManager(PieceSetWithOnlyNullType.class);
+    }
+
+    @Test(expected = IllegalPieceSetException.class)
+    public void testPieceSetWithoutNullPiece() {
+        new PieceManager(PieceSetWithoutNullType.class);
     }
 
     @Test(expected = IllegalPieceException.class)
     public void testGetIllegalPiece() {
-
-        this.pieceManager.getPiece(Sides.FIRST, PieceSetWithoutNullType.PAWN);
-
+        this.pieceManager.getPiece(Sides.FIRST, PieceSet2.PAWN);
     }
 
     @Test
     public void testGetNullPiece() {
-
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.NULL, PieceSet.NULL) == this.pieceManager.getNullPiece());
-
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.NULL, PieceSet1.NULL) == this.pieceManager.getNullPiece());
     }
 
     @Test
     public void testGetPiece() {
-
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.FIRST, PieceSet.PAWN).equals(new Pawn(Sides.FIRST, PieceSet.PAWN)));
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.SECOND, PieceSet.PAWN).equals(new Pawn(Sides.SECOND, PieceSet.PAWN)));
-
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.FIRST, PieceSet1.PAWN).equals(new Pawn(Sides.FIRST, PieceSet1.PAWN)));
+        Assert.assertTrue(this.pieceManager.getPiece(Sides.SECOND, PieceSet1.PAWN).equals(new Pawn(Sides.SECOND, PieceSet1.PAWN)));
     }
 
     @After
     public void tearDown() throws Exception {
-
         this.pieceManager = null; // NOPMD 
-
     }
 
 }

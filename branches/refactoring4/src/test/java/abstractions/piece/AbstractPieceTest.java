@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.piece.mocks.PieceSet;
+import abstractions.piece.mocks.PieceSet1;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 
@@ -40,7 +40,7 @@ public final class AbstractPieceTest { // NOPMD
     @Before
     public void setUp() throws Exception {
 
-        this.nullPiece = new AbstractPiece(Sides.NULL, PieceSet.NULL) {
+        this.nullPiece = new AbstractPiece(Sides.NULL, PieceSet1.NULL) {
 
             @Override
             public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -54,7 +54,7 @@ public final class AbstractPieceTest { // NOPMD
 
         };
 
-        this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet.PAWN) {
+        this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet1.PAWN) {
 
             @Override
             public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -68,7 +68,7 @@ public final class AbstractPieceTest { // NOPMD
 
         };
 
-        this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet.PAWN) {
+        this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet1.PAWN) {
 
             @Override
             public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -94,9 +94,9 @@ public final class AbstractPieceTest { // NOPMD
     @Test
     public void testGetType() {
 
-        Assert.assertTrue(this.firstSidePiece.getType().equals(PieceSet.PAWN));
-        Assert.assertTrue(this.nullPiece.getType().equals(PieceSet.NULL));
-        Assert.assertTrue(this.secondSidePiece.getType().equals(PieceSet.PAWN));
+        Assert.assertTrue(this.firstSidePiece.getType().equals(PieceSet1.PAWN));
+        Assert.assertTrue(this.nullPiece.getType().equals(PieceSet1.NULL));
+        Assert.assertTrue(this.secondSidePiece.getType().equals(PieceSet1.PAWN));
 
     }
 

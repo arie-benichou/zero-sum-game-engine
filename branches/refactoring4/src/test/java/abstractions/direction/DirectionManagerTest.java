@@ -102,7 +102,7 @@ public final class DirectionManagerTest {
         Assert.assertTrue(expectedNamedDirections.equals(this.directionManager.getNamedDirections()));
     }
 
-    //@Test // TODO fails on Dimension(Range[1, x], Range[1, 1])
+    @Test
     public void testReduce() { // NOPMD 
         Assert.assertTrue(this.directionManager.reduce(this.directionManager.getNamedDirections()) == this.directionManager.getDirection(0, 0));
         final List<DirectionInterface> directions = new ArrayList<DirectionInterface>();
