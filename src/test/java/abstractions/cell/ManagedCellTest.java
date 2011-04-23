@@ -35,7 +35,7 @@ import abstractions.piece.IllegalPieceException;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
-import abstractions.piece.mocks.PieceSet;
+import abstractions.piece.mocks.PieceSet1;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.side.Sides;
@@ -47,7 +47,7 @@ public final class ManagedCellTest { // NOPMD
     @Before
     public void setUp() throws Exception {
         final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
-        final PieceManagerInterface pieceManager = new PieceManager(PieceSet.class);
+        final PieceManagerInterface pieceManager = new PieceManager(PieceSet1.class);
         final CellManager cellManager = new CellManager(positionManager, pieceManager);
         this.cell = new ManagedCell(cellManager, positionManager.getPosition(1, 2));
     }
@@ -86,47 +86,47 @@ public final class ManagedCellTest { // NOPMD
 
     @Test
     public void testSetPieceSideInterfacePieceTypeInterface() {
-        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).getPiece().getSide().isFirstSide());
+        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet1.PAWN).getPiece().getSide().isFirstSide());
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell0() {
         final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
-        nullCell.setPiece(Sides.NULL, PieceSet.NULL);
+        nullCell.setPiece(Sides.NULL, PieceSet1.NULL);
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell1() {
         final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
-        nullCell.setPiece(Sides.FIRST, PieceSet.PAWN);
+        nullCell.setPiece(Sides.FIRST, PieceSet1.PAWN);
     }
 
     @Test(expected = NullPointerException.class)
     public void testSetPieceOnNullCell2() {
         final ManagedCellInterface nullCell = this.cell.getNeighbour(NamedDirection.TOP);
-        nullCell.setPiece(Sides.SECOND, PieceSet.PAWN);
+        nullCell.setPiece(Sides.SECOND, PieceSet1.PAWN);
     }
 
     @Test(expected = IllegalPieceException.class)
     public void testSetIllegalPieceSideInterfacePieceTypeInterface0() {
-        Assert.assertTrue(this.cell.setPiece(Sides.NULL, PieceSet.PAWN).getPiece().getSide().isFirstSide());
+        Assert.assertTrue(this.cell.setPiece(Sides.NULL, PieceSet1.PAWN).getPiece().getSide().isFirstSide());
     }
 
     @Test(expected = IllegalPieceException.class)
     public void testSetIllegalPieceSideInterfacePieceTypeInterface1() {
-        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet.NULL).getPiece().getSide().isFirstSide());
+        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet1.NULL).getPiece().getSide().isFirstSide());
     }
 
     @Test(expected = IllegalPieceException.class)
     public void testSetIllegalPieceSideInterfacePieceTypeInterface2() {
-        Assert.assertTrue(this.cell.setPiece(Sides.SECOND, PieceSet.NULL).getPiece().getSide().isFirstSide());
+        Assert.assertTrue(this.cell.setPiece(Sides.SECOND, PieceSet1.NULL).getPiece().getSide().isFirstSide());
     }
 
     @Test
     public void testSetPiecePieceInterface() {
-        final PieceInterface piece = this.cell.setPiece(Sides.SECOND, PieceSet.PAWN).getPiece();
-        this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).getPiece();
-        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).getPiece().getSide().isFirstSide());
+        final PieceInterface piece = this.cell.setPiece(Sides.SECOND, PieceSet1.PAWN).getPiece();
+        this.cell.setPiece(Sides.FIRST, PieceSet1.PAWN).getPiece();
+        Assert.assertTrue(this.cell.setPiece(Sides.FIRST, PieceSet1.PAWN).getPiece().getSide().isFirstSide());
         this.cell.setPiece(piece);
         Assert.assertTrue(this.cell.getPiece().getSide().isSecondSide());
     }
@@ -148,7 +148,7 @@ public final class ManagedCellTest { // NOPMD
     public void testIsEmpty() {
         Assert.assertTrue(this.cell.isEmpty());
         Assert.assertFalse(this.cell.getNeighbour(NamedDirection.TOP).isEmpty());
-        Assert.assertFalse(this.cell.setPiece(Sides.FIRST, PieceSet.PAWN).isEmpty());
+        Assert.assertFalse(this.cell.setPiece(Sides.FIRST, PieceSet1.PAWN).isEmpty());
 
     }
 
@@ -177,13 +177,13 @@ public final class ManagedCellTest { // NOPMD
         Assert.assertTrue(this.cell.equals(this.cell));
         Assert.assertTrue(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet.PAWN);
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.FIRST, PieceSet1.PAWN);
         Assert.assertFalse(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet.PAWN);
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.SECOND, PieceSet1.PAWN);
         Assert.assertFalse(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
 
-        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet.NULL);
+        this.cell.getNeighbour(NamedDirection.RIGHT).setPiece(Sides.NULL, PieceSet1.NULL);
         Assert.assertTrue(this.cell.equals(this.cell.getNeighbour(NamedDirection.RIGHT)));
     }
 

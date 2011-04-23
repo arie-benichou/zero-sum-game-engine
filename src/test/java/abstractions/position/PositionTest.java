@@ -95,13 +95,9 @@ public final class PositionTest { // NOPMD
 
         Assert.assertTrue(this.position.equals(this.position));
         Assert.assertTrue(this.position.equals(new Position(this.rowIndex, this.columnIndex)));
-        // TODO écrire test pour l'aspect cache
-        //Assert.assertFalse(this.position == new Position(this.rowIndex, this.columnIndex)); 
 
         Assert.assertTrue(PositionTest.NULL_POSITION.equals(PositionTest.NULL_POSITION));
         Assert.assertTrue(PositionTest.NULL_POSITION.equals(new Position(0, 0)));
-        // TODO écrire test pour l'aspect cache
-        //Assert.assertFalse(PositionTest.NULL_POSITION == new Position(0, 0));
 
         Assert.assertFalse(this.position.equals(new Random()));
         Assert.assertFalse(this.position.equals(new Position(this.rowIndex, this.columnIndex + 1)));

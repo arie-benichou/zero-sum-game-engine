@@ -17,7 +17,6 @@
 
 package abstractions.position;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +27,8 @@ import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.direction.DirectionManagerInterface;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import com.google.common.collect.ImmutableMap.Builder;
+import com.google.common.collect.ImmutableSet;
 
 public final class PositionManager implements PositionManagerInterface {
 
@@ -52,25 +51,24 @@ public final class PositionManager implements PositionManagerInterface {
     }
 
     public Set<PositionInterface> newPositionSet() {
-        final Set<PositionInterface> positions = Sets.newHashSetWithExpectedSize(this.directionManager.getDimensionManager().capacity() + 1);
-        positions.add(this.newPosition(0, 0));
+        final com.google.common.collect.ImmutableSet.Builder<PositionInterface> builder = ImmutableSet.builder();
+        builder.add(this.newPosition(0, 0));
         final int maxRowIndex = this.directionManager.getDimensionManager().upperBoundForRows();
         final int maxColumnIndex = this.directionManager.getDimensionManager().upperBoundForColumns();
         for (int rowIndex = this.directionManager.getDimensionManager().lowerBoundForRows(); rowIndex <= maxRowIndex; ++rowIndex) {
             for (int columnIndex = this.directionManager.getDimensionManager().lowerBoundForColumns(); columnIndex <= maxColumnIndex; ++columnIndex) {
-                positions.add(this.newPosition(rowIndex, columnIndex));
+                builder.add(this.newPosition(rowIndex, columnIndex));
             }
         }
-        return Collections.unmodifiableSet(positions);
+        return builder.build();
     }
 
-    // TODO utiliser le builder d'une map immutable    
     private Map<Integer, PositionInterface> initializeData(final Set<PositionInterface> set) {
-        final Map<Integer, PositionInterface> data = Maps.newHashMapWithExpectedSize(set.size());
+        final Builder<Integer, PositionInterface> builder = ImmutableMap.builder();
         for (final PositionInterface element : set) {
-            data.put(this.hash(element.getRow(), element.getColumn()), element);
+            builder.put(this.hash(element.getRow(), element.getColumn()), element);
         }
-        return ImmutableMap.copyOf(data);
+        return builder.build();
     }
 
     public PositionManager(final DirectionManagerInterface directionManager) {
