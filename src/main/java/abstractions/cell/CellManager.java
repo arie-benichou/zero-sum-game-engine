@@ -103,9 +103,9 @@ public final class CellManager implements CellManagerInterface {
         return this.pieceManager.getNullPiece();
     }
 
-    // TODO utiliser le type de mutation comme clé de map
+    // TODO ? utiliser le type de mutation comme clé de map
     public Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side) {
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationsMap = Maps.newHashMap();
+        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationsMap = Maps.newTreeMap();
         final Iterator<ManagedCellInterface> it = this.iterator();
         ManagedCellInterface cell = it.next(); // cellule nulle
         while (it.hasNext()) {
