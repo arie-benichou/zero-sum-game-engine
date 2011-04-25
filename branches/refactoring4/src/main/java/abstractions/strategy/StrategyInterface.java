@@ -17,8 +17,4 @@ public interface StrategyInterface {
 
     List<MutationInterface> applySelection(final List<MutationInterface> mutations);
 
-    //MutationInterface computeStrategicMoveFrom(final List<MutationInterface> mutations);
-
-    //void injectContext(final GameInterface context);
-
 }

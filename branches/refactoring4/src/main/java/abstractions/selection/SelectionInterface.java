@@ -25,8 +25,4 @@ public interface SelectionInterface {
 
     List<MutationInterface> applySelection(final List<MutationInterface> mutations);
 
-    //void setContext(final GameInterface context);
-
-    //GameInterface getContext();
-
 }

@@ -1,17 +1,13 @@
 
-package abstractions.opponent;
+package abstractions.player;
 
 import abstractions.strategy.StrategyInterface;
 
 // TODO ? utiliser le pattern visitor pour visiter les cellules
-public interface OpponentInterface {
+public interface PlayerInterface {
 
     String getName();
 
-    //SideInterface getSide();
-
     StrategyInterface getStrategy();
-
-    //GameInterface context;
 
 }

@@ -23,10 +23,6 @@ import abstractions.mutation.MutationInterface;
 
 public interface EvaluationInterface {
 
-    //void setContext(GameInterface context);
-
-    //GameInterface getContext();
-
     List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
 
 }
