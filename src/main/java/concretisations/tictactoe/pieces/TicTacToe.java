@@ -52,6 +52,7 @@ public class TicTacToe {
 
         // TODO utiliser manager/factory        
         final AdversityInterface adversity = new Adversity(player1, player2); // TODO fusionner side et adversity et faire AdversityManager
+        // TODO injecter l'adversitymanager au piecemanager (jeu à une seule side nulle : free them all : sleepy)
 
         //System.out.println(adversity.getOpponent(Sides.FIRST));
         //System.out.println(adversity.getOpponent(Sides.SECOND));

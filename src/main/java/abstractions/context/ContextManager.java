@@ -25,34 +25,29 @@ public class ContextManager {
 
         System.out.println(this);
 
-        //do {
-        final SideInterface sideToPlay = this.context.getSideToPlay();
-        final PlayerInterface player = this.context.getAdversity().getOpponent(sideToPlay);
-        // TODO encapsuler le CellManager dans le MutationManager ( ~ game specifications)
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.context.getCellManager().getPotentialMutations(
+        do {
+            final SideInterface sideToPlay = this.context.getSideToPlay();
+            final PlayerInterface player = this.context.getAdversity().getOpponent(sideToPlay);
+            // TODO ? encapsuler le CellManager dans le MutationManager ( ~ game specifications)
+            final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.context.getCellManager().getPotentialMutations(
                     sideToPlay);
-
-        //TODO à améliorer
-        final List<MutationInterface> mutations = Lists.newArrayList();
-        for (final Set<? extends MutationInterface> set : potentialMutations.values()) {
-            mutations.addAll(set);
+            //TODO ! à améliorer
+            final List<MutationInterface> mutations = Lists.newArrayList();
+            for (final Set<? extends MutationInterface> set : potentialMutations.values()) {
+                mutations.addAll(set);
+            }
+            System.out.println("");
+            for (final MutationInterface mutation : mutations) {
+                System.out.println(mutation);
+            }
+            final List<MutationInterface> strategicMutations = player.getStrategy().applyStrategy(mutations);
+            for (final MutationInterface mutation : strategicMutations) {
+                mutation.process();
+            }
+            this.context.setSideToPlay(sideToPlay.getNextSide());
+            System.out.println(this);
         }
-        /*
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> entry : potentialMutations.entrySet()) {
-            System.out.println(entry.getKey());
-            //mutations.addAll(entry.getValue());
-        }
-        */
-        for (final MutationInterface mutation : mutations) {
-            System.out.println(mutation);
-        }
-
-        //final ArrayList<Set<? extends MutationInterface>> mutations = Lists.newArrayList(potentialMutations.values());
-
-        //legalMove = opponent.selectMove(legalMoves);
-        //this.play(legalMove);
-        //System.out.println(this);
-        //}while (!this.isGamePlayOver());
+        while (true /*!this.isGamePlayOver()*/);
 
         /*
         result =

@@ -23,25 +23,29 @@ public class NullStrategy implements StrategyInterface {
         this(new NullEvaluator(), new NullSelector());
     }
 
-    public EvaluationInterface getEvaluator() {
+    public final EvaluationInterface getEvaluator() {
         return this.evaluator;
     }
 
-    public SelectionInterface getSelector() {
+    public final SelectionInterface getSelector() {
         return this.selector;
     }
 
-    public List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations) {
+    protected final List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations) {
         return this.evaluator.applyEvaluation(mutations);
     }
 
-    public List<MutationInterface> applySelection(final List<MutationInterface> mutations) {
+    protected final List<MutationInterface> applySelection(final List<MutationInterface> mutations) {
         return this.selector.applySelection(mutations);
     }
 
     @Override
     public String toString() {
         return "Strategy(" + this.evaluator.toString() + ", " + this.selector.toString() + ")";
+    }
+
+    public final List<MutationInterface> applyStrategy(final List<MutationInterface> mutations) {
+        return this.applySelection(this.applyEvaluation(mutations));
     }
 
 }

@@ -13,8 +13,10 @@ public interface StrategyInterface {
 
     SelectionInterface getSelector();
 
-    List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
+    //List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
 
-    List<MutationInterface> applySelection(final List<MutationInterface> mutations);
+    //List<MutationInterface> applySelection(final List<MutationInterface> mutations);
+
+    List<MutationInterface> applyStrategy(final List<MutationInterface> mutations);
 
 }

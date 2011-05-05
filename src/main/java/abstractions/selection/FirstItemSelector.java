@@ -14,7 +14,7 @@ public class FirstItemSelector extends NullSelector {
 
     @Override
     public List<MutationInterface> applySelection(final List<MutationInterface> mutations) {
-        this.selection.set(0, mutations.get(0));
+        this.selection.add(0, mutations.get(0));
         return this.selection;
     }
 
