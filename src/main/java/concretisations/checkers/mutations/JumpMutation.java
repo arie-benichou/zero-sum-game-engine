@@ -21,11 +21,17 @@ public final class JumpMutation extends CheckersMutation {
     @Override
     protected List<MutationInterface> sequence() {
         return ImmutableList.of(
+
+                /*
                 AtomicMutationFactory.newBirth(this.getCell().getNeighbour(this.getDirection()).getNeighbour(this.getDirection()), this.getCell().getPiece()
                         .getSide(), this.getCell().getPiece().getType()),
+                */
+                new CheckersBirthMutation(this.getCell().getNeighbour(this.getDirection()).getNeighbour(this.getDirection()), this.getCell().getPiece()
+                        .getType(), this.getCell().getPiece()
+                        .getSide()),
                 AtomicMutationFactory.newDeath(this.getCell().getNeighbour(this.getDirection())),
                 AtomicMutationFactory.newDeath(this.getCell())
 
-        );
+                );
     }
 }

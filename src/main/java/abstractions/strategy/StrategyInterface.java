@@ -17,6 +17,7 @@ public interface StrategyInterface {
 
     //List<MutationInterface> applySelection(final List<MutationInterface> mutations);
 
-    List<MutationInterface> applyStrategy(final List<MutationInterface> mutations);
+    //List<MutationInterface> applyStrategy(final List<MutationInterface> mutations);
+    MutationInterface applyStrategy(final List<MutationInterface> mutations);
 
 }

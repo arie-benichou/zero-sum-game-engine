@@ -15,14 +15,21 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.mutations;
+package concretisations.sudoku;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.piece.PieceTypeInterface;
 
-public enum CheckersMutations implements MutationTypeInterface {
+public enum SudokuPieceSet implements PieceTypeInterface {
 
-    JUMP,
-    WALK,
-    KING
+    NULL,
+    NUMBER1,
+    NUMBER2,
+    NUMBER3,
+    NUMBER4,
+    NUMBER5,
+    NUMBER6,
+    NUMBER7,
+    NUMBER8,
+    NUMBER9;
 
 }

@@ -71,6 +71,16 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      */
     ManagedCellInterface getCell(final PositionInterface position);
 
+    List<ManagedCellInterface> getRow(final int rowIndex);
+
+    List<ManagedCellInterface> getColumn(final int columnIndex);
+
+    //List<PieceInterface> getPiecesByRow(final int rowIndex);
+
+    //List<PieceInterface> getPiecesByColumn(final int columnIndex);
+
+    List<ManagedCellInterface> getRegion(PositionInterface topLeftPosition, PositionInterface bottomRightPosition);
+
     /**
      * Returns a set of potential mutations for this cell.
      * 

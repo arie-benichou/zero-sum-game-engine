@@ -3,6 +3,7 @@ package abstractions.context;
 
 import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManagerInterface;
+import abstractions.referee.RefereeInterface;
 import abstractions.side.SideInterface;
 
 public interface ContextInterface {
@@ -14,5 +15,7 @@ public interface ContextInterface {
     void setSideToPlay(final SideInterface side);
 
     SideInterface getSideToPlay();
+    
+    RefereeInterface getReferee();
 
 }

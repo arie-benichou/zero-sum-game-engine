@@ -165,6 +165,133 @@ public final class CellManagerTest {
         Assert.assertTrue(expectedCells.equals(cells));
     }
 
+    @Test
+    public void testGetRow() {
+
+        // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 3).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        //
+
+        final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(3);
+        expectedCells.add(this.cellManager.getCell(1, 1));
+        expectedCells.add(this.cellManager.getCell(1, 2));
+        expectedCells.add(this.cellManager.getCell(1, 3));
+        Assert.assertTrue(expectedCells.equals(this.cellManager.getRow(1)));
+
+        for (final ManagedCellInterface cell : this.cellManager.getRow(0)) {
+            Assert.assertTrue(cell.isNull());
+        }
+        for (final ManagedCellInterface cell : this.cellManager.getRow(4)) {
+            Assert.assertTrue(cell.isNull());
+        }
+
+    }
+
+    @Test
+    public void testGetColumn() {
+
+        // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(3, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        //
+
+        final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(3);
+        expectedCells.add(this.cellManager.getCell(1, 1));
+        expectedCells.add(this.cellManager.getCell(2, 1));
+        expectedCells.add(this.cellManager.getCell(3, 1));
+        Assert.assertTrue(expectedCells.equals(this.cellManager.getColumn(1)));
+
+        for (final ManagedCellInterface cell : this.cellManager.getColumn(0)) {
+            Assert.assertTrue(cell.isNull());
+        }
+
+        for (final ManagedCellInterface cell : this.cellManager.getColumn(4)) {
+            Assert.assertTrue(cell.isNull());
+        }
+
+    }
+
+    @Test
+    public void testGetRegion() {
+
+        // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
+
+        final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(4);
+        expectedCells.add(this.cellManager.getCell(1, 1));
+        expectedCells.add(this.cellManager.getCell(1, 2));
+        expectedCells.add(this.cellManager.getCell(2, 1));
+        expectedCells.add(this.cellManager.getCell(2, 2));
+        Assert.assertTrue(expectedCells.equals(this.cellManager.getRegion(this.cellManager.position(1, 1), this.cellManager.position(2, 2))));
+
+    }
+
+    /*
+    @Test
+    public void testGetPiecesByExistingRow() {
+
+        // TODO ? revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 3).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        //
+
+        final List<PieceInterface> expectedPieces = new ArrayList<PieceInterface>(3);
+
+        expectedPieces.add(this.cellManager.getCell(1, 1).getPiece());
+        expectedPieces.add(this.cellManager.getCell(1, 2).getPiece());
+        expectedPieces.add(this.cellManager.getCell(1, 3).getPiece());
+
+        Assert.assertTrue(expectedPieces.equals(this.cellManager.getPiecesByRow(1)));
+
+    }
+
+    @Test
+    public void testGetPiecesByUnexistingRow() {
+        for (final PieceInterface piece : this.cellManager.getPiecesByRow(0)) {
+            Assert.assertTrue(piece.getType() == PieceSet1.NULL); // TODO ! ajouter la méthode isNull() à l'interface d'une pièce
+        }
+        for (final PieceInterface piece : this.cellManager.getPiecesByRow(4)) {
+            Assert.assertTrue(piece.getType() == PieceSet1.NULL); // TODO ! ajouter la méthode isNull() à l'interface d'une pièce
+        }
+    }
+
+    @Test
+    public void testGetPiecesByExistingColumn() {
+
+        // TODO ? revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
+        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(3, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        //
+
+        final List<PieceInterface> expectedPieces = new ArrayList<PieceInterface>(3);
+
+        expectedPieces.add(this.cellManager.getCell(1, 1).getPiece());
+        expectedPieces.add(this.cellManager.getCell(2, 1).getPiece());
+        expectedPieces.add(this.cellManager.getCell(3, 1).getPiece());
+
+        Assert.assertTrue(expectedPieces.equals(this.cellManager.getPiecesByColumn(1)));
+
+    }
+
+    @Test
+    public void testGetPiecesByUnexistingColumn() {
+        for (final PieceInterface piece : this.cellManager.getPiecesByColumn(0)) {
+            Assert.assertTrue(piece.getType() == PieceSet1.NULL); // TODO ! ajouter la méthode isNull() à l'interface d'une pièce
+        }
+        for (final PieceInterface piece : this.cellManager.getPiecesByColumn(4)) {
+            Assert.assertTrue(piece.getType() == PieceSet1.NULL); // TODO ! ajouter la méthode isNull() à l'interface d'une pièce
+        }
+    }
+    */
+
     @After
     public void tearDown() throws Exception {
         this.cellManager = null; // NOPMD

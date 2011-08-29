@@ -18,31 +18,37 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.piece.PieceInterface;
 
-public class Birth extends AbstractAtomicMutation {
+public class NullMutation implements MutationInterface {
 
-    private final SideInterface side;
-    private final PieceTypeInterface pieceType;
+    private static MutationInterface INSTANCE = new NullMutation();
 
-    public Birth(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final PieceTypeInterface pieceType, final SideInterface side) {
-        super(cell, mutationType);
-        this.side = side;
-        this.pieceType = pieceType;
+    public static MutationInterface getInstance() {
+        return INSTANCE;
     }
 
-    public SideInterface getSide() {
-        return this.side;
-    }
+    private NullMutation() {}
 
-    public PieceTypeInterface getPieceType() {
-        return this.pieceType;
+    @Override
+    public void process() {}
+
+    @Override
+    public ManagedCellInterface getCell() {
+        return null; // TODO Null Cell
     }
 
     @Override
-    public void process() {
-        this.getCell().setPiece(this.getSide(), this.getPieceType());
+    public MutationTypeInterface getType() {
+        return null; // TODO Mutation Type
     }
+
+    @Override
+    public PieceInterface getSavedSate() {
+        return null; // TODO Null Piece
+    }
+
+    @Override
+    public void cancel() {}
 
 }

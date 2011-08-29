@@ -109,7 +109,12 @@ public final class ManagedCell implements ManagedCellInterface {
         }
         else {
             final ManagedCellInterface that = (ManagedCellInterface) object;
+
+            //System.out.println(this);
+            //System.out.println(that);
+
             isEqual = that.isNull() == this.isNull() && that.getPiece().equals(this.getPiece());
+            System.out.println(isEqual);
         }
         return isEqual;
     }

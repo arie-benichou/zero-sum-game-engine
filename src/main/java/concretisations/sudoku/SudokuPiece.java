@@ -15,14 +15,23 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.checkers.mutations;
+package concretisations.sudoku;
 
-import abstractions.mutation.MutationTypeInterface;
+import java.util.Set;
 
-public enum CheckersMutations implements MutationTypeInterface {
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.AbstractPiece;
+import abstractions.piece.PieceTypeInterface;
+import abstractions.side.SideInterface;
 
-    JUMP,
-    WALK,
-    KING
+public abstract class SudokuPiece extends AbstractPiece {
+
+    public SudokuPiece(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type);
+    }
+
+    @Override
+    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }
