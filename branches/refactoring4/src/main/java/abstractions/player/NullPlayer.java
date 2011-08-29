@@ -1,9 +1,10 @@
 
 package abstractions.player;
 
-import abstractions.strategy.NullStrategy;
+import abstractions.strategy.AbstractStrategy;
 import abstractions.strategy.StrategyInterface;
 
+//TODO à virer
 public class NullPlayer implements PlayerInterface {
 
     private final String name;
@@ -15,7 +16,7 @@ public class NullPlayer implements PlayerInterface {
     }
 
     public NullPlayer() {
-        this("", new NullStrategy());
+        this("", new AbstractStrategy());
     }
 
     public final String getName() {

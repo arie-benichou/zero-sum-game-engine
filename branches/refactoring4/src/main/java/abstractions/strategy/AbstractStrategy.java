@@ -4,23 +4,17 @@ package abstractions.strategy;
 import java.util.List;
 
 import abstractions.evaluation.EvaluationInterface;
-import abstractions.evaluation.NullEvaluator;
 import abstractions.mutation.MutationInterface;
-import abstractions.selection.NullSelector;
 import abstractions.selection.SelectionInterface;
 
-public class NullStrategy implements StrategyInterface {
+public abstract class AbstractStrategy implements StrategyInterface {
 
     private final EvaluationInterface evaluator;
     private final SelectionInterface selector;
 
-    protected NullStrategy(final EvaluationInterface evaluator, final SelectionInterface selector) {
+    public AbstractStrategy(final EvaluationInterface evaluator, final SelectionInterface selector) {
         this.evaluator = evaluator;
         this.selector = selector;
-    }
-
-    public NullStrategy() {
-        this(new NullEvaluator(), new NullSelector());
     }
 
     public final EvaluationInterface getEvaluator() {
@@ -35,8 +29,8 @@ public class NullStrategy implements StrategyInterface {
         return this.evaluator.applyEvaluation(mutations);
     }
 
-    protected final List<MutationInterface> applySelection(final List<MutationInterface> mutations) {
-        return this.selector.applySelection(mutations);
+    protected final MutationInterface applySelection(final List<MutationInterface> mutations) {
+        return this.getSelector().applySelection(mutations);
     }
 
     @Override
@@ -44,7 +38,7 @@ public class NullStrategy implements StrategyInterface {
         return "Strategy(" + this.evaluator.toString() + ", " + this.selector.toString() + ")";
     }
 
-    public final List<MutationInterface> applyStrategy(final List<MutationInterface> mutations) {
+    public final MutationInterface applyStrategy(final List<MutationInterface> mutations) {
         return this.applySelection(this.applyEvaluation(mutations));
     }
 

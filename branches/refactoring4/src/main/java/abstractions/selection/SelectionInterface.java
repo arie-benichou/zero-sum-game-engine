@@ -23,6 +23,8 @@ import abstractions.mutation.MutationInterface;
 
 public interface SelectionInterface {
 
-    List<MutationInterface> applySelection(final List<MutationInterface> mutations);
+    // TODO revoir l'interface: devrait retourner un seul élément
+    //List<MutationInterface> applySelection(final List<MutationInterface> mutations);
+    MutationInterface applySelection(final List<MutationInterface> mutations);
 
 }

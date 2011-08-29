@@ -1,5 +1,5 @@
 
-package concretisations.tictactoe.pieces;
+package concretisations.tictactoe;
 
 import abstractions.adversity.Adversity;
 import abstractions.adversity.AdversityInterface;
@@ -20,7 +20,10 @@ import abstractions.player.Player;
 import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
+import abstractions.referee.RefereeInterface;
 import abstractions.selection.FirstItemSelector;
+import abstractions.selection.HumanMoveSelector;
+import abstractions.selection.RandomItemSelector;
 import abstractions.selection.SelectionInterface;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -36,7 +39,7 @@ public class TicTacToe {
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
 
         // TODO utiliser manager/factory
-        final SelectionInterface selector = new FirstItemSelector();
+        final SelectionInterface selector = new RandomItemSelector();
 
         // TODO utiliser manager/factory
         final EvaluationInterface evaluator = new NullEvaluator();
@@ -57,8 +60,10 @@ public class TicTacToe {
         //System.out.println(adversity.getOpponent(Sides.FIRST));
         //System.out.println(adversity.getOpponent(Sides.SECOND));
 
+        final RefereeInterface referee = new TicTacToeReferee();
+
         // TODO utiliser manager/factory
-        final ContextInterface context = new Context(adversity, cellManager);
+        final ContextInterface context = new Context(adversity, cellManager, referee);
 
         //System.out.println(context);
 

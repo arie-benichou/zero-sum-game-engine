@@ -142,4 +142,56 @@ public final class CellManager implements CellManagerInterface {
         return this.positionManager.getNamedDirections();
     }
 
+    // TODO ? utiliser un cache
+    public List<ManagedCellInterface> getRow(final int rowIndex) {
+        final int maxColumnIndex = Collections.max(this.map.values()).getColumn();
+        final List<ManagedCellInterface> row = Lists.newArrayListWithCapacity(maxColumnIndex);
+        for (int columnIndex = 1; columnIndex <= maxColumnIndex; ++columnIndex) {
+            row.add(this.getCell(rowIndex, columnIndex));
+        }
+        return row;
+    }
+
+    // TODO ? utiliser un cache
+    public List<ManagedCellInterface> getColumn(final int columnIndex) {
+        final int maxRowIndex = Collections.max(this.map.values()).getRow();
+        final List<ManagedCellInterface> column = Lists.newArrayListWithCapacity(maxRowIndex);
+        for (int rowIndex = 1; rowIndex <= maxRowIndex; ++rowIndex) {
+            column.add(this.getCell(rowIndex, columnIndex));
+        }
+        return column;
+    }
+
+    /*
+    public List<PieceInterface> getPiecesByRow(final int rowIndex) {
+        final int maxColumnIndex = Collections.max(this.map.values()).getColumn();
+        final List<PieceInterface> row = Lists.newArrayListWithCapacity(maxColumnIndex);
+        for (int columnIndex = 1; columnIndex <= maxColumnIndex; ++columnIndex) {
+            row.add(this.getCell(rowIndex, columnIndex).getPiece());
+        }
+        return row;
+    }
+
+    public List<PieceInterface> getPiecesByColumn(final int columnIndex) {
+        final int maxRowIndex = Collections.max(this.map.values()).getRow();
+        final List<PieceInterface> column = Lists.newArrayListWithCapacity(maxRowIndex);
+        for (int rowIndex = 1; rowIndex <= maxRowIndex; ++rowIndex) {
+            column.add(this.getCell(rowIndex, columnIndex).getPiece());
+        }
+        return column;
+    }
+    */
+
+    // TODO ? utiliser un cache    
+    public List<ManagedCellInterface> getRegion(final PositionInterface topLeftPosition, final PositionInterface bottomRightPosition) {
+        final int regionCapacity = (1 + bottomRightPosition.getRow() - topLeftPosition.getRow())
+                * (1 + bottomRightPosition.getColumn() - topLeftPosition.getColumn());
+        final List<ManagedCellInterface> region = Lists.newArrayListWithCapacity(regionCapacity);
+        for (int rowIndex = topLeftPosition.getRow(), maxRowIndex = bottomRightPosition.getRow(); rowIndex <= maxRowIndex; ++rowIndex) {
+            for (int columnIndex = topLeftPosition.getColumn(), maxColumnIndex = bottomRightPosition.getColumn(); columnIndex <= maxColumnIndex; ++columnIndex) {
+                region.add(this.getCell(rowIndex, columnIndex));
+            }
+        }
+        return region;
+    }
 }

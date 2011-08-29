@@ -15,34 +15,29 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.mutation;
+package concretisations.sudoku;
+
+import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-public class Birth extends AbstractAtomicMutation {
+public final class Null extends SudokuPiece {
 
-    private final SideInterface side;
-    private final PieceTypeInterface pieceType;
-
-    public Birth(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final PieceTypeInterface pieceType, final SideInterface side) {
-        super(cell, mutationType);
-        this.side = side;
-        this.pieceType = pieceType;
-    }
-
-    public SideInterface getSide() {
-        return this.side;
-    }
-
-    public PieceTypeInterface getPieceType() {
-        return this.pieceType;
+    public Null(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type);
     }
 
     @Override
-    public void process() {
-        this.getCell().setPiece(this.getSide(), this.getPieceType());
+    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+        //return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, SudokuPieceSet.PAWN)); // NOPMD 
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 
+    @Override
+    public String toString() {
+        return " "; // space
+    }
 }

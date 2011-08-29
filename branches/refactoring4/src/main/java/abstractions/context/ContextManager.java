@@ -7,10 +7,18 @@ import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
+import abstractions.mutation.NullMutation;
 import abstractions.player.PlayerInterface;
 import abstractions.side.SideInterface;
 
 import com.google.common.collect.Lists;
+
+
+//TODO ! gérer la NPE lorsque le jeu est null
+
+//TODO renommer ContextManagerForTwoPlayers
+//TODO écrire ContextManagerForSinglePlayer
+//TODO écrire ContextManagerForNoPlayer
 
 public class ContextManager {
 
@@ -23,31 +31,59 @@ public class ContextManager {
 
     public void start() {
 
+        int counter = 0;
+
         System.out.println(this);
 
+        MutationInterface strategicMutation;
+
         do {
+
             final SideInterface sideToPlay = this.context.getSideToPlay();
             final PlayerInterface player = this.context.getAdversity().getOpponent(sideToPlay);
+
             // TODO ? encapsuler le CellManager dans le MutationManager ( ~ game specifications)
             final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.context.getCellManager().getPotentialMutations(
                     sideToPlay);
+
             //TODO ! à améliorer
-            final List<MutationInterface> mutations = Lists.newArrayList();
+            List<MutationInterface> mutations = Lists.newArrayList();
             for (final Set<? extends MutationInterface> set : potentialMutations.values()) {
                 mutations.addAll(set);
             }
-            System.out.println("");
-            for (final MutationInterface mutation : mutations) {
-                System.out.println(mutation);
+
+            mutations = this.context.getReferee().filterMutation(mutations);
+
+            if (!mutations.isEmpty()) {
+
+                strategicMutation = player.getStrategy().applyStrategy(mutations);
+                strategicMutation.process();
+
+                counter = 0;
+
+                //this.context.setSideToPlay(this.context.getReferee().getSideToPlay(strategicMutation));
+                this.context.setSideToPlay(this.context.getReferee().getSideToPlay(this.context.getSideToPlay(), strategicMutation));
+
+                System.out.println(this);
+
             }
-            final List<MutationInterface> strategicMutations = player.getStrategy().applyStrategy(mutations);
-            for (final MutationInterface mutation : strategicMutations) {
-                mutation.process();
+            else {
+
+                strategicMutation = NullMutation.getInstance();
+                System.out.println("no mutation available for " + this.context.getSideToPlay());
+
+                if (++counter > 1) {
+                    System.out.println("Game Over!");
+                    break;
+                }
+
+                //this.context.setSideToPlay(sideToPlay.getNextSide());
+                this.context.setSideToPlay(this.context.getReferee().getSideToPlay(this.context.getSideToPlay(), strategicMutation));
+
             }
-            this.context.setSideToPlay(sideToPlay.getNextSide());
-            System.out.println(this);
+
         }
-        while (true /*!this.isGamePlayOver()*/);
+        while (!this.context.getReferee().isGameOver(strategicMutation));
 
         /*
         result =
