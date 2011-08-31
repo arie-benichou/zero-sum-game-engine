@@ -111,7 +111,7 @@ public class TicTacToeReferee implements RefereeInterface {
     */
 
     @Override
-    public int evaluate(ContextInterface context, SideInterface side) {
+    public int getHeuristicEvaluation(ContextInterface context, SideInterface side) {
         MutationInterface lastMutation = context.getLastPlayerMove(side);
         int connections = 0;
         for (final NamedDirection[] directions : DIRECTIONS) {

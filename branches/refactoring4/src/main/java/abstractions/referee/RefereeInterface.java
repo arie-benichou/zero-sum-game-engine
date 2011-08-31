@@ -17,14 +17,16 @@ public interface RefereeInterface {
     // Lorsqu'une mutation a été effectuée (ou plutôt lorsqu'un cycle a été effectué)
     boolean isGameOver(final ContextInterface context); //, final MutationInterface lastMutation);
 
-    //SideInterface getSideToPlay(final SideInterface currentSide, final MutationInterface lastMutation);
+    //SideInterface getSideToPlay(final SideInterface side, final MutationInterface lastMutation);
 
     // Lorsque la liste de mutations a été obtenue    
     //List<MutationInterface> filterMutation(final List<MutationInterface> potentialMutations); // TODO ? utiliser une map
 
     //SideInterface getWinner(final ContextInterface context);
 
-    int evaluate(final ContextInterface context, final SideInterface currentSide);
+    int getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
+
+    int getTerminalEvaluation(final ContextInterface context, final SideInterface side);
 
     // TODO !? cellManager devrait suffire
     List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
