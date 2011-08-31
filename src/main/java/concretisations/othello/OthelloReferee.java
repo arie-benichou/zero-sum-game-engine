@@ -133,7 +133,7 @@ public class OthelloReferee implements RefereeInterface {
         */
 
         if (delta != 0)
-            return 1001 - this.computeLeft(context, side.getNextSide());
+            return Integer.MAX_VALUE - this.computeLeft(context, side.getNextSide());
 
         return 0;
 

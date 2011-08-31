@@ -34,7 +34,7 @@ public class SmallOthello { // TODO implémenter une GameInterface (inclure l'in
 
         final EvaluationInterface evaluator1 = new NullEvaluator();
         //final EvaluationInterface evaluator2 = new MiniMaxEvaluator(11);
-        final EvaluationInterface evaluator2 = new MiniMaxEvaluator(5);
+        final EvaluationInterface evaluator2 = new MiniMaxEvaluator(11);
 
         final StrategyInterface strategy1 = new Strategy(evaluator1, new FirstItemSelector());
         //final StrategyInterface strategy2 = new Strategy(evaluator2, new RandomItemSelector());
