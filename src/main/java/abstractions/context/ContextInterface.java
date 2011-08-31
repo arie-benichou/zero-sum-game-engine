@@ -16,18 +16,28 @@ public interface ContextInterface {
 
     PlayerInterface getCurrentPlayer();
 
-    List<MutationInterface> getLegalMovesForCurrentPlayer();
+    List<MutationInterface> getLegalMoves(final SideInterface side);
 
-    void applyMoveForCurrentPlayer(MutationInterface move);
+    List<MutationInterface> getLegalMoves();
+
+    void applyMove(final MutationInterface move, final SideInterface side);
+
+    void applyMove(final MutationInterface move);
 
     boolean isGameOver();
 
     MutationInterface getLastPlayedMove();
 
-    void undoLastPlayedMoveForCurrentPLayer();
+    MutationInterface getLastMove(final SideInterface side);
 
-    MutationInterface getLastMoveFromSide(SideInterface side);
+    void unapplyLastPlayedMove(SideInterface side);
+
+    void unapplyLastPlayedMove();
 
     CellManagerInterface getCellManager();
+
+    int getHeuristicEvaluation(final SideInterface side);
+
+    int getTerminalEvaluation(final SideInterface side);
 
 }

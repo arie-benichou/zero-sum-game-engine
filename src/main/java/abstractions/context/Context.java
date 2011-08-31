@@ -38,7 +38,7 @@ public class Context implements ContextInterface {
 
         this.moves.put(Sides.FIRST, new Stack<MutationInterface>());
         this.moves.get(Sides.FIRST).add(NullMutation.getInstance());
-        
+
         this.moves.put(Sides.SECOND, new Stack<MutationInterface>());
         this.moves.get(Sides.SECOND).add(NullMutation.getInstance());
 
@@ -61,7 +61,7 @@ public class Context implements ContextInterface {
         return this.cellManager;
     }
 
-    //-----------------------------------------------------------------    
+    //-----------------------------------------------------------------
 
     @Override
     public final void setCurrentSide(final SideInterface side) {
@@ -73,49 +73,86 @@ public class Context implements ContextInterface {
         return this.currentSide;
     }
 
-    //-----------------------------------------------------------------
+    //-----------------------------------------------------------------    
 
     @Override
     public final PlayerInterface getCurrentPlayer() {
         return this.getAdversity().getOpponent(this.getCurrentSide());
     }
 
-    @Override
-    public final List<MutationInterface> getLegalMovesForCurrentPlayer() {
-        return this.getReferee().getLegalMoves(this, this.getCurrentSide());
-    }
+    //-----------------------------------------------------------------    
 
     @Override
     public final boolean isGameOver() {
         return this.getReferee().isGameOver(this);
     }
 
+    //-----------------------------------------------------------------    
+
     @Override
-    public final void applyMoveForCurrentPlayer(MutationInterface move) {
-        this.moves.get(this.getCurrentSide()).add(move.process());
+    public int getHeuristicEvaluation(final SideInterface side) {
+        return this.getReferee().getHeuristicEvaluation(this, side);
     }
-    
+
+    //-----------------------------------------------------------------    
+
     @Override
-    public final MutationInterface getLastMoveFromSide(SideInterface side) {
+    public int getTerminalEvaluation(final SideInterface side) {
+        return this.getReferee().getTerminalEvaluation(this, side);
+    }
+
+    //-----------------------------------------------------------------    
+
+    @Override
+    public List<MutationInterface> getLegalMoves(final SideInterface side) {
+        return this.getReferee().getLegalMoves(this, side);
+    }
+
+    @Override
+    public final List<MutationInterface> getLegalMoves() {
+        return this.getLegalMoves(this.getCurrentSide());
+    }
+
+    //-----------------------------------------------------------------    
+
+    @Override
+    public void applyMove(final MutationInterface move, final SideInterface side) {
+        this.moves.get(side).add(move.process());
+    }
+
+    @Override
+    public final void applyMove(final MutationInterface move) {
+        this.applyMove(move, this.getCurrentSide());
+    }
+
+    //-----------------------------------------------------------------    
+
+    @Override
+    public final MutationInterface getLastMove(final SideInterface side) {
         return this.moves.get(side).lastElement();
-    }    
+    }
 
     @Override
     public final MutationInterface getLastPlayedMove() {
-        return this.getLastMoveFromSide(this.getCurrentSide().getNextSide());
+        return this.getLastMove(this.getCurrentSide().getNextSide());
+    }
+
+    //-----------------------------------------------------------------    
+
+    @Override
+    public void unapplyLastPlayedMove(final SideInterface side) {
+        this.moves.get(side).pop().cancel();
     }
 
     @Override
-    public final void undoLastPlayedMoveForCurrentPLayer() {
-        this.getLastPlayedMove().cancel();
+    public final void unapplyLastPlayedMove() {
+        this.unapplyLastPlayedMove(this.getCurrentSide());
     }
 
     //-----------------------------------------------------------------    
 
     @Override
     public final String toString() {
-        //return this.adversity.toString() + "\n" + this.cellManager.toString() + "\n" + "side to play : " + this.sideToPlay;
-        //return this.cellManager + "\n" + "side to play : " + this.currentSide;
         return this.cellManager.toString();
     }
 

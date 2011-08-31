@@ -33,39 +33,46 @@ public class ContextManager {
     }
 
     private final PlayerInterface getCurrentPlayer() {
-        System.out.println(this.getContext().getCurrentPlayer().getName());
         return this.getContext().getCurrentPlayer();
     }
 
-    private final void setSideToPlay(SideInterface nextSideToPlay) {
+    private final void setSideToPlay(final SideInterface nextSideToPlay) {
         this.getContext().setCurrentSide(nextSideToPlay);
     }
 
     private final List<MutationInterface> getLegalMoves() {
-        return this.getContext().getLegalMovesForCurrentPlayer();
+        return this.getContext().getLegalMoves();
     }
 
     private final boolean isGameOver() {
         return this.getContext().isGameOver();
     }
 
-    private final void applyMoveForCurrentPlayer(MutationInterface move) {
-        System.out.println(move);
-        this.getContext().applyMoveForCurrentPlayer(move);
+    private final void applyMoveForCurrentPlayer(final MutationInterface move) {
+        this.getContext().applyMove(move);
     }
 
     public void play() {
 
         do {
+
             this.setSideToPlay(this.getCurrentSide().getNextSide());
             System.out.println(this);
-            this.applyMoveForCurrentPlayer(this.getCurrentPlayer().applyStrategy(this.getLegalMoves()));
+
+            final PlayerInterface player = this.getCurrentPlayer();
+            System.out.println(player.getName());
+
+            final MutationInterface move = player.applyStrategy(this.getLegalMoves());
+            System.out.println(move);
+
+            this.applyMoveForCurrentPlayer(move);
+
         }
         while (!this.isGameOver());
-        
+
         System.out.println(this);
         System.out.println("Game Over!");
-        
+
     }
 
     @Override

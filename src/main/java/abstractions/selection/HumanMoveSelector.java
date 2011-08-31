@@ -13,8 +13,10 @@ public class HumanMoveSelector implements SelectionInterface {
     public MutationInterface applySelection(final List<MutationInterface> mutations) {
 
         // TODO créer un selecteur qui retourne l'unique mutation pour un singleton
+        /*
         if (mutations.size() == 1)
             return mutations.get(0);
+        */
 
         MutationInterface mutation;
 
@@ -35,10 +37,9 @@ public class HumanMoveSelector implements SelectionInterface {
                 System.out.println("Please try again...");
                 mutation = this.applySelection(mutations);
             }
-            else {
+            else
                 mutation = mutations.get(i - 1);
-                //System.out.println("\nYou have choosen to play: " + mutation);
-            }
+            //System.out.println("\nYou have choosen to play: " + mutation);
         }
         catch (final InputMismatchException e) {
             System.out.println("\nPositive natural integer expected.");

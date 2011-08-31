@@ -25,7 +25,7 @@ public class NullMutation implements MutationInterface {
     private static MutationInterface INSTANCE = new NullMutation();
 
     public static MutationInterface getInstance() {
-        return INSTANCE;
+        return NullMutation.INSTANCE;
     }
 
     private NullMutation() {}
@@ -56,6 +56,11 @@ public class NullMutation implements MutationInterface {
     @Override
     public boolean isNull() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
     }
 
 }
