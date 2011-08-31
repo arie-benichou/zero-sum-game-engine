@@ -39,7 +39,7 @@ public interface PieceInterface {
      * @return the potential cell mutations induced by the piece (see a piece as
      *         a kind of cell kernel)
      */
-    Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
+    Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
 
     // TODO ? add method isNull() to a piece interface    
 

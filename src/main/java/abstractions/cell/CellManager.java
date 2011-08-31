@@ -104,13 +104,13 @@ public final class CellManager implements CellManagerInterface {
     }
 
     // TODO ? utiliser le type de mutation comme clé de map
-    public Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side) {
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutationsMap = Maps.newTreeMap();
+    public Map<ManagedCellInterface, Set<MutationInterface>> getPotentialMutations(final SideInterface side) {
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutationsMap = Maps.newTreeMap();
         final Iterator<ManagedCellInterface> it = this.iterator();
         ManagedCellInterface cell = it.next(); // cellule nulle
         while (it.hasNext()) {
             cell = it.next();
-            final Set<? extends MutationInterface> p = cell.getPotentialMutations(side);
+            final Set<MutationInterface> p = cell.getPotentialMutations(side);
             if (!p.equals(MutationInterface.NULL_POTENTIAL_MUTATION_SET)) {
                 potentialMutationsMap.put(cell, p);
             }
@@ -194,4 +194,15 @@ public final class CellManager implements CellManagerInterface {
         }
         return region;
     }
+
+    @Override
+    public boolean isFull() {
+        Iterator<ManagedCellInterface> it = this.iterator();
+        it.next();
+        while (it.hasNext())
+            if (it.next().isEmpty())
+                return false;
+        return true;
+    }
+    
 }

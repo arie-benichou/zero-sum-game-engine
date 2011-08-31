@@ -26,8 +26,9 @@ class Death extends AbstractAtomicMutation {
     }
 
     @Override
-    public void process() {
+    public MutationInterface process() {
         this.getCell().die();
+        return this;
     }
 
 }

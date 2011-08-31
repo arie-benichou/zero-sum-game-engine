@@ -41,8 +41,9 @@ public class Birth extends AbstractAtomicMutation {
     }
 
     @Override
-    public void process() {
+    public MutationInterface process() {
         this.getCell().setPiece(this.getSide(), this.getPieceType());
+        return this;
     }
 
 }

@@ -20,6 +20,7 @@ package abstractions.mutation;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceInterface;
 
+// TODO equals et hashcode ?
 public abstract class AbstractMutation implements MutationInterface {
 
     private final ManagedCellInterface cell;
@@ -49,8 +50,13 @@ public abstract class AbstractMutation implements MutationInterface {
         return this.getType() + " " + this.getCell().getPosition() + " ";
     }
 
-    public abstract void process();
+    public abstract MutationInterface process();
 
     public abstract void cancel();
+
+    @Override
+    public boolean isNull() {
+        return false;
+    }
 
 }

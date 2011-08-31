@@ -1,21 +1,33 @@
 
 package abstractions.context;
 
-import abstractions.adversity.AdversityInterface;
+import java.util.List;
+
 import abstractions.cell.CellManagerInterface;
-import abstractions.referee.RefereeInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.player.PlayerInterface;
 import abstractions.side.SideInterface;
 
 public interface ContextInterface {
 
-    AdversityInterface getAdversity();
+    void setCurrentSide(final SideInterface side);
+
+    SideInterface getCurrentSide();
+
+    PlayerInterface getCurrentPlayer();
+
+    List<MutationInterface> getLegalMovesForCurrentPlayer();
+
+    void applyMoveForCurrentPlayer(MutationInterface move);
+
+    boolean isGameOver();
+
+    MutationInterface getLastPlayedMove();
+
+    void undoLastPlayedMoveForCurrentPLayer();
+
+    MutationInterface getLastMoveFromSide(SideInterface side);
 
     CellManagerInterface getCellManager();
-
-    void setSideToPlay(final SideInterface side);
-
-    SideInterface getSideToPlay();
-    
-    RefereeInterface getReferee();
 
 }

@@ -23,10 +23,11 @@ public abstract class AbstractCompositeMutation extends AbstractMutation {
     protected abstract List<MutationInterface> sequence();
 
     @Override
-    public final void process() {
+    public final MutationInterface process() {
         for (final MutationInterface mutation : this.getSequence()) {
             mutation.process();
         }
+        return this;
     }
 
     @Override

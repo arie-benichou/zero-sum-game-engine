@@ -2,17 +2,14 @@
 package concretisations.tictactoe;
 
 import abstractions.adversity.Adversity;
-import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.context.Context;
-import abstractions.context.ContextInterface;
 import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
-import abstractions.dimension.DimensionManagerInterface;
 import abstractions.direction.DirectionManager;
-import abstractions.direction.DirectionManagerInterface;
 import abstractions.evaluation.EvaluationInterface;
+import abstractions.evaluation.MiniMaxEvaluator;
 import abstractions.evaluation.NullEvaluator;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
@@ -24,60 +21,43 @@ import abstractions.referee.RefereeInterface;
 import abstractions.selection.FirstItemSelector;
 import abstractions.selection.HumanMoveSelector;
 import abstractions.selection.RandomItemSelector;
-import abstractions.selection.SelectionInterface;
+import abstractions.side.SideInterface;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
 
 public class TicTacToe {
 
-    public TicTacToe() {
+    public static void main(String[] args) {
 
-        final DimensionManagerInterface dimensionManager = new DimensionManager(3, 3);
-        final DirectionManagerInterface directionManager = new DirectionManager(dimensionManager);
-        final PositionManagerInterface positionManager = new PositionManager(directionManager);
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.tictactoe.pieces.TicTacToePieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
 
-        // TODO utiliser manager/factory
-        final SelectionInterface selector = new RandomItemSelector();
+        //final EvaluationInterface evaluator1 = new MiniMaxEvaluator(9);
+        final EvaluationInterface evaluator2 = new NullEvaluator();
 
-        // TODO utiliser manager/factory
-        final EvaluationInterface evaluator = new NullEvaluator();
+        final StrategyInterface strategy1 = new Strategy(evaluator2, new RandomItemSelector());
+        final StrategyInterface strategy2 = new Strategy(evaluator2, new RandomItemSelector());
 
-        // TODO utiliser manager/factory
-        final StrategyInterface strategy = new Strategy(evaluator, selector);
-
-        // TODO utiliser manager/factory
-        final PlayerInterface player1 = new Player("a player", strategy);
-
-        // TODO utiliser manager/factory
-        final PlayerInterface player2 = new Player("another player", strategy);
-
-        // TODO utiliser manager/factory        
-        final AdversityInterface adversity = new Adversity(player1, player2); // TODO fusionner side et adversity et faire AdversityManager
-        // TODO injecter l'adversitymanager au piecemanager (jeu à une seule side nulle : free them all : sleepy)
-
-        //System.out.println(adversity.getOpponent(Sides.FIRST));
-        //System.out.println(adversity.getOpponent(Sides.SECOND));
+        final PlayerInterface player1 = new Player("Player1", strategy1);
+        final PlayerInterface player2 = new Player("Player2", strategy2);
+        final Adversity adversity = new Adversity(player1, player2);
 
         final RefereeInterface referee = new TicTacToeReferee();
 
-        // TODO utiliser manager/factory
-        final ContextInterface context = new Context(adversity, cellManager, referee);
+        final Context context = new Context(adversity, cellManager, referee);
 
-        //System.out.println(context);
+        //evaluator1.injectContext(context);
 
-        new ContextManager(context).start();
+        final ContextManager contextManager = new ContextManager(context);
 
-        //TODO ? TicTacToeContext, contextBuilder
-        //TODO ? ContextLoop/ContextManager : service
+        onStart(cellManager);
 
-    }
-
-    public static void main(final String[] args) {
-
-        new TicTacToe();
+        contextManager.play();
+        //System.out.println("\nAnd the winner is: " + winner);
 
     }
+
+    private static void onStart(final CellManagerInterface cellManager) {}
 
 }

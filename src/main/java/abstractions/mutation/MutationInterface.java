@@ -32,7 +32,7 @@ public interface MutationInterface {
     /**
      * Constant for the empty set of potential mutations.
      */
-    Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of(); // TODO ! classe MutationManager
+    Set<MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of(); // TODO ! classe MutationManager
 
     /**
      * Returns the cell concerned by this mutation.
@@ -60,11 +60,13 @@ public interface MutationInterface {
     /**
      * Process this mutation.
      */
-    void process();
+    MutationInterface process();
 
     /**
      * Cancels this mutation.
      */
     void cancel();
+    
+    boolean isNull();
 
 }
