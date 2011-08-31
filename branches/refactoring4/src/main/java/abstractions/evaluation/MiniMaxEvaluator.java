@@ -39,10 +39,10 @@ public class MiniMaxEvaluator implements EvaluationInterface {
     }
 
     protected int evaluateMutation(final MutationInterface mutation) {
-        return this.evaluateMutation(mutation, this.getMaximalDepth(), 1);
+        return this.evaluateMutation(mutation, this.getMaximalDepth(), 1, -Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
-    protected int evaluateMutation(final MutationInterface mutation, final int profondeur, final Integer side) {
+    protected int evaluateMutation(final MutationInterface mutation, final int profondeur, final Integer side, int alpha, int beta) {
 
         ///System.out.println();
         ///System.out.println("side " + this.sides.get(side) + " plays " + mutation);
@@ -54,42 +54,37 @@ public class MiniMaxEvaluator implements EvaluationInterface {
         int bestScore;
 
         if (this.getContext().isGameOver()) {
-            ///System.out.println("Game Over!");
-            //bestScore = this.getContext().getTerminalEvaluation(this.context.getCurrentSide());
-            //System.out.println(side);
             bestScore = side * this.getContext().getTerminalEvaluation(this.sides.get(side));
-            //System.out.println(bestScore);
         }
         else if (profondeur == 1) {
-            ///System.out.println("Maximal depth");
-            //bestScore = this.getContext().getHeuristicEvaluation(this.context.getCurrentSide());
             bestScore = side * this.getContext().getHeuristicEvaluation(this.sides.get(side));
-            //System.out.println(bestScore);
         }
         else if (side == -1) {
-            bestScore = -1001;
+            bestScore = -Integer.MAX_VALUE;
             final List<MutationInterface> opponentMutations = this.getContext().getLegalMoves(this.sides.get(side).getNextSide());
             for (final MutationInterface opponentMutation : opponentMutations) {
-                final int currentScore = this.evaluateMutation(opponentMutation, profondeur - 1, -side);
-                ///System.out.println(currentScore);
-                if (currentScore > bestScore) {
-                    ///System.out.println("currentScore > bestScore : " + currentScore + " > " + bestScore);
-                    bestScore = currentScore;
+                bestScore = Math.max(bestScore, this.evaluateMutation(opponentMutation, profondeur - 1, -side, alpha, beta));
+                if (bestScore >= beta) {
+                    //System.out.println("coupure beta");
+                    break;
                 }
-                ///System.out.println(bestScore);
+                else {
+                    alpha = Math.max(alpha, bestScore);
+                }
             }
         }
         else {
-            bestScore = 1001;
+            bestScore = Integer.MAX_VALUE;
             final List<MutationInterface> opponentMutations = this.getContext().getLegalMoves(this.sides.get(side).getNextSide());
             for (final MutationInterface opponentMutation : opponentMutations) {
-                final int currentScore = this.evaluateMutation(opponentMutation, profondeur - 1, -side);
-                ///System.out.println(currentScore);
-                if (currentScore < bestScore) {
-                    ///System.out.println("currentScore < bestScore : " + currentScore + " < " + bestScore);
-                    bestScore = currentScore;
+                bestScore = Math.min(bestScore, this.evaluateMutation(opponentMutation, profondeur - 1, -side, alpha, beta));
+                if (alpha >= bestScore) {
+                    //System.out.println("coupure alpha");
+                    break;
                 }
-                ///System.out.println(bestScore);
+                else {
+                    beta = Math.min(beta, bestScore);
+                }
             }
         }
 
