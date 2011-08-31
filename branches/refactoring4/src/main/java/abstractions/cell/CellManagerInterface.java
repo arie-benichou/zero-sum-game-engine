@@ -89,7 +89,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return a set of potential mutations for this cell
      */
-    Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side);
+    Map<ManagedCellInterface, Set<MutationInterface>> getPotentialMutations(final SideInterface side);
 
     /////////////////////////////////////////////////////////////////
     // PieceManager facade
@@ -147,5 +147,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * @return the named directions
      */
     List<NamedDirection> getNamedDirections();
+    
+    boolean isFull();
 
 }

@@ -11,7 +11,7 @@ public abstract class AbstractAtomicMutation extends AbstractMutation {
     }
 
     @Override
-    public abstract void process();
+    public abstract MutationInterface process();
 
     @Override
     public final void cancel() {

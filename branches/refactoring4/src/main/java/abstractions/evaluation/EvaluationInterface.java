@@ -19,10 +19,15 @@ package abstractions.evaluation;
 
 import java.util.List;
 
+import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 
 public interface EvaluationInterface {
 
     List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
+
+    void injectContext(final ContextInterface context);
+
+    ContextInterface getContext();
 
 }

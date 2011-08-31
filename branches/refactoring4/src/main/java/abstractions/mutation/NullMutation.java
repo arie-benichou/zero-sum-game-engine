@@ -31,7 +31,9 @@ public class NullMutation implements MutationInterface {
     private NullMutation() {}
 
     @Override
-    public void process() {}
+    public MutationInterface process() {
+        return this;
+    }
 
     @Override
     public ManagedCellInterface getCell() {
@@ -50,5 +52,10 @@ public class NullMutation implements MutationInterface {
 
     @Override
     public void cancel() {}
+
+    @Override
+    public boolean isNull() {
+        return true;
+    }
 
 }

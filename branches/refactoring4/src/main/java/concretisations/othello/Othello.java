@@ -31,12 +31,6 @@ public class Othello { // TODO implémenter une GameInterface (inclure l'interfa
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.othello.pieces.OthelloPieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
 
-        //TODO onStart
-        cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-
         final EvaluationInterface evaluator = new NullEvaluator();
 
         final StrategyInterface strategy1 = new Strategy(evaluator, new RandomItemSelector());
@@ -52,8 +46,16 @@ public class Othello { // TODO implémenter une GameInterface (inclure l'interfa
 
         final ContextManager contextManager = new ContextManager(context);
 
-        contextManager.start();
+        onStart(cellManager);
 
+        contextManager.play();
+    }
+
+    private static void onStart(final CellManagerInterface cellManager) {
+        cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
     }
 
 }

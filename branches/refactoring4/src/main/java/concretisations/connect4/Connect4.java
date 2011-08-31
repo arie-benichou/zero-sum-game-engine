@@ -46,7 +46,7 @@ public class Connect4 {
 
         final ContextManager contextManager = new ContextManager(context);
 
-        contextManager.start();
+        contextManager.play();
 
     }
 

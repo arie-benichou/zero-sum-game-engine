@@ -36,7 +36,7 @@ public final class Null extends AbstractPiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (cell.isEmpty() && !cell.getNeighbour(NamedDirection.BOTTOM).isEmpty()) {
             return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, Connect4PieceSet.PAWN)); // NOPMD
         }

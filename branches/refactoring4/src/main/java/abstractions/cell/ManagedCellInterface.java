@@ -143,7 +143,7 @@ public interface ManagedCellInterface extends Comparable<ManagedCellInterface> {
      * 
      * @return a set of potential mutations for this cell and for a given side
      */
-    Set<? extends MutationInterface> getPotentialMutations(final SideInterface side);
+    Set<MutationInterface> getPotentialMutations(final SideInterface side);
 
     /**
      * Returns the neighbour cells to this cell.
