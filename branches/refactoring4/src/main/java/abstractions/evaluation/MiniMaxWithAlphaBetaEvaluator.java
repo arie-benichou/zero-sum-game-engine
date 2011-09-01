@@ -12,7 +12,8 @@ import abstractions.side.SideInterface;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class MiniMaxEvaluator implements EvaluationInterface {
+// TODO introduire l'objet Move encapsulant Mutation (+ un contexte de coup ?)
+public class MiniMaxWithAlphaBetaEvaluator implements EvaluationInterface {
 
     private ContextInterface context;
 
@@ -25,7 +26,7 @@ public class MiniMaxEvaluator implements EvaluationInterface {
 
     private final int maximalDepth;
 
-    public MiniMaxEvaluator(final int maximalDepth) {
+    public MiniMaxWithAlphaBetaEvaluator(final int maximalDepth) {
         this.maximalDepth = maximalDepth;
     }
 
@@ -56,7 +57,7 @@ public class MiniMaxEvaluator implements EvaluationInterface {
         if (this.getContext().isGameOver()) {
             bestScore = side * this.getContext().getTerminalEvaluation(this.sides.get(side));
         }
-        else if (profondeur == 1) {
+        else if (profondeur == 0) {
             bestScore = side * this.getContext().getHeuristicEvaluation(this.sides.get(side));
         }
         else if (side == -1) {
@@ -120,8 +121,8 @@ public class MiniMaxEvaluator implements EvaluationInterface {
 
         }
 
-        //System.out.println();
-        //System.out.println(map);
+        System.out.println();
+        System.out.println(map);
 
         // TODO à améliorer
         final List<MutationInterface> evaluatedMutations = Lists.newArrayList();
