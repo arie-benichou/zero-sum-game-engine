@@ -9,7 +9,7 @@ import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.evaluation.EvaluationInterface;
-import abstractions.evaluation.MiniMaxEvaluator;
+import abstractions.evaluation.MiniMaxWithAlphaBetaEvaluator;
 import abstractions.evaluation.NullEvaluator;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
