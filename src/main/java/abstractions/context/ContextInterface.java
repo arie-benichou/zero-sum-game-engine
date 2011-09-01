@@ -3,6 +3,7 @@ package abstractions.context;
 
 import java.util.List;
 
+import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManagerInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.player.PlayerInterface;
@@ -39,5 +40,7 @@ public interface ContextInterface {
     int getHeuristicEvaluation(final SideInterface side);
 
     int getTerminalEvaluation(final SideInterface side);
+
+    AdversityInterface getAdversity();
 
 }
