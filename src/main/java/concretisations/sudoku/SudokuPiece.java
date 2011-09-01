@@ -32,6 +32,6 @@ public abstract class SudokuPiece extends AbstractPiece {
     }
 
     @Override
-    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

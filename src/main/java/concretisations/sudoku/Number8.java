@@ -31,7 +31,7 @@ public final class Number8 extends SudokuPiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
     }
 

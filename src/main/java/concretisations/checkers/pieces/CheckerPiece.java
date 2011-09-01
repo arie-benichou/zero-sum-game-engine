@@ -50,6 +50,7 @@ public abstract class CheckerPiece extends AbstractPiece {
 
     private static final Predicate CAN_WALK_THROUGH = new Predicate() {
 
+        @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide()) && cell.getNeighbour(direction).isEmpty();
         }
@@ -58,6 +59,7 @@ public abstract class CheckerPiece extends AbstractPiece {
 
     private static final Predicate CAN_JUMP_OVER = new Predicate() {
 
+        @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
             return side.equals(cell.getPiece().getSide())
                     && !cell.getNeighbour(direction).isNull() // TODO ! à améliorer
@@ -109,7 +111,7 @@ public abstract class CheckerPiece extends AbstractPiece {
     }
 
     @Override
-    public final Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public final Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         final Set<MutationInterface> potentialMutations = Sets.newHashSetWithExpectedSize(4);
         for (final DirectionInterface direction : this.getMutations(cell, side, CheckersMutations.JUMP)) {
             potentialMutations.add(CheckersMutationFactory.newJumpMutation(cell, direction));

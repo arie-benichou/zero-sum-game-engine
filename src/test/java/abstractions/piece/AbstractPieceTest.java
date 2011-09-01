@@ -43,7 +43,7 @@ public final class AbstractPieceTest { // NOPMD
         this.nullPiece = new AbstractPiece(Sides.NULL, PieceSet1.NULL) {
 
             @Override
-            public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+            public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
 
@@ -57,7 +57,7 @@ public final class AbstractPieceTest { // NOPMD
         this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet1.PAWN) {
 
             @Override
-            public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+            public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
 
@@ -71,7 +71,7 @@ public final class AbstractPieceTest { // NOPMD
         this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet1.PAWN) {
 
             @Override
-            public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+            public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
                 return null;
             }
 
