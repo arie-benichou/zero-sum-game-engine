@@ -8,8 +8,8 @@ import abstractions.context.Context;
 import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluation.EvaluationInterface;
-import abstractions.evaluation.NullEvaluator;
+import abstractions.evaluator.EvaluatorInterface;
+import abstractions.evaluator.NullEvaluator;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
 import abstractions.player.Player;
@@ -17,8 +17,8 @@ import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.referee.RefereeInterface;
-import abstractions.selection.FirstItemSelector;
-import abstractions.selection.RandomItemSelector;
+import abstractions.selector.FirstItem;
+import abstractions.selector.Random;
 import abstractions.side.Sides;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -32,10 +32,10 @@ public class Checkers {
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.checkers.pieces.CheckersPieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
 
-        final EvaluationInterface evaluator = new NullEvaluator();
+        final EvaluatorInterface evaluator = new NullEvaluator();
 
-        final StrategyInterface strategy1 = new Strategy(evaluator, new RandomItemSelector());
-        final StrategyInterface strategy2 = new Strategy(evaluator, new RandomItemSelector());
+        final StrategyInterface strategy1 = new Strategy(evaluator, new Random());
+        final StrategyInterface strategy2 = new Strategy(evaluator, new Random());
 
         final PlayerInterface player1 = new Player("Player1", strategy1);
         final PlayerInterface player2 = new Player("Player2", strategy2);

@@ -10,9 +10,9 @@ import abstractions.context.ContextInterface;
 import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluation.EvaluationInterface;
-import abstractions.evaluation.NegaMaxWithAlphaBetaEvaluator;
-import abstractions.evaluation.NullEvaluator;
+import abstractions.evaluator.EvaluatorInterface;
+import abstractions.evaluator.NegaMaxAlphaBeta;
+import abstractions.evaluator.NullEvaluator;
 import abstractions.game.Game;
 import abstractions.game.GameInterface;
 import abstractions.gameplay.GamePlay;
@@ -23,7 +23,7 @@ import abstractions.player.Player;
 import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
-import abstractions.selection.FirstItemSelector;
+import abstractions.selector.FirstItem;
 import abstractions.side.Sides;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -43,10 +43,10 @@ public class Othello {
     }
 
     private static AdversityInterface adversity() {
-        final EvaluationInterface evaluator1 = new NullEvaluator();
-        final EvaluationInterface evaluator2 = new NegaMaxWithAlphaBetaEvaluator(8);
-        final StrategyInterface strategy1 = new Strategy(evaluator1, new FirstItemSelector());
-        final StrategyInterface strategy2 = new Strategy(evaluator2, new FirstItemSelector());
+        final EvaluatorInterface evaluator1 = new NullEvaluator();
+        final EvaluatorInterface evaluator2 = new NegaMaxAlphaBeta(6);
+        final StrategyInterface strategy1 = new Strategy(evaluator1, new FirstItem());
+        final StrategyInterface strategy2 = new Strategy(evaluator2, new FirstItem());
         final PlayerInterface player1 = new Player("Player1", strategy1);
         final PlayerInterface player2 = new Player("Player2", strategy2);
         return new Adversity(player1, player2);
