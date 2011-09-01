@@ -31,7 +31,7 @@ public final class Null extends SudokuPiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         //return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, SudokuPieceSet.PAWN)); // NOPMD 
         return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
     }

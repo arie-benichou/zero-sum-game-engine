@@ -9,7 +9,6 @@ import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.evaluation.EvaluationInterface;
-import abstractions.evaluation.MiniMaxWithAlphaBetaEvaluator;
 import abstractions.evaluation.NullEvaluator;
 import abstractions.piece.PieceManager;
 import abstractions.piece.PieceManagerInterface;
@@ -18,16 +17,13 @@ import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.referee.RefereeInterface;
-import abstractions.selection.FirstItemSelector;
-import abstractions.selection.HumanMoveSelector;
 import abstractions.selection.RandomItemSelector;
-import abstractions.side.SideInterface;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
 
 public class TicTacToe {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.tictactoe.pieces.TicTacToePieceSet.class);
@@ -51,7 +47,7 @@ public class TicTacToe {
 
         final ContextManager contextManager = new ContextManager(context);
 
-        onStart(cellManager);
+        TicTacToe.onStart(cellManager);
 
         contextManager.play();
         //System.out.println("\nAnd the winner is: " + winner);

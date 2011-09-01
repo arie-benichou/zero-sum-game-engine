@@ -68,13 +68,13 @@ public final class CheckerPotentialMutationsTest {
         expectedPotentialMutations.add(CheckersMutationFactory.newJumpMutation(this.cellManager.getCell(4, 4), new Direction(-1, -1)));
         expectedPotentialMutations.add(CheckersMutationFactory.newWalkMutation(this.cellManager.getCell(4, 1), new Direction(-1, 1)));
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
-        for (final Set<? extends MutationInterface> cellPotentialMutations : potentialMutations.values()) {
+        for (final Set<MutationInterface> cellPotentialMutations : potentialMutations.values()) {
             result.addAll(cellPotentialMutations);
         }
 
@@ -110,20 +110,20 @@ public final class CheckerPotentialMutationsTest {
         expectedPotentialMutations.add(CheckersMutationFactory.newJumpMutation(this.cellManager.getCell(4, 4), NamedDirection.TOP_LEFT.value()));
         expectedPotentialMutations.add(CheckersMutationFactory.newWalkMutation(this.cellManager.getCell(4, 1), NamedDirection.TOP_RIGHT.value()));
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
-        for (final Set<? extends MutationInterface> cellPotentialMutations : potentialMutations.values()) {
+        for (final Set<MutationInterface> cellPotentialMutations : potentialMutations.values()) {
             result.addAll(cellPotentialMutations);
         }
 
         Assert.assertTrue(expectedPotentialMutations.equals(result));
 
         // TODO à tester unitairement
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
                 //System.out.println(this.cellManager);
@@ -160,20 +160,20 @@ public final class CheckerPotentialMutationsTest {
         expectedPotentialMutations.add(CheckersMutationFactory.newWalkMutation(this.cellManager.getCell(4, 4), NamedDirection.TOP_RIGHT.value()));
         expectedPotentialMutations.add(CheckersMutationFactory.newWalkMutation(this.cellManager.getCell(4, 1), NamedDirection.TOP_RIGHT.value()));
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         //System.out.println(this.cellManager);
 
         // TODO  ! classer par type de mutations dans CellManager        
         final Set<MutationInterface> result = new HashSet<MutationInterface>();
-        for (final Set<? extends MutationInterface> cellPotentialMutations : potentialMutations.values()) {
+        for (final Set<MutationInterface> cellPotentialMutations : potentialMutations.values()) {
             result.addAll(cellPotentialMutations);
         }
 
         Assert.assertTrue(expectedPotentialMutations.equals(result));
 
         // TODO à tester unitairement
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
                 //System.out.println(this.cellManager);
@@ -205,7 +205,7 @@ public final class CheckerPotentialMutationsTest {
         this.cellManager.getCell(2, 4).setPiece(side, CheckersPieceSet.MAN);
         this.cellManager.getCell(3, 3).setPiece(side, CheckersPieceSet.MAN);
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
         Assert.assertTrue(potentialMutations.isEmpty());
 
