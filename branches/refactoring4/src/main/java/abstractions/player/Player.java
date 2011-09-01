@@ -16,19 +16,20 @@ public class Player implements PlayerInterface {
         this.strategy = strategy;
     }
 
+    @Override
     public final String getName() {
         return this.name;
     }
 
-    private final StrategyInterface getStrategy() {
+    @Override
+    public final StrategyInterface getStrategy() {
         return this.strategy;
     }
-    
+
     @Override
-    public final MutationInterface applyStrategy(List<MutationInterface> mutations) {
+    public final MutationInterface applyStrategy(final List<MutationInterface> mutations) {
         return this.getStrategy().applyStrategy(mutations);
     }
-    
 
     @Override
     public String toString() {

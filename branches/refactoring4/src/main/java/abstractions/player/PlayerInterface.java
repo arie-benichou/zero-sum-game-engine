@@ -4,6 +4,7 @@ package abstractions.player;
 import java.util.List;
 
 import abstractions.mutation.MutationInterface;
+import abstractions.strategy.StrategyInterface;
 
 // TODO ? utiliser le pattern visitor pour visiter les cellules
 public interface PlayerInterface {
@@ -13,6 +14,6 @@ public interface PlayerInterface {
     //façade    
     MutationInterface applyStrategy(List<MutationInterface> mutations);
 
-    //StrategyInterface getStrategy();
+    StrategyInterface getStrategy();
 
 }

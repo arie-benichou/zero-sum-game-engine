@@ -21,6 +21,11 @@ import abstractions.selection.RandomItemSelector;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
 
+// TODO fusionner side et adversity et faire AdversityManager
+// TODO injecter l'adversitymanager au piecemanager (jeu à une seule side nulle:
+// free them all : sleepy)
+// TODO ! builders
+// TODO Loop du ContextManager -> service + thread
 public class TicTacToe {
 
     public static void main(final String[] args) {

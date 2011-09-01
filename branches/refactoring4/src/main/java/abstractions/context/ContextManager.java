@@ -6,6 +6,7 @@ import java.util.List;
 import abstractions.mutation.MutationInterface;
 import abstractions.player.PlayerInterface;
 import abstractions.side.SideInterface;
+import abstractions.side.Sides;
 
 // TODO ? play() : retourner une SideInterface
 
@@ -22,6 +23,8 @@ public class ContextManager {
     // TODO ? c'est au manager de créer le contexte
     public ContextManager(final ContextInterface context) {
         this.context = context;
+        this.context.getAdversity().getOpponent(Sides.FIRST).getStrategy().getEvaluator().injectContext(context);
+        this.context.getAdversity().getOpponent(Sides.SECOND).getStrategy().getEvaluator().injectContext(context);
     }
 
     private final ContextInterface getContext() {

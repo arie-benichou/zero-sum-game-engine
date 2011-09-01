@@ -7,6 +7,7 @@ import java.util.Stack;
 
 import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManagerInterface;
+import abstractions.gameplay.GamePlayInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.NullMutation;
 import abstractions.player.PlayerInterface;
@@ -16,6 +17,7 @@ import abstractions.side.Sides;
 
 import com.google.common.collect.Maps;
 
+// TODO refactoring possible GamePlay = Context
 public class Context implements ContextInterface {
 
     //-----------------------------------------------------------------    
@@ -30,11 +32,11 @@ public class Context implements ContextInterface {
 
     //-----------------------------------------------------------------    
 
-    public Context(final AdversityInterface adversity, final CellManagerInterface cellManager, final RefereeInterface referee) {
+    public Context(final GamePlayInterface gamePlay) {
 
-        this.adversity = adversity;
-        this.cellManager = cellManager;
-        this.referee = referee;
+        this.cellManager = gamePlay.getGame().getCellManager();
+        this.referee = gamePlay.getGame().getReferee();
+        this.adversity = gamePlay.getAdversity();
 
         this.moves.put(Sides.FIRST, new Stack<MutationInterface>());
         this.moves.get(Sides.FIRST).add(NullMutation.getInstance());
@@ -46,7 +48,8 @@ public class Context implements ContextInterface {
 
     //-----------------------------------------------------------------
 
-    private final AdversityInterface getAdversity() {
+    @Override
+    public final AdversityInterface getAdversity() {
         return this.adversity;
     }
 
