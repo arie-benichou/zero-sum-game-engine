@@ -3,21 +3,16 @@ package abstractions.strategy;
 
 import java.util.List;
 
-import abstractions.evaluation.EvaluationInterface;
+import abstractions.evaluator.EvaluatorInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.selection.SelectionInterface;
+import abstractions.selector.SelectorInterface;
 
 public interface StrategyInterface {
 
-    EvaluationInterface getEvaluator();
+    EvaluatorInterface getEvaluator();
 
-    SelectionInterface getSelector();
+    SelectorInterface getSelector();
 
-    //List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
-
-    //List<MutationInterface> applySelection(final List<MutationInterface> mutations);
-
-    //List<MutationInterface> applyStrategy(final List<MutationInterface> mutations);
     MutationInterface applyStrategy(final List<MutationInterface> mutations);
 
 }
