@@ -23,12 +23,27 @@ import java.util.TreeMap;
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 
+/**
+ * This is the interface for an evaluator used by a player's strategy.
+ * 
+ * @TODO envisager de passer le contexte via la méthode applyEvaluation
+ */
 public interface EvaluatorInterface {
 
+    /**
+     * Apply and return evaluation of moves.
+     * 
+     * @param mutations
+     *            moves to evaluate
+     * 
+     * @return evaluated moves
+     */
     TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations);
 
+    //cf TODO
     void injectContext(final ContextInterface context);
 
+    //cf TODO    
     ContextInterface getContext();
 
 }

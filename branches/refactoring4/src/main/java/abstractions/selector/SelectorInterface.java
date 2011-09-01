@@ -22,8 +22,12 @@ import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
 
+/**
+ * This is the interface for a selector used by a player's strategy.
+ */
 public interface SelectorInterface {
 
+    // TODO passer le contexte
     MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations);
 
 }

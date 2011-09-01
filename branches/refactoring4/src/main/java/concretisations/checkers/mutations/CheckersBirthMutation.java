@@ -9,9 +9,10 @@ import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 import concretisations.checkers.pieces.CheckersPieceSet;
 
+// TODO ! à virer
 public class CheckersBirthMutation extends Birth {
 
-    public CheckersBirthMutation(ManagedCellInterface cell, PieceTypeInterface pieceType, SideInterface side) {
+    public CheckersBirthMutation(final ManagedCellInterface cell, final PieceTypeInterface pieceType, final SideInterface side) {
         super(cell, AtomicMutationTypes.BIRTH, pieceType, side);
     }
 

@@ -23,6 +23,9 @@ import abstractions.evaluator.EvaluatorInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.selector.SelectorInterface;
 
+/**
+ * This is the interface for a player's strategy.
+ */
 public interface StrategyInterface {
 
     EvaluatorInterface getEvaluator();
