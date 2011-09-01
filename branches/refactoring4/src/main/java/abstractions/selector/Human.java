@@ -4,13 +4,16 @@ package abstractions.selector;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 public class Human implements SelectorInterface {
 
-    @Override
-    public MutationInterface applySelection(final List<MutationInterface> mutations) {
+    private MutationInterface askForSelection(final List<MutationInterface> mutations) {
 
         // TODO créer un selecteur qui retourne l'unique mutation pour un singleton
         /*
@@ -22,6 +25,7 @@ public class Human implements SelectorInterface {
 
         int n = 0;
         final int numberOfDigits = (int) Math.log10(Math.abs(mutations.size())) + 1;
+
         System.out.println("\nLegal moves :");
         for (final MutationInterface legalMove : mutations)
             System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, legalMove);
@@ -35,18 +39,22 @@ public class Human implements SelectorInterface {
             if (i < 1 || i > mutations.size()) {
                 System.out.println("\nThere is no such move.");
                 System.out.println("Please try again...");
-                mutation = this.applySelection(mutations);
+                mutation = this.askForSelection(mutations);
             }
             else
                 mutation = mutations.get(i - 1);
-            //System.out.println("\nYou have choosen to play: " + mutation);
         }
         catch (final InputMismatchException e) {
             System.out.println("\nPositive natural integer expected.");
             System.out.println("Please try again...");
-            mutation = this.applySelection(mutations);
+            mutation = this.askForSelection(mutations);
         }
         return mutation;
+    }
+
+    @Override
+    public MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+        return this.askForSelection(Lists.newArrayList(Iterables.concat(evaluatedMutations.values())));
     }
 
     @Override

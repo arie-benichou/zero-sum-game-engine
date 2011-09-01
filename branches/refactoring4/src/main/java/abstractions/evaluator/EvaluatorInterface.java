@@ -18,13 +18,14 @@
 package abstractions.evaluator;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 
 public interface EvaluatorInterface {
 
-    List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations);
+    TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations);
 
     void injectContext(final ContextInterface context);
 

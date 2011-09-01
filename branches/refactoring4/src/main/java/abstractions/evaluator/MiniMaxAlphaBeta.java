@@ -1,9 +1,9 @@
 
 package abstractions.evaluator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
@@ -12,7 +12,6 @@ import abstractions.side.SideInterface;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-// TODO introduire l'objet Move encapsulant Mutation (+ un contexte de coup ?)
 public class MiniMaxAlphaBeta implements EvaluatorInterface {
 
     private ContextInterface context;
@@ -97,50 +96,20 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
     }
 
     @Override
-    public List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations) {
-
+    public TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
         System.out.println(this.getContext().getCurrentSide());
-
         this.sides.put(1, this.getContext().getCurrentSide());
         this.sides.put(-1, this.getContext().getCurrentSide().getNextSide());
-
-        final Map<Integer, List<MutationInterface>> map = Maps.newTreeMap();
-
+        final TreeMap<Integer, List<MutationInterface>> map = Maps.newTreeMap();
         for (final MutationInterface mutation : mutations) {
-
-            System.out.println();
-            System.out.println(mutation + "= ?");
-
             final Integer score = this.evaluateMutation(mutation);
             System.out.println(mutation + "= " + score);
-
-            if (!map.containsKey(score))
-                map.put(score, Lists.newArrayList(mutation));
-            else
+            if (map.containsKey(score))
                 map.get(score).add(mutation);
-
-        }
-
-        System.out.println();
-        System.out.println(map);
-
-        // TODO à améliorer
-        final List<MutationInterface> evaluatedMutations = Lists.newArrayList();
-        for (final List<MutationInterface> e : map.values())
-            if (e.size() > 1)
-                for (final MutationInterface m : e) {
-                    if (!m.isNull())
-                        evaluatedMutations.add(m);
-                }
             else
-                evaluatedMutations.addAll(e);
-
-        Collections.reverse(evaluatedMutations);
-
-        System.out.println();
-        //System.out.println(evaluatedMutations);
-
-        return evaluatedMutations;
+                map.put(score, Lists.newArrayList(mutation));
+        }
+        return map;
     }
 
     @Override
