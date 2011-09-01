@@ -30,16 +30,16 @@ import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
 import concretisations.othello.pieces.OthelloPieceSet;
 
-public class Othello {
+public class SmallOthello {
 
     private static CellManagerInterface cellManager() {
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(8, 8)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(6, 6)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.othello.pieces.OthelloPieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
+        cellManager.getCell(3, 3).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(3, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(4, 3).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
         cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
         return cellManager;
     }
 
@@ -49,7 +49,7 @@ public class Othello {
         final StrategyInterface strategy1 = new Strategy(evaluator1, new RandomAvoidingNullMove());
         final PlayerInterface player1 = new Player("Player1", strategy1);
 
-        final EvaluatorInterface evaluator2 = new NegaMaxAlphaBeta(7);
+        final EvaluatorInterface evaluator2 = new NegaMaxAlphaBeta(9);
         final StrategyInterface strategy2 = new Strategy(evaluator2, new LastItem());
         final PlayerInterface player2 = new Player("Player2", strategy2);
 
@@ -58,15 +58,15 @@ public class Othello {
     }
 
     private static GameInterface game() {
-        return new Game(Othello.cellManager(), new OthelloReferee());
+        return new Game(SmallOthello.cellManager(), new OthelloReferee());
     }
 
     private static GamePlayInterface gamePlay() {
-        return new GamePlay(Othello.game(), Othello.adversity());
+        return new GamePlay(SmallOthello.game(), SmallOthello.adversity());
     }
 
     public static void main(final String[] args) {
-        final ContextInterface context = new Context(Othello.gamePlay());
+        final ContextInterface context = new Context(SmallOthello.gamePlay());
         // TODO créer ContextManagerInterface (ou GamePlayManagerInterface)
         final ContextManager contextManager = new ContextManager(context);
         contextManager.play();

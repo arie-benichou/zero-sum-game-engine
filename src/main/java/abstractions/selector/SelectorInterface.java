@@ -18,13 +18,12 @@
 package abstractions.selector;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
 
 public interface SelectorInterface {
 
-    // TODO revoir l'interface: devrait retourner un seul élément
-    //List<MutationInterface> applySelection(final List<MutationInterface> mutations);
-    MutationInterface applySelection(final List<MutationInterface> mutations);
+    MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations);
 
 }

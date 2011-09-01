@@ -1,9 +1,25 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package abstractions.evaluator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
@@ -12,8 +28,9 @@ import abstractions.side.SideInterface;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-// TODO introduire l'objet Move encapsulant Mutation (+ un contexte de coup ?)
 public class NegaMaxAlphaBeta implements EvaluatorInterface {
+
+    private int cutoffs = 0;
 
     private ContextInterface context;
 
@@ -56,8 +73,10 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
             final List<MutationInterface> opponentMutations = this.getContext().getLegalMoves(this.sides.get(side).getNextSide());
             for (final MutationInterface opponentMutation : opponentMutations) {
                 bestScore = Math.min(bestScore, -this.evaluateMutation(opponentMutation, profondeur - 1, -side, -bestScore, -alpha));
-                if (bestScore <= alpha)
+                if (bestScore <= alpha) {
+                    ++this.cutoffs;
                     break;
+                }
             }
         }
         this.getContext().unapplyLastPlayedMove(this.sides.get(side));
@@ -65,52 +84,31 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
         return bestScore;
     }
 
-    //TODO !!! un évaluateur n'est pas censé modifier l'ordre d'une collection mais l'évaluer -> introduire Move et utiliser un selecteur BestEvaluatedMoveSelector
     @Override
-    public List<MutationInterface> applyEvaluation(final List<MutationInterface> mutations) {
+    public TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
 
-        System.out.println(this.getContext().getCurrentSide());
+        this.cutoffs = 0;
 
+        System.out.println("Evaluation des coups légaux du point de vue de: " + this.getContext().getCurrentSide() + " ...");
+
+        //TODO à simplifier
         this.sides.put(1, this.getContext().getCurrentSide());
         this.sides.put(-1, this.getContext().getCurrentSide().getNextSide());
 
-        final Map<Integer, List<MutationInterface>> map = Maps.newTreeMap();
-
+        final TreeMap<Integer, List<MutationInterface>> map = Maps.newTreeMap();
         for (final MutationInterface mutation : mutations) {
-
-            System.out.println();
-            System.out.println(mutation + "= ?");
-
             final Integer score = this.evaluateMutation(mutation);
             System.out.println(mutation + "= " + score);
-
-            if (!map.containsKey(score))
-                map.put(score, Lists.newArrayList(mutation));
-            else
+            if (map.containsKey(score))
                 map.get(score).add(mutation);
-
+            else
+                map.put(score, Lists.newArrayList(mutation));
         }
 
-        System.out.println();
-        System.out.println(map);
+        System.out.println("nombre de coupures alpha/beta: " + this.cutoffs);
 
-        // TODO à améliorer
-        final List<MutationInterface> evaluatedMutations = Lists.newArrayList();
-        for (final List<MutationInterface> e : map.values())
-            if (e.size() > 1)
-                for (final MutationInterface m : e) {
-                    if (!m.isNull())
-                        evaluatedMutations.add(m);
-                }
-            else
-                evaluatedMutations.addAll(e);
+        return map;
 
-        Collections.reverse(evaluatedMutations);
-
-        System.out.println();
-        //System.out.println(evaluatedMutations);
-
-        return evaluatedMutations;
     }
 
     @Override
