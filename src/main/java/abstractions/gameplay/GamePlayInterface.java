@@ -1,26 +1,42 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package abstractions.gameplay;
 
 import abstractions.adversity.AdversityInterface;
 import abstractions.game.GameInterface;
 
+/**
+ * This is the interface for a gameplay.
+ */
 public interface GamePlayInterface {
 
+    /**
+     * Returns the played game.
+     * 
+     * @return the played game
+     */
     GameInterface getGame();
 
+    /**
+     * Returns adversity for this gameplay.
+     * 
+     * @return adversity for this gameplay
+     */
     AdversityInterface getAdversity();
-
-    /*
-    final Context context = new Context(GameInterface.adversity, GameInterface.cellManager, GameInterface.referee);
-    evaluator1.injectContext(context);
-    evaluator2.injectContext(context);
-    final ContextManager contextManager = new ContextManager(GameInterface.context);
-    Othello.onStart(cellManager);    
-    */
-
-    //contextManager.play();
-
-    //System.out.println(context.getHeuristicEvaluation(Sides.FIRST));
-    //System.out.println(context.getHeuristicEvaluation(Sides.SECOND));    
 
 }
