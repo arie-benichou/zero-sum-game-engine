@@ -25,18 +25,15 @@ import abstractions.mutation.MutationInterface;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-public class Random implements SelectorInterface {
+public class Random extends AbstractSelector {
 
-    private final java.util.Random random = new java.util.Random();
-
-    @Override
-    public MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
-        final List<MutationInterface> mutations = Lists.newArrayList(Iterables.concat(evaluatedMutations.values()));
-        return mutations.get(this.random.nextInt(mutations.size()));
+    public Random(final boolean avoidNullMutation) {
+        super(true, avoidNullMutation);
     }
 
     @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
+    public List<MutationInterface> select(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+        return Lists.newArrayList(Iterables.concat(evaluatedMutations.values()));
     }
+
 }

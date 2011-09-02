@@ -31,6 +31,7 @@ import abstractions.referee.RefereeInterface;
 import abstractions.side.SideInterface;
 
 // TODO !! à optimiser...
+// TODO normaliser les score entre -1.0 et 1.0 (match null: 0.5)
 public class OthelloReferee implements RefereeInterface {
 
     //TODO !? mettre en cache les coups légaux du joueur suivant

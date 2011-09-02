@@ -27,41 +27,35 @@ import abstractions.mutation.MutationInterface;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-public class Human implements SelectorInterface {
+public class Human extends AbstractSelector {
+
+    public Human() {
+        super(false, false);
+    }
 
     private MutationInterface askForSelection(final List<MutationInterface> mutations) {
-
-        // TODO créer un selecteur qui retourne l'unique mutation pour un singleton
-        /*
+        /* TODO créer un selecteur qui retourne l'unique mutation pour un singleton
         if (mutations.size() == 1)
             return mutations.get(0);
         */
-
         MutationInterface mutation;
-
         int n = 0;
         final int numberOfDigits = (int) Math.log10(Math.abs(mutations.size())) + 1;
-
         System.out.println("\nLegal moves :");
         for (final MutationInterface legalMove : mutations)
             System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, legalMove);
         System.out.println("\nWhat is your move ?");
-
         final Scanner scanner = new Scanner(System.in);
-
         int i = 0;
         try {
             i = scanner.nextInt();
-            if (i < 1 || i > mutations.size()) {
-                System.out.println("\nThere is no such move.");
-                System.out.println("Please try again...");
-                mutation = this.askForSelection(mutations);
-            }
+            if (i < 1 || i > mutations.size())
+                throw new InputMismatchException();
             else
                 mutation = mutations.get(i - 1);
         }
         catch (final InputMismatchException e) {
-            System.out.println("\nPositive natural integer expected.");
+            System.out.println("\nThere is no such move.");
             System.out.println("Please try again...");
             mutation = this.askForSelection(mutations);
         }
@@ -69,13 +63,8 @@ public class Human implements SelectorInterface {
     }
 
     @Override
-    public MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
-        return this.askForSelection(Lists.newArrayList(Iterables.concat(evaluatedMutations.values())));
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
+    public List<MutationInterface> select(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+        return Lists.newArrayList(this.askForSelection(Lists.newArrayList(Iterables.concat(evaluatedMutations.values()))));
     }
 
 }

@@ -40,7 +40,7 @@ import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
 import abstractions.selector.LastItem;
-import abstractions.selector.RandomAvoidingNullMove;
+import abstractions.selector.Random;
 import abstractions.side.Sides;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -62,11 +62,11 @@ public class SmallOthello {
     private static AdversityInterface adversity() {
 
         final EvaluatorInterface evaluator1 = new NullEvaluator();
-        final StrategyInterface strategy1 = new Strategy(evaluator1, new RandomAvoidingNullMove());
+        final StrategyInterface strategy1 = new Strategy(evaluator1, new Random(true));
         final PlayerInterface player1 = new Player("Player1", strategy1);
 
         final EvaluatorInterface evaluator2 = new NegaMaxAlphaBeta(9);
-        final StrategyInterface strategy2 = new Strategy(evaluator2, new LastItem());
+        final StrategyInterface strategy2 = new Strategy(evaluator2, new LastItem(true, true));
         final PlayerInterface player2 = new Player("Player2", strategy2);
 
         return new Adversity(player1, player2);
