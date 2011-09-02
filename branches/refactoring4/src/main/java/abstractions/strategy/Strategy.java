@@ -45,6 +45,8 @@ public class Strategy implements StrategyInterface {
 
     @Override
     public final MutationInterface applyStrategy(final List<MutationInterface> mutations) {
+        if (mutations.size() == 1)
+            return mutations.get(0);
         return this.getSelector().applySelection(this.getEvaluator().applyEvaluation(mutations));
     }
 
