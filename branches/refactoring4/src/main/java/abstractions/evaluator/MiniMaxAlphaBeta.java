@@ -17,6 +17,7 @@
 
 package abstractions.evaluator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -28,6 +29,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class MiniMaxAlphaBeta implements EvaluatorInterface {
+
+    public int cutOffs = 0;
 
     // TODO passer le contexte à la méthode applyEvaluation d'un évaluateur
     private ContextInterface context;
@@ -48,7 +51,8 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
         this.maximalDepth = maximalDepth;
     }
 
-    private int getMaximalDepth() {
+    @Override
+    public final int getMaximalDepth() {
         return this.maximalDepth;
     }
 
@@ -61,13 +65,13 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
             localBestScore = this.getContext().getHeuristicEvaluation(this.getContext().getCurrentSide());
         else {
             final List<MutationInterface> opponentMoves = this.getContext().getLegalMoves(side.getNextSide());
-            ///Collections.sort(opponentMoves);
+            Collections.sort(opponentMoves);
             if (side.equals(this.getContext().getCurrentSide())) {
-                localBestScore = 1.0;
+                localBestScore = bestScore;
                 for (final MutationInterface opponentMutation : opponentMoves) {
-                    localBestScore = Math.min(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, localBestScore));
+                    localBestScore = Math.min(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
                     if (localBestScore <= worstScore) {
-                        //++this.cutOffs;
+                        ++this.cutOffs;
                         break;
                     }
                     else
@@ -75,11 +79,11 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
                 }
             }
             else {
-                localBestScore = -1.0;
+                localBestScore = worstScore;
                 for (final MutationInterface opponentMutation : opponentMoves) {
-                    localBestScore = Math.max(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, localBestScore));
+                    localBestScore = Math.max(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
                     if (localBestScore >= bestScore) {
-                        //++this.cutOffs;
+                        ++this.cutOffs;
                         break;
                     }
                     else
@@ -92,11 +96,10 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
-        ///Collections.sort(mutations);
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), this.getMaximalDepth(), -1.0, 1.0);
+            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), maximalDepth, -1.0, 1.0);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
@@ -104,6 +107,11 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
                 value.add(mutation);
         }
         return map;
+    }
+
+    @Override
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+        return this.applyEvaluation(mutations, this.getMaximalDepth());
     }
 
     @Override

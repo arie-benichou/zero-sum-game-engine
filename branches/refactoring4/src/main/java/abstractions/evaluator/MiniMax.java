@@ -17,6 +17,7 @@
 
 package abstractions.evaluator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -48,13 +49,9 @@ public class MiniMax implements EvaluatorInterface {
         this.maximalDepth = maximalDepth;
     }
 
-    //TODO ? rajouter à l'interface d'un évaluateur
-    private final int getMaximalDepth() {
+    @Override
+    public final int getMaximalDepth() {
         return this.maximalDepth;
-    }
-
-    private final int getSideSign(final SideInterface side) {
-        return side.equals(this.getContext().getCurrentSide()) ? 1 : -1;
     }
 
     private final Double evaluate(final MutationInterface move, final SideInterface side, final int depthLeft) {
@@ -68,6 +65,7 @@ public class MiniMax implements EvaluatorInterface {
             bestScore = this.getContext().getHeuristicEvaluation(this.getContext().getCurrentSide());
         else {
             final List<MutationInterface> opponentMoves = this.getContext().getLegalMoves(side.getNextSide());
+            Collections.sort(opponentMoves);
             if (side.equals(this.getContext().getCurrentSide())) {
                 bestScore = 1.0;
                 for (final MutationInterface opponentMutation : opponentMoves)
@@ -85,22 +83,22 @@ public class MiniMax implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        ///System.out.println("=====================8<=====================\n");
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), this.getMaximalDepth());
-            ///System.out.println("\n--------------------------------------------");
-            ///System.out.println(mutation + " = " + score);
-            ///System.out.println("--------------------------------------------\n");
+            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), maximalDepth);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
             else
                 value.add(mutation);
         }
-        ///System.out.println("=====================8<=====================\n");
         return map;
+    }
+
+    @Override
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+        return this.applyEvaluation(mutations, this.getMaximalDepth());
     }
 
     @Override

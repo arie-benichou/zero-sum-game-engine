@@ -17,6 +17,7 @@
 
 package abstractions.evaluator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -50,8 +51,8 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
         this.maximalDepth = maximalDepth;
     }
 
-    //TODO ? rajouter à l'interface d'un évaluateur
-    private final int getMaximalDepth() {
+    @Override
+    public final int getMaximalDepth() {
         return this.maximalDepth;
     }
 
@@ -70,7 +71,7 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
             localBestScore = bestScore;
 
             final List<MutationInterface> opponentMoves = this.getContext().getLegalMoves(side.getNextSide());
-            ///Collections.sort(opponentMoves);
+            Collections.sort(opponentMoves);
 
             for (final MutationInterface opponentMove : opponentMoves) {
                 localBestScore = Math.min(localBestScore, -this.evaluate(opponentMove, side.getNextSide(), depthLeft - 1, -localBestScore, -worstScore));
@@ -86,11 +87,10 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
-        ///Collections.sort(mutations); // TODO ? à rendre paramétrable
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), this.getMaximalDepth(), -1.0, 1.0);
+            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), maximalDepth, -1.0, 1.0);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
@@ -98,6 +98,11 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
                 value.add(mutation);
         }
         return map;
+    }
+
+    @Override
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+        return this.applyEvaluation(mutations, this.getMaximalDepth());
     }
 
     @Override
