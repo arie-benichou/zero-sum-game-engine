@@ -112,24 +112,32 @@ public class SmallOthello {
     }
 
     private static AdversityInterface adversity5() {
+
         final EvaluatorInterface evaluator1 = new NullEvaluator();
         final StrategyInterface strategy1 = new Strategy(evaluator1, new FirstItem(SmallOthello.RANDOM_ON_SAME_EVALUATION, SmallOthello.AVOID_NULL_MOVE));
-        final EvaluatorInterface evaluator2 = new IterativeDeepening(SmallOthello.DEPTH);
+
+        final EvaluatorInterface evaluator2 = new IterativeDeepening(new NegaMaxAlphaBeta(SmallOthello.DEPTH));
         final StrategyInterface strategy2 = new Strategy(evaluator2, new FirstItem(SmallOthello.RANDOM_ON_SAME_EVALUATION, SmallOthello.AVOID_NULL_MOVE));
+
         final PlayerInterface player1 = new Player("IA1", strategy1);
         final PlayerInterface player2 = new Player("IA2", strategy2);
+
         return new Adversity(player1, player2);
     }
 
     public static void main(final String[] args) {
 
+        final GameInterface game3 = new Game(SmallOthello.cellManager(), new OthelloReferee());
+        final GamePlayInterface gamePlay3 = new GamePlay(game3, SmallOthello.adversity3());
+        new ContextManager(new OthelloContext(gamePlay3)).startGamePlay();
+
+        //System.out.println(((MiniMaxAlphaBeta) gamePlay3.getAdversity().getPlayer(Sides.SECOND).getStrategy().getEvaluator()).cutOffs);        
+
         final GameInterface game4 = new Game(SmallOthello.cellManager(), new OthelloReferee());
         final GamePlayInterface gamePlay4 = new GamePlay(game4, SmallOthello.adversity4());
         new ContextManager(new OthelloContext(gamePlay4)).startGamePlay();
 
-        final GameInterface game3 = new Game(SmallOthello.cellManager(), new OthelloReferee());
-        final GamePlayInterface gamePlay3 = new GamePlay(game3, SmallOthello.adversity3());
-        new ContextManager(new OthelloContext(gamePlay3)).startGamePlay();
+        //System.out.println(((NegaMaxAlphaBeta) gamePlay4.getAdversity().getPlayer(Sides.SECOND).getStrategy().getEvaluator()).cutOffs);
 
         final GameInterface game5 = new Game(SmallOthello.cellManager(), new OthelloReferee());
         final GamePlayInterface gamePlay5 = new GamePlay(game5, SmallOthello.adversity5());

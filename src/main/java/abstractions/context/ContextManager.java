@@ -72,11 +72,11 @@ public class ContextManager {
     private void start() {
         do {
             this.setSideToPlay(this.getCurrentSide().getNextSide());
-            //System.out.println(this);
+            System.out.println(this);
             final PlayerInterface player = this.getCurrentPlayer();
-            //System.out.println(player.getName());
+            System.out.println(player.getName());
             final MutationInterface move = player.applyStrategy(this.getLegalMoves());
-            //System.out.print(move);
+            System.out.println(move);
             this.applyMoveForCurrentPlayer(move);
         }
         while (!this.isGameOver());
@@ -92,7 +92,7 @@ public class ContextManager {
         System.out.println("Temps de la partie : " + (t1 - t0) / 1000 + " secondes");
         final double scoreGame = (1 + Math.abs(this.context.getHeuristicEvaluation(Sides.FIRST))) * 10;
         System.out.println("Note du résultat de la partie : " + NumberFormat.getInstance().format(scoreGame) + " / 20");
-        System.out.println("\n--------------------8<--------------------\n");
+        System.out.println("\n-------------------->8--------------------\n");
     }
 
     @Override
