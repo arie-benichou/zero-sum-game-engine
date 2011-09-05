@@ -27,11 +27,11 @@ import com.google.common.collect.Maps;
 
 public class NullEvaluator implements EvaluatorInterface {
 
-    private final static int NULL_EVALUATION = 0;
+    private final static Double NULL_EVALUATION = 0.0;
 
     @Override
-    public TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        final TreeMap<Integer, List<MutationInterface>> evaluatedMutations = Maps.newTreeMap();
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+        final TreeMap<Double, List<MutationInterface>> evaluatedMutations = Maps.newTreeMap();
         evaluatedMutations.put(NullEvaluator.NULL_EVALUATION, mutations);
         return evaluatedMutations;
     }

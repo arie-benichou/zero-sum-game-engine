@@ -21,6 +21,6 @@ import abstractions.mutation.MutationTypeInterface;
 
 public enum OthelloMutations implements MutationTypeInterface {
 
-    NEW_PAWN
+    NEW_PAWN, NUll
 
 }

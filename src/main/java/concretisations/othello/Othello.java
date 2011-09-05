@@ -21,13 +21,12 @@ import abstractions.adversity.Adversity;
 import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
-import abstractions.context.Context;
 import abstractions.context.ContextInterface;
 import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.evaluator.EvaluatorInterface;
-import abstractions.evaluator.NegaMaxAlphaBeta;
+import abstractions.evaluator.IterativeDeepening;
 import abstractions.evaluator.NullEvaluator;
 import abstractions.game.Game;
 import abstractions.game.GameInterface;
@@ -39,8 +38,7 @@ import abstractions.player.Player;
 import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
-import abstractions.selector.LastItem;
-import abstractions.selector.Random;
+import abstractions.selector.FirstItem;
 import abstractions.side.Sides;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -62,32 +60,23 @@ public class Othello {
     private static AdversityInterface adversity() {
 
         final EvaluatorInterface evaluator1 = new NullEvaluator();
-        final StrategyInterface strategy1 = new Strategy(evaluator1, new Random(true));
-        final PlayerInterface player1 = new Player("Player1", strategy1);
+        final StrategyInterface strategy1 = new Strategy(evaluator1, new abstractions.selector.Random(true));
 
-        final EvaluatorInterface evaluator2 = new NegaMaxAlphaBeta(7);
-        final StrategyInterface strategy2 = new Strategy(evaluator2, new LastItem(true, true));
-        final PlayerInterface player2 = new Player("Player2", strategy2);
+        final EvaluatorInterface evaluator2 = new IterativeDeepening(8);
+        final StrategyInterface strategy2 = new Strategy(evaluator2, new FirstItem(false, true));
+
+        final PlayerInterface player1 = new Player("IA1", strategy1);
+        final PlayerInterface player2 = new Player("IA2", strategy2);
 
         return new Adversity(player1, player2);
-
-    }
-
-    private static GameInterface game() {
-        return new Game(Othello.cellManager(), new OthelloReferee());
-    }
-
-    private static GamePlayInterface gamePlay() {
-        return new GamePlay(Othello.game(), Othello.adversity());
     }
 
     public static void main(final String[] args) {
-        final ContextInterface context = new Context(Othello.gamePlay());
-        // TODO créer ContextManagerInterface (ou GamePlayManagerInterface)
-        final ContextManager contextManager = new ContextManager(context);
-        contextManager.play();
-        System.out.println(context.getHeuristicEvaluation(Sides.FIRST));
-        System.out.println(context.getHeuristicEvaluation(Sides.SECOND));
-    }
 
+        final GameInterface game = new Game(Othello.cellManager(), new OthelloReferee());
+        final GamePlayInterface gamePlay = new GamePlay(game, Othello.adversity());
+        final ContextInterface context = new OthelloContext(gamePlay);
+
+        new ContextManager(context).startGamePlay();
+    }
 }

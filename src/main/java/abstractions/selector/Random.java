@@ -32,7 +32,7 @@ public class Random extends AbstractSelector {
     }
 
     @Override
-    public List<MutationInterface> select(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+    public List<MutationInterface> select(final TreeMap<Double, List<MutationInterface>> evaluatedMutations) {
         return Lists.newArrayList(Iterables.concat(evaluatedMutations.values()));
     }
 

@@ -109,14 +109,14 @@ public class Context implements ContextInterface {
     //-----------------------------------------------------------------    
 
     @Override
-    public int getHeuristicEvaluation(final SideInterface side) {
+    public Double getHeuristicEvaluation(final SideInterface side) {
         return this.getReferee().getHeuristicEvaluation(this, side);
     }
 
     //-----------------------------------------------------------------    
 
     @Override
-    public int getTerminalEvaluation(final SideInterface side) {
+    public Double getTerminalEvaluation(final SideInterface side) {
         return this.getReferee().getTerminalEvaluation(this, side);
     }
 
@@ -136,7 +136,7 @@ public class Context implements ContextInterface {
 
     @Override
     public void applyMove(final MutationInterface move, final SideInterface side) {
-        this.moves.get(side).add(move.process());
+        this.onApplyMove(this.moves.get(side).push(move.process()));
     }
 
     @Override
@@ -160,7 +160,7 @@ public class Context implements ContextInterface {
 
     @Override
     public void unapplyLastPlayedMove(final SideInterface side) {
-        this.moves.get(side).pop().cancel();
+        this.onUnapplyMove(this.moves.get(side).pop().cancel());
     }
 
     @Override
@@ -171,7 +171,21 @@ public class Context implements ContextInterface {
     //-----------------------------------------------------------------    
 
     @Override
-    public final String toString() {
+    public void onApplyMove(final MutationInterface move) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onUnapplyMove(final MutationInterface move) {
+        // TODO Auto-generated method stub
+
+    }
+
+    //-----------------------------------------------------------------
+
+    @Override
+    public String toString() {
         return this.cellManager.toString();
     }
 

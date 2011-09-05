@@ -28,6 +28,6 @@ import abstractions.mutation.MutationInterface;
 public interface SelectorInterface {
 
     // TODO passer le contexte
-    MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations);
+    MutationInterface applySelection(final TreeMap<Double, List<MutationInterface>> evaluatedMutations);
 
 }

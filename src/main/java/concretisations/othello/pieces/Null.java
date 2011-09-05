@@ -37,7 +37,7 @@ public final class Null extends OthelloPiece {
     @Override
     public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (this.isMutable(cell, side)) {
-            return ImmutableSet.of(OthelloMutationFactory.newPawnMutation(cell, side)); // NOPMD 
+            return ImmutableSet.of(OthelloMutationFactory.newPawnMutation(cell, side));
         }
         return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
 

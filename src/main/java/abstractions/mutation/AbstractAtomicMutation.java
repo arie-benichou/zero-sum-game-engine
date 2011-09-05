@@ -30,8 +30,14 @@ public abstract class AbstractAtomicMutation extends AbstractMutation {
     public abstract MutationInterface process();
 
     @Override
-    public final void cancel() {
+    public final MutationInterface cancel() {
         this.getCell().setPiece(this.getSavedSate());
+        return this;
+    }
+
+    @Override
+    public int compareTo(final MutationInterface o) {
+        return 0;
     }
 
 }

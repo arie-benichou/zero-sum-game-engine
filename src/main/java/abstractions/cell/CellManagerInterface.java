@@ -147,7 +147,9 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * @return the named directions
      */
     List<NamedDirection> getNamedDirections();
-    
-    boolean isFull();
+
+    boolean isFull(); // TODO ? à virer
+
+    String asString();
 
 }

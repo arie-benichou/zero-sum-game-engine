@@ -48,7 +48,7 @@ public class Checkers {
         final ContextManager contextManager = new ContextManager(context);
 
         onStart(cellManager);
-        contextManager.play();
+        contextManager.startGamePlay();
 
     }
 

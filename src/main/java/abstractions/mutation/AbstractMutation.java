@@ -33,26 +33,34 @@ public abstract class AbstractMutation implements MutationInterface {
         this.savedSate = cell.getPiece();
     }
 
+    @Override
     public final ManagedCellInterface getCell() {
         return this.cell;
     }
 
+    @Override
     public final MutationTypeInterface getType() {
         return this.type;
     }
 
+    @Override
     public final PieceInterface getSavedSate() {
         return this.savedSate;
     }
 
     @Override
     public final String toString() {
-        return this.getType() + " " + this.getCell().getPosition() + " ";
+        return this.getType() + " " + this.getCell().getPosition();// + " ";
     }
 
+    @Override
     public abstract MutationInterface process();
 
-    public abstract void cancel();
+    @Override
+    public abstract MutationInterface cancel();
+
+    @Override
+    public abstract int compareTo(MutationInterface o);
 
     @Override
     public boolean isNull() {

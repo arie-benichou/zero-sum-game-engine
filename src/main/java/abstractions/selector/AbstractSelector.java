@@ -22,6 +22,7 @@ import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
 
+// TODO vérifier le randomize => unit test
 public abstract class AbstractSelector implements SelectorInterface {
 
     private final java.util.Random random = new java.util.Random();
@@ -37,14 +38,12 @@ public abstract class AbstractSelector implements SelectorInterface {
      */
     private final boolean avoidNullMutation;
 
-    // TODO à mettre dans strategy: pas d'évaluation lorsqu'il y a qu'un seul coup possible
-
     public AbstractSelector(final boolean randomOnSameEvaluation, final boolean avoidNullMutation) {
         this.randomOnSameEvaluation = randomOnSameEvaluation;
         this.avoidNullMutation = avoidNullMutation;
     }
 
-    public abstract List<MutationInterface> select(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations);
+    public abstract List<MutationInterface> select(final TreeMap<Double, List<MutationInterface>> evaluatedMutations);
 
     private MutationInterface doSelection(final List<MutationInterface> selection, final int numberOfOptions) {
         int index = 0;
@@ -61,7 +60,7 @@ public abstract class AbstractSelector implements SelectorInterface {
     }
 
     @Override
-    public MutationInterface applySelection(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+    public MutationInterface applySelection(final TreeMap<Double, List<MutationInterface>> evaluatedMutations) {
         final List<MutationInterface> selection = this.select(evaluatedMutations);
         return this.doSelection(selection, selection.size());
     }

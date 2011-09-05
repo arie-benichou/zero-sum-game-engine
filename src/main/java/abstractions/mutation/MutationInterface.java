@@ -27,7 +27,7 @@ import com.google.common.collect.ImmutableSet;
 /**
  * This is the interface for a cell mutation.
  */
-public interface MutationInterface {
+public interface MutationInterface extends Comparable<MutationInterface> {
 
     /**
      * Constant for the empty set of potential mutations.
@@ -65,8 +65,8 @@ public interface MutationInterface {
     /**
      * Cancels this mutation.
      */
-    void cancel();
-    
+    MutationInterface cancel();
+
     boolean isNull();
 
 }

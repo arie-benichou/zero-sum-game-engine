@@ -51,7 +51,9 @@ public class NullMutation implements MutationInterface {
     }
 
     @Override
-    public void cancel() {}
+    public MutationInterface cancel() {
+        return this;
+    }
 
     @Override
     public boolean isNull() {
@@ -61,6 +63,11 @@ public class NullMutation implements MutationInterface {
     @Override
     public String toString() {
         return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public int compareTo(final MutationInterface o) {
+        return 0;
     }
 
 }
