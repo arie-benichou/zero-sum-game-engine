@@ -29,7 +29,7 @@ public class FirstItem extends AbstractSelector {
     }
 
     @Override
-    public List<MutationInterface> select(final TreeMap<Integer, List<MutationInterface>> evaluatedMutations) {
+    public List<MutationInterface> select(final TreeMap<Double, List<MutationInterface>> evaluatedMutations) {
         return evaluatedMutations.firstEntry().getValue();
     }
 

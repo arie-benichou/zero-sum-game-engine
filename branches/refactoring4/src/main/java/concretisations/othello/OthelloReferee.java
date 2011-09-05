@@ -17,96 +17,52 @@
 
 package concretisations.othello;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
-import abstractions.mutation.NullMutation;
 import abstractions.referee.RefereeInterface;
 import abstractions.side.SideInterface;
 
-// TODO !! à optimiser...
-// TODO normaliser les score entre -1.0 et 1.0 (match null: 0.5)
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
+import concretisations.othello.mutations.NullMutation;
+
 public class OthelloReferee implements RefereeInterface {
 
-    //TODO !? mettre en cache les coups légaux du joueur suivant
     @Override
     public boolean isGameOver(final ContextInterface context) {
-        // 1) le board est plein
-        if (context.getCellManager().isFull())
-            return true;
-        // 2) les deux joueurs sont bloqués
-        final List<MutationInterface> legalMovesForNextSide = this.getLegalMoves(context, context.getCurrentSide().getNextSide());
-        if (legalMovesForNextSide.size() == 1 && legalMovesForNextSide.get(0).isNull()) {
-            final List<MutationInterface> legalMovesForCurrentSide = this.getLegalMoves(context, context.getCurrentSide());
-            if (legalMovesForCurrentSide.size() == 1 && legalMovesForCurrentSide.get(0).isNull())
-                return true;
-        }
-        // 3) les deux joueurs ont succesivement passé leur tour
-        return context.getLastMove(context.getCurrentSide().getNextSide()).isNull() && context.getLastMove(context.getCurrentSide()).isNull();
-    }
-
-    private int computeDelta(final ContextInterface context, final SideInterface side) {
-        int delta = 0;
-        final Iterator<ManagedCellInterface> it = context.getCellManager().iterator();
-        it.next();
-        while (it.hasNext()) {
-            final ManagedCellInterface cell = it.next();
-            if (cell.getPiece().getSide().equals(side))
-                ++delta;
-            else if (cell.getPiece().getSide().equals(side.getNextSide()))
-                --delta;
-        }
-        return delta;
-    }
-
-    private int computeLeft(final ContextInterface context, final SideInterface side) {
-        int left = 0;
-        final Iterator<ManagedCellInterface> it = context.getCellManager().iterator();
-        it.next();
-        while (it.hasNext()) {
-            final ManagedCellInterface cell = it.next();
-            if (cell.getPiece().getSide().equals(side))
-                ++left;
-        }
-        return left;
+        //les deux joueurs ont succesivement passé leur tour ou les deux joueurs ne peuvent plus jouer
+        return context.getLastMove(context.getCurrentSide()).isNull()
+                && context.getLastMove(context.getCurrentSide().getNextSide()).isNull()
+                ||
+                this.getLegalMoves(context, context.getCurrentSide().getNextSide()).get(0).isNull()
+                && this.getLegalMoves(context, context.getCurrentSide()).get(0).isNull();
     }
 
     @Override
     public List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side) {
-
-        //TODO à améliorer
-        final List<MutationInterface> legalMoves = new ArrayList<MutationInterface>();
-        final Collection<Set<MutationInterface>> mutations = context.getCellManager().getPotentialMutations(side).values();
-
-        for (final Set<MutationInterface> e : mutations)
-            legalMoves.addAll(e);
-
-        // TODO ?? doit être géré par le contextManager -> rétablir isNullMoveAllowed
-        //if (legalMoves.isEmpty())        
+        final List<MutationInterface> legalMoves = Lists.newArrayList(Iterables.concat(context.getCellManager().getPotentialMutations(side).values()));
         legalMoves.add(NullMutation.getInstance());
-
         return legalMoves;
     }
 
     @Override
-    public int getHeuristicEvaluation(final ContextInterface context, final SideInterface side) {
-        return this.computeDelta(context, side);
+    public final Double getHeuristicEvaluation(final ContextInterface context, final SideInterface sidePointOfView) {
+        final OthelloContext othelloContext = (OthelloContext) context;
+        return (othelloContext.getNumberOfPawns(sidePointOfView) - othelloContext.getNumberOfPawns(sidePointOfView.getNextSide()))
+                / othelloContext.getNumberOfCells();
     }
 
     @Override
-    public int getTerminalEvaluation(final ContextInterface context, final SideInterface side) {
-        final int delta = this.computeDelta(context, side);
-        if (delta < 0)
-            return -Integer.MAX_VALUE + this.computeLeft(context, side);
-        if (delta > 0)
-            return Integer.MAX_VALUE - this.computeLeft(context, side.getNextSide());
-        return 0;
+    public final Double getTerminalEvaluation(final ContextInterface context, final SideInterface sidePointOfView) {
+        Double evaluation = this.getHeuristicEvaluation(context, sidePointOfView);
+        if (evaluation == 0) {
+            final OthelloContext othelloContext = (OthelloContext) context;
+            //evaluation = 0 - othelloContext.getNumberOfEmptyCells() / othelloContext.getNumberOfCells() / 10;
+            evaluation = othelloContext.getNumberOfEmptyCells() / (-10 * othelloContext.getNumberOfCells());
+        }
+        return evaluation;
     }
-
 }

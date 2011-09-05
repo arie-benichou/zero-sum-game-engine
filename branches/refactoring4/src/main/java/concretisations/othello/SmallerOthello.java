@@ -21,12 +21,12 @@ import abstractions.adversity.Adversity;
 import abstractions.adversity.AdversityInterface;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
-import abstractions.context.Context;
 import abstractions.context.ContextInterface;
 import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.evaluator.EvaluatorInterface;
+import abstractions.evaluator.MiniMax;
 import abstractions.evaluator.NullEvaluator;
 import abstractions.game.Game;
 import abstractions.game.GameInterface;
@@ -38,8 +38,8 @@ import abstractions.player.Player;
 import abstractions.player.PlayerInterface;
 import abstractions.position.PositionManager;
 import abstractions.position.PositionManagerInterface;
+import abstractions.selector.FirstItem;
 import abstractions.selector.Human;
-import abstractions.selector.Random;
 import abstractions.side.Sides;
 import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
@@ -48,45 +48,42 @@ import concretisations.othello.pieces.OthelloPieceSet;
 public class SmallerOthello {
 
     private static CellManagerInterface cellManager() {
+
         final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(4, 4)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.othello.pieces.OthelloPieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
+
         cellManager.getCell(2, 2).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
         cellManager.getCell(2, 3).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
         cellManager.getCell(3, 2).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
         cellManager.getCell(3, 3).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+
         return cellManager;
     }
 
     private static AdversityInterface adversity() {
 
+        // si le 2ème joueur joue parfaitement, le premier joueur ne peut pas gagner...
         final EvaluatorInterface evaluator1 = new NullEvaluator();
-        final StrategyInterface strategy1 = new Strategy(evaluator1, new Random(true));
-        final PlayerInterface player1 = new Player("Player1", strategy1);
+        final StrategyInterface strategy1 = new Strategy(evaluator1, new Human());
 
-        final EvaluatorInterface evaluator2 = new NullEvaluator();
-        final StrategyInterface strategy2 = new Strategy(evaluator2, new Human());
-        final PlayerInterface player2 = new Player("Player2", strategy2);
+        // ...faisons donc jouer parfaitement le 2ème joueur ! 
+        final EvaluatorInterface evaluator2 = new MiniMax(8);
+        //final EvaluatorInterface evaluator2 = new NegaMax(8);
+        final StrategyInterface strategy2 = new Strategy(evaluator2, new FirstItem(false, true));
 
-        return new Adversity(player1, player2);
+        final PlayerInterface player1 = new Player("Human", strategy1);
+        final PlayerInterface player2 = new Player("IA", strategy2);
 
-    }
-
-    private static GameInterface game() {
-        return new Game(SmallerOthello.cellManager(), new OthelloReferee());
-    }
-
-    private static GamePlayInterface gamePlay() {
-        return new GamePlay(SmallerOthello.game(), SmallerOthello.adversity());
+        return new Adversity(player2, player1);
     }
 
     public static void main(final String[] args) {
-        final ContextInterface context = new Context(SmallerOthello.gamePlay());
-        // TODO créer ContextManagerInterface (ou GamePlayManagerInterface)
-        final ContextManager contextManager = new ContextManager(context);
-        contextManager.play();
-        System.out.println(context.getHeuristicEvaluation(Sides.FIRST));
-        System.out.println(context.getHeuristicEvaluation(Sides.SECOND));
-    }
 
+        final GameInterface game = new Game(SmallerOthello.cellManager(), new OthelloReferee());
+        final GamePlayInterface gamePlay = new GamePlay(game, SmallerOthello.adversity());
+        final ContextInterface context = new OthelloContext(gamePlay);
+
+        new ContextManager(context).startGamePlay();
+    }
 }

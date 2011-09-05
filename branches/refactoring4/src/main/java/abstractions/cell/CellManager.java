@@ -67,26 +67,32 @@ public final class CellManager implements CellManagerInterface {
         this.cells = Lists.newArrayList(this.map.values());
     }
 
+    @Override
     public ManagedCellInterface getNullCell() {
         return this.nullCell;
     }
 
+    @Override
     public ManagedCellInterface getCell(final int rowIndex, final int columnIndex) {
         return this.map.get(this.positionManager.getPosition(rowIndex, columnIndex));
     }
 
+    @Override
     public ManagedCellInterface getCell(final PositionInterface position) {
         return this.map.get(position);
     }
 
+    @Override
     public PieceInterface piece(final SideInterface side, final PieceTypeInterface pieceType) {
         return this.pieceManager.getPiece(side, pieceType);
     }
 
+    @Override
     public PositionInterface position(final int rowIndex, final int columnIndex) {
         return this.positionManager.getPosition(rowIndex, columnIndex);
     }
 
+    @Override
     public PositionInterface position(final PositionInterface position, final DirectionInterface direction) {
         return this.positionManager.getPosition(position, direction);
     }
@@ -95,15 +101,18 @@ public final class CellManager implements CellManagerInterface {
         return this.positionManager.getPosition(position, namedDirection.value());
     }
 
+    @Override
     public Iterator<ManagedCellInterface> iterator() {
         return this.cells.iterator();
     }
 
+    @Override
     public PieceInterface getNullPiece() {
         return this.pieceManager.getNullPiece();
     }
 
     // TODO ? utiliser le type de mutation comme clé de map
+    @Override
     public Map<ManagedCellInterface, Set<MutationInterface>> getPotentialMutations(final SideInterface side) {
         final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutationsMap = Maps.newTreeMap();
         final Iterator<ManagedCellInterface> it = this.iterator();
@@ -138,11 +147,22 @@ public final class CellManager implements CellManagerInterface {
         return consoleBoardView.toString();
     }
 
+    @Override
+    public String asString() {
+        final StringBuilder sb = new StringBuilder();
+        for (final ManagedCellInterface cell : this) {
+            sb.append(cell.getPiece());
+        }
+        return sb.toString();
+    }
+
+    @Override
     public List<NamedDirection> getNamedDirections() {
         return this.positionManager.getNamedDirections();
     }
 
     // TODO ? utiliser un cache
+    @Override
     public List<ManagedCellInterface> getRow(final int rowIndex) {
         final int maxColumnIndex = Collections.max(this.map.values()).getColumn();
         final List<ManagedCellInterface> row = Lists.newArrayListWithCapacity(maxColumnIndex);
@@ -153,6 +173,7 @@ public final class CellManager implements CellManagerInterface {
     }
 
     // TODO ? utiliser un cache
+    @Override
     public List<ManagedCellInterface> getColumn(final int columnIndex) {
         final int maxRowIndex = Collections.max(this.map.values()).getRow();
         final List<ManagedCellInterface> column = Lists.newArrayListWithCapacity(maxRowIndex);
@@ -183,6 +204,7 @@ public final class CellManager implements CellManagerInterface {
     */
 
     // TODO ? utiliser un cache    
+    @Override
     public List<ManagedCellInterface> getRegion(final PositionInterface topLeftPosition, final PositionInterface bottomRightPosition) {
         final int regionCapacity = (1 + bottomRightPosition.getRow() - topLeftPosition.getRow())
                 * (1 + bottomRightPosition.getColumn() - topLeftPosition.getColumn());
@@ -197,12 +219,12 @@ public final class CellManager implements CellManagerInterface {
 
     @Override
     public boolean isFull() {
-        Iterator<ManagedCellInterface> it = this.iterator();
+        final Iterator<ManagedCellInterface> it = this.iterator();
         it.next();
         while (it.hasNext())
             if (it.next().isEmpty())
                 return false;
         return true;
     }
-    
+
 }

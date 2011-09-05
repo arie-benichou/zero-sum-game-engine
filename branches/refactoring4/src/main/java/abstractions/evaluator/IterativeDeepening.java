@@ -24,10 +24,11 @@ import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class NegaMaxAlphaBeta implements EvaluatorInterface {
+public class IterativeDeepening implements EvaluatorInterface {
 
     public int cutOffs = 0;
 
@@ -46,7 +47,7 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
 
     private final int maximalDepth;
 
-    public NegaMaxAlphaBeta(final int maximalDepth) {
+    public IterativeDeepening(final int maximalDepth) {
         this.maximalDepth = maximalDepth;
     }
 
@@ -85,18 +86,40 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
         return localBestScore;
     }
 
-    @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+    public final TreeMap<Double, List<MutationInterface>> iterativeDeepening(final List<MutationInterface> mutations, final int depthLeft) {
+        ///System.out.print("Evaluation des coups légaux du point de vue de: ");
+        ///System.out.println(this.getContext().getCurrentSide() + " à une profondeur de " + depthLeft + " ...");
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
-        ///Collections.sort(mutations); // TODO ? à rendre paramétrable
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), this.getMaximalDepth(), -1.0, 1.0);
+            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), depthLeft, -1.0, 1.0);
+            ///System.out.println(mutation + " = " + score);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
             else
                 value.add(mutation);
         }
+        ///System.out.println();
+        return map;
+    }
+
+    @Override
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
+
+        int maximalLocalDepth = 1;
+
+        TreeMap<Double, List<MutationInterface>> map;
+
+        List<MutationInterface> orderedMutations = mutations; // TODO utiliser Ordering.sortedCopy...
+
+        ///Collections.sort(orderedMutations);
+
+        do {
+            map = this.iterativeDeepening(orderedMutations, maximalLocalDepth);
+            orderedMutations = Lists.newArrayList(Iterables.concat(map.values()));
+        }
+        while (++maximalLocalDepth <= this.getMaximalDepth());
+        ///System.out.println();
         return map;
     }
 

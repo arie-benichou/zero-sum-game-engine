@@ -53,10 +53,14 @@ public interface ContextInterface {
 
     CellManagerInterface getCellManager();
 
-    int getHeuristicEvaluation(final SideInterface side);
+    Double getHeuristicEvaluation(final SideInterface side);
 
-    int getTerminalEvaluation(final SideInterface side);
+    Double getTerminalEvaluation(final SideInterface side);
 
     AdversityInterface getAdversity();
+
+    void onApplyMove(final MutationInterface move);
+
+    void onUnapplyMove(final MutationInterface move);
 
 }

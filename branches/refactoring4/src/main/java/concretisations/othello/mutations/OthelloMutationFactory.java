@@ -29,4 +29,5 @@ public final class OthelloMutationFactory {
     public static MutationInterface newPawnMutation(final ManagedCellInterface cell, final SideInterface side) {
         return new NewPawnMutation(cell, OthelloMutations.NEW_PAWN, side, OthelloPieceSet.PAWN);
     }
+
 }

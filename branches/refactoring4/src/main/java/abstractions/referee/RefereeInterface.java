@@ -32,9 +32,9 @@ public interface RefereeInterface {
 
     boolean isGameOver(final ContextInterface context);
 
-    int getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
+    Double getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
 
-    int getTerminalEvaluation(final ContextInterface context, final SideInterface side);
+    Double getTerminalEvaluation(final ContextInterface context, final SideInterface side);
 
     List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
 

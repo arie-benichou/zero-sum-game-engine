@@ -54,7 +54,7 @@ public class TicTacToe {
 
         TicTacToe.onStart(cellManager);
 
-        contextManager.play();
+        contextManager.startGamePlay();
         //System.out.println("\nAnd the winner is: " + winner);
 
     }

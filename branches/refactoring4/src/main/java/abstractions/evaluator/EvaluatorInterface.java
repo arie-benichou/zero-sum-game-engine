@@ -38,7 +38,7 @@ public interface EvaluatorInterface {
      * 
      * @return evaluated moves
      */
-    TreeMap<Integer, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations);
+    TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations);
 
     //cf TODO
     void injectContext(final ContextInterface context);
