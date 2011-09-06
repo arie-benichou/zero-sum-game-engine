@@ -29,12 +29,14 @@ import java.util.Set;
 
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
+import annotations.Immutable;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+@Immutable
 public final class PieceManager implements PieceManagerInterface {
 
     private final Map<Integer, PieceInterface> data;
@@ -154,10 +156,12 @@ public final class PieceManager implements PieceManagerInterface {
         this.data = this.initializeData(pieceMap);
     }
 
+    @Override
     public PieceInterface getNullPiece() {
         return this.nullPiece;
     }
 
+    @Override
     public PieceInterface getPiece(final SideInterface side, final PieceTypeInterface type) {
         final PieceInterface piece = this.data.get(this.hash(side, type));
         if (piece == null) {

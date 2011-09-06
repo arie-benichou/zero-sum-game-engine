@@ -22,10 +22,12 @@ import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
+@Immutable
 public class IterativeDeepening implements EvaluatorInterface {
 
     private final EvaluatorInterface evaluator;

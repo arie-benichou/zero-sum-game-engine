@@ -23,7 +23,9 @@ import abstractions.context.ContextInterface;
 import abstractions.evaluator.EvaluatorInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.selector.SelectorInterface;
+import annotations.Immutable;
 
+@Immutable
 public class Strategy implements StrategyInterface {
 
     private final EvaluatorInterface evaluator;

@@ -19,7 +19,9 @@ package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
+import annotations.Immutable;
 
+@Immutable
 class Death extends AbstractAtomicMutation {
 
     public Death(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {

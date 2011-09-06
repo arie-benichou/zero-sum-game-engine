@@ -21,8 +21,10 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.position.PositionInterface;
+import annotations.Immutable;
 
 // TODO equals et hashcode ?
+@Immutable
 public abstract class AbstractMutation implements MutationInterface {
 
     private final PositionInterface position;

@@ -17,6 +17,9 @@
 
 package abstractions.dimension;
 
+import annotations.Immutable;
+
+@Immutable
 public final class DimensionManager implements DimensionManagerInterface {
 
     private final RowDimension rowRange;
@@ -32,34 +35,42 @@ public final class DimensionManager implements DimensionManagerInterface {
         }
     }
 
+    @Override
     public int lowerBoundForRows() {
         return this.rowRange.getLowerBound();
     }
 
+    @Override
     public int upperBoundForRows() {
         return this.rowRange.getUpperBound();
     }
 
+    @Override
     public int lowerBoundForColumns() {
         return this.columRange.getLowerBound();
     }
 
+    @Override
     public int upperBoundForColumns() {
         return this.columRange.getUpperBound();
     }
 
+    @Override
     public int numberOfRows() {
         return this.rowRange.getCapacity();
     }
 
+    @Override
     public int numberOfColumns() {
         return this.columRange.getCapacity();
     }
 
+    @Override
     public int capacity() {
         return this.numberOfRows() * this.numberOfColumns();
     }
 
+    @Override
     public boolean contains(final int rowIndex, final int columnIndex) {
         return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
     }

@@ -18,7 +18,9 @@
 package abstractions.dimension;
 
 import abstractions.utils.math.IntegersRange;
+import annotations.Immutable;
 
+@Immutable
 final class RowDimension extends IntegersRange {
 
     public RowDimension(final Integer lowerBound, final Integer upperBound) {

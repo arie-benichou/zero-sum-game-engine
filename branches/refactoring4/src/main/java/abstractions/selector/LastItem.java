@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
+@Immutable
 public class LastItem extends AbstractSelector {
 
     public LastItem(final boolean randomOnSameEvaluation, final boolean avoidNullMutation) {

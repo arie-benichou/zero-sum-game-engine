@@ -25,11 +25,13 @@ import java.util.Set;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.direction.DirectionManagerInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.ImmutableSet;
 
+@Immutable
 public final class PositionManager implements PositionManagerInterface {
 
     private final int hashBase;
@@ -42,6 +44,7 @@ public final class PositionManager implements PositionManagerInterface {
         return this.hashBase * row + column;
     }
 
+    @Override
     public PositionInterface getNullPosition() {
         return this.nullPosition;
     }
@@ -78,6 +81,7 @@ public final class PositionManager implements PositionManagerInterface {
         this.nullPosition = this.data.get(0);
     }
 
+    @Override
     public PositionInterface getPosition(final int row, final int column) {
         final PositionInterface position; // NOPMD TODO ? this.position
         if (this.directionManager.getDimensionManager().contains(row, column)) {
@@ -89,6 +93,7 @@ public final class PositionManager implements PositionManagerInterface {
         return position;
     }
 
+    @Override
     public PositionInterface getPosition(final PositionInterface position, final DirectionInterface direction) {
         return this.getPosition(position.getRow() + direction.getRowDelta(), position.getColumn() + direction.getColumnDelta());
     }
@@ -97,10 +102,12 @@ public final class PositionManager implements PositionManagerInterface {
         return this.getPosition(position, namedDirection.value());
     }
 
+    @Override
     public Iterator<PositionInterface> iterator() {
         return this.data.values().iterator();
     }
 
+    @Override
     public List<NamedDirection> getNamedDirections() {
         return this.directionManager.getNamedDirections();
     }

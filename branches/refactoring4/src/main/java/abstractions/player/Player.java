@@ -22,7 +22,9 @@ import java.util.List;
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.strategy.StrategyInterface;
+import annotations.Immutable;
 
+@Immutable
 public class Player implements PlayerInterface {
 
     private final String name;

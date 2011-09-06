@@ -24,10 +24,12 @@ import java.util.TreeMap;
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@Immutable
 public class MiniMaxAlphaBeta implements EvaluatorInterface {
 
     public int cutOffs = 0;

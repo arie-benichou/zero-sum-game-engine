@@ -22,11 +22,13 @@ import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Maps;
 
 // TODO ? classe AbstractEvaluator
 // TODO factory + limiter le nombre d'instance de l'évaluateur nul à 1
+@Immutable
 public class NullEvaluator implements EvaluatorInterface {
 
     @Override

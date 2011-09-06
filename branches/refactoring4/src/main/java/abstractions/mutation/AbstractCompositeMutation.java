@@ -21,7 +21,9 @@ import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
+import annotations.Immutable;
 
+@Immutable
 public abstract class AbstractCompositeMutation extends AbstractMutation {
 
     private transient List<MutationInterface> sequence;
