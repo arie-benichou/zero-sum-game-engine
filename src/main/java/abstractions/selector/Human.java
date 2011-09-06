@@ -23,10 +23,12 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
+@Immutable
 public class Human extends AbstractSelector {
 
     private MutationInterface askForSelection(final List<MutationInterface> mutations) {

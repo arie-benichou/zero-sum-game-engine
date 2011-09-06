@@ -17,6 +17,9 @@
 
 package abstractions.direction;
 
+import annotations.Immutable;
+
+@Immutable
 public final class Direction implements DirectionInterface {
 
     private final int rowDelta;
@@ -29,10 +32,12 @@ public final class Direction implements DirectionInterface {
         this.columnDelta = columnDelta;
     }
 
+    @Override
     public int getRowDelta() {
         return this.rowDelta;
     }
 
+    @Override
     public int getColumnDelta() {
         return this.columnDelta;
     }

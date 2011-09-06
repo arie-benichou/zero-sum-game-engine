@@ -21,10 +21,12 @@ import java.util.List;
 import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
+@Immutable
 public class Random extends AbstractSelector {
 
     public Random() {

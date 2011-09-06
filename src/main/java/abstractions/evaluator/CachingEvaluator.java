@@ -23,9 +23,11 @@ import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 import com.google.common.collect.Maps;
 
+@Immutable
 public class CachingEvaluator implements EvaluatorInterface {
 
     private EvaluatorInterface evaluator;

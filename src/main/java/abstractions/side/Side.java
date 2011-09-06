@@ -17,6 +17,9 @@
 
 package abstractions.side;
 
+import annotations.Immutable;
+
+@Immutable
 enum Side implements SideInterface {
 
     FIRST_SIDE() {
@@ -84,24 +87,30 @@ enum Side implements SideInterface {
         }
     };
 
+    @Override
     public final boolean isFirstSide() {
         return this.equals(FIRST_SIDE);
     }
 
+    @Override
     public final boolean isSecondSide() {
         return this.equals(SECOND_SIDE);
     }
 
+    @Override
     public final boolean isOneSide() {
         return this.isFirstSide() || this.isSecondSide();
     }
 
+    @Override
     public final boolean isNull() {
         return this.equals(NULL_SIDE);
     }
 
+    @Override
     public abstract Side getNextSide();
 
+    @Override
     public abstract Side getNegation();
 
 }

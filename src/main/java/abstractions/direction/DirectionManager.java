@@ -22,10 +22,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import abstractions.dimension.DimensionManager;
 import abstractions.dimension.DimensionManagerInterface;
+import annotations.Immutable;
 
-// TODO benchmark space
+@Immutable
 public final class DirectionManager implements DirectionManagerInterface {
 
     public enum NamedDirection implements DirectionInterface {
@@ -139,10 +139,12 @@ public final class DirectionManager implements DirectionManagerInterface {
             return this.value;
         }
 
+        @Override
         public int getRowDelta() {
             return this.value.getRowDelta();
         }
 
+        @Override
         public int getColumnDelta() {
             return this.value.getColumnDelta();
         }
@@ -195,6 +197,7 @@ public final class DirectionManager implements DirectionManagerInterface {
         this.data = this.initializeData(new ArrayList<DirectionInterface>(2 * this.hashOffset + 1));
     }
 
+    @Override
     public DirectionInterface getDirection(final int rowDelta, final int columnDelta) {
         if (!this.dimension.contains(Math.abs(rowDelta) + 1, Math.abs(columnDelta) + 1)) {
             throw new IllegalDirectionException(rowDelta, columnDelta);
@@ -208,14 +211,17 @@ public final class DirectionManager implements DirectionManagerInterface {
         return direction;
     }
 
+    @Override
     public DirectionInterface getNamedDirection(final NamedDirection namedDirection) {
         return this.getDirection(namedDirection.value.getRowDelta(), namedDirection.value.getColumnDelta());
     }
 
+    @Override
     public List<NamedDirection> getNamedDirections() {
         return DirectionManager.NAMED_DIRECTIONS;
     }
 
+    @Override
     public DirectionInterface reduce(final Collection<? extends DirectionInterface> directions) {
         int reducedRowDelta = 0;
         int reducedColumnDelta = 0;
@@ -226,10 +232,13 @@ public final class DirectionManager implements DirectionManagerInterface {
         return this.getDirection(reducedRowDelta, reducedColumnDelta);
     }
 
+    @Override
     public DimensionManagerInterface getDimensionManager() {
         return this.dimension;
     }
 
+    // TODO benchmark space
+    /*
     public static void main(final String[] args) {
         final DirectionManager directionManager = new DirectionManager(new DimensionManager(10, 10));
         final long startTime = System.currentTimeMillis();
@@ -239,5 +248,6 @@ public final class DirectionManager implements DirectionManagerInterface {
         final long endTime = System.currentTimeMillis();
         System.out.println("Total execution time with 'getNamedDirectionFromList': " + (endTime - startTime) + " ms");
     }
+    */
 
 }

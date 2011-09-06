@@ -17,6 +17,9 @@
 
 package abstractions.side;
 
+import annotations.Immutable;
+
+@Immutable
 public final class Sides {
 
     private Sides() {}

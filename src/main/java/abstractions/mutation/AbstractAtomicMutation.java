@@ -19,10 +19,12 @@ package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
+import annotations.Immutable;
 
+@Immutable
 public abstract class AbstractAtomicMutation extends AbstractMutation {
 
-    // TODO ! coder les mutations de bases dans la cellule
+    // TODO ? coder les mutations de bases dans la cellule
     public AbstractAtomicMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
         super(cell, mutationType);
     }

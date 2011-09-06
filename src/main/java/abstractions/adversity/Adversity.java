@@ -22,9 +22,11 @@ import java.util.Map;
 import abstractions.player.PlayerInterface;
 import abstractions.side.SideInterface;
 import abstractions.side.Sides;
+import annotations.Immutable;
 
 import com.google.common.collect.Maps;
 
+@Immutable
 public class Adversity implements AdversityInterface {
 
     private final Map<SideInterface, PlayerInterface> map = Maps.newHashMapWithExpectedSize(2);

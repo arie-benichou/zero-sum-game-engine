@@ -21,7 +21,9 @@ import abstractions.cell.ManagedCellInterface;
 import abstractions.context.ContextInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
+import annotations.Immutable;
 
+@Immutable
 public class Birth extends AbstractAtomicMutation {
 
     private final SideInterface side;

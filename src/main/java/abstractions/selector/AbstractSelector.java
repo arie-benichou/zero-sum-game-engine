@@ -21,8 +21,10 @@ import java.util.List;
 import java.util.TreeMap;
 
 import abstractions.mutation.MutationInterface;
+import annotations.Immutable;
 
 // TODO vérifier le randomize => unit test
+@Immutable
 public abstract class AbstractSelector implements SelectorInterface {
 
     private final java.util.Random random = new java.util.Random();

@@ -20,7 +20,9 @@ package abstractions.mutation;
 import abstractions.context.ContextInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.position.PositionInterface;
+import annotations.Immutable;
 
+@Immutable
 public class NullMutation implements MutationInterface {
 
     private static MutationInterface INSTANCE = new NullMutation();
