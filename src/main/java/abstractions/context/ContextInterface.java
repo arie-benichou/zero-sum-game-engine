@@ -63,4 +63,6 @@ public interface ContextInterface {
 
     void onUnapplyMove(final MutationInterface move);
 
+    List<MutationInterface> getSortedLegalMoves(SideInterface side);
+
 }

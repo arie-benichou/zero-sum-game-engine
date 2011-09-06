@@ -17,8 +17,9 @@
 
 package abstractions.mutation;
 
-import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.piece.PieceInterface;
+import abstractions.position.PositionInterface;
 
 public class NullMutation implements MutationInterface {
 
@@ -31,12 +32,12 @@ public class NullMutation implements MutationInterface {
     private NullMutation() {}
 
     @Override
-    public MutationInterface process() {
+    public MutationInterface process(final ContextInterface context) {
         return this;
     }
 
     @Override
-    public ManagedCellInterface getCell() {
+    public PositionInterface getPosition() {
         return null; // TODO Null Cell
     }
 
@@ -51,7 +52,7 @@ public class NullMutation implements MutationInterface {
     }
 
     @Override
-    public MutationInterface cancel() {
+    public MutationInterface cancel(final ContextInterface context) {
         return this;
     }
 
@@ -69,5 +70,8 @@ public class NullMutation implements MutationInterface {
     public int compareTo(final MutationInterface o) {
         return 0;
     }
+
+    @Override
+    public void computeSequence(final ContextInterface context) {}
 
 }

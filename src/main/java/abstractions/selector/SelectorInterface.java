@@ -27,7 +27,9 @@ import abstractions.mutation.MutationInterface;
  */
 public interface SelectorInterface {
 
-    // TODO passer le contexte
+    final static boolean AVOID_NULL_MOVE = true;
+    final static boolean RANDOM_ON_SAME_EVALUATION = true;
+
     MutationInterface applySelection(final TreeMap<Double, List<MutationInterface>> evaluatedMutations);
 
 }

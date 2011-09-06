@@ -18,6 +18,7 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
@@ -41,8 +42,8 @@ public class Birth extends AbstractAtomicMutation {
     }
 
     @Override
-    public MutationInterface process() {
-        this.getCell().setPiece(this.getSide(), this.getPieceType());
+    public MutationInterface process(final ContextInterface context) {
+        context.getCellManager().getCell(this.getPosition()).setPiece(this.getSide(), this.getPieceType());
         return this;
     }
 

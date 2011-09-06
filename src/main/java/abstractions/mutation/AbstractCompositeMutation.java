@@ -20,39 +20,48 @@ package abstractions.mutation;
 import java.util.List;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 
 public abstract class AbstractCompositeMutation extends AbstractMutation {
+
+    private transient List<MutationInterface> sequence;
 
     public AbstractCompositeMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
         super(cell, mutationType);
     }
 
-    private transient List<MutationInterface> sequence; // NOPMD 
-
-    public final List<MutationInterface> getSequence() {
+    public final List<MutationInterface> getSequence(final ContextInterface context) {
         if (this.sequence == null) {
-            this.sequence = this.sequence();
+            this.sequence = this.sequence(context);
         }
         return this.sequence;
     }
 
-    protected abstract List<MutationInterface> sequence();
+    @Override
+    public void computeSequence(final ContextInterface context) {
+        this.getSequence(context);
+    }
 
     @Override
-    public final MutationInterface process() {
-        for (final MutationInterface mutation : this.getSequence()) {
-            mutation.process();
+    public final MutationInterface process(final ContextInterface context) {
+        for (final MutationInterface mutation : this.getSequence(context)) {
+            mutation.process(context);
         }
         return this;
     }
 
     @Override
-    public final MutationInterface cancel() {
-        // TODO Cut-off si la mutation n'a pas été processée.
-        for (final MutationInterface mutation : this.getSequence()) {
-            mutation.cancel();
+    public final MutationInterface cancel(final ContextInterface context) {
+        // TODO cut-off si la mutation n'a pas été processée.
+        for (final MutationInterface mutation : this.getSequence(context)) {
+            mutation.cancel(context);
         }
         return this;
     }
+
+    @Override
+    public abstract int compareTo(MutationInterface o);
+
+    protected abstract List<MutationInterface> sequence(final ContextInterface context);
 
 }

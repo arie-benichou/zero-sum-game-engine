@@ -17,9 +17,12 @@
 
 package concretisations.othello;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import abstractions.context.ContextInterface;
+import abstractions.evaluator.EvaluatorInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.referee.RefereeInterface;
 import abstractions.side.SideInterface;
@@ -29,7 +32,7 @@ import com.google.common.collect.Lists;
 
 import concretisations.othello.mutations.NullMutation;
 
-public class OthelloReferee implements RefereeInterface {
+class OthelloReferee implements RefereeInterface {
 
     @Override
     public boolean isGameOver(final ContextInterface context) {
@@ -49,6 +52,20 @@ public class OthelloReferee implements RefereeInterface {
     }
 
     @Override
+    public List<MutationInterface> getSortedLegalMoves(final ContextInterface context, final SideInterface side) {
+        final List<MutationInterface> legalMoves = Lists.newArrayList();
+        for (final Set<MutationInterface> collection : context.getCellManager().getPotentialMutations(side).values()) {
+            for (final MutationInterface mutation : collection) {
+                mutation.computeSequence(context);
+                legalMoves.add(mutation);
+            }
+        }
+        legalMoves.add(NullMutation.getInstance());
+        Collections.sort(legalMoves);
+        return legalMoves;
+    }
+
+    @Override
     public final Double getHeuristicEvaluation(final ContextInterface context, final SideInterface sidePointOfView) {
         final OthelloContext othelloContext = (OthelloContext) context;
         return (othelloContext.getNumberOfPawns(sidePointOfView) - othelloContext.getNumberOfPawns(sidePointOfView.getNextSide()))
@@ -58,7 +75,7 @@ public class OthelloReferee implements RefereeInterface {
     @Override
     public final Double getTerminalEvaluation(final ContextInterface context, final SideInterface sidePointOfView) {
         Double evaluation = this.getHeuristicEvaluation(context, sidePointOfView);
-        if (evaluation == 0) {
+        if (evaluation == EvaluatorInterface.NULL_EVALUATION) {
             final OthelloContext othelloContext = (OthelloContext) context;
             //evaluation = 0 - othelloContext.getNumberOfEmptyCells() / othelloContext.getNumberOfCells() / 10;
             evaluation = othelloContext.getNumberOfEmptyCells() / (-10 * othelloContext.getNumberOfCells());

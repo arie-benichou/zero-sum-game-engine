@@ -18,6 +18,7 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 
 public abstract class AbstractAtomicMutation extends AbstractMutation {
 
@@ -27,11 +28,11 @@ public abstract class AbstractAtomicMutation extends AbstractMutation {
     }
 
     @Override
-    public abstract MutationInterface process();
+    public abstract MutationInterface process(ContextInterface context);
 
     @Override
-    public final MutationInterface cancel() {
-        this.getCell().setPiece(this.getSavedSate());
+    public final MutationInterface cancel(final ContextInterface context) {
+        context.getCellManager().getCell(this.getPosition()).setPiece(this.getSavedSate());
         return this;
     }
 

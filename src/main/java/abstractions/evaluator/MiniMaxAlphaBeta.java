@@ -90,7 +90,7 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
             final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, -1.0, 1.0);
+            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, WORST_EVALUATION, BEST_EVALUATION);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));

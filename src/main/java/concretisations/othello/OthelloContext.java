@@ -9,7 +9,7 @@ import abstractions.side.SideInterface;
 import abstractions.side.Sides;
 import concretisations.othello.mutations.OthelloMutationInterface;
 
-public class OthelloContext extends Context {
+class OthelloContext extends Context {
 
     private final Double numberOfCells;
 

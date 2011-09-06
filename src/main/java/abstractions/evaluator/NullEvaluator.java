@@ -26,15 +26,14 @@ import abstractions.mutation.MutationInterface;
 import com.google.common.collect.Maps;
 
 // TODO ? classe AbstractEvaluator
+// TODO factory + limiter le nombre d'instance de l'évaluateur nul à 1
 public class NullEvaluator implements EvaluatorInterface {
-
-    private final static Double NULL_EVALUATION = 0.0;
 
     @Override
     public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations,
             final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> evaluatedMutations = Maps.newTreeMap();
-        evaluatedMutations.put(NullEvaluator.NULL_EVALUATION, mutations);
+        evaluatedMutations.put(NULL_EVALUATION, mutations);
         return evaluatedMutations;
     }
 

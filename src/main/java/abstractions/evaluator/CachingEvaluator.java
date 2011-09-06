@@ -18,37 +18,43 @@
 package abstractions.evaluator;
 
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
-public class IterativeDeepening implements EvaluatorInterface {
+public class CachingEvaluator implements EvaluatorInterface {
 
-    private final EvaluatorInterface evaluator;
+    private EvaluatorInterface evaluator;
+    private final Map<String, TreeMap<Double, List<MutationInterface>>> cache = Maps.newHashMap();
 
     @Override
     public int getMaximalDepth() {
         return this.evaluator.getMaximalDepth();
     }
 
-    public IterativeDeepening(final EvaluatorInterface evaluator) {
+    public CachingEvaluator(final EvaluatorInterface evaluator) {
+        this.evaluator = evaluator;
+    }
+
+    public void setEvaluator(final EvaluatorInterface evaluator) {
         this.evaluator = evaluator;
     }
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, List<MutationInterface> mutations, final int maximalDepth) {
-        int maximalLocalDepth = 1;
-        TreeMap<Double, List<MutationInterface>> map;
-        do {
-            map = this.evaluator.applyEvaluation(context, mutations, maximalLocalDepth);
-            mutations = Lists.newArrayList(Iterables.concat(map.values()));
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations,
+            final int maximalDepth) {
+        // TODO amélioration possible si découpage de la zone utile de la grille entre autre...
+        final String hash = maximalDepth + context.getCellManager().asString() + mutations.toString();
+        TreeMap<Double, List<MutationInterface>> result = this.cache.get(hash);
+        if (result == null) {
+            result = this.evaluator.applyEvaluation(context, mutations, maximalDepth);
+            this.cache.put(hash, result);
         }
-        while (++maximalLocalDepth <= maximalDepth);
-        return map;
+        return result;
     }
 
     @Override

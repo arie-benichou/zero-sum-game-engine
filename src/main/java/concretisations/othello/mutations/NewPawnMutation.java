@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.AtomicMutationFactory;
@@ -46,19 +47,16 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
 
     @Override
     public final int getFirstSideDelta() {
-        this.getSequence();
         return this.firstSideDelta;
     }
 
     @Override
     public final int getSecondSideDelta() {
-        this.getSequence();
         return this.secondSideDelta;
     }
 
     @Override
     public final int getNumberOfPawnsToRevert() {
-        this.getSequence();
         return this.numberOfPawnsToRevert;
     }
 
@@ -78,15 +76,17 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
     }
 
     @Override
-    protected List<MutationInterface> sequence() {
+    protected List<MutationInterface> sequence(final ContextInterface context) {
 
-        final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
+        final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(context.getCellManager().getCell(this.getPosition()),
+                this.getSide(), this.getPieceType()));
         final Set<ManagedCellInterface> cellsToRevert = Sets.newHashSet();
         final Set<ManagedCellInterface> cellsToRevertInOneDirection = Sets.newHashSet();
-        for (final NamedDirection direction : this.getCell().getNamedDirections()) {
+        for (final NamedDirection direction : context.getCellManager().getCell(this.getPosition()).getNamedDirections()) {
             cellsToRevert.addAll(
-                    ((OthelloPiece) this.getCell().getPiece()).
-                            getConnected(this.getCell(), this.getSide(), direction, cellsToRevertInOneDirection)
+                    ((OthelloPiece) context.getCellManager().getCell(this.getPosition()).getPiece()).getConnected(
+                            context.getCellManager().getCell(this.getPosition()), this.getSide(),
+                            direction, cellsToRevertInOneDirection)
                     );
             cellsToRevertInOneDirection.clear();
         }
@@ -116,4 +116,5 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
     public int compareTo(final MutationInterface that) {
         return ((OthelloMutationInterface) that).getNumberOfPawnsToRevert() - this.getNumberOfPawnsToRevert(); // for descending order
     }
+
 }

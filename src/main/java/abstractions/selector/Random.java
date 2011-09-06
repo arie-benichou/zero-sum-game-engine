@@ -27,8 +27,12 @@ import com.google.common.collect.Lists;
 
 public class Random extends AbstractSelector {
 
-    public Random(final boolean avoidNullMutation) {
-        super(true, avoidNullMutation);
+    public Random() {
+        super(RANDOM_ON_SAME_EVALUATION, !AVOID_NULL_MOVE);
+    }
+
+    public Random(final boolean avoidNullMove) {
+        super(RANDOM_ON_SAME_EVALUATION, avoidNullMove);
     }
 
     @Override
