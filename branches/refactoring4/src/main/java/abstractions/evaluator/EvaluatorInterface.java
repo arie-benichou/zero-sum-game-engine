@@ -38,16 +38,10 @@ public interface EvaluatorInterface {
      * 
      * @return evaluated moves
      */
-    TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations);
+    TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations);
 
-    TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth);
+    TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations, final int maximalDepth);
 
     int getMaximalDepth();
-
-    //cf TODO
-    void injectContext(final ContextInterface context);
-
-    //cf TODO    
-    ContextInterface getContext();
 
 }

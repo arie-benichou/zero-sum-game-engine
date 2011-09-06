@@ -37,8 +37,6 @@ public class ContextManager {
 
     public ContextManager(final ContextInterface context) {
         this.context = context;
-        this.context.getAdversity().getPlayer(Sides.FIRST).getStrategy().getEvaluator().injectContext(context);
-        this.context.getAdversity().getPlayer(Sides.SECOND).getStrategy().getEvaluator().injectContext(context);
     }
 
     private final ContextInterface getContext() {
@@ -75,7 +73,7 @@ public class ContextManager {
             System.out.println(this);
             final PlayerInterface player = this.getCurrentPlayer();
             System.out.println(player.getName());
-            final MutationInterface move = player.applyStrategy(this.getLegalMoves());
+            final MutationInterface move = player.applyStrategy(this.getContext(), this.getLegalMoves());
             System.out.println(move);
             this.applyMoveForCurrentPlayer(move);
         }

@@ -31,23 +31,16 @@ public class NullEvaluator implements EvaluatorInterface {
     private final static Double NULL_EVALUATION = 0.0;
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations,
+            final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> evaluatedMutations = Maps.newTreeMap();
         evaluatedMutations.put(NullEvaluator.NULL_EVALUATION, mutations);
         return evaluatedMutations;
     }
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        return this.applyEvaluation(mutations, 0);
-    }
-
-    @Override
-    public void injectContext(final ContextInterface context) {}
-
-    @Override
-    public ContextInterface getContext() {
-        return null;
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations) {
+        return this.applyEvaluation(context, mutations, 0);
     }
 
     @Override

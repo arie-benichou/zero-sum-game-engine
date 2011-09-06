@@ -19,6 +19,7 @@ package abstractions.player;
 
 import java.util.List;
 
+import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.strategy.StrategyInterface;
 
@@ -51,6 +52,6 @@ public interface PlayerInterface {
      * 
      * @todo passer également le contexte
      */
-    MutationInterface applyStrategy(List<MutationInterface> mutations);
+    MutationInterface applyStrategy(final ContextInterface context, List<MutationInterface> mutations);
 
 }

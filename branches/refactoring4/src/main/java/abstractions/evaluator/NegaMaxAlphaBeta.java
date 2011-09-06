@@ -32,19 +32,6 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
 
     public int cutOffs = 0;
 
-    // TODO passer le contexte à la méthode applyEvaluation d'un évaluateur
-    private ContextInterface context;
-
-    @Override
-    public void injectContext(final ContextInterface context) {
-        this.context = context;
-    }
-
-    @Override
-    public final ContextInterface getContext() {
-        return this.context;
-    }
-
     private final int maximalDepth;
 
     public NegaMaxAlphaBeta(final int maximalDepth) {
@@ -56,25 +43,23 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
         return this.maximalDepth;
     }
 
-    private final int getSideSign(final SideInterface side) {
-        return side.equals(this.getContext().getCurrentSide()) ? 1 : -1;
-    }
-
-    private final Double evaluate(final MutationInterface move, final SideInterface side, final int depthLeft, final Double worstScore, final Double bestScore) {
-        this.getContext().applyMove(move, side);
+    private final Double evaluate(final ContextInterface context, final MutationInterface move, final SideInterface side, final int depthLeft,
+            final Double worstScore, final Double bestScore) {
+        context.applyMove(move, side);
         Double localBestScore;
-        if (this.getContext().isGameOver())
-            localBestScore = this.getSideSign(side) * this.getContext().getTerminalEvaluation(this.getContext().getCurrentSide());
+        if (context.isGameOver())
+            localBestScore = (side.equals(context.getCurrentSide()) ? 1 : -1) * context.getTerminalEvaluation(context.getCurrentSide());
         else if (depthLeft == 1)
-            localBestScore = this.getSideSign(side) * this.getContext().getHeuristicEvaluation(this.getContext().getCurrentSide());
+            localBestScore = (side.equals(context.getCurrentSide()) ? 1 : -1) * context.getHeuristicEvaluation(context.getCurrentSide());
         else {
             localBestScore = bestScore;
 
-            final List<MutationInterface> opponentMoves = this.getContext().getLegalMoves(side.getNextSide());
+            final List<MutationInterface> opponentMoves = context.getLegalMoves(side.getNextSide());
             Collections.sort(opponentMoves);
 
             for (final MutationInterface opponentMove : opponentMoves) {
-                localBestScore = Math.min(localBestScore, -this.evaluate(opponentMove, side.getNextSide(), depthLeft - 1, -localBestScore, -worstScore));
+                localBestScore = Math.min(localBestScore,
+                        -this.evaluate(context, opponentMove, side.getNextSide(), depthLeft - 1, -localBestScore, -worstScore));
                 if (localBestScore <= worstScore) {
                     ++this.cutOffs;
                     break;
@@ -82,15 +67,16 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
 
             }
         }
-        this.getContext().unapplyLastPlayedMove(side);
+        context.unapplyLastPlayedMove(side);
         return localBestScore;
     }
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations,
+            final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), maximalDepth, -1.0, 1.0);
+            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, -1.0, 1.0);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
@@ -101,8 +87,8 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        return this.applyEvaluation(mutations, this.getMaximalDepth());
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations) {
+        return this.applyEvaluation(context, mutations, this.getMaximalDepth());
     }
 
     @Override
