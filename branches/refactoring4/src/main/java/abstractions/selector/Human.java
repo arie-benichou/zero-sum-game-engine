@@ -29,15 +29,7 @@ import com.google.common.collect.Lists;
 
 public class Human extends AbstractSelector {
 
-    public Human() {
-        super(false, false);
-    }
-
     private MutationInterface askForSelection(final List<MutationInterface> mutations) {
-        /* TODO créer un selecteur qui retourne l'unique mutation pour un singleton
-        if (mutations.size() == 1)
-            return mutations.get(0);
-        */
         MutationInterface mutation;
         int n = 0;
         final int numberOfDigits = (int) Math.log10(Math.abs(mutations.size())) + 1;

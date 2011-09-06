@@ -30,14 +30,10 @@ import abstractions.mutation.MutationInterface;
  */
 public interface EvaluatorInterface {
 
-    /**
-     * Apply and return evaluation of moves.
-     * 
-     * @param mutations
-     *            moves to evaluate
-     * 
-     * @return evaluated moves
-     */
+    final static Double WORST_EVALUATION = -1.0;
+    final static Double BEST_EVALUATION = -WORST_EVALUATION;
+    final static Double NULL_EVALUATION = WORST_EVALUATION + BEST_EVALUATION;
+
     TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations);
 
     TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations, final int maximalDepth);

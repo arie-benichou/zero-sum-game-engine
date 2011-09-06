@@ -49,7 +49,7 @@ public class NegaMax implements EvaluatorInterface {
         else if (depthLeft == 1)
             bestScore = (side.equals(context.getCurrentSide()) ? 1 : -1) * context.getHeuristicEvaluation(context.getCurrentSide());
         else {
-            bestScore = 1.0; // TODO ! avoid magic numbers
+            bestScore = BEST_EVALUATION;
             final List<MutationInterface> opponentMoves = context.getLegalMoves(side.getNextSide());
             Collections.sort(opponentMoves);
             for (final MutationInterface opponentMove : opponentMoves)

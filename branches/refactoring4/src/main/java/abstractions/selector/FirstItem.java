@@ -24,6 +24,8 @@ import abstractions.mutation.MutationInterface;
 
 public class FirstItem extends AbstractSelector {
 
+    public FirstItem() {/*super();*/}
+
     public FirstItem(final boolean randomOnSameEvaluation, final boolean avoidNullMutation) {
         super(randomOnSameEvaluation, avoidNullMutation);
     }

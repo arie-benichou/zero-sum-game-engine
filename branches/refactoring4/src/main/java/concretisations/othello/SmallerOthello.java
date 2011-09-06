@@ -45,7 +45,7 @@ import abstractions.strategy.Strategy;
 import abstractions.strategy.StrategyInterface;
 import concretisations.othello.pieces.OthelloPieceSet;
 
-public class SmallerOthello {
+class SmallerOthello {
 
     private static CellManagerInterface cellManager() {
 

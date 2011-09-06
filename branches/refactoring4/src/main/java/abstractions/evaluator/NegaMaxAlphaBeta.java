@@ -17,7 +17,6 @@
 
 package abstractions.evaluator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -29,8 +28,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class NegaMaxAlphaBeta implements EvaluatorInterface {
-
-    public int cutOffs = 0;
 
     private final int maximalDepth;
 
@@ -53,18 +50,11 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
             localBestScore = (side.equals(context.getCurrentSide()) ? 1 : -1) * context.getHeuristicEvaluation(context.getCurrentSide());
         else {
             localBestScore = bestScore;
-
-            final List<MutationInterface> opponentMoves = context.getLegalMoves(side.getNextSide());
-            Collections.sort(opponentMoves);
-
-            for (final MutationInterface opponentMove : opponentMoves) {
+            for (final MutationInterface opponentMove : context.getSortedLegalMoves(side.getNextSide())) {
                 localBestScore = Math.min(localBestScore,
                         -this.evaluate(context, opponentMove, side.getNextSide(), depthLeft - 1, -localBestScore, -worstScore));
-                if (localBestScore <= worstScore) {
-                    ++this.cutOffs;
+                if (localBestScore <= worstScore)
                     break;
-                }
-
             }
         }
         context.unapplyLastPlayedMove(side);
@@ -76,7 +66,7 @@ public class NegaMaxAlphaBeta implements EvaluatorInterface {
             final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, -1.0, 1.0);
+            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, WORST_EVALUATION, BEST_EVALUATION);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));

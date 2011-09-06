@@ -38,4 +38,6 @@ public interface RefereeInterface {
 
     List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
 
+    List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
+
 }

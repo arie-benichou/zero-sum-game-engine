@@ -1,10 +1,11 @@
 
 package concretisations.othello.mutations;
 
-import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceInterface;
+import abstractions.position.PositionInterface;
 
 public class NullMutation implements OthelloMutationInterface {
 
@@ -17,7 +18,7 @@ public class NullMutation implements OthelloMutationInterface {
     private NullMutation() {}
 
     @Override
-    public ManagedCellInterface getCell() {
+    public PositionInterface getPosition() {
         return null;
     }
 
@@ -32,12 +33,12 @@ public class NullMutation implements OthelloMutationInterface {
     }
 
     @Override
-    public MutationInterface process() {
+    public MutationInterface process(final ContextInterface context) {
         return this;
     }
 
     @Override
-    public MutationInterface cancel() {
+    public MutationInterface cancel(final ContextInterface context) {
         return this;
     }
 
@@ -70,5 +71,8 @@ public class NullMutation implements OthelloMutationInterface {
     public String toString() {
         return "NULL MOVE";
     }
+
+    @Override
+    public void computeSequence(final ContextInterface context) {}
 
 }

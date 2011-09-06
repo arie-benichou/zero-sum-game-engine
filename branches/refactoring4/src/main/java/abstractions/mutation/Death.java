@@ -18,6 +18,7 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 
 class Death extends AbstractAtomicMutation {
 
@@ -26,8 +27,8 @@ class Death extends AbstractAtomicMutation {
     }
 
     @Override
-    public MutationInterface process() {
-        this.getCell().die();
+    public MutationInterface process(final ContextInterface context) {
+        context.getCellManager().getCell(this.getPosition()).die();
         return this;
     }
 

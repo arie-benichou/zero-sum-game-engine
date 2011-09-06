@@ -18,24 +18,26 @@
 package abstractions.mutation;
 
 import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.piece.PieceInterface;
+import abstractions.position.PositionInterface;
 
 // TODO equals et hashcode ?
 public abstract class AbstractMutation implements MutationInterface {
 
-    private final ManagedCellInterface cell;
+    private final PositionInterface position;
     private final PieceInterface savedSate;
     private final MutationTypeInterface type;
 
     public AbstractMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType) {
         this.type = mutationType;
-        this.cell = cell;
+        this.position = cell.getPosition();
         this.savedSate = cell.getPiece();
     }
 
     @Override
-    public final ManagedCellInterface getCell() {
-        return this.cell;
+    public final PositionInterface getPosition() {
+        return this.position;
     }
 
     @Override
@@ -50,14 +52,17 @@ public abstract class AbstractMutation implements MutationInterface {
 
     @Override
     public final String toString() {
-        return this.getType() + " " + this.getCell().getPosition();// + " ";
+        return this.getType() + " " + this.getPosition();
     }
 
     @Override
-    public abstract MutationInterface process();
+    public void computeSequence(final ContextInterface context) {} // TODO refactoring avec AbstractCompositeMutation
 
     @Override
-    public abstract MutationInterface cancel();
+    public abstract MutationInterface process(final ContextInterface context);
+
+    @Override
+    public abstract MutationInterface cancel(final ContextInterface context);
 
     @Override
     public abstract int compareTo(MutationInterface o);

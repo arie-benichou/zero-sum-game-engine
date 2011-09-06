@@ -132,11 +132,16 @@ public class Context implements ContextInterface {
         return this.getLegalMoves(this.getCurrentSide());
     }
 
+    @Override
+    public List<MutationInterface> getSortedLegalMoves(final SideInterface side) {
+        return this.getReferee().getSortedLegalMoves(this, side);
+    }
+
     //-----------------------------------------------------------------    
 
     @Override
     public void applyMove(final MutationInterface move, final SideInterface side) {
-        this.onApplyMove(this.moves.get(side).push(move.process()));
+        this.onApplyMove(this.moves.get(side).push(move.process(this)));
     }
 
     @Override
@@ -160,7 +165,7 @@ public class Context implements ContextInterface {
 
     @Override
     public void unapplyLastPlayedMove(final SideInterface side) {
-        this.onUnapplyMove(this.moves.get(side).pop().cancel());
+        this.onUnapplyMove(this.moves.get(side).pop().cancel(this));
     }
 
     @Override

@@ -43,6 +43,10 @@ public abstract class AbstractSelector implements SelectorInterface {
         this.avoidNullMutation = avoidNullMutation;
     }
 
+    public AbstractSelector() {
+        this(!RANDOM_ON_SAME_EVALUATION, !AVOID_NULL_MOVE);
+    }
+
     public abstract List<MutationInterface> select(final TreeMap<Double, List<MutationInterface>> evaluatedMutations);
 
     private MutationInterface doSelection(final List<MutationInterface> selection, final int numberOfOptions) {

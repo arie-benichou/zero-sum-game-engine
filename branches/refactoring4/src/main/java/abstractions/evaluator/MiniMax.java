@@ -52,12 +52,12 @@ public class MiniMax implements EvaluatorInterface {
             final List<MutationInterface> opponentMoves = context.getLegalMoves(side.getNextSide());
             Collections.sort(opponentMoves);
             if (side.equals(context.getCurrentSide())) {
-                bestScore = 1.0;
+                bestScore = BEST_EVALUATION;
                 for (final MutationInterface opponentMutation : opponentMoves)
                     bestScore = Math.min(bestScore, this.evaluate(context, opponentMutation, side.getNextSide(), depthLeft - 1));
             }
             else {
-                bestScore = -1.0;
+                bestScore = WORST_EVALUATION;
                 for (final MutationInterface opponentMutation : opponentMoves)
                     bestScore = Math.max(bestScore, this.evaluate(context, opponentMutation, side.getNextSide(), depthLeft - 1));
             }
