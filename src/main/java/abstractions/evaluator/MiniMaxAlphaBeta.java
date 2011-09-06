@@ -32,19 +32,6 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
 
     public int cutOffs = 0;
 
-    // TODO passer le contexte à la méthode applyEvaluation d'un évaluateur
-    private ContextInterface context;
-
-    @Override
-    public void injectContext(final ContextInterface context) {
-        this.context = context;
-    }
-
-    @Override
-    public final ContextInterface getContext() {
-        return this.context;
-    }
-
     private final int maximalDepth;
 
     public MiniMaxAlphaBeta(final int maximalDepth) {
@@ -56,20 +43,22 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
         return this.maximalDepth;
     }
 
-    private final Double evaluate(final MutationInterface move, final SideInterface side, final int depthLeft, Double worstScore, Double bestScore) {
-        this.getContext().applyMove(move, side);
+    private final Double evaluate(final ContextInterface context, final MutationInterface move, final SideInterface side, final int depthLeft,
+            Double worstScore, Double bestScore) {
+        context.applyMove(move, side);
         Double localBestScore;
-        if (this.getContext().isGameOver())
-            localBestScore = this.getContext().getTerminalEvaluation(this.getContext().getCurrentSide());
+        if (context.isGameOver())
+            localBestScore = context.getTerminalEvaluation(context.getCurrentSide());
         else if (depthLeft == 1)
-            localBestScore = this.getContext().getHeuristicEvaluation(this.getContext().getCurrentSide());
+            localBestScore = context.getHeuristicEvaluation(context.getCurrentSide());
         else {
-            final List<MutationInterface> opponentMoves = this.getContext().getLegalMoves(side.getNextSide());
+            final List<MutationInterface> opponentMoves = context.getLegalMoves(side.getNextSide());
             Collections.sort(opponentMoves);
-            if (side.equals(this.getContext().getCurrentSide())) {
+            if (side.equals(context.getCurrentSide())) {
                 localBestScore = bestScore;
                 for (final MutationInterface opponentMutation : opponentMoves) {
-                    localBestScore = Math.min(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
+                    localBestScore = Math.min(localBestScore,
+                            this.evaluate(context, opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
                     if (localBestScore <= worstScore) {
                         ++this.cutOffs;
                         break;
@@ -81,7 +70,8 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
             else {
                 localBestScore = worstScore;
                 for (final MutationInterface opponentMutation : opponentMoves) {
-                    localBestScore = Math.max(localBestScore, this.evaluate(opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
+                    localBestScore = Math.max(localBestScore,
+                            this.evaluate(context, opponentMutation, side.getNextSide(), depthLeft - 1, worstScore, bestScore));
                     if (localBestScore >= bestScore) {
                         ++this.cutOffs;
                         break;
@@ -91,15 +81,16 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
                 }
             }
         }
-        this.getContext().unapplyLastPlayedMove(side);
+        context.unapplyLastPlayedMove(side);
         return localBestScore;
     }
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations, final int maximalDepth) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations,
+            final int maximalDepth) {
         final TreeMap<Double, List<MutationInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MutationInterface mutation : mutations) {
-            final Double score = this.evaluate(mutation, this.getContext().getCurrentSide(), maximalDepth, -1.0, 1.0);
+            final Double score = this.evaluate(context, mutation, context.getCurrentSide(), maximalDepth, -1.0, 1.0);
             final List<MutationInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(mutation));
@@ -110,8 +101,8 @@ public class MiniMaxAlphaBeta implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        return this.applyEvaluation(mutations, this.getMaximalDepth());
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations) {
+        return this.applyEvaluation(context, mutations, this.getMaximalDepth());
     }
 
     @Override

@@ -19,6 +19,7 @@ package abstractions.player;
 
 import java.util.List;
 
+import abstractions.context.ContextInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.strategy.StrategyInterface;
 
@@ -43,8 +44,8 @@ public class Player implements PlayerInterface {
     }
 
     @Override
-    public final MutationInterface applyStrategy(final List<MutationInterface> mutations) {
-        return this.getStrategy().applyStrategy(mutations);
+    public final MutationInterface applyStrategy(final ContextInterface context, final List<MutationInterface> mutations) {
+        return this.getStrategy().applyStrategy(context, mutations);
     }
 
     @Override

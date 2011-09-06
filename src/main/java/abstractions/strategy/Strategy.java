@@ -19,6 +19,7 @@ package abstractions.strategy;
 
 import java.util.List;
 
+import abstractions.context.ContextInterface;
 import abstractions.evaluator.EvaluatorInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.selector.SelectorInterface;
@@ -44,10 +45,8 @@ public class Strategy implements StrategyInterface {
     }
 
     @Override
-    public final MutationInterface applyStrategy(final List<MutationInterface> mutations) {
-        if (mutations.size() == 1)
-            return mutations.get(0);
-        return this.getSelector().applySelection(this.getEvaluator().applyEvaluation(mutations));
+    public final MutationInterface applyStrategy(final ContextInterface context, final List<MutationInterface> mutations) {
+        return mutations.size() == 1 ? mutations.get(0) : this.getSelector().applySelection(this.getEvaluator().applyEvaluation(context, mutations));
     }
 
     @Override

@@ -30,19 +30,6 @@ public class IterativeDeepening implements EvaluatorInterface {
 
     public int cutOffs = 0;
 
-    // TODO passer le contexte à la méthode applyEvaluation d'un évaluateur
-    private ContextInterface context;
-
-    @Override
-    public void injectContext(final ContextInterface context) {
-        this.evaluator.injectContext(context);
-    }
-
-    @Override
-    public final ContextInterface getContext() {
-        return this.evaluator.getContext();
-    }
-
     @Override
     public int getMaximalDepth() {
         return this.evaluator.getMaximalDepth();
@@ -55,11 +42,11 @@ public class IterativeDeepening implements EvaluatorInterface {
     }
 
     @Override
-    public TreeMap<Double, List<MutationInterface>> applyEvaluation(List<MutationInterface> mutations, final int maximalDepth) {
+    public TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, List<MutationInterface> mutations, final int maximalDepth) {
         int maximalLocalDepth = 1;
         TreeMap<Double, List<MutationInterface>> map;
         do {
-            map = this.evaluator.applyEvaluation(mutations, maximalLocalDepth);
+            map = this.evaluator.applyEvaluation(context, mutations, maximalLocalDepth);
             mutations = Lists.newArrayList(Iterables.concat(map.values()));
         }
         while (++maximalLocalDepth <= maximalDepth);
@@ -67,8 +54,8 @@ public class IterativeDeepening implements EvaluatorInterface {
     }
 
     @Override
-    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final List<MutationInterface> mutations) {
-        return this.applyEvaluation(mutations, this.getMaximalDepth());
+    public final TreeMap<Double, List<MutationInterface>> applyEvaluation(final ContextInterface context, final List<MutationInterface> mutations) {
+        return this.applyEvaluation(context, mutations, this.getMaximalDepth());
     }
 
     @Override
