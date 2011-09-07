@@ -24,9 +24,11 @@ public class Game implements GameInterface {
 
     private final RefereeInterface referee;
     private final CellManagerInterface cellManager;
+    private final CellManagerInterface initialState;
 
     public Game(final CellManagerInterface cellManager, final RefereeInterface referee) {
         this.cellManager = cellManager;
+        this.initialState = this.cellManager.duplicate();
         this.referee = referee;
     }
 
@@ -38,6 +40,11 @@ public class Game implements GameInterface {
     @Override
     public final RefereeInterface getReferee() {
         return this.referee;
+    }
+
+    @Override
+    public GameInterface newGame() {
+        return new Game(this.initialState, this.getReferee());
     }
 
 }

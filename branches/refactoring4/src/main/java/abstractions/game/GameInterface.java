@@ -41,4 +41,6 @@ public interface GameInterface {
      */
     RefereeInterface getReferee();
 
+    GameInterface newGame();
+
 }

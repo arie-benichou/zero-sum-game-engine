@@ -152,4 +152,6 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
 
     String asString();
 
+    CellManagerInterface duplicate();
+
 }
