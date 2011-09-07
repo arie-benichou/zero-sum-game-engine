@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -42,7 +43,7 @@ public final class CellManager implements CellManagerInterface {
 
     private final PieceManagerInterface pieceManager;
     private final PositionManagerInterface positionManager;
-    private final Map<PositionInterface, ManagedCellInterface> map;
+    private final Map<PositionInterface, ManagedCellInterface> map = new TreeMap<PositionInterface, ManagedCellInterface>();
     private final ManagedCellInterface nullCell;
     private final List<ManagedCellInterface> cells;
 
@@ -50,21 +51,39 @@ public final class CellManager implements CellManagerInterface {
         return new ManagedCell(this, position);
     }
 
-    private Map<PositionInterface, ManagedCellInterface> intializeData() {
-        //final Builder<PositionInterface, ManagedCellInterface> builder = ImmutableSortedMap.builder();
-        final TreeMap<PositionInterface, ManagedCellInterface> map = new TreeMap<PositionInterface, ManagedCellInterface>();
-        for (final PositionInterface position : this.positionManager) {
-            map.put(position, this.newCell(position));
-        }
-        return map;
-    }
-
     public CellManager(final PositionManagerInterface positionManager, final PieceManagerInterface pieceManager) {
         this.positionManager = positionManager;
         this.pieceManager = pieceManager;
-        this.map = this.intializeData();
+        for (final PositionInterface position : this.positionManager) {
+            this.map.put(position, this.newCell(position));
+        }
         this.nullCell = this.map.get(this.positionManager.getNullPosition());
         this.cells = Lists.newArrayList(this.map.values());
+    }
+
+    private ManagedCellInterface newCellDuplicate(final ManagedCellInterface cell) {
+        if (cell.isNull()) {
+            return cell; // TODO mieux gérer la celulle nulle
+        }
+        final ManagedCellInterface duplicate = new ManagedCell(this, cell.getPosition());
+        duplicate.setPiece(cell.getPiece());
+        return duplicate;
+    }
+
+    private CellManager(final PositionManagerInterface positionManager, final PieceManagerInterface pieceManager,
+            final Map<PositionInterface, ManagedCellInterface> map) {
+        this.positionManager = positionManager;
+        this.pieceManager = pieceManager;
+        for (final Entry<PositionInterface, ManagedCellInterface> entry : map.entrySet()) {
+            this.map.put(entry.getKey(), this.newCellDuplicate(entry.getValue()));
+        }
+        this.nullCell = this.map.get(this.positionManager.getNullPosition());
+        this.cells = Lists.newArrayList(this.map.values());
+    }
+
+    @Override
+    public CellManagerInterface duplicate() {
+        return new CellManager(this.positionManager, this.pieceManager, this.map);
     }
 
     @Override
@@ -161,6 +180,7 @@ public final class CellManager implements CellManagerInterface {
         return this.positionManager.getNamedDirections();
     }
 
+    // TODO à virer    
     // TODO ? utiliser un cache
     @Override
     public List<ManagedCellInterface> getRow(final int rowIndex) {
@@ -172,6 +192,7 @@ public final class CellManager implements CellManagerInterface {
         return row;
     }
 
+    // TODO à virer
     // TODO ? utiliser un cache
     @Override
     public List<ManagedCellInterface> getColumn(final int columnIndex) {
@@ -203,6 +224,7 @@ public final class CellManager implements CellManagerInterface {
     }
     */
 
+    // TODO à virer    
     // TODO ? utiliser un cache    
     @Override
     public List<ManagedCellInterface> getRegion(final PositionInterface topLeftPosition, final PositionInterface bottomRightPosition) {
@@ -217,6 +239,7 @@ public final class CellManager implements CellManagerInterface {
         return region;
     }
 
+    // TODO à virer    
     @Override
     public boolean isFull() {
         final Iterator<ManagedCellInterface> it = this.iterator();

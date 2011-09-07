@@ -74,7 +74,7 @@ class Othello {
         evaluator1 = new NullEvaluator();
         evaluator2 = new IterativeDeepening(new CachingEvaluator(new NegaMaxAlphaBeta(6)));
 
-        selector1 = new FirstItem(SelectorInterface.RANDOM_ON_SAME_EVALUATION, SelectorInterface.AVOID_NULL_MOVE);
+        selector1 = new FirstItem(!SelectorInterface.RANDOM_ON_SAME_EVALUATION, SelectorInterface.AVOID_NULL_MOVE);
         selector2 = new FirstItem();
 
         player1 = new Player("IA1", new Strategy(evaluator1, selector1));
@@ -85,10 +85,8 @@ class Othello {
         gamePlay = new GamePlay(game, new Adversity(player1, player2));
         new ContextManager(new OthelloContext(gamePlay)).startGamePlay();
 
-        //two times
-        game = new Game(cellManager, new OthelloReferee());
-        gamePlay = new GamePlay(game, new Adversity(player1, player2));
-        new ContextManager(new OthelloContext(gamePlay)).startGamePlay();
+        //two times        
+        new ContextManager(new OthelloContext(gamePlay.newGamePlay())).startGamePlay();
 
     }
 

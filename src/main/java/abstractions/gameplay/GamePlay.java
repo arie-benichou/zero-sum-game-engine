@@ -41,4 +41,9 @@ public class GamePlay implements GamePlayInterface {
         return this.adversity;
     }
 
+    @Override
+    public GamePlayInterface newGamePlay() {
+        return new GamePlay(this.game.newGame(), this.adversity);
+    }
+
 }

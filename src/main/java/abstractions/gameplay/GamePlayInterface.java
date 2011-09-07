@@ -39,4 +39,6 @@ public interface GamePlayInterface {
      */
     AdversityInterface getAdversity();
 
+    GamePlayInterface newGamePlay();
+
 }
