@@ -17,8 +17,11 @@
 
 package abstractions.position;
 
+import annotations.Immutable;
+
 import com.google.common.base.Preconditions;
 
+@Immutable
 final class Position implements PositionInterface {
 
     private final int row;
@@ -31,14 +34,17 @@ final class Position implements PositionInterface {
         this.column = column;
     }
 
+    @Override
     public int getRow() {
         return this.row;
     }
 
+    @Override
     public int getColumn() {
         return this.column;
     }
 
+    @Override
     public boolean isNull() {
         return this.getRow() == 0 || this.getColumn() == 0;
     }
@@ -77,6 +83,7 @@ final class Position implements PositionInterface {
         return isEqual;
     }
 
+    @Override
     public int compareTo(final PositionInterface that) {
         Preconditions.checkNotNull(that, "That argument is not intended to be null.");
         int value;

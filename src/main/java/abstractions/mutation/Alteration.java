@@ -20,7 +20,9 @@ package abstractions.mutation;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
+import annotations.Immutable;
 
+@Immutable
 class Alteration extends Birth {
 
     public Alteration(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final PieceTypeInterface pieceType, final SideInterface side) {

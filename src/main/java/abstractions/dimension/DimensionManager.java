@@ -17,48 +17,60 @@
 
 package abstractions.dimension;
 
-import com.google.common.base.Preconditions;
+import annotations.Immutable;
 
-final class DimensionManager implements DimensionManagerInterface {
+@Immutable
+public final class DimensionManager implements DimensionManagerInterface {
 
     private final RowDimension rowRange;
     private final ColumnDimension columRange;
 
-    public DimensionManager(final RowDimension rowsRange, final ColumnDimension columnsRange) {
-        Preconditions.checkNotNull(rowsRange, "Argument 'rowsRange' must not be null.");
-        Preconditions.checkNotNull(columnsRange, "Argument 'columnsRange' must not be null.");
-        this.rowRange = rowsRange;
-        this.columRange = columnsRange;
+    public DimensionManager(final int numberOfRows, final int numberOfColumns) {
+        try {
+            this.rowRange = new RowDimension(1, numberOfRows);
+            this.columRange = new ColumnDimension(1, numberOfColumns);
+        }
+        catch (final IllegalArgumentException e) {
+            throw new IllegalDimensionException(numberOfRows, numberOfColumns); // NOPMD 
+        }
     }
 
+    @Override
     public int lowerBoundForRows() {
         return this.rowRange.getLowerBound();
     }
 
+    @Override
     public int upperBoundForRows() {
         return this.rowRange.getUpperBound();
     }
 
+    @Override
     public int lowerBoundForColumns() {
         return this.columRange.getLowerBound();
     }
 
+    @Override
     public int upperBoundForColumns() {
         return this.columRange.getUpperBound();
     }
 
+    @Override
     public int numberOfRows() {
         return this.rowRange.getCapacity();
     }
 
+    @Override
     public int numberOfColumns() {
         return this.columRange.getCapacity();
     }
 
+    @Override
     public int capacity() {
         return this.numberOfRows() * this.numberOfColumns();
     }
 
+    @Override
     public boolean contains(final int rowIndex, final int columnIndex) {
         return this.rowRange.contains(rowIndex) && this.columRange.contains(columnIndex);
     }

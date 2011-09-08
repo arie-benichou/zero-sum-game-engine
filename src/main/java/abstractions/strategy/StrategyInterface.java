@@ -15,12 +15,24 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.piece.mocks;
+package abstractions.strategy;
 
-import abstractions.piece.PieceTypeInterface;
+import java.util.List;
 
-public enum PieceSet implements PieceTypeInterface {
+import abstractions.context.ContextInterface;
+import abstractions.evaluator.EvaluatorInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.selector.SelectorInterface;
 
-    NULL, PAWN;
+/**
+ * This is the interface for a player's strategy.
+ */
+public interface StrategyInterface {
+
+    EvaluatorInterface getEvaluator();
+
+    SelectorInterface getSelector();
+
+    MutationInterface applyStrategy(final ContextInterface context, final List<MutationInterface> mutations);
 
 }

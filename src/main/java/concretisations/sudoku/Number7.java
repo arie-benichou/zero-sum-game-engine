@@ -15,31 +15,29 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.piece;
+package concretisations.sudoku;
 
-import java.util.Map;
 import java.util.Set;
 
+import abstractions.cell.ManagedCellInterface;
+import abstractions.mutation.MutationInterface;
+import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-// TODO à intégrer dans le piece manager.
-/**
- * This is the factory of pieces alphabet.
- */
-interface PieceSetFactoryInterface {
+public final class Number7 extends SudokuPiece {
 
-    /**
-     * Returns the alphabet of pieces.
-     * 
-     * @param <T>
-     *            an enumeration of the types of pieces, the enum class must
-     *            implement the marker interface PieceTypeInterface.
-     * 
-     * @param piecesSet
-     *            the class object of the enumeration of piece types
-     * 
-     * @return the alphabet of pieces
-     */
-    <T extends Enum<T> & PieceTypeInterface> Map<SideInterface, Set<PieceInterface>> newPieceSet(final Class<T> piecesSet);
+    public Number7(final SideInterface side, final PieceTypeInterface type) {
+        super(side, type);
+    }
+
+    @Override
+    public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+        return MutationInterface.NULL_POTENTIAL_MUTATION_SET;
+    }
+
+    @Override
+    public String toString() {
+        return "7";
+    }
 
 }

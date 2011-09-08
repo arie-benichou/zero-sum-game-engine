@@ -17,35 +17,17 @@
 
 package concretisations.life.pieces;
 
-import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableList;
-
 public abstract class LifePiece extends AbstractPiece {
 
     protected static final int CUT_OFF = 4;
-
-    // TODO ! réutiliser l'API d'une cellule
-    private static final List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
-            NamedDirection.TOP,
-            NamedDirection.TOP_RIGHT,
-            NamedDirection.RIGHT,
-            NamedDirection.BOTTOM_RIGHT,
-            NamedDirection.BOTTOM,
-            NamedDirection.BOTTOM_LEFT,
-            NamedDirection.LEFT,
-            NamedDirection.TOP_LEFT
-            );
-
-    protected static final int MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL = LifePiece.NEIGHBOURS_POSITIONS.size();
 
     public LifePiece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -53,8 +35,8 @@ public abstract class LifePiece extends AbstractPiece {
 
     protected final int count(final ManagedCellInterface cell) {
         int n = 0;
-        for (int index = 0; index < LifePiece.MAXIMUM_NUMBER_OF_NEIGHBOUR_FOR_A_CELL && n < LifePiece.CUT_OFF; ++index) {
-            if (!cell.getNeihgbour(LifePiece.NEIGHBOURS_POSITIONS.get(index)).getPiece().getSide().isNull()) {
+        for (int index = 0; index < ManagedCellInterface.MAXIMAL_NUMBER_OF_NEIGHBOURS && n < LifePiece.CUT_OFF; ++index) {
+            if (!cell.getNeighbour(ManagedCellInterface.NEIGHBOUR_DIRECTIONS.get(index)).getPiece().getSide().isNull()) {
                 ++n;
             }
         }
@@ -62,6 +44,6 @@ public abstract class LifePiece extends AbstractPiece {
     }
 
     @Override
-    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

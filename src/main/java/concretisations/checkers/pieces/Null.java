@@ -13,7 +13,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class Null extends CheckerPiece {
 
-    private static final Set<? extends DirectionInterface> NULL_DIRECTIONS = ImmutableSet.of();
+    private static final Set<DirectionInterface> NULL_DIRECTIONS = ImmutableSet.of();
 
     public Null(final SideInterface side, final PieceTypeInterface type) {
         super(side, type, Null.NULL_DIRECTIONS);

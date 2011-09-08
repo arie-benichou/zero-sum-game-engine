@@ -36,7 +36,7 @@ public final class Null extends LifePiece {
     }
 
     @Override
-    public Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
+    public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
         if (this.count(cell) == Null.NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN) {
             return ImmutableSet.of(AtomicMutationFactory.newBirth(cell, side, LifePieceSet.PAWN)); // NOPMD 
         }

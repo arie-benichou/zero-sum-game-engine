@@ -17,11 +17,9 @@
 
 package concretisations.othello.pieces;
 
-import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
@@ -29,25 +27,12 @@ import abstractions.piece.AbstractPiece;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 public abstract class OthelloPiece extends AbstractPiece implements OthelloPieceInterface {
 
     protected static final Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
             .of(concretisations.othello.mutations.OthelloMutations.NEW_PAWN);
-
-    // TODO ! réutiliser l'API d'une cellule
-    private static final List<NamedDirection> NEIGHBOURS_POSITIONS = ImmutableList.of(
-            NamedDirection.TOP,
-            NamedDirection.TOP_RIGHT,
-            NamedDirection.RIGHT,
-            NamedDirection.BOTTOM_RIGHT,
-            NamedDirection.BOTTOM,
-            NamedDirection.BOTTOM_LEFT,
-            NamedDirection.LEFT,
-            NamedDirection.TOP_LEFT
-            );
 
     public OthelloPiece(final SideInterface side, final PieceTypeInterface type) {
         super(side, type);
@@ -59,18 +44,18 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             willBeConnected = true;
         }
         else if (side.getNextSide().equals(cell.getPiece().getSide())) {
-            final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
+            final ManagedCellInterface nextCell = cell.getNeighbour(direction);
             willBeConnected = ((OthelloPiece) nextCell.getPiece()).isConnected(nextCell, side, direction);
         }
         return willBeConnected;
     }
 
-    public final Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction,
+    public final Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction,
             final Set<ManagedCellInterface> cellsToRevert) {
-        if (side.equals(cell.getNeihgbour(direction).getPiece().getSide())) {
+        if (side.equals(cell.getNeighbour(direction).getPiece().getSide())) {
             return cellsToRevert; // NOPMD
         }
-        final ManagedCellInterface nextCell = cell.getNeihgbour(direction);
+        final ManagedCellInterface nextCell = cell.getNeighbour(direction);
         if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
             cellsToRevert.add(nextCell);
             return ((OthelloPiece) nextCell.getPiece()).getConnected(nextCell, side, direction, cellsToRevert); // NOPMD
@@ -82,15 +67,14 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     // TODO à simplifier
     protected final boolean isMutable(final ManagedCellInterface cell, final SideInterface side) {
         boolean willBeConnected = false;
-        final int maxIndex = OthelloPiece.NEIGHBOURS_POSITIONS.size();
-        for (int index = 0; index < maxIndex && !willBeConnected; ++index) {
-            final NamedDirection relativePosition = OthelloPiece.NEIGHBOURS_POSITIONS.get(index);
-            final ManagedCellInterface nextCell = cell.getNeihgbour(relativePosition);
+        for (int index = 0; index < ManagedCellInterface.MAXIMAL_NUMBER_OF_NEIGHBOURS && !willBeConnected; ++index) {
+            final NamedDirection relativePosition = ManagedCellInterface.NEIGHBOUR_DIRECTIONS.get(index);
+            final ManagedCellInterface nextCell = cell.getNeighbour(relativePosition);
             if (nextCell.isNull()) {
                 continue;
             }
             if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
-                final ManagedCellInterface nextNextCell = nextCell.getNeihgbour(relativePosition);
+                final ManagedCellInterface nextNextCell = nextCell.getNeighbour(relativePosition);
                 final OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
                 willBeConnected = nextNextPiece.isConnected(nextNextCell, side, relativePosition);
             }
@@ -99,6 +83,6 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     }
 
     @Override
-    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
+    public abstract Set<MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
 }

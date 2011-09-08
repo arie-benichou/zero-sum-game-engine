@@ -15,26 +15,30 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+package abstractions.gameplay;
+
+import abstractions.adversity.AdversityInterface;
+import abstractions.game.GameInterface;
+
 /**
- * API related to dimensions.
+ * This is the interface for a gameplay.
  */
+public interface GamePlayInterface {
 
-package abstractions.dimension;
+    /**
+     * Returns the played game.
+     * 
+     * @return the played game
+     */
+    GameInterface getGame();
 
-// TODO à intégrer dans le dimension manager
-public final class DimensionFactory {
+    /**
+     * Returns adversity for this gameplay.
+     * 
+     * @return adversity for this gameplay
+     */
+    AdversityInterface getAdversity();
 
-    private DimensionFactory() {}
-
-    public static DimensionManagerInterface dimension(final int numberOfRows, final int numberOfColumns) {
-
-        try {
-            return new DimensionManager(new RowDimension(1, numberOfRows), new ColumnDimension(1, numberOfColumns));
-        }
-        catch (final IllegalArgumentException e) {
-            throw new IllegalDimensionException(numberOfRows, numberOfColumns); // NOPMD 
-        }
-
-    }
+    GamePlayInterface newGamePlay();
 
 }

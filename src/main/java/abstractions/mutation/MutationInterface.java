@@ -19,27 +19,28 @@ package abstractions.mutation;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
+import abstractions.context.ContextInterface;
 import abstractions.piece.PieceInterface;
+import abstractions.position.PositionInterface;
 
 import com.google.common.collect.ImmutableSet;
 
 /**
  * This is the interface for a cell mutation.
  */
-public interface MutationInterface {
+public interface MutationInterface extends Comparable<MutationInterface> {
 
     /**
      * Constant for the empty set of potential mutations.
      */
-    Set<? extends MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of(); // TODO ! classe MutationManager
+    Set<MutationInterface> NULL_POTENTIAL_MUTATION_SET = ImmutableSet.of(); // TODO ! classe MutationManager
 
     /**
-     * Returns the cell concerned by this mutation.
+     * Returns the position of the cell concerned by this mutation.
      * 
-     * @return the cell concerned by this mutation
+     * @return the position of the cell concerned by this mutation
      */
-    ManagedCellInterface getCell();
+    PositionInterface getPosition();
 
     /**
      * Returns the type of this mutation.
@@ -60,11 +61,15 @@ public interface MutationInterface {
     /**
      * Process this mutation.
      */
-    void process();
+    MutationInterface process(ContextInterface context);
 
     /**
      * Cancels this mutation.
      */
-    void cancel();
+    MutationInterface cancel(ContextInterface context);
+
+    boolean isNull();
+
+    void computeSequence(ContextInterface context);
 
 }

@@ -9,8 +9,16 @@ gameservice	: service de de parties de jeu
 
 Documentation
 --------------------------------------------------------------------------------
-Présenter le contexte, l'objectif, les moyens, les méthodes et les résultats.
+Présenter:
+ + contexte
+ + objectif
+ - moyens
+ - méthodes
+ - résultats
 
+Scala
+--------------------------------------------------------------------------------
+Finir la version Java du projet et réécrire le projet en Scala.
 
 UML
 --------------------------------------------------------------------------------
@@ -20,7 +28,7 @@ Dessiner au propre un diagrammes de séquence (zoom sur les mutations).
 
 Spring
 --------------------------------------------------------------------------------
-Utiliser le mécanisme de génération automatique de factory prévu par Spring.
+Utiliser le mécanisme de génération automatique de factory prévu par Spring ?
 
 
 OSGi

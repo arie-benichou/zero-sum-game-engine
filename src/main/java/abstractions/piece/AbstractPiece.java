@@ -22,9 +22,11 @@ import java.util.Set;
 import abstractions.cell.ManagedCellInterface;
 import abstractions.mutation.MutationInterface;
 import abstractions.side.SideInterface;
+import annotations.Immutable;
 
 import com.google.common.base.Preconditions;
 
+@Immutable
 public abstract class AbstractPiece implements PieceInterface {
 
     private volatile int hashCode; // NOPMD
@@ -38,10 +40,12 @@ public abstract class AbstractPiece implements PieceInterface {
         this.type = type;
     }
 
+    @Override
     public final SideInterface getSide() {
         return this.side;
     }
 
+    @Override
     public final PieceTypeInterface getType() {
         return this.type;
     }
@@ -84,7 +88,8 @@ public abstract class AbstractPiece implements PieceInterface {
         return isEqual;
     }
 
-    public abstract Set<? extends MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
+    @Override
+    public abstract Set<MutationInterface> computePotentialMutations(ManagedCellInterface cell, SideInterface side);
 
     @Override
     public abstract String toString();

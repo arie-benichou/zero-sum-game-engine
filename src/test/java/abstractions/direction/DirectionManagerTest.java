@@ -19,13 +19,14 @@ package abstractions.direction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.dimension.DimensionManagerInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
 
@@ -36,31 +37,29 @@ public final class DirectionManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        //final Random random = new Random();
-        //this.dimension = DimensionFactory.dimension(random.nextInt(99) + 1, random.nextInt(99) + 1);
-        //System.out.println(this.dimension);
-        this.dimension = DimensionFactory.dimension(10, 10);
+        final Random random = new Random();
+        this.dimension = new DimensionManager(random.nextInt(99) + 2, random.nextInt(99) + 2);
         this.directionManager = new DirectionManager(this.dimension);
     }
 
     @Test(expected = IllegalDirectionException.class)
     public void testGetIllegalDirection1() {
-        new DirectionManager(DimensionFactory.dimension(1, 2)).getDirection(-1, 0);
+        new DirectionManager(new DimensionManager(1, 2)).getDirection(-1, 0);
     }
 
     @Test(expected = IllegalDirectionException.class)
     public void testGetIlegalDirection2() {
-        new DirectionManager(DimensionFactory.dimension(1, 2)).getDirection(1, 0);
+        new DirectionManager(new DimensionManager(1, 2)).getDirection(1, 0);
     }
 
     @Test(expected = IllegalDirectionException.class)
     public void testGetIlegalDirection3() {
-        new DirectionManager(DimensionFactory.dimension(2, 1)).getDirection(0, 1);
+        new DirectionManager(new DimensionManager(2, 1)).getDirection(0, 1);
     }
 
     @Test(expected = IllegalDirectionException.class)
     public void testGetIllegalDirection4() {
-        new DirectionManager(DimensionFactory.dimension(2, 1)).getDirection(0, -1);
+        new DirectionManager(new DimensionManager(2, 1)).getDirection(0, -1);
     }
 
     @Test
@@ -103,7 +102,7 @@ public final class DirectionManagerTest {
         Assert.assertTrue(expectedNamedDirections.equals(this.directionManager.getNamedDirections()));
     }
 
-    //@Test // TODO fails on Dimension(Range[1, x], Range[1, 1])
+    @Test
     public void testReduce() { // NOPMD 
         Assert.assertTrue(this.directionManager.reduce(this.directionManager.getNamedDirections()) == this.directionManager.getDirection(0, 0));
         final List<DirectionInterface> directions = new ArrayList<DirectionInterface>();

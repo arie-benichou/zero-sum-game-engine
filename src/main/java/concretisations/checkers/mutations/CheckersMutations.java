@@ -23,6 +23,6 @@ public enum CheckersMutations implements MutationTypeInterface {
 
     JUMP,
     WALK,
-    //TODO MAN_TO_KING
+    KING
 
 }

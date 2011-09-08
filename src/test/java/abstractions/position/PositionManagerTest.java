@@ -22,7 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
 
@@ -32,7 +32,7 @@ public final class PositionManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        this.manager = new PositionManager(new DirectionManager(DimensionFactory.dimension(3, 3)));
+        this.manager = new PositionManager(new DirectionManager(new DimensionManager(3, 3)));
     }
 
     @Test
@@ -41,16 +41,40 @@ public final class PositionManagerTest {
         Assert.assertTrue(this.manager.getPosition(0, 0) == this.manager.getNullPosition());
 
         Assert.assertTrue(this.manager.getPosition(1, 1).equals(new Position(1, 1)));
+        Assert.assertFalse(this.manager.getPosition(1, 1) == new Position(1, 1));
+        Assert.assertTrue(this.manager.getPosition(1, 1) == this.manager.getPosition(1, 1));
+
         Assert.assertTrue(this.manager.getPosition(1, 2).equals(new Position(1, 2)));
+        Assert.assertFalse(this.manager.getPosition(1, 2) == new Position(1, 2));
+        Assert.assertTrue(this.manager.getPosition(1, 2) == this.manager.getPosition(1, 2));
+
         Assert.assertTrue(this.manager.getPosition(1, 3).equals(new Position(1, 3)));
+        Assert.assertFalse(this.manager.getPosition(1, 3) == new Position(1, 3));
+        Assert.assertTrue(this.manager.getPosition(1, 3) == this.manager.getPosition(1, 3));
 
         Assert.assertTrue(this.manager.getPosition(2, 1).equals(new Position(2, 1)));
+        Assert.assertFalse(this.manager.getPosition(2, 1) == new Position(2, 1));
+        Assert.assertTrue(this.manager.getPosition(2, 1) == this.manager.getPosition(2, 1));
+
         Assert.assertTrue(this.manager.getPosition(2, 2).equals(new Position(2, 2)));
+        Assert.assertFalse(this.manager.getPosition(2, 2) == new Position(2, 2));
+        Assert.assertTrue(this.manager.getPosition(2, 2) == this.manager.getPosition(2, 2));
+
         Assert.assertTrue(this.manager.getPosition(2, 3).equals(new Position(2, 3)));
+        Assert.assertFalse(this.manager.getPosition(2, 3) == new Position(2, 3));
+        Assert.assertTrue(this.manager.getPosition(2, 3) == this.manager.getPosition(2, 3));
 
         Assert.assertTrue(this.manager.getPosition(3, 1).equals(new Position(3, 1)));
+        Assert.assertFalse(this.manager.getPosition(3, 1) == new Position(3, 1));
+        Assert.assertTrue(this.manager.getPosition(3, 1) == this.manager.getPosition(3, 1));
+
         Assert.assertTrue(this.manager.getPosition(3, 2).equals(new Position(3, 2)));
+        Assert.assertFalse(this.manager.getPosition(3, 2) == new Position(3, 2));
+        Assert.assertTrue(this.manager.getPosition(3, 2) == this.manager.getPosition(3, 2));
+
         Assert.assertTrue(this.manager.getPosition(3, 3).equals(new Position(3, 3)));
+        Assert.assertFalse(this.manager.getPosition(3, 3) == new Position(3, 3));
+        Assert.assertTrue(this.manager.getPosition(3, 3) == this.manager.getPosition(3, 3));
 
         Assert.assertTrue(this.manager.getPosition(4, 1) == this.manager.getNullPosition());
 

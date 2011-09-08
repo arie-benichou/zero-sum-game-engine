@@ -20,8 +20,12 @@ public final class WalkMutation extends CheckersMutation {
     @Override
     protected List<MutationInterface> sequence() {
         return ImmutableList.of(
-                AtomicMutationFactory.newBirth(this.getCell().getNeihgbour(this.getDirection()), this.getCell().getPiece().getSide(), this.getCell().getPiece()
+                /*
+                AtomicMutationFactory.newBirth(this.getCell().getNeighbour(this.getDirection()), this.getCell().getPiece().getSide(), this.getCell().getPiece()
                         .getType()),
+                */
+                new CheckersBirthMutation(this.getCell().getNeighbour(this.getDirection()), this.getCell().getPiece().getType(), this.getCell().getPiece()
+                        .getSide()),
                 AtomicMutationFactory.newDeath(this.getCell())
                 );
     }

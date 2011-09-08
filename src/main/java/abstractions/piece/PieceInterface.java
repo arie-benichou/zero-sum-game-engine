@@ -1,3 +1,19 @@
+/*
+ * Copyright 2011 Arie Benichou
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package abstractions.piece;
 
@@ -39,7 +55,7 @@ public interface PieceInterface {
      * @return the potential cell mutations induced by the piece (see a piece as
      *         a kind of cell kernel)
      */
-    Set<? extends MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
+    Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, SideInterface side);
 
     // TODO ? add method isNull() to a piece interface    
 

@@ -12,7 +12,7 @@ import org.junit.Test;
 import abstractions.cell.CellManager;
 import abstractions.cell.CellManagerInterface;
 import abstractions.cell.ManagedCellInterface;
-import abstractions.dimension.DimensionFactory;
+import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceManager;
@@ -30,7 +30,7 @@ public final class Connect4PotentialMutationsTest {
     @Before
     public void setUp() throws Exception {
 
-        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(DimensionFactory.dimension(5, 6)));
+        final PositionManagerInterface positionManager = new PositionManager(new DirectionManager(new DimensionManager(5, 6)));
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.connect4.pieces.Connect4PieceSet.class);
         this.cellManager = new CellManager(positionManager, pieceManager);
 
@@ -61,9 +61,9 @@ public final class Connect4PotentialMutationsTest {
 
         //System.out.println(this.cellManager);
 
-        final Map<ManagedCellInterface, Set<? extends MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
 
-        for (final Entry<ManagedCellInterface, Set<? extends MutationInterface>> mutations : potentialMutations.entrySet()) {
+        for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
                 mutation.process();
                 //System.out.println(this.cellManager);

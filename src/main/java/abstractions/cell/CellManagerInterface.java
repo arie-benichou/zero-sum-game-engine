@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.MutationInterface;
 import abstractions.piece.PieceInterface;
 import abstractions.piece.PieceTypeInterface;
@@ -70,6 +71,16 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      */
     ManagedCellInterface getCell(final PositionInterface position);
 
+    List<ManagedCellInterface> getRow(final int rowIndex);
+
+    List<ManagedCellInterface> getColumn(final int columnIndex);
+
+    //List<PieceInterface> getPiecesByRow(final int rowIndex);
+
+    //List<PieceInterface> getPiecesByColumn(final int columnIndex);
+
+    List<ManagedCellInterface> getRegion(PositionInterface topLeftPosition, PositionInterface bottomRightPosition);
+
     /**
      * Returns a set of potential mutations for this cell.
      * 
@@ -78,7 +89,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return a set of potential mutations for this cell
      */
-    Map<ManagedCellInterface, Set<? extends MutationInterface>> getPotentialMutations(final SideInterface side);
+    Map<ManagedCellInterface, Set<MutationInterface>> getPotentialMutations(final SideInterface side);
 
     /////////////////////////////////////////////////////////////////
     // PieceManager facade
@@ -94,7 +105,7 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return a piece for a given side and a given type of piece
      */
-    PieceInterface piece(SideInterface side, PieceTypeInterface pieceType);
+    PieceInterface piece(final SideInterface side, final PieceTypeInterface pieceType);
 
     /////////////////////////////////////////////////////////////////
     // PositionManager facade
@@ -135,6 +146,12 @@ public interface CellManagerInterface extends Iterable<ManagedCellInterface> {
      * 
      * @return the named directions
      */
-    List<? extends DirectionInterface> getNamedDirections();
+    List<NamedDirection> getNamedDirections();
+
+    boolean isFull(); // TODO ? à virer
+
+    String asString();
+
+    CellManagerInterface duplicate();
 
 }

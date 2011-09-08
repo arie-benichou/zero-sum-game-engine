@@ -21,23 +21,44 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.cell.ManagedCellInterface;
-import abstractions.direction.DirectionInterface;
+import abstractions.context.ContextInterface;
+import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.mutation.AbstractCompositeMutation;
 import abstractions.mutation.AtomicMutationFactory;
 import abstractions.mutation.MutationInterface;
 import abstractions.mutation.MutationTypeInterface;
 import abstractions.piece.PieceTypeInterface;
 import abstractions.side.SideInterface;
+import abstractions.side.Sides;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import concretisations.othello.pieces.OthelloPiece;
 
-public final class NewPawnMutation extends AbstractCompositeMutation {
+public final class NewPawnMutation extends AbstractCompositeMutation implements OthelloMutationInterface {
 
     private final SideInterface side;
     private final PieceTypeInterface pieceType;
+
+    private int firstSideDelta;
+    private int secondSideDelta;
+    private int numberOfPawnsToRevert;
+
+    @Override
+    public final int getFirstSideDelta() {
+        return this.firstSideDelta;
+    }
+
+    @Override
+    public final int getSecondSideDelta() {
+        return this.secondSideDelta;
+    }
+
+    @Override
+    public final int getNumberOfPawnsToRevert() {
+        return this.numberOfPawnsToRevert;
+    }
 
     public NewPawnMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final SideInterface side,
             final PieceTypeInterface pieceType) {
@@ -55,20 +76,45 @@ public final class NewPawnMutation extends AbstractCompositeMutation {
     }
 
     @Override
-    protected List<MutationInterface> sequence() {
-        final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(this.getCell(), this.getSide(), this.getPieceType()));
+    protected List<MutationInterface> sequence(final ContextInterface context) {
+
+        final List<MutationInterface> sequence = Lists.newArrayList(AtomicMutationFactory.newBirth(context.getCellManager().getCell(this.getPosition()),
+                this.getSide(), this.getPieceType()));
         final Set<ManagedCellInterface> cellsToRevert = Sets.newHashSet();
         final Set<ManagedCellInterface> cellsToRevertInOneDirection = Sets.newHashSet();
-        for (final DirectionInterface direction : this.getCell().getNamedDirections()) {
+        for (final NamedDirection direction : context.getCellManager().getCell(this.getPosition()).getNamedDirections()) {
             cellsToRevert.addAll(
-                    ((OthelloPiece) this.getCell().getPiece()).
-                            getConnected(this.getCell(), this.getSide(), direction, cellsToRevertInOneDirection)
+                    ((OthelloPiece) context.getCellManager().getCell(this.getPosition()).getPiece()).getConnected(
+                            context.getCellManager().getCell(this.getPosition()), this.getSide(),
+                            direction, cellsToRevertInOneDirection)
                     );
             cellsToRevertInOneDirection.clear();
         }
+
+        int numberOfPawnsToRevert = 0;
+
         for (final ManagedCellInterface cell : cellsToRevert) {
             sequence.add(AtomicMutationFactory.newAlteration(cell, this.getSide(), this.getPieceType()));
+            ++numberOfPawnsToRevert;
         }
+
+        if (this.getSide().equals(Sides.FIRST)) {
+            this.firstSideDelta = numberOfPawnsToRevert + 1;
+            this.secondSideDelta = -numberOfPawnsToRevert;
+        }
+        else {
+            this.secondSideDelta = numberOfPawnsToRevert + 1;
+            this.firstSideDelta = -numberOfPawnsToRevert;
+        }
+
+        this.numberOfPawnsToRevert = numberOfPawnsToRevert;
+
         return sequence;
     }
+
+    @Override
+    public int compareTo(final MutationInterface that) {
+        return ((OthelloMutationInterface) that).getNumberOfPawnsToRevert() - this.getNumberOfPawnsToRevert(); // for descending order
+    }
+
 }
