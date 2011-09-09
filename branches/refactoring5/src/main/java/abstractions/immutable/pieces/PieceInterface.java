@@ -18,6 +18,7 @@
 package abstractions.immutable.pieces;
 
 import abstractions.immutable.ImmutableInterface;
+import abstractions.immutable.pieces.types.PieceTypeInterface;
 import abstractions.immutable.side.SideInterface;
 
 /**

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import abstractions.immutable.cells.MyCellManager;
 import abstractions.immutable.pieces.PieceInterface;
-import abstractions.immutable.pieces.PieceTypeInterface;
+import abstractions.immutable.pieces.OldPieceTypeInterface;
 import abstractions.immutable.positions.Position;
 import abstractions.immutable.positions.PositionInterface;
 import abstractions.immutable.side.SideInterface;
@@ -23,7 +23,7 @@ public class MyImmutableCellManagerMutations implements MutationsInterface<Posit
         final PieceInterface value1 = new PieceInterface() {
 
             @Override
-            public PieceTypeInterface type() {
+            public OldPieceTypeInterface type() {
                 return null;
             }
 
@@ -42,7 +42,7 @@ public class MyImmutableCellManagerMutations implements MutationsInterface<Posit
         final PieceInterface value2 = new PieceInterface() {
 
             @Override
-            public PieceTypeInterface type() {
+            public OldPieceTypeInterface type() {
                 return null;
             }
 

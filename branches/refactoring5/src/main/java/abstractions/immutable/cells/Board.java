@@ -19,8 +19,10 @@ package abstractions.immutable.cells;
 
 import java.util.Map;
 
+import abstractions.immutable.ImmutableInterface;
 import abstractions.immutable.pieces.Piece;
 import abstractions.immutable.pieces.PieceInterface;
+import abstractions.immutable.pieces.types.PieceType;
 import abstractions.immutable.positions.Position;
 import abstractions.immutable.positions.PositionInterface;
 import abstractions.immutable.side.Side;
@@ -28,6 +30,8 @@ import abstractions.immutable.side.Side;
 import com.google.common.base.Strings;
 
 public class Board implements BoardInterface {
+
+    private final static ImmutableInterface<Object> DEFAULT_PIECE_TYPE = null;
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -80,7 +84,7 @@ public class Board implements BoardInterface {
         // TODO ??? autoriser Side.from(null) à retourner le null object
         // TODO créer PieceType et utiliser PieceType.from(NullPieceType.class)
 
-        return new Board(rows, columns, Piece.from(Side.from(0), null));
+        return new Board(rows, columns, Piece.from(Side.from(0), PieceType.from(DEFAULT_PIECE_TYPE)));
 
     }
 

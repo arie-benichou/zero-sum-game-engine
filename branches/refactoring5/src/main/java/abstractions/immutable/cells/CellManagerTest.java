@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import abstractions.immutable.pieces.PieceInterface;
-import abstractions.immutable.pieces.PieceTypeInterface;
+import abstractions.immutable.pieces.OldPieceTypeInterface;
 import abstractions.immutable.side.SideInterface;
 
 public class CellManagerTest {
@@ -16,7 +16,7 @@ public class CellManagerTest {
     private final static PieceInterface VALUE1 = new PieceInterface() {
 
         @Override
-        public PieceTypeInterface type() {
+        public OldPieceTypeInterface type() {
             return null;
         }
 
@@ -35,7 +35,7 @@ public class CellManagerTest {
     private final static PieceInterface VALUE2 = new PieceInterface() {
 
         @Override
-        public PieceTypeInterface type() {
+        public OldPieceTypeInterface type() {
             return null;
         }
 

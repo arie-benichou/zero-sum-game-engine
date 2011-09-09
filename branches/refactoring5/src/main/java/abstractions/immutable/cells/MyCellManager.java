@@ -20,7 +20,7 @@ package abstractions.immutable.cells;
 import java.util.Map;
 
 import abstractions.immutable.pieces.PieceInterface;
-import abstractions.immutable.pieces.PieceTypeInterface;
+import abstractions.immutable.pieces.OldPieceTypeInterface;
 import abstractions.immutable.positions.PositionInterface;
 import abstractions.immutable.positions.Positions;
 import abstractions.immutable.side.SideInterface;
@@ -34,7 +34,7 @@ public class MyCellManager implements CellManagerInterface<PositionInterface, Pi
                     new PieceInterface() {
 
                         @Override
-                        public PieceTypeInterface type() {
+                        public OldPieceTypeInterface type() {
                             return null;
                         }
 
