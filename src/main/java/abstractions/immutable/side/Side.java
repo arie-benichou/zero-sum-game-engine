@@ -9,6 +9,10 @@ public final class Side implements SideInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    public final static SideInterface NULL = new Side(0);
+
+    /*-------------------------------------8<-------------------------------------*/
+
     public final static class SideFactory {
 
         private final static Map<Integer, SideInterface> CACHE = Maps.newHashMap();
@@ -35,7 +39,12 @@ public final class Side implements SideInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     public static SideInterface from(final int value) {
-        return SideFactory.get(value);
+        return value == 0 ? NULL : SideFactory.get(value);
+    }
+
+    // TODO ?? masquer ou ne pas masquer les NPE
+    public static SideInterface from(final Integer value) {
+        return value == null ? NULL : SideFactory.get(value);
     }
 
     private Side(final int value) {
@@ -88,8 +97,29 @@ public final class Side implements SideInterface {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "( " + this.value() + " ) ";
+        return this.getClass().getSimpleName() + "(" + this.value() + ")";
     }
+
     /*-------------------------------------8<-------------------------------------*/
+
+    public static void main(final String[] args) {
+
+        System.out.println(Side.NULL);
+        System.out.println(Side.from(0));
+
+        System.out.println(Side.from(1));
+
+        Integer i;
+
+        i = 0;
+        System.out.println(Side.from(i));
+
+        i = 1;
+        System.out.println(Side.from(i));
+
+        i = null;
+        System.out.println(Side.from(i));
+
+    }
 
 }

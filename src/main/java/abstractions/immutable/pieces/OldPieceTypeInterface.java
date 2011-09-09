@@ -21,4 +21,4 @@ package abstractions.immutable.pieces;
  * This is the interface for a type of piece. It's a marker interface in order
  * to simulate inheritance for enum.
  */
-public interface PieceTypeInterface {}
+public interface OldPieceTypeInterface {}
