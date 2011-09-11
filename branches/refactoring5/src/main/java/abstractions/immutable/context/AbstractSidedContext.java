@@ -1,7 +1,7 @@
 
 package abstractions.immutable.context;
 
-import abstractions.immutable.side.SideInterface;
+import abstractions.immutable.board.cell.piece.side.SideInterface;
 
 public abstract class AbstractSidedContext<T> implements SidedContextInterface<T> {
 

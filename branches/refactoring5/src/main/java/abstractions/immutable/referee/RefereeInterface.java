@@ -19,8 +19,8 @@ package abstractions.immutable.referee;
 
 import java.util.List;
 
+import abstractions.immutable.board.cell.piece.side.SideInterface;
 import abstractions.immutable.context.ContextInterface;
-import abstractions.immutable.side.SideInterface;
 import abstractions.old.mutation.MutationInterface;
 
 /**
