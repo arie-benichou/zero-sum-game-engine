@@ -15,15 +15,24 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.immutable.context;
+package abstractions.immutable.context.adversity.player.strategy;
 
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import java.util.List;
 
-public interface SidedContextInterface<T> extends ContextInterface<T> {
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.adversity.player.strategy.selection.SelectorInterface;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.mutation.MutationInterface;
 
-    SideInterface getSide();
+/**
+ * This is the interface for a player's strategy.
+ */
+public interface StrategyInterface {
 
-    @Override
-    SidedContextInterface<T> apply(T option);
+    EvaluatorInterface getEvaluator();
+
+    SelectorInterface<MutationInterface> getSelector();
+
+    List<MutationInterface> applyStrategyOn(final ContextInterface context, final List<MutationInterface> mutations);
 
 }

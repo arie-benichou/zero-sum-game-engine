@@ -15,15 +15,29 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.immutable.context;
+package abstractions.immutable.context.referee;
 
+import java.util.List;
+
+import abstractions.immutable.context.ContextInterface;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.mutation.MutationInterface;
 
-public interface SidedContextInterface<T> extends ContextInterface<T> {
+/**
+ * This is the interface for a game referee.
+ * 
+ * @todo commentaires
+ */
+public interface RefereeInterface {
 
-    SideInterface getSide();
+    boolean isGameOver(final ContextInterface context);
 
-    @Override
-    SidedContextInterface<T> apply(T option);
+    Double getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
+
+    Double getTerminalEvaluation(final ContextInterface context, final SideInterface side);
+
+    List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
+
+    List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
 
 }
