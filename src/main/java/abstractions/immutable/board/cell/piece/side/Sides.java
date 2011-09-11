@@ -15,15 +15,28 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.immutable.context;
+package abstractions.side;
 
-import abstractions.immutable.board.cell.piece.side.SideInterface;
+import annotations.Immutable;
 
-public interface SidedContextInterface<T> extends ContextInterface<T> {
+@Immutable
+public final class Sides {
 
-    SideInterface getSide();
+    private Sides() {}
 
-    @Override
-    SidedContextInterface<T> apply(T option);
+    /**
+     * The null object for a side.
+     */
+    public static final SideInterface NULL = Side.NULL_SIDE;
+
+    /**
+     * The first side.
+     */
+    public static final SideInterface FIRST = Side.FIRST_SIDE;
+
+    /**
+     * The second side.
+     */
+    public static final SideInterface SECOND = Side.SECOND_SIDE;
 
 }

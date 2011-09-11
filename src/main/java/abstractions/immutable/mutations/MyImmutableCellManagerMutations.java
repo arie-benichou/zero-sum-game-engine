@@ -3,12 +3,12 @@ package abstractions.immutable.mutations;
 
 import java.util.Map;
 
-import abstractions.immutable.cells.MyCellManager;
-import abstractions.immutable.pieces.PieceInterface;
-import abstractions.immutable.pieces.OldPieceTypeInterface;
-import abstractions.immutable.positions.Position;
-import abstractions.immutable.positions.PositionInterface;
-import abstractions.immutable.side.SideInterface;
+import abstractions.immutable.board.MyCellManager;
+import abstractions.immutable.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.board.cell.piece.PieceInterface;
+import abstractions.immutable.board.cell.piece.side.SideInterface;
+import abstractions.immutable.board.cell.position.Position;
+import abstractions.immutable.board.cell.position.PositionInterface;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;

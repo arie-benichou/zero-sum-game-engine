@@ -3,8 +3,8 @@ package abstractions.immutable.context;
 
 import java.util.List;
 
-import abstractions.immutable.cells.Cell;
-import abstractions.immutable.side.SideInterface;
+import abstractions.immutable.board.Cell;
+import abstractions.immutable.board.cell.piece.side.SideInterface;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
