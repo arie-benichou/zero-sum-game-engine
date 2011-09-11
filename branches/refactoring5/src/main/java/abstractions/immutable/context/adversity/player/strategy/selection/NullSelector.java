@@ -15,15 +15,21 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package abstractions.immutable.context;
+package abstractions.immutable.context.adversity.player.strategy.selection;
 
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import java.util.List;
+import java.util.TreeMap;
 
-public interface SidedContextInterface<T> extends ContextInterface<T> {
+import annotations.Immutable;
 
-    SideInterface getSide();
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
+@Immutable
+public class NullSelector<I> implements SelectorInterface<I> {
 
     @Override
-    SidedContextInterface<T> apply(T option);
-
+    public List<I> select(final TreeMap<?, List<I>> evaluatedItems) {
+        return Lists.newArrayList(Iterables.concat(evaluatedItems.values()));
+    }
 }

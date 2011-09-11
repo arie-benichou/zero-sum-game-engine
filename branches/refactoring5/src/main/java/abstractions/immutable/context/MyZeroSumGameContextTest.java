@@ -9,9 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.immutable.board.BoardGameCells;
-import abstractions.immutable.board.Cell;
-import abstractions.immutable.board.cell.piece.side.Side;
+import abstractions.immutable.context.board.BoardGameCells;
+import abstractions.immutable.context.board.Cell;
+import abstractions.immutable.context.board.cell.piece.side.Side;
 
 import com.google.common.collect.Lists;
 
