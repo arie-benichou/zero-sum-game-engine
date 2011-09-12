@@ -21,8 +21,8 @@ import java.util.Set;
 
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -30,17 +30,17 @@ public final class King extends CheckerPiece {
 
     private static final Set<DirectionInterface> LEGAL_DIRECTIONS = ImmutableSet.of(NamedDirection.TOP.value(), NamedDirection.BOTTOM.value());
 
-    public King(final SideInterface side, final PieceTypeInterface type) {
+    public King(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type, King.LEGAL_DIRECTIONS);
     }
 
     @Override
     public String toString() {
         String consoleView = "";
-        if (this.getSide().isFirstSide()) {
+        if (this.side().isFirst()) {
             consoleView = "X";
         }
-        else if (this.getSide().isSecondSide()) {
+        else if (this.side().isSecondSide()) {
             consoleView = "O";
         }
         return consoleView;

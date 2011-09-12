@@ -17,32 +17,32 @@
 
 package concretisations.othello;
 
-import abstractions.adversity.Adversity;
-import abstractions.adversity.AdversityInterface;
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.context.ContextInterface;
-import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluator.EvaluatorInterface;
-import abstractions.evaluator.MiniMax;
-import abstractions.evaluator.NullEvaluator;
 import abstractions.game.Game;
 import abstractions.game.GameInterface;
 import abstractions.gameplay.GamePlay;
 import abstractions.gameplay.GamePlayInterface;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.player.Player;
-import abstractions.player.PlayerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.selector.FirstItem;
-import abstractions.selector.Human;
-import abstractions.side.Sides;
-import abstractions.strategy.Strategy;
-import abstractions.strategy.StrategyInterface;
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.adversity.Adversity;
+import abstractions.immutable.context.adversity.AdversityInterface;
+import abstractions.immutable.context.adversity.player.Player;
+import abstractions.immutable.context.adversity.player.PlayerInterface;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.context.ContextManager;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.evaluator.MiniMax;
+import abstractions.old.evaluator.NullEvaluator;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
+import abstractions.old.selector.FirstItem;
+import abstractions.old.selector.Human;
+import abstractions.old.strategy.Strategy;
+import abstractions.old.strategy.StrategyInterface;
 import concretisations.othello.pieces.OthelloPieceSet;
 
 class SmallerOthello {
@@ -53,10 +53,10 @@ class SmallerOthello {
         final PieceManagerInterface pieceManager = new PieceManager(concretisations.othello.pieces.OthelloPieceSet.class);
         final CellManagerInterface cellManager = new CellManager(positionManager, pieceManager);
 
-        cellManager.getCell(2, 2).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        cellManager.getCell(2, 3).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(3, 2).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(3, 3).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(2, 2).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(2, 3).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(3, 2).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(3, 3).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
 
         return cellManager;
     }

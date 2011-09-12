@@ -1,8 +1,8 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
+import abstractions.old.cell.ManagedCellInterface;
 
 public final class CheckersMutationFactory {
 

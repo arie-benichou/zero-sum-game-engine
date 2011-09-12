@@ -18,25 +18,25 @@
 package concretisations.checkers.pieces;
 
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
 
 import com.google.common.collect.ImmutableSet;
 
 // TODO promotion d'un MAN en KING
 public final class Man extends CheckerPiece {
 
-    public Man(final SideInterface side, final PieceTypeInterface type) {
-        super(side, type, ImmutableSet.of(side.isFirstSide() ? NamedDirection.TOP.value() : NamedDirection.BOTTOM.value()));
+    public Man(final SideInterface side, final OldPieceTypeInterface type) {
+        super(side, type, ImmutableSet.of(side.isFirst() ? NamedDirection.TOP.value() : NamedDirection.BOTTOM.value()));
     }
 
     @Override
     public String toString() {
         String consoleView = "";
-        if (this.getSide().isFirstSide()) {
+        if (this.side().isFirst()) {
             consoleView = "x";
         }
-        else if (this.getSide().isSecondSide()) {
+        else if (this.side().isSecondSide()) {
             consoleView = "o";
         }
         return consoleView;

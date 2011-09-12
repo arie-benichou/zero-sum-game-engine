@@ -17,9 +17,9 @@
 
 package concretisations.othello.pieces;
 
-import abstractions.piece.PieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
 
-public enum OthelloPieceSet implements PieceTypeInterface {
+public enum OthelloPieceSet implements OldPieceTypeInterface {
 
     NULL, PAWN;
 

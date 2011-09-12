@@ -3,11 +3,11 @@ package concretisations.checkers.mutations;
 
 import java.util.List;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
-import abstractions.mutation.AtomicMutationFactory;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.AtomicMutationFactory;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 import com.google.common.collect.ImmutableList;
 
@@ -24,9 +24,9 @@ public final class WalkMutation extends CheckersMutation {
                 AtomicMutationFactory.newBirth(this.getCell().getNeighbour(this.getDirection()), this.getCell().getPiece().getSide(), this.getCell().getPiece()
                         .getType()),
                 */
-                new CheckersBirthMutation(this.getCell().getNeighbour(this.getDirection()), this.getCell().getPiece().getType(), this.getCell().getPiece()
-                        .getSide()),
-                AtomicMutationFactory.newDeath(this.getCell())
+                new CheckersBirthMutation(this.getPosition().getNeighbour(this.getDirection()), this.getPosition().getPiece().type(), this.getPosition().getPiece()
+                        .side()),
+                AtomicMutationFactory.newDeath(this.getPosition())
                 );
     }
 }

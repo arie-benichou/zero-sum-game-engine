@@ -19,13 +19,13 @@ package concretisations.othello.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.MutationTypeInterface;
-import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.AbstractPiece;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -34,16 +34,16 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
     protected static final Set<? extends MutationTypeInterface> POTENTIAL_MUTATION_TYPES_SET = ImmutableSet
             .of(concretisations.othello.mutations.OthelloMutations.NEW_PAWN);
 
-    public OthelloPiece(final SideInterface side, final PieceTypeInterface type) {
+    public OthelloPiece(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 
     public final boolean isConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction) {
         boolean willBeConnected = false;
-        if (side.equals(cell.getPiece().getSide())) {
+        if (side.equals(cell.getPiece().side())) {
             willBeConnected = true;
         }
-        else if (side.getNextSide().equals(cell.getPiece().getSide())) {
+        else if (side.getNextSide().equals(cell.getPiece().side())) {
             final ManagedCellInterface nextCell = cell.getNeighbour(direction);
             willBeConnected = ((OthelloPiece) nextCell.getPiece()).isConnected(nextCell, side, direction);
         }
@@ -52,11 +52,11 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
 
     public final Set<ManagedCellInterface> getConnected(final ManagedCellInterface cell, final SideInterface side, final NamedDirection direction,
             final Set<ManagedCellInterface> cellsToRevert) {
-        if (side.equals(cell.getNeighbour(direction).getPiece().getSide())) {
+        if (side.equals(cell.getNeighbour(direction).getPiece().side())) {
             return cellsToRevert; // NOPMD
         }
         final ManagedCellInterface nextCell = cell.getNeighbour(direction);
-        if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
+        if (side.getNextSide().equals(nextCell.getPiece().side())) {
             cellsToRevert.add(nextCell);
             return ((OthelloPiece) nextCell.getPiece()).getConnected(nextCell, side, direction, cellsToRevert); // NOPMD
         }
@@ -73,7 +73,7 @@ public abstract class OthelloPiece extends AbstractPiece implements OthelloPiece
             if (nextCell.isNull()) {
                 continue;
             }
-            if (side.getNextSide().equals(nextCell.getPiece().getSide())) {
+            if (side.getNextSide().equals(nextCell.getPiece().side())) {
                 final ManagedCellInterface nextNextCell = nextCell.getNeighbour(relativePosition);
                 final OthelloPiece nextNextPiece = (OthelloPiece) nextNextCell.getPiece();
                 willBeConnected = nextNextPiece.isConnected(nextNextCell, side, relativePosition);

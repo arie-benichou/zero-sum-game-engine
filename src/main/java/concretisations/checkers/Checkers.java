@@ -1,27 +1,27 @@
 
 package concretisations.checkers;
 
-import abstractions.adversity.Adversity;
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.context.Context;
-import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluator.EvaluatorInterface;
-import abstractions.evaluator.NullEvaluator;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.player.Player;
-import abstractions.player.PlayerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.referee.RefereeInterface;
-import abstractions.selector.FirstItem;
-import abstractions.selector.Random;
-import abstractions.side.Sides;
-import abstractions.strategy.Strategy;
-import abstractions.strategy.StrategyInterface;
+import abstractions.immutable.context.adversity.Adversity;
+import abstractions.immutable.context.adversity.player.Player;
+import abstractions.immutable.context.adversity.player.PlayerInterface;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.context.Context;
+import abstractions.old.context.ContextManager;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.evaluator.NullEvaluator;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
+import abstractions.old.selector.FirstItem;
+import abstractions.old.selector.Random;
+import abstractions.old.strategy.Strategy;
+import abstractions.old.strategy.StrategyInterface;
 import concretisations.checkers.pieces.CheckersPieceSet;
 
 public class Checkers {
@@ -56,12 +56,12 @@ public class Checkers {
         for (int rowIndex = 1; rowIndex <= 3; ++rowIndex)
             for (int n = 1; n <= 4; ++n) {
                 final int columnIndex = 2 * n + rowIndex % 2 - 1;
-                cellManager.getCell(rowIndex, columnIndex).setPiece(Sides.SECOND, CheckersPieceSet.MAN);
+                cellManager.getCell(rowIndex, columnIndex).setPiece(Side.SECOND, CheckersPieceSet.MAN);
             }
         for (int rowIndex = 6; rowIndex <= 8; ++rowIndex)
             for (int n = 1; n <= 4; ++n) {
                 final int columnIndex = 2 * n + rowIndex % 2 - 1;
-                cellManager.getCell(rowIndex, columnIndex).setPiece(Sides.FIRST, CheckersPieceSet.MAN);
+                cellManager.getCell(rowIndex, columnIndex).setPiece(Side.FIRST, CheckersPieceSet.MAN);
             }
     }
 

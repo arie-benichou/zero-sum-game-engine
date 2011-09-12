@@ -17,9 +17,9 @@
 
 package concretisations.connect4.pieces;
 
-import abstractions.piece.PieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
 
-public enum Connect4PieceSet implements PieceTypeInterface {
+public enum Connect4PieceSet implements OldPieceTypeInterface {
 
     NULL, PAWN;
 

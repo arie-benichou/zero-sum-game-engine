@@ -241,7 +241,7 @@ public class Board implements BoardInterface {
 
         /*-------------------------------------8<-------------------------------------*/
 
-        Map<PieceInterface, String> symbols = null;
+        Map<Object, Object> symbols = null;
         MoveInterface move = null;
 
         /*-------------------------------------8<-------------------------------------*/
@@ -303,18 +303,18 @@ public class Board implements BoardInterface {
         final BoardRenderingInterface<?> renderingType =
                 new BoardConsoleRendering(
                         new BoardStringRendering(new BoardCellStringRendering(
-                                new PieceStringRendering(symbols))));
+                                new PieceStringRendering())));
 
         final BoardRenderer boardRenderer = new BoardRenderer(renderingType); // TODO ? créer une interface
 
         /*-------------------------------------8<-------------------------------------*/
 
         board = Board.from(3, 3);
-        boardRenderer.render(board);
+        boardRenderer.render(board, symbols);
 
         final BoardInterface newBoard = board.apply(move.mutation());
-        boardRenderer.render(board);
-        boardRenderer.render(newBoard);
+        boardRenderer.render(board, symbols);
+        boardRenderer.render(newBoard, symbols);
 
         /*-------------------------------------8<-------------------------------------*/
 

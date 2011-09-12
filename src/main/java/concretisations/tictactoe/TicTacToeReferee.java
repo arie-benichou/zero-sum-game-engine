@@ -7,16 +7,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.context.ContextInterface;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.NullMutation;
-import abstractions.referee.RefereeInterface;
-import abstractions.side.SideInterface;
-import abstractions.side.Sides;
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.NullMutation;
 
 public class TicTacToeReferee implements RefereeInterface {
 
@@ -42,10 +42,10 @@ public class TicTacToeReferee implements RefereeInterface {
 
     protected int computeConnection(final MutationInterface lastMutation, final DirectionInterface direction) {
         int connected;
-        ManagedCellInterface cell = lastMutation.getCell();
+        ManagedCellInterface cell = lastMutation.getPosition();
         for (connected = 0; connected <= CONNECTIONS; ++connected) {
             cell = cell.getNeighbour(direction);
-            if (cell.isNull() || cell.isEmpty() || cell.getPiece().getSide() != lastMutation.getCell().getPiece().getSide())
+            if (cell.isNull() || cell.isEmpty() || cell.getPiece().side() != lastMutation.getPosition().getPiece().side())
                 break;
         }
         return connected;
@@ -64,8 +64,8 @@ public class TicTacToeReferee implements RefereeInterface {
         boolean isGameOver = false;
         for (final NamedDirection[] directions : DIRECTIONS) {
             // TODO getLastMove() dans context
-            final int connections = this.computeConnection(context.getLastPlayerMove(context.getCurrentSide()), directions[0].value()) + 1
-                    + this.computeConnection(context.getLastPlayerMove(context.getCurrentSide()), directions[1].value());
+            final int connections = this.computeConnection(context.getLastPlayerMove(context.side()), directions[0].value()) + 1
+                    + this.computeConnection(context.getLastPlayerMove(context.side()), directions[1].value());
             if (connections >= CONNECTIONS) {
                 //System.out.println("Game Over");
                 isGameOver = true;
@@ -75,9 +75,9 @@ public class TicTacToeReferee implements RefereeInterface {
 
         if (!isGameOver) {
             Iterator<ManagedCellInterface> it = context.getCellManager().iterator();
-            it.next();
+            it.opposite();
             while (it.hasNext())
-                if (it.next().isEmpty())
+                if (it.opposite().isEmpty())
                     return false;
             return true;
         }

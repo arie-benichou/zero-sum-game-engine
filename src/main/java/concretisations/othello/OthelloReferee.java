@@ -21,11 +21,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.context.ContextInterface;
-import abstractions.evaluator.EvaluatorInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.referee.RefereeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.mutation.MutationInterface;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -37,11 +37,11 @@ class OthelloReferee implements RefereeInterface {
     @Override
     public boolean isGameOver(final ContextInterface context) {
         //les deux joueurs ont succesivement passé leur tour ou les deux joueurs ne peuvent plus jouer
-        return context.getLastMove(context.getCurrentSide()).isNull()
-                && context.getLastMove(context.getCurrentSide().getNextSide()).isNull()
+        return context.getLastMove(context.side()).isNull()
+                && context.getLastMove(context.side().getNextSide()).isNull()
                 ||
-                this.getLegalMoves(context, context.getCurrentSide().getNextSide()).get(0).isNull()
-                && this.getLegalMoves(context, context.getCurrentSide()).get(0).isNull();
+                this.getLegalMoves(context, context.side().getNextSide()).get(0).isNull()
+                && this.getLegalMoves(context, context.side()).get(0).isNull();
     }
 
     @Override
@@ -68,7 +68,7 @@ class OthelloReferee implements RefereeInterface {
     @Override
     public final Double getHeuristicEvaluation(final ContextInterface context, final SideInterface sidePointOfView) {
         final OthelloContext othelloContext = (OthelloContext) context;
-        return (othelloContext.getNumberOfPawns(sidePointOfView) - othelloContext.getNumberOfPawns(sidePointOfView.getNextSide()))
+        return (0.0 + othelloContext.getNumberOfPawns(sidePointOfView) - othelloContext.getNumberOfPawns(sidePointOfView.getNextSide()))
                 / othelloContext.getNumberOfCells();
     }
 
@@ -78,7 +78,7 @@ class OthelloReferee implements RefereeInterface {
         if (evaluation == EvaluatorInterface.NULL_EVALUATION) {
             final OthelloContext othelloContext = (OthelloContext) context;
             //evaluation = 0 - othelloContext.getNumberOfEmptyCells() / othelloContext.getNumberOfCells() / 10;
-            evaluation = othelloContext.getNumberOfEmptyCells() / (-10 * othelloContext.getNumberOfCells());
+            evaluation = othelloContext.getNumberOfEmptyCells() / (-10.0 * othelloContext.getNumberOfCells());
         }
         return evaluation;
     }

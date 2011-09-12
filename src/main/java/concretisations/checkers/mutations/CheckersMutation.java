@@ -3,11 +3,11 @@ package concretisations.checkers.mutations;
 
 import java.util.List;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
-import abstractions.mutation.AbstractCompositeMutation;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.AbstractCompositeMutation;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 public abstract class CheckersMutation extends AbstractCompositeMutation implements CheckersMutationInterface {
 
@@ -34,7 +34,7 @@ public abstract class CheckersMutation extends AbstractCompositeMutation impleme
         hashCode += this.getType().hashCode();
 
         hashCode *= 31;
-        hashCode += this.getCell().hashCode();
+        hashCode += this.getPosition().hashCode();
 
         hashCode *= 31;
         hashCode += this.getDirection().hashCode();
@@ -64,7 +64,7 @@ public abstract class CheckersMutation extends AbstractCompositeMutation impleme
                             &&
                             that.getDirection().getColumnDelta() == this.getDirection().getColumnDelta()
                             &&
-                            that.getCell().getPosition().equals(this.getCell().getPosition());
+                            that.getPosition().getPosition().equals(this.getPosition().getPosition());
         }
         return isEqual;
     }

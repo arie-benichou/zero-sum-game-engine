@@ -17,7 +17,7 @@
 
 package concretisations.checkers.mutations;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 public enum CheckersMutations implements MutationTypeInterface {
 

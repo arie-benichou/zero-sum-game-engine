@@ -19,14 +19,14 @@ package concretisations.othello.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 public final class Pawn extends OthelloPiece {
 
-    public Pawn(final SideInterface side, final PieceTypeInterface type) {
+    public Pawn(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 
@@ -38,10 +38,10 @@ public final class Pawn extends OthelloPiece {
     @Override
     public String toString() {
         String consoleView = "";
-        if (this.getSide().isFirstSide()) {
+        if (this.side().isFirst()) {
             consoleView = "x";
         }
-        else if (this.getSide().isSecondSide()) {
+        else if (this.side().isSecondSide()) {
             consoleView = "o";
         }
         return consoleView;

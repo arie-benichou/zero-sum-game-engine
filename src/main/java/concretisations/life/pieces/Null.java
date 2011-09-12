@@ -19,11 +19,11 @@ package concretisations.life.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.AtomicMutationFactory;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.AtomicMutationFactory;
+import abstractions.old.mutation.MutationInterface;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -31,7 +31,7 @@ public final class Null extends LifePiece {
 
     private static final int NUMBER_OF_NEIGHBOUR_CELLS_WITH_A_PAWN_IN_ORDER_TO_BORN = 3;
 
-    public Null(final SideInterface side, final PieceTypeInterface type) {
+    public Null(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 

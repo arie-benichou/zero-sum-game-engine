@@ -17,7 +17,7 @@
 
 package concretisations.othello.mutations;
 
-import abstractions.mutation.MutationTypeInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 public enum OthelloMutations implements MutationTypeInterface {
 

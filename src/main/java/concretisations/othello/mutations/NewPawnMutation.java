@@ -20,16 +20,16 @@ package concretisations.othello.mutations;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.context.ContextInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.mutation.AbstractCompositeMutation;
-import abstractions.mutation.AtomicMutationFactory;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.MutationTypeInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
-import abstractions.side.Sides;
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.AbstractCompositeMutation;
+import abstractions.old.mutation.AtomicMutationFactory;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.MutationTypeInterface;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -39,7 +39,7 @@ import concretisations.othello.pieces.OthelloPiece;
 public final class NewPawnMutation extends AbstractCompositeMutation implements OthelloMutationInterface {
 
     private final SideInterface side;
-    private final PieceTypeInterface pieceType;
+    private final OldPieceTypeInterface pieceType;
 
     private int firstSideDelta;
     private int secondSideDelta;
@@ -61,7 +61,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
     }
 
     public NewPawnMutation(final ManagedCellInterface cell, final MutationTypeInterface mutationType, final SideInterface side,
-            final PieceTypeInterface pieceType) {
+            final OldPieceTypeInterface pieceType) {
         super(cell, mutationType);
         this.side = side;
         this.pieceType = pieceType;
@@ -71,7 +71,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
         return this.side;
     }
 
-    private PieceTypeInterface getPieceType() {
+    private OldPieceTypeInterface getPieceType() {
         return this.pieceType;
     }
 
@@ -98,7 +98,7 @@ public final class NewPawnMutation extends AbstractCompositeMutation implements 
             ++numberOfPawnsToRevert;
         }
 
-        if (this.getSide().equals(Sides.FIRST)) {
+        if (this.getSide().equals(Side.FIRST)) {
             this.firstSideDelta = numberOfPawnsToRevert + 1;
             this.secondSideDelta = -numberOfPawnsToRevert;
         }

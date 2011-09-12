@@ -20,14 +20,14 @@ package concretisations.checkers.pieces;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.Direction;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.AbstractPiece;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -52,7 +52,7 @@ public abstract class CheckerPiece extends AbstractPiece {
 
         @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
-            return side.equals(cell.getPiece().getSide()) && cell.getNeighbour(direction).isEmpty();
+            return side.equals(cell.getPiece().side()) && cell.getNeighbour(direction).isEmpty();
         }
 
     };
@@ -61,9 +61,9 @@ public abstract class CheckerPiece extends AbstractPiece {
 
         @Override
         public boolean apply(final ManagedCellInterface cell, final SideInterface side, final DirectionInterface direction) {
-            return side.equals(cell.getPiece().getSide())
+            return side.equals(cell.getPiece().side())
                     && !cell.getNeighbour(direction).isNull() // TODO ! à améliorer
-                    && side.getNextSide().equals(cell.getNeighbour(direction).getPiece().getSide())
+                    && side.getNextSide().equals(cell.getNeighbour(direction).getPiece().side())
                     && cell.getNeighbour(direction).getNeighbour(direction).isEmpty();
         }
 
@@ -84,7 +84,7 @@ public abstract class CheckerPiece extends AbstractPiece {
         return legalRelativePositions;
     }
 
-    public CheckerPiece(final SideInterface side, final PieceTypeInterface type, final Set<DirectionInterface> directions) {
+    public CheckerPiece(final SideInterface side, final OldPieceTypeInterface type, final Set<DirectionInterface> directions) {
         super(side, type);
         this.legalDirections = this.compileLegalRelativePositions(directions);
     }

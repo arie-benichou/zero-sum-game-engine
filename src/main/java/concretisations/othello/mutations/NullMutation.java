@@ -1,11 +1,11 @@
 
 package concretisations.othello.mutations;
 
-import abstractions.context.ContextInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.mutation.MutationTypeInterface;
-import abstractions.piece.PieceInterface;
-import abstractions.position.PositionInterface;
+import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.context.board.cell.piece.PieceInterface;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.mutation.MutationTypeInterface;
+import abstractions.old.position.PositionInterface;
 
 public class NullMutation implements OthelloMutationInterface {
 

@@ -84,7 +84,6 @@ class Reversi {
 
         /*-------------------------------------8<-------------------------------------*/
 
-        //boardRenderer.render(board);
         boardRenderer.render(board, symbols);
 
         /*-------------------------------------8<-------------------------------------*/
@@ -97,12 +96,17 @@ class Reversi {
         /*-------------------------------------8<-------------------------------------*/
 
         final Map<PositionInterface, PieceInterface> potentials = Maps.newHashMap();
+
+        /*-------------------------------------8<-------------------------------------*/
+
         for (int row = 1; row <= 6; ++row)
             for (int column = 1; column <= 6; ++column) {
                 final PositionInterface position = Position.from(row, column);
                 if (((Abstract) board.cell(position).value().type().type()).isMutable(Side.from(1), board, position))
                     potentials.put(position, potential);
             }
+
+        /*-------------------------------------8<-------------------------------------*/
 
         boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
 
@@ -117,6 +121,8 @@ class Reversi {
                 if (((Abstract) board.cell(position).value().type().type()).isMutable(Side.from(-1), board, position))
                     potentials.put(position, potential);
             }
+
+        /*-------------------------------------8<-------------------------------------*/
 
         boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
 
