@@ -1,20 +1,20 @@
 
-package concretisations.reversi.pieces.types;
+package concretisations.reversi.pieces;
 
 import abstractions.immutable.context.board.BoardInterface;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.context.board.direction.DirectionInterface;
 
-public final class Pawn implements ReversiPieceTypeInterface {
+public final class ReversiPawn implements ReversiPieceTypeInterface {
 
-    private final static Pawn INSTANCE = new Pawn();
+    private final static ReversiPawn INSTANCE = new ReversiPawn();
 
-    public static Pawn from() {
+    public static ReversiPawn from() {
         return INSTANCE;
     }
 
-    private Pawn() {}
+    private ReversiPawn() {}
 
     @Override
     public ReversiPieceTypeInterface apply() {

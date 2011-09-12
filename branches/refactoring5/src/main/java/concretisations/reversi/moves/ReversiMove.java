@@ -15,7 +15,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package concretisations.reversi.moves.types;
+package concretisations.reversi.moves;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +35,19 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public final class NewPawn implements ReversiMoveTypeInterface {
+public final class ReversiMove implements ReversiMoveTypeInterface {
 
     public final static ReversiMoveTypeInterface from() {
-        return new NewPawn(Position.NULL);
+        return new ReversiMove(Position.NULL);
     }
 
     public final static ReversiMoveTypeInterface from(final PositionInterface position) {
-        return new NewPawn(position);
+        return new ReversiMove(position);
     }
 
     private final PositionInterface position;
 
-    private NewPawn(final PositionInterface position) {
+    private ReversiMove(final PositionInterface position) {
         this.position = position;
     }
 
