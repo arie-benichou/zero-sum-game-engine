@@ -1,5 +1,5 @@
 
-package concretisations.reversi.pieces.types;
+package concretisations.reversi.pieces;
 
 import abstractions.immutable.ImmutableInterface;
 import abstractions.immutable.context.board.BoardInterface;

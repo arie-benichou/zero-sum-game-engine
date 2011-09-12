@@ -1,5 +1,5 @@
 
-package concretisations.reversi;
+package concretisations.reversi.referees;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ import abstractions.immutable.move.type.MoveTypeInterface;
 
 import com.google.common.collect.Lists;
 
-import concretisations.reversi.moves.types.NewPawn;
-import concretisations.reversi.moves.types.ReversiNullMove;
-import concretisations.reversi.pieces.types.ReversiPieceTypeInterface;
+import concretisations.reversi.moves.ReversiMove;
+import concretisations.reversi.moves.ReversiNullMove;
+import concretisations.reversi.pieces.ReversiPieceTypeInterface;
 
-public final class Referee implements RefereeInterface {
+public final class ReversiReferee implements RefereeInterface {
 
-    private final static RefereeInterface INSTANCE = new Referee();
+    private final static RefereeInterface INSTANCE = new ReversiReferee();
 
     public static RefereeInterface from() {
         return INSTANCE;
     }
 
-    private Referee() {}
+    private ReversiReferee() {}
 
     @Override
     public RefereeInterface apply() {
@@ -39,7 +39,7 @@ public final class Referee implements RefereeInterface {
             for (int column = 1; column <= board.columns(); ++column) {
                 final PositionInterface position = Position.from(row, column);
                 if (((ReversiPieceTypeInterface) board.cell(position).value().type().value()).hasApplication(side, board, position))
-                    moveTypes.add(MoveType.from(NewPawn.from(position)));
+                    moveTypes.add(MoveType.from(ReversiMove.from(position)));
             }
         moveTypes.add(MoveType.from(ReversiNullMove.class));
         return moveTypes;

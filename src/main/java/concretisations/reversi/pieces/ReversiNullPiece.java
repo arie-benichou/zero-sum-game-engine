@@ -1,5 +1,5 @@
 
-package concretisations.reversi.pieces.types;
+package concretisations.reversi.pieces;
 
 import abstractions.immutable.context.board.BoardInterface;
 import abstractions.immutable.context.board.cell.BoardCell;
@@ -9,15 +9,15 @@ import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.context.board.direction.Direction;
 import abstractions.immutable.context.board.direction.DirectionInterface;
 
-public final class Null implements ReversiPieceTypeInterface {
+public final class ReversiNullPiece implements ReversiPieceTypeInterface {
 
-    private final static Null INSTANCE = new Null();
+    private final static ReversiNullPiece INSTANCE = new ReversiNullPiece();
 
-    public static Null from() {
+    public static ReversiNullPiece from() {
         return INSTANCE;
     }
 
-    private Null() {}
+    private ReversiNullPiece() {}
 
     @Override
     public ReversiPieceTypeInterface apply() {

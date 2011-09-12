@@ -1,5 +1,5 @@
 
-package concretisations.reversi.moves.types;
+package concretisations.reversi.moves;
 
 import abstractions.immutable.ImmutableInterface;
 import abstractions.immutable.context.board.BoardInterface;
