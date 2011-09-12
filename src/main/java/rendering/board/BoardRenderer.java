@@ -3,17 +3,7 @@ package rendering.board;
 
 import java.util.Map;
 
-import rendering.board.cell.BoardCellStringRendering;
-import rendering.board.cell.piece.PieceStringRendering;
-import abstractions.immutable.context.board.Board;
 import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.Piece;
-import abstractions.immutable.context.board.cell.piece.PieceInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
-import abstractions.immutable.context.board.cell.piece.type.PieceType;
-import abstractions.immutable.context.board.cell.piece.type._Pawn;
-
-import com.google.common.collect.Maps;
 
 public class BoardRenderer /*implements BoardRenderingInterface<Void>*/{
 
@@ -24,11 +14,16 @@ public class BoardRenderer /*implements BoardRenderingInterface<Void>*/{
     }
 
     // @Override TODO ?? créer RendererInterface 
-    public void render(final BoardInterface board) {
-        this.renderingType.render(board);
+    public void render(final BoardInterface board, final Map<Object, Object> symbols) {
+        this.renderingType.render(board, symbols);
         //return null; // TODO ? créer OutputInterface
     }
 
+    public void render(final BoardInterface board) {
+        this.renderingType.render(board, null);
+    }
+
+    /*
     public static void main(final String[] args) {
 
         final PieceInterface p0 = Piece.NULL;
@@ -48,4 +43,5 @@ public class BoardRenderer /*implements BoardRenderingInterface<Void>*/{
         new BoardRenderer(renderingType).render(board);
 
     }
+    */
 }

@@ -1,6 +1,8 @@
 
 package rendering.board;
 
+import java.util.Map;
+
 import abstractions.immutable.context.board.BoardInterface;
 
 public class BoardConsoleRendering implements BoardRenderingInterface<Void> {
@@ -13,7 +15,13 @@ public class BoardConsoleRendering implements BoardRenderingInterface<Void> {
 
     @Override
     public Void render(final BoardInterface board) {
-        System.out.println(this.boardStringRendering.render(board));
+        return this.render(board, null);
+
+    }
+
+    @Override
+    public Void render(final BoardInterface board, final Map<Object, Object> symbols) {
+        System.out.println(this.boardStringRendering.render(board, symbols));
         return null;
     }
 
