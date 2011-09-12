@@ -92,8 +92,9 @@ public final class Side implements SideInterface {
         return value == this.value() ? this.apply() : Factory.get(value);
     }
 
+    @Override
     public SideInterface apply(final Integer value) {
-        return value == this.value() ? this.apply() : Factory.get(value);
+        return value == null || value == this.value() ? this.apply() : Factory.get(value);
     }
 
     @Override

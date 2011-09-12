@@ -35,6 +35,8 @@ public interface SideInterface extends ImmutableInterface<SideInterface> {
 
     SideInterface apply(int value);
 
+    SideInterface apply(Integer value);
+
     /*-------------------------------------8<-------------------------------------*/
 
     SideInterface opposite();
