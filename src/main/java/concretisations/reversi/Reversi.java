@@ -17,6 +17,7 @@
 
 package concretisations.reversi;
 
+import java.util.List;
 import java.util.Map;
 
 import rendering.board.BoardConsoleRendering;
@@ -34,10 +35,12 @@ import abstractions.immutable.context.board.cell.piece.type.PieceType;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.move.mutation.BoardMutation;
+import abstractions.immutable.move.mutation.BoardMutationInterface;
+import abstractions.immutable.move.type.MoveTypeInterface;
 
 import com.google.common.collect.Maps;
 
-import concretisations.reversi.pieces.types.Abstract;
+import concretisations.reversi.moves.types.ReversiMoveTypeInterface;
 import concretisations.reversi.pieces.types.Null;
 import concretisations.reversi.pieces.types.Pawn;
 
@@ -77,16 +80,11 @@ class Reversi {
         /*-------------------------------------8<-------------------------------------*/
 
         final Map<Object, Object> symbols = Maps.newHashMap();
+
         symbols.put(black, " x ");
         symbols.put(white, " o ");
         symbols.put(none, "   ");
         symbols.put(potential, " * ");
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        boardRenderer.render(board, symbols);
-
-        /*-------------------------------------8<-------------------------------------*/
 
         symbols.put(board.cell(1, 1), "1,1");
         symbols.put(board.cell(1, 6), "1,6");
@@ -95,37 +93,53 @@ class Reversi {
 
         /*-------------------------------------8<-------------------------------------*/
 
+        boardRenderer.render(board, symbols);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        /*
+        symbols.remove(board.cell(1, 1));
+        symbols.remove(board.cell(1, 6));
+        symbols.remove(board.cell(6, 1));
+        symbols.remove(board.cell(6, 6));
+        */
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        final List<MoveTypeInterface> moveTypes = Referee.from().computeMoveTypes(board, Side.from(1));
+
+        /*-------------------------------------8<-------------------------------------*/
+
         final Map<PositionInterface, PieceInterface> potentials = Maps.newHashMap();
 
         /*-------------------------------------8<-------------------------------------*/
 
-        for (int row = 1; row <= 6; ++row)
-            for (int column = 1; column <= 6; ++column) {
-                final PositionInterface position = Position.from(row, column);
-                if (((Abstract) board.cell(position).value().type().value()).isMutable(Side.from(1), board, position))
-                    potentials.put(position, potential);
-            }
+        System.out.println("\nLegal moves for " + Side.from(1) + " : ");
 
         /*-------------------------------------8<-------------------------------------*/
 
+        for (final MoveTypeInterface moveType : moveTypes) {
+            // TODO ? rajouter position() à l'interface MTI
+            final PositionInterface position = ((ReversiMoveTypeInterface) moveType.value()).position();
+            potentials.put(position, board.cell(position).value().apply(PieceType.from(Pawn.class)));
+        }
         boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
-
-        /*-------------------------------------8<-------------------------------------*/
-
         potentials.clear();
 
         /*-------------------------------------8<-------------------------------------*/
-        for (int row = 1; row <= 6; ++row)
-            for (int column = 1; column <= 6; ++column) {
-                final PositionInterface position = Position.from(row, column);
-                if (((Abstract) board.cell(position).value().type().value()).isMutable(Side.from(-1), board, position))
-                    potentials.put(position, potential);
-            }
+
+        System.out.println();
 
         /*-------------------------------------8<-------------------------------------*/
 
-        boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
-
+        for (final MoveTypeInterface moveType : moveTypes) {
+            System.out.println(moveType);
+            //final Set<PositionInterface> reversiblePositions = ((ReversiMoveTypeInterface) moveType.value()).computeRevertedPositions(Side.from(1), board);
+            final BoardMutationInterface boardMutation = ((ReversiMoveTypeInterface) moveType.value()).computeMutations(Side.from(1), board);
+            //Move.from(moveType, boardMutation)
+            boardRenderer.render(board.apply(boardMutation), symbols);
+            System.out.println();
+        }
         /*-------------------------------------8<-------------------------------------*/
 
     }

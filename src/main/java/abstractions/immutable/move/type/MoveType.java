@@ -96,8 +96,11 @@ public final class MoveType implements MoveTypeInterface {
         }
 
         public static MoveTypeInterface get(ImmutableInterface<?> value) {
+
             if (value == null) value = NULL;
             if (value.equals(NULL)) return NULL;
+
+            /*
             final int address = value.getClass().hashCode();
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -107,6 +110,10 @@ public final class MoveType implements MoveTypeInterface {
             else
                 ++cacheHits;
             return instance;
+            */
+
+            return new MoveType(value);
+
         }
 
         public final static int size() {

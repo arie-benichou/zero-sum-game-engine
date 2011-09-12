@@ -19,25 +19,28 @@ package abstractions.immutable.context.referee;
 
 import java.util.List;
 
-import abstractions.immutable.context.ContextInterface;
+import abstractions.immutable.ImmutableInterface;
+import abstractions.immutable.context.board.BoardInterface;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.old.mutation.MutationInterface;
+import abstractions.immutable.move.type.MoveTypeInterface;
 
 /**
  * This is the interface for a game referee.
  * 
  * @todo commentaires
  */
-public interface RefereeInterface {
+public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
 
-    boolean isGameOver(final ContextInterface context);
+    //boolean isGameOver(final ContextInterface context);
 
-    Double getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
+    //Double getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
 
-    Double getTerminalEvaluation(final ContextInterface context, final SideInterface side);
+    //Double getTerminalEvaluation(final ContextInterface context, final SideInterface side);
 
-    List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
+    //List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
 
-    List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
+    //List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
+
+    List<MoveTypeInterface> computeMoveTypes(final BoardInterface board, final SideInterface side);
 
 }
