@@ -17,9 +17,9 @@
 
 package abstractions.piece.mocks;
 
-import abstractions.piece.PieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
 
-public enum PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface implements PieceTypeInterface {
+public enum PieceSetWithAtLeastOnePieceClassNotImplementingPieceInterface implements OldPieceTypeInterface {
 
     NULL, PAWN, NOT_IMPLEMENTING_PIECE_INTERFACE;
 

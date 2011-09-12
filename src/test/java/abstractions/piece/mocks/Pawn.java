@@ -19,15 +19,15 @@ package abstractions.piece.mocks;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.AbstractPiece;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.AbstractPiece;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 public final class Pawn extends AbstractPiece {
 
-    public Pawn(final SideInterface side, final PieceTypeInterface type) {
+    public Pawn(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 

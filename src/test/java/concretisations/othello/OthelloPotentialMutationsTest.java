@@ -9,17 +9,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.side.Sides;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
 import concretisations.othello.pieces.OthelloPieceSet;
 
 // TODO à compléter
@@ -39,15 +39,15 @@ public final class OthelloPotentialMutationsTest {
     //@Test
     public void testGetPotentialMutations1() { // NOPMD
 
-        this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 4).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 5).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
 
-        this.cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(5, 4).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(5, 5).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
 
         //System.out.println(this.cellManager);
 
-        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Side.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {
@@ -66,17 +66,17 @@ public final class OthelloPotentialMutationsTest {
     @Test
     public void testGetPotentialMutation2() { // NOPMD
 
-        this.cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(4, 6).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(4, 7).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 4).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 5).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 6).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(4, 7).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
 
-        this.cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        this.cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(5, 4).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        this.cellManager.getCell(5, 5).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
 
         //System.out.println(this.cellManager);
 
-        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Side.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {

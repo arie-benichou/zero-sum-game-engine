@@ -25,17 +25,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.cell.ManagedCellInterface;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.side.Sides;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
 
 // TODO à compléter
 public final class TicTacToePotentialMutationsTest {
@@ -54,7 +54,7 @@ public final class TicTacToePotentialMutationsTest {
 
         //System.out.println(this.cellManager);
 
-        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Sides.FIRST);
+        final Map<ManagedCellInterface, Set<MutationInterface>> potentialMutations = this.cellManager.getPotentialMutations(Side.FIRST);
 
         for (final Entry<ManagedCellInterface, Set<MutationInterface>> mutations : potentialMutations.entrySet()) {
             for (final MutationInterface mutation : mutations.getValue()) {

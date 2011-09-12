@@ -22,6 +22,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import abstractions.immutable.context.board.cell.piece.IllegalPieceException;
+import abstractions.immutable.context.board.cell.piece.IllegalPieceSetException;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.side.Side;
 import abstractions.piece.mocks.Pawn;
 import abstractions.piece.mocks.PieceSet1;
 import abstractions.piece.mocks.PieceSet2;
@@ -30,7 +34,6 @@ import abstractions.piece.mocks.PieceSetWithAtLeastOnePieceClassNotImplementingP
 import abstractions.piece.mocks.PieceSetWithOnlyNullType;
 import abstractions.piece.mocks.PieceSetWithoutAnyType;
 import abstractions.piece.mocks.PieceSetWithoutNullType;
-import abstractions.side.Sides;
 
 public final class PieceManagerTest {
 
@@ -68,18 +71,18 @@ public final class PieceManagerTest {
 
     @Test(expected = IllegalPieceException.class)
     public void testGetIllegalPiece() {
-        this.pieceManager.getPiece(Sides.FIRST, PieceSet2.PAWN);
+        this.pieceManager.getPiece(Side.FIRST, PieceSet2.PAWN);
     }
 
     @Test
     public void testGetNullPiece() {
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.NULL, PieceSet1.NULL) == this.pieceManager.getNullPiece());
+        Assert.assertTrue(this.pieceManager.getPiece(Side.NULL, PieceSet1.NULL) == this.pieceManager.getNullPiece());
     }
 
     @Test
     public void testGetPiece() {
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.FIRST, PieceSet1.PAWN).equals(new Pawn(Sides.FIRST, PieceSet1.PAWN)));
-        Assert.assertTrue(this.pieceManager.getPiece(Sides.SECOND, PieceSet1.PAWN).equals(new Pawn(Sides.SECOND, PieceSet1.PAWN)));
+        Assert.assertTrue(this.pieceManager.getPiece(Side.FIRST, PieceSet1.PAWN).equals(new Pawn(Side.FIRST, PieceSet1.PAWN)));
+        Assert.assertTrue(this.pieceManager.getPiece(Side.SECOND, PieceSet1.PAWN).equals(new Pawn(Side.SECOND, PieceSet1.PAWN)));
     }
 
     @After

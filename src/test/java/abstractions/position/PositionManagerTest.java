@@ -25,6 +25,9 @@ import org.junit.Test;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
+import abstractions.old.position.Position;
+import abstractions.old.position.PositionInterface;
+import abstractions.old.position.PositionManager;
 
 public final class PositionManagerTest {
 
