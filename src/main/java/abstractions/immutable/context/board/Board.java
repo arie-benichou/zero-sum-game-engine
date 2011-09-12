@@ -35,6 +35,7 @@ import abstractions.immutable.context.board.cell.piece.type._Pawn;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.context.board.direction.Direction;
+import abstractions.immutable.context.board.direction.DirectionInterface;
 import abstractions.immutable.move.Move;
 import abstractions.immutable.move.MoveInterface;
 import abstractions.immutable.move.mutation.BoardMutation;
@@ -184,7 +185,6 @@ public class Board implements BoardInterface {
         for (int y = 0; y < this.rows(); ++y)
             for (int x = 0; x < this.columns(); ++x)
                 newCells[y][x] = this.cells[y][x].apply(mutation.value().get(Position.from(y + 1, x + 1)));
-
         // TODO ?? utiliser la factory
         //return Factory.get(newCells);
         return new Board(newCells);
@@ -194,12 +194,24 @@ public class Board implements BoardInterface {
 
     @Override
     public BoardCellInterface cell(final int row, final int column) {
+        if (row < 1 || row > this.rows() || column < 1 || column > this.columns()) return BoardCell.NULL;
         return this.cells[row - 1][column - 1];
     }
 
     @Override
     public BoardCellInterface cell(final PositionInterface address) {
-        return this.cells[address.row() - 1][address.column() - 1];
+        return this.cell(address.row(), address.column());
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) { // TODO lazy init
+        final Map<DirectionInterface, BoardCellInterface> neighbourhood = Maps.newHashMap();
+        for (final DirectionInterface direction : Direction.ALL_AROUND) {
+            neighbourhood.put(direction, this.cell(position.apply(direction)));
+        }
+        return neighbourhood;
     }
 
     /*-------------------------------------8<-------------------------------------*/

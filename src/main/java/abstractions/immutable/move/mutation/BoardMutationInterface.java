@@ -1,6 +1,8 @@
 
 package abstractions.immutable.move.mutation;
 
+import java.util.Map;
+
 import abstractions.immutable.context.board.cell.piece.PieceInterface;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 
@@ -20,6 +22,6 @@ public interface BoardMutationInterface extends MutationInterface<PositionInterf
     @Override
     public String toString();
 
-    BoardMutationInterface apply(ImmutableSortedMap<PositionInterface, PieceInterface> value);
+    BoardMutationInterface apply(Map<PositionInterface, PieceInterface> value);
 
 }

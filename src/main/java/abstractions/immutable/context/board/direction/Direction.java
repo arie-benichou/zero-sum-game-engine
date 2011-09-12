@@ -17,15 +17,119 @@
 
 package abstractions.immutable.context.board.direction;
 
+import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
 public final class Direction implements DirectionInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    /*
+    -------------
+    | x |   |   |
+    -------------
+    |   | . |   |
+    -------------
+    |   |   |   |
+    -------------
+    */
+    public final static DirectionInterface TOP_LEFT = new Direction(-1, -1);
+
+    /*
+    -------------
+    |   | x |   |
+    -------------
+    |   | . |   |
+    -------------
+    |   |   |   |
+    -------------
+     */
+    public final static DirectionInterface TOP = new Direction(-1, 0);
+
+    /*
+    -------------
+    |   |   | x |
+    -------------
+    |   | . |   |
+    -------------
+    |   |   |   |
+    -------------
+    */
+    public final static DirectionInterface TOP_RIGHT = new Direction(-1, 1);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    | x | . |   |
+    -------------
+    |   |   |   |
+    -------------
+    */
+    public final static DirectionInterface LEFT = new Direction(0, -1);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    |   | . |   |
+    -------------
+    |   |   |   |
+    -------------
+    */
     public final static DirectionInterface NULL = new Direction(0, 0);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    |   | . | x |
+    -------------
+    |   |   |   |
+    -------------
+    */
+    public final static DirectionInterface RIGHT = new Direction(0, 1);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    |   | . |   |
+    -------------
+    | x |   |   |
+    -------------
+    */
+    public final static DirectionInterface BOTTOM_LEFT = new Direction(1, -1);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    |   | . |   |
+    -------------
+    |   | x |   |
+    -------------
+    */
+    public final static DirectionInterface BOTTOM = new Direction(1, 0);
+
+    /*
+    -------------
+    |   |   |   |
+    -------------
+    |   | . |   |
+    -------------
+    |   |   | x |
+    -------------
+    */
+    public final static DirectionInterface BOTTOM_RIGHT = new Direction(1, 1);
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    public final static List<DirectionInterface> ALL_AROUND =
+            ImmutableList.of(TOP_LEFT, TOP, TOP_RIGHT, LEFT, RIGHT, BOTTOM_LEFT, BOTTOM, BOTTOM_RIGHT);
 
     /*-------------------------------------8<-------------------------------------*/
 

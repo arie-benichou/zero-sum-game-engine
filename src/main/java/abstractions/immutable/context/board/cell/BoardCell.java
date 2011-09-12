@@ -33,9 +33,9 @@ public final class BoardCell implements BoardCellInterface {
 
         private final static Map<Integer, BoardCellInterface> CACHE = Maps.newHashMap();
 
-        public static BoardCellInterface get(PositionInterface position, PieceInterface piece) {
-            if (position == null) position = Position.NULL;
-            if (piece == null) piece = Piece.NULL;
+        public static BoardCellInterface get(final PositionInterface position, final PieceInterface piece) {
+            //if (position == null) position = Position.NULL;
+            //if (piece == null) piece = Piece.NULL;
             if (position.equals(Position.NULL) && piece.equals(Piece.NULL)) return NULL;
             final int address = computeHashCode(position, piece);
             BoardCellInterface instance = CACHE.get(address);
@@ -105,18 +105,19 @@ public final class BoardCell implements BoardCellInterface {
     }
 
     @Override
-    public BoardCellInterface apply(final PieceInterface value) {
-        return this.value().equals(value) ? this.apply() : Factory.get(this.position(), value);
+    public BoardCellInterface apply(final PieceInterface piece) { // TODO !!! checker null ailleurs
+        return piece == null || this.value().equals(piece) ? this.apply() : Factory.get(this.position(), piece);
     }
 
     @Override
     public BoardCellInterface apply(final PositionInterface position) {
-        return this.position().equals(position) ? this.apply() : Factory.get(position, this.value());
+        return position == null || this.position().equals(position) ? this.apply() : Factory.get(position, this.value());
     }
 
     @Override
-    public BoardCellInterface apply(final PositionInterface position, final PieceInterface value) {
-        return this.value().equals(value) && this.position().equals(position) ? this.apply() : Factory.get(position, value);
+    public BoardCellInterface apply(final PositionInterface position, final PieceInterface piece) {
+        return piece == null && position == null || this.value().equals(piece) && this.position().equals(position) ?
+                this.apply() : Factory.get(position, piece);
     }
 
     /*-------------------------------------8<-------------------------------------*/

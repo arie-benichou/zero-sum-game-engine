@@ -9,6 +9,7 @@ import abstractions.immutable.context.board.cell.position.PositionInterface;
 
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
 
 public class BoardMutation implements BoardMutationInterface {
 
@@ -22,7 +23,6 @@ public class BoardMutation implements BoardMutationInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    // TODO utiliser une treeMap et trier par Position compareTo
     private final static int computeHashCode(final Map<PositionInterface, PieceInterface> value) {
         int hashCode = 0;
         for (final Entry<PositionInterface, PieceInterface> entry : value.entrySet()) {
@@ -42,12 +42,17 @@ public class BoardMutation implements BoardMutationInterface {
 
         private final static Map<Integer, BoardMutationInterface> CACHE = Maps.newHashMap();
 
-        public static BoardMutationInterface get(final ImmutableSortedMap<PositionInterface, PieceInterface> value) {
+        public static BoardMutationInterface get(final Map<PositionInterface, PieceInterface> value) {
+
             if (value == null || value.isEmpty()) return NULL;
-            final int address = computeHashCode(value);
+
+            final ImmutableSortedMap<PositionInterface, PieceInterface> orderedCopy =
+                    new ImmutableSortedMap.Builder<PositionInterface, PieceInterface>(Ordering.natural()).putAll(value).build();
+
+            final int address = computeHashCode(orderedCopy);
             BoardMutationInterface instance = CACHE.get(address);
             if (instance == null) {
-                instance = new BoardMutation(value);
+                instance = new BoardMutation(orderedCopy);
                 CACHE.put(address, instance);
             }
             else
@@ -85,7 +90,7 @@ public class BoardMutation implements BoardMutationInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static BoardMutationInterface from(final ImmutableSortedMap<PositionInterface, PieceInterface> value) {
+    public static BoardMutationInterface from(final Map<PositionInterface, PieceInterface> value) {
         return NULL.apply(value);
     }
 
@@ -102,7 +107,8 @@ public class BoardMutation implements BoardMutationInterface {
     }
 
     @Override
-    public BoardMutationInterface apply(final ImmutableSortedMap<PositionInterface, PieceInterface> value) {
+    // TODO un apply additif serait plus utile
+    public BoardMutationInterface apply(final Map<PositionInterface, PieceInterface> value) {
         return value.equals(this.value()) ? this.apply() : Factory.get(value);
     }
 
