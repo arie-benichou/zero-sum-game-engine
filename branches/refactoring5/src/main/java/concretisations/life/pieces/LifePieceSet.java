@@ -17,9 +17,9 @@
 
 package concretisations.life.pieces;
 
-import abstractions.piece.PieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
 
-public enum LifePieceSet implements PieceTypeInterface {
+public enum LifePieceSet implements OldPieceTypeInterface {
 
     NULL, PAWN;
 

@@ -19,11 +19,11 @@ package concretisations.life.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.AtomicMutationFactory;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.AtomicMutationFactory;
+import abstractions.old.mutation.MutationInterface;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -32,7 +32,7 @@ public final class Pawn extends LifePiece {
     private static final int MIN = 2;
     private static final int MAX = 3;
 
-    public Pawn(final SideInterface side, final PieceTypeInterface type) {
+    public Pawn(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 

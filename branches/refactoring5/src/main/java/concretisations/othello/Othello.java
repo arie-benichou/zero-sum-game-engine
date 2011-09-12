@@ -17,31 +17,29 @@
 
 package concretisations.othello;
 
-import abstractions.adversity.Adversity;
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluator.CachingEvaluator;
-import abstractions.evaluator.EvaluatorInterface;
-import abstractions.evaluator.IterativeDeepening;
-import abstractions.evaluator.NegaMaxAlphaBeta;
-import abstractions.evaluator.NullEvaluator;
 import abstractions.game.Game;
 import abstractions.game.GameInterface;
 import abstractions.gameplay.GamePlay;
 import abstractions.gameplay.GamePlayInterface;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.player.Player;
-import abstractions.player.PlayerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.selector.FirstItem;
-import abstractions.selector.SelectorInterface;
-import abstractions.side.Sides;
-import abstractions.strategy.Strategy;
+import abstractions.immutable.context.adversity.Adversity;
+import abstractions.immutable.context.adversity.player.Player;
+import abstractions.immutable.context.adversity.player.PlayerInterface;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.context.ContextManager;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.evaluator.NegaMaxAlphaBetaWithTread;
+import abstractions.old.evaluator.NullEvaluator;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
+import abstractions.old.selector.FirstItem;
+import abstractions.old.selector.SelectorInterface;
+import abstractions.old.strategy.Strategy;
 import concretisations.othello.pieces.OthelloPieceSet;
 
 // TODO pouvoir dupliquer le contexte
@@ -66,13 +64,15 @@ class Othello {
         pieceManager = new PieceManager(concretisations.othello.pieces.OthelloPieceSet.class);
 
         cellManager = new CellManager(positionManager, pieceManager);
-        cellManager.getCell(4, 4).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
-        cellManager.getCell(4, 5).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 4).setPiece(Sides.SECOND, OthelloPieceSet.PAWN);
-        cellManager.getCell(5, 5).setPiece(Sides.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(4, 4).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
+        cellManager.getCell(4, 5).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(5, 4).setPiece(Side.SECOND, OthelloPieceSet.PAWN);
+        cellManager.getCell(5, 5).setPiece(Side.FIRST, OthelloPieceSet.PAWN);
 
         evaluator1 = new NullEvaluator();
-        evaluator2 = new IterativeDeepening(new CachingEvaluator(new NegaMaxAlphaBeta(6)));
+        //evaluator2 = new IterativeDeepening(new CachingEvaluator(new NegaMaxAlphaBeta(6)));
+        //evaluator2 = new NegaMaxAlphaBeta(8);
+        evaluator2 = new NegaMaxAlphaBetaWithTread(8);
 
         selector1 = new FirstItem(!SelectorInterface.RANDOM_ON_SAME_EVALUATION, SelectorInterface.AVOID_NULL_MOVE);
         selector2 = new FirstItem();
@@ -86,7 +86,9 @@ class Othello {
         new ContextManager(new OthelloContext(gamePlay)).startGamePlay();
 
         //two times        
-        new ContextManager(new OthelloContext(gamePlay.newGamePlay())).startGamePlay();
+        //new ContextManager(new OthelloContext(gamePlay.newGamePlay())).startGamePlay();
+
+        System.exit(0);
 
     }
 

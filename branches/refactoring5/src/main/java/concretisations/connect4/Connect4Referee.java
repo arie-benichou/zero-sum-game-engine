@@ -3,13 +3,13 @@ package concretisations.connect4;
 
 import java.util.List;
 
-import abstractions.cell.ManagedCellInterface;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.mutation.MutationInterface;
-import abstractions.referee.RefereeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 // TODO refactoring avec TicTacToeReferee
 public class Connect4Referee implements RefereeInterface {
@@ -50,13 +50,13 @@ public class Connect4Referee implements RefereeInterface {
 
     protected int computeConnection(final MutationInterface lastMutation, final DirectionInterface direction) {
         int connected;
-        ManagedCellInterface cell = lastMutation.getCell();
+        ManagedCellInterface cell = lastMutation.getPosition();
         
         for (connected = 0; connected <= CONNECTIONS; ++connected) {
             //System.out.println(direction);
             cell = cell.getNeighbour(direction);
             //System.out.println(cell);
-            if (cell.isNull() || cell.isEmpty() || cell.getPiece().getSide() != lastMutation.getCell().getPiece().getSide())
+            if (cell.isNull() || cell.isEmpty() || cell.getPiece().side() != lastMutation.getPosition().getPiece().side())
                 break;
         }
         return connected;

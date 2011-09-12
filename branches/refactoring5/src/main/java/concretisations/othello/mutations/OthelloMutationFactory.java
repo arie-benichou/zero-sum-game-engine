@@ -17,9 +17,9 @@
 
 package concretisations.othello.mutations;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 import concretisations.othello.pieces.OthelloPieceSet;
 
 public final class OthelloMutationFactory {

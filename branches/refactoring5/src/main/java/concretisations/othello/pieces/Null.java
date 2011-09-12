@@ -19,10 +19,10 @@ package concretisations.othello.pieces;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -30,7 +30,7 @@ import concretisations.othello.mutations.OthelloMutationFactory;
 
 public final class Null extends OthelloPiece {
 
-    public Null(final SideInterface side, final PieceTypeInterface type) {
+    public Null(final SideInterface side, final OldPieceTypeInterface type) {
         super(side, type);
     }
 

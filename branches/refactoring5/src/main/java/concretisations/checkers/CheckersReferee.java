@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.referee.RefereeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 import concretisations.checkers.mutations.CheckersMutation;
 import concretisations.checkers.mutations.CheckersMutations;
 
@@ -53,7 +53,7 @@ public class CheckersReferee implements RefereeInterface {
         if (lastMutation.getType().equals(CheckersMutations.JUMP)) {
 
             CheckersMutation mutation = (CheckersMutation) lastMutation;
-            final ManagedCellInterface cell = mutation.getCell().getNeighbour(mutation.getDirection()).getNeighbour(mutation.getDirection());
+            final ManagedCellInterface cell = mutation.getPosition().getNeighbour(mutation.getDirection()).getNeighbour(mutation.getDirection());
 
             //TODO à améliorer: utiliser une map avec les types de mutations en clé            
             Set<? extends MutationInterface> potentialMutations = cell.getPiece().computePotentialMutations(cell, currentSide);

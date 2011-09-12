@@ -1,25 +1,25 @@
 
 package concretisations.connect4;
 
-import abstractions.adversity.Adversity;
-import abstractions.cell.CellManager;
-import abstractions.cell.CellManagerInterface;
-import abstractions.context.Context;
-import abstractions.context.ContextManager;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.evaluator.EvaluatorInterface;
-import abstractions.evaluator.NullEvaluator;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
-import abstractions.player.Player;
-import abstractions.player.PlayerInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.referee.RefereeInterface;
-import abstractions.selector.Random;
-import abstractions.strategy.Strategy;
-import abstractions.strategy.StrategyInterface;
+import abstractions.immutable.context.adversity.Adversity;
+import abstractions.immutable.context.adversity.player.Player;
+import abstractions.immutable.context.adversity.player.PlayerInterface;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.context.Context;
+import abstractions.old.context.ContextManager;
+import abstractions.old.evaluator.EvaluatorInterface;
+import abstractions.old.evaluator.NullEvaluator;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
+import abstractions.old.selector.Random;
+import abstractions.old.strategy.Strategy;
+import abstractions.old.strategy.StrategyInterface;
 
 public class Connect4 {
 
