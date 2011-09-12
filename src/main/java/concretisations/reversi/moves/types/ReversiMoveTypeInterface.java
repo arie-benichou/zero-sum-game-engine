@@ -9,15 +9,13 @@ import abstractions.immutable.move.mutation.BoardMutationInterface;
 
 public interface ReversiMoveTypeInterface extends ImmutableInterface<ReversiMoveTypeInterface> {
 
+    // TODO à mettre dans une interface d'un niveau supérieur commune à tous les types de coups
     PositionInterface position();
 
-    //Set<PositionInterface> computeReversiblePositions(final SideInterface side, final BoardInterface board);
-
+    // TODO à mettre dans une interface d'un niveau supérieur commune à tous les types de coups    
     ReversiMoveTypeInterface apply(PositionInterface position);
 
-    @Override
-    public String toString();
-
-    BoardMutationInterface computeMutations(SideInterface side, BoardInterface board);
+    // TODO à mettre dans une interface d'un niveau supérieur commune à tous les types de coups    
+    BoardMutationInterface computeBoardMutation(SideInterface side, BoardInterface board);
 
 }

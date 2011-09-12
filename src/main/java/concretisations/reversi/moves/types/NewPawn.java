@@ -17,14 +17,13 @@
 
 package concretisations.reversi.moves.types;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.Piece;
 import abstractions.immutable.context.board.cell.piece.PieceInterface;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.board.cell.piece.type.PieceType;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.context.board.direction.Direction;
@@ -32,11 +31,9 @@ import abstractions.immutable.context.board.direction.DirectionInterface;
 import abstractions.immutable.move.mutation.BoardMutation;
 import abstractions.immutable.move.mutation.BoardMutationInterface;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-
-import concretisations.reversi.pieces.types.Pawn;
-import concretisations.reversi.pieces.types.ReversiPieceTypeInterface;
 
 public final class NewPawn implements ReversiMoveTypeInterface {
 
@@ -69,28 +66,33 @@ public final class NewPawn implements ReversiMoveTypeInterface {
         return position == null || position.equals(this.position()) ? this.apply() : from(position);
     }
 
-    // TODO si le board était sidé par la piece (side=Side, type=Null), alors le paramètre board suffirait...
-    private Set<PositionInterface> computeReversiblePositions(final SideInterface side, final BoardInterface board) {
-        final Set<PositionInterface> reversiblePositions = Sets.newHashSet();
-        final Set<PositionInterface> reversiblePositionsInOneDirection = Sets.newHashSet();
-        for (final DirectionInterface direction : Direction.ALL_AROUND) {
-            reversiblePositions.addAll(
-                    ((ReversiPieceTypeInterface) board.cell(this.position()).value().type().value())
-                            .computeConnectedPositions(side, board, this.position(), direction, reversiblePositionsInOneDirection)
-                    );
-            reversiblePositionsInOneDirection.clear();
-        }
+    private List<PositionInterface> computeConnectedPositions(final SideInterface side, final BoardInterface board, final PositionInterface position,
+            final DirectionInterface direction, final List<PositionInterface> positions) {
+        final SideInterface sideAtThisPosition = board.cell(position.apply(direction)).value().side();
+        if (sideAtThisPosition.isNull()) return ImmutableList.of();
+        if (sideAtThisPosition.equals(side)) return positions;
+        positions.add(position.apply(direction));
+        return this.computeConnectedPositions(side, board, position.apply(direction), direction, positions);
+    }
+
+    private List<PositionInterface> computeReversiblePositions(final SideInterface side, final BoardInterface board) {
+        final List<PositionInterface> reversiblePositions = Lists.newArrayList();
+        for (final DirectionInterface direction : Direction.ALL_AROUND)
+            reversiblePositions.addAll(this.computeConnectedPositions(side, board, this.position(), direction, new ArrayList<PositionInterface>()));
         return reversiblePositions;
     }
 
     @Override
-    // TODO si le board était sidé par la piece (side=Side, type=Null), alors le paramètre board suffirait...
-    public BoardMutationInterface computeMutations(final SideInterface side, final BoardInterface board) {
+    public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+
         final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
-        final Set<PositionInterface> reversiblePositions = this.computeReversiblePositions(side, board);
+
+        final List<PositionInterface> reversiblePositions = this.computeReversiblePositions(side, board);
         for (final PositionInterface position : reversiblePositions)
             mutations.put(position, board.cell(position).value().apply(side));
-        mutations.put(this.position(), Piece.from(side, PieceType.from(Pawn.class)));
+
+        mutations.put(this.position(), board.cell(reversiblePositions.get(0)).value().apply(side));
+
         return BoardMutation.from(mutations);
     }
 

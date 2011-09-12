@@ -41,6 +41,6 @@ public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
 
     //List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
 
-    List<MoveTypeInterface> computeMoveTypes(final BoardInterface board, final SideInterface side);
+    List<MoveTypeInterface> computeLegalMoves(final BoardInterface board, final SideInterface side);
 
 }

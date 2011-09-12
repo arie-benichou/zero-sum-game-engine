@@ -1,8 +1,6 @@
 
 package concretisations.reversi.pieces.types;
 
-import java.util.Set;
-
 import abstractions.immutable.ImmutableInterface;
 import abstractions.immutable.context.board.BoardInterface;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
@@ -14,8 +12,5 @@ public interface ReversiPieceTypeInterface extends ImmutableInterface<ReversiPie
     boolean isConnected(final SideInterface side, final BoardInterface board, final PositionInterface position, final DirectionInterface direction);
 
     boolean hasApplication(SideInterface side, BoardInterface board, PositionInterface position);
-
-    Set<PositionInterface> computeConnectedPositions(final SideInterface side, final BoardInterface board, final PositionInterface position,
-            final DirectionInterface direction, final Set<PositionInterface> positions);
 
 }
