@@ -22,6 +22,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+
 public final class SideTest {
 
     private SideInterface side;
@@ -36,9 +39,9 @@ public final class SideTest {
     @Test
     public void testIsFirstSide() {
 
-        Assert.assertTrue(this.side.isFirstSide());
-        Assert.assertFalse(Side.SECOND_SIDE.isFirstSide());
-        Assert.assertFalse(Side.NULL_SIDE.isFirstSide());
+        Assert.assertTrue(this.side.isFirst());
+        Assert.assertFalse(Side.SECOND_SIDE.isFirst());
+        Assert.assertFalse(Side.NULL_SIDE.isFirst());
 
     }
 

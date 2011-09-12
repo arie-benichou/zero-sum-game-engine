@@ -25,11 +25,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
+import abstractions.immutable.context.board.cell.piece.AbstractPiece;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 import abstractions.piece.mocks.PieceSet1;
-import abstractions.side.SideInterface;
-import abstractions.side.Sides;
 
 public final class AbstractPieceTest { // NOPMD 
 
@@ -40,7 +41,7 @@ public final class AbstractPieceTest { // NOPMD
     @Before
     public void setUp() throws Exception {
 
-        this.nullPiece = new AbstractPiece(Sides.NULL, PieceSet1.NULL) {
+        this.nullPiece = new AbstractPiece(Side.NULL, PieceSet1.NULL) {
 
             @Override
             public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -54,7 +55,7 @@ public final class AbstractPieceTest { // NOPMD
 
         };
 
-        this.firstSidePiece = new AbstractPiece(Sides.FIRST, PieceSet1.PAWN) {
+        this.firstSidePiece = new AbstractPiece(Side.FIRST, PieceSet1.PAWN) {
 
             @Override
             public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -68,7 +69,7 @@ public final class AbstractPieceTest { // NOPMD
 
         };
 
-        this.secondSidePiece = new AbstractPiece(Sides.SECOND, PieceSet1.PAWN) {
+        this.secondSidePiece = new AbstractPiece(Side.SECOND, PieceSet1.PAWN) {
 
             @Override
             public Set<MutationInterface> computePotentialMutations(final ManagedCellInterface cell, final SideInterface side) {
@@ -86,17 +87,17 @@ public final class AbstractPieceTest { // NOPMD
 
     @Test
     public void testGetSide() {
-        Assert.assertTrue(this.firstSidePiece.getSide().equals(Sides.FIRST));
-        Assert.assertTrue(this.nullPiece.getSide().equals(Sides.NULL));
-        Assert.assertTrue(this.secondSidePiece.getSide().equals(Sides.SECOND));
+        Assert.assertTrue(this.firstSidePiece.side().equals(Side.FIRST));
+        Assert.assertTrue(this.nullPiece.side().equals(Side.NULL));
+        Assert.assertTrue(this.secondSidePiece.side().equals(Side.SECOND));
     }
 
     @Test
     public void testGetType() {
 
-        Assert.assertTrue(this.firstSidePiece.getType().equals(PieceSet1.PAWN));
-        Assert.assertTrue(this.nullPiece.getType().equals(PieceSet1.NULL));
-        Assert.assertTrue(this.secondSidePiece.getType().equals(PieceSet1.PAWN));
+        Assert.assertTrue(this.firstSidePiece.type().equals(PieceSet1.PAWN));
+        Assert.assertTrue(this.nullPiece.type().equals(PieceSet1.NULL));
+        Assert.assertTrue(this.secondSidePiece.type().equals(PieceSet1.PAWN));
 
     }
 

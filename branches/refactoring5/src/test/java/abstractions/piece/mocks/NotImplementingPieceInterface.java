@@ -19,14 +19,14 @@ package abstractions.piece.mocks;
 
 import java.util.Set;
 
-import abstractions.cell.ManagedCellInterface;
-import abstractions.mutation.MutationInterface;
-import abstractions.piece.PieceTypeInterface;
-import abstractions.side.SideInterface;
+import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.mutation.MutationInterface;
 
 public final class NotImplementingPieceInterface {
 
-    public NotImplementingPieceInterface(final SideInterface side, final PieceTypeInterface type) {} // NOPMD 
+    public NotImplementingPieceInterface(final SideInterface side, final OldPieceTypeInterface type) {} // NOPMD 
 
     public Set<? extends MutationInterface> computeAvailableMutations(final ManagedCellInterface cell, final SideInterface side) {
         return null;

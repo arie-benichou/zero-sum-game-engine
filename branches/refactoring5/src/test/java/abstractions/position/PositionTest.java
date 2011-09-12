@@ -26,6 +26,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import abstractions.old.position.Position;
+import abstractions.old.position.PositionInterface;
+
 public final class PositionTest { // NOPMD 
 
     private static final PositionInterface NULL_POSITION = new Position(0, 0);

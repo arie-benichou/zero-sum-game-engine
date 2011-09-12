@@ -28,14 +28,17 @@ import org.junit.Test;
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.piece.PieceInterface;
-import abstractions.piece.PieceManager;
-import abstractions.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.PieceInterface;
+import abstractions.immutable.context.board.cell.piece.PieceManager;
+import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.old.cell.CellManager;
+import abstractions.old.cell.CellManagerInterface;
+import abstractions.old.cell.ManagedCellInterface;
+import abstractions.old.position.PositionInterface;
+import abstractions.old.position.PositionManager;
+import abstractions.old.position.PositionManagerInterface;
 import abstractions.piece.mocks.PieceSet1;
-import abstractions.position.PositionInterface;
-import abstractions.position.PositionManager;
-import abstractions.position.PositionManagerInterface;
-import abstractions.side.Sides;
 
 public final class CellManagerTest {
 
@@ -58,8 +61,8 @@ public final class CellManagerTest {
 
     @Test
     public void testGetNullPiece() {
-        Assert.assertTrue(this.cellManager.getNullPiece().getSide().isNull());
-        Assert.assertTrue(this.cellManager.getNullPiece().getType().equals(PieceSet1.NULL));
+        Assert.assertTrue(this.cellManager.getNullPiece().side().isNull());
+        Assert.assertTrue(this.cellManager.getNullPiece().type().equals(PieceSet1.NULL));
     }
 
     @Test
@@ -68,7 +71,7 @@ public final class CellManagerTest {
         final ManagedCellInterface cell = this.cellManager.getCell(rowIndex, columnIndex);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(rowIndex, columnIndex));
-        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet1.NULL));
+        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Side.NULL, PieceSet1.NULL));
     }
 
     @Test
@@ -77,24 +80,24 @@ public final class CellManagerTest {
         final ManagedCellInterface cell = this.cellManager.getCell(position);
 
         Assert.assertTrue(cell.getPosition() == this.cellManager.position(1, 1));
-        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Sides.NULL, PieceSet1.NULL));
+        Assert.assertTrue(cell.getPiece() == this.cellManager.piece(Side.NULL, PieceSet1.NULL));
     }
 
     @Test
     public void testPieceManagerFacade() {
         PieceInterface piece;
 
-        piece = this.cellManager.piece(Sides.NULL, PieceSet1.NULL);
-        Assert.assertTrue(piece.getSide().equals(Sides.NULL));
-        Assert.assertTrue(piece.getType().equals(PieceSet1.NULL));
+        piece = this.cellManager.piece(Side.NULL, PieceSet1.NULL);
+        Assert.assertTrue(piece.side().equals(Side.NULL));
+        Assert.assertTrue(piece.type().equals(PieceSet1.NULL));
 
-        piece = this.cellManager.piece(Sides.FIRST, PieceSet1.PAWN);
-        Assert.assertTrue(piece.getSide().equals(Sides.FIRST));
-        Assert.assertTrue(piece.getType().equals(PieceSet1.PAWN));
+        piece = this.cellManager.piece(Side.FIRST, PieceSet1.PAWN);
+        Assert.assertTrue(piece.side().equals(Side.FIRST));
+        Assert.assertTrue(piece.type().equals(PieceSet1.PAWN));
 
-        piece = this.cellManager.piece(Sides.SECOND, PieceSet1.PAWN);
-        Assert.assertTrue(piece.getSide().equals(Sides.SECOND));
-        Assert.assertTrue(piece.getType().equals(PieceSet1.PAWN));
+        piece = this.cellManager.piece(Side.SECOND, PieceSet1.PAWN);
+        Assert.assertTrue(piece.side().equals(Side.SECOND));
+        Assert.assertTrue(piece.type().equals(PieceSet1.PAWN));
     }
 
     @Test
@@ -169,9 +172,9 @@ public final class CellManagerTest {
     public void testGetRow() {
 
         // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
-        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(1, 3).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 3).setPiece(Side.FIRST, PieceSet1.PAWN);
         //
 
         final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(3);
@@ -193,9 +196,9 @@ public final class CellManagerTest {
     public void testGetColumn() {
 
         // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
-        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(3, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(3, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
         //
 
         final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(3);
@@ -218,10 +221,10 @@ public final class CellManagerTest {
     public void testGetRegion() {
 
         // TODO ! revoir l'équivalence d'une cellule: this cellule doit être égale à that cellule, si et seulement si, that cellule et this cellule ont la même position (et la même pièce))
-        this.cellManager.getCell(1, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(1, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(2, 1).setPiece(Sides.FIRST, PieceSet1.PAWN);
-        this.cellManager.getCell(2, 2).setPiece(Sides.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(1, 2).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 1).setPiece(Side.FIRST, PieceSet1.PAWN);
+        this.cellManager.getCell(2, 2).setPiece(Side.FIRST, PieceSet1.PAWN);
 
         final List<ManagedCellInterface> expectedCells = new ArrayList<ManagedCellInterface>(4);
         expectedCells.add(this.cellManager.getCell(1, 1));

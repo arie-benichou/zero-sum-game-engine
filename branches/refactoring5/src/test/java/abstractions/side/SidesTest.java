@@ -20,14 +20,16 @@ package abstractions.side;
 import org.junit.Assert;
 import org.junit.Test;
 
+import abstractions.immutable.context.board.cell.piece.side.Side;
+
 public class SidesTest {
 
     @Test
     public final void testSides() {
 
-        Assert.assertTrue(Sides.FIRST == Side.FIRST_SIDE);
-        Assert.assertTrue(Sides.SECOND == Side.SECOND_SIDE);
-        Assert.assertTrue(Sides.NULL == Side.NULL_SIDE);
+        Assert.assertTrue(Side.FIRST == Side.FIRST_SIDE);
+        Assert.assertTrue(Side.SECOND == Side.SECOND_SIDE);
+        Assert.assertTrue(Side.NULL == Side.NULL_SIDE);
 
     }
 
