@@ -13,7 +13,7 @@ public class PieceTypeTest {
     }
 
     @Test
-    public final void testType() {
+    public final void testValue() {
         fail("Not yet implemented"); // TODO
     }
 

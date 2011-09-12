@@ -12,11 +12,11 @@ public interface MoveTypeInterface extends ImmutableInterface<MoveTypeInterface>
 
     /*-------------------------------------8<-------------------------------------*/
 
-    ImmutableInterface<?> type();
+    ImmutableInterface<?> value();
 
-    MoveTypeInterface apply(ImmutableInterface<?> type);
+    MoveTypeInterface apply(ImmutableInterface<?> value);
 
-    MoveTypeInterface apply(Class<? extends ImmutableInterface<?>> typeClass);
+    MoveTypeInterface apply(Class<? extends ImmutableInterface<?>> valueClass);
 
     /*-------------------------------------8<-------------------------------------*/
 

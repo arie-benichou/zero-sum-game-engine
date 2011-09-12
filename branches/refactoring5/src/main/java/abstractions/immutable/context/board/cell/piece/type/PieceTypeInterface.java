@@ -12,7 +12,7 @@ public interface PieceTypeInterface extends ImmutableInterface<PieceTypeInterfac
 
     /*-------------------------------------8<-------------------------------------*/
 
-    ImmutableInterface<?> type();
+    ImmutableInterface<?> value();
 
     PieceTypeInterface apply(ImmutableInterface<?> type);
 

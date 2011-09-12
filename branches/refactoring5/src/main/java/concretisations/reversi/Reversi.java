@@ -102,7 +102,7 @@ class Reversi {
         for (int row = 1; row <= 6; ++row)
             for (int column = 1; column <= 6; ++column) {
                 final PositionInterface position = Position.from(row, column);
-                if (((Abstract) board.cell(position).value().type().type()).isMutable(Side.from(1), board, position))
+                if (((Abstract) board.cell(position).value().type().value()).isMutable(Side.from(1), board, position))
                     potentials.put(position, potential);
             }
 
@@ -118,7 +118,7 @@ class Reversi {
         for (int row = 1; row <= 6; ++row)
             for (int column = 1; column <= 6; ++column) {
                 final PositionInterface position = Position.from(row, column);
-                if (((Abstract) board.cell(position).value().type().type()).isMutable(Side.from(-1), board, position))
+                if (((Abstract) board.cell(position).value().type().value()).isMutable(Side.from(-1), board, position))
                     potentials.put(position, potential);
             }
 

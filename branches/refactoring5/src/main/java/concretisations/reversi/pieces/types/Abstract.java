@@ -34,7 +34,7 @@ public class Abstract implements ReversiPieceTypeInterface {
         if (board.cell(position).value().side().equals(side))
             return true;
         if (board.cell(position).value().side().equals(side.opposite())) {
-            return ((ReversiPieceTypeInterface) board.cell(position.apply(direction)).value().type().type()).isConnected(side, board,
+            return ((ReversiPieceTypeInterface) board.cell(position.apply(direction)).value().type().value()).isConnected(side, board,
                     position.apply(direction),
                     direction);
         }
@@ -47,7 +47,7 @@ public class Abstract implements ReversiPieceTypeInterface {
             final BoardCellInterface nextCell = board.cell(position.apply(direction));
             if (!nextCell.equals(BoardCell.NULL)
                     && side.opposite().equals(nextCell.value().side())
-                    && ((ReversiPieceTypeInterface) board.cell(nextCell.position().apply(direction)).value().type().type())
+                    && ((ReversiPieceTypeInterface) board.cell(nextCell.position().apply(direction)).value().type().value())
                             .isConnected(side, board, nextCell.position().apply(direction), direction))
                 return true;
         }

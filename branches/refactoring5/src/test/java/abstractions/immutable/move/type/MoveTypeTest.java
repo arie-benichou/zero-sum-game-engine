@@ -1,9 +1,9 @@
+
 package abstractions.immutable.move.type;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
-
 
 public class MoveTypeTest {
 
@@ -13,7 +13,7 @@ public class MoveTypeTest {
     }
 
     @Test
-    public final void testType() {
+    public final void testValue() {
         fail("Not yet implemented"); // TODO
     }
 
