@@ -7,14 +7,12 @@ import abstractions.immutable.context.board.cell.piece.PieceInterface;
 
 public class PieceStringRendering implements PieceRenderingInterface<String> {
 
-    private final Map<PieceInterface, String> symbols;
-
-    public PieceStringRendering(final Map<PieceInterface, String> symbols) {
-        this.symbols = symbols;
-    }
-
     @Override
     public String render(final PieceInterface piece) {
-        return this.symbols.get(piece);
+        return this.render(piece, null);
+    }
+
+    public String render(final PieceInterface piece, final Map<Object, Object> symbols) {
+        return symbols == null ? piece.toString() : symbols.get(piece).toString();
     }
 }
