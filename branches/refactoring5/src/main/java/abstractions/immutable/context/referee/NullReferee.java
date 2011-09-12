@@ -23,7 +23,7 @@ public final class NullReferee implements RefereeInterface {
     }
 
     @Override
-    public List<MoveTypeInterface> computeMoveTypes(final BoardInterface board, final SideInterface side) {
+    public List<MoveTypeInterface> computeLegalMoves(final BoardInterface board, final SideInterface side) {
         // TODO Auto-generated method stub
         return null;
     }

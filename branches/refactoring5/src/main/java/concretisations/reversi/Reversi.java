@@ -65,7 +65,7 @@ class Reversi {
 
         /*-------------------------------------8<-------------------------------------*/
 
-        final BoardInterface board = Board.from(6, 6, none).apply(BoardMutation.from(map));
+        BoardInterface board = Board.from(6, 6, none).apply(BoardMutation.from(map));
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -106,7 +106,7 @@ class Reversi {
 
         /*-------------------------------------8<-------------------------------------*/
 
-        final List<MoveTypeInterface> moveTypes = Referee.from().computeMoveTypes(board, Side.from(1));
+        List<MoveTypeInterface> moveTypes = Referee.from().computeLegalMoves(board, Side.from(1));
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -134,12 +134,51 @@ class Reversi {
 
         for (final MoveTypeInterface moveType : moveTypes) {
             System.out.println(moveType);
-            //final Set<PositionInterface> reversiblePositions = ((ReversiMoveTypeInterface) moveType.value()).computeRevertedPositions(Side.from(1), board);
-            final BoardMutationInterface boardMutation = ((ReversiMoveTypeInterface) moveType.value()).computeMutations(Side.from(1), board);
+            final BoardMutationInterface boardMutation = ((ReversiMoveTypeInterface) moveType.value()).computeBoardMutation(Side.from(1), board);
             //Move.from(moveType, boardMutation)
+            System.out.println(boardMutation);
             boardRenderer.render(board.apply(boardMutation), symbols);
             System.out.println();
         }
+        /*-------------------------------------8<-------------------------------------*/
+
+        symbols.remove(board.cell(1, 1));
+        symbols.remove(board.cell(1, 6));
+        symbols.remove(board.cell(6, 1));
+        symbols.remove(board.cell(6, 6));
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        map.put(Position.from(3, 3), none);
+        map.put(Position.from(4, 4), none);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        map.put(Position.from(2, 5), white);
+        map.put(Position.from(3, 4), white);
+        map.put(Position.from(4, 3), white);
+        map.put(Position.from(5, 2), white);
+        map.put(Position.from(1, 6), black);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        board = board.apply(BoardMutation.from(map));
+        boardRenderer.render(board, symbols);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        moveTypes = Referee.from().computeLegalMoves(board, Side.from(1));
+
+        final long t0 = System.currentTimeMillis();
+        for (int i = 0; i < 1000000; ++i)
+            for (final MoveTypeInterface moveType : moveTypes)
+                ((ReversiMoveTypeInterface) moveType.value()).computeBoardMutation(Side.from(1), board);
+        final long t1 = System.currentTimeMillis();
+        System.out.println(t1 - t0 + " ms");
+
+        for (final MoveTypeInterface moveType : moveTypes)
+            boardRenderer.render(board.apply(((ReversiMoveTypeInterface) moveType.value()).computeBoardMutation(Side.from(1), board)), symbols);
+
         /*-------------------------------------8<-------------------------------------*/
 
     }
