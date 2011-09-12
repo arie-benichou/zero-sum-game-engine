@@ -104,17 +104,17 @@ public final class Piece implements PieceInterface {
 
     @Override
     public PieceInterface apply(final SideInterface side) {
-        return this.side().equals(side) ? this.apply() : Factory.get(side, this.type());
+        return side == null || this.side().equals(side) ? this.apply() : Factory.get(side, this.type());
     }
 
     @Override
     public PieceInterface apply(final PieceTypeInterface type) {
-        return this.type().equals(type) ? this.apply() : Factory.get(this.side(), type);
+        return type == null || this.type().equals(type) ? this.apply() : Factory.get(this.side(), type);
     }
 
     @Override
     public PieceInterface apply(final SideInterface side, final PieceTypeInterface type) {
-        return this.side().equals(side) && this.type().equals(type) ? this.apply() : Factory.get(side, type);
+        return side == null && type == null || this.side().equals(side) && this.type().equals(type) ? this.apply() : Factory.get(side, type);
     }
 
     /*-------------------------------------8<-------------------------------------*/

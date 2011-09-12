@@ -12,7 +12,7 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static class NullPieceType implements ImmutableInterface<NullPieceType> {
+    public final static class NullPieceType implements ImmutableInterface<NullPieceType> {
 
         private final static NullPieceType INSTANCE = new NullPieceType();
 

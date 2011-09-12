@@ -13,6 +13,13 @@ public class PieceStringRendering implements PieceRenderingInterface<String> {
     }
 
     public String render(final PieceInterface piece, final Map<Object, Object> symbols) {
-        return symbols == null ? piece.toString() : symbols.get(piece).toString();
+
+        if (symbols != null) {
+            final Object value = symbols.get(piece);
+            if (value != null)
+                return value.toString();
+        }
+
+        return piece.toString();
     }
 }
