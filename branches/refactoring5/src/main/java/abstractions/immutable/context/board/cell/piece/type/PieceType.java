@@ -12,26 +12,25 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static class NullPiece implements ImmutableInterface<NullPiece> {
+    private final static class Null implements ImmutableInterface<Null> {
 
-        private final static NullPiece INSTANCE = new NullPiece();
+        private final static Null INSTANCE = new Null();
 
-        public static NullPiece from() {
+        public static Null from() {
             return INSTANCE;
         }
 
-        private NullPiece() {}
+        private Null() {}
 
         @Override
-        public NullPiece apply() {
+        public Null apply() {
             return this;
         }
 
         @Override
         public String toString() {
-            return this.getClass().getSimpleName();
+            return this.getClass().getCanonicalName();
         }
-
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -64,7 +63,7 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public final static PieceTypeInterface NULL = new PieceType(newType(NullPiece.class));
+    public final static PieceTypeInterface NULL = new PieceType(newType(Null.class));
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -81,8 +80,8 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
         private final static Map<Integer, PieceTypeInterface> CACHE = Maps.newHashMap();
 
         public static PieceTypeInterface get(Class<?> typeClass) {
-            if (typeClass == null) typeClass = NullPiece.class;
-            if (typeClass.equals(NullPiece.class)) return NULL;
+            if (typeClass == null) typeClass = Null.class;
+            if (typeClass.equals(Null.class)) return NULL;
             final int address = computeHashCode(typeClass);
             PieceTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -191,8 +190,8 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
 
     public static void main(final String[] args) {
 
-        final PieceTypeInterface pt1 = PieceType.from(NullPiece.class);
-        final PieceTypeInterface pt2 = PieceType.from(NullPiece.from());
+        final PieceTypeInterface pt1 = PieceType.from(Null.class);
+        final PieceTypeInterface pt2 = PieceType.from(Null.from());
 
         final ImmutableInterface<Object> type = null;
         final PieceTypeInterface pt3 = PieceType.from(type);
