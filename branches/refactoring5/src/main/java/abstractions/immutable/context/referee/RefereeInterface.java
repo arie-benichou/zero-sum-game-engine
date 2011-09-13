@@ -31,18 +31,19 @@ import abstractions.immutable.move.type.MoveTypeInterface;
  */
 public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
 
-    //boolean isGameOver(final ContextInterface context);
-
     //Double getHeuristicEvaluation(final ContextInterface context, final SideInterface side);
 
     //Double getTerminalEvaluation(final ContextInterface context, final SideInterface side);
 
-    //List<MutationInterface> getLegalMoves(final ContextInterface context, final SideInterface side);
-
     //List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
 
-    List<MoveTypeInterface> computeLegalMoves(final BoardInterface board, final SideInterface side);
+    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay
+    List<MoveTypeInterface> computePlayableMoves(final BoardInterface board, final SideInterface side);
 
-    boolean hasLegalMove(final BoardInterface board, final SideInterface side);
+    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay    
+    boolean isPlayable(final BoardInterface board, final SideInterface side);
+
+    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay    
+    boolean isGamePlayOver(final BoardInterface board, final SideInterface side);
 
 }

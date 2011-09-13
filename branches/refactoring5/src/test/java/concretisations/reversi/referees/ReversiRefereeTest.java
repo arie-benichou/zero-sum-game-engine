@@ -47,6 +47,7 @@ public class ReversiRefereeTest {
         this.whitePiece = this.blackPiece.apply(this.blackPiece.side().opposite());
         this.nullPiece = this.blackPiece.apply(Side.NULL, PieceType.from(ReversiNullPiece.class));
         /*-------------------------------------8<-------------------------------------*/
+        // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay        
         this.board = Board.from(6, 6, this.nullPiece);
         this.side = Side.from(1);
         /*-------------------------------------8<-------------------------------------*/
@@ -72,11 +73,11 @@ public class ReversiRefereeTest {
         /*-------------------------------------8<-------------------------------------*/
 
         final List<MoveTypeInterface> expectedLegalMoves = Lists.newArrayList(MoveType.from(ReversiNullMove.class));
-        Assert.assertTrue(this.referee.computeLegalMoves(this.board, this.side).equals(expectedLegalMoves));
-        Assert.assertTrue(this.referee.computeLegalMoves(this.board, this.side.opposite()).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(this.board, this.side).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(this.board, this.side.opposite()).equals(expectedLegalMoves));
 
         /*-------------------------------------8<-------------------------------------*/
-        // simplest board        
+        // simplest board having move
         /*-------------------------------------8<-------------------------------------*/
 
         final Map<PositionInterface, PieceInterface> map = Maps.newHashMap();
@@ -87,14 +88,14 @@ public class ReversiRefereeTest {
         expectedLegalMovesForOneSide.add(MoveType.from(ReversiMove.from(Position.from(3, 5))));
         expectedLegalMovesForOneSide.add(MoveType.from(ReversiNullMove.class));
 
-        final List<MoveTypeInterface> legalMovesForOneSide = this.referee.computeLegalMoves(this.board.apply(BoardMutation.from(map)), this.side);
+        final List<MoveTypeInterface> legalMovesForOneSide = this.referee.computePlayableMoves(this.board.apply(BoardMutation.from(map)), this.side);
         Assert.assertTrue(legalMovesForOneSide.equals(expectedLegalMovesForOneSide));
 
         final List<MoveTypeInterface> expectedLegalMovesForOppositeSide = Lists.newArrayList();
         expectedLegalMovesForOppositeSide.add(MoveType.from(ReversiMove.from(Position.from(3, 2))));
         expectedLegalMovesForOppositeSide.add(MoveType.from(ReversiNullMove.class));
 
-        final List<MoveTypeInterface> legalMovesForOppositeSide = this.referee.computeLegalMoves(this.board.apply(BoardMutation.from(map)),
+        final List<MoveTypeInterface> legalMovesForOppositeSide = this.referee.computePlayableMoves(this.board.apply(BoardMutation.from(map)),
                 this.side.opposite());
         Assert.assertTrue(legalMovesForOppositeSide.equals(expectedLegalMovesForOppositeSide));
 
@@ -107,15 +108,15 @@ public class ReversiRefereeTest {
         map.clear();
         map.put(Position.from(3, 3), this.blackPiece);
         map.put(Position.from(3, 4), this.blackPiece);
-        Assert.assertTrue(this.referee.computeLegalMoves(this.board.apply(BoardMutation.from(map)), this.side).equals(expectedLegalMoves));
-        Assert.assertTrue(this.referee.computeLegalMoves(this.board.apply(BoardMutation.from(map)), this.side.opposite()).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(this.board.apply(BoardMutation.from(map)), this.side).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(this.board.apply(BoardMutation.from(map)), this.side.opposite()).equals(expectedLegalMoves));
 
         /*-------------------------------------8<-------------------------------------*/
         // full board        
         /*-------------------------------------8<-------------------------------------*/
 
-        Assert.assertTrue(this.referee.computeLegalMoves(Board.from(6, 6, this.blackPiece), this.side).equals(expectedLegalMoves));
-        Assert.assertTrue(this.referee.computeLegalMoves(Board.from(6, 6, this.blackPiece), this.side.opposite()).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(Board.from(6, 6, this.blackPiece), this.side).equals(expectedLegalMoves));
+        Assert.assertTrue(this.referee.computePlayableMoves(Board.from(6, 6, this.blackPiece), this.side.opposite()).equals(expectedLegalMoves));
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -128,8 +129,8 @@ public class ReversiRefereeTest {
         // empty board
         /*-------------------------------------8<-------------------------------------*/
 
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board, this.side));
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board, this.side.opposite()));
+        Assert.assertTrue(!this.referee.isPlayable(this.board, this.side));
+        Assert.assertTrue(!this.referee.isPlayable(this.board, this.side.opposite()));
 
         /*-------------------------------------8<-------------------------------------*/
         // initial reversi board        
@@ -141,8 +142,8 @@ public class ReversiRefereeTest {
         map.put(Position.from(4, 3), this.whitePiece);
         map.put(Position.from(4, 4), this.blackPiece);
 
-        Assert.assertTrue(this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side));
-        Assert.assertTrue(this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+        Assert.assertTrue(this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
 
         /*-------------------------------------8<-------------------------------------*/
         // board not full, but no move        
@@ -154,8 +155,8 @@ public class ReversiRefereeTest {
         map.put(Position.from(4, 3), this.blackPiece);
         map.put(Position.from(4, 4), this.blackPiece);
 
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side));
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+        Assert.assertTrue(!this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(!this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
 
         map.clear();
         map.put(Position.from(3, 3), this.whitePiece);
@@ -163,19 +164,78 @@ public class ReversiRefereeTest {
         map.put(Position.from(4, 3), this.whitePiece);
         map.put(Position.from(4, 4), this.whitePiece);
 
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side));
-        Assert.assertTrue(!this.referee.hasLegalMove(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+        Assert.assertTrue(!this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(!this.referee.isPlayable(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
 
         /*-------------------------------------8<-------------------------------------*/
         // full board        
         /*-------------------------------------8<-------------------------------------*/
 
-        Assert.assertTrue(!this.referee.hasLegalMove(Board.from(6, 6, this.blackPiece), this.side));
-        Assert.assertTrue(!this.referee.hasLegalMove(Board.from(6, 6, this.blackPiece), this.side.opposite()));
-        Assert.assertTrue(!this.referee.hasLegalMove(Board.from(6, 6, this.whitePiece), this.side));
-        Assert.assertTrue(!this.referee.hasLegalMove(Board.from(6, 6, this.whitePiece), this.side.opposite()));
+        Assert.assertTrue(!this.referee.isPlayable(Board.from(6, 6, this.blackPiece), this.side));
+        Assert.assertTrue(!this.referee.isPlayable(Board.from(6, 6, this.blackPiece), this.side.opposite()));
+        Assert.assertTrue(!this.referee.isPlayable(Board.from(6, 6, this.whitePiece), this.side));
+        Assert.assertTrue(!this.referee.isPlayable(Board.from(6, 6, this.whitePiece), this.side.opposite()));
 
         /*-------------------------------------8<-------------------------------------*/
 
     }
+
+    @Test
+    public final void testIsGamePlayOver() {
+
+        /*-------------------------------------8<-------------------------------------*/
+        // empty board
+        /*-------------------------------------8<-------------------------------------*/
+
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board, this.side));
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board, this.side.opposite()));
+
+        /*-------------------------------------8<-------------------------------------*/
+        // initial reversi board        
+        /*-------------------------------------8<-------------------------------------*/
+
+        final Map<PositionInterface, PieceInterface> map = Maps.newHashMap();
+        map.put(Position.from(3, 3), this.blackPiece);
+        map.put(Position.from(3, 4), this.whitePiece);
+        map.put(Position.from(4, 3), this.whitePiece);
+        map.put(Position.from(4, 4), this.blackPiece);
+
+        Assert.assertTrue(!this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(!this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+
+        /*-------------------------------------8<-------------------------------------*/
+        // board not full, but no move        
+        /*-------------------------------------8<-------------------------------------*/
+
+        map.clear();
+        map.put(Position.from(3, 3), this.blackPiece);
+        map.put(Position.from(3, 4), this.blackPiece);
+        map.put(Position.from(4, 3), this.blackPiece);
+        map.put(Position.from(4, 4), this.blackPiece);
+
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+
+        map.clear();
+        map.put(Position.from(3, 3), this.whitePiece);
+        map.put(Position.from(3, 4), this.whitePiece);
+        map.put(Position.from(4, 3), this.whitePiece);
+        map.put(Position.from(4, 4), this.whitePiece);
+
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side));
+        Assert.assertTrue(this.referee.isGamePlayOver(this.board.apply(BoardMutation.from(map)), this.side.opposite()));
+
+        /*-------------------------------------8<-------------------------------------*/
+        // full board        
+        /*-------------------------------------8<-------------------------------------*/
+
+        Assert.assertTrue(this.referee.isGamePlayOver(Board.from(6, 6, this.blackPiece), this.side));
+        Assert.assertTrue(this.referee.isGamePlayOver(Board.from(6, 6, this.blackPiece), this.side.opposite()));
+        Assert.assertTrue(this.referee.isGamePlayOver(Board.from(6, 6, this.whitePiece), this.side));
+        Assert.assertTrue(this.referee.isGamePlayOver(Board.from(6, 6, this.whitePiece), this.side.opposite()));
+
+        /*-------------------------------------8<-------------------------------------*/
+
+    }
+
 }
