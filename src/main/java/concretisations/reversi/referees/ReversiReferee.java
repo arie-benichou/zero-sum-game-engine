@@ -33,7 +33,7 @@ public final class ReversiReferee implements RefereeInterface {
     }
 
     @Override
-    public List<MoveTypeInterface> computeLegalMoves(final BoardInterface board, final SideInterface side) {
+    public List<MoveTypeInterface> computePlayableMoves(final BoardInterface board, final SideInterface side) {
         final List<MoveTypeInterface> moveTypes = Lists.newArrayList();
         for (int row = 1; row <= board.rows(); ++row)
             for (int column = 1; column <= board.columns(); ++column) {
@@ -46,7 +46,7 @@ public final class ReversiReferee implements RefereeInterface {
     }
 
     @Override
-    public boolean hasLegalMove(final BoardInterface board, final SideInterface side) {
+    public boolean isPlayable(final BoardInterface board, final SideInterface side) {
         boolean moveFound = false;
         for (int row = 1; row <= board.rows() && !moveFound; ++row)
             for (int column = 1; column <= board.columns() && !moveFound; ++column) {
@@ -55,5 +55,10 @@ public final class ReversiReferee implements RefereeInterface {
                     moveFound = true;
             }
         return moveFound;
+    }
+
+    @Override
+    public boolean isGamePlayOver(final BoardInterface board, final SideInterface side) {
+        return !this.isPlayable(board, side) && !this.isPlayable(board, side.opposite());
     }
 }

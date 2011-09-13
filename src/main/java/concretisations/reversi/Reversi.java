@@ -107,7 +107,7 @@ class Reversi {
 
         /*-------------------------------------8<-------------------------------------*/
 
-        final List<MoveTypeInterface> legalMoves = ReversiReferee.from().computeLegalMoves(board, Side.from(1));
+        final List<MoveTypeInterface> legalMoves = ReversiReferee.from().computePlayableMoves(board, Side.from(1));
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -139,6 +139,12 @@ class Reversi {
             boardRenderer.render(board.apply(boardMutation), symbols);
             System.out.println();
         }
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        System.out.println(ReversiReferee.from().isPlayable(board, Side.from(1)));
+        System.out.println(ReversiReferee.from().isPlayable(board, Side.from(-1)));
+        System.out.println(ReversiReferee.from().isGamePlayOver(board, Side.from(1)));
 
         /*-------------------------------------8<-------------------------------------*/
 
