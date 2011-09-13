@@ -95,9 +95,9 @@ public final class AbstractPieceTest { // NOPMD
     @Test
     public void testGetType() {
 
-        Assert.assertTrue(this.firstSidePiece.type().equals(PieceSet1.PAWN));
-        Assert.assertTrue(this.nullPiece.type().equals(PieceSet1.NULL));
-        Assert.assertTrue(this.secondSidePiece.type().equals(PieceSet1.PAWN));
+        Assert.assertTrue(this.firstSidePiece.value().equals(PieceSet1.PAWN));
+        Assert.assertTrue(this.nullPiece.value().equals(PieceSet1.NULL));
+        Assert.assertTrue(this.secondSidePiece.value().equals(PieceSet1.PAWN));
 
     }
 

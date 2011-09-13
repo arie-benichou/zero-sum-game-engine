@@ -24,7 +24,7 @@ public final class WalkMutation extends CheckersMutation {
                 AtomicMutationFactory.newBirth(this.getCell().getNeighbour(this.getDirection()), this.getCell().getPiece().getSide(), this.getCell().getPiece()
                         .getType()),
                 */
-                new CheckersBirthMutation(this.getPosition().getNeighbour(this.getDirection()), this.getPosition().getPiece().type(), this.getPosition().getPiece()
+                new CheckersBirthMutation(this.getPosition().getNeighbour(this.getDirection()), this.getPosition().getPiece().value(), this.getPosition().getPiece()
                         .side()),
                 AtomicMutationFactory.newDeath(this.getPosition())
                 );
