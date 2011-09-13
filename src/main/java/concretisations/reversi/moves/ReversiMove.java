@@ -97,6 +97,21 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
     }
 
     @Override
+    public int hashCode() {
+        return this.position().hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (object == this) return true;
+        if (object == null) return false;
+        if (!(object instanceof ReversiMove)) return false;
+        final ReversiMove that = (ReversiMove) object;
+        if (that.hashCode() != this.hashCode()) return false;
+        return that.position().equals(this.position());
+    }
+
+    @Override
     public String toString() {
         return this.getClass().getSimpleName() + "(" + this.position() + ")";
     }

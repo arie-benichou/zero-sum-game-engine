@@ -185,7 +185,7 @@ public final class MoveType implements MoveTypeInterface {
         if (!(object instanceof MoveTypeInterface)) return false;
         final MoveTypeInterface that = (MoveTypeInterface) object;
         if (that.hashCode() != this.hashCode()) return false;
-        return that.value() == this.value();
+        return that.value().equals(this.value());
     }
 
     /*-------------------------------------8<-------------------------------------*/
