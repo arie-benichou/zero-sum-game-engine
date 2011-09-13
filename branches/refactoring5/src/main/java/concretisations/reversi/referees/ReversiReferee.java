@@ -45,4 +45,15 @@ public final class ReversiReferee implements RefereeInterface {
         return moveTypes;
     }
 
+    @Override
+    public boolean hasLegalMove(final BoardInterface board, final SideInterface side) {
+        boolean moveFound = false;
+        for (int row = 1; row <= board.rows() && !moveFound; ++row)
+            for (int column = 1; column <= board.columns() && !moveFound; ++column) {
+                final PositionInterface position = Position.from(row, column);
+                if (((ReversiPieceTypeInterface) board.cell(position).value().type().value()).hasApplication(side, board, position))
+                    moveFound = true;
+            }
+        return moveFound;
+    }
 }

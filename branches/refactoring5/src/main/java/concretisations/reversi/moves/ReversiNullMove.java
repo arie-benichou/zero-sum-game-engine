@@ -43,4 +43,17 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
         return this.getClass().getSimpleName() + "(" + this.position() + ")";
     }
 
+    @Override
+    public int hashCode() {
+        return this.position().hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (object == this) return true;
+        if (object == null) return false;
+        if (!(object instanceof ReversiNullMove)) return false;
+        return true;
+    }
+
 }

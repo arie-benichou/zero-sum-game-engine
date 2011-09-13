@@ -18,4 +18,10 @@ public interface ReversiMoveTypeInterface extends ImmutableInterface<ReversiMove
     // TODO à mettre dans une interface d'un niveau supérieur commune à tous les types de coups    
     BoardMutationInterface computeBoardMutation(SideInterface side, BoardInterface board);
 
+    @Override
+    public int hashCode();
+
+    @Override
+    public boolean equals(Object obj);
+
 }

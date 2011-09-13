@@ -43,4 +43,6 @@ public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
 
     List<MoveTypeInterface> computeLegalMoves(final BoardInterface board, final SideInterface side);
 
+    boolean hasLegalMove(final BoardInterface board, final SideInterface side);
+
 }
