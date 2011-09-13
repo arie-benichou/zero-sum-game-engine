@@ -27,7 +27,7 @@ public final class JumpMutation extends CheckersMutation {
                         .getSide(), this.getCell().getPiece().getType()),
                 */
                 new CheckersBirthMutation(this.getPosition().getNeighbour(this.getDirection()).getNeighbour(this.getDirection()), this.getPosition().getPiece()
-                        .type(), this.getPosition().getPiece()
+                        .value(), this.getPosition().getPiece()
                         .side()),
                 AtomicMutationFactory.newDeath(this.getPosition().getNeighbour(this.getDirection())),
                 AtomicMutationFactory.newDeath(this.getPosition())

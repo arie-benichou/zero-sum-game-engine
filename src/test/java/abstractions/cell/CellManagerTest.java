@@ -62,7 +62,7 @@ public final class CellManagerTest {
     @Test
     public void testGetNullPiece() {
         Assert.assertTrue(this.cellManager.getNullPiece().side().isNull());
-        Assert.assertTrue(this.cellManager.getNullPiece().type().equals(PieceSet1.NULL));
+        Assert.assertTrue(this.cellManager.getNullPiece().value().equals(PieceSet1.NULL));
     }
 
     @Test

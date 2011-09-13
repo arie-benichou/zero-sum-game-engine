@@ -178,7 +178,7 @@ public final class SudokuTest {
         final Set<OldPieceTypeInterface> rowSet = Sets.newHashSetWithExpectedSize(9);
         for (int rowIndex = 1; rowIndex <= 9; ++rowIndex) {
             for (final ManagedCellInterface cell : this.cellManager.getRow(rowIndex)) {
-                rowSet.add(cell.getPiece().type());
+                rowSet.add(cell.getPiece().value());
             }
             Assert.assertTrue(rowSet.equals(SudokuTest.SUDOKU_CANONICAL_SET));
             rowSet.clear();
@@ -194,7 +194,7 @@ public final class SudokuTest {
         final Set<OldPieceTypeInterface> columnSet = Sets.newHashSetWithExpectedSize(9);
         for (int columnIndex = 1; columnIndex <= 9; ++columnIndex) {
             for (final ManagedCellInterface cell : this.cellManager.getColumn(columnIndex)) {
-                columnSet.add(cell.getPiece().type());
+                columnSet.add(cell.getPiece().value());
             }
             Assert.assertTrue(columnSet.equals(SudokuTest.SUDOKU_CANONICAL_SET));
             columnSet.clear();
@@ -214,7 +214,7 @@ public final class SudokuTest {
             final PositionInterface topLeftPosition = this.cellManager.position(rowIndex, columnIndex);
             final PositionInterface bottomRightPosition = this.cellManager.position(rowIndex + 3 - 1, columnIndex + 3 - 1);
             for (final ManagedCellInterface cell : this.cellManager.getRegion(topLeftPosition, bottomRightPosition)) {
-                regionSet.add(cell.getPiece().type());
+                regionSet.add(cell.getPiece().value());
             }
             Assert.assertTrue(regionSet.equals(SudokuTest.SUDOKU_CANONICAL_SET));
             regionSet.clear();
