@@ -5,9 +5,6 @@ import java.util.Map;
 
 import abstractions.immutable.context.board.cell.piece.Piece;
 import abstractions.immutable.context.board.cell.piece.PieceInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
-import abstractions.immutable.context.board.cell.piece.type.PieceType;
-import abstractions.immutable.context.board.cell.piece.type._Pawn;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 
@@ -140,10 +137,5 @@ public final class BoardCell implements BoardCellInterface {
     }
 
     /*-------------------------------------8<-------------------------------------*/
-
-    public static void main(final String[] args) {
-        System.out.println(BoardCell.NULL);
-        System.out.println(BoardCell.from(Position.from(1, 1), Piece.from(Side.from(1), PieceType.from(_Pawn.class))));
-    }
 
 }

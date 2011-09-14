@@ -1,9 +1,13 @@
 
 package abstractions.immutable.move.type;
 
-import abstractions.immutable.ImmutableInterface;
+import abstractions.immutable.context.board.BoardInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.board.cell.position.PositionInterface;
+import abstractions.immutable.move.ConcreteMoveTypeInterface;
+import abstractions.immutable.move.mutation.BoardMutationInterface;
 
-public final class _NewPawn implements ImmutableInterface<_NewPawn> {
+public final class _NewPawn implements ConcreteMoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -29,6 +33,21 @@ public final class _NewPawn implements ImmutableInterface<_NewPawn> {
     @Override
     public String toString() {
         return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public PositionInterface position() {
+        return null;
+    }
+
+    @Override
+    public ConcreteMoveTypeInterface apply(final PositionInterface position) {
+        return this;
+    }
+
+    @Override
+    public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+        return null;
     }
 
     /*-------------------------------------8<-------------------------------------*/

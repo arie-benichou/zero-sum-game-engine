@@ -2,8 +2,10 @@
 package abstractions.immutable.move.type;
 
 import abstractions.immutable.ImmutableInterface;
+import abstractions.immutable.move.ConcreteMoveTypeInterface;
 
-// TODO créer une TypeFactoryInterface générique et utiliser directement les types
+// TODO créer une TypeFactoryInterface générique et utiliser directement les
+// types
 // construits par la factory au lieu de devoir appeler value()
 public interface MoveTypeInterface extends ImmutableInterface<MoveTypeInterface> { // TODO créer une TypeInterface de plus haut niveau
 
@@ -14,11 +16,11 @@ public interface MoveTypeInterface extends ImmutableInterface<MoveTypeInterface>
 
     /*-------------------------------------8<-------------------------------------*/
 
-    ImmutableInterface<?> value();
+    ConcreteMoveTypeInterface value();
 
-    MoveTypeInterface apply(ImmutableInterface<?> value);
+    MoveTypeInterface apply(ConcreteMoveTypeInterface value);
 
-    MoveTypeInterface apply(Class<? extends ImmutableInterface<?>> valueClass);
+    MoveTypeInterface apply(Class<? extends ConcreteMoveTypeInterface> valueClass);
 
     /*-------------------------------------8<-------------------------------------*/
 

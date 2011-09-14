@@ -19,34 +19,18 @@ package abstractions.immutable.context.board;
 
 import java.util.Map;
 
-import rendering.board.BoardConsoleRendering;
-import rendering.board.BoardRenderer;
-import rendering.board.BoardRenderingInterface;
-import rendering.board.BoardStringRendering;
-import rendering.board.cell.BoardCellStringRendering;
-import rendering.board.cell.piece.PieceStringRendering;
 import abstractions.immutable.context.board.cell.BoardCell;
 import abstractions.immutable.context.board.cell.BoardCellInterface;
 import abstractions.immutable.context.board.cell.piece.Piece;
 import abstractions.immutable.context.board.cell.piece.PieceInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
-import abstractions.immutable.context.board.cell.piece.type.PieceType;
-import abstractions.immutable.context.board.cell.piece.type._Pawn;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
 import abstractions.immutable.context.board.direction.Direction;
 import abstractions.immutable.context.board.direction.DirectionInterface;
-import abstractions.immutable.move.Move;
-import abstractions.immutable.move.MoveInterface;
-import abstractions.immutable.move.mutation.BoardMutation;
 import abstractions.immutable.move.mutation.MutationInterface;
-import abstractions.immutable.move.type.MoveType;
-import abstractions.immutable.move.type._NewPawn;
 
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
 
 public class Board implements BoardInterface {
 
@@ -233,90 +217,4 @@ public class Board implements BoardInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static void main(final String[] args) {
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        BoardInterface board = Board.from(100, 1000);
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        Map<Object, Object> symbols = null;
-        MoveInterface move = null;
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        final long t0 = System.currentTimeMillis();
-        for (int i = 0; i < 100; ++i) {
-
-            /*-------------------------------------8<-------------------------------------*/
-
-            final PieceInterface p0 = Piece.NULL;
-            final PieceInterface p1 = Piece.from(Side.from(1), PieceType.from(_Pawn.class));
-            final PieceInterface p2 = p1.apply(p1.side().opposite());
-
-            /*-------------------------------------8<-------------------------------------*/
-
-            symbols = Maps.newHashMap();
-            symbols.put(p0, " ");
-            symbols.put(p1, "x");
-            symbols.put(p2, "o");
-
-            /*-------------------------------------8<-------------------------------------*/
-
-            final ImmutableSortedMap<PositionInterface, PieceInterface> map =
-                    new ImmutableSortedMap.Builder<PositionInterface, PieceInterface>(Ordering.natural())
-                            .put(Position.from(1, 1), Piece.from(Side.from(1), PieceType.from(_Pawn.class)))
-                            .put(Position.from(1, 1).apply(Direction.from(1, 0)), Piece.from(Side.from(-1), PieceType.from(_Pawn.class)))
-                            .build();
-
-            move = Move.from(MoveType.from(_NewPawn.class), BoardMutation.from(map));
-
-            /*-------------------------------------8<-------------------------------------*/
-
-            board.apply(move.mutation());
-
-            /*-------------------------------------8<-------------------------------------*/
-
-        }
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        final long t1 = System.currentTimeMillis();
-        System.out.println(t1 - t0 + " ms");
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println("Board Factory.size : " + Board.Factory.cacheHits() + "/" + Board.Factory.size());
-        System.out.println("BoardCell Factory.size : " + BoardCell.Factory.cacheHits() + "/" + BoardCell.Factory.size());
-        System.out.println("Position Factory.size : " + Position.Factory.cacheHits() + "/" + Position.Factory.size());
-        System.out.println("Direction Factory.size : " + Direction.Factory.cacheHits() + "/" + Direction.Factory.size());
-        System.out.println("Piece Factory.size : " + Piece.Factory.cacheHits() + "/" + Piece.Factory.size());
-        System.out.println("Side Factory.size : " + Side.Factory.cacheHits() + "/" + Side.Factory.size());
-        System.out.println("PieceType Factory.size : " + PieceType.Factory.cacheHits() + "/" + PieceType.Factory.size());
-        System.out.println("Move Factory.size : " + Move.Factory.cacheHits() + "/" + Move.Factory.size());
-        System.out.println("MoveType Factory.size : " + MoveType.Factory.cacheHits() + "/" + MoveType.Factory.size());
-        System.out.println("BoardMutation Factory.size : " + BoardMutation.Factory.cacheHits() + "/" + BoardMutation.Factory.size());
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        final BoardRenderingInterface<?> renderingType =
-                new BoardConsoleRendering(
-                        new BoardStringRendering(new BoardCellStringRendering(
-                                new PieceStringRendering())));
-
-        final BoardRenderer boardRenderer = new BoardRenderer(renderingType); // TODO ? créer une interface
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        board = Board.from(3, 3);
-        boardRenderer.render(board, symbols);
-
-        final BoardInterface newBoard = board.apply(move.mutation());
-        boardRenderer.render(board, symbols);
-        boardRenderer.render(newBoard, symbols);
-
-        /*-------------------------------------8<-------------------------------------*/
-
-    }
 }
