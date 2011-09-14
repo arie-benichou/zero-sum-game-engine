@@ -7,7 +7,6 @@ import abstractions.immutable.context.board.cell.piece.side.Side;
 import abstractions.immutable.context.board.cell.piece.side.SideInterface;
 import abstractions.immutable.context.board.cell.piece.type.PieceType;
 import abstractions.immutable.context.board.cell.piece.type.PieceTypeInterface;
-import abstractions.immutable.context.board.cell.piece.type._Pawn;
 
 import com.google.common.collect.Maps;
 
@@ -132,7 +131,7 @@ public final class Piece implements PieceInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public String toString() { // TODO pouvoir effectuer le rendu d'une pièce
+    public String toString() {
         return this.getClass().getSimpleName() + "(" + this.side() + ", " + this.type() + ")";
     }
 
@@ -148,6 +147,7 @@ public final class Piece implements PieceInterface {
             Piece.from(null, PieceType.NULL);
             Piece.from(Side.from(0), PieceType.NULL);
             Piece.from(Side.from(1), PieceType.NULL);
+            /*
             Piece.from(Side.from(0), PieceType.from(_Pawn.class)); // TODO !!!!!! factory + méthode retournant le nombre d'instance crées
             Piece.from(Side.from(1), PieceType.from(_Pawn.class));
             Piece.from(Side.from(1).opposite(), PieceType.from(_Pawn.class)).apply(Side.from(2).opposite());
@@ -155,6 +155,7 @@ public final class Piece implements PieceInterface {
             Piece.from(Side.from(1).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
             Piece.from(Side.from(3).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
             Piece.from(Side.from(5).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
+            */
         }
 
         final long t1 = System.currentTimeMillis();

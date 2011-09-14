@@ -84,15 +84,11 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
 
     @Override
     public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
-
         final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
-
         final List<PositionInterface> reversiblePositions = this.computeReversiblePositions(side, board);
         for (final PositionInterface position : reversiblePositions)
             mutations.put(position, board.cell(position).value().apply(side));
-
         mutations.put(this.position(), board.cell(reversiblePositions.get(0)).value().apply(side));
-
         return BoardMutation.from(mutations);
     }
 

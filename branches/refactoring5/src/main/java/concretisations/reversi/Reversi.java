@@ -34,8 +34,13 @@ import abstractions.immutable.context.board.cell.piece.side.Side;
 import abstractions.immutable.context.board.cell.piece.type.PieceType;
 import abstractions.immutable.context.board.cell.position.Position;
 import abstractions.immutable.context.board.cell.position.PositionInterface;
+import abstractions.immutable.context.game.Game;
+import abstractions.immutable.context.game.GameInterface;
+import abstractions.immutable.context.gameplay.GamePlay;
+import abstractions.immutable.context.gameplay.GamePlayInterface;
+import abstractions.immutable.move.Move;
+import abstractions.immutable.move.MoveInterface;
 import abstractions.immutable.move.mutation.BoardMutation;
-import abstractions.immutable.move.mutation.BoardMutationInterface;
 import abstractions.immutable.move.type.MoveTypeInterface;
 
 import com.google.common.collect.Maps;
@@ -54,7 +59,13 @@ class Reversi {
         final PieceInterface black = Piece.from(Side.from(1), PieceType.from(ReversiPawn.class));
         final PieceInterface white = black.apply(black.side().opposite()); // TODO rajouter une méthode oppositeSide()
         final PieceInterface none = black.apply(Side.NULL, PieceType.from(ReversiNullPiece.class));
-        final PieceInterface potential = Piece.from(Side.NULL, PieceType.from(ReversiPawn.class));
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        final Map<Object, Object> symbols = Maps.newHashMap();
+        symbols.put(black, " x ");
+        symbols.put(white, " o ");
+        symbols.put(none, "   ");
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -67,6 +78,8 @@ class Reversi {
         /*-------------------------------------8<-------------------------------------*/
 
         final BoardInterface board = Board.from(6, 6, none).apply(BoardMutation.from(map));
+        final GameInterface newGame = Game.from(board, ReversiReferee.from());
+        GamePlayInterface gamePlay = GamePlay.from(Side.from(1), null, newGame); // TODO Adversity
 
         /*-------------------------------------8<-------------------------------------*/
 
@@ -75,77 +88,46 @@ class Reversi {
                         new BoardStringRendering(
                                 new BoardCellStringRendering(
                                         new PieceStringRendering())));
-
-        final BoardRenderer boardRenderer = new BoardRenderer(renderingType); // TODO ? créer une interface
+        final BoardRenderer boardRenderer = new BoardRenderer(renderingType); // TODO ? créer une BoardRendererInterface
 
         /*-------------------------------------8<-------------------------------------*/
-
-        final Map<Object, Object> symbols = Maps.newHashMap();
-
-        symbols.put(black, " x ");
-        symbols.put(white, " o ");
-        symbols.put(none, "   ");
-        symbols.put(potential, " * ");
 
         symbols.put(board.cell(1, 1), "1,1");
         symbols.put(board.cell(1, 6), "1,6");
         symbols.put(board.cell(6, 1), "6,1");
         symbols.put(board.cell(6, 6), "6,6");
-
-        /*-------------------------------------8<-------------------------------------*/
-
         boardRenderer.render(board, symbols);
 
         /*-------------------------------------8<-------------------------------------*/
 
-        /*
-        symbols.remove(board.cell(1, 1));
-        symbols.remove(board.cell(1, 6));
-        symbols.remove(board.cell(6, 1));
-        symbols.remove(board.cell(6, 6));
-        */
+        final PieceInterface potential = Piece.from(Side.NULL, PieceType.from(ReversiPawn.class));
+        symbols.put(potential, " * ");
 
         /*-------------------------------------8<-------------------------------------*/
-
-        final List<MoveTypeInterface> legalMoves = ReversiReferee.from().computePlayableMoves(board, Side.from(1));
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        final Map<PositionInterface, PieceInterface> potentials = Maps.newHashMap();
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println("\nLegal moves for " + Side.from(1) + " : ");
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        for (final MoveTypeInterface moveType : legalMoves) {
-            final PositionInterface position = ((ReversiMoveTypeInterface) moveType.value()).position();
-            potentials.put(position, board.cell(position).value().apply(PieceType.from(ReversiPawn.class)));
-        }
-        boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println();
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        for (final MoveTypeInterface moveType : legalMoves) {
-            System.out.println(moveType);
-            final BoardMutationInterface boardMutation = ((ReversiMoveTypeInterface) moveType.value()).computeBoardMutation(Side.from(1), board);
-            //Move.from(moveType, boardMutation)
-            System.out.println(boardMutation);
-            boardRenderer.render(board.apply(boardMutation), symbols);
+        for (int i = 1; i <= 2; ++i) {
+            /*-------------------------------------8<-------------------------------------*/
             System.out.println();
+            /*-------------------------------------8<-------------------------------------*/
+            final List<MoveTypeInterface> legalMovesTypes = gamePlay.computePlayableMoves();
+            /*-------------------------------------8<-------------------------------------*/
+            // TODO à mettre dans Human Selector            
+            final Map<PositionInterface, PieceInterface> potentials = Maps.newHashMap();
+            for (final MoveTypeInterface moveType : legalMovesTypes) {
+                final PositionInterface position = ((ReversiMoveTypeInterface) moveType.value()).position();
+                potentials.put(position, board.cell(position).value().apply(PieceType.from(ReversiPawn.class)));
+            }
+            System.out.println("\nLegal moves for " + gamePlay.sideToPlay() + " : ");
+            boardRenderer.render(board.apply(BoardMutation.from(potentials)), symbols);
+            System.out.println();
+            /*-------------------------------------8<-------------------------------------*/
+            for (final MoveTypeInterface legalMoveType : legalMovesTypes) {
+                final MoveInterface move = Move.from(legalMoveType, legalMoveType.value().computeBoardMutation(gamePlay.sideToPlay(), gamePlay.board()));
+                // TODO faire un rendering pour GamePlay et Game                
+                boardRenderer.render(gamePlay.apply(move).board(), symbols);
+            }
+            /*-------------------------------------8<-------------------------------------*/
+            gamePlay = gamePlay.apply(gamePlay.sideToPlay().opposite());
         }
-
-        /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println(ReversiReferee.from().isPlayable(board, Side.from(1)));
-        System.out.println(ReversiReferee.from().isPlayable(board, Side.from(-1)));
-        System.out.println(ReversiReferee.from().isGamePlayOver(board, Side.from(1)));
-
         /*-------------------------------------8<-------------------------------------*/
 
     }

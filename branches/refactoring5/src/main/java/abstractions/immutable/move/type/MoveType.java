@@ -4,8 +4,13 @@ package abstractions.immutable.move.type;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import abstractions.immutable.ImmutableInterface;
-import abstractions.immutable.context.board.cell.piece.type._Pawn;
+import abstractions.immutable.context.board.BoardInterface;
+import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.board.cell.position.Position;
+import abstractions.immutable.context.board.cell.position.PositionInterface;
+import abstractions.immutable.move.ConcreteMoveTypeInterface;
+import abstractions.immutable.move.mutation.BoardMutation;
+import abstractions.immutable.move.mutation.BoardMutationInterface;
 
 import com.google.common.collect.Maps;
 
@@ -13,36 +18,71 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static class NullMoveType implements ImmutableInterface<NullMoveType> {
+    private final static class ConcreteNullMove implements ConcreteMoveTypeInterface {
 
-        private final static NullMoveType INSTANCE = new NullMoveType();
-
-        public static NullMoveType from() {
-            return INSTANCE;
-        }
-
-        private NullMoveType() {}
+        private ConcreteNullMove() {}
 
         @Override
-        public NullMoveType apply() {
+        public ConcreteMoveTypeInterface apply() {
             return this;
         }
 
         @Override
-        public String toString() {
-            return this.getClass().getSimpleName();
+        public PositionInterface position() {
+            return Position.NULL;
+        }
+
+        @Override
+        public ConcreteMoveTypeInterface apply(final PositionInterface position) {
+            return this;
+        }
+
+        @Override
+        public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+            return BoardMutation.NULL;
         }
 
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private static ImmutableInterface<?> newType(final Class<?> valueClass) {
+    private final static class NullMoveType implements MoveTypeInterface {
 
-        ImmutableInterface<?> instance = null;
+        private final static MoveTypeInterface INSTANCE = new NullMoveType();
+        private final ConcreteMoveTypeInterface value = new ConcreteNullMove();
+
+        private NullMoveType() {}
+
+        @Override
+        public MoveTypeInterface apply() {
+            return INSTANCE;
+        }
+
+        @Override
+        public ConcreteMoveTypeInterface value() {
+            return this.value;
+        }
+
+        @Override
+        public MoveTypeInterface apply(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
+            return this.value().getClass().equals(valueClass) ? this.apply() : Factory.get(valueClass);
+        }
+
+        @Override
+        public MoveTypeInterface apply(final ConcreteMoveTypeInterface value) {
+            return this.value().equals(value) ? this.apply() : Factory.get(value);
+        }
+
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    private static ConcreteMoveTypeInterface newType(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
+
+        ConcreteMoveTypeInterface instance = null;
 
         try {
-            instance = (ImmutableInterface<?>) valueClass.getMethod("from").invoke(null, (Object[]) null);
+            instance = (ConcreteMoveTypeInterface) valueClass.getMethod("from").invoke(null, (Object[]) null);
         }
         catch (final SecurityException e) {
             e.printStackTrace();
@@ -65,11 +105,11 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public final static MoveTypeInterface NULL = new MoveType(newType(NullMoveType.class));
+    public final static MoveTypeInterface NULL = new NullMoveType();
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static int computeHashCode(final Class<?> valueClass) {
+    private final static int computeHashCode(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
         return valueClass.getCanonicalName().hashCode();
     }
 
@@ -81,9 +121,9 @@ public final class MoveType implements MoveTypeInterface {
 
         private final static Map<Integer, MoveTypeInterface> CACHE = Maps.newHashMap();
 
-        public static MoveTypeInterface get(Class<?> valueClass) {
-            if (valueClass == null) valueClass = NullMoveType.class;
-            if (valueClass.equals(NullMoveType.class)) return NULL;
+        public static MoveTypeInterface get(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
+            //if (valueClass == null) valueClass = NullMoveType.class;
+            //if (valueClass.equals(NullMoveType.class)) return NULL;
             final int address = computeHashCode(valueClass);
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -95,10 +135,10 @@ public final class MoveType implements MoveTypeInterface {
             return instance;
         }
 
-        public static MoveTypeInterface get(ImmutableInterface<?> value) {
+        public static MoveTypeInterface get(final ConcreteMoveTypeInterface value) {
 
-            if (value == null) value = NULL;
-            if (value.equals(NULL)) return NULL;
+            //if (value == null) value = NULL;
+            //if (value.equals(NULL)) return NULL;
 
             /*
             final int address = value.getClass().hashCode();
@@ -128,10 +168,10 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final ImmutableInterface<?> value;
+    private final ConcreteMoveTypeInterface value;
 
     @Override
-    public ImmutableInterface<?> value() {
+    public ConcreteMoveTypeInterface value() {
         return this.value;
     }
 
@@ -146,15 +186,15 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static MoveTypeInterface from(final ImmutableInterface<?> value) {
+    public static MoveTypeInterface from(final ConcreteMoveTypeInterface value) {
         return NULL.apply(value);
     }
 
-    public static MoveTypeInterface from(final Class<? extends ImmutableInterface<?>> valueClass) {
+    public static MoveTypeInterface from(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
         return NULL.apply(valueClass);
     }
 
-    private MoveType(final ImmutableInterface<?> value) {
+    private MoveType(final ConcreteMoveTypeInterface value) {
         this.value = value;
         this.hashCode = computeHashCode(value.getClass());
     }
@@ -167,12 +207,12 @@ public final class MoveType implements MoveTypeInterface {
     }
 
     @Override
-    public MoveTypeInterface apply(final Class<? extends ImmutableInterface<?>> valueClass) {
+    public MoveTypeInterface apply(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
         return this.value().getClass().equals(valueClass) ? this.apply() : Factory.get(valueClass);
     }
 
     @Override
-    public MoveTypeInterface apply(final ImmutableInterface<?> value) {
+    public MoveTypeInterface apply(final ConcreteMoveTypeInterface value) {
         return this.value().equals(value) ? this.apply() : Factory.get(value);
     }
 
@@ -199,22 +239,24 @@ public final class MoveType implements MoveTypeInterface {
 
     public static void main(final String[] args) {
 
-        final MoveTypeInterface pt1 = MoveType.from(NullMoveType.class);
-        final MoveTypeInterface pt2 = MoveType.from(NullMoveType.from());
+        //final MoveTypeInterface pt1 = MoveType.from(NullMoveType.class);
+        //final MoveTypeInterface pt2 = MoveType.from(NullMoveType.from());
 
-        final ImmutableInterface<Object> value = null;
+        /*
+        final ConcreteMoveTypeInterface value = null;
         final MoveTypeInterface pt3 = MoveType.from(value);
 
-        final Class<ImmutableInterface<Object>> valueClass = null;
+        final Class<ConcreteMoveTypeInterface> valueClass = null;
         final MoveTypeInterface pt4 = MoveType.from(valueClass);
+        */
 
-        final MoveTypeInterface pt5 = MoveType.from(_Pawn.class);
-        final MoveTypeInterface pt6 = MoveType.from(_Pawn.from());
+        final MoveTypeInterface pt5 = MoveType.from(_NewPawn.class);
+        final MoveTypeInterface pt6 = MoveType.from(_NewPawn.from());
 
-        System.out.println(pt1);
-        System.out.println(pt2);
-        System.out.println(pt3);
-        System.out.println(pt4);
+        //System.out.println(pt1);
+        //System.out.println(pt2);
+        //System.out.println(pt3);
+        //System.out.println(pt4);
         System.out.println(pt5);
         System.out.println(pt6);
 

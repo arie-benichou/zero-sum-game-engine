@@ -9,6 +9,14 @@ public interface MoveInterface extends ImmutableInterface<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    /*
+    SideInterface side();
+
+    MoveInterface apply(SideInterface side);
+    */
+
+    /*-------------------------------------8<-------------------------------------*/
+
     MoveTypeInterface type();
 
     MoveInterface apply(MoveTypeInterface type);

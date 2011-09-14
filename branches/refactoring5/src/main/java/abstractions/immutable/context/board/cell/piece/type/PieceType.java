@@ -199,15 +199,15 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
         final Class<ImmutableInterface<Object>> valueClass = null;
         final PieceTypeInterface pt4 = PieceType.from(valueClass);
 
-        final PieceTypeInterface pt5 = PieceType.from(_Pawn.class);
-        final PieceTypeInterface pt6 = PieceType.from(_Pawn.from());
+        //final PieceTypeInterface pt5 = PieceType.from(_Pawn.class);
+        //final PieceTypeInterface pt6 = PieceType.from(_Pawn.from());
 
         System.out.println(pt1);
         System.out.println(pt2);
         System.out.println(pt3);
         System.out.println(pt4);
-        System.out.println(pt5);
-        System.out.println(pt6);
+        //System.out.println(pt5);
+        //System.out.println(pt6);
 
         System.out.println(Factory.CACHE.size());
 

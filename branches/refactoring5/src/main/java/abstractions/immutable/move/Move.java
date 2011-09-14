@@ -59,6 +59,17 @@ public final class Move implements MoveInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    /*
+    private SideInterface side;
+
+    @Override
+    public SideInterface side() {
+        return this.side;
+    }
+    */
+
+    /*-------------------------------------8<-------------------------------------*/
+
     private final MoveTypeInterface type;
 
     @Override
@@ -103,14 +114,21 @@ public final class Move implements MoveInterface {
         return this;
     }
 
+    /*
     @Override
-    public MoveInterface apply(final BoardMutationInterface mutation) {
-        return this.mutation().equals(mutation) ? this.apply() : Factory.get(this.type(), mutation);
+    public MoveInterface apply(final SideInterface side) {
+        return this.side().equals(side) ? this.apply() : Factory.get(type, this.mutation());
     }
+    */
 
     @Override
     public MoveInterface apply(final MoveTypeInterface type) {
         return this.type().equals(type) ? this.apply() : Factory.get(type, this.mutation());
+    }
+
+    @Override
+    public MoveInterface apply(final BoardMutationInterface mutation) {
+        return this.mutation().equals(mutation) ? this.apply() : Factory.get(this.type(), mutation);
     }
 
     @Override
