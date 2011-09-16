@@ -18,9 +18,9 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static class ConcreteNullMove implements ConcreteMoveTypeInterface {
+    private final static class ConcreteNullMoveType implements ConcreteMoveTypeInterface {
 
-        private ConcreteNullMove() {}
+        private ConcreteNullMoveType() {}
 
         @Override
         public ConcreteMoveTypeInterface apply() {
@@ -49,7 +49,7 @@ public final class MoveType implements MoveTypeInterface {
     private final static class NullMoveType implements MoveTypeInterface {
 
         private final static MoveTypeInterface INSTANCE = new NullMoveType();
-        private final ConcreteMoveTypeInterface value = new ConcreteNullMove();
+        private final static ConcreteMoveTypeInterface VALUE = new ConcreteNullMoveType();
 
         private NullMoveType() {}
 
@@ -60,7 +60,7 @@ public final class MoveType implements MoveTypeInterface {
 
         @Override
         public ConcreteMoveTypeInterface value() {
-            return this.value;
+            return VALUE;
         }
 
         @Override
@@ -73,7 +73,21 @@ public final class MoveType implements MoveTypeInterface {
             return this.value().equals(value) ? this.apply() : Factory.get(value);
         }
 
+        @Override
+        public boolean equals(final Object object) {
+            if (object == this) return true;
+            if (object == null) return false;
+            if (!(object instanceof MoveTypeInterface)) return false;
+            final MoveTypeInterface that = (MoveTypeInterface) object;
+            //if (that.hashCode() != this.hashCode()) return false;
+            return that.value().equals(this.value());
+        }
+
     }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    public final static MoveTypeInterface NULL = new NullMoveType();
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -105,10 +119,6 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public final static MoveTypeInterface NULL = new NullMoveType();
-
-    /*-------------------------------------8<-------------------------------------*/
-
     private final static int computeHashCode(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
         return valueClass.getCanonicalName().hashCode();
     }
@@ -122,8 +132,7 @@ public final class MoveType implements MoveTypeInterface {
         private final static Map<Integer, MoveTypeInterface> CACHE = Maps.newHashMap();
 
         public static MoveTypeInterface get(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
-            //if (valueClass == null) valueClass = NullMoveType.class;
-            //if (valueClass.equals(NullMoveType.class)) return NULL;
+            if (valueClass == null) return NULL;
             final int address = computeHashCode(valueClass);
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -135,13 +144,10 @@ public final class MoveType implements MoveTypeInterface {
             return instance;
         }
 
-        public static MoveTypeInterface get(final ConcreteMoveTypeInterface value) {
-
-            //if (value == null) value = NULL;
-            //if (value.equals(NULL)) return NULL;
-
-            /*
-            final int address = value.getClass().hashCode();
+        public static MoveTypeInterface get(ConcreteMoveTypeInterface value) {
+            if (value == null) value = NULL.value();
+            if (value.equals(NULL.value())) return NULL;
+            final int address = value.hashCode();
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
                 instance = new MoveType(value);
@@ -150,10 +156,6 @@ public final class MoveType implements MoveTypeInterface {
             else
                 ++cacheHits;
             return instance;
-            */
-
-            return new MoveType(value);
-
         }
 
         public final static int size() {
@@ -235,34 +237,6 @@ public final class MoveType implements MoveTypeInterface {
         return this.getClass().getSimpleName() + "(" + this.value() + ")";
     }
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    public static void main(final String[] args) {
-
-        //final MoveTypeInterface pt1 = MoveType.from(NullMoveType.class);
-        //final MoveTypeInterface pt2 = MoveType.from(NullMoveType.from());
-
-        /*
-        final ConcreteMoveTypeInterface value = null;
-        final MoveTypeInterface pt3 = MoveType.from(value);
-
-        final Class<ConcreteMoveTypeInterface> valueClass = null;
-        final MoveTypeInterface pt4 = MoveType.from(valueClass);
-        */
-
-        final MoveTypeInterface pt5 = MoveType.from(_NewPawn.class);
-        final MoveTypeInterface pt6 = MoveType.from(_NewPawn.from());
-
-        //System.out.println(pt1);
-        //System.out.println(pt2);
-        //System.out.println(pt3);
-        //System.out.println(pt4);
-        System.out.println(pt5);
-        System.out.println(pt6);
-
-        System.out.println(Factory.CACHE.size());
-
-    }
     /*-------------------------------------8<-------------------------------------*/
 
 }

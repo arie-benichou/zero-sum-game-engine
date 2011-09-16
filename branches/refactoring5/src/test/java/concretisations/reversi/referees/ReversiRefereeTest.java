@@ -47,7 +47,6 @@ public class ReversiRefereeTest {
         this.whitePiece = this.blackPiece.apply(this.blackPiece.side().opposite());
         this.nullPiece = this.blackPiece.apply(Side.NULL, PieceType.from(ReversiNullPiece.class));
         /*-------------------------------------8<-------------------------------------*/
-        // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay        
         this.board = Board.from(6, 6, this.nullPiece);
         this.side = Side.from(1);
         /*-------------------------------------8<-------------------------------------*/

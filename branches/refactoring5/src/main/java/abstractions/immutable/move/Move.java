@@ -27,13 +27,11 @@ public final class Move implements MoveInterface {
     public final static class Factory {
 
         private static int cacheHits;
-
         private final static Map<Integer, MoveInterface> CACHE = Maps.newHashMap();
 
         public static MoveInterface get(MoveTypeInterface type, BoardMutationInterface boardMutation) {
             if (type == null) type = MoveType.NULL;
             if (boardMutation == null) boardMutation = BoardMutation.NULL;
-
             if (type.equals(MoveType.NULL) && boardMutation.equals(BoardMutation.NULL)) return NULL;
             final int address = computeHashCode(type, boardMutation);
             MoveInterface instance = CACHE.get(address);
@@ -56,17 +54,6 @@ public final class Move implements MoveInterface {
         }
 
     }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    /*
-    private SideInterface side;
-
-    @Override
-    public SideInterface side() {
-        return this.side;
-    }
-    */
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -114,13 +101,6 @@ public final class Move implements MoveInterface {
         return this;
     }
 
-    /*
-    @Override
-    public MoveInterface apply(final SideInterface side) {
-        return this.side().equals(side) ? this.apply() : Factory.get(type, this.mutation());
-    }
-    */
-
     @Override
     public MoveInterface apply(final MoveTypeInterface type) {
         return this.type().equals(type) ? this.apply() : Factory.get(type, this.mutation());
@@ -145,7 +125,7 @@ public final class Move implements MoveInterface {
         if (!(object instanceof MoveInterface)) return false;
         final MoveInterface that = (MoveInterface) object;
         if (that.hashCode() != this.hashCode()) return false;
-        return that.type() == this.type() && that.mutation() == this.mutation();
+        return that.type().equals(this.type()) && that.mutation().equals(this.mutation());
     }
 
     /*-------------------------------------8<-------------------------------------*/

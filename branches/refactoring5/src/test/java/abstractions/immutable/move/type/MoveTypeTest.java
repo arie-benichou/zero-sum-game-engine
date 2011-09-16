@@ -1,50 +1,52 @@
 
 package abstractions.immutable.move.type;
 
-import static org.junit.Assert.fail;
-
+import org.junit.Assert;
 import org.junit.Test;
+
+import abstractions.immutable.context.board.cell.position.Position;
+import abstractions.immutable.move.ConcreteMoveTypeInterface;
+import abstractions.immutable.move.type.mocks.SomeConcreteMoveType;
 
 public class MoveTypeTest {
 
     @Test
-    public final void testHashCode() {
-        fail("Not yet implemented"); // TODO
+    public final void testHashCode() {}
+
+    @Test
+    public final void testValue() {}
+
+    @Test
+    public final void testFromConcreteMoveTypeInterface() {
+
+        final ConcreteMoveTypeInterface concreteMoveTypeInstance = null;
+        Assert.assertTrue(MoveType.from(concreteMoveTypeInstance).equals(MoveType.NULL));
+
+        final Class<? extends ConcreteMoveTypeInterface> concreteMoveTypeClass = null;
+        Assert.assertTrue(MoveType.from(concreteMoveTypeClass).equals(MoveType.NULL));
+
+        Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from()).equals(MoveType.from(SomeConcreteMoveType.from())));
+        Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from()).equals(MoveType.from(SomeConcreteMoveType.from(null))));
+        Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from(null)).equals(MoveType.from(SomeConcreteMoveType.class)));
+
+        Assert.assertTrue(!MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.class)));
+        Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1)))));
+        Assert.assertTrue(!MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 2)))));
     }
 
     @Test
-    public final void testValue() {
-        fail("Not yet implemented"); // TODO
-    }
+    public final void testFromClassOfQextendsConcreteMoveTypeInterface() {}
 
     @Test
-    public final void testFromImmutableInterfaceOfQ() {
-        fail("Not yet implemented"); // TODO
-    }
+    public final void testApply() {}
 
     @Test
-    public final void testFromClassOfQextendsImmutableInterfaceOfQ() {
-        fail("Not yet implemented"); // TODO
-    }
+    public final void testApplyClassOfQextendsConcreteMoveTypeInterface() {}
 
     @Test
-    public final void testApply() {
-        fail("Not yet implemented"); // TODO
-    }
+    public final void testApplyConcreteMoveTypeInterface() {}
 
     @Test
-    public final void testApplyClassOfQextendsImmutableInterfaceOfQ() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    @Test
-    public final void testApplyImmutableInterfaceOfQ() {
-        fail("Not yet implemented"); // TODO
-    }
-
-    @Test
-    public final void testEqualsObject() {
-        fail("Not yet implemented"); // TODO
-    }
+    public final void testEqualsObject() {}
 
 }

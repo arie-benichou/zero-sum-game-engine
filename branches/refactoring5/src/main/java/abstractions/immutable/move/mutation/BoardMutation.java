@@ -134,10 +134,4 @@ public class BoardMutation implements BoardMutationInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static void main(final String[] args) {
-
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
 }

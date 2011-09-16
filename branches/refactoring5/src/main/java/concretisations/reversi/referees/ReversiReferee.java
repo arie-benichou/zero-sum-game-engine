@@ -41,7 +41,7 @@ public final class ReversiReferee implements RefereeInterface {
                 if (((ReversiPieceTypeInterface) board.cell(position).value().type().value()).hasApplication(side, board, position))
                     moveTypes.add(MoveType.from(ReversiMove.from(position)));
             }
-        moveTypes.add(MoveType.from(ReversiNullMove.class));
+        moveTypes.add(MoveType.from(ReversiNullMove.class)); // TODO utiliser ReversiMove.NULL
         return moveTypes;
     }
 
