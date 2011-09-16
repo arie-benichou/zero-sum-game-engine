@@ -22,9 +22,9 @@ import java.util.Set;
 
 import abstractions.direction.DirectionManager.NamedDirection;
 import abstractions.immutable.context.ContextInterface;
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
 import abstractions.old.cell.ManagedCellInterface;
 import abstractions.old.mutation.AbstractCompositeMutation;
 import abstractions.old.mutation.AtomicMutationFactory;

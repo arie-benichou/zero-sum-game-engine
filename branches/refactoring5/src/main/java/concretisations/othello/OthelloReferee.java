@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Set;
 
 import abstractions.immutable.context.ContextInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.referee.RefereeInterface;
 import abstractions.old.evaluator.EvaluatorInterface;
 import abstractions.old.mutation.MutationInterface;
 

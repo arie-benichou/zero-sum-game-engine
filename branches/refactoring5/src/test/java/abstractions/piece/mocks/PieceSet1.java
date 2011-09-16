@@ -17,7 +17,7 @@
 
 package abstractions.piece.mocks;
 
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
 
 public enum PieceSet1 implements OldPieceTypeInterface {
 

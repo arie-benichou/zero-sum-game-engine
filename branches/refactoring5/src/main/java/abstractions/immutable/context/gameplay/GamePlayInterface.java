@@ -4,10 +4,10 @@ package abstractions.immutable.context.gameplay;
 import java.util.List;
 
 import abstractions.immutable.ImmutableInterface;
-import abstractions.immutable.context.adversity.AdversityInterface;
-import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.game.GameInterface;
+import abstractions.immutable.context.gameplay.adversity.AdversityInterface;
+import abstractions.immutable.context.gameplay.game.GameInterface;
+import abstractions.immutable.context.gameplay.game.board.BoardInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
 import abstractions.immutable.move.MoveInterface;
 import abstractions.immutable.move.type.MoveTypeInterface;
 

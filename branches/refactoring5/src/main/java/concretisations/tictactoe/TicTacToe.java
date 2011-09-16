@@ -3,12 +3,12 @@ package concretisations.tictactoe;
 
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.immutable.context.adversity.Adversity;
-import abstractions.immutable.context.adversity.player.Player;
-import abstractions.immutable.context.adversity.player.PlayerInterface;
-import abstractions.immutable.context.board.cell.piece.PieceManager;
-import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
-import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.immutable.context.gameplay.adversity.Adversity;
+import abstractions.immutable.context.gameplay.adversity.player.Player;
+import abstractions.immutable.context.gameplay.adversity.player.PlayerInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceManager;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.gameplay.game.referee.RefereeInterface;
 import abstractions.old.cell.CellManager;
 import abstractions.old.cell.CellManagerInterface;
 import abstractions.old.context.Context;

@@ -7,7 +7,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import abstractions.immutable.ImmutableInterface;
-import abstractions.immutable.context.board.cell.piece.type.PieceType.NullPieceType;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.type.PieceType;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.type.PieceType.NullPieceType;
 
 public class PieceTypeTest {
 

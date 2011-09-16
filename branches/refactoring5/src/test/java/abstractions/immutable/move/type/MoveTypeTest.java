@@ -4,7 +4,7 @@ package abstractions.immutable.move.type;
 import org.junit.Assert;
 import org.junit.Test;
 
-import abstractions.immutable.context.board.cell.position.Position;
+import abstractions.immutable.context.gameplay.game.board.cell.position.Position;
 import abstractions.immutable.move.ConcreteMoveTypeInterface;
 import abstractions.immutable.move.type.mocks.SomeConcreteMoveType;
 

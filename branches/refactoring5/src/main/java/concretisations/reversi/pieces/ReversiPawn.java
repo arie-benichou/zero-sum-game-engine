@@ -1,10 +1,10 @@
 
 package concretisations.reversi.pieces;
 
-import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.board.cell.position.PositionInterface;
-import abstractions.immutable.context.board.direction.DirectionInterface;
+import abstractions.immutable.context.gameplay.game.board.BoardInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
+import abstractions.immutable.context.gameplay.game.board.direction.DirectionInterface;
 
 public final class ReversiPawn implements ReversiPieceTypeInterface {
 

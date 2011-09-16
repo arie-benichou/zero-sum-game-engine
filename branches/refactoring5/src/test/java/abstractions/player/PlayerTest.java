@@ -7,8 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.immutable.context.adversity.player.Player;
-import abstractions.immutable.context.adversity.player.PlayerInterface;
+import abstractions.immutable.context.gameplay.adversity.player.Player;
+import abstractions.immutable.context.gameplay.adversity.player.PlayerInterface;
 import abstractions.old.evaluator.NullEvaluator;
 import abstractions.old.selector.Random;
 import abstractions.old.strategy.Strategy;
