@@ -17,7 +17,7 @@
 
 package concretisations.tictactoe.pieces;
 
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
 
 public enum TicTacToePieceSet implements OldPieceTypeInterface {
 

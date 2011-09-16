@@ -22,10 +22,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.immutable.context.board.cell.piece.IllegalPieceException;
-import abstractions.immutable.context.board.cell.piece.IllegalPieceSetException;
-import abstractions.immutable.context.board.cell.piece.PieceManager;
-import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.IllegalPieceException;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.IllegalPieceSetException;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceManager;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
 import abstractions.piece.mocks.Pawn;
 import abstractions.piece.mocks.PieceSet1;
 import abstractions.piece.mocks.PieceSet2;

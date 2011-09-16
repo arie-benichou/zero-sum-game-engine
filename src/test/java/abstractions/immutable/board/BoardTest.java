@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
-import abstractions.immutable.context.board.cell.piece.PieceInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
 
 public class BoardTest {
 

@@ -19,9 +19,9 @@ package concretisations.tictactoe.pieces;
 
 import java.util.Set;
 
-import abstractions.immutable.context.board.cell.piece.AbstractPiece;
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.AbstractPiece;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
 import abstractions.old.cell.ManagedCellInterface;
 import abstractions.old.mutation.AtomicMutationFactory;
 import abstractions.old.mutation.MutationInterface;

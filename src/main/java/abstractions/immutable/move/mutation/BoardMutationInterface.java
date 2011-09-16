@@ -3,8 +3,8 @@ package abstractions.immutable.move.mutation;
 
 import java.util.Map;
 
-import abstractions.immutable.context.board.cell.piece.PieceInterface;
-import abstractions.immutable.context.board.cell.position.PositionInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
 
 import com.google.common.collect.ImmutableSortedMap;
 

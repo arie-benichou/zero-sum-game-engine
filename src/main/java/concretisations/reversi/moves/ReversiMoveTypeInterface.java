@@ -1,9 +1,9 @@
 
 package concretisations.reversi.moves;
 
-import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.board.cell.position.PositionInterface;
+import abstractions.immutable.context.gameplay.game.board.BoardInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
 import abstractions.immutable.move.ConcreteMoveTypeInterface;
 import abstractions.immutable.move.mutation.BoardMutationInterface;
 

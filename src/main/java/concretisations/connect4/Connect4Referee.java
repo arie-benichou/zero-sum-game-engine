@@ -6,8 +6,8 @@ import java.util.List;
 import abstractions.direction.DirectionInterface;
 import abstractions.direction.DirectionManager;
 import abstractions.direction.DirectionManager.NamedDirection;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.referee.RefereeInterface;
 import abstractions.old.cell.ManagedCellInterface;
 import abstractions.old.mutation.MutationInterface;
 

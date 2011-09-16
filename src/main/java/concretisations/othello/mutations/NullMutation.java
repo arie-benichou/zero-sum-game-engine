@@ -2,7 +2,7 @@
 package concretisations.othello.mutations;
 
 import abstractions.immutable.context.ContextInterface;
-import abstractions.immutable.context.board.cell.piece.PieceInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceInterface;
 import abstractions.old.mutation.MutationInterface;
 import abstractions.old.mutation.MutationTypeInterface;
 import abstractions.old.position.PositionInterface;

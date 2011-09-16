@@ -7,6 +7,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
+
 public class SideTest {
 
     @Test

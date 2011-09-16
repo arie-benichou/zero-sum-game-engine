@@ -17,7 +17,7 @@
 
 package concretisations.checkers.pieces;
 
-import abstractions.immutable.context.board.cell.piece.OldPieceTypeInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.OldPieceTypeInterface;
 
 public enum CheckersPieceSet implements OldPieceTypeInterface {
 

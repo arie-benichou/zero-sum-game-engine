@@ -3,11 +3,11 @@ package concretisations.reversi.referees;
 
 import java.util.List;
 
-import abstractions.immutable.context.board.BoardInterface;
-import abstractions.immutable.context.board.cell.piece.side.SideInterface;
-import abstractions.immutable.context.board.cell.position.Position;
-import abstractions.immutable.context.board.cell.position.PositionInterface;
-import abstractions.immutable.context.referee.RefereeInterface;
+import abstractions.immutable.context.gameplay.game.board.BoardInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.position.Position;
+import abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
+import abstractions.immutable.context.gameplay.game.referee.RefereeInterface;
 import abstractions.immutable.move.type.MoveType;
 import abstractions.immutable.move.type.MoveTypeInterface;
 

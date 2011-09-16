@@ -7,11 +7,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import abstractions.immutable.context.adversity.Adversity;
-import abstractions.immutable.context.adversity.AdversityInterface;
-import abstractions.immutable.context.adversity.player.Player;
-import abstractions.immutable.context.adversity.player.PlayerInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.gameplay.adversity.Adversity;
+import abstractions.immutable.context.gameplay.adversity.AdversityInterface;
+import abstractions.immutable.context.gameplay.adversity.player.Player;
+import abstractions.immutable.context.gameplay.adversity.player.PlayerInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
 import abstractions.old.evaluator.NullEvaluator;
 import abstractions.old.selector.Random;
 import abstractions.old.strategy.Strategy;

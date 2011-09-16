@@ -11,9 +11,9 @@ import org.junit.Test;
 
 import abstractions.dimension.DimensionManager;
 import abstractions.direction.DirectionManager;
-import abstractions.immutable.context.board.cell.piece.PieceManager;
-import abstractions.immutable.context.board.cell.piece.PieceManagerInterface;
-import abstractions.immutable.context.board.cell.piece.side.Side;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceManager;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.PieceManagerInterface;
+import abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
 import abstractions.old.cell.CellManager;
 import abstractions.old.cell.CellManagerInterface;
 import abstractions.old.cell.ManagedCellInterface;
