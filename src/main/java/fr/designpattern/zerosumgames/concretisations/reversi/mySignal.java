@@ -8,28 +8,13 @@ import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.Boar
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.BoardCellStringRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.piece.PieceStringRendering;
 
-public final class mySignal {
+public final class mySignal implements SignalInterface{
 
 	/*-------------------------------------8<-------------------------------------*/
 
 	private final GamePlayManagerServiceInterface gamePlayManagerService;
-	public GamePlayManagerServiceInterface gamePlayManagerService() {
-		return this.gamePlayManagerService;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
 	private final GamePlayManagerInterface gamePlayManager;
-	public GamePlayManagerInterface gamePlayManager() {
-		return this.gamePlayManager;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
 	private final Map<Object, Object> symbols;
-	public Map<Object, Object> symbols() {
-		return this.symbols;
-	}
 
 	/*-------------------------------------8<-------------------------------------*/
 
@@ -42,9 +27,18 @@ public final class mySignal {
 	/*-------------------------------------8<-------------------------------------*/
 
 	@Override
+	public void process() {
+		this.gamePlayManagerService.start(this.gamePlayManager, this.symbols);
+	}
+
+	/*-------------------------------------8<-------------------------------------*/
+
+	@Override
 	public String toString() {
 		final BoardStringRendering rendering = new BoardStringRendering(new BoardCellStringRendering(new PieceStringRendering()));
-		return rendering.render(this.gamePlayManager().gameplay().game().board(), this.symbols());
+		return rendering.render(this.gamePlayManager.gameplay().game().board(), this.symbols);
 	}
+
+	/*-------------------------------------8<-------------------------------------*/
 
 }

@@ -155,7 +155,7 @@
 	<bean id="gamePlay"
 		class="fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.GamePlay"
 		factory-method="from">
-		<constructor-arg ref="oppositeSide" />
+		<constructor-arg ref="side" />
 		<constructor-arg>
 			<null />
 		</constructor-arg>
