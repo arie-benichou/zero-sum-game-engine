@@ -26,6 +26,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import akka.actor.ActorRef;
 import akka.actor.Actors;
+import akka.remoteinterface.RemoteServerModule;
 import fr.designpattern.zerosumgames.abstractions.immutable.GamePlayManager;
 import fr.designpattern.zerosumgames.abstractions.immutable.GamePlayManagerInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.GamePlayManagerService;
@@ -39,21 +40,16 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.gam
 
 class Reversi {
 
-	private static ActorRef actor;
+	/*-------------------------------------8<-------------------------------------*/
 
 	public static void main(final String[] args) {
-
-		Actors.remote().start("localhost", 9999).register("hello-service", Actors.actorOf(myActor.class));
-
-		actor = Actors.remote().actorFor("hello-service", "localhost", 9999);
-
-		main1(args);
-		main2(args);
-
+		task1();
+		task2();
 	}
 
+	/*-------------------------------------8<-------------------------------------*/
 
-	public static void main1(final String[] args) {
+	public static void task1() {
 
 		/*-------------------------------------8<-------------------------------------*/
 
@@ -64,7 +60,6 @@ class Reversi {
 		final GameServiceInterface gameService = GameService.from();
 		final GamePlayServiceInterface gameplayServive = GamePlayService.from(gameService);
 		final GamePlayManagerServiceInterface gamePlayManagerService = new GamePlayManagerService(gameplayServive); // TODO ?! from()
-
 		final GamePlayInterface gameplay = (GamePlay)factory.getBean("gamePlay");
 		final GamePlayManagerInterface gameplayManager = GamePlayManager.from(gameplay);
 
@@ -79,66 +74,19 @@ class Reversi {
 
 		/*-------------------------------------8<-------------------------------------*/
 
-		//gamePlayManagerService.start(gameplayManager, symbols);
-
-		//TODO emballer tout ça dans un object Action immutable (appeler process())
-
-		final mySignal signal = new mySignal(gamePlayManagerService, gameplayManager, symbols);
-
-		/*-------------------------------------8<-------------------------------------*/
-
-
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		/*
-		final Object res = actor.sendRequestReply(signal);
-		System.out.println(res);
-		 */
+		final SignalInterface signal = new mySignal(gamePlayManagerService, gameplayManager, symbols);
+		final RemoteServerModule remoteServerModule = Actors.remote().start();
+		remoteServerModule.register("hello-service", Actors.actorOf(myActor.class));
+		final ActorRef actor = Actors.remote().actorFor("hello-service", "localhost", 2552);
 		actor.sendOneWay(signal);
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		//System.out.println("\nIt's in the pipe !\n");
 		System.out.println("\n main1 is in the pipe !\n");
 
 		/*-------------------------------------8<-------------------------------------*/
 
-		/*
-		long t0 = System.currentTimeMillis();
-		while (System.currentTimeMillis() - t0 < 3000) ;
-		gamePlayManagerService.pause();
-
-
-		t0 = System.currentTimeMillis();
-		while (System.currentTimeMillis() - t0 < 6000) ;
-		gamePlayManagerService.resume();
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		/*
-		int i = 1;
-		while(!gamePlayManagerService.isOver()) {
-			final Scanner scanner = new Scanner(System.in);
-			try {
-				i = scanner.nextInt();
-				if (i == 0)
-					gamePlayManagerService.pause();
-				else if(i == 1)
-					gamePlayManagerService.resume();
-				else
-					throw new InputMismatchException();
-			}
-			catch (final InputMismatchException e) {
-				System.out.println("Please try again...");
-			}
-		}
-		System.out.println("It's over!");
-		/*-------------------------------------8<-------------------------------------*/
 	}
 
 
-	public static void main2(final String[] args) {
+	public static void task2() {
 
 		/*-------------------------------------8<-------------------------------------*/
 
@@ -149,7 +97,6 @@ class Reversi {
 		final GameServiceInterface gameService = GameService.from();
 		final GamePlayServiceInterface gameplayServive = GamePlayService.from(gameService);
 		final GamePlayManagerServiceInterface gamePlayManagerService = new GamePlayManagerService(gameplayServive); // TODO ?! from()
-
 		final GamePlayInterface gameplay = (GamePlay)factory.getBean("gamePlay");
 		final GamePlayManagerInterface gameplayManager = GamePlayManager.from(gameplay);
 
@@ -164,63 +111,15 @@ class Reversi {
 
 		/*-------------------------------------8<-------------------------------------*/
 
-		//gamePlayManagerService.start(gameplayManager, symbols);
-
-		//TODO emballer tout ça dans un object Action immutable (appeler process())
-
-		final mySignal signal = new mySignal(gamePlayManagerService, gameplayManager, symbols);
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		//actor = remote().actorFor("hello-service", "localhost", 9999);
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		/*
-		final Object res = actor.sendRequestReply(signal);
-		System.out.println(res);
-		 */
+		final SignalInterface signal = new mySignal(gamePlayManagerService, gameplayManager, symbols);
+		final RemoteServerModule remoteServerModule = Actors.remote().start();
+		remoteServerModule.register("hello-service", Actors.actorOf(myActor.class));
+		final ActorRef actor = Actors.remote().actorFor("hello-service", "localhost", 2552);
 		actor.sendOneWay(signal);
-
-		/*-------------------------------------8<-------------------------------------*/
-
-		//System.out.println("\nIt's in the pipe !\n");
 		System.out.println("\n main2 is in the pipe !\n");
 
 		/*-------------------------------------8<-------------------------------------*/
 
-		/*
-		long t0 = System.currentTimeMillis();
-		while (System.currentTimeMillis() - t0 < 3000) ;
-		gamePlayManagerService.pause();
-
-
-		t0 = System.currentTimeMillis();
-		while (System.currentTimeMillis() - t0 < 6000) ;
-		gamePlayManagerService.resume();
-
-		/*-------------------------------------8<-------------------------------------*/
-		/*
-		int i = 1;
-		while(!gamePlayManagerService.isOver()) {
-			final Scanner scanner = new Scanner(System.in);
-			try {
-				i = scanner.nextInt();
-				if (i == 0)
-					gamePlayManagerService.pause();
-				else if(i == 1)
-					gamePlayManagerService.resume();
-				else
-					throw new InputMismatchException();
-			}
-			catch (final InputMismatchException e) {
-				System.out.println("Please try again...");
-			}
-		}
-		System.out.println("It's over!");
-		/*-------------------------------------8<-------------------------------------*/
-
 	}
-
 
 }
