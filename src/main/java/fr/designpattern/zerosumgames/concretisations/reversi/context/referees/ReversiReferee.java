@@ -3,11 +3,11 @@ package fr.designpattern.zerosumgames.concretisations.reversi.context.referees;
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.referee.RefereeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 

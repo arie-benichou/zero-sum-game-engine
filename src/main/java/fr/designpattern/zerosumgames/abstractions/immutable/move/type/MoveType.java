@@ -4,10 +4,10 @@ package fr.designpattern.zerosumgames.abstractions.immutable.move.type;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;

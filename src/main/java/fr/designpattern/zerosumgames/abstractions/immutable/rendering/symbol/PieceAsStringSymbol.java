@@ -1,6 +1,6 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.rendering.symbol;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.piece.PieceInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
 
 public class PieceAsStringSymbol implements SymbolInterface<PieceInterface, ImmutableString> {
 

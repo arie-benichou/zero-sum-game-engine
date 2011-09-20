@@ -3,7 +3,7 @@ package fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cel
 
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.BoardCellInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.BoardCellInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.piece.PieceStringRendering;
 
 public class BoardCellStringRendering implements BoardCellRenderingInterface<String> {
