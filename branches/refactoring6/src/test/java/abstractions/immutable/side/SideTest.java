@@ -6,7 +6,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.piece.side.Side;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.Side;
 
 public class SideTest {
 

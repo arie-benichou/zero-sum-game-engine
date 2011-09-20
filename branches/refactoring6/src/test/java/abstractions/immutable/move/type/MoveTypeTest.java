@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import abstractions.immutable.move.type.mocks.SomeConcreteMoveType;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.gameplay.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 
