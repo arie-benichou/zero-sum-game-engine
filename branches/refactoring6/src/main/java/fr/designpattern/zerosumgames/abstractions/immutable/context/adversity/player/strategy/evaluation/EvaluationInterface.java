@@ -19,14 +19,16 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.p
 
 import java.util.List;
 
+import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 /**
  * This is the interface for evaluation.
+ * 
+ * @param <OPTION>
  */
-public interface EvaluationInterface {
+public interface EvaluationInterface<OPTION> extends ImmutableInterface<EvaluationInterface<OPTION>> {
 
-	List<List<MoveTypeInterface>> process(final ContextInterface context, final List<MoveTypeInterface> options);
+    List<List<OPTION>> process(final ContextInterface context);
 
 }

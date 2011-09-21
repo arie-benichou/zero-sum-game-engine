@@ -23,19 +23,17 @@ import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.EvaluationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection.SelectionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-/**
- * This is the interface for a player's strategy.
- */
-public interface StrategyInterface extends ImmutableInterface<StrategyInterface>{
+public interface StrategyInterface<OPTION> extends ImmutableInterface<StrategyInterface<OPTION>> {
 
-	StrategyInterface apply(EvaluationInterface evaluationType);
-	EvaluationInterface evaluation();
+    StrategyInterface<OPTION> apply(final EvaluationInterface<OPTION> evaluationType);
 
-	StrategyInterface apply(SelectionInterface selectionType);
-	SelectionInterface selection();
+    EvaluationInterface<OPTION> evaluation();
 
-	List<MoveTypeInterface> process(final ContextInterface gamePlay);
+    StrategyInterface<OPTION> apply(final SelectionInterface<OPTION> selectionType);
+
+    SelectionInterface<OPTION> selection();
+
+    List<OPTION> process(final ContextInterface contex);
 
 }

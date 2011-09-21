@@ -18,10 +18,9 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection;
 
 import java.util.List;
-import java.util.TreeMap;
 
-public interface SelectionInterface<ITEM> {
+public interface SelectionInterface<OPTION> {
 
-    List<ITEM> process(final TreeMap<?, List<ITEM>> evaluatedItems);
+    List<OPTION> process(List<List<OPTION>> evaluatedOptions);
 
 }

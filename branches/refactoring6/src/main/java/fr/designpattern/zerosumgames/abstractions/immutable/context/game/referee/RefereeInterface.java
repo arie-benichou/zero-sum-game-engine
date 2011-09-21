@@ -20,6 +20,7 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.game.refere
 import java.util.List;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
@@ -37,13 +38,21 @@ public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
 
     //List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
 
-    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay
+    // TODO l'arbitre devrait prendre en argument uniquement un objet Context
     List<MoveTypeInterface> computePlayableMoves(final BoardInterface board, final SideInterface side);
 
-    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay    
+    // TODO l'arbitre devrait prendre en argument uniquement un objet Context    
     boolean isPlayable(final BoardInterface board, final SideInterface side);
 
-    // TODO l'arbitre devrait prendre en argument uniquement un objet GamePlay    
+    // TODO l'arbitre devrait prendre en argument uniquement un objet Context    
     boolean isGamePlayOver(final BoardInterface board, final SideInterface side);
+
+    /*-------------------------------------8<-------------------------------------*/
+    // TODO ?? responsabilité du referee
+    /*-------------------------------------8<-------------------------------------*/
+
+    Double getTerminalEvaluation(ContextInterface context);
+
+    Double getHeuristicEvaluation(ContextInterface context);
 
 }

@@ -24,71 +24,68 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.pl
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection.SelectionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public final class Strategy implements StrategyInterface {
+public final class Strategy implements StrategyInterface<MoveTypeInterface> {
 
-	/*-------------------------------------8<-------------------------------------*/
+    /*-------------------------------------8<-------------------------------------*/
 
-	private final EvaluationInterface evaluation;
+    private final EvaluationInterface<MoveTypeInterface> evaluation;
 
-	@Override
-	public EvaluationInterface evaluation() {
-		return this.evaluation;
-	}
+    @Override
+    public EvaluationInterface<MoveTypeInterface> evaluation() {
+        return this.evaluation;
+    }
 
-	/*-------------------------------------8<-------------------------------------*/
+    /*-------------------------------------8<-------------------------------------*/
 
-	private final SelectionInterface selection;
+    private final SelectionInterface<MoveTypeInterface> selection;
 
-	@Override
-	public SelectionInterface selection() {
-		return this.selection;
-	}
+    @Override
+    public SelectionInterface<MoveTypeInterface> selection() {
+        return this.selection;
+    }
 
-	/*-------------------------------------8<-------------------------------------*/
+    /*-------------------------------------8<-------------------------------------*/
 
-	public Strategy(final EvaluationInterface evaluation, final SelectionInterface selection) {
-		this.evaluation = evaluation;
-		this.selection = selection;
-	}
+    public Strategy(final EvaluationInterface<MoveTypeInterface> evaluation, final SelectionInterface<MoveTypeInterface> selection) {
+        this.evaluation = evaluation;
+        this.selection = selection;
+    }
 
+    /*-------------------------------------8<-------------------------------------*/
 
-	/*-------------------------------------8<-------------------------------------*/
+    @Override
+    public Strategy apply(final EvaluationInterface<MoveTypeInterface> evaluation) {
+        return new Strategy(evaluation, this.selection());
+    }
 
-	@Override
-	public StrategyInterface apply(final EvaluationInterface evaluation) {
-		return new Strategy(evaluation, this.selection());
-	}
+    /*-------------------------------------8<-------------------------------------*/
 
-	/*-------------------------------------8<-------------------------------------*/
+    @Override
+    public Strategy apply(final SelectionInterface<MoveTypeInterface> selection) {
+        return new Strategy(this.evaluation(), selection);
+    }
 
-	@Override
-	public StrategyInterface apply(final SelectionInterface selection) {
-		return new Strategy(this.evaluation(), selection);
-	}
+    /*-------------------------------------8<-------------------------------------*/
 
-	/*-------------------------------------8<-------------------------------------*/
+    @Override
+    public Strategy apply() {
+        return this;
+    }
 
-	@Override
-	public StrategyInterface apply() {
-		return this;
-	}
+    /*-------------------------------------8<-------------------------------------*/
 
-	/*-------------------------------------8<-------------------------------------*/
+    @Override
+    public String toString() {
+        return "Strategy(" + this.evaluation.toString() + ", " + this.selection.toString() + ")";
+    }
 
-	@Override
-	public String toString() {
-		return "Strategy(" + this.evaluation.toString() + ", " + this.selection.toString() + ")";
-	}
+    /*-------------------------------------8<-------------------------------------*/
 
-	/*-------------------------------------8<-------------------------------------*/
-
-	@Override
-	public List<MoveTypeInterface> process(final ContextInterface gamePlay) {
-		final List<MoveTypeInterface> options = gamePlay.computePlayableMoves();
-		//return options.size() == 1 ? options : this.selection().process(this.evaluation().applyEvaluation(gamePlay, options));
-		return null;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
+    @Override
+    public List<MoveTypeInterface> process(final ContextInterface context) {
+        final List<MoveTypeInterface> options = context.playableMoves();
+        return options.size() == 1 ? options : this.selection().process(this.evaluation().process(context));
+    }
+    /*-------------------------------------8<-------------------------------------*/
 
 }

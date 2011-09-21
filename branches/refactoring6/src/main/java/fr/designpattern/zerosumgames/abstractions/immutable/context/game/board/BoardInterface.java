@@ -39,4 +39,8 @@ public interface BoardInterface extends CellManagerInterface<PositionInterface, 
 
     /*-------------------------------------8<-------------------------------------*/
 
+    int count(PieceInterface value); //TODO Map<PieceInterface, Integer> count(Set<PieceInterface> setOfValues);
+
+    /*-------------------------------------8<-------------------------------------*/
+
 }
