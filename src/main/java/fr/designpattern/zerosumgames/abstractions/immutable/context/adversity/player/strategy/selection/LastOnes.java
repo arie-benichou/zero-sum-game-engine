@@ -18,12 +18,11 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection;
 
 import java.util.List;
-import java.util.TreeMap;
 
-public class LastOnes<ITEM> implements SelectionInterface<ITEM> {
+public class LastOnes<OPTION> implements SelectionInterface<OPTION> {
 
-	@Override
-	public List<ITEM> process(final TreeMap<?, List<ITEM>> evaluatedItems) {
-		return evaluatedItems.lastEntry().getValue();
-	}
+    @Override
+    public List<OPTION> process(final List<List<OPTION>> evaluatedOptions) {
+        return evaluatedOptions.get(evaluatedOptions.size());
+    }
 }

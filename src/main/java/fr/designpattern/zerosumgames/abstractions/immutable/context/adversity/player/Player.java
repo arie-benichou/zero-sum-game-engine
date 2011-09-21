@@ -17,79 +17,79 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player;
 
+import java.util.List;
+
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.StrategyInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public final class Player implements PlayerInterface {
+public final class Player implements PlayerInterface<MoveTypeInterface> {
 
-	/*-------------------------------------8<-------------------------------------*/
+    /*-------------------------------------8<-------------------------------------*/
 
-	private final String name;
+    private final String name;
 
-	@Override
-	public final String name() {
-		return this.name;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
-	private final StrategyInterface strategy;
-
-	@Override
-	public final StrategyInterface strategy() {
-		return this.strategy;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
-	public static PlayerInterface from(final String name, final StrategyInterface strategy) {
-		return new Player(name, strategy);
-	}
-
-	private Player(final String name, final StrategyInterface strategy) {
-		this.name = name;
-		this.strategy = strategy;
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
-	@Override
-	public PlayerInterface apply() {
-		return this;
-	}
-
-	@Override
-	public PlayerInterface apply(final String name) {
-		return name == null || name.equals(this.name()) ? this.apply() : from(name, this.strategy());
-	}
-
-	@Override
-	public PlayerInterface apply(final StrategyInterface strategy) { // TODO equals pour strategy
-		return strategy == null || strategy.equals(this.strategy()) ? this.apply() : from(this.name(), strategy);
-	}
-
-	@Override
-	public PlayerInterface apply(final String name, final StrategyInterface strategy) {
-		return this.apply(name).apply(strategy); // TODO optimisable
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() + "(" + this.name() + ", " + this.strategy() + ")";
-	}
-
-	/*-------------------------------------8<-------------------------------------*/
-
-	/*
     @Override
-    public final MutationInterface applyStrategy(final ContextInterface context, final List<MutationInterface> mutations) {
-        return this.getStrategy().applyStrategy(context, mutations);
+    public final String name() {
+        return this.name;
     }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    private final StrategyInterface<MoveTypeInterface> strategy;
+
+    @Override
+    public final StrategyInterface<MoveTypeInterface> strategy() {
+        return this.strategy;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    public static PlayerInterface<MoveTypeInterface> from(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+        return new Player(name, strategy);
+    }
+
+    private Player(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+        this.name = name;
+        this.strategy = strategy;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public PlayerInterface<MoveTypeInterface> apply() {
+        return this;
+    }
+
+    @Override
+    public PlayerInterface<MoveTypeInterface> apply(final String name) {
+        return name == null || name.equals(this.name()) ? this.apply() : from(name, this.strategy());
+    }
+
+    @Override
+    public PlayerInterface<MoveTypeInterface> apply(final StrategyInterface<MoveTypeInterface> strategy) {
+        return strategy == null || strategy.equals(this.strategy()) ? this.apply() : from(this.name(), strategy);
+    }
+
+    @Override
+    public PlayerInterface<MoveTypeInterface> apply(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+        return this.apply(name).apply(strategy); // TODO optimisable
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public List<MoveTypeInterface> playFrom(final ContextInterface context) {
+        return this.strategy().process(context);
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
 
     @Override
     public String toString() {
-        return "Player(" + "\"" + this.name + "\"" + ", " + this.strategy + ")";
+        return this.getClass().getSimpleName() + "(" + this.name() + ", " + this.strategy() + ")";
     }
-	 */
+
+    /*-------------------------------------8<-------------------------------------*/
+
 }

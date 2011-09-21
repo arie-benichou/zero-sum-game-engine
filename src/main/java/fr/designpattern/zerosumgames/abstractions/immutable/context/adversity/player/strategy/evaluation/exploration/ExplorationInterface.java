@@ -3,13 +3,19 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.p
 
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public interface ExplorationInterface extends ImmutableInterface<ExplorationInterface> {
+public interface ExplorationInterface<OPTION> extends ImmutableInterface<ExplorationInterface<OPTION>> {
 
-	public ExplorationInterface apply(int maximalDepth);
-	int maximalDepth();
+    /*-------------------------------------8<-------------------------------------*/
 
-	Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalDepth);
+    public ExplorationInterface<OPTION> apply(int maximalOrdinal);
+
+    int maximalOrdinal();
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    Double evaluate(final ContextInterface context, final OPTION option, final int maximalOrdinal);
+
+    /*-------------------------------------8<-------------------------------------*/
 
 }

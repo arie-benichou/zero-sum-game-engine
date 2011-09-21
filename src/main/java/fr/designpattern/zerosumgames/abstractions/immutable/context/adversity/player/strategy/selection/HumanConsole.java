@@ -21,43 +21,42 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-public class HumanConsole<ITEM> implements SelectionInterface<ITEM> {
+public class HumanConsole<OPTION> implements SelectionInterface<OPTION> {
 
-	private ITEM askForSelection(final List<ITEM> evaluatedItems) {
-		ITEM selectedItem;
-		int n = 0;
-		final int numberOfDigits = (int) Math.log10(Math.abs(evaluatedItems.size())) + 1;
-		System.out.println("\nPlease, choose an option :");
-		for (final ITEM item : evaluatedItems)
-			System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, item);
-				System.out.println("\nWhat is your move ?");
-				final Scanner scanner = new Scanner(System.in);
-				int i = 0;
-				try {
-					i = scanner.nextInt();
-					if (i < 1 || i > evaluatedItems.size())
-						throw new InputMismatchException();
-					else
-						selectedItem = evaluatedItems.get(i - 1);
-				}
-				catch (final InputMismatchException e) {
-					System.out.println("\nThere is no such option.");
-					System.out.println("Please try again...");
-					selectedItem = this.askForSelection(evaluatedItems);
-				}
-				return selectedItem;
-	}
+    private OPTION askForSelection(final List<OPTION> evaluatedOptions) {
+        OPTION selectedItem;
+        int n = 0;
+        final int numberOfDigits = (int) Math.log10(Math.abs(evaluatedOptions.size())) + 1;
+        System.out.println("\nPlease, choose an option :");
+        for (final OPTION item : evaluatedOptions)
+            System.out.format(" %0" + numberOfDigits + "d: %s\n", ++n, item);
+        System.out.println("\nWhat is your choice ?");
+        final Scanner scanner = new Scanner(System.in);
+        int i = 0;
+        try {
+            i = scanner.nextInt();
+            if (i < 1 || i > evaluatedOptions.size())
+                throw new InputMismatchException();
+            else
+                selectedItem = evaluatedOptions.get(i - 1);
+        }
+        catch (final InputMismatchException e) {
+            System.out.println("\nThere is no such option.");
+            System.out.println("Please try again...");
+            selectedItem = this.askForSelection(evaluatedOptions);
+        }
+        return selectedItem;
+    }
 
-	@Override
-	public List<ITEM> process(final TreeMap<?, List<ITEM>> evaluatedItems) {
-		final ArrayList<ITEM> selectedItem = Lists.newArrayList();
-		selectedItem.add(this.askForSelection(Lists.newArrayList(Iterables.concat(evaluatedItems.values()))));
-		return selectedItem;
-	}
+    @Override
+    public List<OPTION> process(final List<List<OPTION>> evaluatedOptions) {
+        final ArrayList<OPTION> selectedItem = Lists.newArrayList();
+        selectedItem.add(this.askForSelection(Lists.newArrayList(Iterables.concat(evaluatedOptions))));
+        return selectedItem;
+    }
 
 }

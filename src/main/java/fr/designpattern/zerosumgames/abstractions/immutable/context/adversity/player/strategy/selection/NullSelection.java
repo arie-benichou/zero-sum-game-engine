@@ -18,17 +18,17 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection;
 
 import java.util.List;
-import java.util.TreeMap;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-public final class NullSelection<ITEM> implements SelectionInterface<ITEM> {
+public final class NullSelection<OPTION> implements SelectionInterface<OPTION> {
 
-	private NullSelection() {}
+    private NullSelection() {}
 
-	@Override
-	public List<ITEM> process(final TreeMap<?, List<ITEM>> evaluatedItems) {
-		return Lists.newArrayList(Iterables.concat(evaluatedItems.values()));
-	}
+    @Override
+    public List<OPTION> process(final List<List<OPTION>> evaluatedOptions) {
+        return Lists.newArrayList(Iterables.concat(evaluatedOptions));
+    }
+
 }

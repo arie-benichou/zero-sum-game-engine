@@ -17,48 +17,45 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player;
 
+import java.util.List;
+
+import fr.designpattern.zerosumgames.abstractions.immutable.Application;
+import fr.designpattern.zerosumgames.abstractions.immutable.Computation;
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.Value;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.StrategyInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 /**
  * This is the interface for a player.
  */
-public interface PlayerInterface extends ImmutableInterface<PlayerInterface> {
+public interface PlayerInterface<OPTION> extends ImmutableInterface<PlayerInterface<OPTION>> {
 
-	@Override
-	public PlayerInterface apply();
+    /*-------------------------------------8<-------------------------------------*/
 
-	/**
-	 * Returns the player's name.
-	 * 
-	 * @return the player's name
-	 */
-	String name();
+    @Value
+    String name();
 
+    @Value
+    StrategyInterface<MoveTypeInterface> strategy();
 
-	/**
-	 * Returns the player's strategy.
-	 * 
-	 * @return the player's strategy
-	 */
-	StrategyInterface strategy();
+    /*-------------------------------------8<-------------------------------------*/
 
-	PlayerInterface apply(String name);
+    @Application
+    PlayerInterface<OPTION> apply(String name);
 
-	PlayerInterface apply(StrategyInterface strategy);
+    @Application
+    PlayerInterface<OPTION> apply(StrategyInterface<MoveTypeInterface> strategy);
 
-	PlayerInterface apply(String name, StrategyInterface strategy);
+    @Application
+    PlayerInterface<OPTION> apply(String name, StrategyInterface<MoveTypeInterface> strategy);
 
-	/**
-	 * Returns the application of the player's strategy.
-	 * 
-	 * @param mutations
-	 *            a list of legal moves for this player
-	 * 
-	 * @return the application of the player's strategy
-	 * 
-	 * @todo passer également le contexte
-	 */
-	//MutationInterface applyStrategy(final ContextInterface context, List<MutationInterface> mutations);
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Computation
+    List<MoveTypeInterface> playFrom(final ContextInterface context);
+
+    /*-------------------------------------8<-------------------------------------*/
 
 }

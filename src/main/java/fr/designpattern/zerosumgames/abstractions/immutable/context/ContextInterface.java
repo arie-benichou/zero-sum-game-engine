@@ -40,4 +40,10 @@ public interface ContextInterface extends ImmutableInterface<ContextInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    Double getTerminalEvaluation();
+
+    Double getHeuristicEvaluation();
+
+    /*-------------------------------------8<-------------------------------------*/
+
 }
