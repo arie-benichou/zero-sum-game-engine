@@ -4,11 +4,11 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.google.common.collect.Maps;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.PlayerInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.Side;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-
-import com.google.common.collect.Maps;
 
 public final class Adversity implements AdversityInterface {
 
@@ -54,7 +54,8 @@ public final class Adversity implements AdversityInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    PlayerInterface player(final SideInterface side) {
+    @Override
+    public PlayerInterface player(final SideInterface side) {
         // TODO gérer le cas ou l'input est null
         return this.players.get(side);
         // TODO gérer le cas ou l'output est nul        

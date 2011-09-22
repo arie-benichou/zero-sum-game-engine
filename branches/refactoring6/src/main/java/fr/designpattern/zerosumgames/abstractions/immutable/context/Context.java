@@ -87,6 +87,16 @@ public final class Context implements ContextInterface {
         return this.apply(this.game().play(move));
     }
 
+    @Override
+    public Double getTerminalEvaluation() {
+        return this.game().referee().getTerminalEvaluation(this);
+    }
+
+    @Override
+    public Double getHeuristicEvaluation() {
+        return this.game().referee().getHeuristicEvaluation(this);
+    }
+
     /*-------------------------------------8<-------------------------------------*/
 
 }
