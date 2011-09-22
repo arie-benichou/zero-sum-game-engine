@@ -19,10 +19,10 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.p
 
 import java.util.List;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.Application;
-import fr.designpattern.zerosumgames.abstractions.immutable.Computation;
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.Value;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Application;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Computation;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Value;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.StrategyInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;

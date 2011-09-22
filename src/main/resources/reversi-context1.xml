@@ -157,7 +157,52 @@
 		factory-method="from">
 		<constructor-arg ref="side" />
 		<constructor-arg>
-			<null />
+			<bean
+				class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.Adversity"
+				factory-method="from">
+				<constructor-arg>
+					<list>
+						<bean
+							class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.Player"
+							factory-method="from">
+							<constructor-arg value="Player 1" />
+							<constructor-arg>
+								<bean
+									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<bean
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NegaMaxEvaluation" />
+									</constructor-arg>
+									<constructor-arg>
+										<bean
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection.FirstOnes"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+						<bean
+							class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.Player"
+							factory-method="from">
+							<constructor-arg value="Player 2" />
+							<constructor-arg>
+								<bean
+									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<!--<bean class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NullEvaluation" 
+											/> -->
+										<bean
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NegaMaxEvaluation" />
+									</constructor-arg>
+									<constructor-arg>
+										<bean
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection.FirstOnes"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+					</list>
+				</constructor-arg>
+			</bean>
 		</constructor-arg>
 		<constructor-arg>
 			<bean

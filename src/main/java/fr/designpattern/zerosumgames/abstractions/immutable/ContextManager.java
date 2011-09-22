@@ -104,7 +104,23 @@ public final class ContextManager implements ContextManagerInterface {
         System.out.println("\nLegal moves for " + context.side() + " : ");
         this.renderBoard(context.game().board().apply(BoardMutation.from(map)));
         /*-------------------------------------8<-------------------------------------*/
-        final MoveTypeInterface moveType = playableMoves.get(0);
+
+        final List<MoveTypeInterface> choosenMoves = this.context().adversity().player(this.context().side()).playFrom(this.context());
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        System.out.println("choosenMoves: " + choosenMoves);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        final MoveTypeInterface moveType = choosenMoves.get(0);
+
+        /*-------------------------------------8<-------------------------------------*/
+
+        System.out.println("\n" + moveType + "\n");
+
+        /*-------------------------------------8<-------------------------------------*/
+
         System.out.println(moveType);
         // TODO faire au moins un MoveService
         final MoveInterface move = Move.from(moveType, moveType.value().computeBoardMutation(context.side(), context.game().board()));
