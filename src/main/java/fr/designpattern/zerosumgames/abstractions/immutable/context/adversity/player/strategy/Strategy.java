@@ -84,7 +84,23 @@ public final class Strategy implements StrategyInterface<MoveTypeInterface> {
     @Override
     public List<MoveTypeInterface> process(final ContextInterface context) {
         final List<MoveTypeInterface> options = context.playableMoves();
-        return options.size() == 1 ? options : this.selection().process(this.evaluation().process(context));
+
+        System.out.println(options);
+
+        //return options.size() == 1 ? options : this.selection().process(this.evaluation().process(context));
+        if (options.size() == 1)
+            return options;
+
+        final List<List<MoveTypeInterface>> _evaluation = this.evaluation().process(context);
+
+        System.out.println(_evaluation);
+
+        final List<MoveTypeInterface> _selection = this.selection().process(_evaluation);
+
+        System.out.println(_selection);
+
+        return _selection;
+
     }
     /*-------------------------------------8<-------------------------------------*/
 
