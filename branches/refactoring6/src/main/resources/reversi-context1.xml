@@ -188,10 +188,8 @@
 								<bean
 									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
 									<constructor-arg>
-										<!--<bean class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NullEvaluation" 
-											/> -->
 										<bean
-											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NegaMaxEvaluation" />
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NullEvaluation" />
 									</constructor-arg>
 									<constructor-arg>
 										<bean

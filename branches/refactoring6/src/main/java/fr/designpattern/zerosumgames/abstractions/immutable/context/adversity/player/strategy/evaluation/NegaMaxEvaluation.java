@@ -38,14 +38,14 @@ public class NegaMaxEvaluation implements EvaluationInterface<MoveTypeInterface>
     }
 
     public NegaMaxEvaluation() {
-        this.explorationType = new NegaMaxExploration(1);
+        this.explorationType = new NegaMaxExploration(8);
     }
 
     @Override
     public List<List<MoveTypeInterface>> process(final ContextInterface context) {
         final TreeMap<Double, List<MoveTypeInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
         for (final MoveTypeInterface option : context.playableMoves()) {
-            final Double score = this.explorationType.evaluate(context, option, 1);
+            final Double score = this.explorationType.evaluate(context, option, 8);
             final List<MoveTypeInterface> value = map.get(score);
             if (value == null)
                 map.put(score, Lists.newArrayList(option));

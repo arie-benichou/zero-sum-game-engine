@@ -7,6 +7,8 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.AdversityInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.PlayerInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.type.PieceType;
@@ -104,25 +106,17 @@ public final class ContextManager implements ContextManagerInterface {
         System.out.println("\nLegal moves for " + context.side() + " : ");
         this.renderBoard(context.game().board().apply(BoardMutation.from(map)));
         /*-------------------------------------8<-------------------------------------*/
+        final AdversityInterface adversity = context.adversity();
+        final PlayerInterface<MoveTypeInterface> player = adversity.player(context.side());
 
-        final List<MoveTypeInterface> choosenMoves = this.context().adversity().player(this.context().side()).playFrom(this.context());
+        System.out.println(player);
 
+        final List<MoveTypeInterface> choosenMoves = player.playFrom(context);
         /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println("choosenMoves: " + choosenMoves);
-
-        /*-------------------------------------8<-------------------------------------*/
-
+        System.out.println(choosenMoves);
         final MoveTypeInterface moveType = choosenMoves.get(0);
-
         /*-------------------------------------8<-------------------------------------*/
-
-        System.out.println("\n" + moveType + "\n");
-
-        /*-------------------------------------8<-------------------------------------*/
-
         System.out.println(moveType);
-        // TODO faire au moins un MoveService
         final MoveInterface move = Move.from(moveType, moveType.value().computeBoardMutation(context.side(), context.game().board()));
         /*-------------------------------------8<-------------------------------------*/
         final long t0 = System.currentTimeMillis();

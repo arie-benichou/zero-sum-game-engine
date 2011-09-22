@@ -62,13 +62,15 @@ public final class NegaMaxExploration implements ExplorationInterface<MoveTypeIn
         if (newContext.isOver()) return newContext.getTerminalEvaluation();
         if (maximalOrdinal == 1) return newContext.getHeuristicEvaluation();
 
-        Double bestEvaluation = 1.0; // TODO tenter une version immutable
-        for (final MoveTypeInterface oppositeSideOption : newContext.playableMoves())
-            bestEvaluation = Math.min(bestEvaluation, -this.evaluate(newContext, oppositeSideOption, maximalOrdinal - 1));
+        // TODO playableMoves(SideInterface side) et passer side en argument à evaluate(...)    
+        final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
+
+        Double bestEvaluation = 1.0; // TODO tenter une version immutable        
+        for (final MoveTypeInterface oppositeSideOption : newContextForOppositeSide.playableMoves())
+            bestEvaluation = Math.min(bestEvaluation, -this.evaluate(newContextForOppositeSide, oppositeSideOption, maximalOrdinal - 1));
         return bestEvaluation;
 
     }
-
     /*-------------------------------------8<-------------------------------------*/
 
 }

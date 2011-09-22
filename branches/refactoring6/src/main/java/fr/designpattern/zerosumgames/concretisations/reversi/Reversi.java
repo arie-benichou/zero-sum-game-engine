@@ -23,9 +23,6 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
-import akka.actor.ActorRef;
-import akka.actor.Actors;
-import akka.remoteinterface.RemoteServerModule;
 import fr.designpattern.zerosumgames.abstractions.immutable.ContextManager;
 import fr.designpattern.zerosumgames.abstractions.immutable.ContextManagerInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.Context;
@@ -43,7 +40,6 @@ class Reversi {
     /*-------------------------------------8<-------------------------------------*/
 
     public static void task1() {
-
         /*-------------------------------------8<-------------------------------------*/
         final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context1.xml"));
         /*-------------------------------------8<-------------------------------------*/
@@ -59,14 +55,22 @@ class Reversi {
         // TODO charger directement un bean ContextManager
         final ContextManagerInterface contextManager = ContextManager.from(gameplay, symbols);
         /*-------------------------------------8<-------------------------------------*/
+        contextManager.start();
+        /*-------------------------------------8<-------------------------------------*
         final SignalInterface signal = new mySignal(contextManager);
         final RemoteServerModule remoteServerModule = Actors.remote().start();
         remoteServerModule.register("hello-service", Actors.actorOf(myActor.class));
         final ActorRef actor = Actors.remote().actorFor("hello-service", "localhost", 2552);
         actor.sendOneWay(signal);
-        System.out.println("\n main1 is in the pipe !\n");
+        System.out.println("\n It's in the pipe !\n");
+        /*-------------------------------------8<-------------------------------------*
+        final SignalInterface signal2 = new mySignal(contextManager);
+        final RemoteServerModule remoteServerModule2 = Actors.remote().start();
+        remoteServerModule2.register("hello-service", Actors.actorOf(myActor.class));
+        final ActorRef actor2 = Actors.remote().actorFor("hello-service", "localhost", 2552);
+        actor2.sendOneWay(signal2);
+        System.out.println("\n It's in the pipe !\n");
         /*-------------------------------------8<-------------------------------------*/
-
     }
 
     public static void task2() {
