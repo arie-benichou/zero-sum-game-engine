@@ -14,6 +14,9 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 import fr.designpattern.zerosumgames.concretisations.reversi.context.moves.ReversiMove;
@@ -25,6 +28,8 @@ import fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.Reve
 public final class ReversiReferee implements RefereeInterface {
 
     private final static RefereeInterface INSTANCE = new ReversiReferee();
+
+    private final static MoveInterface NULL_MOVE = Move.from(MoveType.from(ReversiNullMove.class), BoardMutation.NULL); // TODO à revoir
 
     public static RefereeInterface from() {
         return INSTANCE;
@@ -63,8 +68,9 @@ public final class ReversiReferee implements RefereeInterface {
     }
 
     @Override
-    public boolean isGamePlayOver(final BoardInterface board, final SideInterface side) {
-        return !this.isPlayable(board, side) && !this.isPlayable(board, side.opposite());
+    public boolean isGamePlayOver(final ContextInterface context) {
+        if (context.history().size() > 1 && context.history().head().equals(NULL_MOVE) && context.history().tail().head().equals(NULL_MOVE)) return true;
+        return !this.isPlayable(context.game().board(), context.side()) && !this.isPlayable(context.game().board(), context.side().opposite());
     }
 
     /*-------------------------------------8<-------------------------------------*/

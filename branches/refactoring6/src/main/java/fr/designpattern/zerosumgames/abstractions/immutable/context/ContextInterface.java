@@ -3,6 +3,7 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context;
 
 import java.util.List;
 
+import scala.collection.immutable.Stack;
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.AdversityInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.GameInterface;
@@ -45,5 +46,9 @@ public interface ContextInterface extends ImmutableInterface<ContextInterface> {
     Double getHeuristicEvaluation();
 
     /*-------------------------------------8<-------------------------------------*/
+
+    Stack<MoveInterface> history();
+
+    ContextInterface apply(GameInterface game, Stack<MoveInterface> history);
 
 }

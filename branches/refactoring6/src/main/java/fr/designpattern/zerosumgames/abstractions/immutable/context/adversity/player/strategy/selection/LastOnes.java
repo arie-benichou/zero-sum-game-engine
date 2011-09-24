@@ -23,9 +23,6 @@ public class LastOnes<OPTION> implements SelectionInterface<OPTION> {
 
     @Override
     public List<OPTION> process(final List<List<OPTION>> evaluatedOptions) {
-
-        System.out.println(evaluatedOptions.size());
-
         return evaluatedOptions.get(evaluatedOptions.size() - 1);
     }
 }

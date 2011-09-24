@@ -17,18 +17,13 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.ContextManagerInterface;
-import annotations.Immutable;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
-@Immutable
 public class IterativeDeepening<T> implements EvaluationInterface<T> {
 
+    /*
     private final EvaluationInterface<T> evaluator;
 
     @Override
@@ -58,6 +53,19 @@ public class IterativeDeepening<T> implements EvaluationInterface<T> {
     @Override
     public final String toString() {
         return this.getClass().getSimpleName();
+    }
+    */
+
+    @Override
+    public EvaluationInterface<T> apply() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<List<T>> process(final ContextInterface context) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
