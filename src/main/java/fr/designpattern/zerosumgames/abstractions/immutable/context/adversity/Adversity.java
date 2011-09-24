@@ -62,9 +62,6 @@ public final class Adversity implements AdversityInterface {
     @Override
     public PlayerInterface<MoveTypeInterface> player(final SideInterface side) {
         // TODO gérer le cas ou l'input est null
-
-        System.out.println(side);
-        System.out.println(this.players);
         return this.players.get(side);
         // TODO gérer le cas ou l'output est nul        
     }

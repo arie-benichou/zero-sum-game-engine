@@ -3,6 +3,7 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.game;
 
 import java.util.List;
 
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
@@ -60,10 +61,12 @@ public class Game implements GameInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    /*
     @Override
     public boolean isGameOver(final SideInterface side) {
         return this.referee().isGamePlayOver(this.board(), side);
     }
+    */
 
     @Override
     public List<MoveTypeInterface> playableMoves(final SideInterface side) {
@@ -74,6 +77,12 @@ public class Game implements GameInterface {
     public GameInterface play(final MoveInterface move) {
         return this.apply(this.board().apply(move.mutation()));
     }
+
     /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public boolean isGameOver(final ContextInterface context) {
+        return this.referee().isGamePlayOver(context);
+    }
 
 }

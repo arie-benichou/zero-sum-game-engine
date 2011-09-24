@@ -44,8 +44,8 @@ public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
     // TODO l'arbitre devrait prendre en argument uniquement un objet Context    
     boolean isPlayable(final BoardInterface board, final SideInterface side);
 
-    // TODO l'arbitre devrait prendre en argument uniquement un objet Context    
-    boolean isGamePlayOver(final BoardInterface board, final SideInterface side);
+    //boolean isGamePlayOver(final BoardInterface board, final SideInterface side);
+    boolean isGamePlayOver(ContextInterface context);
 
     /*-------------------------------------8<-------------------------------------*/
     // TODO ?? responsabilité du referee

@@ -109,14 +109,14 @@ public final class ContextManager implements ContextManagerInterface {
         final AdversityInterface adversity = context.adversity();
         final PlayerInterface<MoveTypeInterface> player = adversity.player(context.side());
 
-        System.out.println(player);
+        //System.out.println(player);
 
         final List<MoveTypeInterface> choosenMoves = player.playFrom(context);
         /*-------------------------------------8<-------------------------------------*/
-        System.out.println(choosenMoves);
+        //System.out.println(choosenMoves);
         final MoveTypeInterface moveType = choosenMoves.get(0);
         /*-------------------------------------8<-------------------------------------*/
-        System.out.println(moveType);
+        //System.out.println(moveType);
         final MoveInterface move = Move.from(moveType, moveType.value().computeBoardMutation(context.side(), context.game().board()));
         /*-------------------------------------8<-------------------------------------*/
         final long t0 = System.currentTimeMillis();
@@ -132,9 +132,12 @@ public final class ContextManager implements ContextManagerInterface {
     @Override
     public void start() {
         System.out.println("START");
+        final long t0 = System.currentTimeMillis();
         final ContextInterface finalContext = this.startFrom(this.context());
+        final long t1 = System.currentTimeMillis();
         this.renderBoard(finalContext.game().board());
         System.out.println("OVER");
+        System.out.println((t1 - t0) / 1000 + " secondes");
     }
 
     @Override

@@ -2,6 +2,7 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 public final class NullExploration<OPTION> implements ExplorationInterface<OPTION> {
 
@@ -24,6 +25,12 @@ public final class NullExploration<OPTION> implements ExplorationInterface<OPTIO
 
     @Override
     public Double evaluate(final ContextInterface context, final OPTION option, final int maximalOrdinal) {
+        return 0.0;
+    }
+
+    @Override
+    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal, final Double worstScore,
+            final Double bestScore) {
         return 0.0;
     }
 
