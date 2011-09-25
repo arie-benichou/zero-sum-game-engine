@@ -1,22 +1,24 @@
 
 package fr.designpattern.zerosumgames.concretisations.reversi.context.moves;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
 
 public final class ReversiNullMove implements ReversiMoveTypeInterface {
 
-    private final static ReversiMoveTypeInterface INSTANCE = new ReversiNullMove();
+    private final ContextInterface context;
 
-    public final static ReversiMoveTypeInterface from() {
-        return INSTANCE;
+    public final static ReversiMoveTypeInterface from(final ContextInterface context) {
+        return new ReversiNullMove(context);
     }
 
-    private ReversiNullMove() {}
+    private ReversiNullMove(final ContextInterface context) {
+        this.context = context;
+    }
 
     @Override
     public ReversiMoveTypeInterface apply() {
@@ -34,7 +36,7 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
     }
 
     @Override
-    public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+    public BoardMutationInterface boardMutation(/*final SideInterface side, final BoardInterface board*/) {
         return BoardMutation.NULL;
     }
 
@@ -53,6 +55,21 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
         if (object == this) return true;
         if (object == null) return false;
         if (!(object instanceof ReversiNullMove)) return false;
+        return true;
+    }
+
+    @Override
+    public int compareTo(final ConcreteMoveTypeInterface that) {
+        return 1;
+    }
+
+    @Override
+    public ContextInterface context() {
+        return this.context;
+    }
+
+    @Override
+    public boolean isNull() {
         return true;
     }
 

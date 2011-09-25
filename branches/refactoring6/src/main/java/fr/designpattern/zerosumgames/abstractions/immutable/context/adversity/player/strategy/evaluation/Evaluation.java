@@ -34,36 +34,37 @@ import com.google.common.collect.Maps;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationThread;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterface<MoveTypeInterface> {
+public final class Evaluation implements EvaluationInterface<MoveTypeInterface> {
 
-    private static final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
-    private static final int MAX = 9;
+    private final ExplorationInterface<MoveTypeInterface> explorationType;
 
-    final ExplorationInterface<MoveTypeInterface> explorationType;
+    @Override
+    public int maximalOdinal() {
+        return this.explorationType.maximalOrdinal();
+    }
 
     @Override
     public EvaluationInterface<MoveTypeInterface> apply() {
         return this;
     }
 
-    public NegaMaxAlphaBetaMultiThreadEvaluation() {
-        this.explorationType = new NegaMaxAlphaBetaExploration(MAX);
+    public Evaluation(final ExplorationInterface<MoveTypeInterface> explorationType) {
+        this.explorationType = explorationType;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> givenOptions) {
         /*-------------------------------------8<-------------------------------------*/
-        final List<MoveTypeInterface> playableMoves = context.playableMoves();
-        /*-------------------------------------8<-------------------------------------*/
-        //final ExecutorService executor = Executors.newSingleThreadExecutor();
-        final ExecutorService executor = Executors.newFixedThreadPool(playableMoves.size()); // TODO trouver le facteur dynamiquement        
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        //final ExecutorService executor = Executors.newFixedThreadPool(givenOptions.size());
         /*-------------------------------------8<-------------------------------------*/
         final Builder<Future<Entry<MoveTypeInterface, Double>>> listBuilder = new ImmutableList.Builder<Future<Entry<MoveTypeInterface, Double>>>();
-        for (final MoveTypeInterface option : playableMoves)
-            listBuilder.add(executor.submit(new ExplorationThread(context, this.explorationType, option, MAX, -1.0, 1.0)));
+        for (final MoveTypeInterface option : givenOptions) {
+            //listBuilder.add(executor.submit(new ExplorationThread(context, exploration, option, maximalOrdinal)));
+            listBuilder.add(executor.submit(new ExplorationThread(context, this.explorationType, option, maximalOdinal)));
+        }
         /*-------------------------------------8<-------------------------------------*/
         executor.shutdown();
         final ImmutableList<Future<Entry<MoveTypeInterface, Double>>> list = listBuilder.build();
@@ -87,13 +88,25 @@ public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterfac
             }
         }
         /*-------------------------------------8<-------------------------------------*/
-        if (list.size() != playableMoves.size()) { throw new RuntimeException("Double-entries!!!"); }
+        if (list.size() != givenOptions.size()) { throw new RuntimeException("Double-entries !!!"); }
+        /*-------------------------------------8<-------------------------------------*/
+
         /*-------------------------------------8<-------------------------------------*/
         final List<List<MoveTypeInterface>> evaluation = Lists.newArrayList();
         for (final List<MoveTypeInterface> items : map.values())
             evaluation.add(items);
         /*-------------------------------------8<-------------------------------------*/
         return evaluation;
+    }
+
+    @Override
+    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
+        return this.process(context, maximalOdinal, context.playableMoves());
+    }
+
+    @Override
+    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+        return this.process(context, this.maximalOdinal());
     }
 
     @Override

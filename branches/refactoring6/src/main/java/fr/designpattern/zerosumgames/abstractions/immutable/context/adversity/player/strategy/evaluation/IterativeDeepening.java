@@ -17,55 +17,63 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public class IterativeDeepening<T> implements EvaluationInterface<T> {
+public class IterativeDeepening implements EvaluationInterface<MoveTypeInterface> {
 
-    /*
-    private final EvaluationInterface<T> evaluator;
+    private final EvaluationInterface<MoveTypeInterface> evaluation;
 
-    @Override
-    public int getMaximalDepth() {
-        return this.evaluator.getMaximalDepth();
-    }
-
-    public IterativeDeepening(final EvaluationInterface<T> evaluator) {
-        this.evaluator = evaluator;
+    public IterativeDeepening(final EvaluationInterface<MoveTypeInterface> evaluation) {
+        this.evaluation = evaluation;
     }
 
     @Override
-    public List<List<T>> evaluate(final ContextManagerInterface context, final List<T> options, final int maximalDepth) {
-        int maximalLocalDepth = 0;
-        List<List<T>> evaluation = new ArrayList<List<T>>();
-        evaluation.add(options);
-        while (maximalLocalDepth < maximalDepth)
-            evaluation = this.evaluator.evaluate(context, Lists.newArrayList(Iterables.concat(evaluation)), ++maximalLocalDepth);
+    public EvaluationInterface<MoveTypeInterface> apply() {
+        return this;
+    }
+
+    @Override
+    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> givenOptions) {
+        int localMaximalOrdinal = 0;
+        List<List<MoveTypeInterface>> evaluation = new ArrayList<List<MoveTypeInterface>>();
+        evaluation.add(givenOptions);
+        while (localMaximalOrdinal < maximalOdinal) {
+            System.out.println("LEVEL : " + (localMaximalOrdinal + 1) + " / " + this.maximalOdinal());
+            evaluation = this.evaluation.process(context, ++localMaximalOrdinal, Lists.newArrayList(Iterables.concat(evaluation)));
+            /*
+            System.out.println();
+            System.out.println(evaluation);
+            System.out.println();
+            */
+        }
         return evaluation;
     }
 
     @Override
-    public List<List<T>> process(final ContextManagerInterface context, final List<T> options) {
-        return this.evaluate(context, options, this.getMaximalDepth());
+    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
+        return this.process(context, this.maximalOdinal(), context.playableMoves());
+    }
+
+    @Override
+    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+        return this.process(context, this.maximalOdinal());
     }
 
     @Override
     public final String toString() {
         return this.getClass().getSimpleName();
     }
-    */
 
     @Override
-    public EvaluationInterface<T> apply() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<List<T>> process(final ContextInterface context) {
-        // TODO Auto-generated method stub
-        return null;
+    public int maximalOdinal() {
+        return this.evaluation.maximalOdinal();
     }
 
 }

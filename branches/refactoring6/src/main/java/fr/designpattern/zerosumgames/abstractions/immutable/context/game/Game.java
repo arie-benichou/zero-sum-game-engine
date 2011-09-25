@@ -5,7 +5,6 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
@@ -69,8 +68,8 @@ public class Game implements GameInterface {
     */
 
     @Override
-    public List<MoveTypeInterface> playableMoves(final SideInterface side) {
-        return this.referee().playableMoves(this.board(), side);
+    public List<MoveTypeInterface> playableMoves(final ContextInterface context) {
+        return this.referee().playableMoves(context);
     }
 
     @Override

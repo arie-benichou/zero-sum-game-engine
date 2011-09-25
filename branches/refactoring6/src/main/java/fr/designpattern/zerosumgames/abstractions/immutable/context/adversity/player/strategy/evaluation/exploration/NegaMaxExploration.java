@@ -56,7 +56,7 @@ public final class NegaMaxExploration implements ExplorationInterface<MoveTypeIn
     @Override
     public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal) {
 
-        final MoveInterface move = Move.from(option, option.value().computeBoardMutation(context.side(), context.game().board())); // TODO pas normal de devoir faire tout ça
+        final MoveInterface move = Move.from(option, option.value().boardMutation()); // TODO ?? MoveType -> Move
         final ContextInterface newContext = context.play(move);
 
         if (newContext.isOver()) return newContext.getTerminalEvaluation();
@@ -75,10 +75,10 @@ public final class NegaMaxExploration implements ExplorationInterface<MoveTypeIn
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal, final Double worstScore,
-            final Double bestScore) {
-        // TODO Auto-generated method stub
-        return null;
+    public Double evaluate(final ContextInterface context, final MoveTypeInterface option) {
+        return this.evaluate(context, option, this.maximalOrdinal());
     }
+
+    /*-------------------------------------8<-------------------------------------*/
 
 }

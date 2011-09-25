@@ -143,4 +143,11 @@ public final class Move implements MoveInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    @Override
+    public boolean isNull() {
+        return this.type().value().isNull();
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
 }

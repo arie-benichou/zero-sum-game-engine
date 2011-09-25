@@ -188,20 +188,16 @@
 								<bean
 									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
 									<constructor-arg>
+
 										<bean
-											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.IterativeDeepening">
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.Evaluation">
 											<constructor-arg>
 												<bean
-													class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.Evaluation">
-													<constructor-arg>
-														<bean
-															class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
-															<constructor-arg value="4"></constructor-arg>
-														</bean>
-													</constructor-arg>
-
+													class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
+													<constructor-arg value="12"></constructor-arg>
 												</bean>
 											</constructor-arg>
+
 										</bean>
 
 									</constructor-arg>

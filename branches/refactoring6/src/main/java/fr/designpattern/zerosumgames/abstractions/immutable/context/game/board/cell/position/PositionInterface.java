@@ -25,4 +25,6 @@ public interface PositionInterface extends ImmutableInterface<PositionInterface>
 
     /*-------------------------------------8<-------------------------------------*/
 
+    boolean isNull();
+
 }

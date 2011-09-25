@@ -17,6 +17,8 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration;
 
+import java.util.List;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
@@ -53,17 +55,10 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
 
     /*-------------------------------------8<-------------------------------------*/
 
-    @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal) {
-        System.out.println(this.getClass().getSimpleName());
-        return this.evaluate(context, option, maximalOrdinal, -1.0, 1.0);
-    }
-
-    @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal, final Double worstScore,
+    private Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal, final Double worstScore,
             final Double bestScore) {
 
-        final MoveInterface move = Move.from(option, option.value().computeBoardMutation(context.side(), context.game().board())); // TODO pas normal de devoir faire tout ça
+        final MoveInterface move = Move.from(option, option.value().boardMutation()); // TODO ?? MoveType -> Move
         final ContextInterface newContext = context.play(move);
 
         if (newContext.isOver()) return newContext.getTerminalEvaluation();
@@ -72,8 +67,23 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         // TODO playableMoves(SideInterface side) et passer side en argument à evaluate(...)    
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
 
+        final List<MoveTypeInterface> movesForOppositeSide = newContextForOppositeSide.playableMoves();
+        //Collections.sort(movesForOppositeSide);
+
+        /*
+        System.out.println();
+        System.out.println(movesForOppositeSide);
+        Collections.sort(movesForOppositeSide);
+        System.out.println(movesForOppositeSide);
+        System.out.println();
+        for (final MoveTypeInterface oppositeSideOption : movesForOppositeSide) {
+            System.out.println(oppositeSideOption.value().boardMutation().value().size());
+        }
+        System.out.println();
+        */
+
         Double bestEvaluation = bestScore; // TODO tenter une version immutable        
-        for (final MoveTypeInterface oppositeSideOption : newContextForOppositeSide.playableMoves()) {
+        for (final MoveTypeInterface oppositeSideOption : movesForOppositeSide) {
             bestEvaluation = Math.min(bestEvaluation,
                     -this.evaluate(newContextForOppositeSide, oppositeSideOption, maximalOrdinal - 1, -bestEvaluation, -worstScore));
             if (bestEvaluation <= worstScore)
@@ -82,6 +92,21 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         return bestEvaluation;
 
     }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal) {
+        return this.evaluate(context, option, maximalOrdinal, -1.0, 1.0); // TODO extract constants
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public Double evaluate(final ContextInterface context, final MoveTypeInterface option) {
+        return this.evaluate(context, option, this.maximalOrdinal());
+    }
+
     /*-------------------------------------8<-------------------------------------*/
 
 }

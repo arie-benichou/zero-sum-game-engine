@@ -48,7 +48,7 @@ public final class SomeConcreteMoveType implements ConcreteMoveTypeInterface {
     }
 
     @Override
-    public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+    public BoardMutationInterface boardMutation(final SideInterface side, final BoardInterface board) {
         final HashMap<PositionInterface, PieceInterface> maps = Maps.newHashMap();
         maps.put(this.position(), Piece.NULL);
         return BoardMutation.from(maps);

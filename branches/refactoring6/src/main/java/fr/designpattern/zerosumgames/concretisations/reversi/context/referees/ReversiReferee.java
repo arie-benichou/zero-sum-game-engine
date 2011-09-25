@@ -14,9 +14,6 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 import fr.designpattern.zerosumgames.concretisations.reversi.context.moves.ReversiMove;
@@ -29,7 +26,7 @@ public final class ReversiReferee implements RefereeInterface {
 
     private final static RefereeInterface INSTANCE = new ReversiReferee();
 
-    private final static MoveInterface NULL_MOVE = Move.from(MoveType.from(ReversiNullMove.class), BoardMutation.NULL); // TODO à revoir
+    //private final static MoveInterface NULL_MOVE = Move.from(MoveType.from(ReversiNullMove.class), BoardMutation.NULL); // TODO à revoir
 
     public static RefereeInterface from() {
         return INSTANCE;
@@ -42,6 +39,7 @@ public final class ReversiReferee implements RefereeInterface {
         return this;
     }
 
+    /*
     @Override
     public List<MoveTypeInterface> playableMoves(final BoardInterface board, final SideInterface side) {
         final List<MoveTypeInterface> moveTypes = Lists.newArrayList();
@@ -54,6 +52,7 @@ public final class ReversiReferee implements RefereeInterface {
         moveTypes.add(MoveType.from(ReversiNullMove.class)); // TODO utiliser ReversiMove.NULL
         return moveTypes;
     }
+    */
 
     @Override
     public boolean isPlayable(final BoardInterface board, final SideInterface side) {
@@ -69,7 +68,7 @@ public final class ReversiReferee implements RefereeInterface {
 
     @Override
     public boolean isOver(final ContextInterface context) {
-        if (context.history().size() > 1 && context.history().head().equals(NULL_MOVE) && context.history().tail().head().equals(NULL_MOVE)) return true;
+        if (context.history().size() > 1 && context.history().head().isNull() && context.history().tail().head().isNull()) return true;
         return !this.isPlayable(context.game().board(), context.side()) && !this.isPlayable(context.game().board(), context.side().opposite());
     }
 
@@ -90,6 +89,22 @@ public final class ReversiReferee implements RefereeInterface {
         final Double evaluation = this.heuristicEvaluation(context);
         return evaluation == 0.0 ? context.game().board().count(Piece.from(Side.NULL, PieceType.from(ReversiNullPiece.class)))
                 / (-10.0 * context.game().board().numberOfCells()) : evaluation;
+    }
+
+    @Override
+    public List<MoveTypeInterface> playableMoves(final ContextInterface context) {
+        final List<MoveTypeInterface> moveTypes = Lists.newArrayList();
+        for (int row = 1; row <= context.game().board().rows(); ++row)
+            for (int column = 1; column <= context.game().board().columns(); ++column) {
+                final PositionInterface position = Position.from(row, column);
+                if (((ReversiPieceTypeInterface) context.game().board().cell(position).value().type().value()).hasApplication(context.side(), context.game()
+                        .board(), position))
+                    moveTypes.add(MoveType.from(ReversiMove.from(context, position)));
+            }
+        // TODO utiliser ReversiMove.NULL
+        // ?? TODO injecter le contexte également
+        moveTypes.add(MoveType.from(ReversiNullMove.from(context)));
+        return moveTypes;
     }
 
     /*-------------------------------------8<-------------------------------------*/
