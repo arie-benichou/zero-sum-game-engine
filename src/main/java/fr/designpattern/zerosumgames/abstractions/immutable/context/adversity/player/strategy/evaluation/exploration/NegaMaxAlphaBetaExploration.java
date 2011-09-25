@@ -17,6 +17,7 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
@@ -68,7 +69,7 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
 
         final List<MoveTypeInterface> movesForOppositeSide = newContextForOppositeSide.playableMoves();
-        //Collections.sort(movesForOppositeSide);
+        Collections.sort(movesForOppositeSide);
 
         /*
         System.out.println();

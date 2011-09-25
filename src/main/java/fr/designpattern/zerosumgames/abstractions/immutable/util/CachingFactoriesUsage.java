@@ -22,7 +22,7 @@ public class CachingFactoriesUsage {
         System.out.println("Position.Factory      : " + Position.Factory.cacheHits() + " / " + Position.Factory.size());
         System.out.println("BoardCell.Factory     : " + BoardCell.Factory.cacheHits() + " / " + BoardCell.Factory.size());
         System.out.println();
-        System.out.println("BoardMutation instances      : " + BoardMutation.instances);
+        System.out.println("BoardMutation instances : " + BoardMutation.instances);
         System.out.println();
         System.out.println("MoveType.Factory        : " + MoveType.Factory.cacheHits() + " / " + MoveType.Factory.size());
         System.out.println("MoveType instances      : " + MoveType.instances);

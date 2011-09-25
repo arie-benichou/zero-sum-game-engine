@@ -1,6 +1,7 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -140,9 +141,13 @@ public final class ContextManager implements ContextManagerInterface {
         final long t1 = System.currentTimeMillis();
 
         this.renderBoard(finalContext.game().board());
-        System.out.println("OVER");
 
-        System.out.println((t1 - t0) / 1000 + " secondes");
+        System.out.println("\n--------------------8<--------------------\n");
+        System.out.println("Game Over !");
+        System.out.println("Temps de la partie : " + (t1 - t0) / 1000 + " secondes");
+        final double scoreGame = (1 + Math.abs(finalContext.getHeuristicEvaluation())) * 10;
+        System.out.println("Note du résultat de la partie : " + NumberFormat.getInstance().format(scoreGame) + " / 20");
+        System.out.println("\n-------------------->8--------------------\n");
 
         CachingFactoriesUsage.show();
 

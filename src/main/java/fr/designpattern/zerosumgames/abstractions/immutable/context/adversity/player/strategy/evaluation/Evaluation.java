@@ -17,6 +17,7 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -57,8 +58,8 @@ public final class Evaluation implements EvaluationInterface<MoveTypeInterface> 
     @Override
     public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> givenOptions) {
         /*-------------------------------------8<-------------------------------------*/
-        final ExecutorService executor = Executors.newSingleThreadExecutor();
-        //final ExecutorService executor = Executors.newFixedThreadPool(givenOptions.size());
+        //final ExecutorService executor = Executors.newSingleThreadExecutor();
+        final ExecutorService executor = Executors.newFixedThreadPool(givenOptions.size());
         /*-------------------------------------8<-------------------------------------*/
         final Builder<Future<Entry<MoveTypeInterface, Double>>> listBuilder = new ImmutableList.Builder<Future<Entry<MoveTypeInterface, Double>>>();
         for (final MoveTypeInterface option : givenOptions) {
@@ -101,7 +102,18 @@ public final class Evaluation implements EvaluationInterface<MoveTypeInterface> 
 
     @Override
     public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
-        return this.process(context, maximalOdinal, context.playableMoves());
+
+        final List<MoveTypeInterface> givenOptions = context.playableMoves();
+
+        System.out.println();
+        System.out.println(givenOptions);
+
+        Collections.sort(givenOptions);
+
+        System.out.println(givenOptions);
+        System.out.println();
+
+        return this.process(context, maximalOdinal, givenOptions);
     }
 
     @Override
