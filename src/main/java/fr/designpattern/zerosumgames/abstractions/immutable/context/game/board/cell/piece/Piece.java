@@ -124,8 +124,8 @@ public final class Piece implements PieceInterface {
         if (object == null) return false;
         if (!(object instanceof PieceInterface)) return false;
         final PieceInterface that = (PieceInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
-        return that.side() == this.side() && that.type() == this.type();
+        //if (that.hashCode() != this.hashCode()) return false;
+        return that.side().equals(this.side()) && that.type().equals(this.type());
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -137,31 +137,4 @@ public final class Piece implements PieceInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static void main(final String[] args) {
-
-        final long t0 = System.currentTimeMillis();
-
-        for (int n = 0; n < 30000000; ++n) {
-            Piece.from(null, null);
-            Piece.from(Side.from(0), null);
-            Piece.from(null, PieceType.NULL);
-            Piece.from(Side.from(0), PieceType.NULL);
-            Piece.from(Side.from(1), PieceType.NULL);
-            /*
-            Piece.from(Side.from(0), PieceType.from(_Pawn.class)); // TODO !!!!!! factory + méthode retournant le nombre d'instance crées
-            Piece.from(Side.from(1), PieceType.from(_Pawn.class));
-            Piece.from(Side.from(1).opposite(), PieceType.from(_Pawn.class)).apply(Side.from(2).opposite());
-            Piece.from(Side.from(1).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.NULL);
-            Piece.from(Side.from(1).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
-            Piece.from(Side.from(3).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
-            Piece.from(Side.from(5).opposite(), PieceType.from(_Pawn.class)).apply(PieceType.from(_Pawn.class));
-            */
-        }
-
-        final long t1 = System.currentTimeMillis();
-
-        System.out.println(t1 - t0 + " ms");
-        System.out.println(Factory.CACHE.size());
-
-    }
 }

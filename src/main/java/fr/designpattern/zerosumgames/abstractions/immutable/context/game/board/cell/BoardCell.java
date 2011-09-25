@@ -19,7 +19,8 @@ public final class BoardCell implements BoardCellInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     private final static int computeHashCode(final PositionInterface position, final PieceInterface piece) {
-        return (17 * 31 + position.hashCode()) * 31 + piece.hashCode();
+        //return (17 * 31 + position.hashCode()) * 31 + piece.hashCode();
+        return (position + "|" + piece).toString().hashCode();
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -30,9 +31,9 @@ public final class BoardCell implements BoardCellInterface {
 
         private final static Map<Integer, BoardCellInterface> CACHE = Maps.newHashMap();
 
-        public static BoardCellInterface get(final PositionInterface position, final PieceInterface piece) {
-            //if (position == null) position = Position.NULL;
-            //if (piece == null) piece = Piece.NULL;
+        public static BoardCellInterface get(PositionInterface position, PieceInterface piece) {
+            if (position == null) position = Position.NULL;
+            if (piece == null) piece = Piece.NULL;
             if (position.equals(Position.NULL) && piece.equals(Piece.NULL)) return NULL;
             final int address = computeHashCode(position, piece);
             BoardCellInterface instance = CACHE.get(address);
@@ -40,9 +41,9 @@ public final class BoardCell implements BoardCellInterface {
                 instance = new BoardCell(position, piece);
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
+            //return new BoardCell(position, piece);
         }
 
         public final static int size() {
@@ -73,7 +74,7 @@ public final class BoardCell implements BoardCellInterface {
         return this.value;
     }
 
-    /*-------------------------------------8<-------------------------------------*/
+    /*-------------------------------------8<-------------------------------------*
 
     private final int hashCode;
 
@@ -91,7 +92,7 @@ public final class BoardCell implements BoardCellInterface {
     private BoardCell(final PositionInterface position, final PieceInterface value) {
         this.value = value;
         this.position = position;
-        this.hashCode = computeHashCode(position, value);
+        //this.hashCode = computeHashCode(position, value);
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -125,8 +126,8 @@ public final class BoardCell implements BoardCellInterface {
         if (object == null) return false;
         if (!(object instanceof BoardCellInterface)) return false;
         final BoardCellInterface that = (BoardCellInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
-        return that.position() == this.position() && that.value() == this.value();
+        //if (that.hashCode() != this.hashCode()) return false;
+        return that.position().equals(this.position()) && that.value().equals(this.value());
     }
 
     /*-------------------------------------8<-------------------------------------*/

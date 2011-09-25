@@ -1,13 +1,15 @@
 
-package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation;
+package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration;
 
+import java.util.Map;
 import java.util.concurrent.Callable;
 
+import com.google.common.collect.Maps;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public class ExplorationThread implements Callable<Double> {
+public class ExplorationThread implements Callable<Map.Entry<MoveTypeInterface, Double>> {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -38,11 +40,11 @@ public class ExplorationThread implements Callable<Double> {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double call() throws Exception {
+    public Map.Entry<MoveTypeInterface, Double> call() throws Exception {
         System.out.println(this.option + " = ?");
         final Double result = this.exploration.evaluate(this.context, this.option, this.maximalOrdinal, this.worstScore, this.bestScore);
         System.out.println(this.option + " = " + result);
-        return result;
+        return Maps.immutableEntry(this.option, result);
     }
 
     /*-------------------------------------8<-------------------------------------*/

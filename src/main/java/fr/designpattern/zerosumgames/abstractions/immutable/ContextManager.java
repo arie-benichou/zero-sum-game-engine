@@ -23,6 +23,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.Boar
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.BoardStringRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.BoardCellStringRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.piece.PieceStringRendering;
+import fr.designpattern.zerosumgames.abstractions.immutable.util.CachingFactoriesUsage;
 import fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiPawn;
 
 public final class ContextManager implements ContextManagerInterface {
@@ -131,13 +132,20 @@ public final class ContextManager implements ContextManagerInterface {
 
     @Override
     public void start() {
+
         System.out.println("START");
+
         final long t0 = System.currentTimeMillis();
         final ContextInterface finalContext = this.startFrom(this.context());
         final long t1 = System.currentTimeMillis();
+
         this.renderBoard(finalContext.game().board());
         System.out.println("OVER");
+
         System.out.println((t1 - t0) / 1000 + " secondes");
+
+        CachingFactoriesUsage.show();
+
     }
 
     @Override

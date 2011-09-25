@@ -38,8 +38,7 @@ public final class Position implements PositionInterface {
                 instance = new Position(row, column);
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
         }
 
@@ -117,7 +116,7 @@ public final class Position implements PositionInterface {
         if (object == null) return false;
         if (!(object instanceof PositionInterface)) return false;
         final PositionInterface that = (PositionInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
+        //if (that.hashCode() != this.hashCode()) return false;
         return that.row() == this.row() && that.column() == this.column();
     }
 
@@ -140,20 +139,5 @@ public final class Position implements PositionInterface {
     }
 
     /*-------------------------------------8<-------------------------------------*/
-
-    public static void main(final String[] args) {
-
-        System.out.println(Position.from(0, 0));
-        System.out.println(Position.from(0, 1));
-        System.out.println(Position.from(1, 1));
-        System.out.println(Position.from(-1, -1));
-        System.out.println(Position.from(-1, 10));
-        System.out.println(Position.from(-1, -10));
-        System.out.println(Position.from(1, 10));
-        System.out.println(Position.from(1, 10).apply(10, 1));
-
-        System.out.println(Factory.CACHE.size());
-
-    }
 
 }

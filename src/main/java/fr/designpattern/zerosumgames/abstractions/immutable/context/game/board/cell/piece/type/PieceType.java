@@ -88,9 +88,9 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
                 instance = new PieceType(newType(valueClass));
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
+            //return new PieceType(newType(valueClass));
         }
 
         public static PieceTypeInterface get(ImmutableInterface<?> value) {
@@ -102,9 +102,9 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
                 instance = new PieceType(value);
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
+            //return new PieceType(value);
         }
 
         public final static int size() {
@@ -175,8 +175,8 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
         if (object == null) return false;
         if (!(object instanceof PieceTypeInterface)) return false;
         final PieceTypeInterface that = (PieceTypeInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
-        return that.value() == this.value();
+        //if (that.hashCode() != this.hashCode()) return false;
+        return that.value().equals(this.value());
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -186,32 +186,6 @@ public final class PieceType implements PieceTypeInterface { // TODO créer une 
         return this.getClass().getSimpleName() + "(" + this.value() + ")";
     }
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    public static void main(final String[] args) {
-
-        final PieceTypeInterface pt1 = PieceType.from(NullPieceType.class);
-        final PieceTypeInterface pt2 = PieceType.from(NullPieceType.from());
-
-        final ImmutableInterface<Object> value = null;
-        final PieceTypeInterface pt3 = PieceType.from(value);
-
-        final Class<ImmutableInterface<Object>> valueClass = null;
-        final PieceTypeInterface pt4 = PieceType.from(valueClass);
-
-        //final PieceTypeInterface pt5 = PieceType.from(_Pawn.class);
-        //final PieceTypeInterface pt6 = PieceType.from(_Pawn.from());
-
-        System.out.println(pt1);
-        System.out.println(pt2);
-        System.out.println(pt3);
-        System.out.println(pt4);
-        //System.out.println(pt5);
-        //System.out.println(pt6);
-
-        System.out.println(Factory.CACHE.size());
-
-    }
     /*-------------------------------------8<-------------------------------------*/
 
 }

@@ -12,6 +12,8 @@ import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeIn
 
 public final class Move implements MoveInterface {
 
+    public static int instances;
+
     /*-------------------------------------8<-------------------------------------*/
 
     public final static MoveInterface NULL = new Move(MoveType.NULL, BoardMutation.NULL);
@@ -45,6 +47,7 @@ public final class Move implements MoveInterface {
             }
             return instance;
             */
+            ++instances;
             return new Move(type, boardMutation);
         }
 
@@ -127,7 +130,7 @@ public final class Move implements MoveInterface {
         if (object == null) return false;
         if (!(object instanceof MoveInterface)) return false;
         final MoveInterface that = (MoveInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
+        //if (that.hashCode() != this.hashCode()) return false;
         return that.type().equals(this.type()) && that.mutation().equals(this.mutation());
     }
 

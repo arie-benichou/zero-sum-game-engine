@@ -67,7 +67,7 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         final ContextInterface newContext = context.play(move);
 
         if (newContext.isOver()) return newContext.getTerminalEvaluation();
-        if (maximalOrdinal == 1) return newContext.getHeuristicEvaluation();
+        if (maximalOrdinal <= 1) return newContext.getHeuristicEvaluation();
 
         // TODO playableMoves(SideInterface side) et passer side en argument à evaluate(...)    
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
