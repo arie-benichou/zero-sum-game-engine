@@ -118,7 +118,7 @@ public final class ContextManager implements ContextManagerInterface {
         final MoveTypeInterface moveType = choosenMoves.get(0);
         /*-------------------------------------8<-------------------------------------*/
         //System.out.println(moveType);
-        final MoveInterface move = Move.from(moveType, moveType.value().computeBoardMutation(context.side(), context.game().board()));
+        final MoveInterface move = Move.from(moveType, moveType.value().boardMutation(/*context.side(), context.game().board()*/));
         /*-------------------------------------8<-------------------------------------*/
         final long t0 = System.currentTimeMillis();
         while (System.currentTimeMillis() - t0 < 100)

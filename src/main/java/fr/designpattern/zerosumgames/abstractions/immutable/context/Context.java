@@ -96,10 +96,12 @@ public final class Context implements ContextInterface {
         return this.game().isGameOver(this);
     }
 
+    /*
     @Override
     public List<MoveTypeInterface> playableMoves() {
         return this.game().playableMoves(this.side());
     }
+    */
 
     @Override
     public ContextInterface play(final MoveInterface move) {
@@ -116,6 +118,10 @@ public final class Context implements ContextInterface {
         return this.game().referee().heuristicEvaluation(this);
     }
 
+    @Override
+    public List<MoveTypeInterface> playableMoves() {
+        return this.game().referee().playableMoves(this);
+    }
     /*-------------------------------------8<-------------------------------------*/
 
 }

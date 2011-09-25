@@ -52,6 +52,8 @@ public interface MoveInterface extends ImmutableInterface<MoveInterface> {
     @Override
     String toString();
 
+    boolean isNull();
+
     /*-------------------------------------8<-------------------------------------*/
 
 }

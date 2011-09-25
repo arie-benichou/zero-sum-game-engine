@@ -41,7 +41,7 @@ class Reversi {
 
     public static void task1() {
         /*-------------------------------------8<-------------------------------------*/
-        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context1.xml"));
+        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context01.xml"));
         /*-------------------------------------8<-------------------------------------*/
         final ContextInterface gameplay = (Context) factory.getBean("gamePlay");
         /*-------------------------------------8<-------------------------------------*/

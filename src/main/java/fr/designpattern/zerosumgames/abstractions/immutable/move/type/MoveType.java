@@ -6,8 +6,7 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
@@ -42,8 +41,23 @@ public final class MoveType implements MoveTypeInterface {
         }
 
         @Override
-        public BoardMutationInterface computeBoardMutation(final SideInterface side, final BoardInterface board) {
+        public BoardMutationInterface boardMutation(/*final SideInterface side, final BoardInterface board*/) {
             return BoardMutation.NULL;
+        }
+
+        @Override
+        public int compareTo(final ConcreteMoveTypeInterface that) {
+            return 0;
+        }
+
+        @Override
+        public ContextInterface context() {
+            return null; // TODO Null Object
+        }
+
+        @Override
+        public boolean isNull() {
+            return true;
         }
 
     }
@@ -85,6 +99,12 @@ public final class MoveType implements MoveTypeInterface {
             final MoveTypeInterface that = (MoveTypeInterface) object;
             //if (that.hashCode() != this.hashCode()) return false;
             return that.value().equals(this.value());
+        }
+
+        @Override
+        public int compareTo(final MoveTypeInterface o) {
+            // TODO Auto-generated method stub
+            return 0;
         }
 
     }
@@ -254,6 +274,12 @@ public final class MoveType implements MoveTypeInterface {
         return this.getClass().getSimpleName() + "(" + this.value() + ")";
     }
 
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public int compareTo(final MoveTypeInterface that) {
+        return this.value().compareTo(that.value());
+    }
     /*-------------------------------------8<-------------------------------------*/
 
 }

@@ -6,7 +6,8 @@ import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTyp
 
 // TODO ?? créer une TypeFactoryInterface générique et utiliser directement les
 // types construits par la factory au lieu de devoir appeler value()
-public interface MoveTypeInterface extends ImmutableInterface<MoveTypeInterface> { // TODO créer une TypeInterface de plus haut niveau
+// TODO ?? créer une TypeInterface de plus haut niveau
+public interface MoveTypeInterface extends ImmutableInterface<MoveTypeInterface>, Comparable<MoveTypeInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 

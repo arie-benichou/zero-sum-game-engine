@@ -140,4 +140,9 @@ public final class Position implements PositionInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    @Override
+    public boolean isNull() {
+        return this.equals(NULL);
+        //return this.row() == 0 && this.column() == 0;
+    }
 }

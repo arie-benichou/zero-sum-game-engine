@@ -29,6 +29,14 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInter
  */
 public interface EvaluationInterface<OPTION> extends ImmutableInterface<EvaluationInterface<OPTION>> {
 
+    int maximalOdinal();
+
     List<List<OPTION>> process(final ContextInterface context);
+
+    List<List<OPTION>> process(final ContextInterface context, int maximalOdinal);
+
+    //List<List<OPTION>> process(final ContextInterface context, final int maximalOdinal, List<List<OPTION>> sortedOptions);
+
+    List<List<OPTION>> process(final ContextInterface context, final int maximalOdinal, List<OPTION> sortedOptions);
 
 }
