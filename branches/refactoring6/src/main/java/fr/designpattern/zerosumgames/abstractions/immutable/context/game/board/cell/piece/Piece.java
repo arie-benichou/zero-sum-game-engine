@@ -3,12 +3,12 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.
 
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.Side;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.type.PieceType;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.type.PieceTypeInterface;
-
-import com.google.common.collect.Maps;
 
 public final class Piece implements PieceInterface {
 

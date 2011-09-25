@@ -3,9 +3,9 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.
 
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
-
 import com.google.common.collect.Maps;
+
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
 
 public final class Position implements PositionInterface {
 

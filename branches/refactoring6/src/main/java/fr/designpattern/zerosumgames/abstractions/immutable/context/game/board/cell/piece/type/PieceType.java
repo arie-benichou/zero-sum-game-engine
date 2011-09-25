@@ -4,9 +4,9 @@ package fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
-
 import com.google.common.collect.Maps;
+
+import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 
 public final class PieceType implements PieceTypeInterface { // TODO créer une TypeInterface de plus haut niveau
 
