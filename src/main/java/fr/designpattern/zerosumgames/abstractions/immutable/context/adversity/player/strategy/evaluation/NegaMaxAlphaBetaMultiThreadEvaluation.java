@@ -35,7 +35,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeIn
 public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterface<MoveTypeInterface> {
 
     private static final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
-    private static final int MAX = 7;
+    private static final int MAX = 6;
 
     final ExplorationInterface<MoveTypeInterface> explorationType;
 
@@ -53,14 +53,22 @@ public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterfac
         /*-------------------------------------8<-------------------------------------*/
         final List<MoveTypeInterface> playableMoves = context.playableMoves();
         /*-------------------------------------8<-------------------------------------*/
-        //final ExecutorService executor = Executors.newFixedThreadPool((int) (2.0 * NUMBER_OF_CORES));
-        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        //final ExecutorService executor = Executors.newSingleThreadExecutor();
+        //final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_CORES); // TODO trouver le facteur dynamiquement        
+        //final ExecutorService executor = Executors.newFixedThreadPool((int) (2.5 * NUMBER_OF_CORES)); // TODO trouver le facteur dynamiquement
+        final ExecutorService executor = Executors.newFixedThreadPool(playableMoves.size()); // TODO trouver le facteur dynamiquement        
         final List<Future<Double>> list = Lists.newArrayList();
         for (final MoveTypeInterface option : playableMoves)
             list.add(executor.submit(new ExplorationThread(context, this.explorationType, option, MAX, -1.0, 1.0)));
         /*-------------------------------------8<-------------------------------------*/
         executor.shutdown();
-        while (!executor.isTerminated()) {}
+        while (!executor.isTerminated()) {
+            final long t0 = System.currentTimeMillis();
+            while (System.currentTimeMillis() - t0 < 100)
+                ;
+            System.out.print(" . ");
+        }
+        System.out.println();
         /*-------------------------------------8<-------------------------------------*/
         int index = 0;
         final TreeMap<Double, List<MoveTypeInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());

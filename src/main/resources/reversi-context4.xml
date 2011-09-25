@@ -103,8 +103,8 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position"
 							factory-method="from">
-							<constructor-arg value="3" />
-							<constructor-arg value="3" />
+							<constructor-arg value="5" />
+							<constructor-arg value="5" />
 						</bean>
 					</key>
 					<ref bean="reversiBlackPiece" />
@@ -115,8 +115,8 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position"
 							factory-method="from">
-							<constructor-arg value="3" />
-							<constructor-arg value="4" />
+							<constructor-arg value="5" />
+							<constructor-arg value="6" />
 						</bean>
 					</key>
 					<ref bean="reversiWhitePiece" />
@@ -127,8 +127,8 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position"
 							factory-method="from">
-							<constructor-arg value="4" />
-							<constructor-arg value="3" />
+							<constructor-arg value="6" />
+							<constructor-arg value="5" />
 						</bean>
 					</key>
 					<ref bean="reversiWhitePiece" />
@@ -139,8 +139,8 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position"
 							factory-method="from">
-							<constructor-arg value="4" />
-							<constructor-arg value="4" />
+							<constructor-arg value="6" />
+							<constructor-arg value="6" />
 						</bean>
 					</key>
 					<ref bean="reversiBlackPiece" />
@@ -210,8 +210,8 @@
 					<bean
 						class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.Board"
 						factory-method="from">
-						<constructor-arg value="6" />
-						<constructor-arg value="6" />
+						<constructor-arg value="10" />
+						<constructor-arg value="10" />
 						<constructor-arg ref="reversiNullPiece" />
 						<constructor-arg ref="boardSetup" />
 					</bean>

@@ -4,6 +4,8 @@ package fr.designpattern.zerosumgames.abstractions.immutable.move.type;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
@@ -11,8 +13,6 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
-
-import com.google.common.collect.Maps;
 
 public final class MoveType implements MoveTypeInterface {
 
@@ -133,6 +133,7 @@ public final class MoveType implements MoveTypeInterface {
 
         public static MoveTypeInterface get(final Class<? extends ConcreteMoveTypeInterface> valueClass) {
             if (valueClass == null) return NULL;
+            /*
             final int address = computeHashCode(valueClass);
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -142,11 +143,14 @@ public final class MoveType implements MoveTypeInterface {
             else
                 ++cacheHits;
             return instance;
+            */
+            return new MoveType(newType(valueClass));
         }
 
         public static MoveTypeInterface get(ConcreteMoveTypeInterface value) {
             if (value == null) value = NULL.value();
             if (value.equals(NULL.value())) return NULL;
+            /*
             final int address = value.hashCode();
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -156,6 +160,8 @@ public final class MoveType implements MoveTypeInterface {
             else
                 ++cacheHits;
             return instance;
+            */
+            return new MoveType(value);
         }
 
         public final static int size() {

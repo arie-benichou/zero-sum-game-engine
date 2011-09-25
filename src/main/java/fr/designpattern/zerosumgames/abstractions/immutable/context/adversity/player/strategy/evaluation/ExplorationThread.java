@@ -39,8 +39,10 @@ public class ExplorationThread implements Callable<Double> {
 
     @Override
     public Double call() throws Exception {
-        System.out.println(this.exploration.getClass().getSimpleName());
-        return this.exploration.evaluate(this.context, this.option, this.maximalOrdinal, this.worstScore, this.bestScore);
+        System.out.println(this.option + " = ?");
+        final Double result = this.exploration.evaluate(this.context, this.option, this.maximalOrdinal, this.worstScore, this.bestScore);
+        System.out.println(this.option + " = " + result);
+        return result;
     }
 
     /*-------------------------------------8<-------------------------------------*/

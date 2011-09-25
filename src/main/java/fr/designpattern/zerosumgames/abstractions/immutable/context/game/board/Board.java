@@ -37,63 +37,7 @@ public class Board implements BoardInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static BoardInterface NULL = new Board(new BoardCellInterface[0][0]);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    private final static int computeHashCode(final BoardCellInterface[][] cells) {
-
-        int hashCode = 0;
-        for (final BoardCellInterface[] row : cells) {
-            for (final BoardCellInterface cell : row) {
-                hashCode = 31 * hashCode + cell.hashCode();
-            }
-        }
-        return hashCode;
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    private static final BoardCellInterface[][] copy(final BoardCellInterface[][] cells) {
-        final int rows = cells.length;
-        if (rows == 0) return cells;
-        final int columns = cells[0].length;
-        final BoardCellInterface[][] copy = new BoardCell[rows][columns];
-        for (int y = 0; y < rows; ++y)
-            for (int x = 0; x < columns; ++x)
-                copy[y][x] = cells[y][x];
-        return copy;
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    public final static class Factory {
-
-        private static int cacheHits;
-
-        private final static Map<Integer, BoardInterface> CACHE = Maps.newHashMap();
-
-        public static BoardInterface get(final BoardCellInterface[][] cells) {
-            if (cells.length == 0) return NULL;
-            final int address = computeHashCode(cells);
-            BoardInterface instance = CACHE.get(address);
-            if (instance == null) {
-                instance = new Board(copy(cells));
-                CACHE.put(address, instance);
-            }
-            else
-                ++cacheHits;
-            return instance;
-        }
-
-        public final static int size() {
-            return CACHE.size();
-        }
-
-        public final static int cacheHits() {
-            return cacheHits;
-        }
-    }
+    //private final static BoardInterface NULL = new Board(0, 0, Piece.NULL);
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -115,50 +59,59 @@ public class Board implements BoardInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final int hashCode;
-
-    @Override
-    public int hashCode() {
-        return this.hashCode;
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
     private final BoardCellInterface[][] cells;
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static BoardInterface from(final BoardCellInterface[][] cells) {
-        return Factory.get(cells);
-    }
-
-    private Board(final BoardCellInterface[][] cells) {
-        this.rows = cells.length;
-        this.columns = this.rows == 0 ? 0 : cells[0].length;
-        this.cells = cells;
-        this.hashCode = computeHashCode(cells); // TODO ? lazy init
-    }
+    private Map<PieceInterface, Integer> indexes = null;
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static BoardInterface from(final int rows, final int columns, final PieceInterface defaultValue) {
-        return new Board(init(rows, columns, defaultValue)); // TODO ! utiliser la factory
+    public static BoardInterface from(final BoardCellInterface[][] cells) {
+        return new Board(cells);
     }
 
-    public static BoardInterface from(final int rows, final int columns, final PieceInterface defaultValue, final BoardMutation mutation) {
-        return from(rows, columns, defaultValue).apply(mutation); // TODO ! optimisable
+    public static BoardInterface from(final int rows, final int columns, final PieceInterface defaultValue) {
+        return new Board(rows, columns, defaultValue);
     }
 
     public final static BoardInterface from(final int rows, final int columns) {
         return from(rows, columns, Piece.NULL);
     }
 
-    private final static BoardCellInterface[][] init(final int rows, final int columns, final PieceInterface defaultValue) {
-        final BoardCellInterface[][] cells = new BoardCell[rows][columns];
-        for (int row = 0; row < rows; ++row)
-            for (int column = 0; column < columns; ++column)
-                cells[row][column] = BoardCell.from(Position.from(row + 1, column + 1), defaultValue);
-        return cells;
+    public static BoardInterface from(final int rows, final int columns, final PieceInterface defaultValue, final BoardMutation mutation) {
+        return from(rows, columns, defaultValue).apply(mutation);
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    public Board(final int rows, final int columns, final PieceInterface defaultValue) {
+        this.rows = rows;
+        this.columns = columns;
+        this.cells = new BoardCell[this.rows][this.columns];
+        for (int y = 0; y < rows; ++y)
+            for (int x = 0; x < columns; ++x)
+                this.cells[y][x] = BoardCell.from(Position.from(y + 1, x + 1), defaultValue);
+        this.indexes = Maps.newHashMap();
+        this.indexes.put(defaultValue, rows * columns);
+    }
+
+    public Board(final BoardCellInterface[][] cells) {
+        this.rows = cells.length;
+        this.columns = this.rows == 0 ? 0 : cells[0].length;
+        this.cells = new BoardCell[this.rows][this.columns];
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x)
+                this.cells[y][x] = cells[y][x];
+    }
+
+    public Board(final BoardCellInterface[][] cells, final MutationInterface<PositionInterface, PieceInterface> mutation) {
+        this.rows = cells.length;
+        this.columns = this.rows == 0 ? 0 : cells[0].length;
+        this.cells = new BoardCell[this.rows][this.columns];
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x)
+                this.cells[y][x] = cells[y][x].apply(mutation.value().get(Position.from(y + 1, x + 1)));
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -170,13 +123,7 @@ public class Board implements BoardInterface {
 
     @Override
     public BoardInterface apply(final MutationInterface<PositionInterface, PieceInterface> mutation) {
-        final BoardCellInterface[][] newCells = new BoardCellInterface[this.rows()][this.columns()];
-        for (int y = 0; y < this.rows(); ++y)
-            for (int x = 0; x < this.columns(); ++x)
-                newCells[y][x] = this.cells[y][x].apply(mutation.value().get(Position.from(y + 1, x + 1)));
-        // TODO ?? utiliser la factory
-        //return Factory.get(newCells);
-        return new Board(newCells);
+        return new Board(this.cells, mutation);
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -194,8 +141,32 @@ public class Board implements BoardInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    private Map<PieceInterface, Integer> count() {
+        final Map<PieceInterface, Integer> indexes = Maps.newHashMap();
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x) {
+                final PieceInterface piece = this.cells[y][x].value();
+                final Integer counter = indexes.get(piece);
+                if (counter == null)
+                    indexes.put(piece, 1);
+                else
+                    indexes.put(piece, counter + 1);
+            }
+        return indexes;
+    }
+
     @Override
-    public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) { // TODO lazy init
+    //synchronized public int count(final PieceInterface value) {
+    public int count(final PieceInterface value) {
+        if (this.indexes == null) this.indexes = this.count();
+        final Integer count = this.indexes.get(value);
+        return count == null ? 0 : count;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) { // ?? TODO lazy init
         final Map<DirectionInterface, BoardCellInterface> neighbourhood = Maps.newHashMap();
         for (final DirectionInterface direction : Direction.ALL_AROUND) {
             neighbourhood.put(direction, this.cell(position.apply(direction)));
@@ -220,16 +191,6 @@ public class Board implements BoardInterface {
         return sb.toString();
     }
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    public int count(final PieceInterface value) {
-        int counter = 0;
-        for (int y = 0; y < this.rows(); ++y)
-            for (int x = 0; x < this.columns(); ++x)
-                if (this.cells[y][x].value().equals(value)) ++counter;
-        return counter;
-    }
     /*-------------------------------------8<-------------------------------------*/
 
 }

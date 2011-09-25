@@ -4,12 +4,12 @@ package fr.designpattern.zerosumgames.abstractions.immutable.move.mutation;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
+
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 
 public class BoardMutation implements BoardMutationInterface {
 
@@ -48,7 +48,7 @@ public class BoardMutation implements BoardMutationInterface {
 
             final ImmutableSortedMap<PositionInterface, PieceInterface> orderedCopy =
                     new ImmutableSortedMap.Builder<PositionInterface, PieceInterface>(Ordering.natural()).putAll(value).build();
-
+            /*
             final int address = computeHashCode(orderedCopy);
             BoardMutationInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -58,6 +58,8 @@ public class BoardMutation implements BoardMutationInterface {
             else
                 ++cacheHits;
             return instance;
+            */
+            return new BoardMutation(orderedCopy);
         }
 
         public final static int size() {

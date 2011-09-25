@@ -41,16 +41,12 @@ class Reversi {
 
     public static void task1() {
         /*-------------------------------------8<-------------------------------------*/
-        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context1.xml"));
+        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context3.xml"));
         /*-------------------------------------8<-------------------------------------*/
         final ContextInterface gameplay = (Context) factory.getBean("gamePlay");
         /*-------------------------------------8<-------------------------------------*/
         @SuppressWarnings("unchecked")
         final Map<Object, Object> symbols = (Map<Object, Object>) factory.getBean("symbols");
-        symbols.put(gameplay.game().board().cell(1, 1), "1,1");
-        symbols.put(gameplay.game().board().cell(1, 6), "1,6");
-        symbols.put(gameplay.game().board().cell(6, 1), "6,1");
-        symbols.put(gameplay.game().board().cell(6, 6), "6,6");
         /*-------------------------------------8<-------------------------------------*/
         // TODO charger directement un bean ContextManager
         final ContextManagerInterface contextManager = ContextManager.from(gameplay, symbols);

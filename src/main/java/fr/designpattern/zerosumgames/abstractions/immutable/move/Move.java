@@ -3,12 +3,12 @@ package fr.designpattern.zerosumgames.abstractions.immutable.move;
 
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
-
-import com.google.common.collect.Maps;
 
 public final class Move implements MoveInterface {
 
@@ -33,6 +33,7 @@ public final class Move implements MoveInterface {
             if (type == null) type = MoveType.NULL;
             if (boardMutation == null) boardMutation = BoardMutation.NULL;
             if (type.equals(MoveType.NULL) && boardMutation.equals(BoardMutation.NULL)) return NULL;
+            /*
             final int address = computeHashCode(type, boardMutation);
             MoveInterface instance = CACHE.get(address);
             if (instance == null) {
@@ -43,6 +44,8 @@ public final class Move implements MoveInterface {
                 ++cacheHits;
             }
             return instance;
+            */
+            return new Move(type, boardMutation);
         }
 
         public final static int size() {
