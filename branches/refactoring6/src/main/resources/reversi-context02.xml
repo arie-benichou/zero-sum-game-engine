@@ -194,7 +194,7 @@
 											<constructor-arg>
 												<bean
 													class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
-													<constructor-arg value="12"></constructor-arg>
+													<constructor-arg value="9"></constructor-arg>
 												</bean>
 											</constructor-arg>
 

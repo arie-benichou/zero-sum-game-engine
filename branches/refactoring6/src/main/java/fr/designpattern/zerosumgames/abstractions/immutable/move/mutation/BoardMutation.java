@@ -37,6 +37,7 @@ public final class BoardMutation implements BoardMutationInterface {
     }
 
     private BoardMutation(final Map<PositionInterface, PieceInterface> value) {
+        ++instances;
         this.value = new ImmutableSortedMap.Builder<PositionInterface, PieceInterface>(Ordering.natural()).putAll(value).build();
         //this.value = ImmutableSortedMap.copyOf(value);
     }

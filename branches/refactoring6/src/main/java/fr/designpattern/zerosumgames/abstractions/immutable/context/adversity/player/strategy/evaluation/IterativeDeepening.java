@@ -58,7 +58,20 @@ public class IterativeDeepening implements EvaluationInterface<MoveTypeInterface
 
     @Override
     public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
-        return this.process(context, this.maximalOdinal(), context.playableMoves());
+
+        final List<MoveTypeInterface> givenOptions = context.playableMoves();
+
+        /*
+        System.out.println();
+        System.out.println(givenOptions);
+
+        Collections.sort(givenOptions);
+
+        System.out.println(givenOptions);
+        System.out.println();
+        */
+
+        return this.process(context, this.maximalOdinal(), givenOptions);
     }
 
     @Override
