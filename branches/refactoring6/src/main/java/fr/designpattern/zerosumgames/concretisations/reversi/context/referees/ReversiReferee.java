@@ -43,7 +43,7 @@ public final class ReversiReferee implements RefereeInterface {
     }
 
     @Override
-    public List<MoveTypeInterface> computePlayableMoves(final BoardInterface board, final SideInterface side) {
+    public List<MoveTypeInterface> playableMoves(final BoardInterface board, final SideInterface side) {
         final List<MoveTypeInterface> moveTypes = Lists.newArrayList();
         for (int row = 1; row <= board.rows(); ++row)
             for (int column = 1; column <= board.columns(); ++column) {
@@ -68,7 +68,7 @@ public final class ReversiReferee implements RefereeInterface {
     }
 
     @Override
-    public boolean isGamePlayOver(final ContextInterface context) {
+    public boolean isOver(final ContextInterface context) {
         if (context.history().size() > 1 && context.history().head().equals(NULL_MOVE) && context.history().tail().head().equals(NULL_MOVE)) return true;
         return !this.isPlayable(context.game().board(), context.side()) && !this.isPlayable(context.game().board(), context.side().opposite());
     }
@@ -78,21 +78,18 @@ public final class ReversiReferee implements RefereeInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public final Double getHeuristicEvaluation(final ContextInterface context) {
-        final int c1 = context.game().board().count(Piece.from(context.side(), PieceType.from(ReversiPawn.class)));
-        final int c2 = context.game().board().count(Piece.from(context.side().opposite(), PieceType.from(ReversiPawn.class)));
-        final int c3 = context.game().board().count(Piece.from(Side.NULL, PieceType.from(ReversiNullPiece.class)));
-        return (0.0 + c1 - c2) / (c1 + c2 + c3);
+    public final Double heuristicEvaluation(final ContextInterface context) {
+        final int numberOfPawnsForThisSide = context.game().board().count(Piece.from(context.side(), PieceType.from(ReversiPawn.class)));
+        final int numberOfPawnsForOppositeSide = context.game().board().count(Piece.from(context.side().opposite(), PieceType.from(ReversiPawn.class)));
+        final int numberOfEmptyCells = context.game().board().count(Piece.from(Side.NULL, PieceType.from(ReversiNullPiece.class)));
+        return (0.0 + numberOfPawnsForThisSide - numberOfPawnsForOppositeSide) / (numberOfPawnsForThisSide + numberOfPawnsForOppositeSide + numberOfEmptyCells);
     }
 
     @Override
-    public final Double getTerminalEvaluation(final ContextInterface context) {
-        final int c1 = context.game().board().count(Piece.from(context.side(), PieceType.from(ReversiPawn.class)));
-        final int c2 = context.game().board().count(Piece.from(context.side().opposite(), PieceType.from(ReversiPawn.class)));
-        final int c3 = context.game().board().count(Piece.from(Side.NULL, PieceType.from(ReversiNullPiece.class)));
-        final Double evaluation = (0.0 + c1 - c2) / (c1 + c2 + c3);
-        if (evaluation == 0.0) return c3 / (-10.0 * (c1 + c2 + c3));
-        return evaluation;
+    public final Double terminalEvaluation(final ContextInterface context) {
+        final Double evaluation = this.heuristicEvaluation(context);
+        return evaluation == 0.0 ? context.game().board().count(Piece.from(Side.NULL, PieceType.from(ReversiNullPiece.class)))
+                / (-10.0 * context.game().board().numberOfCells()) : evaluation;
     }
 
     /*-------------------------------------8<-------------------------------------*/

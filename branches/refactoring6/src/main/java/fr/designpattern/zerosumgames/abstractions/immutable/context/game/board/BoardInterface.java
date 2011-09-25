@@ -17,6 +17,8 @@ public interface BoardInterface extends CellManagerInterface<PositionInterface, 
 
     int columns();
 
+    int numberOfCells();
+
     /*-------------------------------------8<-------------------------------------*/
 
     @Override

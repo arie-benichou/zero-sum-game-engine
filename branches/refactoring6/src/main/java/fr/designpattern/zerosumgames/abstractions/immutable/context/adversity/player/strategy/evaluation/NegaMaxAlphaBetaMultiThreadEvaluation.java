@@ -35,7 +35,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeIn
 public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterface<MoveTypeInterface> {
 
     private static final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
-    private static final int MAX = 6;
+    private static final int MAX = 9;
 
     final ExplorationInterface<MoveTypeInterface> explorationType;
 
@@ -63,10 +63,12 @@ public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterfac
         /*-------------------------------------8<-------------------------------------*/
         executor.shutdown();
         while (!executor.isTerminated()) {
+            /*
             final long t0 = System.currentTimeMillis();
             while (System.currentTimeMillis() - t0 < 100)
                 ;
             System.out.print(" . ");
+            */
         }
         System.out.println();
         /*-------------------------------------8<-------------------------------------*/
