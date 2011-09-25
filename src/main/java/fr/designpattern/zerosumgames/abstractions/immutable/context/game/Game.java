@@ -70,7 +70,7 @@ public class Game implements GameInterface {
 
     @Override
     public List<MoveTypeInterface> playableMoves(final SideInterface side) {
-        return this.referee().computePlayableMoves(this.board(), side);
+        return this.referee().playableMoves(this.board(), side);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Game implements GameInterface {
 
     @Override
     public boolean isGameOver(final ContextInterface context) {
-        return this.referee().isGamePlayOver(context);
+        return this.referee().isOver(context);
     }
 
 }

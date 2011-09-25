@@ -39,20 +39,20 @@ public interface RefereeInterface extends ImmutableInterface<RefereeInterface> {
     //List<MutationInterface> getSortedLegalMoves(ContextInterface context, SideInterface side);
 
     // TODO l'arbitre devrait prendre en argument uniquement un objet Context
-    List<MoveTypeInterface> computePlayableMoves(final BoardInterface board, final SideInterface side);
+    List<MoveTypeInterface> playableMoves(final BoardInterface board, final SideInterface side);
 
     // TODO l'arbitre devrait prendre en argument uniquement un objet Context    
     boolean isPlayable(final BoardInterface board, final SideInterface side);
 
     //boolean isGamePlayOver(final BoardInterface board, final SideInterface side);
-    boolean isGamePlayOver(ContextInterface context);
+    boolean isOver(ContextInterface context);
 
     /*-------------------------------------8<-------------------------------------*/
     // TODO ?? responsabilité du referee
     /*-------------------------------------8<-------------------------------------*/
 
-    Double getTerminalEvaluation(ContextInterface context);
+    Double terminalEvaluation(ContextInterface context);
 
-    Double getHeuristicEvaluation(ContextInterface context);
+    Double heuristicEvaluation(ContextInterface context);
 
 }

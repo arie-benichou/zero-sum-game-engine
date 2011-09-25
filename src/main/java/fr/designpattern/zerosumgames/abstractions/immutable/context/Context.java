@@ -108,12 +108,12 @@ public final class Context implements ContextInterface {
 
     @Override
     public Double getTerminalEvaluation() {
-        return this.game().referee().getTerminalEvaluation(this);
+        return this.game().referee().terminalEvaluation(this);
     }
 
     @Override
     public Double getHeuristicEvaluation() {
-        return this.game().referee().getHeuristicEvaluation(this);
+        return this.game().referee().heuristicEvaluation(this);
     }
 
     /*-------------------------------------8<-------------------------------------*/

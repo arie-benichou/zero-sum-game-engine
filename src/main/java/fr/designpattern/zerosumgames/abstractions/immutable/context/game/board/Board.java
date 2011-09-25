@@ -33,7 +33,9 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.d
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.MutationInterface;
 
-public class Board implements BoardInterface {
+public final class Board implements BoardInterface {
+
+    private int times = 0;
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -44,7 +46,7 @@ public class Board implements BoardInterface {
     private final int rows;
 
     @Override
-    public final int rows() {
+    public int rows() {
         return this.rows;
     }
 
@@ -53,8 +55,17 @@ public class Board implements BoardInterface {
     private final int columns;
 
     @Override
-    public final int columns() {
+    public int columns() {
         return this.columns;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    private final int numberOfCells;
+
+    @Override
+    public int numberOfCells() {
+        return this.numberOfCells;
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -85,10 +96,15 @@ public class Board implements BoardInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public Board(final int rows, final int columns, final PieceInterface defaultValue) {
+    private Board(final int rows, final int columns) {
         this.rows = rows;
         this.columns = columns;
+        this.numberOfCells = this.rows * this.columns;
         this.cells = new BoardCell[this.rows][this.columns];
+    }
+
+    public Board(final int rows, final int columns, final PieceInterface defaultValue) {
+        this(rows, columns);
         for (int y = 0; y < rows; ++y)
             for (int x = 0; x < columns; ++x)
                 this.cells[y][x] = BoardCell.from(Position.from(y + 1, x + 1), defaultValue);
@@ -97,18 +113,14 @@ public class Board implements BoardInterface {
     }
 
     public Board(final BoardCellInterface[][] cells) {
-        this.rows = cells.length;
-        this.columns = this.rows == 0 ? 0 : cells[0].length;
-        this.cells = new BoardCell[this.rows][this.columns];
+        this(cells.length, cells.length == 0 ? 0 : cells[0].length);
         for (int y = 0; y < this.rows; ++y)
             for (int x = 0; x < this.columns; ++x)
                 this.cells[y][x] = cells[y][x];
     }
 
     public Board(final BoardCellInterface[][] cells, final MutationInterface<PositionInterface, PieceInterface> mutation) {
-        this.rows = cells.length;
-        this.columns = this.rows == 0 ? 0 : cells[0].length;
-        this.cells = new BoardCell[this.rows][this.columns];
+        this(cells.length, cells.length == 0 ? 0 : cells[0].length);
         for (int y = 0; y < this.rows; ++y)
             for (int x = 0; x < this.columns; ++x)
                 this.cells[y][x] = cells[y][x].apply(mutation.value().get(Position.from(y + 1, x + 1)));
@@ -142,6 +154,11 @@ public class Board implements BoardInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     private Map<PieceInterface, Integer> count() {
+        ++this.times;
+        if (this.times > 1) {
+            System.out.println(this.times);
+            throw new RuntimeException("double lazy init");
+        }
         final Map<PieceInterface, Integer> indexes = Maps.newHashMap();
         for (int y = 0; y < this.rows; ++y)
             for (int x = 0; x < this.columns; ++x) {
@@ -156,7 +173,6 @@ public class Board implements BoardInterface {
     }
 
     @Override
-    //synchronized public int count(final PieceInterface value) {
     public int count(final PieceInterface value) {
         if (this.indexes == null) this.indexes = this.count();
         final Integer count = this.indexes.get(value);
@@ -166,7 +182,7 @@ public class Board implements BoardInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) { // ?? TODO lazy init
+    public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) {
         final Map<DirectionInterface, BoardCellInterface> neighbourhood = Maps.newHashMap();
         for (final DirectionInterface direction : Direction.ALL_AROUND) {
             neighbourhood.put(direction, this.cell(position.apply(direction)));
@@ -177,7 +193,7 @@ public class Board implements BoardInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public final String toString() { // TODO appeler cell.render() qui appelle piece.render()
+    public final String toString() {
         final String lineSeparator = "\n" + " " + Strings.repeat("----", this.columns()) + "-" + "\n";
         final String columnSeparator = " | ";
         final StringBuilder sb = new StringBuilder();
