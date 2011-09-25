@@ -18,6 +18,10 @@ public final class MoveType implements MoveTypeInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
+    public static int instances;
+
+    /*-------------------------------------8<-------------------------------------*/
+
     private final static class ConcreteNullMoveType implements ConcreteMoveTypeInterface {
 
         private ConcreteNullMoveType() {}
@@ -123,6 +127,10 @@ public final class MoveType implements MoveTypeInterface {
         return valueClass.getCanonicalName().hashCode();
     }
 
+    private final static int computeHashCode(final ConcreteMoveTypeInterface value) {
+        return (value.getClass().getCanonicalName() + "|" + value.hashCode()).hashCode();
+    }
+
     /*-------------------------------------8<-------------------------------------*/
 
     public final static class Factory {
@@ -144,6 +152,7 @@ public final class MoveType implements MoveTypeInterface {
                 ++cacheHits;
             return instance;
             */
+            ++instances;
             return new MoveType(newType(valueClass));
         }
 
@@ -151,7 +160,7 @@ public final class MoveType implements MoveTypeInterface {
             if (value == null) value = NULL.value();
             if (value.equals(NULL.value())) return NULL;
             /*
-            final int address = value.hashCode();
+            final int address = computeHashCode(value);
             MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
                 instance = new MoveType(value);
@@ -161,6 +170,7 @@ public final class MoveType implements MoveTypeInterface {
                 ++cacheHits;
             return instance;
             */
+            ++instances;
             return new MoveType(value);
         }
 
@@ -203,6 +213,7 @@ public final class MoveType implements MoveTypeInterface {
     }
 
     private MoveType(final ConcreteMoveTypeInterface value) {
+        ++instances;
         this.value = value;
         this.hashCode = computeHashCode(value.getClass());
     }
@@ -232,7 +243,7 @@ public final class MoveType implements MoveTypeInterface {
         if (object == null) return false;
         if (!(object instanceof MoveTypeInterface)) return false;
         final MoveTypeInterface that = (MoveTypeInterface) object;
-        if (that.hashCode() != this.hashCode()) return false;
+        //if (that.hashCode() != this.hashCode()) return false;
         return that.value().equals(this.value());
     }
 

@@ -18,17 +18,22 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationThread;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
@@ -54,35 +59,25 @@ public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterfac
         final List<MoveTypeInterface> playableMoves = context.playableMoves();
         /*-------------------------------------8<-------------------------------------*/
         //final ExecutorService executor = Executors.newSingleThreadExecutor();
-        //final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_CORES); // TODO trouver le facteur dynamiquement        
-        //final ExecutorService executor = Executors.newFixedThreadPool((int) (2.5 * NUMBER_OF_CORES)); // TODO trouver le facteur dynamiquement
         final ExecutorService executor = Executors.newFixedThreadPool(playableMoves.size()); // TODO trouver le facteur dynamiquement        
-        final List<Future<Double>> list = Lists.newArrayList();
+        /*-------------------------------------8<-------------------------------------*/
+        final Builder<Future<Entry<MoveTypeInterface, Double>>> listBuilder = new ImmutableList.Builder<Future<Entry<MoveTypeInterface, Double>>>();
         for (final MoveTypeInterface option : playableMoves)
-            list.add(executor.submit(new ExplorationThread(context, this.explorationType, option, MAX, -1.0, 1.0)));
+            listBuilder.add(executor.submit(new ExplorationThread(context, this.explorationType, option, MAX, -1.0, 1.0)));
         /*-------------------------------------8<-------------------------------------*/
         executor.shutdown();
-        while (!executor.isTerminated()) {
-            /*
-            final long t0 = System.currentTimeMillis();
-            while (System.currentTimeMillis() - t0 < 100)
-                ;
-            System.out.print(" . ");
-            */
-        }
-        System.out.println();
+        final ImmutableList<Future<Entry<MoveTypeInterface, Double>>> list = listBuilder.build();
         /*-------------------------------------8<-------------------------------------*/
-        int index = 0;
+        while (!executor.isTerminated()) {}
+        /*-------------------------------------8<-------------------------------------*/
         final TreeMap<Double, List<MoveTypeInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
-        for (final Future<Double> future : list) {
+        for (final Future<Map.Entry<MoveTypeInterface, Double>> future : list) {
             try {
-                final Double score = future.get();
-                final List<MoveTypeInterface> value = map.get(score);
-                if (value == null)
-                    map.put(score, Lists.newArrayList(playableMoves.get(index)));
-                else
-                    value.add(playableMoves.get(index));
-                ++index;
+                final Map.Entry<MoveTypeInterface, Double> evaluatedOption = future.get();
+                final List<MoveTypeInterface> value = map.get(evaluatedOption.getValue());
+                final List<MoveTypeInterface> newValue = value == null ? ImmutableList.of(evaluatedOption.getKey()) :
+                        new ImmutableList.Builder<MoveTypeInterface>().addAll(value).add(evaluatedOption.getKey()).build();
+                map.put(evaluatedOption.getValue(), newValue);
             }
             catch (final InterruptedException e) {
                 e.printStackTrace();
@@ -92,9 +87,7 @@ public class NegaMaxAlphaBetaMultiThreadEvaluation implements EvaluationInterfac
             }
         }
         /*-------------------------------------8<-------------------------------------*/
-        if (list.size() != index) {
-            throw new RuntimeException("Double-entries!!!");
-        }
+        if (list.size() != playableMoves.size()) { throw new RuntimeException("Double-entries!!!"); }
         /*-------------------------------------8<-------------------------------------*/
         final List<List<MoveTypeInterface>> evaluation = Lists.newArrayList();
         for (final List<MoveTypeInterface> items : map.values())

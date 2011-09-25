@@ -28,14 +28,12 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.Direction;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.MutationInterface;
 
 public final class Board implements BoardInterface {
 
-    private int times = 0;
+    public static int instances = 0;
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -97,6 +95,7 @@ public final class Board implements BoardInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     private Board(final int rows, final int columns) {
+        ++instances;
         this.rows = rows;
         this.columns = columns;
         this.numberOfCells = this.rows * this.columns;
@@ -154,20 +153,13 @@ public final class Board implements BoardInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     private Map<PieceInterface, Integer> count() {
-        ++this.times;
-        if (this.times > 1) {
-            System.out.println(this.times);
-            throw new RuntimeException("double lazy init");
-        }
         final Map<PieceInterface, Integer> indexes = Maps.newHashMap();
         for (int y = 0; y < this.rows; ++y)
             for (int x = 0; x < this.columns; ++x) {
                 final PieceInterface piece = this.cells[y][x].value();
                 final Integer counter = indexes.get(piece);
-                if (counter == null)
-                    indexes.put(piece, 1);
-                else
-                    indexes.put(piece, counter + 1);
+                if (counter == null) indexes.put(piece, 1);
+                else indexes.put(piece, counter + 1);
             }
         return indexes;
     }
@@ -179,8 +171,20 @@ public final class Board implements BoardInterface {
         return count == null ? 0 : count;
     }
 
+    /*
+    @Override
+    public int count(final PieceInterface value) {
+        int counter = 0;
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x)
+                if (this.cells[y][x].value().equals(value)) ++counter;
+        return counter;
+    }
+    */
+
     /*-------------------------------------8<-------------------------------------*/
 
+    /*
     @Override
     public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) {
         final Map<DirectionInterface, BoardCellInterface> neighbourhood = Maps.newHashMap();
@@ -189,6 +193,7 @@ public final class Board implements BoardInterface {
         }
         return neighbourhood;
     }
+    */
 
     /*-------------------------------------8<-------------------------------------*/
 
