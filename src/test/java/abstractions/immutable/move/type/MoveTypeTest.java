@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import abstractions.immutable.move.type.mocks.SomeConcreteMoveType;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 
 public class MoveTypeTest {
 
@@ -18,34 +18,34 @@ public class MoveTypeTest {
 	public final void testValue() {}
 
 	@Test
-	public final void testFromConcreteMoveTypeInterface() {
+	public final void testFromMoveInterface() {
 
-		final ConcreteMoveTypeInterface concreteMoveTypeInstance = null;
-		Assert.assertTrue(MoveType.from(concreteMoveTypeInstance).equals(MoveType.NULL));
+		final MoveInterface concreteMoveTypeInstance = null;
+		Assert.assertTrue(Move.from(concreteMoveTypeInstance).equals(Move.NULL));
 
-		final Class<? extends ConcreteMoveTypeInterface> concreteMoveTypeClass = null;
-		Assert.assertTrue(MoveType.from(concreteMoveTypeClass).equals(MoveType.NULL));
+		final Class<? extends MoveInterface> concreteMoveTypeClass = null;
+		Assert.assertTrue(Move.from(concreteMoveTypeClass).equals(Move.NULL));
 
-		Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from()).equals(MoveType.from(SomeConcreteMoveType.from())));
-		Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from()).equals(MoveType.from(SomeConcreteMoveType.from(null))));
-		Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from(null)).equals(MoveType.from(SomeConcreteMoveType.class)));
+		Assert.assertTrue(Move.from(SomeConcreteMoveType.from()).equals(Move.from(SomeConcreteMoveType.from())));
+		Assert.assertTrue(Move.from(SomeConcreteMoveType.from()).equals(Move.from(SomeConcreteMoveType.from(null))));
+		Assert.assertTrue(Move.from(SomeConcreteMoveType.from(null)).equals(Move.from(SomeConcreteMoveType.class)));
 
-		Assert.assertTrue(!MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.class)));
-		Assert.assertTrue(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1)))));
-		Assert.assertTrue(!MoveType.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(MoveType.from(SomeConcreteMoveType.from(Position.from(1, 2)))));
+		Assert.assertTrue(!Move.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(Move.from(SomeConcreteMoveType.class)));
+		Assert.assertTrue(Move.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(Move.from(SomeConcreteMoveType.from(Position.from(1, 1)))));
+		Assert.assertTrue(!Move.from(SomeConcreteMoveType.from(Position.from(1, 1))).equals(Move.from(SomeConcreteMoveType.from(Position.from(1, 2)))));
 	}
 
 	@Test
-	public final void testFromClassOfQextendsConcreteMoveTypeInterface() {}
+	public final void testFromClassOfQextendsMoveInterface() {}
 
 	@Test
 	public final void testApply() {}
 
 	@Test
-	public final void testApplyClassOfQextendsConcreteMoveTypeInterface() {}
+	public final void testApplyClassOfQextendsMoveInterface() {}
 
 	@Test
-	public final void testApplyConcreteMoveTypeInterface() {}
+	public final void testApplyMoveInterface() {}
 
 	@Test
 	public final void testEqualsObject() {}

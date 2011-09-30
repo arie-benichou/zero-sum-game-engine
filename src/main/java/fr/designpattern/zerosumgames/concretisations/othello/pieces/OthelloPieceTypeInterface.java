@@ -1,5 +1,5 @@
 
-package fr.designpattern.zerosumgames.concretisations.reversi.context.pieces;
+package fr.designpattern.zerosumgames.concretisations.othello.pieces;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
@@ -7,7 +7,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
 
-public interface ReversiPieceTypeInterface extends ImmutableInterface<ReversiPieceTypeInterface> {
+public interface OthelloPieceTypeInterface extends ImmutableInterface<OthelloPieceTypeInterface> {
 
 	boolean hasApplication(SideInterface side, BoardInterface board, PositionInterface position); // TODO ajouter à une ConcretePieceTypeInterface
 

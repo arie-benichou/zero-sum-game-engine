@@ -1,27 +1,200 @@
 
 package fr.designpattern.zerosumgames.abstractions.immutable.move;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 public final class Move implements MoveInterface {
+
+    /*-------------------------------------8<-------------------------------------*/
 
     public static int instances;
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public final static MoveInterface NULL = new Move(MoveType.NULL, BoardMutation.NULL);
+    private final static class ConcreteNullMoveType implements MoveInterface {
+
+        private ConcreteNullMoveType() {}
+
+        @Override
+        public MoveInterface apply() {
+            return this;
+        }
+
+        @Override
+        public PositionInterface position() {
+            return Position.NULL;
+        }
+
+        @Override
+        public MoveInterface apply(final PositionInterface position) {
+            return this;
+        }
+
+        @Override
+        public BoardMutationInterface boardMutation(/*final SideInterface side, final BoardInterface board*/) {
+            return BoardMutation.NULL;
+        }
+
+        @Override
+        public int compareTo(final MoveInterface that) {
+            return 0;
+        }
+
+        @Override
+        public ContextInterface context() {
+            return null; // TODO Null Object
+        }
+
+        @Override
+        public boolean isNull() {
+            return true;
+        }
+
+        @Override
+        public MoveInterface value() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public MoveInterface apply(final MoveInterface value) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public MoveInterface apply(final Class<? extends MoveInterface> valueClass) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static int computeHashCode(final MoveTypeInterface type, final BoardMutationInterface boardMutation) {
-        return (17 * 31 + type.hashCode()) * 31 + boardMutation.hashCode();
+    private final static class NullMoveType implements MoveInterface {
+
+        private final static MoveInterface INSTANCE = new NullMoveType();
+        private final static MoveInterface VALUE = new ConcreteNullMoveType();
+
+        private NullMoveType() {}
+
+        @Override
+        public MoveInterface apply() {
+            return INSTANCE;
+        }
+
+        @Override
+        public MoveInterface value() {
+            return VALUE;
+        }
+
+        @Override
+        public MoveInterface apply(final Class<? extends MoveInterface> valueClass) {
+            return this.value().getClass().equals(valueClass) ? this.apply() : Factory.get(valueClass);
+        }
+
+        @Override
+        public MoveInterface apply(final MoveInterface value) {
+            return this.value().equals(value) ? this.apply() : Factory.get(value);
+        }
+
+        @Override
+        public boolean equals(final Object object) {
+            if (object == this) return true;
+            if (object == null) return false;
+            if (!(object instanceof MoveInterface)) return false;
+            final MoveInterface that = (MoveInterface) object;
+            //if (that.hashCode() != this.hashCode()) return false;
+            return that.value().equals(this.value());
+        }
+
+        @Override
+        public int compareTo(final MoveInterface o) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        @Override
+        public boolean isNull() {
+            return true;
+        }
+
+        @Override
+        public ContextInterface context() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public PositionInterface position() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public MoveInterface apply(final PositionInterface position) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public BoardMutationInterface boardMutation() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    public final static MoveInterface NULL = new NullMoveType();
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    private static MoveInterface newType(final Class<? extends MoveInterface> valueClass) {
+
+        MoveInterface instance = null;
+
+        try {
+            instance = (MoveInterface) valueClass.getMethod("from").invoke(null, (Object[]) null);
+        }
+        catch (final SecurityException e) {
+            e.printStackTrace();
+        }
+        catch (final NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        catch (final IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        catch (final IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        catch (final InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return instance;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    private final static int computeHashCode(final Class<? extends MoveInterface> valueClass) {
+        return valueClass.getCanonicalName().hashCode();
+    }
+
+    private final static int computeHashCode(final MoveInterface value) {
+        return (value.getClass().getCanonicalName() + "|" + value.hashCode()).hashCode();
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -29,26 +202,42 @@ public final class Move implements MoveInterface {
     public final static class Factory {
 
         private static int cacheHits;
+
         private final static Map<Integer, MoveInterface> CACHE = Maps.newHashMap();
 
-        public static MoveInterface get(MoveTypeInterface type, BoardMutationInterface boardMutation) {
-            if (type == null) type = MoveType.NULL;
-            if (boardMutation == null) boardMutation = BoardMutation.NULL;
-            if (type.equals(MoveType.NULL) && boardMutation.equals(BoardMutation.NULL)) return NULL;
+        public static MoveInterface get(final Class<? extends MoveInterface> valueClass) {
+            if (valueClass == null) return NULL;
             /*
-            final int address = computeHashCode(type, boardMutation);
-            MoveInterface instance = CACHE.get(address);
+            final int address = computeHashCode(valueClass);
+            MoveTypeInterface instance = CACHE.get(address);
             if (instance == null) {
-                instance = new Move(type, boardMutation);
+                instance = new MoveType(newType(valueClass));
                 CACHE.put(address, instance);
             }
-            else {
+            else
                 ++cacheHits;
-            }
             return instance;
             */
             ++instances;
-            return new Move(type, boardMutation);
+            return new Move(newType(valueClass));
+        }
+
+        public static MoveInterface get(MoveInterface value) {
+            if (value == null) value = NULL.value();
+            if (value.equals(NULL.value())) return NULL;
+            /*
+            final int address = computeHashCode(value);
+            MoveTypeInterface instance = CACHE.get(address);
+            if (instance == null) {
+                instance = new MoveType(value);
+                CACHE.put(address, instance);
+            }
+            else
+                ++cacheHits;
+            return instance;
+            */
+            ++instances;
+            return new Move(value);
         }
 
         public final static int size() {
@@ -63,20 +252,11 @@ public final class Move implements MoveInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final MoveTypeInterface type;
+    private final MoveInterface value;
 
     @Override
-    public MoveTypeInterface type() {
-        return this.type;
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    private final BoardMutationInterface mutation;
-
-    @Override
-    public BoardMutationInterface mutation() {
-        return this.mutation;
+    public MoveInterface value() {
+        return this.value;
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -90,14 +270,18 @@ public final class Move implements MoveInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static MoveInterface from(final MoveTypeInterface type, final BoardMutationInterface mutation) {
-        return NULL.apply(type, mutation);
+    public static MoveInterface from(final MoveInterface value) {
+        return NULL.apply(value);
     }
 
-    private Move(final MoveTypeInterface type, final BoardMutationInterface mutation) {
-        this.type = type;
-        this.mutation = mutation;
-        this.hashCode = computeHashCode(type, mutation);
+    public static MoveInterface from(final Class<? extends MoveInterface> valueClass) {
+        return NULL.apply(valueClass);
+    }
+
+    private Move(final MoveInterface value) {
+        ++instances;
+        this.value = value;
+        this.hashCode = computeHashCode(value.getClass());
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -108,18 +292,13 @@ public final class Move implements MoveInterface {
     }
 
     @Override
-    public MoveInterface apply(final MoveTypeInterface type) {
-        return this.type().equals(type) ? this.apply() : Factory.get(type, this.mutation());
+    public MoveInterface apply(final Class<? extends MoveInterface> valueClass) {
+        return this.value().getClass().equals(valueClass) ? this.apply() : Factory.get(valueClass);
     }
 
     @Override
-    public MoveInterface apply(final BoardMutationInterface mutation) {
-        return this.mutation().equals(mutation) ? this.apply() : Factory.get(this.type(), mutation);
-    }
-
-    @Override
-    public MoveInterface apply(final MoveTypeInterface type, final BoardMutationInterface mutation) {
-        return this.type().equals(type) && this.mutation().equals(mutation) ? this.apply() : Factory.get(type, mutation);
+    public MoveInterface apply(final MoveInterface value) {
+        return this.value().equals(value) ? this.apply() : Factory.get(value);
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -131,23 +310,48 @@ public final class Move implements MoveInterface {
         if (!(object instanceof MoveInterface)) return false;
         final MoveInterface that = (MoveInterface) object;
         //if (that.hashCode() != this.hashCode()) return false;
-        return that.type().equals(this.type()) && that.mutation().equals(this.mutation());
+        return that.value().equals(this.value());
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "(" + this.type() + ", " + this.mutation() + ")";
+        return this.getClass().getSimpleName() + "(" + this.value() + ")";
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public int compareTo(final MoveInterface that) {
+        return this.value().compareTo(that.value());
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
     public boolean isNull() {
-        return this.type().value().isNull();
+        return this.value().isNull();
     }
 
-    /*-------------------------------------8<-------------------------------------*/
+    @Override
+    public ContextInterface context() {
+        return this.value.context();
+    }
+
+    @Override
+    public PositionInterface position() {
+        return this.value.position();
+    }
+
+    @Override
+    public MoveInterface apply(final PositionInterface position) {
+        return this.value.apply(position);
+    }
+
+    @Override
+    public BoardMutationInterface boardMutation() {
+        return this.value().boardMutation();
+    }
 
 }

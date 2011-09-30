@@ -9,13 +9,13 @@ import com.google.common.collect.Maps;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.PlayerInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.Side;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
 public final class Adversity implements AdversityInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final Map<SideInterface, PlayerInterface<MoveTypeInterface>> players;
+    private final Map<SideInterface, PlayerInterface<MoveInterface>> players;
 
     /*-------------------------------------8<-------------------------------------*
 
@@ -33,12 +33,12 @@ public final class Adversity implements AdversityInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static AdversityInterface from(final PlayerInterface<MoveTypeInterface>[] players) {
+    public static AdversityInterface from(final PlayerInterface<MoveInterface>[] players) {
         return new Adversity(players[0], players[1]); // TODO check + gérer plusieurs joueurs
     }
 
     //private Adversity(final PlayerInterface<MoveTypeInterface>... players) {
-    private Adversity(final PlayerInterface<MoveTypeInterface> player1, final PlayerInterface<MoveTypeInterface> player2) {
+    private Adversity(final PlayerInterface<MoveInterface> player1, final PlayerInterface<MoveInterface> player2) {
         this.players = Maps.newHashMap();
         final SideInterface side = Side.from(1);
         this.players.put(side, player1);
@@ -52,7 +52,7 @@ public final class Adversity implements AdversityInterface {
         return this;
     }
 
-    public AdversityInterface apply(final PlayerInterface<MoveTypeInterface>... players) {
+    public AdversityInterface apply(final PlayerInterface<MoveInterface>... players) {
         // TODO gérer le cas ou l'input est null
         return new Adversity(players[0], players[1]); // TODO check + gérer plusieurs joueurs
     }
@@ -60,7 +60,7 @@ public final class Adversity implements AdversityInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public PlayerInterface<MoveTypeInterface> player(final SideInterface side) {
+    public PlayerInterface<MoveInterface> player(final SideInterface side) {
         // TODO gérer le cas ou l'input est null
         return this.players.get(side);
         // TODO gérer le cas ou l'output est nul        
@@ -71,7 +71,7 @@ public final class Adversity implements AdversityInterface {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
-        for (final Entry<SideInterface, PlayerInterface<MoveTypeInterface>> opponent : this.players.entrySet()) {
+        for (final Entry<SideInterface, PlayerInterface<MoveInterface>> opponent : this.players.entrySet()) {
             sb.append(opponent.getKey());
             sb.append(opponent.getValue());
         }

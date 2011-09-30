@@ -15,7 +15,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.designpattern.zerosumgames.concretisations.reversi;
+package fr.designpattern.zerosumgames.concretisations.othello;
 
 import java.util.Map;
 
@@ -28,7 +28,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.ContextManagerInterf
 import fr.designpattern.zerosumgames.abstractions.immutable.context.Context;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 
-class Reversi {
+class Othello {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -41,7 +41,7 @@ class Reversi {
 
     public static void task1() {
         /*-------------------------------------8<-------------------------------------*/
-        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("reversi-context03.xml"));
+        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("othello-context.xml"));
         /*-------------------------------------8<-------------------------------------*/
         final ContextInterface gameplay = (Context) factory.getBean("gamePlay");
         /*-------------------------------------8<-------------------------------------*/

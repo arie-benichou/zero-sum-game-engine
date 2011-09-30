@@ -25,12 +25,12 @@
 	<!--*********************************************************************************** -->
 
 	<bean id="nullPiece"
-		class="fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiNullPiece"
+		class="fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloNullPiece"
 		factory-method="from">
 	</bean>
 
 	<bean id="pawnPiece"
-		class="fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiPawn"
+		class="fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloPawn"
 		factory-method="from">
 	</bean>
 
@@ -50,28 +50,28 @@
 
 	<!--*********************************************************************************** -->
 
-	<bean id="reversiNullPiece"
+	<bean id="othelloNullPiece"
 		class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece"
 		factory-method="from">
 		<constructor-arg ref="nullSide" />
 		<constructor-arg ref="nullPieceType" />
 	</bean>
 
-	<bean id="reversiBlackPiece"
+	<bean id="othelloBlackPiece"
 		class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece"
 		factory-method="from">
 		<constructor-arg ref="side" />
 		<constructor-arg ref="pawnPieceType" />
 	</bean>
 
-	<bean id="reversiWhitePiece"
+	<bean id="othelloWhitePiece"
 		class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece"
 		factory-method="from">
 		<constructor-arg ref="oppositeSide" />
 		<constructor-arg ref="pawnPieceType" />
 	</bean>
 
-	<bean id="reversiPotentialPiece"
+	<bean id="othelloPotentialPiece"
 		class="fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece"
 		factory-method="from">
 		<constructor-arg ref="nullSide" />
@@ -83,10 +83,10 @@
 	<bean id="symbols" class="java.util.HashMap">
 		<constructor-arg>
 			<map>
-				<entry key-ref="reversiNullPiece" value="   " />
-				<entry key-ref="reversiBlackPiece" value=" x " />
-				<entry key-ref="reversiWhitePiece" value=" o " />
-				<entry key-ref="reversiPotentialPiece" value=" * " />
+				<entry key-ref="othelloNullPiece" value="   " />
+				<entry key-ref="othelloBlackPiece" value=" x " />
+				<entry key-ref="othelloWhitePiece" value=" o " />
+				<entry key-ref="othelloPotentialPiece" value=" * " />
 			</map>
 		</constructor-arg>
 	</bean>
@@ -107,7 +107,7 @@
 							<constructor-arg value="3" />
 						</bean>
 					</key>
-					<ref bean="reversiBlackPiece" />
+					<ref bean="othelloBlackPiece" />
 				</entry>
 
 				<entry>
@@ -119,7 +119,7 @@
 							<constructor-arg value="4" />
 						</bean>
 					</key>
-					<ref bean="reversiWhitePiece" />
+					<ref bean="othelloWhitePiece" />
 				</entry>
 
 				<entry>
@@ -131,7 +131,7 @@
 							<constructor-arg value="3" />
 						</bean>
 					</key>
-					<ref bean="reversiWhitePiece" />
+					<ref bean="othelloWhitePiece" />
 				</entry>
 
 				<entry>
@@ -143,7 +143,7 @@
 							<constructor-arg value="4" />
 						</bean>
 					</key>
-					<ref bean="reversiBlackPiece" />
+					<ref bean="othelloBlackPiece" />
 				</entry>
 			</map>
 		</constructor-arg>
@@ -165,13 +165,29 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.Player"
 							factory-method="from">
-							<constructor-arg value="Player 2" />
+							<constructor-arg value="Player 1" />
 							<constructor-arg>
 								<bean
 									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
 									<constructor-arg>
+										<!-- -->
 										<bean
-											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.NullEvaluation" />
+											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.IterativeDeepening">
+											<constructor-arg>
+										<!-- -->
+												<bean
+													class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.Evaluation">
+													<constructor-arg>
+														<bean
+															class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
+															<constructor-arg value="2"></constructor-arg>
+														</bean>
+													</constructor-arg>
+												</bean>
+												<!-- -->  
+											</constructor-arg>
+										</bean>
+										<!-- -->
 									</constructor-arg>
 									<constructor-arg>
 										<bean
@@ -183,26 +199,30 @@
 						<bean
 							class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.Player"
 							factory-method="from">
-							<constructor-arg value="Player 1" />
+							<constructor-arg value="Player 2" />
 							<constructor-arg>
 								<bean
 									class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.Strategy">
 									<constructor-arg>
+										<!-- -->
 										<bean
 											class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.IterativeDeepening">
 											<constructor-arg>
+											<!-- -->
 												<bean
 													class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.Evaluation">
 													<constructor-arg>
 														<bean
 															class="fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
-															<constructor-arg value="9"></constructor-arg>
+															<constructor-arg value="8"></constructor-arg>
 														</bean>
 													</constructor-arg>
 
 												</bean>
+											<!-- --> 
 											</constructor-arg>
 										</bean>
+										 <!-- -->
 									</constructor-arg>
 									<constructor-arg>
 										<bean
@@ -225,13 +245,13 @@
 						factory-method="from">
 						<constructor-arg value="6" />
 						<constructor-arg value="6" />
-						<constructor-arg ref="reversiNullPiece" />
+						<constructor-arg ref="othelloNullPiece" />
 						<constructor-arg ref="boardSetup" />
 					</bean>
 				</constructor-arg>
 				<constructor-arg>
 					<bean
-						class="fr.designpattern.zerosumgames.concretisations.reversi.context.referees.ReversiReferee"
+						class="fr.designpattern.zerosumgames.concretisations.othello.referees.OthelloReferee"
 						factory-method="from"></bean>
 				</constructor-arg>
 			</bean>

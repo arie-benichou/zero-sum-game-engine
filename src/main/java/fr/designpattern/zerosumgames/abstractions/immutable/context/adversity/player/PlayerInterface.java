@@ -25,7 +25,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Computat
 import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Value;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.StrategyInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
 /**
  * This is the interface for a player.
@@ -38,7 +38,7 @@ public interface PlayerInterface<OPTION> extends ImmutableInterface<PlayerInterf
     String name();
 
     @Value
-    StrategyInterface<MoveTypeInterface> strategy();
+    StrategyInterface<MoveInterface> strategy();
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -46,15 +46,15 @@ public interface PlayerInterface<OPTION> extends ImmutableInterface<PlayerInterf
     PlayerInterface<OPTION> apply(String name);
 
     @Application
-    PlayerInterface<OPTION> apply(StrategyInterface<MoveTypeInterface> strategy);
+    PlayerInterface<OPTION> apply(StrategyInterface<MoveInterface> strategy);
 
     @Application
-    PlayerInterface<OPTION> apply(String name, StrategyInterface<MoveTypeInterface> strategy);
+    PlayerInterface<OPTION> apply(String name, StrategyInterface<MoveInterface> strategy);
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Computation
-    List<MoveTypeInterface> playFrom(final ContextInterface context);
+    List<MoveInterface> playFrom(final ContextInterface context);
 
     /*-------------------------------------8<-------------------------------------*/
 
