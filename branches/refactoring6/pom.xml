@@ -33,7 +33,7 @@
 					</descriptors>
 					<archive>
 						<manifest>
-							<mainClass>fr.designpattern.zerosumgames.concretisations.reversi.Reversi</mainClass>
+							<mainClass>fr.designpattern.zerosumgames.concretisations.othello.Reversi</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

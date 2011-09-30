@@ -18,11 +18,9 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public final class NegaMaxExploration implements ExplorationInterface<MoveTypeInterface> {
+public final class NegaMaxExploration implements ExplorationInterface<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -42,31 +40,30 @@ public final class NegaMaxExploration implements ExplorationInterface<MoveTypeIn
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public ExplorationInterface<MoveTypeInterface> apply() {
+    public ExplorationInterface<MoveInterface> apply() {
         return this;
     }
 
     @Override
-    public ExplorationInterface<MoveTypeInterface> apply(final int maximalOrdinal) {
+    public ExplorationInterface<MoveInterface> apply(final int maximalOrdinal) {
         return new NegaMaxExploration(maximalOrdinal);
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal) {
+    public Double evaluate(final ContextInterface context, final MoveInterface option, final int maximalOrdinal) {
 
-        final MoveInterface move = Move.from(option, option.value().boardMutation()); // TODO ?? MoveType -> Move
-        final ContextInterface newContext = context.play(move);
+        final ContextInterface newContext = context.apply(option);
 
-        if (newContext.isOver()) return newContext.getTerminalEvaluation();
-        if (maximalOrdinal == 1) return newContext.getHeuristicEvaluation();
+        if (newContext.isOver()) return newContext.evaluate();
+        if (maximalOrdinal == 1) return newContext.estimate();
 
         // TODO playableMoves(SideInterface side) et passer side en argument à evaluate(...)    
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
 
         Double bestEvaluation = 1.0; // TODO tenter une version immutable        
-        for (final MoveTypeInterface oppositeSideOption : newContextForOppositeSide.playableMoves())
+        for (final MoveInterface oppositeSideOption : newContextForOppositeSide.options())
             bestEvaluation = Math.min(bestEvaluation, -this.evaluate(newContextForOppositeSide, oppositeSideOption, maximalOrdinal - 1));
         return bestEvaluation;
 
@@ -75,7 +72,7 @@ public final class NegaMaxExploration implements ExplorationInterface<MoveTypeIn
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option) {
+    public Double evaluate(final ContextInterface context, final MoveInterface option) {
         return this.evaluate(context, option, this.maximalOrdinal());
     }
 

@@ -22,31 +22,31 @@ import java.util.List;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.EvaluationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.selection.SelectionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
-public final class Strategy implements StrategyInterface<MoveTypeInterface> {
+public final class Strategy implements StrategyInterface<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final EvaluationInterface<MoveTypeInterface> evaluation;
+    private final EvaluationInterface<MoveInterface> evaluation;
 
     @Override
-    public EvaluationInterface<MoveTypeInterface> evaluation() {
+    public EvaluationInterface<MoveInterface> evaluation() {
         return this.evaluation;
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final SelectionInterface<MoveTypeInterface> selection;
+    private final SelectionInterface<MoveInterface> selection;
 
     @Override
-    public SelectionInterface<MoveTypeInterface> selection() {
+    public SelectionInterface<MoveInterface> selection() {
         return this.selection;
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public Strategy(final EvaluationInterface<MoveTypeInterface> evaluation, final SelectionInterface<MoveTypeInterface> selection) {
+    public Strategy(final EvaluationInterface<MoveInterface> evaluation, final SelectionInterface<MoveInterface> selection) {
         this.evaluation = evaluation;
         this.selection = selection;
     }
@@ -54,14 +54,14 @@ public final class Strategy implements StrategyInterface<MoveTypeInterface> {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Strategy apply(final EvaluationInterface<MoveTypeInterface> evaluation) {
+    public Strategy apply(final EvaluationInterface<MoveInterface> evaluation) {
         return new Strategy(evaluation, this.selection());
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Strategy apply(final SelectionInterface<MoveTypeInterface> selection) {
+    public Strategy apply(final SelectionInterface<MoveInterface> selection) {
         return new Strategy(this.evaluation(), selection);
     }
 
@@ -82,13 +82,13 @@ public final class Strategy implements StrategyInterface<MoveTypeInterface> {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public List<MoveTypeInterface> process(final ContextInterface context) {
-        final List<MoveTypeInterface> options = context.playableMoves();
+    public List<MoveInterface> process(final ContextInterface context) {
+        final List<MoveInterface> options = context.options();
         //return options.size() == 1 ? options : this.selection().process(this.evaluation().process(context));
         if (options.size() == 1)
             return options;
-        final List<List<MoveTypeInterface>> _evaluation = this.evaluation().process(context);
-        final List<MoveTypeInterface> _selection = this.selection().process(_evaluation);
+        final List<List<MoveInterface>> _evaluation = this.evaluation().process(context);
+        final List<MoveInterface> _selection = this.selection().process(_evaluation);
         return _selection;
     }
     /*-------------------------------------8<-------------------------------------*/

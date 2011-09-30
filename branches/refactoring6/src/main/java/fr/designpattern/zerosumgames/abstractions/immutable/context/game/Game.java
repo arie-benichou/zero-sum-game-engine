@@ -7,7 +7,6 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInter
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 public class Game implements GameInterface {
 
@@ -68,19 +67,19 @@ public class Game implements GameInterface {
     */
 
     @Override
-    public List<MoveTypeInterface> playableMoves(final ContextInterface context) {
-        return this.referee().playableMoves(context);
+    public List<MoveInterface> options(final ContextInterface context) {
+        return this.referee().allowedOptions(context);
     }
 
     @Override
-    public GameInterface play(final MoveInterface move) {
-        return this.apply(this.board().apply(move.mutation()));
+    public GameInterface apply(final MoveInterface move) {
+        return this.apply(this.board().apply(move.value().boardMutation()));
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public boolean isGameOver(final ContextInterface context) {
+    public boolean isOver(final ContextInterface context) {
         return this.referee().isOver(context);
     }
 

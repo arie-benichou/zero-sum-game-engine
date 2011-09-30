@@ -6,9 +6,9 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
-public final class NullEvaluation implements EvaluationInterface<MoveTypeInterface> {
+public final class NullEvaluation implements EvaluationInterface<MoveInterface> {
 
     @Override
     public int maximalOdinal() {
@@ -16,24 +16,24 @@ public final class NullEvaluation implements EvaluationInterface<MoveTypeInterfa
     }
 
     @Override
-    public EvaluationInterface<MoveTypeInterface> apply() {
+    public EvaluationInterface<MoveInterface> apply() {
         return this;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> sortedOptions) {
-        final List<List<MoveTypeInterface>> evaluatedOptions = Lists.newArrayList();
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveInterface> sortedOptions) {
+        final List<List<MoveInterface>> evaluatedOptions = Lists.newArrayList();
         evaluatedOptions.add(sortedOptions);
         return evaluatedOptions;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
-        return this.process(context, this.maximalOdinal(), context.playableMoves());
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal) {
+        return this.process(context, this.maximalOdinal(), context.options());
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+    public List<List<MoveInterface>> process(final ContextInterface context) {
         return this.process(context, this.maximalOdinal());
     }
 

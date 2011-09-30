@@ -2,57 +2,48 @@
 package fr.designpattern.zerosumgames.abstractions.immutable.move;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.ImmutableInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Application;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Computation;
+import fr.designpattern.zerosumgames.abstractions.immutable.annotations.Value;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public interface MoveInterface extends ImmutableInterface<MoveInterface> {
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    /*
-    SideInterface side();
-
-    MoveInterface apply(SideInterface side);
-    */
+// TODO ?? créer une TypeFactoryInterface générique et utiliser directement les
+// types construits par la factory au lieu de devoir appeler value()
+// TODO ?? créer une TypeInterface de plus haut niveau
+public interface MoveInterface extends ImmutableInterface<MoveInterface>, Comparable<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    MoveTypeInterface type();
+    @Value
+    ContextInterface context();
 
-    MoveInterface apply(MoveTypeInterface type);
+    @Value
+    MoveInterface value();
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    BoardMutationInterface mutation();
-
-    MoveInterface apply(BoardMutationInterface mutation);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    MoveInterface apply(MoveTypeInterface type, BoardMutationInterface mutation);
+    @Value
+    PositionInterface position();
 
     /*-------------------------------------8<-------------------------------------*/
 
-    /*
-    Map<PositionInterface, PieceInterface> mutations();
+    @Application
+    MoveInterface apply(MoveInterface value);
 
-    MoveInterface apply(Map<PositionInterface, PieceInterface> mutations);
-    */
+    @Application
+    MoveInterface apply(Class<? extends MoveInterface> valueClass);
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    int hashCode();
-
-    @Override
-    boolean equals(Object obj);
+    MoveInterface apply(PositionInterface position);
 
     /*-------------------------------------8<-------------------------------------*/
 
-    @Override
-    String toString();
-
+    @Computation
     boolean isNull();
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Computation
+    BoardMutationInterface boardMutation(/*SideInterface side, BoardInterface board*/);
 
     /*-------------------------------------8<-------------------------------------*/
 

@@ -9,20 +9,20 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
 
 import com.google.common.collect.Maps;
 
 // TODO utiliser une factory et NULL contient le coup null
-public final class SomeConcreteMoveType implements ConcreteMoveTypeInterface {
+public final class SomeConcreteMoveType implements MoveInterface {
 
-    public static ConcreteMoveTypeInterface from() {
+    public static MoveInterface from() {
         return new SomeConcreteMoveType(Position.NULL);
     }
 
-    public static ConcreteMoveTypeInterface from(final PositionInterface position) {
+    public static MoveInterface from(final PositionInterface position) {
         return new SomeConcreteMoveType(position == null ? Position.NULL : position);
     }
 
@@ -33,7 +33,7 @@ public final class SomeConcreteMoveType implements ConcreteMoveTypeInterface {
     }
 
     @Override
-    public ConcreteMoveTypeInterface apply() {
+    public MoveInterface apply() {
         return this;
     }
 
@@ -43,7 +43,7 @@ public final class SomeConcreteMoveType implements ConcreteMoveTypeInterface {
     }
 
     @Override
-    public ConcreteMoveTypeInterface apply(final PositionInterface position) {
+    public MoveInterface apply(final PositionInterface position) {
         return from(position);
     }
 

@@ -14,10 +14,8 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.B
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.type.PieceType;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.BoardConsoleRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.BoardRenderer;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.BoardRenderingInterface;
@@ -25,7 +23,7 @@ import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.Boar
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.BoardCellStringRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.rendering.board.cell.piece.PieceStringRendering;
 import fr.designpattern.zerosumgames.abstractions.immutable.util.CachingFactoriesUsage;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiPawn;
+import fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloPawn;
 
 public final class ContextManager implements ContextManagerInterface {
 
@@ -97,35 +95,27 @@ public final class ContextManager implements ContextManagerInterface {
         /*-------------------------------------8<-------------------------------------*/
         this.renderBoard(context.game().board());
         /*-------------------------------------8<-------------------------------------*/
-        final List<MoveTypeInterface> playableMoves = context.playableMoves();
+        final List<MoveInterface> playableMoves = context.options();
         /*-------------------------------------8<-------------------------------------*/
         // TODO utiliser plutot un décorateur de cellule
         final Map<PositionInterface, PieceInterface> map = Maps.newHashMap();
-        for (final MoveTypeInterface moveType : playableMoves) {
+        for (final MoveInterface moveType : playableMoves) {
             final PositionInterface position = moveType.value().position();
-            map.put(position, context.game().board().cell(position).value().apply(PieceType.from(ReversiPawn.class)));
+            map.put(position, context.game().board().cell(position).value().apply(PieceType.from(OthelloPawn.class)));
         }
         System.out.println("\nLegal moves for " + context.side() + " : ");
         this.renderBoard(context.game().board().apply(BoardMutation.from(map)));
         /*-------------------------------------8<-------------------------------------*/
         final AdversityInterface adversity = context.adversity();
-        final PlayerInterface<MoveTypeInterface> player = adversity.player(context.side());
-
-        //System.out.println(player);
-
-        final List<MoveTypeInterface> choosenMoves = player.playFrom(context);
+        final PlayerInterface<MoveInterface> player = adversity.player(context.side());
+        final List<MoveInterface> choosenMoves = player.playFrom(context);
         /*-------------------------------------8<-------------------------------------*/
-        //System.out.println(choosenMoves);
-        final MoveTypeInterface moveType = choosenMoves.get(0);
-        /*-------------------------------------8<-------------------------------------*/
-        //System.out.println(moveType);
-        final MoveInterface move = Move.from(moveType, moveType.value().boardMutation(/*context.side(), context.game().board()*/));
+        final MoveInterface moveType = choosenMoves.get(0);
         /*-------------------------------------8<-------------------------------------*/
         final long t0 = System.currentTimeMillis();
-        while (System.currentTimeMillis() - t0 < 100)
-            ;
+        while (System.currentTimeMillis() - t0 < 100) {}
         /*-------------------------------------8<-------------------------------------*/
-        return this.startFrom(context.play(move).apply(context.side().opposite()));
+        return this.startFrom(context.apply(moveType).apply(context.side().opposite()));
         /*-------------------------------------8<-------------------------------------*/
     }
 
@@ -145,7 +135,7 @@ public final class ContextManager implements ContextManagerInterface {
         System.out.println("\n--------------------8<--------------------\n");
         System.out.println("Game Over !");
         System.out.println("Temps de la partie : " + (t1 - t0) / 1000 + " secondes");
-        final double scoreGame = (1 + Math.abs(finalContext.getHeuristicEvaluation())) * 10;
+        final double scoreGame = (1 + Math.abs(finalContext.estimate())) * 10;
         System.out.println("Note du résultat de la partie : " + NumberFormat.getInstance().format(scoreGame) + " / 20");
         System.out.println("\n-------------------->8--------------------\n");
 

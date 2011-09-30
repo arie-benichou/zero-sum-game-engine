@@ -10,7 +10,6 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.Direction;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
 
 public class CachingFactoriesUsage {
 
@@ -24,10 +23,9 @@ public class CachingFactoriesUsage {
         System.out.println();
         System.out.println("BoardMutation instances : " + BoardMutation.instances);
         System.out.println();
-        System.out.println("MoveType.Factory        : " + MoveType.Factory.cacheHits() + " / " + MoveType.Factory.size());
-        System.out.println("MoveType instances      : " + MoveType.instances);
+        System.out.println("MoveType.Factory        : " + Move.Factory.cacheHits() + " / " + Move.Factory.size());
+        System.out.println("MoveType instances      : " + Move.instances);
         System.out.println();
-        System.out.println("Move instances          : " + Move.instances);
         System.out.println("Board instances         : " + Board.instances);
     }
 

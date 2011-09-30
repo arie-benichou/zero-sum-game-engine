@@ -24,25 +24,25 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
-public class IterativeDeepening implements EvaluationInterface<MoveTypeInterface> {
+public class IterativeDeepening implements EvaluationInterface<MoveInterface> {
 
-    private final EvaluationInterface<MoveTypeInterface> evaluation;
+    private final EvaluationInterface<MoveInterface> evaluation;
 
-    public IterativeDeepening(final EvaluationInterface<MoveTypeInterface> evaluation) {
+    public IterativeDeepening(final EvaluationInterface<MoveInterface> evaluation) {
         this.evaluation = evaluation;
     }
 
     @Override
-    public EvaluationInterface<MoveTypeInterface> apply() {
+    public EvaluationInterface<MoveInterface> apply() {
         return this;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> givenOptions) {
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveInterface> givenOptions) {
         int localMaximalOrdinal = 0;
-        List<List<MoveTypeInterface>> evaluation = new ArrayList<List<MoveTypeInterface>>();
+        List<List<MoveInterface>> evaluation = new ArrayList<List<MoveInterface>>();
         evaluation.add(givenOptions);
         while (localMaximalOrdinal < maximalOdinal) {
             System.out.println("LEVEL : " + (localMaximalOrdinal + 1) + " / " + this.maximalOdinal());
@@ -57,9 +57,9 @@ public class IterativeDeepening implements EvaluationInterface<MoveTypeInterface
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal) {
 
-        final List<MoveTypeInterface> givenOptions = context.playableMoves();
+        final List<MoveInterface> givenOptions = context.options();
 
         /*
         System.out.println();
@@ -75,7 +75,7 @@ public class IterativeDeepening implements EvaluationInterface<MoveTypeInterface
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+    public List<List<MoveInterface>> process(final ContextInterface context) {
         return this.process(context, this.maximalOdinal());
     }
 

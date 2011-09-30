@@ -8,7 +8,6 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.Ad
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.GameInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
 public final class Context implements ContextInterface {
 
@@ -93,7 +92,7 @@ public final class Context implements ContextInterface {
 
     @Override
     public boolean isOver() {
-        return this.game().isGameOver(this);
+        return this.game().isOver(this);
     }
 
     /*
@@ -104,23 +103,23 @@ public final class Context implements ContextInterface {
     */
 
     @Override
-    public ContextInterface play(final MoveInterface move) {
-        return this.apply(this.game().play(move), this.history.push(move));
+    public ContextInterface apply(final MoveInterface choice) {
+        return this.apply(this.game().apply(choice), this.history.push(choice));
     }
 
     @Override
-    public Double getTerminalEvaluation() {
-        return this.game().referee().terminalEvaluation(this);
+    public Double evaluate() {
+        return this.game().referee().evaluate(this);
     }
 
     @Override
-    public Double getHeuristicEvaluation() {
-        return this.game().referee().heuristicEvaluation(this);
+    public Double estimate() {
+        return this.game().referee().estimate(this);
     }
 
     @Override
-    public List<MoveTypeInterface> playableMoves() {
-        return this.game().referee().playableMoves(this);
+    public List<MoveInterface> options() {
+        return this.game().referee().allowedOptions(this);
     }
     /*-------------------------------------8<-------------------------------------*/
 

@@ -1,27 +1,27 @@
 
-package fr.designpattern.zerosumgames.concretisations.reversi.context.moves;
+package fr.designpattern.zerosumgames.concretisations.othello.moves;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
 
-public final class ReversiNullMove implements ReversiMoveTypeInterface {
+public final class OthelloNullMove implements OthelloMoveInterface {
 
     private final ContextInterface context;
 
-    public final static ReversiMoveTypeInterface from(final ContextInterface context) {
-        return new ReversiNullMove(context);
+    public final static OthelloMoveInterface from(final ContextInterface context) {
+        return new OthelloNullMove(context);
     }
 
-    private ReversiNullMove(final ContextInterface context) {
+    private OthelloNullMove(final ContextInterface context) {
         this.context = context;
     }
 
     @Override
-    public ReversiMoveTypeInterface apply() {
+    public OthelloMoveInterface apply() {
         return this;
     }
 
@@ -31,7 +31,7 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
     }
 
     @Override
-    public ReversiMoveTypeInterface apply(final PositionInterface position) {
+    public OthelloMoveInterface apply(final PositionInterface position) {
         return this;
     }
 
@@ -54,12 +54,12 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
     public boolean equals(final Object object) {
         if (object == this) return true;
         if (object == null) return false;
-        if (!(object instanceof ReversiNullMove)) return false;
+        if (!(object instanceof OthelloNullMove)) return false;
         return true;
     }
 
     @Override
-    public int compareTo(final ConcreteMoveTypeInterface that) {
+    public int compareTo(final MoveInterface that) {
         return 1;
     }
 
@@ -71,6 +71,21 @@ public final class ReversiNullMove implements ReversiMoveTypeInterface {
     @Override
     public boolean isNull() {
         return true;
+    }
+
+    @Override
+    public MoveInterface value() {
+        return this;
+    }
+
+    @Override
+    public MoveInterface apply(final MoveInterface value) { // ?? TODO AbstractMoveInterface + ConcreteMoveInterface
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    @Override
+    public MoveInterface apply(final Class<? extends MoveInterface> valueClass) { // ?? TODO AbstractMoveInterface + ConcreteMoveInterface
+        throw new RuntimeException("Not implemented yet");
     }
 
 }

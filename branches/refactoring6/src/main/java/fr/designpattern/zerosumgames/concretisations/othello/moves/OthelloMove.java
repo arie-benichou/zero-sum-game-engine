@@ -15,7 +15,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package fr.designpattern.zerosumgames.concretisations.reversi.context.moves;
+package fr.designpattern.zerosumgames.concretisations.othello.moves;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,26 +33,26 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.Direction;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.ConcreteMoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
 
-public final class ReversiMove implements ReversiMoveTypeInterface {
+public final class OthelloMove implements OthelloMoveInterface {
 
     private BoardMutationInterface mutations = null;
 
-    public final static ReversiMoveTypeInterface from() {
-        return new ReversiMove(null, Position.NULL); // TODO ?! Context.Null
+    public final static OthelloMoveInterface from() {
+        return new OthelloMove(null, Position.NULL); // TODO ?! Context.Null
     }
 
-    public final static ReversiMoveTypeInterface from(final ContextInterface context, final PositionInterface position) {
-        return new ReversiMove(context, position);
+    public final static OthelloMoveInterface from(final ContextInterface context, final PositionInterface position) {
+        return new OthelloMove(context, position);
     }
 
     private final ContextInterface context;
     private final PositionInterface position;
 
-    private ReversiMove(final ContextInterface context, final PositionInterface position) {
+    private OthelloMove(final ContextInterface context, final PositionInterface position) {
         this.context = context;
         this.position = position;
     }
@@ -68,12 +68,12 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
     }
 
     @Override
-    public ReversiMoveTypeInterface apply() {
+    public OthelloMoveInterface apply() {
         return this;
     }
 
     @Override
-    public ReversiMoveTypeInterface apply(final PositionInterface position) { // TODO apply context
+    public OthelloMoveInterface apply(final PositionInterface position) { // TODO apply context
         return position == null || position.equals(this.position()) ? this.apply() : from(this.context(), position);
     }
 
@@ -115,8 +115,8 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
     public boolean equals(final Object object) {
         if (object == this) return true;
         if (object == null) return false;
-        if (!(object instanceof ReversiMove)) return false;
-        final ReversiMove that = (ReversiMove) object;
+        if (!(object instanceof OthelloMove)) return false;
+        final OthelloMove that = (OthelloMove) object;
         if (that.hashCode() != this.hashCode()) return false;
         return that.position().equals(this.position());
     }
@@ -127,7 +127,7 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
     }
 
     @Override
-    public int compareTo(final ConcreteMoveTypeInterface that) {
+    public int compareTo(final MoveInterface that) {
         // !! NPE si appel chainé juste après le constructeur !!
         final BoardMutationInterface bm1 = this.boardMutation();
         final BoardMutationInterface bm2 = that.boardMutation();
@@ -137,6 +137,21 @@ public final class ReversiMove implements ReversiMoveTypeInterface {
     @Override
     public boolean isNull() {
         return this.position().isNull();
+    }
+
+    @Override
+    public MoveInterface value() {
+        return this;
+    }
+
+    @Override
+    public MoveInterface apply(final MoveInterface value) { // ?? TODO AbstractMoveInterface + ConcreteMoveInterface
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    @Override
+    public MoveInterface apply(final Class<? extends MoveInterface> valueClass) { // ?? TODO AbstractMoveInterface + ConcreteMoveInterface
+        throw new RuntimeException("Not implemented yet");
     }
 
 }

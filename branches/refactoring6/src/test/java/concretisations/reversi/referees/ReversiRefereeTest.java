@@ -22,14 +22,14 @@ import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.c
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveType;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.moves.ReversiMove;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.moves.ReversiNullMove;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiNullPiece;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.pieces.ReversiPawn;
-import fr.designpattern.zerosumgames.concretisations.reversi.context.referees.ReversiReferee;
+import fr.designpattern.zerosumgames.concretisations.othello.moves.OthelloMove;
+import fr.designpattern.zerosumgames.concretisations.othello.moves.OthelloNullMove;
+import fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloNullPiece;
+import fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloPawn;
+import fr.designpattern.zerosumgames.concretisations.othello.referees.OthelloReferee;
 
 public class ReversiRefereeTest {
 
@@ -43,14 +43,14 @@ public class ReversiRefereeTest {
     @Before
     public void setUp() throws Exception {
         /*-------------------------------------8<-------------------------------------*/
-        this.blackPiece = Piece.from(Side.from(1), PieceType.from(ReversiPawn.class));
+        this.blackPiece = Piece.from(Side.from(1), PieceType.from(OthelloPawn.class));
         this.whitePiece = this.blackPiece.apply(this.blackPiece.side().opposite());
-        this.nullPiece = this.blackPiece.apply(Side.NULL, PieceType.from(ReversiNullPiece.class));
+        this.nullPiece = this.blackPiece.apply(Side.NULL, PieceType.from(OthelloNullPiece.class));
         /*-------------------------------------8<-------------------------------------*/
         this.board = Board.from(6, 6, this.nullPiece);
         this.side = Side.from(1);
         /*-------------------------------------8<-------------------------------------*/
-        this.referee = ReversiReferee.from();
+        this.referee = OthelloReferee.from();
         /*-------------------------------------8<-------------------------------------*/
     }
 
@@ -71,7 +71,7 @@ public class ReversiRefereeTest {
         // empty board
         /*-------------------------------------8<-------------------------------------*/
 
-        final List<MoveTypeInterface> expectedLegalMoves = Lists.newArrayList(MoveType.from(ReversiNullMove.class));
+        final List<MoveInterface> expectedLegalMoves = Lists.newArrayList(Move.from(OthelloNullMove.class));
         Assert.assertTrue(this.referee.playableMoves(this.board, this.side).equals(expectedLegalMoves));
         Assert.assertTrue(this.referee.playableMoves(this.board, this.side.opposite()).equals(expectedLegalMoves));
 
@@ -83,18 +83,18 @@ public class ReversiRefereeTest {
         map.put(Position.from(3, 3), this.blackPiece);
         map.put(Position.from(3, 4), this.whitePiece);
 
-        final List<MoveTypeInterface> expectedLegalMovesForOneSide = Lists.newArrayList();
-        expectedLegalMovesForOneSide.add(MoveType.from(ReversiMove.from(Position.from(3, 5))));
-        expectedLegalMovesForOneSide.add(MoveType.from(ReversiNullMove.class));
+        final List<MoveInterface> expectedLegalMovesForOneSide = Lists.newArrayList();
+        expectedLegalMovesForOneSide.add(Move.from(OthelloMove.from(Position.from(3, 5))));
+        expectedLegalMovesForOneSide.add(Move.from(OthelloNullMove.class));
 
-        final List<MoveTypeInterface> legalMovesForOneSide = this.referee.playableMoves(this.board.apply(BoardMutation.from(map)), this.side);
+        final List<MoveInterface> legalMovesForOneSide = this.referee.playableMoves(this.board.apply(BoardMutation.from(map)), this.side);
         Assert.assertTrue(legalMovesForOneSide.equals(expectedLegalMovesForOneSide));
 
-        final List<MoveTypeInterface> expectedLegalMovesForOppositeSide = Lists.newArrayList();
-        expectedLegalMovesForOppositeSide.add(MoveType.from(ReversiMove.from(Position.from(3, 2))));
-        expectedLegalMovesForOppositeSide.add(MoveType.from(ReversiNullMove.class));
+        final List<MoveInterface> expectedLegalMovesForOppositeSide = Lists.newArrayList();
+        expectedLegalMovesForOppositeSide.add(Move.from(OthelloMove.from(Position.from(3, 2))));
+        expectedLegalMovesForOppositeSide.add(Move.from(OthelloNullMove.class));
 
-        final List<MoveTypeInterface> legalMovesForOppositeSide = this.referee.playableMoves(this.board.apply(BoardMutation.from(map)),
+        final List<MoveInterface> legalMovesForOppositeSide = this.referee.playableMoves(this.board.apply(BoardMutation.from(map)),
                 this.side.opposite());
         Assert.assertTrue(legalMovesForOppositeSide.equals(expectedLegalMovesForOppositeSide));
 

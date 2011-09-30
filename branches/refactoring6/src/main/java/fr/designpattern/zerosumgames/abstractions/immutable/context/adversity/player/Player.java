@@ -21,9 +21,9 @@ import java.util.List;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.StrategyInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
-public final class Player implements PlayerInterface<MoveTypeInterface> {
+public final class Player implements PlayerInterface<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -36,20 +36,20 @@ public final class Player implements PlayerInterface<MoveTypeInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final StrategyInterface<MoveTypeInterface> strategy;
+    private final StrategyInterface<MoveInterface> strategy;
 
     @Override
-    public final StrategyInterface<MoveTypeInterface> strategy() {
+    public final StrategyInterface<MoveInterface> strategy() {
         return this.strategy;
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    public static PlayerInterface<MoveTypeInterface> from(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+    public static PlayerInterface<MoveInterface> from(final String name, final StrategyInterface<MoveInterface> strategy) {
         return new Player(name, strategy);
     }
 
-    private Player(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+    private Player(final String name, final StrategyInterface<MoveInterface> strategy) {
         this.name = name;
         this.strategy = strategy;
     }
@@ -57,29 +57,29 @@ public final class Player implements PlayerInterface<MoveTypeInterface> {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public PlayerInterface<MoveTypeInterface> apply() {
+    public PlayerInterface<MoveInterface> apply() {
         return this;
     }
 
     @Override
-    public PlayerInterface<MoveTypeInterface> apply(final String name) {
+    public PlayerInterface<MoveInterface> apply(final String name) {
         return name == null || name.equals(this.name()) ? this.apply() : from(name, this.strategy());
     }
 
     @Override
-    public PlayerInterface<MoveTypeInterface> apply(final StrategyInterface<MoveTypeInterface> strategy) {
+    public PlayerInterface<MoveInterface> apply(final StrategyInterface<MoveInterface> strategy) {
         return strategy == null || strategy.equals(this.strategy()) ? this.apply() : from(this.name(), strategy);
     }
 
     @Override
-    public PlayerInterface<MoveTypeInterface> apply(final String name, final StrategyInterface<MoveTypeInterface> strategy) {
+    public PlayerInterface<MoveInterface> apply(final String name, final StrategyInterface<MoveInterface> strategy) {
         return this.apply(name).apply(strategy); // TODO optimisable
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public List<MoveTypeInterface> playFrom(final ContextInterface context) {
+    public List<MoveInterface> playFrom(final ContextInterface context) {
         return this.strategy().process(context);
     }
 

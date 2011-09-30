@@ -35,11 +35,11 @@ import com.google.common.collect.Maps;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationInterface;
 import fr.designpattern.zerosumgames.abstractions.immutable.context.adversity.player.strategy.evaluation.exploration.ExplorationThread;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
+import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
 
-public final class Evaluation implements EvaluationInterface<MoveTypeInterface> {
+public final class Evaluation implements EvaluationInterface<MoveInterface> {
 
-    private final ExplorationInterface<MoveTypeInterface> explorationType;
+    private final ExplorationInterface<MoveInterface> explorationType;
 
     @Override
     public int maximalOdinal() {
@@ -47,38 +47,40 @@ public final class Evaluation implements EvaluationInterface<MoveTypeInterface> 
     }
 
     @Override
-    public EvaluationInterface<MoveTypeInterface> apply() {
+    public EvaluationInterface<MoveInterface> apply() {
         return this;
     }
 
-    public Evaluation(final ExplorationInterface<MoveTypeInterface> explorationType) {
+    public Evaluation(final ExplorationInterface<MoveInterface> explorationType) {
         this.explorationType = explorationType;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveTypeInterface> givenOptions) {
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal, final List<MoveInterface> givenOptions) {
+
         /*-------------------------------------8<-------------------------------------*/
         //final ExecutorService executor = Executors.newSingleThreadExecutor();
-        final ExecutorService executor = Executors.newFixedThreadPool(givenOptions.size());
+        //final ExecutorService executor = Executors.newFixedThreadPool(givenOptions.size());
+        final ExecutorService executor = Executors.newCachedThreadPool();
         /*-------------------------------------8<-------------------------------------*/
-        final Builder<Future<Entry<MoveTypeInterface, Double>>> listBuilder = new ImmutableList.Builder<Future<Entry<MoveTypeInterface, Double>>>();
-        for (final MoveTypeInterface option : givenOptions) {
+        final Builder<Future<Entry<MoveInterface, Double>>> listBuilder = new ImmutableList.Builder<Future<Entry<MoveInterface, Double>>>();
+        for (final MoveInterface option : givenOptions) {
             //listBuilder.add(executor.submit(new ExplorationThread(context, exploration, option, maximalOrdinal)));
             listBuilder.add(executor.submit(new ExplorationThread(context, this.explorationType, option, maximalOdinal)));
         }
         /*-------------------------------------8<-------------------------------------*/
         executor.shutdown();
-        final ImmutableList<Future<Entry<MoveTypeInterface, Double>>> list = listBuilder.build();
+        final ImmutableList<Future<Entry<MoveInterface, Double>>> list = listBuilder.build();
         /*-------------------------------------8<-------------------------------------*/
         while (!executor.isTerminated()) {}
         /*-------------------------------------8<-------------------------------------*/
-        final TreeMap<Double, List<MoveTypeInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
-        for (final Future<Map.Entry<MoveTypeInterface, Double>> future : list) {
+        final TreeMap<Double, List<MoveInterface>> map = Maps.newTreeMap(java.util.Collections.reverseOrder());
+        for (final Future<Map.Entry<MoveInterface, Double>> future : list) {
             try {
-                final Map.Entry<MoveTypeInterface, Double> evaluatedOption = future.get();
-                final List<MoveTypeInterface> value = map.get(evaluatedOption.getValue());
-                final List<MoveTypeInterface> newValue = value == null ? ImmutableList.of(evaluatedOption.getKey()) :
-                        new ImmutableList.Builder<MoveTypeInterface>().addAll(value).add(evaluatedOption.getKey()).build();
+                final Map.Entry<MoveInterface, Double> evaluatedOption = future.get();
+                final List<MoveInterface> value = map.get(evaluatedOption.getValue());
+                final List<MoveInterface> newValue = value == null ? ImmutableList.of(evaluatedOption.getKey()) :
+                        new ImmutableList.Builder<MoveInterface>().addAll(value).add(evaluatedOption.getKey()).build();
                 map.put(evaluatedOption.getValue(), newValue);
             }
             catch (final InterruptedException e) {
@@ -93,17 +95,17 @@ public final class Evaluation implements EvaluationInterface<MoveTypeInterface> 
         /*-------------------------------------8<-------------------------------------*/
 
         /*-------------------------------------8<-------------------------------------*/
-        final List<List<MoveTypeInterface>> evaluation = Lists.newArrayList();
-        for (final List<MoveTypeInterface> items : map.values())
+        final List<List<MoveInterface>> evaluation = Lists.newArrayList();
+        for (final List<MoveInterface> items : map.values())
             evaluation.add(items);
         /*-------------------------------------8<-------------------------------------*/
         return evaluation;
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context, final int maximalOdinal) {
+    public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal) {
 
-        final List<MoveTypeInterface> givenOptions = context.playableMoves();
+        final List<MoveInterface> givenOptions = context.options();
 
         System.out.println();
         System.out.println(givenOptions);
@@ -117,7 +119,7 @@ public final class Evaluation implements EvaluationInterface<MoveTypeInterface> 
     }
 
     @Override
-    public List<List<MoveTypeInterface>> process(final ContextInterface context) {
+    public List<List<MoveInterface>> process(final ContextInterface context) {
         return this.process(context, this.maximalOdinal());
     }
 

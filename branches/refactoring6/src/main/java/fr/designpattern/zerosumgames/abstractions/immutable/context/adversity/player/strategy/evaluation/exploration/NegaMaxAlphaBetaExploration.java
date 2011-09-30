@@ -21,11 +21,9 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
 import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.type.MoveTypeInterface;
 
-public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<MoveTypeInterface> {
+public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -45,30 +43,30 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public ExplorationInterface<MoveTypeInterface> apply() {
+    public ExplorationInterface<MoveInterface> apply() {
         return this;
     }
 
     @Override
-    public ExplorationInterface<MoveTypeInterface> apply(final int maximalOrdinal) {
+    public ExplorationInterface<MoveInterface> apply(final int maximalOrdinal) {
         return new NegaMaxAlphaBetaExploration(maximalOrdinal);
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal, final Double worstScore,
+    private Double evaluate(final ContextInterface context, final MoveInterface option, final int maximalOrdinal, final Double worstScore,
             final Double bestScore) {
 
-        final MoveInterface move = Move.from(option, option.value().boardMutation()); // TODO ?? MoveType -> Move
-        final ContextInterface newContext = context.play(move);
+        //final MoveInterface move = Move.from(option, option.value().boardMutation()); // TODO ?? MoveType -> Move
+        final ContextInterface newContext = context.apply(option);
 
-        if (newContext.isOver()) return newContext.getTerminalEvaluation();
-        if (maximalOrdinal <= 1) return newContext.getHeuristicEvaluation();
+        if (newContext.isOver()) return newContext.evaluate();
+        if (maximalOrdinal <= 1) return newContext.estimate();
 
         // TODO playableMoves(SideInterface side) et passer side en argument à evaluate(...)    
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
 
-        final List<MoveTypeInterface> movesForOppositeSide = newContextForOppositeSide.playableMoves();
+        final List<MoveInterface> movesForOppositeSide = newContextForOppositeSide.options();
         Collections.sort(movesForOppositeSide);
 
         /*
@@ -84,7 +82,7 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         */
 
         Double bestEvaluation = bestScore; // TODO tenter une version immutable        
-        for (final MoveTypeInterface oppositeSideOption : movesForOppositeSide) {
+        for (final MoveInterface oppositeSideOption : movesForOppositeSide) {
             bestEvaluation = Math.min(bestEvaluation,
                     -this.evaluate(newContextForOppositeSide, oppositeSideOption, maximalOrdinal - 1, -bestEvaluation, -worstScore));
             if (bestEvaluation <= worstScore)
@@ -97,14 +95,14 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option, final int maximalOrdinal) {
+    public Double evaluate(final ContextInterface context, final MoveInterface option, final int maximalOrdinal) {
         return this.evaluate(context, option, maximalOrdinal, -1.0, 1.0); // TODO extract constants
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
-    public Double evaluate(final ContextInterface context, final MoveTypeInterface option) {
+    public Double evaluate(final ContextInterface context, final MoveInterface option) {
         return this.evaluate(context, option, this.maximalOrdinal());
     }
 
