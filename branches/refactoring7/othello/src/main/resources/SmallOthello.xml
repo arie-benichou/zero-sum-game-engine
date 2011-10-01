@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!--*********************************************************************************** -->
+
+	<bean id="nullSide" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+	</bean>
+
+	<bean id="side" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+		<constructor-arg value="1" />
+	</bean>
+
+	<bean id="oppositeSide" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+		<constructor-arg value="-1" />
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="nullPiece" class="definitions.pieces.OthelloNullPiece"
+		factory-method="from">
+	</bean>
+
+	<bean id="pawnPiece" class="definitions.pieces.OthelloPawn" factory-method="from">
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="nullPieceType" class="context.entity.game.board.cell.piece.type.PieceType"
+		factory-method="from">
+		<constructor-arg ref="nullPiece" />
+	</bean>
+
+	<bean id="pawnPieceType" class="context.entity.game.board.cell.piece.type.PieceType"
+		factory-method="from">
+		<constructor-arg ref="pawnPiece" />
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="othelloNullPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="nullSide" />
+		<constructor-arg ref="nullPieceType" />
+	</bean>
+
+	<bean id="othelloBlackPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="side" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<bean id="othelloWhitePiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="oppositeSide" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<bean id="othelloPotentialPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="nullSide" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="symbols" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key-ref="othelloNullPiece" value="   " />
+				<entry key-ref="othelloBlackPiece" value=" x " />
+				<entry key-ref="othelloWhitePiece" value=" o " />
+				<entry key-ref="othelloPotentialPiece" value=" * " />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="boardSetup" class="context.entity.game.board.mutation.BoardMutation"
+		factory-method="from">
+		<constructor-arg>
+			<map>
+				<entry>
+					<key>
+						<bean class="context.entity.game.board.cell.position.Position"
+							factory-method="from">
+							<constructor-arg value="3" />
+							<constructor-arg value="3" />
+						</bean>
+					</key>
+					<ref bean="othelloBlackPiece" />
+				</entry>
+
+				<entry>
+					<key>
+						<bean class="context.entity.game.board.cell.position.Position"
+							factory-method="from">
+							<constructor-arg value="3" />
+							<constructor-arg value="4" />
+						</bean>
+					</key>
+					<ref bean="othelloWhitePiece" />
+				</entry>
+
+				<entry>
+					<key>
+						<bean class="context.entity.game.board.cell.position.Position"
+							factory-method="from">
+							<constructor-arg value="4" />
+							<constructor-arg value="3" />
+						</bean>
+					</key>
+					<ref bean="othelloWhitePiece" />
+				</entry>
+
+				<entry>
+					<key>
+						<bean class="context.entity.game.board.cell.position.Position"
+							factory-method="from">
+							<constructor-arg value="4" />
+							<constructor-arg value="4" />
+						</bean>
+					</key>
+					<ref bean="othelloBlackPiece" />
+				</entry>
+			</map>
+		</constructor-arg>
+
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="context" class="context.Context" factory-method="from">
+		<constructor-arg ref="side" />
+		<constructor-arg>
+			<bean class="context.entity.adversity.Adversity" factory-method="from">
+				<constructor-arg>
+					<list>
+						<bean class="context.entity.adversity.player.Player" factory-method="from">
+							<constructor-arg value="Player 1" />
+							<constructor-arg>
+								<bean class="context.entity.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<!-- -->
+										<bean
+											class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening">
+											<constructor-arg>
+												<!-- -->
+												<bean
+													class="context.entity.adversity.player.strategy.evaluation.Evaluation">
+													<constructor-arg>
+														<bean
+															class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
+															<constructor-arg value="2"></constructor-arg>
+														</bean>
+													</constructor-arg>
+												</bean>
+												<!-- -->
+											</constructor-arg>
+										</bean>
+										<!-- -->
+									</constructor-arg>
+									<constructor-arg>
+										<bean class="context.entity.adversity.player.strategy.selection.FirstOnes"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+						<bean class="context.entity.adversity.player.Player" factory-method="from">
+							<constructor-arg value="Player 2" />
+							<constructor-arg>
+								<bean class="context.entity.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<!-- -->
+										<bean
+											class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening">
+											<constructor-arg>
+												<!-- -->
+												<bean
+													class="context.entity.adversity.player.strategy.evaluation.Evaluation">
+													<constructor-arg>
+														<bean
+															class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
+															<constructor-arg value="8"></constructor-arg>
+														</bean>
+													</constructor-arg>
+
+												</bean>
+												<!-- -->
+											</constructor-arg>
+										</bean>
+										<!-- -->
+									</constructor-arg>
+									<constructor-arg>
+										<bean class="context.entity.adversity.player.strategy.selection.FirstOnes"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+					</list>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="context.entity.game.Game" factory-method="from">
+				<constructor-arg>
+					<bean class="context.entity.game.board.Board" factory-method="from">
+						<constructor-arg value="6" />
+						<constructor-arg value="6" />
+						<constructor-arg ref="othelloNullPiece" />
+						<constructor-arg ref="boardSetup" />
+					</bean>
+				</constructor-arg>
+				<constructor-arg>
+					<bean class="definitions.referees.OthelloReferee" factory-method="from"></bean>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+</beans>
