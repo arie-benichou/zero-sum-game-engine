@@ -1,0 +1,15 @@
+#summary Import project into Eclipse
+
+= Prerequisites =
+
+m2eclipse plugin update site :
+http://m2eclipse.sonatype.org/sites/m2e
+
+m2eclipse plugin extras update site :
+http://m2eclipse.sonatype.org/sites/m2e-extras
+
+= Instructions =
+
+  # File / Import... Check out Maven Project from SCM
+  # SCM URL : https://zero-sum-game-engine.googlecode.com/svn/branches/refactoring7
+  # Finish
