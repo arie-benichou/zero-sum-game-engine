@@ -25,17 +25,17 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.Direction;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
+import fr.designpattern.zerosumgames.abstractions.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.PieceInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.direction.Direction;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.direction.DirectionInterface;
+import fr.designpattern.zerosumgames.abstractions.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutation;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutationInterface;
 
 public final class OthelloMove implements OthelloMoveInterface {
 

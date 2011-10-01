@@ -5,17 +5,17 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.Side;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.type.PieceType;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.referee.RefereeInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.Move;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.Piece;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.side.Side;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.type.PieceType;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.referee.RefereeInterface;
+import fr.designpattern.zerosumgames.abstractions.move.Move;
+import fr.designpattern.zerosumgames.abstractions.move.MoveInterface;
 import fr.designpattern.zerosumgames.concretisations.othello.moves.OthelloMove;
 import fr.designpattern.zerosumgames.concretisations.othello.moves.OthelloNullMove;
 import fr.designpattern.zerosumgames.concretisations.othello.pieces.OthelloNullPiece;

@@ -23,10 +23,10 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.ContextManager;
-import fr.designpattern.zerosumgames.abstractions.immutable.ContextManagerInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.Context;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.ContextManager;
+import fr.designpattern.zerosumgames.abstractions.ContextManagerInterface;
+import fr.designpattern.zerosumgames.abstractions.context.Context;
+import fr.designpattern.zerosumgames.abstractions.context.ContextInterface;
 
 class Othello {
 
