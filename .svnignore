@@ -1,0 +1,6 @@
+#svn propset svn:ignore -R -F .svnignore .
+bin
+target
+.settings
+.project
+.classpath
