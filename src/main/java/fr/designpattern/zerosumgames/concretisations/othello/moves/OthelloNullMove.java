@@ -1,12 +1,12 @@
 
 package fr.designpattern.zerosumgames.concretisations.othello.moves;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.ContextInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
+import fr.designpattern.zerosumgames.abstractions.context.ContextInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutation;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutationInterface;
 
 public final class OthelloNullMove implements OthelloMoveInterface {
 

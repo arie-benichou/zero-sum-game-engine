@@ -3,15 +3,15 @@ package abstractions.immutable.move.type.mocks;
 
 import java.util.HashMap;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.Piece;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.PieceInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.Position;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.MoveInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutation;
-import fr.designpattern.zerosumgames.abstractions.immutable.move.mutation.BoardMutationInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.Piece;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.PieceInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.Position;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.move.MoveInterface;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutation;
+import fr.designpattern.zerosumgames.abstractions.move.mutation.BoardMutationInterface;
 
 import com.google.common.collect.Maps;
 

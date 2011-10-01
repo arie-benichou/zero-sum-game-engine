@@ -1,13 +1,13 @@
 
 package fr.designpattern.zerosumgames.concretisations.othello.pieces;
 
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.BoardInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.BoardCell;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.BoardCellInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.piece.side.SideInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.cell.position.PositionInterface;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.Direction;
-import fr.designpattern.zerosumgames.abstractions.immutable.context.game.board.direction.DirectionInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.BoardInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.BoardCell;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.BoardCellInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.piece.side.SideInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.cell.position.PositionInterface;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.direction.Direction;
+import fr.designpattern.zerosumgames.abstractions.context.game.board.direction.DirectionInterface;
 
 public final class OthelloNullPiece implements OthelloPieceTypeInterface {
 
