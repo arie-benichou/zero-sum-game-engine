@@ -1,4 +1,6 @@
+
 package configurations;
+
 /*
  * Copyright 2011 Arie Benichou
  * 

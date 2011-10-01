@@ -5,11 +5,12 @@ import util.annotations.Application;
 import util.annotations.Computation;
 import util.annotations.Value;
 import util.interfaces.ImmutableInterface;
+import util.interfaces.NullObjectInterface;
 import context.ContextInterface;
 import context.entity.game.board.cell.position.PositionInterface;
 import context.entity.game.board.mutation.BoardMutationInterface;
 
-public interface MoveInterface extends ImmutableInterface<MoveInterface>, Comparable<MoveInterface> {
+public interface MoveInterface extends ImmutableInterface<MoveInterface>, NullObjectInterface, Comparable<MoveInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
@@ -34,9 +35,6 @@ public interface MoveInterface extends ImmutableInterface<MoveInterface>, Compar
     MoveInterface apply(PositionInterface position);
 
     /*-------------------------------------8<-------------------------------------*/
-
-    @Computation
-    boolean isNull();
 
     @Computation
     BoardMutationInterface boardMutation();

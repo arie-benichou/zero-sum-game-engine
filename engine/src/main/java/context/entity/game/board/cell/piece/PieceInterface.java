@@ -16,6 +16,8 @@
 
 package context.entity.game.board.cell.piece;
 
+import util.annotations.Application;
+import util.annotations.Value;
 import util.interfaces.ImmutableInterface;
 import context.entity.game.board.cell.piece.side.SideInterface;
 import context.entity.game.board.cell.piece.type.PieceTypeInterface;
@@ -27,37 +29,22 @@ public interface PieceInterface extends ImmutableInterface<PieceInterface> {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    @Override
-    PieceInterface apply();
-
-    /*-------------------------------------8<-------------------------------------*/
-
+    @Value
     SideInterface side();
 
-    PieceInterface apply(SideInterface side);
-
-    /*-------------------------------------8<-------------------------------------*/
-
+    @Value
     PieceTypeInterface type();
 
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Application
+    PieceInterface apply(SideInterface side);
+
+    @Application
     PieceInterface apply(PieceTypeInterface type);
 
-    /*-------------------------------------8<-------------------------------------*/
-
+    @Application
     PieceInterface apply(SideInterface side, PieceTypeInterface type);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    int hashCode();
-
-    @Override
-    boolean equals(Object obj);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    String toString();
 
     /*-------------------------------------8<-------------------------------------*/
 

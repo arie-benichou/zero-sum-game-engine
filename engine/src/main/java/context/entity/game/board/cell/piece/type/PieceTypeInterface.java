@@ -7,29 +7,9 @@ public interface PieceTypeInterface extends ImmutableInterface<PieceTypeInterfac
 
     /*-------------------------------------8<-------------------------------------*/
 
-    @Override
-    PieceTypeInterface apply();
+    ConcretePieceTypeInterface value();
 
-    /*-------------------------------------8<-------------------------------------*/
-
-    ImmutableInterface<?> value();
-
-    PieceTypeInterface apply(ImmutableInterface<?> type);
-
-    PieceTypeInterface apply(Class<? extends ImmutableInterface<?>> typeClass);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    int hashCode();
-
-    @Override
-    boolean equals(Object obj);
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    String toString();
+    PieceTypeInterface apply(Class<? extends ConcretePieceTypeInterface> typeClass);
 
     /*-------------------------------------8<-------------------------------------*/
 
