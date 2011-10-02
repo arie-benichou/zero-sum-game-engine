@@ -7,18 +7,18 @@ import context.entity.game.board.cell.piece.side.SideInterface;
 import context.entity.game.board.cell.position.PositionInterface;
 import context.entity.game.board.direction.DirectionInterface;
 
-public final class OthelloPawn implements OthelloPieceTypeInterface {
+public final class Connect4Pawn implements Connect4PieceTypeInterface {
 
-    private final static OthelloPawn INSTANCE = new OthelloPawn();
+    private final static Connect4Pawn INSTANCE = new Connect4Pawn();
 
-    public static OthelloPawn from() {
+    public static Connect4Pawn from() {
         return INSTANCE;
     }
 
-    private OthelloPawn() {}
+    private Connect4Pawn() {}
 
     @Override
-    public OthelloPieceTypeInterface apply() {
+    public Connect4PieceTypeInterface apply() {
         return this;
     }
 
@@ -27,7 +27,7 @@ public final class OthelloPawn implements OthelloPieceTypeInterface {
         if (board.cell(position).value().side().equals(side)) return true;
         final BoardCellInterface nextCell = board.cell(position.apply(direction));
         if (nextCell.isNull()) return false; // TODO utiliser PotentialReversiPawn et NullReversiPawn
-        return ((OthelloPieceTypeInterface) nextCell.value().type().value()).isConnected(side, board, nextCell.position(), direction);
+        return ((Connect4PieceTypeInterface) nextCell.value().type().value()).isConnected(side, board, nextCell.position(), direction);
     }
 
     @Override

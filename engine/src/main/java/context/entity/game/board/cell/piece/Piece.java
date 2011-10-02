@@ -40,8 +40,7 @@ public final class Piece implements PieceInterface {
                 instance = new Piece(side, type);
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
         }
 
@@ -126,6 +125,13 @@ public final class Piece implements PieceInterface {
         final PieceInterface that = (PieceInterface) object;
         //if (that.hashCode() != this.hashCode()) return false;
         return that.side().equals(this.side()) && that.type().equals(this.type());
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public boolean isNull() {
+        return this.type().isNull();
     }
 
     /*-------------------------------------8<-------------------------------------*/
