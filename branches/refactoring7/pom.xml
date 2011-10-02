@@ -22,8 +22,9 @@
 	</build>
 
 	<modules>
-		<module>othello</module>
 		<module>engine</module>
+		<module>othello</module>
+		<module>connect4</module>
 	</modules>
 
 

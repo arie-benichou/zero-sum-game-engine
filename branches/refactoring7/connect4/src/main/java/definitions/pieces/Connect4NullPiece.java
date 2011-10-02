@@ -5,34 +5,33 @@ import context.entity.game.board.BoardInterface;
 import context.entity.game.board.cell.BoardCellInterface;
 import context.entity.game.board.cell.piece.side.SideInterface;
 import context.entity.game.board.cell.position.PositionInterface;
+import context.entity.game.board.direction.Direction;
 import context.entity.game.board.direction.DirectionInterface;
 
-public final class OthelloPawn implements OthelloPieceTypeInterface {
+public final class Connect4NullPiece implements Connect4PieceTypeInterface {
 
-    private final static OthelloPawn INSTANCE = new OthelloPawn();
+    private final static Connect4NullPiece INSTANCE = new Connect4NullPiece();
 
-    public static OthelloPawn from() {
+    public static Connect4NullPiece from() {
         return INSTANCE;
     }
 
-    private OthelloPawn() {}
+    private Connect4NullPiece() {}
 
     @Override
-    public OthelloPieceTypeInterface apply() {
+    public Connect4PieceTypeInterface apply() {
         return this;
     }
 
     @Override
     public boolean isConnected(final SideInterface side, final BoardInterface board, final PositionInterface position, final DirectionInterface direction) {
-        if (board.cell(position).value().side().equals(side)) return true;
-        final BoardCellInterface nextCell = board.cell(position.apply(direction));
-        if (nextCell.isNull()) return false; // TODO utiliser PotentialReversiPawn et NullReversiPawn
-        return ((OthelloPieceTypeInterface) nextCell.value().type().value()).isConnected(side, board, nextCell.position(), direction);
+        return false;
     }
 
     @Override
     public boolean hasApplication(final SideInterface side, final BoardInterface board, final PositionInterface position) {
-        return false;
+        final BoardCellInterface bottomCell = board.cell(position.apply(Direction.BOTTOM));
+        return !bottomCell.isEmpty() || bottomCell.isNull();
     }
 
     @Override
@@ -42,7 +41,7 @@ public final class OthelloPawn implements OthelloPieceTypeInterface {
 
     @Override
     public boolean isNull() {
-        return false;
+        return true;
     }
 
 }

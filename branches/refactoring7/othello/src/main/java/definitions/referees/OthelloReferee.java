@@ -1,9 +1,7 @@
 
 package definitions.referees;
 
-
 import java.util.List;
-
 
 import com.google.common.collect.Lists;
 
@@ -49,8 +47,7 @@ public final class OthelloReferee implements RefereeInterface {
         for (int row = 1; row <= context.game().board().rows(); ++row)
             for (int column = 1; column <= context.game().board().columns(); ++column) {
                 final PositionInterface position = Position.from(row, column);
-                if (((OthelloPieceTypeInterface) context.game().board().cell(position).value().type().value()).hasApplication(context.side(), context.game()
-                        .board(), position))
+                if (context.game().board().cell(position).value().type().value().hasApplication(context.side(), context.game().board(), position))
                     moveTypes.add(Move.from(OthelloMove.from(context, position)));
             }
         // TODO utiliser ReversiMove.NULL

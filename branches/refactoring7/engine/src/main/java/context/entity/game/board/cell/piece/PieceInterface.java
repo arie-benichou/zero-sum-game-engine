@@ -19,13 +19,14 @@ package context.entity.game.board.cell.piece;
 import util.annotations.Application;
 import util.annotations.Value;
 import util.interfaces.ImmutableInterface;
+import util.interfaces.NullObjectInterface;
 import context.entity.game.board.cell.piece.side.SideInterface;
 import context.entity.game.board.cell.piece.type.PieceTypeInterface;
 
 /**
  * This is the interface for a piece.
  */
-public interface PieceInterface extends ImmutableInterface<PieceInterface> {
+public interface PieceInterface extends ImmutableInterface<PieceInterface>, NullObjectInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 

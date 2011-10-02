@@ -193,9 +193,11 @@ public final class Move implements MoveInterface {
         return valueClass.getCanonicalName().hashCode();
     }
 
+    /*
     private final static int computeHashCode(final MoveInterface value) {
         return (value.getClass().getCanonicalName() + "|" + value.hashCode()).hashCode();
     }
+    */
 
     /*-------------------------------------8<-------------------------------------*/
 

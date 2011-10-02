@@ -133,6 +133,20 @@ public final class BoardCell implements BoardCellInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
+    public boolean isNull() {
+        return this.equals(NULL);
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public boolean isEmpty() {
+        return this.value().isNull();
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
     public String toString() {
         return this.getClass().getSimpleName() + "(" + this.value() + ", " + this.position() + ")";
     }

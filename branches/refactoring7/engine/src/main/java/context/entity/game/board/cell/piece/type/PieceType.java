@@ -39,6 +39,11 @@ public final class PieceType implements PieceTypeInterface {
             return this.getClass().getCanonicalName();
         }
 
+        @Override
+        public boolean isNull() {
+            return true;
+        }
+
     }
 
     /*-------------------------------------8<-------------------------------------*/
@@ -97,6 +102,11 @@ public final class PieceType implements PieceTypeInterface {
         @Override
         public String toString() {
             return this.getClass().getSimpleName() + "(" + this.value() + ")";
+        }
+
+        @Override
+        public boolean isNull() {
+            return true;
         }
 
         /*-------------------------------------8<-------------------------------------*/
@@ -220,6 +230,11 @@ public final class PieceType implements PieceTypeInterface {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "(" + this.value() + ")";
+    }
+
+    @Override
+    public boolean isNull() {
+        return this.value().isNull();
     }
 
     /*-------------------------------------8<-------------------------------------*/

@@ -154,8 +154,7 @@ public final class Direction implements DirectionInterface {
                 instance = new Direction(rowDelta, columnDelta);
                 CACHE.put(address, instance);
             }
-            else
-                ++cacheHits;
+            else ++cacheHits;
             return instance;
         }
 
@@ -223,6 +222,13 @@ public final class Direction implements DirectionInterface {
     @Override
     public DirectionInterface apply(final DirectionInterface direction) {
         return this.apply(this.rowDelta() + direction.rowDelta(), this.columnDelta() + direction.columnDelta());
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public DirectionInterface opposite() {
+        return this.apply(-this.rowDelta(), -this.columnDelta());
     }
 
     /*-------------------------------------8<-------------------------------------*/

@@ -18,6 +18,7 @@
 package context.entity.game.board.direction;
 
 import util.annotations.Application;
+import util.annotations.Computation;
 import util.annotations.Value;
 import util.interfaces.ImmutableInterface;
 
@@ -31,7 +32,7 @@ public interface DirectionInterface extends ImmutableInterface<DirectionInterfac
     @Value
     int rowDelta();
 
-    @Value    
+    @Value
     int columnDelta();
 
     /*-------------------------------------8<-------------------------------------*/
@@ -39,8 +40,14 @@ public interface DirectionInterface extends ImmutableInterface<DirectionInterfac
     @Application
     DirectionInterface apply(int rowDelta, int columnDelta);
 
-    @Application    
+    @Application
     DirectionInterface apply(DirectionInterface direction);
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Application
+    @Computation
+    DirectionInterface opposite();
 
     /*-------------------------------------8<-------------------------------------*/
 
