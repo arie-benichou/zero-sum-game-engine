@@ -590,4 +590,234 @@ public class Connect4StaticEvaluationTest {
 
     }
 
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    | . |   | . |   |   |   |   |
+    -----------------------------
+    */
+    public void testEvaluateBoardWithBestAlignmentOfPawnBeetween1And2_1() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.75 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(0.0));
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.75 / 4));
+
+    }
+
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   | . |   | . |   |
+    -----------------------------
+    */
+    public void testEvaluateBoardWithBestAlignmentOfPawnBeetween1And2_2() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.75 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(0.0));
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.75 / 4));
+
+    }
+
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    | . |   |   | . |   |   |   |
+    -----------------------------
+    */
+    public void testEvaluateBoardWithBestAlignmentOfPawnBeetween1And2_3() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.5 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(0.0));
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.5 / 4));
+
+    }
+
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    | . |   | . | . |   |   |   |
+    -----------------------------
+    */
+    public void testEvaluateBoardWithBestAlignmentOfPawnBeetween1And3_1() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(2.75 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(0.0));
+
+        mutations.put(Position.from(6, 1), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(2.75 / 4));
+
+    }
+
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   | . | . |   | . |
+    -----------------------------
+    */
+    public void testEvaluateBoardWithBestAlignmentOfPawnBeetween1And3_2() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 6), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 7), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(2.75 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(0.0));
+
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 6), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 7), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(2.75 / 4));
+
+    }
+
+    @Test
+    /*
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   |   |   |   |   |   |
+    -----------------------------
+    |   |   | o | x | x |   | o |
+    -----------------------------
+    */
+    public void testEvaluateBoard() {
+
+        final Map<PositionInterface, PieceInterface> mutations = Maps.newHashMap();
+
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side().opposite(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 5), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 7), Piece.from(this.context.side().opposite(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.0 / 4));
+
+        this.context = this.context.apply(this.context.side().opposite());
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.0 / 4));
+
+        mutations.put(Position.from(6, 3), Piece.from(this.context.side().opposite(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 4), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 5), Piece.from(this.context.side(), PieceType.from(Connect4Pawn.class)));
+        mutations.put(Position.from(6, 7), Piece.from(this.context.side().opposite(), PieceType.from(Connect4Pawn.class)));
+
+        this.context = this.context.apply(this.context.game().apply(this.context.game().board().apply(BoardMutation.from(mutations))));
+        Assert.assertTrue(Connect4StaticEvaluation.from(this.context).equals(1.0 / 4));
+
+    }
+
 }

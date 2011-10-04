@@ -17,17 +17,18 @@ import context.entity.game.board.direction.DirectionInterface;
 import context.entity.game.referee.RefereeInterface;
 import context.event.Move;
 import context.event.MoveInterface;
-import definitions.evaluations.MyStaticEvaluationFunction;
+import definitions.evaluations.Connect4StaticEvaluation;
 import definitions.moves.Connect4Move;
 import definitions.pieces.Connect4NullPiece;
 
-public final class Connect4Referee implements RefereeInterface {
+public final class Connect4Referee5 implements RefereeInterface {
 
     private final static PieceInterface NULL_PIECE = Piece.from(Side.NULL, PieceType.from(Connect4NullPiece.class));
+    private final static int NUMBER_OF_PAWNS_TO_CONNECT = 4;
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private final static RefereeInterface INSTANCE = new Connect4Referee();
+    private final static RefereeInterface INSTANCE = new Connect4Referee5();
 
     private final static DirectionInterface[] DIRECTIONS = { Direction.TOP, Direction.LEFT, Direction.TOP_LEFT, Direction.TOP_RIGHT };
 
@@ -35,7 +36,7 @@ public final class Connect4Referee implements RefereeInterface {
         return INSTANCE;
     }
 
-    private Connect4Referee() {}
+    private Connect4Referee5() {}
 
     @Override
     public RefereeInterface apply() {
@@ -67,7 +68,7 @@ public final class Connect4Referee implements RefereeInterface {
     private int computeRealConnection(final MoveInterface justPlayedMove, final DirectionInterface direction) {
         int connected;
         PositionInterface position = justPlayedMove.position();
-        for (connected = 0; connected < 3; ++connected) {
+        for (connected = 0; connected < NUMBER_OF_PAWNS_TO_CONNECT - 1; ++connected) {
             position = position.apply(direction);
             if (!justPlayedMove.context().game().board().cell(position).value().side().equals(justPlayedMove.context().side())) break;
         }
@@ -92,7 +93,7 @@ public final class Connect4Referee implements RefereeInterface {
         if (!context.history().isEmpty())
             for (final DirectionInterface direction : DIRECTIONS)
                 if (this.computeRealConnection(context.history().head(), direction)
-                        + this.computeRealConnection(context.history().head(), direction.opposite()) >= 3) return true;
+                        + this.computeRealConnection(context.history().head(), direction.opposite()) >= NUMBER_OF_PAWNS_TO_CONNECT - 1) return true;
         return false;
     }
 
@@ -126,32 +127,7 @@ public final class Connect4Referee implements RefereeInterface {
 
     @Override
     public final Double estimate(final ContextInterface context) {
-        /*
-        final int numberOfPawnsForThisSide = context.game().board().count(Piece.from(context.side(), PieceType.from(Connect4Pawn.class)));
-        final int numberOfPawnsForOppositeSide = context.game().board().count(Piece.from(context.side().opposite(), PieceType.from(Connect4Pawn.class)));
-        final int numberOfEmptyCells = context.game().board().count(Piece.from(Side.NULL, PieceType.from(Connect4NullPiece.class)));
-        return (0.0 + numberOfPawnsForThisSide - numberOfPawnsForOppositeSide) / (numberOfPawnsForThisSide + numberOfPawnsForOppositeSide + numberOfEmptyCells);
-        */
-
-        /*
-        Double heuristicEvaluation = 0.0;
-        for (final BoardCellInterface cell : context.game().board().neighbourhoodOf(context.history().head().position()).values())
-            if (!cell.isNull()) {
-                if (cell.isEmpty()) heuristicEvaluation += 0.5 / 8;
-                else if (cell.value().side().equals(context.side())) heuristicEvaluation += 1.0 / 8;
-                else heuristicEvaluation += -0.5 / 8;
-            }
-        return heuristicEvaluation;
-        */
-
-        //return (0.0 + this.computeRealConnections(context)) / (3 * 7);
-
-        //return 0.0;
-
-        final int maximalPotential = 698; //TODO lazy init
-        final Double e1 = MyStaticEvaluationFunction.from(context);
-        final Double e2 = MyStaticEvaluationFunction.from(context.apply(context.side().opposite()));
-        return (e1 - e2) / maximalPotential;
+        return Connect4StaticEvaluation.from(context);
 
     }
 
@@ -170,7 +146,10 @@ public final class Connect4Referee implements RefereeInterface {
         */
 
         //return this.isDraw(context) ? 0.0 + this.estimate(context) : 1.0 + this.estimate(context);
-        return (this.isDraw(context) ? 0.0 : 1.0) + this.estimate(context) / 10000;
+        //return (this.isDraw(context) ? 0.0 : 1.0) + this.estimate(context) / 10000;
+
+        //return (this.isDraw(context) ? 0.0 : 1.0) + MyStaticEvaluationFunction2.from(context) / 100;
+        return (this.isDraw(context) ? 0.0 : 1.0) + Connect4StaticEvaluation.from(context) / 10;
 
         //return this.isDraw(context) ? this.estimate(context) / 100 : this.estimate(context) * 1000; // TODO à améliorer
 

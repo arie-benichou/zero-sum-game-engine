@@ -89,24 +89,20 @@
 							<constructor-arg>
 								<bean class="context.entity.adversity.player.strategy.Strategy">
 									<constructor-arg>
-										<!-- -->
 										<bean
 											class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening">
 											<constructor-arg>
-												<!-- -->
 												<bean
 													class="context.entity.adversity.player.strategy.evaluation.Evaluation">
 													<constructor-arg>
 														<bean
 															class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
-															<constructor-arg value="3"></constructor-arg>
+															<constructor-arg value="10"></constructor-arg>
 														</bean>
 													</constructor-arg>
 												</bean>
-												<!-- -->
 											</constructor-arg>
 										</bean>
-										<!-- -->
 									</constructor-arg>
 									<constructor-arg>
 										<bean
@@ -121,25 +117,21 @@
 							<constructor-arg>
 								<bean class="context.entity.adversity.player.strategy.Strategy">
 									<constructor-arg>
-										<!-- -->
 										<bean
 											class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening">
 											<constructor-arg>
-												<!-- -->
 												<bean
 													class="context.entity.adversity.player.strategy.evaluation.Evaluation">
 													<constructor-arg>
 														<bean
 															class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
-															<constructor-arg value="4"></constructor-arg>
+															<constructor-arg value="7"></constructor-arg>
 														</bean>
 													</constructor-arg>
 
 												</bean>
-												<!-- -->
 											</constructor-arg>
 										</bean>
-										<!-- -->
 									</constructor-arg>
 									<constructor-arg>
 										<bean
@@ -162,7 +154,7 @@
 					</bean>
 				</constructor-arg>
 				<constructor-arg>
-					<bean class="definitions.referees.Connect4Referee"
+					<bean class="definitions.referees.Connect4Referee5"
 						factory-method="from"></bean>
 				</constructor-arg>
 			</bean>

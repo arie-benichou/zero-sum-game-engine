@@ -17,23 +17,19 @@
 
 package definitions.moves;
 
-import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
 import context.ContextInterface;
-import context.entity.game.board.BoardInterface;
 import context.entity.game.board.cell.piece.Piece;
 import context.entity.game.board.cell.piece.PieceInterface;
-import context.entity.game.board.cell.piece.side.SideInterface;
 import context.entity.game.board.cell.piece.type.PieceType;
 import context.entity.game.board.cell.position.PositionInterface;
-import context.entity.game.board.direction.DirectionInterface;
 import context.entity.game.board.mutation.BoardMutation;
 import context.entity.game.board.mutation.BoardMutationInterface;
 import context.event.MoveInterface;
+import definitions.evaluations.Connect4StaticEvaluation;
 import definitions.pieces.Connect4Pawn;
 
 public final class Connect4Move implements MoveInterface {
@@ -59,6 +55,8 @@ public final class Connect4Move implements MoveInterface {
     /*-------------------------------------8<-------------------------------------*/
 
     private BoardMutationInterface mutations = null;
+
+    private Double heuristicEvaluation = null;
 
     @Override
     public BoardMutationInterface boardMutation() {
@@ -95,14 +93,82 @@ public final class Connect4Move implements MoveInterface {
 
     /*-------------------------------------8<-------------------------------------*/
 
-    private List<PositionInterface> computeConnectedPositions(final SideInterface side, final BoardInterface board, final PositionInterface position,
-            final DirectionInterface direction, final List<PositionInterface> positions) {
-        final SideInterface sideAtThisPosition = board.cell(position.apply(direction)).value().side();
-        if (sideAtThisPosition.isNull()) return ImmutableList.of();
-        if (sideAtThisPosition.equals(side)) return positions;
-        positions.add(position.apply(direction));
-        return this.computeConnectedPositions(side, board, position.apply(direction), direction, positions);
+    /*
+    private List<BoardCellInterface> computeAvailableNeighbours() {
+        final List<BoardCellInterface> availableNeighbours = Lists.newArrayList();
+        for (final BoardCellInterface cell : this.context().game().board().neighbourhoodOf(this.position()).values())
+            if (!cell.isNull()) availableNeighbours.add(cell);
+        return availableNeighbours;
     }
+
+    private Double computeNeighbourhoodHeuristic() {
+        if (null == this.heuristicEvaluation) {
+            Double heuristicEvaluation = 0.0;
+            for (final BoardCellInterface cell : this.computeAvailableNeighbours()) {
+                heuristicEvaluation += 1;
+                if (cell.value().side().equals(this.context().side())) heuristicEvaluation += 1.0 / 8;
+            }
+            this.heuristicEvaluation = heuristicEvaluation;
+        }
+        return this.heuristicEvaluation;
+    }
+    */
+
+    /*
+    public int computeNeighbourhoodHeuristic() {
+        if (-1 == this.heuristicEvaluation) {
+            int heuristicEvaluation = 0;
+            for (final BoardCellInterface cell : this.context().game().board().neighbourhoodOf(this.position()).values())
+                //if (!(cell.isNull() || cell.value().side().equals(this.context().side().opposite()))) heuristicEvaluation += 1;
+                if (!cell.isNull()) heuristicEvaluation += 1;
+            this.heuristicEvaluation = heuristicEvaluation;
+        }
+        else {
+            //System.err.println("Lazy init is paying off...");
+        }
+
+        return this.heuristicEvaluation;
+    }
+    */
+
+    @Override
+    public Double heuristicEvaluation() {
+        if (null == this.heuristicEvaluation) this.heuristicEvaluation = Connect4StaticEvaluation.from(this);
+        return this.heuristicEvaluation;
+    }
+
+    @Override
+    public int compareTo(final MoveInterface that) {
+
+        /*
+        final int p1 = MyStaticEvaluationFunction2.computeCellPotential(this.context().side(), this.context().game().board(), this.context().game().board()
+                .cell(this.position()));
+
+        final int p2 = MyStaticEvaluationFunction2.computeCellPotential(that.context().side(), that.context().game().board(), that.context().game().board()
+                .cell(that.position()));
+        */
+
+        // TODO ?? utiliser le contexte pour retrouver la fonction d'évaluation statique ou bien trier les coups en dehors et ne pas utiliser l'interface compareTo
+
+        //return (int) (1000 * (((Connect4Move) that).computeNeighbourhoodHeuristic() - this.computeNeighbourhoodHeuristic()));
+        //return ((Connect4Move) that).computeNeighbourhoodHeuristic() - this.computeNeighbourhoodHeuristic();
+
+        //return Connect4StaticEvaluation.from(that).compareTo(Connect4StaticEvaluation.from(this));
+
+        //return ((Connect4Move) that).computeNeighbourhoodHeuristic() - this.computeNeighbourhoodHeuristic();
+
+        return that.heuristicEvaluation().compareTo(this.heuristicEvaluation());
+
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
+
+    @Override
+    public boolean isNull() {
+        return false;
+    }
+
+    /*-------------------------------------8<-------------------------------------*/
 
     @Override
     public int hashCode() {
@@ -117,26 +183,6 @@ public final class Connect4Move implements MoveInterface {
         final Connect4Move that = (Connect4Move) object;
         if (that.hashCode() != this.hashCode()) return false;
         return that.position().equals(this.position());
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    public int compareTo(final MoveInterface that) {
-        /*
-        // !! NPE si appel chainé juste après le constructeur !!
-        final BoardMutationInterface bm1 = this.boardMutation();
-        final BoardMutationInterface bm2 = that.boardMutation();
-        return bm2.value().size() - bm1.value().size();
-        */
-        return 0;
-    }
-
-    /*-------------------------------------8<-------------------------------------*/
-
-    @Override
-    public boolean isNull() {
-        return false;
     }
 
     /*-------------------------------------8<-------------------------------------*/
