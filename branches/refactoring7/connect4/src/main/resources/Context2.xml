@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!--*********************************************************************************** -->
+
+	<bean id="nullSide" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+	</bean>
+
+	<bean id="side" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+		<constructor-arg value="1" />
+	</bean>
+
+	<bean id="oppositeSide" class="context.entity.game.board.cell.piece.side.Side"
+		factory-method="from">
+		<constructor-arg value="-1" />
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="nullPieceType" class="context.entity.game.board.cell.piece.type.PieceType"
+		factory-method="from">
+		<constructor-arg>
+			<bean class="definitions.pieces.Connect4NullPiece"
+				factory-method="from" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="pawnPieceType" class="context.entity.game.board.cell.piece.type.PieceType"
+		factory-method="from">
+		<constructor-arg>
+			<bean class="definitions.pieces.Connect4Pawn" factory-method="from" />
+		</constructor-arg>
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="connect4NullPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="nullSide" />
+		<constructor-arg ref="nullPieceType" />
+	</bean>
+
+	<bean id="connect4RedPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="side" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<bean id="connect4YellowPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="oppositeSide" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<bean id="connect4PotentialPiece" class="context.entity.game.board.cell.piece.Piece"
+		factory-method="from">
+		<constructor-arg ref="nullSide" />
+		<constructor-arg ref="pawnPieceType" />
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="symbols" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key-ref="connect4NullPiece" value="   " />
+				<entry key-ref="connect4RedPiece" value=" x " />
+				<entry key-ref="connect4YellowPiece" value=" o " />
+				<entry key-ref="connect4PotentialPiece" value=" * " />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+	<bean id="context" class="context.Context" factory-method="from">
+		<constructor-arg ref="side" />
+		<constructor-arg>
+			<bean class="context.entity.adversity.Adversity" factory-method="from">
+				<constructor-arg>
+					<list>
+
+						<!-- <bean class="context.entity.adversity.player.Player" factory-method="from"> 
+							<constructor-arg value="Player 1" /> <constructor-arg> <bean class="context.entity.adversity.player.strategy.Strategy"> 
+							<constructor-arg> <bean class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening"> 
+							<constructor-arg> <bean class="context.entity.adversity.player.strategy.evaluation.Evaluation"> 
+							<constructor-arg> <bean class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration"> 
+							<constructor-arg value="10"></constructor-arg> </bean> </constructor-arg> 
+							</bean> </constructor-arg> </bean> </constructor-arg> <constructor-arg> <bean 
+							class="context.entity.adversity.player.strategy.selection.FirstOnes"></bean> 
+							</constructor-arg> </bean> </constructor-arg> </bean> -->
+
+						<bean class="context.entity.adversity.player.Player"
+							factory-method="from">
+							<constructor-arg value="Player 1" />
+							<constructor-arg>
+								<bean class="context.entity.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<bean
+											class="context.entity.adversity.player.strategy.evaluation.IterativeDeepening">
+											<constructor-arg>
+												<bean
+													class="context.entity.adversity.player.strategy.evaluation.Evaluation">
+													<constructor-arg>
+														<bean
+															class="context.entity.adversity.player.strategy.evaluation.exploration.NegaMaxAlphaBetaExploration">
+															<constructor-arg value="11"></constructor-arg>
+														</bean>
+													</constructor-arg>
+
+												</bean>
+											</constructor-arg>
+										</bean>
+									</constructor-arg>
+									<constructor-arg>
+										<bean
+											class="context.entity.adversity.player.strategy.selection.FirstOnes"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+
+						<bean class="context.entity.adversity.player.Player"
+							factory-method="from">
+							<constructor-arg value="Player 2" />
+							<constructor-arg>
+								<bean class="context.entity.adversity.player.strategy.Strategy">
+									<constructor-arg>
+										<bean
+											class="context.entity.adversity.player.strategy.evaluation.NullEvaluation">
+										</bean>
+									</constructor-arg>
+									<constructor-arg>
+										<bean
+											class="context.entity.adversity.player.strategy.selection.HumanConsole"></bean>
+									</constructor-arg>
+								</bean>
+							</constructor-arg>
+						</bean>
+
+					</list>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="context.entity.game.Game" factory-method="from">
+				<constructor-arg>
+					<bean class="context.entity.game.board.Board" factory-method="from">
+						<constructor-arg value="6" />
+						<constructor-arg value="7" />
+						<constructor-arg ref="connect4NullPiece" />
+					</bean>
+				</constructor-arg>
+				<constructor-arg>
+					<bean class="definitions.referees.Connect4Referee5"
+						factory-method="from"></bean>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!--*********************************************************************************** -->
+
+</beans>

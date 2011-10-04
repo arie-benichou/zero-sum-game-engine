@@ -73,7 +73,18 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
         final ContextInterface newContextForOppositeSide = newContext.apply(context.side().opposite());
 
         final List<MoveInterface> movesForOppositeSide = newContextForOppositeSide.options();
+
+        /*-------------------------------------8<-------------------------------------*
+        System.out.println();
+        System.out.println(movesForOppositeSide);
+        /*-------------------------------------8<-------------------------------------*/
+
         Collections.sort(movesForOppositeSide);
+
+        /*-------------------------------------8<-------------------------------------*
+        System.out.println();
+        System.out.println(movesForOppositeSide);
+        /*-------------------------------------8<-------------------------------------*/
 
         return this.evaluateMovesForOppositeSide(0, movesForOppositeSide, maximalOrdinal, worstScore, bestScore);
 
@@ -83,14 +94,21 @@ public final class NegaMaxAlphaBetaExploration implements ExplorationInterface<M
 
     @Override
     public Double evaluate(final ContextInterface context, final MoveInterface option, final int maximalOrdinal) {
-        return this.evaluate(context, option, maximalOrdinal, -1.0, 1.0); // TODO extract constants
+        //System.out.println(option + " = ?");
+        final Double evaluation = this.evaluate(context, option, maximalOrdinal, -1.0, 1.0); // TODO extract constants
+        //System.out.println(option + " = " + evaluation);
+        return evaluation;
     }
 
     /*-------------------------------------8<-------------------------------------*/
 
     @Override
     public Double evaluate(final ContextInterface context, final MoveInterface option) {
-        return this.evaluate(context, option, this.maximalOrdinal());
+        System.out.println(option + " = ?");
+        final Double evaluation = this.evaluate(context, option, this.maximalOrdinal());
+        System.out.println(option + " = " + evaluation);
+        return evaluation;
+
     }
 
     /*-------------------------------------8<-------------------------------------*/

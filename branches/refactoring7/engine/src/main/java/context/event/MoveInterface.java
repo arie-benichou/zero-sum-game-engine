@@ -39,6 +39,8 @@ public interface MoveInterface extends ImmutableInterface<MoveInterface>, NullOb
     @Computation
     BoardMutationInterface boardMutation();
 
+    Double heuristicEvaluation();
+
     /*-------------------------------------8<-------------------------------------*/
 
 }

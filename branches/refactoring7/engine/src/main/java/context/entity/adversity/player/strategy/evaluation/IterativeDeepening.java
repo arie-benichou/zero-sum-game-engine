@@ -18,6 +18,7 @@
 package context.entity.adversity.player.strategy.evaluation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Iterables;
@@ -54,6 +55,19 @@ public class IterativeDeepening implements EvaluationInterface<MoveInterface> {
     @Override
     public List<List<MoveInterface>> process(final ContextInterface context, final int maximalOdinal) {
         final List<MoveInterface> givenOptions = context.options();
+
+        /*-------------------------------------8<-------------------------------------*
+        System.out.println();
+        System.out.println(givenOptions);
+        /*-------------------------------------8<-------------------------------------*/
+
+        Collections.sort(givenOptions);
+
+        /*-------------------------------------8<-------------------------------------*
+        System.out.println(givenOptions);
+        System.out.println();
+        /*-------------------------------------8<-------------------------------------*/
+
         return this.process(context, this.maximalOdinal(), givenOptions);
     }
 
