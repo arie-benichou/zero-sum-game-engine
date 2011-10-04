@@ -1,12 +1,16 @@
 
 package context.entity.game.board;
 
+import java.util.List;
+import java.util.Map;
+
 import util.annotations.Application;
 import util.annotations.Computation;
 import util.annotations.Value;
 import context.entity.game.board.cell.BoardCellInterface;
 import context.entity.game.board.cell.piece.PieceInterface;
 import context.entity.game.board.cell.position.PositionInterface;
+import context.entity.game.board.direction.DirectionInterface;
 import context.entity.game.board.mutation.MutationInterface;
 
 public interface BoardInterface extends CellManagerInterface<PositionInterface, PieceInterface> {
@@ -44,8 +48,15 @@ public interface BoardInterface extends CellManagerInterface<PositionInterface, 
     @Computation
     int count(PieceInterface value);
 
-    /*-------------------------------------8<-------------------------------------*/
+    @Computation
+    boolean contains(PieceInterface value);
 
-    //@Computation Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(PositionInterface position);    
+    @Computation
+    List<BoardCellInterface> collect(PieceInterface value);
+
+    @Computation
+    Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(PositionInterface position);
+
+    /*-------------------------------------8<-------------------------------------*/
 
 }

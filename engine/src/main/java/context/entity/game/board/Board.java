@@ -17,9 +17,11 @@
 
 package context.entity.game.board;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import context.entity.game.board.cell.BoardCell;
@@ -28,6 +30,8 @@ import context.entity.game.board.cell.piece.Piece;
 import context.entity.game.board.cell.piece.PieceInterface;
 import context.entity.game.board.cell.position.Position;
 import context.entity.game.board.cell.position.PositionInterface;
+import context.entity.game.board.direction.Direction;
+import context.entity.game.board.direction.DirectionInterface;
 import context.entity.game.board.mutation.BoardMutation;
 import context.entity.game.board.mutation.MutationInterface;
 
@@ -171,9 +175,24 @@ public final class Board implements BoardInterface {
         return count == null ? 0 : count;
     }
 
-    /*-------------------------------------8<-------------------------------------*/
+    @Override
+    public boolean contains(final PieceInterface value) {
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x)
+                if (this.cells[y][x].value().equals(value)) return true;
+        return false;
+    }
 
-    /*
+    @Override
+    public List<BoardCellInterface> collect(final PieceInterface value) {
+        final List<BoardCellInterface> collection = Lists.newArrayList();
+        for (int y = 0; y < this.rows; ++y)
+            for (int x = 0; x < this.columns; ++x)
+                if (this.cells[y][x].value().equals(value))
+                    collection.add(this.cells[y][x]);
+        return collection;
+    }
+
     @Override
     public Map<DirectionInterface, BoardCellInterface> neighbourhoodOf(final PositionInterface position) {
         final Map<DirectionInterface, BoardCellInterface> neighbourhood = Maps.newHashMap();
@@ -182,7 +201,6 @@ public final class Board implements BoardInterface {
         }
         return neighbourhood;
     }
-    */
 
     /*-------------------------------------8<-------------------------------------*/
 

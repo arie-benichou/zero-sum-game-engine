@@ -138,7 +138,7 @@ public final class Bootstrap implements BootstrapInterface {
         System.out.println("\n--------------------8<--------------------\n");
         System.out.println("Game Over !");
         System.out.println("Temps de la partie : " + (t1 - t0) / 1000 + " secondes");
-        final double scoreGame = (1 + Math.abs(finalContext.estimation())) * 10;
+        final double scoreGame = (1 + Math.min(Math.abs(finalContext.evaluation()), 1)) * 10;
         System.out.println("Note du résultat de la partie : " + NumberFormat.getInstance().format(scoreGame) + " / 20");
 
         System.out.println();

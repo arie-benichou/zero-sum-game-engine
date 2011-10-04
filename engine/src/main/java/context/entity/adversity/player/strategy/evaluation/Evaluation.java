@@ -107,13 +107,17 @@ public final class Evaluation implements EvaluationInterface<MoveInterface> {
 
         final List<MoveInterface> givenOptions = context.options();
 
+        /*-------------------------------------8<-------------------------------------*/
         System.out.println();
         System.out.println(givenOptions);
+        /*-------------------------------------8<-------------------------------------*/
 
         Collections.sort(givenOptions);
 
+        /*-------------------------------------8<-------------------------------------*/
         System.out.println(givenOptions);
         System.out.println();
+        /*-------------------------------------8<-------------------------------------*/
 
         return this.process(context, maximalOdinal, givenOptions);
     }

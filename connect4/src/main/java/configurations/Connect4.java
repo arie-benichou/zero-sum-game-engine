@@ -33,7 +33,8 @@ class Connect4 {
 
     public static void main(final String[] args) {
 
-        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("Connect4.xml"));
+        //final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("Connect4.xml"));
+        final BeanFactory factory = new XmlBeanFactory(new ClassPathResource("Context2.xml"));
 
         final ContextInterface context = (Context) factory.getBean("context");
 
